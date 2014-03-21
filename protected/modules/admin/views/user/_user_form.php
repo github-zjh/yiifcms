@@ -25,9 +25,9 @@
   </tr>
   <tr >
     <td ><?php if($model->isNewRecord):?>
-      <?php echo $form->textField($model,'password',array('size'=>30, 'maxlength'=>50, 'value'=>'', 'class'=>'validate[required]')); ?>
+      <?php echo $form->passwordField($model,'password',array('size'=>30, 'maxlength'=>50, 'value'=>'', 'class'=>'validate[required]')); ?>
       <?php else:?>
-      <?php echo $form->textField($model,'password',array('size'=>30, 'maxlength'=>50, 'value'=>'')); ?>
+      <?php echo $form->passwordField($model,'password',array('size'=>30, 'maxlength'=>50, 'value'=>'')); ?>
       <?php endif?></td>
   </tr>
   <tr>
@@ -42,7 +42,7 @@
   </tr>
   <tr >
     <td >    	
-    	<select name="User[groupid]" id="User[groupid]">
+    	<select name="User[groupid]" id="User[groupid]" class="validate[required]">
     		<option value="">=组=</option>
     		<?php foreach($this->group_list as $group):?>
     		<option value="<?php echo $group['id'];?>" <?php $this->selected($group['id'], $model->groupid);?>><?php echo $group['group_name'];?></option>

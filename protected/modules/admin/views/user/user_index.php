@@ -6,13 +6,14 @@
     </ul>
     <div class="search right">
       <?php $form = $this->beginWidget('CActiveForm',array('id'=>'searchForm','method'=>'get','htmlOptions'=>array('name'=>'xform'))); ?>
+      <?php if(!$adminPage):?>
       <select name="groupid" id="groupid">
         <option value="">=组=</option>
         <?php foreach((array)$this->group_list as $group):?>
         <option value="<?php echo $group['id']?>" <?php $this->selected($group['id'], $this->_request->getParam('groupid'));?>><?php echo $group['group_name']?></option>
         <?php endforeach;?>
       </select>
-      
+      <?php endif;?>
       用户名
       <input id="username" type="text" name="username" value="" class="txt" size="15"/>      
       <input name="searchsubmit" type="submit" class="button" value="<?php echo Yii::t('admin','Search');?>"/>
@@ -67,6 +68,8 @@ $(document).ready(function(){
           <select name="command">
             <option>选择操作</option>
             <option value="userLock">锁定</option>
+            <option value="userunLock">解锁</option>
+            <option value="userDelete">删除</option>
           </select>
           <input id="submit_maskall" class="button confirmSubmit" type="submit" value="提交" name="maskall" />
         </div></td>

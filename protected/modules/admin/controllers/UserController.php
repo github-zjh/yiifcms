@@ -53,7 +53,9 @@ class UserController extends Backend
     public function actionAdmin(){
     	$model = new User();
     	$criteria = new CDbCriteria();
-    	$criteria->condition = "status=1 AND groupid=".$this->_adminGroupID;
+    	$username = trim( $this->_request->getParam( 'username' ) );
+    	$username && $condition .= ' AND username LIKE \'%' . $username . '%\'';
+    	$criteria->condition = "status=1 AND groupid=".$this->_adminGroupID. $condition;
     	$criteria->order = 'uid DESC';
     	$count = $model->count($criteria);
     	$pages = new CPagination($count);
@@ -73,8 +75,11 @@ class UserController extends Backend
     {        
         $model = new User;             
         if (isset($_POST['User'])) {            
-            $model->attributes = $_POST['User'];        
-            $model->addtime = time();    
+            $model->attributes = $_POST['User'];
+            $user = $model->find('username=:username', array(':username'=>$model->username));
+            if($user){
+            	$this->message('error',Yii::t('admin','UserName Is Exist'));
+            }  
             if ($model->save()) {               
                 $this->message('success',Yii::t('admin','Add Success'),$this->createUrl('user/index'));
             }
@@ -90,10 +95,17 @@ class UserController extends Backend
     public function actionUpdate ($id)
     {        
         $model = User::model()->findByPk($id); 
-           
-        if (isset($_POST['User'])) {     
-        	
-            $model->attributes = $_POST['User'];                      
+       
+        if (isset($_POST['User'])) { 
+              
+            if(empty($_POST['User']['password'])){
+            	$_POST['User']['password'] = $model->password;
+            }else{
+            	$_POST['User']['password'] = CPasswordHelper::hashPassword($_POST['User']['password']);
+            }     
+            
+            $model->attributes = $_POST['User'];
+            
             if ($model->save()) {               
                 $this->message('success',Yii::t('admin','Update Success'),$this->createUrl('user/index'));
             }
@@ -169,36 +181,59 @@ class UserController extends Backend
     public function actionBatch ()
     {
         
-        if (XUtils::method() == 'GET') {
-            $command = trim($_GET['command']);
-            $ids = intval($_GET['id']);
-        } elseif (XUtils::method() == 'POST') {
-            $command = trim($_POST['command']);
-            $ids = $this->_gets->getPost('id');
-            is_array($ids) && $ids = implode(',', $ids);
-        } else {
-            XUtils::message('errorBack', '只支持POST,GET数据');
-        }
-        empty($ids) && XUtils::message('error', '未选择记录');
+        if ($this->method() == 'GET') {
+			$command = trim($this->_request->getParam('command'));
+			$ids = intval($this->_request->getParam('id'));
+		} elseif ($this->method() == 'POST') {
+			$command = $this->_request->getPost('command');
+			$ids = $this->_request->getPost('id');			
+		} else {
+			throw new CHttpException(404, Yii::t('admin','Only POST Or GET'));
+		}
+		empty($ids) && $this->message('error',  Yii::t('admin','No Select'));		
         
         switch ($command) {
+        	
+        	case 'userLock':
+        		foreach((array)$ids as $id){
+        			$userModel = User::model()->findByPk($id);
+        			if($userModel){
+        				$userModel->status = 0;
+        				$userModel->save();
+        			}
+        		}
+        		break;
+        	
+        	case 'userunLock':
+        		foreach((array)$ids as $id){
+        			$userModel = User::model()->findByPk($id);
+        			if($userModel){
+        				$userModel->status = 1;
+        				$userModel->save();
+        			}
+        		}
+        		break;
             
-            case 'adminDelete':
-                parent::_acl('admin_delete');
-                parent::_adminiLogger(array ('catalog' => 'delete' , 'intro' => '删除管理员,ID:' . $ids ));
-                parent::_delete(new Admin(), $ids, array ('index' ));
+            case 'userDelete':               
+        		foreach((array)$ids as $id){
+            		$userModel = User::model()->findByPk($id);
+            		if($userModel){
+            			$userModel->delete();
+            		}
+            	}
                 break;
             case 'groupDelete':
-                parent::_acl('admin_group_delete');
-                parent::_groupPrivate($ids);
-                parent::_adminiLogger(array ('catalog' => 'delete' , 'intro' => '删除管理员用户组,ID:' . $ids ));
-                parent::_delete(new AdminGroup(), $ids, array ('group' ));
-                break;
+        		foreach((array)$ids as $id){
+            		$groupModel = UserGroup::model()->findByPk($id);
+            		if($groupModel){
+            			$groupModel->delete();
+            		}
+            	}
             default:
-                throw new CHttpException(404, '错误的操作类型:' . $command);
-                break;
+                throw new CHttpException(404, Yii::t('admin','Error Operation'));
+				break;
         }
-    
+        $this->message('success', Yii::t('admin','Batch Operate Success'),$this->createUrl('user/index'));
     }
 
 }

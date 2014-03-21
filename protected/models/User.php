@@ -121,15 +121,16 @@ class User extends CActiveRecord
 	 */
 	protected function beforeSave ()
 	{
-		if ($this->isNewRecord) {
+		if ($this->isNewRecord) {		
+			if($this->groupid <= 0)
+			{
+				$this->addError('groupid',Yii::t('admin','Group Is Required'));
+				return false;
+			}	
 			$this->password = CPasswordHelper::hashPassword($this->password);
-			$this->addtime = time();
-		}else{
-			if($this->password){
-				$this->password = CPasswordHelper::hashPassword($this->password);
-			}
-		}
-		return true;
+			$this->addtime = time();					
+		}		
+		return true;		
 	}
 	
 	/**

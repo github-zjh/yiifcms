@@ -125,6 +125,10 @@ return array (
 	'Group Update' => '用户组编辑',
 	'User Add' => '用户添加',
 	'User Edit' => '用户编辑',
+	'Add Success' => '添加成功',
+	'Password Is Required' => '密码不能为空',
+	'Group Is Required' => '用户组不能为空',
+	'UserName Is Exist' => '用户名已经存在',
 	
 	 
 );
