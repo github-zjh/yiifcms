@@ -1,6 +1,6 @@
 # your database backup
 # version:5.5.27-log
-# time:2014-03-21 14:10:01
+# time:2014-03-21 16:26:31
 # --------------------------------------------------------
 
 
@@ -469,7 +469,7 @@ CREATE TABLE `yii_session` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='session表';
 
-INSERT INTO `yii_session` VALUES('thrp1q7bsv1lh7d0ji3skjsav3','1395385800','Yii.CCaptchaAction.c506e434.admin/default.captcha|s:4:\"lijc\";Yii.CCaptchaAction.c506e434.admin/default.captchacount|i:3;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";admin__states|a:0:{}');
+INSERT INTO `yii_session` VALUES('hj5dv9prhkqsn61g9r5ectdmh4','1395393990','Yii.CCaptchaAction.c506e434.admin/default.captcha|s:4:\"lijc\";Yii.CCaptchaAction.c506e434.admin/default.captchacount|i:3;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";admin__states|a:0:{}Yii.CCaptchaAction.c506e434.site.captcha|s:7:\"fgqofue\";Yii.CCaptchaAction.c506e434.site.captchacount|i:3;e574837f4918ccd989611a4cd646c90c__id|s:1:\"3\";e574837f4918ccd989611a4cd646c90c__name|s:10:\"rovmvelxdu\";e574837f4918ccd989611a4cd646c90c__states|a:0:{}');
 
 DROP TABLE IF EXISTS `yii_setting`;
 CREATE TABLE `yii_setting` (
@@ -509,7 +509,7 @@ INSERT INTO `yii_setting` VALUES('custom','_address','北京市朝阳区','');
 INSERT INTO `yii_setting` VALUES('custom','_telephone','(+86 10) 5992 8888','');
 INSERT INTO `yii_setting` VALUES('custom','_fax','传真:(+86 10) 5992 0000','');
 INSERT INTO `yii_setting` VALUES('custom','_mobile','18600000000','');
-INSERT INTO `yii_setting` VALUES('template','theme','default','');
+INSERT INTO `yii_setting` VALUES('template','theme','classic','');
 INSERT INTO `yii_setting` VALUES('template','template','default','');
 
 DROP TABLE IF EXISTS `yii_special`;
@@ -670,23 +670,16 @@ CREATE TABLE `yii_user` (
   `addtime` int(11) DEFAULT NULL COMMENT '注册时间',
   PRIMARY KEY (`uid`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 DELAY_KEY_WRITE=1 COMMENT='用户表';
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 DELAY_KEY_WRITE=1 COMMENT='用户表';
 
-INSERT INTO `yii_user` VALUES('1','zjh_admin','','xb_zjh@126.com','10','1','');
+INSERT INTO `yii_user` VALUES('1','zjh_admin','$2a$13$iKKy4BbxaNt4rIEUnzxCjuVgnd/XCFxLwA.rtRPzwNK9yUpDL.rM6','xb_zjh@126.com','10','1','');
 INSERT INTO `yii_user` VALUES('2','没那么简单','$2a$13$Sw5bN0oq.OK/6sxrhKt8wOfyGAKIQ71.G69bg9ZgVKPVxzSL5lSPq','326196998@qq.com','1','0','');
-INSERT INTO `yii_user` VALUES('3','rovmvelxdu','$2a$13$fZyyVEfycTyFOgCLZ3VJhO3uoY3SSCMuuPrQ8uko150.pnbNBgNzG','427773978@qq.com','1','0','');
+INSERT INTO `yii_user` VALUES('3','rovmvelxdu','$2a$13$og29rk/BB1EbVNKZCEq2jOJl8x2W09Qf0cw7Uut3tneLAxh0S0cLG','427773978@qq.com','1','0','');
 INSERT INTO `yii_user` VALUES('4','rxhhf90zpluu','$2a$13$TEpIe58TLJIUmLuoE7pYD.KK74cRlLXSaNoXf0bnxbcLFFmmW1E5u','adornvrqb@gmail.com','1','0','');
 INSERT INTO `yii_user` VALUES('5','mguw0709','$2a$13$TEpIe58TLJIUmLuoE7pYD.KK74cRlLXSaNoXf0bnxbcLFFmmW1E5u','funnellfwd@gmail.com','1','0','');
 INSERT INTO `yii_user` VALUES('6','bampre98t6','$2a$13$TEpIe58TLJIUmLuoE7pYD.KK74cRlLXSaNoXf0bnxbcLFFmmW1E5u','mugineb.yy@gmail.com','1','0','');
 INSERT INTO `yii_user` VALUES('7','微博评论','$2a$13$TEpIe58TLJIUmLuoE7pYD.KK74cRlLXSaNoXf0bnxbcLFFmmW1E5u','xweibo_user85589@sina.com','1','0','');
 INSERT INTO `yii_user` VALUES('8','Aidexliew','$2a$13$TEpIe58TLJIUmLuoE7pYD.KK74cRlLXSaNoXf0bnxbcLFFmmW1E5u','f.ar.ce6.06@gmail.com','1','0','');
-INSERT INTO `yii_user` VALUES('9','Enepsyspoipsy','$2a$13$TEpIe58TLJIUmLuoE7pYD.KK74cRlLXSaNoXf0bnxbcLFFmmW1E5u','xxunv5n2@gmail.com','1','0','');
-INSERT INTO `yii_user` VALUES('10','BarArroponnab','$2a$13$TEpIe58TLJIUmLuoE7pYD.KK74cRlLXSaNoXf0bnxbcLFFmmW1E5u','dmitrevaalena@yandex.com','1','0','');
-INSERT INTO `yii_user` VALUES('11','xie719797','$2a$13$TEpIe58TLJIUmLuoE7pYD.KK74cRlLXSaNoXf0bnxbcLFFmmW1E5u','hjyhj565@163.com','1','0','');
-INSERT INTO `yii_user` VALUES('22','mumu','$2a$13$TEpIe58TLJIUmLuoE7pYD.KK74cRlLXSaNoXf0bnxbcLFFmmW1E5u','237803546@qq.com','1','0','1380269800');
-INSERT INTO `yii_user` VALUES('23','admin','$2a$13$TEpIe58TLJIUmLuoE7pYD.KK74cRlLXSaNoXf0bnxbcLFFmmW1E5u','123456@qq.com','1','0','');
-INSERT INTO `yii_user` VALUES('25','demo1','$2a$13$XSTD0UKikkmCu834ByuBkOfR0WmVqY8cfUsrvQ2T4hBtWWFcJ8I4q','12345@qq.com','1','0','');
-INSERT INTO `yii_user` VALUES('26','demo11','$2a$13$5tQ4W.WQD7Z9Qnaqk0HFkebgvyae0DxafZbg4bQ/Bl3nP1isCFaDe','12345@qq.com','1','0','');
 
 DROP TABLE IF EXISTS `yii_user_group`;
 CREATE TABLE `yii_user_group` (
@@ -696,7 +689,7 @@ CREATE TABLE `yii_user_group` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
-INSERT INTO `yii_user_group` VALUES('1','普通用户','');
+INSERT INTO `yii_user_group` VALUES('1','普通用户','administrator');
 INSERT INTO `yii_user_group` VALUES('2','VIP①用户','');
 INSERT INTO `yii_user_group` VALUES('3','VIP②用户','');
 INSERT INTO `yii_user_group` VALUES('4','VIP④用户','administrator');

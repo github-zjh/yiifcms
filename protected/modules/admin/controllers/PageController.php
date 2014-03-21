@@ -1,13 +1,8 @@
 <?php
 /**
  * 单页管理
- * 
- * @author        shuguang <5565907@qq.com>
- * @copyright     Copyright (c) 2007-2013 bagesoft. All rights reserved.
- * @link          http://www.bagecms.com
- * @package       BageCMS.admini.Controller
- * @license       http://www.bagecms.com/license
- * @version       v3.1.0
+ * @author        zhao jinhan <326196998@qq.com>
+ * @copyright     Copyright (c) 2014-2015. All rights reserved.
  */
 
 class PageController extends Backend

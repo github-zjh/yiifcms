@@ -1,9 +1,9 @@
 <?php
 /**
- * 会员管理
+ * 会员管理控制器
  * 
  * @author        zhao jinhan <326196998@qq.com>
- * @copyright     Copyright (c) 2014-2015 bagesoft. All rights reserved.
+ * @copyright     Copyright (c) 2014-2015. All rights reserved.
  * 
  */
 class UserController extends Backend

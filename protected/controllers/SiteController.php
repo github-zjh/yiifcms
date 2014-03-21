@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * 默认前端控制器
+ * @author        zhao jinhan <326196998@qq.com>
+ * @copyright     Copyright (c) 2014-2015. All rights reserved.
+ *
+ */
 class SiteController extends FrontBase
 {
 	/**
