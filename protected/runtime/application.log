@@ -1,0 +1,118 @@
+2014/03/21 13:55:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "favicon.ico"。' in D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 D:\xampp\htdocs\wwwroot\www.yii.local\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\wwwroot\www.yii.local\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/03/21 13:55:34 [error] [exception.CException] exception 'CException' with message 'Asset文件 "D:\xampp\htdocs\wwwroot\www.yii.local\protected\widget\kindeditor\assets" 不存在.' in D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CAssetManager.php:257
+Stack trace:
+#0 D:\xampp\htdocs\wwwroot\www.yii.local\protected\widget\kindeditor\KindEditor.php(24): CAssetManager->publish('D:\xampp\htdocs...')
+#1 D:\xampp\htdocs\wwwroot\www.yii.local\protected\widget\kindeditor\KindEditor.php(154): KindEditor->getAssetsPath()
+#2 D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CBaseController.php(173): KindEditor->run()
+#3 D:\xampp\htdocs\wwwroot\www.yii.local\protected\modules\admin\views\post\_post_form.php(84): CBaseController->widget('application.wid...', Array)
+#4 D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CBaseController.php(126): require('D:\xampp\htdocs...')
+#5 D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#6 D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CController.php(869): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#7 D:\xampp\htdocs\wwwroot\www.yii.local\protected\modules\admin\views\post\update.php(12): CController->renderPartial('_post_form', Array)
+#8 D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CBaseController.php(126): require('D:\xampp\htdocs...')
+#9 D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#10 D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CController.php(869): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#11 D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CController.php(782): CController->renderPartial('update', Array, true)
+#12 D:\xampp\htdocs\wwwroot\www.yii.local\protected\modules\admin\controllers\PostController.php(172): CController->render('update', Array)
+#13 [internal function]: PostController->actionUpdate('18')
+#14 D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(PostController), Array)
+#15 D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(PostController), Object(ReflectionMethod), Array)
+#16 D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#17 D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#18 D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#19 D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CWebApplication.php(282): CController->run('update')
+#20 D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CWebApplication.php(141): CWebApplication->runController('admin/post/upda...')
+#21 D:\xampp\htdocs\wwwroot\www.yii.local\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#22 D:\xampp\htdocs\wwwroot\www.yii.local\index.php(14): CApplication->run()
+#23 {main}
+REQUEST_URI=/admin/post/update/id/18.htm
+HTTP_REFERER=http://www.yii.local/admin/post/index.htm
+---
+2014/03/21 13:56:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/5506c2ae/themes/default/default.css"。' in D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/5506c2ae...')
+#1 D:\xampp\htdocs\wwwroot\www.yii.local\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\wwwroot\www.yii.local\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/5506c2ae/themes/default/default.css
+HTTP_REFERER=http://www.yii.local/admin/post/update/id/18.htm
+---
+2014/03/21 13:56:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/5506c2ae/kindeditor-min.js"。' in D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/5506c2ae...')
+#1 D:\xampp\htdocs\wwwroot\www.yii.local\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\wwwroot\www.yii.local\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/5506c2ae/kindeditor-min.js
+HTTP_REFERER=http://www.yii.local/admin/post/update/id/18.htm
+---
+2014/03/21 13:56:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/5506c2ae/lang/zh_CN.js"。' in D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/5506c2ae...')
+#1 D:\xampp\htdocs\wwwroot\www.yii.local\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\wwwroot\www.yii.local\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/5506c2ae/lang/zh_CN.js
+HTTP_REFERER=http://www.yii.local/admin/post/update/id/18.htm
+---
+2014/03/21 13:56:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/5506c2ae/kindeditor-min.js"。' in D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/5506c2ae...')
+#1 D:\xampp\htdocs\wwwroot\www.yii.local\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\wwwroot\www.yii.local\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/5506c2ae/kindeditor-min.js
+HTTP_REFERER=http://www.yii.local/admin/post/update/id/18.htm
+---
+2014/03/21 13:56:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/5506c2ae/lang/zh_CN.js"。' in D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/5506c2ae...')
+#1 D:\xampp\htdocs\wwwroot\www.yii.local\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\wwwroot\www.yii.local\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/5506c2ae/lang/zh_CN.js
+HTTP_REFERER=http://www.yii.local/admin/post/update/id/18.htm
+---
+2014/03/21 13:56:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/5506c2ae/themes/default/default.css"。' in D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/5506c2ae...')
+#1 D:\xampp\htdocs\wwwroot\www.yii.local\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\wwwroot\www.yii.local\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/5506c2ae/themes/default/default.css
+HTTP_REFERER=http://www.yii.local/admin/post/update/id/18.htm
+---
+2014/03/21 13:56:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/5506c2ae/kindeditor-min.js"。' in D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/5506c2ae...')
+#1 D:\xampp\htdocs\wwwroot\www.yii.local\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\wwwroot\www.yii.local\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/5506c2ae/kindeditor-min.js
+HTTP_REFERER=http://www.yii.local/admin/post/update/id/18.htm
+---
+2014/03/21 13:56:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/5506c2ae/lang/zh_CN.js"。' in D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/5506c2ae...')
+#1 D:\xampp\htdocs\wwwroot\www.yii.local\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\wwwroot\www.yii.local\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/5506c2ae/lang/zh_CN.js
+HTTP_REFERER=http://www.yii.local/admin/post/update/id/18.htm
+---
+2014/03/21 13:57:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "cms/uploads/201309/523a380d1d4c0.jpg"。' in D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\wwwroot\www.yii.local\framework\web\CWebApplication.php(141): CWebApplication->runController('cms/uploads/201...')
+#1 D:\xampp\htdocs\wwwroot\www.yii.local\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\wwwroot\www.yii.local\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/cms/uploads/201309/523a380d1d4c0.jpg
+HTTP_REFERER=http://www.yii.local/admin/special/update/id/2.htm
+---
