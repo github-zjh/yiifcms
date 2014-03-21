@@ -1,0 +1,27 @@
+* { border: 0; padding: 0; margin: 0; }
+body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 12px; color: #949494; }
+h1 { width:300px; text-align:center; background-color:#3C5880; color:#FFFFFF; border:1px solid #3C5880; border-radius:4px; margin:0 auto; line-height:80px; margin-top:-45px;}
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus { border-color: #e1a531; -moz-box-shadow: 0 0 3px #e1a531; -webkit-box-shadow: 0 0 3px #e1a531; box-shadow: 0 0 3px #e1a531; outline: none; }
+#login { background: transparent url(../images/login-bg.png) repeat-x; height: 280px; width: 100%; margin-top: -165px; position: absolute; top: 40%; }
+#login .wrapper { width: 960px; margin: 0 auto; height: 280px; position: relative; }
+.alert { /* border-bottom: 1px solid #FFF;
+    border-left: 1px solid #FFF;
+    border-right: 1px solid #FFF;*/
+text-align: center; margin: 1px 200px; padding: 12px; width: 540px; border-radius: 0 0 3px 3px; -moz-border-radius: 0 0 3px 3px; -webkit-border-radius: 0 0 3px 3px; }
+#login .alert.error { color: #DD6D4B; }
+#login .alert.info { background: #F6FBDA; color: #BBC157; }
+#login .copyright { font-size: 10px; text-transform: uppercase; color: #949494; margin-top: 90px; _margin-top: 120px; text-align: center; }
+#login a, #login a:visited, #login a:link { color: #E44088; text-decoration: none; }
+#login a:hover { color: #859BBC; }
+#login p.title { margin: 10px 2px 20px; font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; }
+.logo { background: transparent url(../images/logo.gif) no-repeat; height: 80px; width: 248px; margin-top: 60px; margin-left: 250px; }
+#login .input-text, #login .input-password { border-radius: 3px; border: 1px solid #CCCCCC; margin-bottom: 10px; font-size: 12px; padding: 8px; color: #949494; width: 200px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
+#login .verify-code { width: 70px; }
+#login .input-login { background: transparent url("../images/login_button.gif") no-repeat; cursor: pointer; width: 80px; height: 32px; }
+#login .input-reset { background: transparent url("../images/reset_button.gif") no-repeat; cursor: pointer; width: 80px; height: 32px; }
+.form { width: 500px; position: absolute; top: 60px; right: 0 }
+.form dl dt { float: left; padding: 10px 10px 0px 0 }
+.form dl dd { padding-bottom: 5px; }
+.form dl dd input { _vertical-align: middle }
+.errorMessage { display: inline; color: #F00; }
+.clear-fix { clear: both; }
