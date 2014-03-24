@@ -8,43 +8,43 @@
 <?php $form=$this->beginWidget('CActiveForm',array('id'=>'xform','htmlOptions'=>array('name'=>'xform'))); ?>
 <table class="form_table">
   <tr>
-    <td class="tb_title">评论人：</td>
+    <td class="tb_title"><?php echo Yii::t('admin', 'Comment User');?>：</td>
   </tr>
   <tr >
     <td ><?php echo $form->textField($model,'user_id',array('size'=>30,'maxlength'=>128)); ?></td>
   </tr>
   <tr>
-    <td class="tb_title">IP地址：</td>
+    <td class="tb_title"><?php echo Yii::t('admin', 'IP Address');?>：</td>
   </tr>
   <tr >
     <td ><?php echo $model->client_ip ?></td>
   </tr>
   <tr>
-    <td class="tb_title">内容：</td>
+    <td class="tb_title"><?php echo Yii::t('admin', 'Content');?>：</td>
   </tr>
   <tr >
     <td ><?php echo $form->textArea($model,'content',array('rows'=>7,'cols'=>70)); ?></td>
   </tr>
   <tr>
-    <td class="tb_title">回复内容：</td>
+    <td class="tb_title"><?php echo Yii::t('admin', 'Reply Content');?>：</td>
   </tr>
   <tr >
     <td ><?php echo $form->textArea($model,'answer_content',array('rows'=>7,'cols'=>70)); ?></td>
   </tr>
   <tr>
-    <td class="tb_title">状态：</td>
+    <td class="tb_title"><?php echo Yii::t('admin', 'Status');?>：</td>
   </tr>
   <tr >
-    <td ><?php echo $form->dropDownList($model,'status_is',array('Y'=>'显示', 'N'=>'隐藏')); ?></td>
+    <td ><?php echo $form->dropDownList($model,'status_is',array('Y'=>Yii::t('admin', 'Show'), 'N'=>Yii::t('admin', 'Hidden'))); ?></td>
   </tr>
   <tr>
-    <td class="tb_title">提交时间：</td>
+    <td class="tb_title"><?php echo Yii::t('admin', 'Submit Time');?>：</td>
   </tr>
   <tr >
     <td ><?php echo date('Y-m-d H:i:s', $model->create_time) ?></td>
   </tr>
   <tr class="submit">
-    <td ><input type="submit" name="editsubmit" value="提交" class="button" tabindex="3" /></td>
+    <td ><input type="submit" name="editsubmit" value="<?php echo Yii::t('common', 'Submit');?>" class="button" tabindex="3" /></td>
   </tr>
 </table>
 <?php $form=$this->endWidget(); ?>

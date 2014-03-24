@@ -132,7 +132,10 @@ class CatalogController extends Backend
      */
     public function actionBatch ()
     {        
-        if ($this->method() == 'POST') {
+    	 if ( $this->method() == 'GET' ) {
+            $command = trim( $_GET['command'] );
+            $ids = intval( $_GET['id'] );
+        } elseif ( $this->method() == 'POST' ) {
             $command = trim($_POST['command']);
             $ids = $_POST['id'];            
         } else {

@@ -58,6 +58,21 @@ class PostController extends Backend
     	if(isset($_POST['Post']))
     	{
     		$model->attributes=$_POST['Post'];
+    		//标题样式
+    		$title_style = $this->_request->getPost('style');
+    		
+    		if(!$title_style['bold']){
+    			unset($title_style['bold']);
+    		}
+    		if(!$title_style['underline']){
+    			unset($title_style['underline']);
+    		}
+    		if(!$title_style['color']){
+    			unset($title_style['color']);
+    		}
+    		if($title_style){    			
+    			$model->title_style = serialize($title_style);
+    		}
     		
     		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
 	    		//封面图片
@@ -121,6 +136,22 @@ class PostController extends Backend
     	if(isset($_POST['Post']))
     	{
     		$model->attributes=$_POST['Post'];
+    		//标题样式
+    		$title_style = $this->_request->getPost('style');    		  		    		
+    		if(!$title_style['bold']){
+    			unset($title_style['bold']);
+    		}
+    		if(!$title_style['underline']){
+    			unset($title_style['underline']);
+    		}
+    		if(!$title_style['color']){
+    			unset($title_style['color']);
+    		}
+    		if($title_style){    			
+    			$model->title_style = serialize($title_style);
+    		}
+    		
+    		
     		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
 	    		//封面图片
 	    		$upload = new XUpload;
@@ -164,11 +195,13 @@ class PostController extends Backend
     			$this->message('success',Yii::t('admin','Update Success'),$this->createUrl('post/index'));
     	}else{
     		$imageList = unserialize($model->image_list);
+    		$style = unserialize($model->title_style);
     	}   	
-    	
+    	    	
     	$this->render('update',array(
     			'model'=>$model,
     			'imageList' => $imageList,
+    			'style' => $style,
     	));    	
         
     }
@@ -205,13 +238,11 @@ class PostController extends Backend
      *
      * @param  $id
      */
-    public function actionCommentUpdate( $id ) {
-        parent::_acl( 'post_comment_update' );
-        $model = parent::_dataLoad( new PostComment(), $id );
+    public function actionCommentUpdate( $id ) {        
+        $model = PostComment::model()->findByPk($id);
         if ( isset( $_POST['PostComment'] ) ) {
             $model->attributes = $_POST['PostComment'];
-            if ( $model->save() ) {
-                parent::_adminiLogger( array ( 'catalog' => 'update' , 'intro' => '编辑内容评论，ID:' . $id ) ); 
+            if ( $model->save() ) {               
                 $this->redirect( array ( 'comment' ) );
             }
         }
@@ -222,21 +253,18 @@ class PostController extends Backend
      * 标签管理
      *
      */
-    public function actionPostTags() {
+    public function actionTags() {
         $model = new PostTags();
         $criteria = new CDbCriteria();
         $condition = '1';
         $tagName = $this->_request->getParam( 'tagName' );
         $tagName && $condition .= ' AND tag_name LIKE \'%' . $tagName . '%\'';
-        $catalog_id = intval( $this->_request->getParam( 'catalog_id' ) );
-        $catalog_id && $condition .= ' AND t.catalog_id= ' . $catalog_id;
         $criteria->condition = $condition;
-        $criteria->order = 't.id DESC';
-        $criteria->with = 'catalog';
+        $criteria->order = 't.id DESC';        
         $count = $model->count( $criteria );
         $pages = new CPagination( $count );
         $pages->pageSize = 13;
-        $pageParams = XUtils::buildCondition( $_GET, array ( 'tagName' , 'catalog_id' ) );
+        $pageParams = $this->buildCondition( $_GET, array ( 'tagName') );
         $pages->params = is_array( $pageParams ) ? $pageParams : array ();
         $criteria->limit = $pages->pageSize;
         $criteria->offset = $pages->currentPage * $pages->pageSize;
@@ -255,45 +283,109 @@ class PostController extends Backend
         } elseif ( $this->method() == 'POST' ) {
             $command = trim( $_POST['command'] );
             $ids = $_POST['id'];
-            is_array( $ids ) && $ids = implode( ',', $ids );
         } else {
-            $this->message( 'errorBack', '只支持POST,GET数据' );
+            $this->message( 'errorBack', Yii::t('admin','Only POST Or GET') );
         }
-        empty( $ids ) && $this->message( 'error', '未选择记录' );
+        empty( $ids ) && $this->message( 'error', Yii::t('admin','No Select') );
 
         switch ( $command ) {
-        case 'delete':           
-            $commentModel = new PostComment();
-            $commentModel->deleteAll( 'post_id IN(' . $ids . ')' );           
-            parent::_delete( new Post(), $ids, array ( 'index' ), array( 'attach_file', 'attach_thumb' ) );
+        case 'delete':      
+        	//删除文章     
+        	foreach((array)$ids as $id){
+        		$postModel = Post::model()->findByPk($id);
+        		if($postModel){
+        			$image_list = $postModel->image_list;
+        			$image_list && $image_list = unserialize($image_list);
+        			if($image_list){
+        				foreach($image_list as $image){
+        					XUpload::deleteFile($image['file']);
+        					$file = Upload::model()->findByPk($image['fileId']);
+        					if($file){
+        						$file->delete();
+        					}
+        				}
+        			}
+        			
+        			XUpload::deleteFile($postModel->attach_file);
+        			XUpload::deleteFile($postModel->attach_thumb);
+        			
+        			$postModel->delete();
+        		}
+        	}
             break;
-        case 'commentDelete':          
-            parent::_delete( new PostComment(), $ids, array ( 'comment' ) );
+        case 'commentDelete':       
+        	//删除评论   
+            foreach((array)$ids as $id){
+        		$commentModel = PostComment::model()->findByPk($id);
+        		if($commentModel){
+        			$commentModel->delete();
+        		}
+            }
             break;
-        case 'commentVerify':           
-            parent::_verify( new PostComment(), 'verify', $ids, array ( 'comment' ) );
+        case 'commentVerify':         
+        	//评论审核通过  
+         	foreach((array)$ids as $id){
+        		$commentModel = PostComment::model()->findByPk($id);        		
+        		if($commentModel){
+        			$commentModel->status_is = 'Y';
+        			$commentModel->save();
+        		}
+            }
             break;
-        case 'commentUnVerify':           
-            parent::_verify( new PostComment(), 'unVerify', $ids, array ( 'comment' ) );
+        case 'commentUnVerify':    
+        	//评论取消审核
+        	foreach((array)$ids as $id){
+        		$commentModel = PostComment::model()->findByPk($id);        		
+        		if($commentModel){
+        			$commentModel->status_is = 'N';
+        			$commentModel->save();
+        		}
+            }
             break;
-        case 'verify':           
-            parent::_verify( new Post(), 'verify', $ids, array ( 'index' ) );
+        case 'show':     
+        	//文章显示      
+        	foreach((array)$ids as $id){
+        		$postModel = Post::model()->findByPk($id);        		
+        		if($postModel){
+        			$postModel->status_is = 'Y';
+        			$postModel->save();
+        		}
+            }
             break;
-        case 'unVerify':           
-            parent::_verify( new Post(), 'unVerify', $ids, array ( 'index' ) );
+        case 'hidden':     
+        	//文章隐藏      
+        	foreach((array)$ids as $id){
+        		$postModel = Post::model()->findByPk($id);        		
+        		if($postModel){
+        			$postModel->status_is = 'N';
+        			$postModel->save();
+        		}
+            }
             break;
-        case 'commend':           
-            parent::_commend( new Post(), 'commend', $ids, array ( 'index' ) );
+        case 'commend':     
+        	//文章推荐
+        	foreach((array)$ids as $id){
+        		$postModel = Post::model()->findByPk($id);
+        		if($postModel){
+        			$postModel->commend = 'Y';
+        			$postModel->save();
+        		}
+        	}                 
             break;
-        case 'unCommend':          
-            parent::_commend( new Post(), 'unCommend', $ids, array ( 'index' ) );
-            break;
-        case 'specialDelete':          
-            parent::_delete( new Special(), $ids, array ( 'special' ), array( 'attach_file', 'attach_thumb' ) );
-            break;
-        default:
-            throw new CHttpException(404, '错误的操作类型:' . $command);
+        case 'unCommend': 
+        	//文章取消推荐
+        	foreach((array)$ids as $id){
+        		$postModel = Post::model()->findByPk($id);
+        		if($postModel){
+        			$postModel->commend = 'N';
+        			$postModel->save();
+        		}
+        	}                    
+            break;        
+         default:
+            throw new CHttpException(404, Yii::t('admin','Error Operation'));
             break;
         }
+        $this->message('success', Yii::t('admin','Batch Operate Success'));
     }
 }

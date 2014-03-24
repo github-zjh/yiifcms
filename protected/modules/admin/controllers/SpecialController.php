@@ -118,46 +118,27 @@ class SpecialController extends Backend
             $ids = intval( $_GET['id'] );
         } elseif ( $this->method() == 'POST' ) {
             $command = trim( $_POST['command'] );
-            $ids = $_POST['id'];
-            is_array( $ids ) && $ids = implode( ',', $ids );
+            $ids = $_POST['id'];            
         } else {
-            $this->message( 'errorBack', '只支持POST,GET数据' );
+            $this->message( 'errorBack', Yii::t('admin','Only POST Or GET'));
         }
-        empty( $ids ) && $this->message( 'error', '未选择记录' );
+        empty( $ids ) && $this->message( 'error', Yii::t('admin','No Select') );
 
-        switch ( $command ) {
-        case 'delete':           
-            $commentModel = new PostComment();
-            $commentModel->deleteAll( 'post_id IN(' . $ids . ')' );           
-            parent::_delete( new Post(), $ids, array ( 'index' ), array( 'attach_file', 'attach_thumb' ) );
-            break;
-        case 'commentDelete':          
-            parent::_delete( new PostComment(), $ids, array ( 'comment' ) );
-            break;
-        case 'commentVerify':           
-            parent::_verify( new PostComment(), 'verify', $ids, array ( 'comment' ) );
-            break;
-        case 'commentUnVerify':           
-            parent::_verify( new PostComment(), 'unVerify', $ids, array ( 'comment' ) );
-            break;
-        case 'verify':           
-            parent::_verify( new Post(), 'verify', $ids, array ( 'index' ) );
-            break;
-        case 'unVerify':           
-            parent::_verify( new Post(), 'unVerify', $ids, array ( 'index' ) );
-            break;
-        case 'commend':           
-            parent::_commend( new Post(), 'commend', $ids, array ( 'index' ) );
-            break;
-        case 'unCommend':          
-            parent::_commend( new Post(), 'unCommend', $ids, array ( 'index' ) );
-            break;
+        switch ( $command ) {        
         case 'specialDelete':          
-            parent::_delete( new Special(), $ids, array ( 'special' ), array( 'attach_file', 'attach_thumb' ) );
-            break;
+        	foreach((array)$ids as $id){
+        		$specialModel = Special::model()->findByPk($id);
+        		if($specialModel){
+        			XUpload::deleteFile($specialModel->attach_file);
+        			XUpload::deleteFile($specialModel->attach_thumb);
+        			$specialModel->delete();
+        		}
+        	}
+        	break;            
         default:
-            throw new CHttpException(404, '错误的操作类型:' . $command);
+            throw new CHttpException(404, Yii::t('admin','Error Operation'));
             break;
         }
+        $this->message('success', Yii::t('admin','Batch Operate Success'));
     }
 }

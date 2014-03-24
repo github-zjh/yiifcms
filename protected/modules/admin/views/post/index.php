@@ -41,6 +41,7 @@ $(document).ready(function(){
         <th width="10%">ID</th>
         <th><?php echo Yii::t('admin','Title');?></th>
         <th width="16%"><?php echo Yii::t('admin','Categorys');?></th>
+        <th width="9%"><?php echo Yii::t('admin','Recommend');?></th>
         <th width="9%"><?php echo Yii::t('admin','Views');?></th>
         <th width="15%"><?php echo Yii::t('admin','Add Time');?></th>
         <th width="8%"><?php echo Yii::t('admin','Operate');?></th>
@@ -53,6 +54,7 @@ $(document).ready(function(){
       <td ><a href="<?php echo $row->getUrl() ?>" target="_blank" style="<?php echo $row->title_style?>"><?php echo $row->title?></a><br />
         <span class="alias"><?php echo $row->title_alias?></span></td>
       <td ><?php echo $row->catalog->catalog_name?></td>
+      <td><?php if($row->commend == 'Y'){echo Yii::t('admin','Yes');}else{echo Yii::t('admin','No');}?></td>
       <td><span ><?php echo $row->view_count?></span></td>
       <td ><?php echo date('Y-m-d H:i',$row->create_time)?></td>
       <td ><a href="<?php echo  $this->createUrl('update',array('id'=>$row->id))?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;<a href="<?php echo  $this->createUrl('batch',array('command'=>'delete','id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->_baseUrl?>/static/admin/images/delete.png" align="absmiddle" /></a></td>
@@ -69,8 +71,8 @@ $(document).ready(function(){
           <select name="command">
             <option><?php echo Yii::t('admin','Select Operate');?></option>
             <option value="delete"><?php echo Yii::t('admin','Delete');?></option>
-            <option value="verify"><?php echo Yii::t('admin','Show');?></option>
-            <option value="unVerify"><?php echo Yii::t('admin','Hidden');?></option>
+            <option value="show"><?php echo Yii::t('admin','Show');?></option>
+            <option value="hidden"><?php echo Yii::t('admin','Hidden');?></option>
             <option value="commend"><?php echo Yii::t('admin','Recommend');?></option>
             <option value="unCommend"><?php echo Yii::t('admin','Cancel Recommend');?></option>
           </select>

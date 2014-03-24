@@ -1,16 +1,13 @@
 <div id="contentHeader">
-  <h3>评论管理</h3>
-  <div class="searchArea">
-    <ul class="action left" >
-      <li><a href="<?php echo $this->createUrl('create')?>" class="actionBtn"><span>录入内容</span></a></li>
-    </ul>
+  <h3><?php echo Yii::t('admin','Comment Manage');?></h3>
+  <div class="searchArea">    
     <div class="search right">
       <?php $form = $this->beginWidget('CActiveForm',array('id'=>'searchForm','method'=>'get','htmlOptions'=>array('name'=>'xform'))); ?>
-      内容标题
+  <?php echo Yii::t('admin','Comment Title');?>
       <input id="postTitle" type="text" name="postTitle" value="" class="txt" size="15"/>
-      评论内容
+  <?php echo Yii::t('admin','Comment Content');?>
       <input id="content" type="text" name="content" value="" class="txt" size="15"/>
-      <input name="searchsubmit" type="submit" value="查询" class="button"/>
+      <input name="searchsubmit" type="submit" value="<?php echo Yii::t('admin','Query');?>" class="button"/>
 <script type="text/javascript">
 $(function(){
 	$("#xform").validationEngine();	
@@ -30,11 +27,11 @@ $(document).ready(function(){
   <form method="post" action="<?php echo $this->createUrl('batch')?>" name="cpform" >
     <tr class="tb_header">
       <th width="8%">ID</th>
-      <th width="10%">评论者</th>
-      <th width="20%">标题</th>
-      <th >评论内容</th>
-      <th width="15%">评论时间</th>
-      <th width="8%">操作</th>
+      <th width="10%"><?php echo Yii::t('admin','Comment User');?></th>
+      <th width="20%"><?php echo Yii::t('admin','Comment Title');?></th>
+      <th ><?php echo Yii::t('admin','Comment Content');?></th>
+      <th width="15%"><?php echo Yii::t('admin','Comment Time');?></th>
+      <th width="8%"><?php echo Yii::t('admin','Operate');?></th>
     </tr>
     <?php foreach ($datalist as $row):?>
     <tr class="tb_list" <?php if($row->status_is=='N'):?>style=" background:#F0F7FC"<?php endif?>>
@@ -53,14 +50,14 @@ $(document).ready(function(){
         </div>
         <div class="fixsel">
           <input type="checkbox" name="chkall" id="chkall" onclick="checkAll( this.form, 'id')" />
-          <label for="chkall">全选</label>
+          <label for="chkall"><?php echo Yii::t('admin','Check All');?></label>
           <select name="command">
-            <option>选择操作</option>
-            <option value="commentDelete">删除</option>
-            <option value="commentVerify">审核通过</option>
-            <option value="commentUnVerify">取消审核</option>
+            <option><?php echo Yii::t('admin','Select Operate');?></option>
+            <option value="commentDelete"><?php echo Yii::t('admin','Delete');?></option>
+            <option value="commentVerify"><?php echo Yii::t('admin','Verify Pass');?></option>
+            <option value="commentUnVerify"><?php echo Yii::t('admin','Cancel Verify');?></option>
           </select>
-          <input id="submit_maskall" class="button confirmSubmit" type="submit" value="提交" name="maskall" />
+          <input id="submit_maskall" class="button confirmSubmit" type="submit" value="<<?php echo Yii::t('common','Submit');?>" name="maskall" />
         </div></td>
     </tr>
   </form>
