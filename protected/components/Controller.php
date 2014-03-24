@@ -205,12 +205,13 @@ html,body,div,p,a,h3{margin:0;padding:0;}
         var delay = document.getElementById("time").innerHTML;
         //alert(delay);
         if(delay > 0){
-        delay--;
-        document.getElementById("time").innerHTML = delay;
-    } else {
-    window.location.href = url;
-    }
-    setTimeout("delayURL(\'" + url + "\')", 1000);
+	        delay--;
+	        document.getElementById("time").innerHTML = delay;
+			setTimeout("delayURL(\'" + url + "\')", 1000);
+	    } else {	
+	    	window.location.href = url;
+	    }
+    
     }
     </script><div class="tips_wrap">
     <div class="tips_inner">

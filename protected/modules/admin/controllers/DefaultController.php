@@ -56,7 +56,7 @@ class DefaultController extends BackendBase
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login() && $model->extValidate($this->_adminGroupID))
-				$this->message('success', Yii::t('common', 'Login Success'), $this->createUrl('/admin/'), 1);
+				$this->message('success', Yii::t('common', 'Login Success'), $this->createUrl('/admin/'), 2);
 		}				
 		$this->render('login', array('model'=>$model));
 	}
@@ -88,8 +88,7 @@ class DefaultController extends BackendBase
 		$data['phpVersion'] = PHP_VERSION;
 		$data['fileupload'] = ini_get('file_uploads') ? ini_get('upload_max_filesize') : '禁止上传';
 		$data['maxExcuteTime'] = ini_get('max_execution_time') . ' 秒';
-		$data['maxExcuteMemory'] = ini_get('memory_limit');
-		$data['magic_quote_gpc'] = MAGIC_QUOTE_GPC ? '开启' : '关闭';
+		$data['maxExcuteMemory'] = ini_get('memory_limit');		
 		$data['allow_url_fopen'] = ini_get('allow_url_fopen') ? '开启' : '关闭';
 		$dbsize = 0;
 		$connection = Yii::app()->db;
@@ -100,7 +99,7 @@ class DefaultController extends BackendBase
 		$mysqlVersion = $connection->createCommand("SELECT version() AS version")->queryAll();
 		$data['mysqlVersion'] = $mysqlVersion[0]['version'];
 		$data['dbsize'] = $this->byteFormat($dbsize);
-		$this->render('home', array ('notebook' => $notebook ,'env'=>$env, 'server' => $data ));
+		$this->render('home', array ('server' => $data ));
 		
 	}
 	

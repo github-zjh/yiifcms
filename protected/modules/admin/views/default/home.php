@@ -22,7 +22,7 @@
   </tr>
   <tr>
     <td >PHP环境</td>
-    <td >magic_quote_gpc:<?php echo $server['magic_quote_gpc']?> allow_url_fopen:<?php echo $server['allow_url_fopen']?></td>
+    <td >PHP版本:<?php echo $server['phpVersion']?> allow_url_fopen:<?php echo $server['allow_url_fopen']?></td>
   </tr>
 </table>
 
