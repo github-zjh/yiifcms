@@ -1,6 +1,6 @@
 <?php
 /**
- * 会员管理控制器
+ * 用户管理控制器
  * 
  * @author        zhao jinhan <326196998@qq.com>
  * @copyright     Copyright (c) 2014-2015. All rights reserved.
@@ -22,7 +22,7 @@ class UserController extends Backend
     }
     
     /**
-     * 会员列表
+     * 用户列表
      *
      */
     public function actionIndex ()
@@ -68,7 +68,7 @@ class UserController extends Backend
     
     
     /**
-     * 会员添加
+     * 用户添加
      *
      */
     public function actionCreate ()
@@ -88,7 +88,7 @@ class UserController extends Backend
     }
 
     /**
-     * 会员编辑
+     * 用户编辑
      *
      * @param  $id
      */

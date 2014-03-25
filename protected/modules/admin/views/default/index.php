@@ -76,7 +76,7 @@
                 <li index="0"><a href="<?php echo $this->createUrl('user/index');?>" target="win"><?php echo Yii::t('admin','User List');?></a></li>
                 <li index="1"><a href="<?php echo $this->createUrl('user/admin');?>" target="win"><?php echo Yii::t('admin','Admin List');?></a></li>   
                 <li index="2"><a href="<?php echo $this->createUrl('user/group');?>" target="win"><?php echo Yii::t('admin','Group Manage');?></a></li>              
-                <li index="3"><a href="<?php echo $this->createUrl('user/question');?>" target="win"><?php echo Yii::t('admin','Question List');?></a></li>
+                <li index="3"><a href="<?php echo $this->createUrl('question/index');?>" target="win"><?php echo Yii::t('admin','Question List');?></a></li>
             </ul>            
             <ul index="5" class="left_menu">
            		<li index="0"><a href="<?php echo $this->createUrl('attach/index');?>" target="win"><?php echo Yii::t('admin','Attach Manage');?></a></li>                              

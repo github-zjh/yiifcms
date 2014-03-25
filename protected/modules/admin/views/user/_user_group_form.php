@@ -9,7 +9,7 @@
 <?php $form=$this->beginWidget('CActiveForm',array('id'=>'xform','htmlOptions'=>array('name'=>'xform'))); ?>
 <table class="form_table">
   <tr>
-    <td class="tb_title">用户组名称：</td>
+    <td class="tb_title"><?php echo Yii::t('admin','Group Name');?>：</td>
   </tr>
   <tr >
     <td >
@@ -21,7 +21,7 @@
    	</td>
   </tr>
   <tr>
-  <td  colspan="2">权限：</td>
+  <td  colspan="2"><?php echo Yii::t('admin','Acl');?>：</td>
   </tr>
   <tr >
   		<?php if($model->id == $this->_adminGroupID):?>
@@ -32,7 +32,7 @@
   </tr>
   <?php if($model->id != $this->_adminGroupID):?>
   <tr class="submit">
-    <td ><input type="submit" name="editsubmit" value="提交" class="button" tabindex="3" /></td>
+    <td ><input type="submit" name="editsubmit" value="<?php echo Yii::t('common','Submit');?>" class="button" tabindex="3" /></td>
   </tr>
   <?php endif;?>
 </table>
