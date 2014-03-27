@@ -1,8 +1,29 @@
 # your database backup
 # version:5.5.27-log
-# time:2014-03-25 08:58:10
+# time:2014-03-27 17:23:26
 # --------------------------------------------------------
 
+
+DROP TABLE IF EXISTS `yii_ad`;
+CREATE TABLE `yii_ad` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `title` varchar(50) NOT NULL COMMENT '广告名称',
+  `title_alias` char(40) NOT NULL DEFAULT '' COMMENT '标识',
+  `link_url` varchar(255) NOT NULL DEFAULT '' COMMENT '链接地址',
+  `image_url` varchar(255) NOT NULL DEFAULT '' COMMENT '图片地址',
+  `width` varchar(10) NOT NULL DEFAULT '' COMMENT '图片宽',
+  `height` varchar(10) NOT NULL DEFAULT '' COMMENT '图片高',
+  `intro` text COMMENT '广告描述',
+  `click_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '点击数',
+  `attach_file` varchar(100) NOT NULL DEFAULT '' COMMENT '附件',
+  `sort_order` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
+  `status_is` enum('Y','N') NOT NULL DEFAULT 'Y' COMMENT '状态',
+  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '录入时间',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='广告';
+
+INSERT INTO `yii_ad` VALUES('2','首页banner','index_banner','','','400','500','','0','uploads/201309/523a2c4baba12.jpg','9','Y','1379544139');
+INSERT INTO `yii_ad` VALUES('3','首页banner','index_banner','','','','','','0','uploads/201309/523a2ca7b51ce.jpg','10','Y','1379544231');
 
 DROP TABLE IF EXISTS `yii_catalog`;
 CREATE TABLE `yii_catalog` (
@@ -277,7 +298,7 @@ INSERT INTO `yii_post` VALUES('17','1','','','Facebook高管离职投奔阿里�
 </p>
 <p>
 	另一方面，Facebook最近也有几位重要人物离职。今年5月，Facebook首席法律顾问尤罗特(Ted Ullyot)离开。最近，Facebook的顶级广告经理戈库尔·拉贾兰（Gokul Rajaram）宣布离开，加入了数字支付公司Square。
-</p>','','','','阿里巴巴,Facebook,yii','1','N','Y','uploads/images/201403/0674c571ac3.gif','uploads/thumbs/201403/small_0674c571ac3.gif','0','0','N','0','0','Y','0','','Y','1379554636');
+</p>','','','','阿里巴巴,Facebook,yii','2','N','Y','uploads/images/201403/0674c571ac3.gif','uploads/thumbs/201403/small_0674c571ac3.gif','0','0','N','0','0','Y','0','','Y','1379554636');
 INSERT INTO `yii_post` VALUES('12','1','','','微软公布Windows 8.1售价 基本版售价119.99美元','','','a:1:{s:9:\"underline\";s:1:\"Y\";}','','','','2','2','','','','','','<p>
 	微软周二正式公布了Windows 8.1操作系统的售价。在Windows 8用户将能够免费升级至Windows 8.1的同时，如果用户运行的是Windows XP、Vista或是Windows 7操作系统，想要升级至Windows 8.1基本版的价格为119.99美元，升级至Windows 8.1 Pro版的价格为199.99美元。
 </p>
@@ -420,9 +441,8 @@ CREATE TABLE `yii_question` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='客服';
 
-INSERT INTO `yii_question` VALUES('1','0','0','','八哥软件','5565907@qq.com','','BageCms是一款基于php5+mysql5开发的多功能开源的网站内容管理系统。使用高性能的PHP5的web应用程序开发框架YII构建，具有操作简单、稳定、安全、高效、跨平台等特点。采用MVC设计模式，模板定制方便灵活，内置小挂工具，方便制作各类功能和效果，BageCms可用于企业建站、个人博客、资讯门户、图片站等各类型站点。','','N','如果您需要购买商业程序、项目外包订制、交流合作的，欢迎使用以下方式和我们联系
-http://www.bagecms.com
-http://www.bagesoft.cn','Y','1379546643');
+INSERT INTO `yii_question` VALUES('1','0','0','','zjh','326196998@qq.com','','yiiCms是一款基于php5+mysql5开发的多功能开源的网站内容管理系统。使用高性能的PHP5的web应用程序开发框架YII构建，具有操作简单、稳定、安全、高效、跨平台等特点。采用MVC设计模式，模板定制方便灵活，内置小挂工具，方便制作各类功能和效果，yiicms可用于企业建站、个人博客、资讯门户、图片站等各类型站点。','','N','如果您需要购买商业程序、项目外包订制、交流合作的，欢迎使用以下方式和我们联系
+','Y','1379546643');
 
 DROP TABLE IF EXISTS `yii_session`;
 CREATE TABLE `yii_session` (
@@ -432,7 +452,7 @@ CREATE TABLE `yii_session` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='session表';
 
-INSERT INTO `yii_session` VALUES('gvl6vegflbgjhcnu2a1qutoq32','1395712689','Yii.CCaptchaAction.c506e434.admin/default.captcha|s:4:\"xxqn\";Yii.CCaptchaAction.c506e434.admin/default.captchacount|i:2;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";admin__states|a:0:{}');
+INSERT INTO `yii_session` VALUES('alc16h1o74o2sbtdq69pp4qfi4','1395915805','Yii.CCaptchaAction.c506e434.admin/default.captcha|s:4:\"ryko\";Yii.CCaptchaAction.c506e434.admin/default.captchacount|i:3;admin__returnUrl|s:10:\"/admin.htm\";admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";admin__states|a:0:{}');
 
 DROP TABLE IF EXISTS `yii_setting`;
 CREATE TABLE `yii_setting` (
@@ -570,12 +590,7 @@ CREATE TABLE `yii_user` (
 
 INSERT INTO `yii_user` VALUES('1','zjh_admin','$2a$13$iKKy4BbxaNt4rIEUnzxCjuVgnd/XCFxLwA.rtRPzwNK9yUpDL.rM6','xb_zjh@126.com','10','1','');
 INSERT INTO `yii_user` VALUES('2','没那么简单','$2a$13$Sw5bN0oq.OK/6sxrhKt8wOfyGAKIQ71.G69bg9ZgVKPVxzSL5lSPq','326196998@qq.com','1','0','');
-INSERT INTO `yii_user` VALUES('3','rovmvelxdu','$2a$13$og29rk/BB1EbVNKZCEq2jOJl8x2W09Qf0cw7Uut3tneLAxh0S0cLG','427773978@qq.com','1','0','');
-INSERT INTO `yii_user` VALUES('4','rxhhf90zpluu','$2a$13$TEpIe58TLJIUmLuoE7pYD.KK74cRlLXSaNoXf0bnxbcLFFmmW1E5u','adornvrqb@gmail.com','1','0','');
-INSERT INTO `yii_user` VALUES('5','mguw0709','$2a$13$TEpIe58TLJIUmLuoE7pYD.KK74cRlLXSaNoXf0bnxbcLFFmmW1E5u','funnellfwd@gmail.com','1','0','');
-INSERT INTO `yii_user` VALUES('6','bampre98t6','$2a$13$TEpIe58TLJIUmLuoE7pYD.KK74cRlLXSaNoXf0bnxbcLFFmmW1E5u','mugineb.yy@gmail.com','1','0','');
 INSERT INTO `yii_user` VALUES('7','微博评论','$2a$13$TEpIe58TLJIUmLuoE7pYD.KK74cRlLXSaNoXf0bnxbcLFFmmW1E5u','xweibo_user85589@sina.com','1','0','');
-INSERT INTO `yii_user` VALUES('8','Aidexliew','$2a$13$TEpIe58TLJIUmLuoE7pYD.KK74cRlLXSaNoXf0bnxbcLFFmmW1E5u','f.ar.ce6.06@gmail.com','1','0','');
 
 DROP TABLE IF EXISTS `yii_user_group`;
 CREATE TABLE `yii_user_group` (

@@ -19,10 +19,12 @@ class AdminModule extends CWebModule
 		Yii::app()->setComponents(array(
 			'user' => array(
 				'stateKeyPrefix' => 'admin',
-				'loginUrl'=>Yii::app()->createUrl('/admin/default/login')
+				'loginUrl'=>Yii::app()->createUrl('/admin/default/login'),									
 			)
 		)
 		);
+		//设定跳转url
+		Yii::app()->user->setReturnUrl(Yii::app()->createUrl('/admin'));
 	}
 
 	public function beforeControllerAction($controller, $action)

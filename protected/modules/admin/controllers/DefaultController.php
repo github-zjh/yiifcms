@@ -36,10 +36,13 @@ class DefaultController extends BackendBase
 		);
 	}
 	
-	public function actionLogin(){	
+	public function actionLogin(){			
+		$returnUrl = Yii::app()->user->__returnUrl;
 		if(!Yii::app()->user->getIsGuest()){
-			$this->redirect(array('/admin/'));
+			//$this->redirect(array('/admin/'));
+			$this->rediretParentUrl($returnUrl);
 		}		
+		
 		$model=new LoginForm;		
 		$this->layout = false;
 		$this->pageTitle = Yii::t('admin','admin login').' - '.$this->setting_base['site_name'];
@@ -56,7 +59,7 @@ class DefaultController extends BackendBase
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login() && $model->extValidate($this->_adminGroupID))
-				$this->message('success', Yii::t('common', 'Login Success'), $this->createUrl('/admin/'), 2);
+				$this->message('success', Yii::t('common', 'Login Success'), $returnUrl, 2);
 		}				
 		$this->render('login', array('model'=>$model));
 	}
