@@ -59,13 +59,13 @@ class User extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'uid' => 'Uid',
-			'username' => 'Username',
-			'password' => 'Password',
-			'email' => 'Email',
-			'groupid' => 'Groupid',
-			'status' => 'Status',
-			'addtime' => 'Addtime',
+			'uid' => Yii::t('model','uid'),
+			'username' => Yii::t('model','username'),
+			'password' => Yii::t('model','password'),
+			'email' => Yii::t('model','email'),
+			'groupid' => Yii::t('model','groupid'),
+			'status' => Yii::t('model','status'),
+			'addtime' => Yii::t('model','addtime'),
 		);
 	}
 
