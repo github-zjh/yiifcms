@@ -38,7 +38,7 @@
           </ul>
   </div>  
   <div class="logininfo">
-	  <span class="welcome"><img src="/static/admin/images/user_edit.png" align="absmiddle"> 欢迎, <em><?php echo Yii::app()->user->name;?></em> </span> 
+	  <span class="welcome"><img src="/static/admin/images/user_edit.png" align="absmiddle"> 欢迎【<?php echo Yii::app()->user->groupname;?>】, <em><?php echo Yii::app()->user->name;?></em> </span> 
 	  <a href="<?php echo $this->createUrl('/admin/user/update/id/'.Yii::app()->user->id);?>" target="win">修改密码</a> 
 	  <a href="<?php echo $this->createUrl('/admin/default/logout');?>" target="_top">退出登录</a> 
 	  <a href="/" target="_blank">前台首页</a><br/>
@@ -86,6 +86,7 @@
             <ul index="6" class="left_menu">
                 <li index="0"><a href="<?php echo $this->createUrl('database/index');?>" target="win"><?php echo Yii::t('admin','Database Manage');?></a></li>
                 <li index="1"><a href="<?php echo $this->createUrl('cache/index');?>" target="win"><?php echo Yii::t('admin','Cache Manage');?></a></li>
+                <li index="2"><a href="<?php echo $this->createUrl('auth/index');?>" target="win"><?php echo Yii::t('admin','Auth Init');?></a></li>
               </ul>
           </div>
   </div>

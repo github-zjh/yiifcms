@@ -183,5 +183,6 @@ return array (
 	'Height' => '高',
 	'Ad Intro' => '广告说明',
 	'Image' => '图片',
+	'Auth Init' => '初始化授权体系',
 	
 );

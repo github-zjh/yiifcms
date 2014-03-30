@@ -26,6 +26,12 @@ class UserIdentity extends CUserIdentity
 			$this->errorCode=self::ERROR_PASSWORD_INVALID;
 		else{
 			$this->_id=$user->uid;
+			//把用户信息存入SESSION
+			$group = UserGroup::model()->findByPk($user->groupid);
+			$this->setState('groupid', $user->groupid);
+			$this->setState('groupname', $group->group_name);
+			$this->setState('email', $user->email);
+			
 			$this->username=$user->username;
 			$this->errorCode=self::ERROR_NONE;
 		}

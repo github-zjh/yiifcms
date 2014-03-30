@@ -83,10 +83,10 @@ return array(
 		),
 		
 		//Configure Authorization Manager
-		/* 'authManager' => array(
+		'authManager' => array(
 			'class'	=> 'CDbAuthManager',
-			'connectID' => 'db'
-		), */
+			'connectionID' => 'db'
+		),
 		
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
