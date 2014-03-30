@@ -25,7 +25,7 @@ class DatabaseController extends Backend
      */
     public function actionIndex ()
     {        
-        $dataList = $this->_db->createCommand("SHOW TABLE STATUS LIKE '" . Yii::app()->db->tablePrefix . "%'")->queryAll();
+        $dataList = $this->_db->createCommand("SHOW TABLE STATUS")->queryAll();
         foreach ($dataList as $row) {
             $dataSize += $row['Data_length'];
         }
