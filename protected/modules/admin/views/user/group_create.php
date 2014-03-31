@@ -8,5 +8,5 @@
     <div class="search right"> </div>
   </div>
 </div>
-<?php $this->renderPartial('_user_group_form',array('model'=>$model))?>
+<?php $this->renderPartial('_user_group_form',array('model'=>$model, 'acls' => $acls, 'has_acls'=>$has_acls))?>
 

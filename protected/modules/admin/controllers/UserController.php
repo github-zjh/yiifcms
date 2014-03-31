@@ -140,13 +140,19 @@ class UserController extends Backend
     {
     	$model = new UserGroup();
     	if (isset($_POST['UserGroup'])) {
-    		$model->attributes = $_POST['UserGroup'];    		 		
+    		$model->attributes = $_POST['UserGroup'];   
+    		$acl = Yii::app()->request->getPost('acls');
+    		if (is_array($acl))
+    			$model->acl = implode(',', array_unique($acl));
+    		else
+    			$model->acl = '';
+    		
     		if ($model->save()) {
-    			$this->redirect(array ('group' ));
+    			$this->message('success',Yii::t('admin','Add Success'), $this->createUrl('group')); 
     		}
     	}
     
-    	$this->render('group_create', array ('model' => $model ));
+    	$this->render('group_create', array ('model' => $model , 'acls' => $this->acl()));
     }
     
 
@@ -157,20 +163,20 @@ class UserController extends Backend
      */
     public function actionGroupUpdate ($id)
     {        
-        $data = UserGroup::model()->findByPk($id);
+        $data = UserGroup::model()->findByPk($id);   
         if (isset($_POST['UserGroup'])) {
             $data->attributes = $_POST['UserGroup'];
-            $acl = Yii::app()->request->getParam('acl');
+            $acl = Yii::app()->request->getPost('acls');            
             if (is_array($acl))
                 $data->acl = implode(',', array_unique($acl));
             else 
-                $data->acl = 'administrator';
-            if ($data->save()) {               
-                $this->redirect(array ('group' ));
+                $data->acl = '';
+            if ($data->save()) { 
+            	$this->message('success',Yii::t('admin','Update Success'), $this->createUrl('group'));    
             }
         }
         
-        $this->render('group_update', array ('model' => $data ));
+        $this->render('group_update', array ('model' => $data ,'acls' => $this->acl(), 'has_acls'=>explode(',',$data->acl)));
     }
 
 

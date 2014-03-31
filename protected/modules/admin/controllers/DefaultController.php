@@ -58,7 +58,7 @@ class DefaultController extends BackendBase
 		{
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login() && $model->extValidate($this->_adminGroupID))
+			if($model->validate() && $model->login() && $model->extValidate())
 				$this->message('success', Yii::t('common', 'Login Success'), $returnUrl, 2);
 		}				
 		$this->render('login', array('model'=>$model));
@@ -95,7 +95,8 @@ class DefaultController extends BackendBase
 		$data['allow_url_fopen'] = ini_get('allow_url_fopen') ? '开启' : '关闭';
 		$dbsize = 0;
 		$connection = Yii::app()->db;
-		$sql = 'SHOW TABLE STATUS LIKE \'' . $connection->tablePrefix . '%\'';
+		//$sql = 'SHOW TABLE STATUS LIKE \'' . $connection->tablePrefix . '%\'';
+		$sql = 'SHOW TABLE STATUS';
 		$command = $connection->createCommand($sql)->queryAll();
 		foreach ($command as $table)
 			$dbsize += $table['Data_length'] + $table['Index_length'];
@@ -105,6 +106,21 @@ class DefaultController extends BackendBase
 		$this->render('home', array ('server' => $data ));
 		
 	}
+	
+	/**
+	 * This is the action to handle external exceptions.
+	 */
+	public function actionError()
+	{
+		if($error=Yii::app()->errorHandler->error)
+		{
+			if(Yii::app()->request->isAjaxRequest)
+				echo $error['message'];
+			else
+				$this->render('error', $error);
+		}
+	}
+	
 	
 	/**
 	 * 自动获取关键词(调用第三方插件)

@@ -20,7 +20,11 @@ class AdminModule extends CWebModule
 			'user' => array(
 				'stateKeyPrefix' => 'admin',
 				'loginUrl'=>Yii::app()->createUrl('/admin/default/login'),									
-			)
+			),
+			'errorHandler'=>array(
+			// use 'site/error' action to display errors
+				'errorAction'=>'default/error',
+			),
 		)
 		);
 		//设定跳转url

@@ -142,7 +142,7 @@ class Controller extends CController
 	/**
 	 * 提示信息
 	 */
-	static public function message( $action = 'success', $content = '', $redirect = 'javascript:history.back(-1);', $timeout = 4 ) {
+	static public function message( $action = 'success', $content = '', $redirect = 'javascript:history.back(-1);', $timeout = 4 , $stop=false) {
 	
 		switch ( $action ) {
 			case 'success':
@@ -198,8 +198,7 @@ html,body,div,p,a,h3{margin:0;padding:0;}
 	
 <body>';
 		// 信息底部
-		$footer = '</body></html>';
-	
+		$footer = '</body></html>';	    
 		$body = '<script type="text/javascript">
         function delayURL(url) {
         var delay = document.getElementById("time").innerHTML;
@@ -227,7 +226,23 @@ html,body,div,p,a,h3{margin:0;padding:0;}
 </div><script type="text/javascript">
     delayURL("' . $redirect . '");
     </script>';
+		
+	    $body2 = '<div class="tips_wrap">
+    <div class="tips_inner">
+        <div class="tips_img">
+            <img src="' . Yii::app()->baseUrl . '/static/images/' . $images . '"/>
+        </div>
+        <div class="tips_info">
 	
-		exit( $header . $body . $footer );
+            <p class="' . $class . '">' . $content . '</p>    
+            		<p class="return">您可能没有权限浏览该页面，请获取相关权限后再访问！</p>        
+        </div>
+    </div>
+</div>';
+	    if(!$stop){
+			exit( $header . $body . $footer );
+	    }else{
+	    	exit( $header . $body2 . $footer );
+	    }
 	}
 }

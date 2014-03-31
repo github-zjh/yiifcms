@@ -1,6 +1,6 @@
 # your database backup
-# version:5.5.27
-# time:2014-03-30 11:02:06
+# version:5.5.27-log
+# time:2014-03-31 17:25:33
 # --------------------------------------------------------
 
 
@@ -10,14 +10,16 @@ CREATE TABLE `authassignment` (
   `userid` varchar(64) NOT NULL,
   `bizrule` text,
   `data` text,
-  PRIMARY KEY (`itemname`,`userid`),
-  CONSTRAINT `authassignment_ibfk_1` FOREIGN KEY (`itemname`) REFERENCES `authitem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`itemname`,`userid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='角色表';
 
-INSERT INTO `authassignment` VALUES('admin','adminD','','N;');
+INSERT INTO `authassignment` VALUES('reader','readerA','','N;');
 INSERT INTO `authassignment` VALUES('author','authorB','','N;');
 INSERT INTO `authassignment` VALUES('editor','editorC','','N;');
-INSERT INTO `authassignment` VALUES('reader','readerA','','N;');
+INSERT INTO `authassignment` VALUES('admin','adminD','','N;');
+INSERT INTO `authassignment` VALUES('reader','1','','');
+INSERT INTO `authassignment` VALUES('reader','2','','');
+INSERT INTO `authassignment` VALUES('author','2','','');
 
 DROP TABLE IF EXISTS `authitem`;
 CREATE TABLE `authitem` (
@@ -27,37 +29,35 @@ CREATE TABLE `authitem` (
   `bizrule` text,
   `data` text,
   PRIMARY KEY (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='任务操作表';
 
-INSERT INTO `authitem` VALUES('admin','2','','','N;');
-INSERT INTO `authitem` VALUES('author','2','','','N;');
 INSERT INTO `authitem` VALUES('createPost','0','create a post','','N;');
-INSERT INTO `authitem` VALUES('deletePost','0','delete a post','','N;');
-INSERT INTO `authitem` VALUES('editor','2','','','N;');
-INSERT INTO `authitem` VALUES('reader','2','','','N;');
 INSERT INTO `authitem` VALUES('readPost','0','read a post','','N;');
-INSERT INTO `authitem` VALUES('updateOwnPost','1','update a post by author himself','return Yii::app()->user->id==$params[\"post\"]->authID;','N;');
 INSERT INTO `authitem` VALUES('updatePost','0','update a post','','N;');
+INSERT INTO `authitem` VALUES('deletePost','0','delete a post','','N;');
+INSERT INTO `authitem` VALUES('updateOwnPost','1','update a post by author himself','return Yii::app()->user->id==$params[\"post\"]->authID;','N;');
+INSERT INTO `authitem` VALUES('reader','2','','','N;');
+INSERT INTO `authitem` VALUES('author','2','','','N;');
+INSERT INTO `authitem` VALUES('editor','2','','','N;');
+INSERT INTO `authitem` VALUES('admin','2','','','N;');
 
 DROP TABLE IF EXISTS `authitemchild`;
 CREATE TABLE `authitemchild` (
   `parent` varchar(64) NOT NULL,
   `child` varchar(64) NOT NULL,
   PRIMARY KEY (`parent`,`child`),
-  KEY `child` (`child`),
-  CONSTRAINT `authitemchild_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `authitem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `authitemchild_ibfk_2` FOREIGN KEY (`child`) REFERENCES `authitem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `child` (`child`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='权限等级归属表';
 
 INSERT INTO `authitemchild` VALUES('admin','author');
-INSERT INTO `authitemchild` VALUES('author','createPost');
 INSERT INTO `authitemchild` VALUES('admin','deletePost');
 INSERT INTO `authitemchild` VALUES('admin','editor');
+INSERT INTO `authitemchild` VALUES('author','createPost');
 INSERT INTO `authitemchild` VALUES('author','reader');
-INSERT INTO `authitemchild` VALUES('editor','reader');
-INSERT INTO `authitemchild` VALUES('reader','readPost');
 INSERT INTO `authitemchild` VALUES('author','updateOwnPost');
+INSERT INTO `authitemchild` VALUES('editor','reader');
 INSERT INTO `authitemchild` VALUES('editor','updatePost');
+INSERT INTO `authitemchild` VALUES('reader','readPost');
 INSERT INTO `authitemchild` VALUES('updateOwnPost','updatePost');
 
 DROP TABLE IF EXISTS `yii_ad`;
@@ -508,7 +508,8 @@ CREATE TABLE `yii_session` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='session表';
 
-INSERT INTO `yii_session` VALUES('t96tp22892qh64qi5k0f49ff85','1396152123','Yii.CCaptchaAction.a72fbfc3.admin/default.captcha|s:4:\"bupg\";Yii.CCaptchaAction.a72fbfc3.admin/default.captchacount|i:1;admin__returnUrl|s:10:\"/admin.htm\";admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:3:{s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}Yii.CCaptchaAction.a72fbfc3.site.captcha|s:6:\"fesrco\";Yii.CCaptchaAction.a72fbfc3.site.captchacount|i:1;');
+INSERT INTO `yii_session` VALUES('6hfpaoqemh5snkumj61velhqv7','1396261532','Yii.CCaptchaAction.c506e434.admin/default.captcha|s:4:\"qglu\";Yii.CCaptchaAction.c506e434.admin/default.captchacount|i:2;admin__returnUrl|s:10:\"/admin.htm\";admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:3:{s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
+INSERT INTO `yii_session` VALUES('8l2ek0bim17fkdcl0f7c30p6v2','1396261515','admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.c506e434.admin/default.captcha|s:4:\"pize\";Yii.CCaptchaAction.c506e434.admin/default.captchacount|i:3;admin__id|s:1:\"2\";admin__name|s:15:\"没那么简单\";admingroupid|s:1:\"9\";admingroupname|s:12:\"网站编辑\";adminemail|s:16:\"326196998@qq.com\";admin__states|a:3:{s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
 
 DROP TABLE IF EXISTS `yii_setting`;
 CREATE TABLE `yii_setting` (
@@ -599,73 +600,6 @@ INSERT INTO `yii_special` VALUES('2','专题一','special1','','<p style=\"font-
 	与此同时，桌面服务设备中自带的那些看似不起眼的小游戏也有望为餐厅带来额外收入。比如，Chili\'s Grill &amp; Bar会向每位需要使用游戏服务的消费者收取0.99美元的费用，其中Chili\'s Grill &amp; Bar将可以拿到50%的分成，而另一半则由Ziosk收取。考虑到Chili\'s Grill &amp; Bar目前仅仅是从Ziosk处以租赁的形式拿到这些设备的这一事实，这样的分成比例还算比较公平。
 </p>','uploads/thumbs/201403/small_9e6fac7a8c2.png','uploads/images/201403/9e6fac7a8c2.png','','','','','Y','0','24','1379547152');
 
-DROP TABLE IF EXISTS `yii_terms`;
-CREATE TABLE `yii_terms` (
-  `tid` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `postid` int(11) unsigned NOT NULL COMMENT '文章ID',
-  `tagid` int(11) unsigned NOT NULL COMMENT '标签ID',
-  PRIMARY KEY (`tid`)
-) ENGINE=MyISAM AUTO_INCREMENT=133 DEFAULT CHARSET=utf8;
-
-INSERT INTO `yii_terms` VALUES('9','6','2');
-INSERT INTO `yii_terms` VALUES('8','6','4');
-INSERT INTO `yii_terms` VALUES('3','8','3');
-INSERT INTO `yii_terms` VALUES('4','8','2');
-INSERT INTO `yii_terms` VALUES('5','45','5');
-INSERT INTO `yii_terms` VALUES('6','45','4');
-INSERT INTO `yii_terms` VALUES('7','45','1');
-INSERT INTO `yii_terms` VALUES('10','6','1');
-INSERT INTO `yii_terms` VALUES('11','46','4');
-INSERT INTO `yii_terms` VALUES('12','46','2');
-INSERT INTO `yii_terms` VALUES('13','46','1');
-INSERT INTO `yii_terms` VALUES('14','46','3');
-INSERT INTO `yii_terms` VALUES('15','47','4');
-INSERT INTO `yii_terms` VALUES('16','47','1');
-INSERT INTO `yii_terms` VALUES('17','47','5');
-INSERT INTO `yii_terms` VALUES('29','48','5');
-INSERT INTO `yii_terms` VALUES('28','48','4');
-INSERT INTO `yii_terms` VALUES('34','49','4');
-INSERT INTO `yii_terms` VALUES('35','49','5');
-INSERT INTO `yii_terms` VALUES('99','50','3');
-INSERT INTO `yii_terms` VALUES('98','50','6');
-INSERT INTO `yii_terms` VALUES('97','50','5');
-INSERT INTO `yii_terms` VALUES('96','50','1');
-INSERT INTO `yii_terms` VALUES('95','50','4');
-INSERT INTO `yii_terms` VALUES('56','51','4');
-INSERT INTO `yii_terms` VALUES('57','51','1');
-INSERT INTO `yii_terms` VALUES('58','51','6');
-INSERT INTO `yii_terms` VALUES('78','52','4');
-INSERT INTO `yii_terms` VALUES('79','52','1');
-INSERT INTO `yii_terms` VALUES('80','52','6');
-INSERT INTO `yii_terms` VALUES('72','53','2');
-INSERT INTO `yii_terms` VALUES('71','53','6');
-INSERT INTO `yii_terms` VALUES('70','53','1');
-INSERT INTO `yii_terms` VALUES('69','53','4');
-INSERT INTO `yii_terms` VALUES('91','10','4');
-INSERT INTO `yii_terms` VALUES('92','10','1');
-INSERT INTO `yii_terms` VALUES('93','10','5');
-INSERT INTO `yii_terms` VALUES('94','10','6');
-INSERT INTO `yii_terms` VALUES('100','54','4');
-INSERT INTO `yii_terms` VALUES('101','54','1');
-INSERT INTO `yii_terms` VALUES('102','54','6');
-INSERT INTO `yii_terms` VALUES('103','55','4');
-INSERT INTO `yii_terms` VALUES('104','55','1');
-INSERT INTO `yii_terms` VALUES('113','13','4');
-INSERT INTO `yii_terms` VALUES('114','13','1');
-INSERT INTO `yii_terms` VALUES('115','13','5');
-INSERT INTO `yii_terms` VALUES('116','13','2');
-INSERT INTO `yii_terms` VALUES('120','56','1');
-INSERT INTO `yii_terms` VALUES('119','56','4');
-INSERT INTO `yii_terms` VALUES('121','56','8');
-INSERT INTO `yii_terms` VALUES('127','57','3');
-INSERT INTO `yii_terms` VALUES('126','57','2');
-INSERT INTO `yii_terms` VALUES('125','57','4');
-INSERT INTO `yii_terms` VALUES('128','57','10');
-INSERT INTO `yii_terms` VALUES('129','57','9');
-INSERT INTO `yii_terms` VALUES('130','58','4');
-INSERT INTO `yii_terms` VALUES('131','58','1');
-INSERT INTO `yii_terms` VALUES('132','58','5');
-
 DROP TABLE IF EXISTS `yii_upload`;
 CREATE TABLE `yii_upload` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -711,9 +645,9 @@ CREATE TABLE `yii_user` (
   UNIQUE KEY `username` (`username`)
 ) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 DELAY_KEY_WRITE=1 COMMENT='用户表';
 
-INSERT INTO `yii_user` VALUES('1','zjh_admin','$2a$13$iKKy4BbxaNt4rIEUnzxCjuVgnd/XCFxLwA.rtRPzwNK9yUpDL.rM6','xb_zjh@126.com','10','1','0');
-INSERT INTO `yii_user` VALUES('2','没那么简单','$2a$13$Sw5bN0oq.OK/6sxrhKt8wOfyGAKIQ71.G69bg9ZgVKPVxzSL5lSPq','326196998@qq.com','1','0','0');
-INSERT INTO `yii_user` VALUES('7','微博评论','$2a$13$TEpIe58TLJIUmLuoE7pYD.KK74cRlLXSaNoXf0bnxbcLFFmmW1E5u','xweibo_user85589@sina.com','1','0','0');
+INSERT INTO `yii_user` VALUES('1','zjh_admin','$2a$13$iKKy4BbxaNt4rIEUnzxCjuVgnd/XCFxLwA.rtRPzwNK9yUpDL.rM6','xb_zjh@126.com','10','1','1379001600');
+INSERT INTO `yii_user` VALUES('2','没那么简单','$2a$13$5HFLakgTxQyyfzcZFQElWOk5W.OHhPnfwKXLAYwokPNVsZSyW4Tqy','326196998@qq.com','9','1','1379091600');
+INSERT INTO `yii_user` VALUES('7','微博评论','$2a$13$TEpIe58TLJIUmLuoE7pYD.KK74cRlLXSaNoXf0bnxbcLFFmmW1E5u','xweibo_user85589@sina.com','1','0','1379101600');
 
 DROP TABLE IF EXISTS `yii_user_group`;
 CREATE TABLE `yii_user_group` (
@@ -731,6 +665,6 @@ INSERT INTO `yii_user_group` VALUES('5','VIP⑤用户','administrator');
 INSERT INTO `yii_user_group` VALUES('6','VIP⑥用户','administrator');
 INSERT INTO `yii_user_group` VALUES('7','VIP⑦用户','administrator');
 INSERT INTO `yii_user_group` VALUES('8','VIP⑧用户','administrator');
-INSERT INTO `yii_user_group` VALUES('9','VIP⑨用户','administrator');
-INSERT INTO `yii_user_group` VALUES('10','系统管理员','administrator');
+INSERT INTO `yii_user_group` VALUES('9','网站编辑','default|login,setting|seo,setting|upload,setting|custom');
+INSERT INTO `yii_user_group` VALUES('10','系统管理员','Administrator');
 

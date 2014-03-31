@@ -86,7 +86,7 @@
             <ul index="6" class="left_menu">
                 <li index="0"><a href="<?php echo $this->createUrl('database/index');?>" target="win"><?php echo Yii::t('admin','Database Manage');?></a></li>
                 <li index="1"><a href="<?php echo $this->createUrl('cache/index');?>" target="win"><?php echo Yii::t('admin','Cache Manage');?></a></li>
-                <li index="2"><a href="<?php echo $this->createUrl('auth/index');?>" target="win"><?php echo Yii::t('admin','Auth Init');?></a></li>
+                <li index="2"><a href="<?php echo $this->createUrl('auth/index');?>" target="win"><?php echo Yii::t('admin','Auth Manage');?></a></li>
               </ul>
           </div>
   </div>

@@ -15,6 +15,7 @@ class LoginForm extends CFormModel
 	public $groupid;
 
 	private $_identity;
+	private $_adminGroupID = 10;
 
 	/**
 	 * Declares the validation rules.
@@ -53,6 +54,10 @@ class LoginForm extends CFormModel
 	{
 		if(!$this->hasErrors())
 		{
+			$tmpuser = User::model()->find('username=:username',array('username'=>$this->username));
+			if(!$this->checkAcl($tmpuser->groupid, 'default/login')){
+				$this->addError('username', Yii::t('admin','You have no right to visit.'));
+			}
 			$this->_identity=new UserIdentity($this->username,$this->password);					
 			if(!$this->_identity->authenticate())
 				$this->addError('password',Yii::t('common','Incorrect username or password.'));
@@ -78,24 +83,31 @@ class LoginForm extends CFormModel
 		}
 		else
 			return false;
-	}
+	}	
+	
 	/**
-	 * 扩展的其他校验条件
-	 * 
+	 * 校验登录权限
+	 * @param string $groupid
+	 * @param string $acl
+	 * @return boolean
 	 */
-	public function extValidate($groupid = 0){		
-		$user = User::model()->find('uid=:id',array('id'=>$this->_identity->id));
-		if($user->attributes['status'] != 1){
-			$this->addError('username', Yii::t('admin','Your Account is locked.'));
-			Yii::app()->user->logout();
-			return false;
-		}else{
-			if($groupid && $user->attributes['groupid'] != $groupid){
-				$this->addError('username', Yii::t('admin','You have no right to visit.'));
-				Yii::app()->user->logout();
-				return false;
+	public function checkAcl($groupid='', $acl=''){
+		$bool = false;
+		if($groupid && $acl){
+			$group = UserGroup::model()->findByPk($groupid);			
+			if($group->acl){
+				if($groupid == $this->_adminGroupID && $group->acl == 'Administrator'){
+					$bool = true;
+				}else {
+					$acl = str_replace('/', '|', $acl);				
+					if(strstr($group->acl, $acl)){
+						$bool = true;
+					}
+				}			
 			}
 		}
-		return true;
+		
+		return $bool;
+			
 	}
 }

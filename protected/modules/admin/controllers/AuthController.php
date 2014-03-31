@@ -1,6 +1,6 @@
 <?php
 /**
- * RBAC 授权体系控制器
+ * RBAC 授权体系控制器[测试阶段，暂时不用此功能]
  * 
  * @author        zhao jinhan <326196998@qq.com>
  * @copyright     Copyright (c) 2014-2015. All rights reserved.
@@ -15,22 +15,24 @@ class AuthController extends Backend
 		parent::auth();
 		$this->_db = Yii::app()->db;		
 	}
+	/**
+	 * 管理
+	 */
+	public function actionIndex(){
+		$this->render('index');
+	}
 	
     /**
 	 * 初始化授权体系
 	 *
 	 */
-    public function actionIndex ()
+    public function actionInit ()
     {       
-    	$auth_sql = $this->_basePath.'/data/schema.auth.sql';
-    	if(!file_exists($auth_sql)){
-    		$this->message('error','授权sql文件('.$auth_sql.')不存在');
-    	}else{
-    		$sql = file_get_contents($auth_sql);
-    		$this->_sqlExecute($sql);
-    	}
+    	
         $auth=Yii::app()->authManager;  
-       
+        // remove all operations, roles, child relationships, and assignments
+        $auth->clearAll();    
+        
 	    $auth->createOperation('createPost','create a post');  
 	    $auth->createOperation('readPost','read a post');  
 	    $auth->createOperation('updatePost','update a post');  
@@ -61,7 +63,20 @@ class AuthController extends Backend
 	    $auth->assign('author','authorB');  
 	    $auth->assign('editor','editorC');  
 	    $auth->assign('admin','adminD');  
-	    $this->render('index');
+	    $this->message('success','初始化授权体系成功！',$this->createUrl('index'));
+    }
+    /**
+     * 初始化RBAC表
+     */
+    private function actionInitTable(){
+    	$auth_sql = $this->_basePath.'/data/schema.auth.sql';
+    	if(!file_exists($auth_sql)){
+    		$this->message('error','授权sql文件('.$auth_sql.')不存在');
+    	}else{
+    		$sql = file_get_contents($auth_sql);
+    		$this->_sqlExecute($sql);
+    	}
+    	$this->message('success','初始化授权体系表成功！',$this->createUrl('index'));
     }
     
     /**

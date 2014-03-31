@@ -24,11 +24,30 @@
   <td  colspan="2"><?php echo Yii::t('admin','Acl');?>：</td>
   </tr>
   <tr >
-  		<?php if($model->id == $this->_adminGroupID):?>
-  		<td><?php echo $model->acl;?></td>
-  		<?php else:?>
-       <td ><?php echo $form->textField($model,'acl',array('size'=>30, 'maxlength'=>50)); ?></td>       
-       <?php endif;?>
+  	 <td width="90%">
+  	 <?php if($model->id != $this->_adminGroupID):?>
+	  	 <table>
+		  	 <script type="text/javascript">
+			  	function selectAll(id, checked){	  
+				  	$('#'+id+' td').each(function(){
+						$(this).children('input').attr('checked',checked);
+					});				
+				}
+		  	 </script>
+	  	 	<?php foreach((array) $acls as $ak => $acl):?>
+	  	 	<tr id="<?php echo $ak.'_id';?>">	  	 		
+	  	 		<td style="width:8%"><input type="checkbox" name="acls[]" value="all"  onclick="selectAll('<?php echo $ak.'_id';?>', this.checked)"/><?php echo Yii::t('acl',$ak);?></td>
+	  	 		<?php foreach((array)$acl as $value):?>
+	  	 		<td style="width:8%"><input type="checkbox" name="acls[]" value="<?php echo $ak.'|'.$value?>" <?php $this->selected($ak.'|'.$value, $has_acls,'checked');?>/><?php echo Yii::t('acl',$ak.'|'.$value);?></td>	  	 		
+	  	 		<?php endforeach;?>
+	  	 		<td></td>
+	  	 	</tr>
+	  	 	<?php endforeach;?>	  	 	
+	  	 </table>  
+	 <?php else:?>
+	 <?php echo ' ( 最高权限 ) '.$model->acl;?>
+	 <?php endif;?>		
+  	 </td>
   </tr>
   <?php if($model->id != $this->_adminGroupID):?>
   <tr class="submit">
@@ -38,7 +57,7 @@
 </table>
 <script type="text/javascript">
 $(function(){
-	$("#xform").validationEngine();	
+	$("#xform").validationEngine();		
 });
 </script>
 <?php $form=$this->endWidget(); ?>

@@ -184,5 +184,9 @@ return array (
 	'Ad Intro' => '广告说明',
 	'Image' => '图片',
 	'Auth Init' => '初始化授权体系',
+	'Auth Init Table' => '初始化RBAC表',
+	'Auth Manage' => '授权管理',
+	'Init Table Will Delete All Auth Data! Are You Sure?' => '初始化RBAC表，将删除所有授权数据！您确定要进行吗?',
+	'Init Auth Will Create New Auth Data! Are You Sure?' => '初始化授权体系，将重新创建数据并分配角色！您确定要进行吗?',
 	
 );
