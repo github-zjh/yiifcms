@@ -18,6 +18,21 @@ class PostController extends Backend
 		//专题
 		$this->_special = Special::model()->findAll('status_is=:status',array('status'=>'Y'));
 	}
+	
+	/**
+	 * !CodeTemplates.overridecomment.nonjd!
+	 * @see CController::beforeAction()
+	 */
+	public function beforeAction($action){
+		$controller = Yii::app()->getController()->id;
+		$action = $action->id;
+		if(!$this->checkAcl($controller.'/'.$action)){
+			$this->message('error',Yii::t('common','Access Deny'),$this->createUrl('index'),'',true);
+			return false;
+		}
+		return true;
+	}
+	
     /**
      * 首页
      *

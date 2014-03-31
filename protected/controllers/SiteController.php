@@ -83,7 +83,7 @@ class SiteController extends FrontBase
 	 */
 	public function actionLogin()
 	{
-		$model=new LoginForm;
+		$model=new FloginForm;
 
 		// if it is ajax validation request
 		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
@@ -93,9 +93,9 @@ class SiteController extends FrontBase
 		}
 
 		// collect user input data
-		if(isset($_POST['LoginForm']))
+		if(isset($_POST['FloginForm']))
 		{
-			$model->attributes=$_POST['LoginForm'];
+			$model->attributes=$_POST['FloginForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login()){
 				$this->redirect(Yii::app()->user->returnUrl);

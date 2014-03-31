@@ -12,7 +12,10 @@ class SettingController extends Backend
 	 * @var CActiveRecord the currently loaded data model instance.
 	 */
 	private $_model;
-
+	/**
+	 * !CodeTemplates.overridecomment.nonjd!
+	 * @see CController::beforeAction()
+	 */
 	public function beforeAction($action){
 		$controller = Yii::app()->getController()->id;
 		$action = $action->id;

@@ -235,7 +235,7 @@ html,body,div,p,a,h3{margin:0;padding:0;}
         <div class="tips_info">
 	
             <p class="' . $class . '">' . $content . '</p>    
-            		<p class="return">您可能没有权限浏览该页面，请获取相关权限后再访问！</p>        
+            		<p class="return">您可能没有权限浏览该页面，请获取相关权限后再访问！<a href="' . $redirect . '">点击这里返回</a></p>        
         </div>
     </div>
 </div>';

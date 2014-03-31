@@ -7,6 +7,20 @@
  */
 class AttachController extends Backend
 {
+	/**
+	 * !CodeTemplates.overridecomment.nonjd!
+	 * @see CController::beforeAction()
+	 */
+	public function beforeAction($action){
+		$controller = Yii::app()->getController()->id;
+		$action = $action->id;
+		if(!$this->checkAcl($controller.'/'.$action)){
+			$this->message('error',Yii::t('common','Access Deny'),'','',true);
+			return false;
+		}
+		return true;
+	}
+	
 	public function actionIndex ()
 	{		
 		$model = new Upload();

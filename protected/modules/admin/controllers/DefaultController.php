@@ -58,7 +58,7 @@ class DefaultController extends BackendBase
 		{
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login() && $model->extValidate())
+			if($model->validate() && $model->login())
 				$this->message('success', Yii::t('common', 'Login Success'), $returnUrl, 2);
 		}				
 		$this->render('login', array('model'=>$model));

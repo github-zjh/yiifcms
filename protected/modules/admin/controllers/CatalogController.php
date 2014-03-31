@@ -19,6 +19,20 @@ class CatalogController extends Backend
 		$this->_catalog = Catalog::model()->findAll();
 		
 	}
+	/**
+	 * !CodeTemplates.overridecomment.nonjd!
+	 * @see CController::beforeAction()
+	 */
+	public function beforeAction($action){
+		$controller = Yii::app()->getController()->id;
+		$action = $action->id;
+		if(!$this->checkAcl($controller.'/'.$action)){
+			$this->message('error',Yii::t('common','Access Deny'),$this->createUrl('index'),'',true);
+			return false;
+		}
+		return true;
+	}
+	
     /**
      * 首页
      */
