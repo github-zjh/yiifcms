@@ -103,28 +103,34 @@ class PageController extends Backend
 	 */
     public function actionBatch ()
     {
-        if (XUtils::method() == 'GET') {
-            $command = trim($this->_request->getParam('command'));
-            $ids = intval($this->_request->getParam('id'));
-        } elseif (XUtils::method() == 'POST') {
-            $command = $this->_request->getPost('command');
-            $ids = $this->_request->getPost('id');
-            is_array($ids) && $ids = implode(',', $ids);
-        } else {
-            throw new CHttpException(404, '只支持POST,GET数据');
-        }
-        empty($ids) && XUtils::message('error', '未选择记录');
+        if ($this->method() == 'GET') {
+			$command = trim($this->_request->getParam('command'));
+			$ids = intval($this->_request->getParam('id'));
+		} elseif ($this->method() == 'POST') {
+			$command = $this->_request->getPost('command');
+			$ids = $this->_request->getPost('id');			
+		} else {
+			throw new CHttpException(404, Yii::t('admin','Only POST Or GET'));
+		}
+		empty($ids) && $this->message('error',  Yii::t('admin','No Select'));	
         
         switch ($command) {
             case 'delete':
-                parent::_acl('page_delete');
-                parent::_adminiLogger(array('catalog'=>'delete', 'intro'=>'删除单页，ID:'.$ids));
-                parent::_delete(new Page(), $ids, array ('index' ),array('attach_file', 'attach_thumb'));
-                break;
+        		foreach((array)$ids as $id){
+            		$pageModel = Page::model()->findByPk($id);
+            		if($pageModel){
+            			XUpload::deleteFile($pageModel->attach_file);
+            			XUpload::deleteFile($pageModel->attach_thumb);
+            			$pageModel->delete();
+            		}
+            	}
+            	break;
             default:
-                throw new CHttpException(404, '错误的操作类型:' . $command);
+                throw new CHttpException(404, Yii::t('admin','Error Operation'));
                 break;
         }
+        $this->message('success', Yii::t('admin','Batch Operate Success'),$this->createUrl('page/index'));
+        
     }
 
 }

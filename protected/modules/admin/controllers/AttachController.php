@@ -57,8 +57,7 @@ class AttachController extends Backend
 			$ids = intval($this->_request->getParam('id'));
 		} elseif ($this->method() == 'POST') {
 			$command = $this->_request->getPost('command');
-			$ids = $this->_request->getPost('id');
-			is_array($ids) && $ids = implode(',', $ids);
+			$ids = $this->_request->getPost('id');			
 		} else {
 			throw new CHttpException(404, Yii::t('admin','Only POST Or GET'));
 		}

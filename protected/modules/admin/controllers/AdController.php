@@ -114,8 +114,7 @@ class AdController extends Backend
         } else 
             if ($this->method() == 'POST') {
                 $command = trim($_POST['command']);
-                $ids = $_POST['id'];
-                is_array($ids) && $ids = implode(',', $ids);
+                $ids = $_POST['id'];               
             } else {
                 $this->message('errorBack', Yii::t('admin','Only POST Or GET'));
             }
