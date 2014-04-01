@@ -1,6 +1,6 @@
 # your database backup
 # version:5.5.27-log
-# time:2014-03-31 09:01:32
+# time:2014-04-01 08:32:00
 # --------------------------------------------------------
 
 
@@ -17,6 +17,9 @@ INSERT INTO `authassignment` VALUES('reader','readerA','','N;');
 INSERT INTO `authassignment` VALUES('author','authorB','','N;');
 INSERT INTO `authassignment` VALUES('editor','editorC','','N;');
 INSERT INTO `authassignment` VALUES('admin','adminD','','N;');
+INSERT INTO `authassignment` VALUES('reader','1','','');
+INSERT INTO `authassignment` VALUES('reader','2','','');
+INSERT INTO `authassignment` VALUES('author','2','','');
 
 DROP TABLE IF EXISTS `authitem`;
 CREATE TABLE `authitem` (
@@ -505,7 +508,7 @@ CREATE TABLE `yii_session` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='session表';
 
-INSERT INTO `yii_session` VALUES('vtgnujd0d101scnt6sbp1rcuh3','1396231290','admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.c506e434.admin/default.captcha|s:4:\"wubz\";Yii.CCaptchaAction.c506e434.admin/default.captchacount|i:2;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:3:{s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
+INSERT INTO `yii_session` VALUES('cdal0aq95v866154a8fv31fnc4','1396315918','admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.c506e434.admin/default.captcha|s:4:\"xobl\";Yii.CCaptchaAction.c506e434.admin/default.captchacount|i:2;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:3:{s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
 
 DROP TABLE IF EXISTS `yii_setting`;
 CREATE TABLE `yii_setting` (
@@ -641,9 +644,9 @@ CREATE TABLE `yii_user` (
   UNIQUE KEY `username` (`username`)
 ) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 DELAY_KEY_WRITE=1 COMMENT='用户表';
 
-INSERT INTO `yii_user` VALUES('1','zjh_admin','$2a$13$iKKy4BbxaNt4rIEUnzxCjuVgnd/XCFxLwA.rtRPzwNK9yUpDL.rM6','xb_zjh@126.com','10','1','0');
-INSERT INTO `yii_user` VALUES('2','没那么简单','$2a$13$Sw5bN0oq.OK/6sxrhKt8wOfyGAKIQ71.G69bg9ZgVKPVxzSL5lSPq','326196998@qq.com','1','0','0');
-INSERT INTO `yii_user` VALUES('7','微博评论','$2a$13$TEpIe58TLJIUmLuoE7pYD.KK74cRlLXSaNoXf0bnxbcLFFmmW1E5u','xweibo_user85589@sina.com','1','0','0');
+INSERT INTO `yii_user` VALUES('1','zjh_admin','$2a$13$iKKy4BbxaNt4rIEUnzxCjuVgnd/XCFxLwA.rtRPzwNK9yUpDL.rM6','xb_zjh@126.com','10','1','1379001600');
+INSERT INTO `yii_user` VALUES('2','没那么简单','$2a$13$5HFLakgTxQyyfzcZFQElWOk5W.OHhPnfwKXLAYwokPNVsZSyW4Tqy','326196998@qq.com','9','1','1379091600');
+INSERT INTO `yii_user` VALUES('7','微博评论','$2a$13$TEpIe58TLJIUmLuoE7pYD.KK74cRlLXSaNoXf0bnxbcLFFmmW1E5u','xweibo_user85589@sina.com','1','1','1379101600');
 
 DROP TABLE IF EXISTS `yii_user_group`;
 CREATE TABLE `yii_user_group` (
@@ -661,6 +664,6 @@ INSERT INTO `yii_user_group` VALUES('5','VIP⑤用户','administrator');
 INSERT INTO `yii_user_group` VALUES('6','VIP⑥用户','administrator');
 INSERT INTO `yii_user_group` VALUES('7','VIP⑦用户','administrator');
 INSERT INTO `yii_user_group` VALUES('8','VIP⑧用户','administrator');
-INSERT INTO `yii_user_group` VALUES('9','VIP⑨用户','administrator');
-INSERT INTO `yii_user_group` VALUES('10','系统管理员','administrator');
+INSERT INTO `yii_user_group` VALUES('9','网站编辑','default|login,catalog|index,catalog|create,all,link|index,link|create,link|update,link|delete,link|batch');
+INSERT INTO `yii_user_group` VALUES('10','系统管理员','Administrator');
 
