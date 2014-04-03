@@ -95,7 +95,7 @@ class UserController extends Backend
             	$this->message('error',Yii::t('admin','UserName Is Exist'));
             }  
             if ($model->save()) {               
-                $this->message('success',Yii::t('admin','Add Success'),$this->createUrl('user/index'));
+                $this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
             }
         }        
         $this->render('user_create', array ('model' => $model ));
@@ -121,7 +121,7 @@ class UserController extends Backend
             $model->attributes = $_POST['User'];
             
             if ($model->save()) {               
-                $this->message('success',Yii::t('admin','Update Success'),$this->createUrl('user/index'));
+                $this->message('success',Yii::t('admin','Update Success'),$this->createUrl('index'));
             }
         }        
         $this->render('user_update', array ('model' => $model ));
@@ -253,7 +253,7 @@ class UserController extends Backend
                 throw new CHttpException(404, Yii::t('admin','Error Operation'));
 				break;
         }
-        $this->message('success', Yii::t('admin','Batch Operate Success'),$this->createUrl('user/index'));
+        $this->message('success', Yii::t('admin','Batch Operate Success'),$this->createUrl('index'));
     }
 
 }

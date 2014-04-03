@@ -133,7 +133,7 @@ class PostController extends Backend
     		}
     		
     		if($model->save())
-    			$this->message('success',Yii::t('admin','Add Success'),$this->createUrl('post/index'));
+    			$this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
     	}
     	
     	$this->render('update',array(
@@ -207,7 +207,7 @@ class PostController extends Backend
     			}
     		}    		
     		if($model->save())
-    			$this->message('success',Yii::t('admin','Update Success'),$this->createUrl('post/index'));
+    			$this->message('success',Yii::t('admin','Update Success'),$this->createUrl('index'));
     	}else{
     		$imageList = unserialize($model->image_list);
     		$style = unserialize($model->title_style);

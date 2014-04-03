@@ -129,7 +129,7 @@ class PageController extends Backend
                 throw new CHttpException(404, Yii::t('admin','Error Operation'));
                 break;
         }
-        $this->message('success', Yii::t('admin','Batch Operate Success'),$this->createUrl('page/index'));
+        $this->message('success', Yii::t('admin','Batch Operate Success'),$this->createUrl('index'));
         
     }
 

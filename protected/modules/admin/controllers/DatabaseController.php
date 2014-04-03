@@ -235,11 +235,11 @@ class DatabaseController extends Backend
             
             file_put_contents($bakfile, $tabledump);
             
-            $this->message('success', "备份文件 $filename 写入成功!", $this->createUrl('database/doExport', array ('sizelimit' => $sizelimit , 'tableid' => $tableid , 'fileid' => $fileid , 'random' => $random , 'startfrom' => $startrow , 'dosubmit' => 1 , 'sqlcompat' => $sqlcompat , 'sqlcharset' => $sqlcharset , 'tabletype' => $tabletype )), 1);
+            $this->message('success', "备份文件 $filename 写入成功!", $this->createUrl('doExport', array ('sizelimit' => $sizelimit , 'tableid' => $tableid , 'fileid' => $fileid , 'random' => $random , 'startfrom' => $startrow , 'dosubmit' => 1 , 'sqlcompat' => $sqlcompat , 'sqlcharset' => $sqlcharset , 'tabletype' => $tabletype )), 1);
         
         } else {
             @file_put_contents($this->_bakupPath . 'index.html', '');
-            $this->redirect($this->createUrl('database/export'));
+            $this->redirect($this->createUrl('export'));
         }
     }
 
@@ -315,9 +315,9 @@ class DatabaseController extends Backend
                 $this->_sqlExecute($sql);
                 $fileid ++;
                 //showmessage(L('bakup_data_file') . " $filename " . L('load_success'), "?m=admin&c=database&a=import&pdoname=" . $this->pdo_name . "&pre=" . $pre . "&fileid=" . $fileid . "&dosubmit=1");
-                $this->message('success', '数据文件' . $filename . ' 导入成功', $this->createUrl('database/import', array ('pre' => $pre , 'fileid' => $fileid , 'dosubmit' => '1' )), 1);
+                $this->message('success', '数据文件' . $filename . ' 导入成功', $this->createUrl('import', array ('pre' => $pre , 'fileid' => $fileid , 'dosubmit' => '1' )), 1);
             } else {
-                $this->message('success', '数据成功导入', $this->createUrl('database/import'), 3);
+                $this->message('success', '数据成功导入', $this->createUrl('import'), 3);
             }
         }
     }
@@ -444,15 +444,15 @@ class DatabaseController extends Backend
                             }
                         }
                         
-                        $this->message('success', '删除完成', $this->createUrl('database/import'));
+                        $this->message('success', '删除完成', $this->createUrl('import'));
                     } else {
                         if (CFileHelper::getExtension($filenames) == 'sql') {
                             @unlink($this->_bakupPath . $filename);
-                            $this->message('success', '删除完成', $this->createUrl('database/import'));
+                            $this->message('success', '删除完成', $this->createUrl('import'));
                         }
                     }
                 } else {
-                    $this->message('error', '请选择要删除的文件', $this->createUrl('database/import'));
+                    $this->message('error', '请选择要删除的文件', $this->createUrl('import'));
                 }
                 
                 break;

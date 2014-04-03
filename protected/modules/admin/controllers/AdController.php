@@ -65,7 +65,7 @@ class AdController extends Backend
 	    		$model->attach_file = $upload->_file_name;	    		
     		}            
             if ($model->save()) {
-                $this->message('success',Yii::t('admin','Add Success'),$this->createUrl('ad/index'));
+                $this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
             }
         }        
         $this->render('ad_create', array ('model' => $model ));
@@ -94,7 +94,7 @@ class AdController extends Backend
     		}
             $model->attributes = $_POST['Ad'];            
             if ($model->save()) {               
-                $this->message('success',Yii::t('admin','Update Success'),$this->createUrl('ad/index'));
+                $this->message('success',Yii::t('admin','Update Success'),$this->createUrl('index'));
             }
         }        
         $this->render('ad_update', array ('model' => $model ));
@@ -153,7 +153,7 @@ class AdController extends Backend
                 break;
         }
         
-        $this->message('success', Yii::t('admin','Batch Operate Success'),$this->createUrl('ad/index'));
+        $this->message('success', Yii::t('admin','Batch Operate Success'),$this->createUrl('index'));
         
     }
 

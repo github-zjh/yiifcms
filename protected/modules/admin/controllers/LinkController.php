@@ -103,7 +103,7 @@ class LinkController extends Backend
 	    		$model->logo = $upload->_file_name;	    		
     		}
         	if($model->save())
-        		$this->message('success',Yii::t('admin','Update Success'),$this->createUrl('link/index'));
+        		$this->message('success',Yii::t('admin','Update Success'),$this->createUrl('index'));
         }
         $this->render('link_update', array ('model' => $model ));
     
@@ -159,7 +159,7 @@ class LinkController extends Backend
                 throw new CHttpException(404,  Yii::t('admin','Error Operation'));
                 break;
         }
-        $this->message('success', Yii::t('admin','Batch Operate Success'),$this->createUrl('link/index'));
+        $this->message('success', Yii::t('admin','Batch Operate Success'),$this->createUrl('index'));
     }
     
     /**

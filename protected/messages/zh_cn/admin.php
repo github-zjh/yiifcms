@@ -188,5 +188,10 @@ return array (
 	'Auth Manage' => '授权管理',
 	'Init Table Will Delete All Auth Data! Are You Sure?' => '初始化RBAC表，将删除所有授权数据！您确定要进行吗?',
 	'Init Auth Will Create New Auth Data! Are You Sure?' => '初始化授权体系，将重新创建数据并分配角色！您确定要进行吗?',
-	
+	'Failed Get' => '获取失败',
+	'Success Get' => '获取成功',
+	'Open' => '开启',
+	'Close' => '关闭',
+	'Seconds' => '秒',
+	'Forbidden to upload' => '禁止上传',
 );

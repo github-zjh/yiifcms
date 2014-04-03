@@ -70,7 +70,7 @@ class DefaultController extends BackendBase
 	public function actionLogout()
 	{
 		Yii::app()->user->logout(false);
-		$this->redirect(array('/admin'));
+		$this->redirect('login');
 	}
 	
 	public function actionIndex()
@@ -89,10 +89,10 @@ class DefaultController extends BackendBase
 		$data['serverSoft'] = $_SERVER['SERVER_SOFTWARE'];
 		$data['serverOs'] = PHP_OS;
 		$data['phpVersion'] = PHP_VERSION;
-		$data['fileupload'] = ini_get('file_uploads') ? ini_get('upload_max_filesize') : '禁止上传';
-		$data['maxExcuteTime'] = ini_get('max_execution_time') . ' 秒';
+		$data['fileupload'] = ini_get('file_uploads') ? ini_get('upload_max_filesize') : Yii::t('admin','Forbidden to upload');
+		$data['maxExcuteTime'] = ini_get('max_execution_time') . Yii::t('admin', 'Seconds');
 		$data['maxExcuteMemory'] = ini_get('memory_limit');		
-		$data['allow_url_fopen'] = ini_get('allow_url_fopen') ? '开启' : '关闭';
+		$data['allow_url_fopen'] = ini_get('allow_url_fopen') ? Yii::t('admin', 'Open') : Yii::t('admin', 'Close');
 		$dbsize = 0;
 		$connection = Yii::app()->db;
 		//$sql = 'SHOW TABLE STATUS LIKE \'' . $connection->tablePrefix . '%\'';
@@ -133,10 +133,10 @@ class DefaultController extends BackendBase
 		$return  = XAutoKeyword::discuz($string);
 		if($return  == 'empty'){
 			$data['state'] = 'error';
-			$data['message'] = '未成功获取';
+			$data['message'] = Yii::t('admin','Failed Get');
 		}else{
 			$data['state'] = 'success';
-			$data['message'] = '成功获取';
+			$data['message'] = Yii::t('success','Success Get');
 			$data['datas'] = $return;
 		}
 		exit(CJSON::encode($data));

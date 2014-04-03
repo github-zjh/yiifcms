@@ -108,7 +108,7 @@ class CatalogController extends Backend
 	    		$model->attach_thumb = $upload->_thumb_name;
     		}
         	if($model->save())
-        		$this->message('success',Yii::t('admin','Update Success'),$this->createUrl('/admin/catalog'));
+        		$this->message('success',Yii::t('admin','Update Success'),$this->createUrl('index'));
         }
         
         $this->render('update',array(
@@ -195,10 +195,10 @@ class CatalogController extends Backend
             	}
             	break;
             default:
-            	$this->message('error', Yii::t('admin','Error Operation'),$this->createUrl('/admin/catalog'));                
+            	$this->message('error', Yii::t('admin','Error Operation'),$this->createUrl('index'));                
                 break;
         }
-        $this->message('success', Yii::t('admin','Batch Operate Success'),$this->createUrl('/admin/catalog'));
+        $this->message('success', Yii::t('admin','Batch Operate Success'),$this->createUrl('catalog/index'));
     }
     /**
      * Returns the data model based on the primary key given in the GET variable.
