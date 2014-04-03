@@ -54,6 +54,11 @@ class Controller extends CController
 	
 	/**
 	 * 友好显示var_dump
+	 * @param unknown $var
+	 * @param string $echo
+	 * @param string $label
+	 * @param string $strict
+	 * @return NULL|string
 	 */
 	static public function vdump( $var, $echo = true, $label = null, $strict = true ) {
 		$label = ( $label === null ) ? '' : rtrim( $label ) . ' ';
