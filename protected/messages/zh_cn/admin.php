@@ -194,4 +194,5 @@ return array (
 	'Close' => '关闭',
 	'Seconds' => '秒',
 	'Forbidden to upload' => '禁止上传',
+	'Menu Manage' => '导航管理',
 );

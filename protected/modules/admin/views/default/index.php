@@ -64,6 +64,7 @@
               </ul>
             <ul index="2" class="left_menu">
             	<li index="0"><a href="<?php echo $this->createUrl('catalog/index');?>" target="win"><?php echo Yii::t('admin','Catalog Manage');?></a></li>
+            	<li index="1"><a href="<?php echo $this->createUrl('menu/index');?>" target="win"><?php echo Yii::t('admin','Menu Manage');?></a></li>
             </ul>
             <ul index="3" class="left_menu">
                 <li index="0"><a href="<?php echo $this->createUrl('post/index');?>" target="win"><?php echo Yii::t('admin','Content Manage');?></a></li>

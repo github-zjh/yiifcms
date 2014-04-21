@@ -19,13 +19,10 @@
  * @property string $data_count
  * @property integer $page_size
  * @property string $status_is
- * @property string $menu_is
  * @property string $redirect_url
  * @property string $display_type
  * @property string $template_list
  * @property string $template_show
- * @property string $acl_browser
- * @property string $acl_operate
  * @property string $create_time
  * @property string $update_time
  */
@@ -51,13 +48,13 @@ class Catalog extends CActiveRecord
 			array('page_size', 'numerical', 'integerOnly'=>true),
 			array('parent_id, sort_order, data_count, create_time, update_time', 'length', 'max'=>10),
 			array('catalog_name, catalog_name_second, catalog_name_alias, seo_title, attach_file, attach_thumb, template_list, template_show', 'length', 'max'=>100),
-			array('seo_keywords, redirect_url, acl_browser, acl_operate', 'length', 'max'=>255),
-			array('status_is, menu_is', 'length', 'max'=>1),
+			array('seo_keywords, redirect_url', 'length', 'max'=>255),
+			array('status_is', 'length', 'max'=>1),
 			array('display_type', 'length', 'max'=>4),
 			array('content, seo_description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, parent_id, catalog_name, catalog_name_second, catalog_name_alias, content, seo_title, seo_keywords, seo_description, attach_file, attach_thumb, sort_order, data_count, page_size, status_is, menu_is, redirect_url, display_type, template_list, template_show, acl_browser, acl_operate, create_time, update_time', 'safe', 'on'=>'search'),
+			array('id, parent_id, catalog_name, catalog_name_second, catalog_name_alias, content, seo_title, seo_keywords, seo_description, attach_file, attach_thumb, sort_order, data_count, page_size, status_is, redirect_url, display_type, template_list, template_show, create_time, update_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -78,30 +75,27 @@ class Catalog extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
-			'parent_id' => 'Parent',
-			'catalog_name' => 'Catalog Name',
-			'catalog_name_second' => 'Catalog Name Second',
-			'catalog_name_alias' => 'Catalog Name Alias',
-			'content' => 'Content',
-			'seo_title' => 'Seo Title',
-			'seo_keywords' => 'Seo Keywords',
-			'seo_description' => 'Seo Description',
-			'attach_file' => 'Attach File',
-			'attach_thumb' => 'Attach Thumb',
-			'sort_order' => 'Sort Order',
-			'data_count' => 'Data Count',
-			'page_size' => 'Page Size',
-			'status_is' => 'Status Is',
-			'menu_is' => 'Menu Is',
-			'redirect_url' => 'Redirect Url',
-			'display_type' => 'Display Type',
-			'template_list' => 'Template List',
-			'template_show' => 'Template Show',
-			'acl_browser' => 'Acl Browser',
-			'acl_operate' => 'Acl Operate',
-			'create_time' => 'Create Time',
-			'update_time' => 'Update Time',
+			'id' => Yii::t('model','catalog_id'),
+			'parent_id' => Yii::t('model','parent_id'),
+			'catalog_name' => Yii::t('model','catalog_name'),
+			'catalog_name_second' => Yii::t('model','catalog_name_second'),
+			'catalog_name_alias' => Yii::t('model','catalog_name_alias'),
+			'content' => Yii::t('model','content'),
+			'seo_title' => Yii::t('model','seo_title'),
+			'seo_keywords' => Yii::t('model','seo_keywords'),
+			'seo_description' => Yii::t('model','seo_description'),
+			'attach_file' => Yii::t('model','attach_file'),
+			'attach_thumb' => Yii::t('model','attach_thumb'),
+			'sort_order' => Yii::t('model','sort_order'),
+			'data_count' => Yii::t('model','data_count'),
+			'page_size' => Yii::t('model','page_size'),
+			'status_is' => Yii::t('model','status_is'),
+			'redirect_url' => Yii::t('model','redirect_url'),
+			'display_type' => Yii::t('model','display_type'),
+			'template_list' => Yii::t('model','template_list'),
+			'template_show' => Yii::t('model','template_show'),			
+			'create_time' => Yii::t('model','create_time'),
+			'update_time' => Yii::t('model','update_time'),
 		);
 	}
 
@@ -153,8 +147,6 @@ class Catalog extends CActiveRecord
 
 		$criteria->compare('status_is',$this->status_is,true);
 
-		$criteria->compare('menu_is',$this->menu_is,true);
-
 		$criteria->compare('redirect_url',$this->redirect_url,true);
 
 		$criteria->compare('display_type',$this->display_type,true);
@@ -162,10 +154,6 @@ class Catalog extends CActiveRecord
 		$criteria->compare('template_list',$this->template_list,true);
 
 		$criteria->compare('template_show',$this->template_show,true);
-
-		$criteria->compare('acl_browser',$this->acl_browser,true);
-
-		$criteria->compare('acl_operate',$this->acl_operate,true);
 
 		$criteria->compare('create_time',$this->create_time,true);
 
@@ -186,7 +174,13 @@ class Catalog extends CActiveRecord
 	}
 	
 	/**
-	 * 取分类
+	 * 所有栏目分类
+	 * @param number $parentid
+	 * @param unknown $array
+	 * @param number $level
+	 * @param number $add
+	 * @param string $repeat
+	 * @return Ambigous <multitype:, multitype:multitype:number unknown string  >
 	 */
 	static public function get($parentid = 0, $array = array(), $level = 0, $add = 2, $repeat = '&nbsp;&nbsp;') {
 	
@@ -200,7 +194,7 @@ class Catalog extends CActiveRecord
 		$temparray = array ();
 		foreach ( ( array ) $array as $v ) {
 			if ($v ['parent_id'] == $parentid) {
-				$newarray [] = array ('id' => $v ['id'], 'catalog_name' => $v ['catalog_name'], 'catalog_name_alias' => $v ['catalog_name_alias'], 'parent_id' => $v ['parent_id'], 'level' => $level, 'sort_order' => $v ['sort_order'], 'seo_keywords' => $v ['seo_keywords'], 'seo_description' => $v ['seo_description'], 'attach_file' => $v ['attach_file'], 'attach_thumb' => $v ['attach_thumb'], 'status_is' => $v ['status_is'], 'data_count' => $v ['data_count'] , 'display_type' => $v ['display_type'], 'menu_is' => $v ['menu_is'],'template_list' => $v ['template_list'],'acl_browser' => $v ['acl_browser'],'acl_operate' => $v ['acl_operate'],'template_show' => $v ['template_show'],'create_time' => $v ['create_time'], 'str_repeat' => $str_repeat, 'page_size'=>$v['page_size'] );
+				$newarray [] = array ('id' => $v ['id'], 'catalog_name' => $v ['catalog_name'], 'catalog_name_alias' => $v ['catalog_name_alias'], 'parent_id' => $v ['parent_id'], 'level' => $level, 'sort_order' => $v ['sort_order'], 'seo_keywords' => $v ['seo_keywords'], 'seo_description' => $v ['seo_description'], 'attach_file' => $v ['attach_file'], 'attach_thumb' => $v ['attach_thumb'], 'status_is' => $v ['status_is'], 'data_count' => $v ['data_count'] , 'display_type' => $v ['display_type'],'template_list' => $v ['template_list'],'template_show' => $v ['template_show'],'create_time' => $v ['create_time'], 'str_repeat' => $str_repeat, 'page_size'=>$v['page_size'] );
 	
 				$temparray = self::get ( $v ['id'], $array, ($level + $add) );
 				if ($temparray) {
@@ -209,93 +203,7 @@ class Catalog extends CActiveRecord
 			}
 		}
 		return $newarray;
-	}
+	}	
 	
 	
-	
-	/**
-	 * 获取下级子类，普通模式
-	 *
-	 * @param $parentId
-	 * @param array $array
-	 * @return array
-	 */
-	static public function lite ($parentId, array $array = array(), $params = array())
-	{
-		if(empty($parentId))
-			return ;		
-		foreach ((array)$eachArr as $row) {
-			if ($row['parent_id'] == $parentId)
-				$arr[] = $row;
-		}
-		return $arr;
-	}
-	
-	/**
-	 * 取子类连接
-	 * @param $parentId
-	 * @param array $array
-	 */
-	static public function subArr2str ($parentId, array $array = array(), $self = true)
-	{
-		if(empty($parentId))
-			return ;		
-		foreach ((array)$eachArr as $row) {
-			if ($row['parent_id'] == $parentId)
-				$arr[] = $row['id'];
-		}
-		$string = implode(',', $arr);
-		return $self ? $string . ',' . $parentId : $string;
-	
-	}
-	
-	/**
-	 * 取分类名称
-	 *
-	 * @param $parentId
-	 * @param array $array
-	 * @return string
-	 */
-	static public function name ($catalog, array $array = array())
-	{
-		if(empty($catalog))
-			return ;		
-		foreach ((array)$eachArr as $row) {
-			if ($row['id'] == $catalog)
-				$name = $row['catalog_name'];
-		}
-		return $name;
-	}
-	
-	/**
-	 * 根据项目名称取类别ID
-	 * @param $catalog
-	 * @param array $array
-	 * @return unknown
-	 */
-	static public function alias2idArr ($alias, array $array = array())
-	{
-		if(empty($alias))
-			return ;		
-		foreach ((array)$eachArr as $row) {
-			if ($row['catalog_name_alias'] == $alias)
-				return $row;
-		}
-	
-	}
-	
-	/**
-	 * 取单条记录
-	 * @param $catalog
-	 * @param array $array
-	 */
-	static public function item ($id, array $array = array())
-	{
-		if(empty($id))
-			return ;		
-		foreach ((array)$eachArr as $row) {
-			if ($row['id'] == $id)
-				return $row;
-		}
-	}
 }
