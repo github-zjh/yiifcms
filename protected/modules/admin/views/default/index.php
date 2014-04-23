@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="<?php echo $this->_yii->language;?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo $this->_baseUrl;?>/static/admin/css/manage.css" />
-    <script type="text/javascript" src="<?php echo $this->_baseUrl;?>/static/js/jquery/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->_baseUrl;?>/static/public/js/jquery/jquery-1.7.1.min.js"></script>
 	<title><?php echo Yii::t('admin','admin manage'); ?> - <?php echo $this->setting_base['site_name'];?></title>
 </head>
 

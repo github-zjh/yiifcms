@@ -1,45 +1,58 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->_yii->language;?>" lang="<?php echo $this->_yii->language;?>">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="language" content="<?php echo $this->_yii->language;?>" />
-	<meta name="keywords" content="<?php echo $this->_seoKeywords;?>" />
-	<meta name="description" content="<?php echo $this->_seoDescription;?>" />
-	<!-- blueprint CSS framework -->
-	<link rel="stylesheet" type="text/css" href="<?php echo $this->_theme->baseUrl;?>/css/screen.css" media="screen, projection" />
-	<link rel="stylesheet" type="text/css" href="<?php echo $this->_theme->baseUrl;?>/css/print.css" media="print" />
-	<!--[if lt IE 8]>
-	<link rel="stylesheet" type="text/css" href="<?php echo $this->_theme->baseUrl;?>/css/ie.css" media="screen, projection" />
-	<![endif]-->
-
-	<link rel="stylesheet" type="text/css" href="<?php echo $this->_theme->baseUrl;?>/css/main.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo $this->_theme->baseUrl;?>/css/form.css" />
-
-	<title><?php echo CHtml::encode($this->_seoTitle); ?></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title><?php echo CHtml::encode($this->_seoTitle);?></title>
+<link rel="stylesheet" href="<?php echo $this->_stylePath;?>/css/global.css" />
+<script type="text/javascript" src="<?php echo $this->_stylePath;?>/js/jquery-1.7.1.min.js"></script>
 </head>
-
 <body>
-
-<div class="container" id="page">
-	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
-	</div><!-- header -->
-
-	<div id="mainmenu">
-		<?php $this->widget('zii.widgets.CMenu',array(
-			'id'=> 'menu',
-			'items'=>array(				
-				array('label'=>Yii::t('common','Home'), 'url'=>array('/site/index')),
-				array('label'=>Yii::t('common','Post'), 'url'=>array('/post/index')),
-				array('label'=>Yii::t('common','About'), 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>Yii::t('common','Contact'), 'url'=>array('/site/contact')),
-				array('label'=>Yii::t('common','Login'), 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>Yii::t('common','Logout').' ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),				
-			),
-		)); ?>
-	</div><!-- mainmenu -->
-	<?php if(isset($this->breadcrumbs)):?>
-		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-			'links'=>$this->breadcrumbs,
-		)); ?><!-- breadcrumbs -->
-	<?php endif?>
+<!-- 头部header开始 -->
+<div id="header" class="clear">
+	<div id="logo">LOGO</div>
+	<div id="msbox" class="clear">
+		<ul id="menu">
+			<li>
+				<a href="<?php echo $this->createUrl('/');?>" class="select">Home</a>	
+				<div class="space"></div>
+				<div class="child_box">
+					<ul class="child_menu">
+						<li><a href="#">Child</a></li>
+						<li><a href="#">Child</a></li>
+						<li class="last"><a href="#">Child</a></li>
+					</ul>
+				</div>						
+			</li>
+			<li>
+				<a href="<?php echo $this->createUrl('site/about');?>">About US</a>
+				<div class="space"></div>
+				<div class="child_box">
+					<ul class="child_menu">
+						<li><a href="#">Child</a></li>
+						<li><a href="#">Child</a></li>
+						<li class="last"><a href="#">Child</a></li>
+					</ul>
+				</div>				
+			</li>
+			<li>
+				<a href="<?php echo $this->createUrl('site/contact');?>">Contact Us</a>
+				<div class="space"></div>
+				<div class="child_box">
+					<ul class="child_menu">
+						<li><a href="#">Child</a></li>
+						<li><a href="#">Child</a></li>
+						<li class="last"><a href="#">Child</a></li>
+					</ul>
+				</div>	
+			</li>
+			<li><a href="<?php echo $this->createUrl('post/index');?>">GOODS LIST</a></li>
+			<li><a href="./show.html">Show</a></li>
+			<li><a href="./page.html">Page</a></li>
+		</ul>
+		<form id="search">
+			<a href="javascript:;"><img src="<?php echo $this->_stylePath;?>/images/search_btn.png" /></a>
+			<input type="text" name="keyword" value="" placeholder="请输入关键字"/>			
+		</form>
+	</div>	
+</div>
+<!-- 头部header结束 -->

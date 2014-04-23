@@ -20,27 +20,9 @@ class PostController extends FrontBase
   public function actionIndex() {  	
     $catalog = trim( $this->_request->getParam( 'catalog' ) );
     $keyword = trim( $this->_request->getParam( 'keyword' ) );
-    $catalogArr = Catalog::alias2idArr( $catalog, $this->_catalog );
-    if ( $catalog && $catalogArr ) {
-      if ( $catalogArr['display_type'] == 'list' ) {
-        $tpl = $catalogArr['template_list'] ?  $catalogArr['template_list'] : 'list_text';
-        $resultArr = self::_catalogList( array( 'catalog'=>$catalogArr['id'], 'pageSize'=>$catalogArr['page_size']  ));
-      }else {
-        $resultArr = self::_catalogItem( array( 'catalog'=>$catalogArr['id'] ) );
-        $tpl = empty( $resultArr['bagecmsCatalogShow']->template_page ) ? 'list_page': $resultArr['bagecmsCatalogShow']->template_page ;
-      }
-    }else {
-      $resultArr = self::_catalogList( array( 'keyword'=>$keyword ) );
-      $tpl = 'list_post';
-    }
-    $tplVars = array(
-        'catalogArr'=>$catalogArr,
-        'catalogChild'=>Catalog::lite(intval($catalogArr['id'])),
-    );
-    
+    $tpl = 'list_post';
     $this->_seoTitle = '文章列表 - '.$this->_setting['site_name'];
-       
-    $this->render( $tpl , array_merge($resultArr, $tplVars) );
+    $this->render( $tpl);
   }
 
   /**

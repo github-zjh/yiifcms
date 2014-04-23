@@ -1,0 +1,31 @@
+@CHARSET "UTF-8";
+
+#content { width:1170px; margin:0 auto; text-align:left; margin-bottom:70px; }
+#content .content_left { float:left; width:870px; }
+#content .content_right { float:right; width:270px; }
+.content_list .list_box { padding:40px 0; border-bottom:3px solid #e5e6e6;}
+.content_list .list_head { float:left; width:70px; text-align:center; }
+.content_list .list_head .date_time { height:80px; line-height:40px; background-color:#FFFFFF; font-size:16px; }
+.content_list .list_body { float:right; width:770px;}
+.content_list .content_type { width:70px; height:70px; margin-top:20px; background:url(../images/type_text.png) no-repeat left center;}
+.content_list .type_image { background-image:url(../images/type_image.png);}
+.content_list .type_video { background-image:url(../images/type_video.png);}
+.content_list .list_body h2 a{ font-size:24px; font-weight:bold; color:#76c7c0; }
+.content_list .list_body .view_info { padding:18px 0 30px 0;}
+.content_list .list_body .view_info span { margin-right:15px; }
+.content_list .list_body .view_info em { color:#e2534b; }
+.content_list .list_body .view_info .tags { padding-left:23px; background:url(../images/ico_tag.png) no-repeat left center; }
+.content_list .list_body .view_info .views { padding-left:23px; background:url(../images/ico_view.png) no-repeat left center; }
+.content_list .list_body .content_info { margin-bottom:20px; }
+.content_list .list_body .continue_read { padding-right:20px; background:url(../images/list_icon.png) no-repeat right center; }
+
+.content_right .category { margin-bottom:50px; }
+.content_right .category dt { font-size:16px; font-weight:bold; margin-bottom:30px; }
+.content_right .category dd { padding-left:16px; margin-bottom:16px; background:url(../images/ico_list_blue.png) no-repeat left center;}
+.content_right .recent_post dd { background-image:url(../images/ico_list_grey.png);}
+
+.content_right .tag dd { float:left; background:none; padding:0; margin-right:9px; margin-bottom:10px; }
+.content_right .tag dd a { display:block; padding:0 8px; line-height:25px; background-color:#7f8c8c; border-radius:5px; color:#FFFFFF; text-decoration:none; }
+.content_right .tag dd a:hover { background-color:#e2534b; }
+
+

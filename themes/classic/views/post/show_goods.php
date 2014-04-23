@@ -1,87 +1,118 @@
-<script src="<?php echo $this->_baseUrl?>/static/js/lightbox/js/lightbox-2.6.min.js"></script>
-<link href="<?php echo $this->_baseUrl?>/static/js/lightbox/css/lightbox.css" rel="stylesheet" />
-<div class="mainWrap">
-<div class="topDesc">
-  <div class="desc">
-    <p style=" margin-top:40px;">致力于提升客户品牌形象、实现客户商业目标!</p>
-    <p>Commitment to enhance customer brand image,customer business goals!</p>
-  </div>
-</div>
-<div class="global clear">
-  <div class="sidebar right" id="sidebar">
-    <div class="moduleBox">
-      <div class="boxTit clear">
-        <h3>热门产品</h3>
-      </div>
-      <div class="border">
-        <div id="portal_block_237_content" class="dxb_bc">
-          <div class="module cl xld slideshow">
-            
-			<dl class="clear">
-              <dd class="m"><a href="<?php echo $this->createUrl('post/show',array('id'=>$goodsRow['id']))?>" target="_blank"><img src="<?php echo $this->_baseUrl?>/<?php echo $goodsRow['attach_thumb']?>" width="150" height="115"></a></dd>
-             
-              <dt><a href="<?php echo $this->createUrl('post/show',array('id'=>$goodsRow['id']))?>" title="<?php echo $goodsRow['title']?>" target="_blank"><?php echo $goodsRow['title']?></a></dt>
-            </dl>
-           
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="sideBox moduleBox">
-      <p>400000000</p>
-    </div>
-  </div>
-  <div class="mainBox floatL">
-    <div class="loc clear">
-      <div class="floatL position"> <span>您的位置：</span> <a href="<?php echo Yii::app()->homeUrl?>">首页</a> <em></em><span>产品中心</span><em></em> <a href="<?php echo $this->createUrl('post/index',array('catalog'=>$catalogArr['id']))?>"><?php echo $catalogArr['catalog_name']?></a> <em></em> 查看内容 </div>
-    </div>
-    <div class="postWrap">
-      <div class="h head">
-        <h1 class="title"><?php echo $post->title?></h1>
-        <p class="info"><?php echo date('Y-m-d H:i:s',$post->create_time)?><span class="split">|</span> 发布者: admin<span class="split">|</span> 查看: <em id="_viewnum"><?php echo $post->view_count?></em></p>
-      </div>
-	  <?php if($attrVal):?>
-      <div class="attrVal"><p>属性</p>
-        <ul>
-          <?php foreach($attrVal as $val):?>
-          <li><span><?php echo $val->attr->attr_name?>:</span><?php echo $val->attr_val?></li>
-          <?php endforeach?>
-        </ul>
-      </div>
-      <?php endif?>
-	  <?php if($post->image_list):?>
-	  <?php $imageList = unserialize($post->image_list)?>
-	  <div class="postAlbum clear"><ul><?php foreach($imageList as $album):?><li><a href="<?php echo $this->_baseUrl?>/<?php echo $album['file']?>" data-lightbox="a"><img src="<?php echo $this->_baseUrl?>/<?php echo $album['file']?>" /></a></li><?php endforeach?></div>
-	  <?php endif?>
-      <?php if($post->intro):?>
-      <div class="intro clear"><?php echo $post->intro?></div>
-      <?php endif?>
-      <div class="cdata">
-        <table cellpadding="0" cellspacing="0" class="showTb">
-          <tbody>
-            <tr>
-              <td id="postContent"><?php echo $post->content?></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <!--上下篇-->
-   
-    <div class="preNext clear" > <em class="floatL">上一条：
-      <?php if($before):?>
-      <a href="<?php echo $this->createUrl('post/show',array('id'=>$before['id']))?>"><?php echo $before['title']?></a>
-      <?php else:?>
-      没有了
-      <?php endif?>
-      </em><em class="floatR">下一条：
-      <?php if($behind):?>
-      <a href="<?php echo $this->createUrl('post/show',array('id'=>$behind['id']))?>"><?php echo $behind['title']?></a>
-      <?php else:?>
-      没有了
-      <?php endif?>
-      </em></div>
-	<!--/上下篇-->
-    </div>
-   <?php $this->renderPartial('_comment',array('bagecmsShow'=>$post))?>
-  </div>
-</div>
+		<link rel="stylesheet" href="<?php echo $this->_stylePath;?>/css/show.css" />
+		<div id="bread_crumbs">
+		<div class="crumb_box clear">
+			<h1 class="crumb_title">Show</h1>
+			<ul class="crumb_menu">
+				<li><a href="./index.html">Home</a><span>/</span></li>
+				<li><a href="./list.html">Show</a></li>
+			</ul>
+		</div>		
+	</div>
+	
+	<div id="content" class="clear">
+		<div class="content_left">			
+			<!-- 文字类型 -->
+			<div class="list_box clear">
+				<div class="list_head">
+					<div class="date_time">
+						<p>May</p>
+						<strong>26</strong>
+					</div>
+					<div class="content_type"></div>
+				</div>
+				<div class="list_body">
+					<h2><a href="#">Duis dapibus aliquam mi, eget euismod sem scelerisque ut</a></h2>
+					<p class="view_info">
+						<span>posted by <em>Admin</em></span>
+						<span class="tags"><em>Admin,&nbsp;&nbsp;</em><em>Admin</em></span>
+						<span class="views"><em>45</em></span>
+					</p>
+					<div class="content_info">
+						Maecenas eget turpis turpis. Nunc vel metus augue. 
+					Aenean euismod cursus ligula eget dapibus. 
+					Praesent vel erat in tortor placerat dignissim. 
+					Duis dapibus aliquam mi, eget euismod sem scelerisque ut. 
+					Vivamus at elit quis urna adipiscing iaculis. 
+					Curabitur vitae velit in neque dictum blandit. 
+					Proin in iaculis neque. 
+					Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.						
+					</div>						
+				</div>
+			</div>	
+			<!-- 分享按钮 -->
+			<div class="share_box">
+				<ul class="clear">
+					<li><strong>Share</strong></li>
+					<li><a href="#"></a></li>
+					<li><a href="#"></a></li>
+					<li><a href="#"></a></li>
+				</ul>
+			</div>		
+			
+			<!-- 评论区 -->
+			<div class="comments">
+				<h3>10&nbsp;&nbsp;Comments</h3>
+				<ul>
+					<li class="clear">
+						<img src="images/default_avatar.png" class="avatar" />
+						<div class="comment_desc">
+							<p class="desc_head">
+								<strong class="user">Admin</strong>
+								<span class="submit_time">2014年4月23日11:08:56</span>
+							</p>
+							<p class="desc_body">asdfasdf</p>
+						</div>						
+					</li>
+					
+					<li class="clear">
+						<img src="images/default_avatar.png" class="avatar" />
+						<div class="comment_desc">
+							<p class="desc_head">
+								<strong class="user">Admin</strong>
+								<span class="submit_time">2014年4月23日11:08:56</span>
+							</p>
+							<p class="desc_body">asdfasdf</p>
+						</div>
+					</li>
+				</ul>
+				
+				<form class="contact_form">
+					<table>
+						<CAPTION>我要评论:</CAPTION>
+						<tr><th>用户名：</th><td><input type="text" value="" /></td></tr>
+						<tr><th>邮箱：</th><td><input type="text" value="" /></td></tr>						
+						<tr><th>内容：</th><td><textarea></textarea></td></tr>
+						<tr class="sub_tr"><td></td><td><a href="javascript:;" class="submit">提交</a></td></tr>
+					</table>				
+				</form>
+			</div>
+			
+		</div>
+		<div class="content_right">
+			<dl class="category">
+				<dt>分类</dt>
+				<dd><a href="#">分类一</a></dd>		
+				<dd><a href="#">分类一</a></dd>
+				<dd><a href="#">分类一</a></dd>		
+			</dl>	
+			
+			<dl class="category tag clear">
+				<dt>Tags</dt>
+				<dd><a href="#">php</a></dd>		
+				<dd><a href="#">mysql</a></dd>
+				<dd><a href="#">memcache</a></dd>	
+				<dd><a href="#">php</a></dd>		
+				<dd><a href="#">mysql</a></dd>
+				<dd><a href="#">memcache</a></dd>	
+			</dl>
+			
+			<dl class="category recent_post">
+				<dt>最近的文章</dt>
+				<dd><a href="#">分类一</a></dd>		
+				<dd><a href="#">分类一</a></dd>
+				<dd><a href="#">分类一</a></dd>		
+			</dl>		
+		</div>
+		
+	</div>	
+	

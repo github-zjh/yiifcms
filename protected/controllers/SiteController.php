@@ -113,4 +113,12 @@ class SiteController extends FrontBase
 		Yii::app()->user->logout(false);
 		$this->redirect(Yii::app()->homeUrl);
 	}
+	/**
+	 * 关于我们
+	 */
+	public function actionAbout(){
+		$this->render('about');
+	}
+
+	
 }

@@ -29,6 +29,7 @@ class FrontBase extends Controller
 	public $_seoTitle = '';
 	public $_seoKeywords = '';
 	public $_seoDescription = '';
+	public $_stylePath = ''; //当前主题对应的样式目录
 	/**
 	 * !CodeTemplates.overridecomment.nonjd!
 	 * @see CController::init()
@@ -55,6 +56,6 @@ EOT;
 		
 		//主题设置
 		Yii::app()->theme = $this->_setting['theme'];
-		
+		$this->_stylePath = $this->_baseUrl.'/static/themes/'.$this->_setting['theme'];
 	}
 }

@@ -1,104 +1,117 @@
-<script src="<?php echo $this->_baseUrl?>/static/js/lightbox/js/lightbox-2.6.min.js"></script>
-<link href="<?php echo $this->_baseUrl?>/static/js/lightbox/css/lightbox.css" rel="stylesheet" />
-<div class="mainWrap">
-<div class="topDesc">
-  <div class="desc">
-    <p style=" margin-top:40px;">致力于提升客户品牌形象、实现客户商业目标!</p>
-    <p>Commitment to enhance customer brand image,customer business goals!</p>
-  </div>
-</div>
-<div class="global clear">
-<!--左侧导航-->
-  <?php $this->renderPartial('/layouts/sidebar_post' ,array('catalogArr'=>$catalogArr, 'catalogChild'=>$catalogChild))?> 
-<!--/左侧导航-->
-  <!--标签-->
-  <div class="mainBox">
-    <div class="loc clear">
-      <div class="position"> <span>您的位置：</span> <a href="<?php echo Yii::app()->homeUrl?>">首页</a> <em></em> <span>资讯</span><em></em><a href="<?php echo $this->createUrl('post/index',array('catalog'=>$catalogArr['id']))?>"><?php echo $catalogArr['catalog_name']?></a>  </div>
-    </div>
-    <div class="postWrap">
-      <div class="h head">
-        <h1 class="title"><?php echo $bagecmsShow->title?></h1>
-        <p class="info"> <?php echo date('Y-m-d H:i:s',$bagecmsShow->create_time)?><span class="split">|</span> 发布者: admin<span class="split">|</span> 查看: <em id="_viewnum"><?php echo $bagecmsShow->view_count?></em> </p>
-      </div>
-	  
-      <?php if($attrVal):?>
-      <div class="attrVal"><p>属性</p>
-        <ul>
-          <?php foreach($attrVal as $val):?>
-          <li><span><?php echo $val->attr->attr_name?>:</span><?php echo $val->attr_val?></li>
-          <?php endforeach?>
-        </ul>
-      </div>
-      <?php endif?>
-      
-	  <?php if($bagecmsShow->image_list):?>
-	  <?php $imageList = unserialize($bagecmsShow->image_list)?>
-	  <div class="postAlbum clear"><ul><?php foreach($imageList as $album):?><li><a href="<?php echo $this->_baseUrl?>/<?php echo $album['file']?>" data-lightbox="a"><img src="<?php echo $this->_baseUrl?>/<?php echo $album['file']?>" /></a></li><?php endforeach?></div>
-	  <?php endif?>
-      <?php if($bagecmsShow->intro):?>
-      <div class="intro clear"><?php echo $bagecmsShow->intro?></div>
-      <?php endif?>
-      <div class="cdata clear">
-        <table cellpadding="0" cellspacing="0" class="showTb">
-          <tbody>
-            <tr>
-              <td id="postContent"><?php echo $bagecmsShow->content?></td>
-            </tr>
-          </tbody>
-        </table>
-		<!--标签-->
-     <?php if($bagecmsShow->tags):?>
-      <?php 
-	  $tags = @explode(',', $bagecmsShow->tags);
-	  ?>
-      <div class="postTags clear">
-        <p class="tagsTitle floatL">标签：</p>
-        <ul class="tagsList clear">
-          <?php foreach($tags as $tag):?>
-          <li><a href="<?php echo $this->createUrl('tag/post',array('name'=>urlencode($tag))) ?>" target="_blank" title="<?php echo $tag?>"><?php echo $tag?></a></li>
-          <?php endforeach?>
-        </ul>
-      </div>
-      <?php endif?>
-	  <!--/标签-->
-      </div>
-    </div>
-	<!--上下篇-->
-    <?php //$before = Bagecms::getItem('Post', 'pageBefore', array('where'=>"id<{$bagecmsShow['id']} AND catalog_id={$bagecmsShow['catalog_id']}"))?>
-    <?php //$behind = Bagecms::getItem('Post', 'pageBehind', array('where'=>"id>{$bagecmsShow['id']} AND catalog_id={$bagecmsShow['catalog_id']}"))?>
-    <div class="preNext clear" > <em class="floatL">上一篇：
-      <?php if($before):?>
-      <a href="<?php echo $this->createUrl('post/show',array('id'=>$before['id']))?>"><?php echo $before['title']?></a>
-      <?php else:?>
-      没有了
-      <?php endif?>
-      </em><em class="floatR">下一篇：
-      <?php if($behind):?>
-      <a href="<?php echo $this->createUrl('post/show',array('id'=>$behind['id']))?>"><?php echo $behind['title']?></a>
-      <?php else:?>
-      没有了
-      <?php endif?>
-      </em></div>
-	<!--/上下篇-->
-    
-	<!--相关阅读-->
-    <div id="relatedPost" class="bm">
-      <div class="boxTit clear">
-        <h3>相关阅读</h3>
-      </div>
-      <div class="bmc">
-        <ul class="list clear" id="raid_div">
-		<?php //foreach((array)Bagecms::getList('post','index_news',array('where'=>"status_is='Y' AND catalog_id={$bagecmsShow['catalog_id']} AND id!={$bagecmsShow['id']}",'order'=>'id DESC', 'limit'=>8)) as $newsKey=>$newsRow):?>
-          <li>• <a href="<?php echo $this->createUrl('post/show',array('id'=>$newsRow['id']))?>" target="_blank"><?php echo $newsRow['title']?></a></li>
-		<?php //endforeach?> 
-        </ul>
-      </div>
-    </div>
-	<!--/相关阅读-->
-	<!--评论区域-->
-    <?php //$this->renderPartial('_comment',array('bagecmsShow'=>$bagecmsShow))?>
-	<!--/评论区域-->
-  </div>
-</div>
-
+		<link rel="stylesheet" href="<?php echo $this->_stylePath;?>/css/show.css" />
+		<div id="bread_crumbs">
+		<div class="crumb_box clear">
+			<h1 class="crumb_title">Show</h1>
+			<ul class="crumb_menu">
+				<li><a href="./index.html">Home</a><span>/</span></li>
+				<li><a href="./list.html">Show</a></li>
+			</ul>
+		</div>		
+	</div>
+	
+	<div id="content" class="clear">
+		<div class="content_left">			
+			<!-- 文字类型 -->
+			<div class="list_box clear">
+				<div class="list_head">
+					<div class="date_time">
+						<p>May</p>
+						<strong>26</strong>
+					</div>
+					<div class="content_type"></div>
+				</div>
+				<div class="list_body">
+					<h2><a href="<?php echo $this->createUrl('post/show',array('id'=>$post->id));?>"><?php echo $post->title;?></a></h2>
+					<p class="view_info">
+						<span>posted by <em>Admin</em></span>
+						<span class="tags"><em><?php echo $post->tags;?>,&nbsp;&nbsp;</em><em>Admin</em></span>
+						<span class="views"><em><?php echo $post->view_count;?></em></span>
+					</p>
+					<div class="content_info">
+						Maecenas eget turpis turpis. Nunc vel metus augue. 
+					Aenean euismod cursus ligula eget dapibus. 
+					Praesent vel erat in tortor placerat dignissim. 
+					Duis dapibus aliquam mi, eget euismod sem scelerisque ut. 
+					Vivamus at elit quis urna adipiscing iaculis. 
+					Curabitur vitae velit in neque dictum blandit. 
+					Proin in iaculis neque. 
+					Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.						
+					</div>						
+				</div>
+			</div>	
+			<!-- 分享按钮 -->
+			<div class="share_box">
+				<ul class="clear">
+					<li><strong>Share</strong></li>
+					<li><a href="#"></a></li>
+					<li><a href="#"></a></li>
+					<li><a href="#"></a></li>
+				</ul>
+			</div>		
+			
+			<!-- 评论区 -->
+			<div class="comments">
+				<h3>10&nbsp;&nbsp;Comments</h3>
+				<ul>
+					<li class="clear">
+						<img src="<?php echo $this->_stylePath;?>/images/default_avatar.png" class="avatar" />
+						<div class="comment_desc">
+							<p class="desc_head">
+								<strong class="user">Admin</strong>
+								<span class="submit_time">2014年4月23日11:08:56</span>
+							</p>
+							<p class="desc_body">asdfasdf</p>
+						</div>						
+					</li>
+					
+					<li class="clear">
+						<img src="<?php echo $this->_stylePath;?>/images/default_avatar.png" class="avatar" />
+						<div class="comment_desc">
+							<p class="desc_head">
+								<strong class="user">Admin</strong>
+								<span class="submit_time">2014年4月23日11:08:56</span>
+							</p>
+							<p class="desc_body">asdfasdf</p>
+						</div>
+					</li>
+				</ul>
+				
+				<form class="contact_form">
+					<table>
+						<CAPTION>我要评论:</CAPTION>
+						<tr><th>用户名：</th><td><input type="text" value="" /></td></tr>
+						<tr><th>邮箱：</th><td><input type="text" value="" /></td></tr>						
+						<tr><th>内容：</th><td><textarea></textarea></td></tr>
+						<tr class="sub_tr"><td></td><td><a href="javascript:;" class="submit">提交</a></td></tr>
+					</table>				
+				</form>
+			</div>
+			
+		</div>
+		<div class="content_right">
+			<dl class="category">
+				<dt>分类</dt>
+				<dd><a href="#">分类一</a></dd>		
+				<dd><a href="#">分类一</a></dd>
+				<dd><a href="#">分类一</a></dd>		
+			</dl>	
+			
+			<dl class="category tag clear">
+				<dt>Tags</dt>
+				<dd><a href="#">php</a></dd>		
+				<dd><a href="#">mysql</a></dd>
+				<dd><a href="#">memcache</a></dd>	
+				<dd><a href="#">php</a></dd>		
+				<dd><a href="#">mysql</a></dd>
+				<dd><a href="#">memcache</a></dd>	
+			</dl>
+			
+			<dl class="category recent_post">
+				<dt>最近的文章</dt>
+				<dd><a href="#">分类一</a></dd>		
+				<dd><a href="#">分类一</a></dd>
+				<dd><a href="#">分类一</a></dd>		
+			</dl>		
+		</div>
+		
+	</div>	

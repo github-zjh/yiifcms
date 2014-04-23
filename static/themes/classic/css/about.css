@@ -1,0 +1,41 @@
+@CHARSET "UTF-8";
+
+.crumb_box, #clients,#content  { width:1170px; margin:0 auto; }
+#content { text-align:left; margin-bottom:70px; }
+#content h2.content_title { font-size:30px; color:#e1524b; }
+#content .content_intro { margin-bottom:70px; }
+#content .content_body li { width:25%; float:left; }
+#content .content_body h3 { margin-bottom:38px; font-size:16px; font-weight:bold;}
+#content .content_body .question_list li { width:auto; float:none; margin-top:15px; padding-left:16px; background:url(../images/list_icon.png) no-repeat left center;}
+
+.client_head li { float:left; line-height:35px; }
+.client_head .client_title { font-size:16px; font-weight:bold; text-align:left;}
+.client_head .client_line { margin-left:17px;}
+.client_head .client_btn { float:right; }
+.client_head .client_btn a { 
+	float:left;
+	margin-left:19px;
+	width:40px; font-size:24px; font-weight:bold;
+	text-decoration:none;
+	color:#FFFFFF;
+	border-radius:5px; 
+	background-color:#98a3a3;
+	-webkit-box-shadow:0 5px 0 #7f8c8c;
+	-moz-box-shadow: 0 5px 0 #7f8c8c;
+	box-shadow: 0 5px 0 #7f8c8c;
+	filter: progid:DXImageTransform.Microsoft.Shadow(color='#7f8c8c', Direction=-180, Strength=5);
+}
+.client_head .client_btn a:hover { 
+	background-color:#e2534b;
+	-webkit-box-shadow:0 5px 0 #e2534b;
+	-moz-box-shadow: 0 5px 0 #e2534b;
+	box-shadow: 0 5px 0 #e2534b;
+	filter: progid:DXImageTransform.Microsoft.Shadow(color='#e2534b', Direction=-180, Strength=5);
+}
+#clients { position:relative; width:1170px; height:169px; overflow:hidden; }
+.client_body { margin-top:40px; width:600%; position:absolute; }
+.client_body li { float:left; margin-right:30px; position:relative; }
+
+
+
+
