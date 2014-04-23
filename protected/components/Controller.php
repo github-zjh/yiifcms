@@ -220,7 +220,7 @@ html,body,div,p,a,h3{margin:0;padding:0;}
     </script><div class="tips_wrap">
     <div class="tips_inner">
         <div class="tips_img">
-            <img src="' . Yii::app()->baseUrl . '/static/images/' . $images . '"/>
+            <img src="' . Yii::app()->baseUrl . '/static/public/images/' . $images . '"/>
         </div>
         <div class="tips_info">
 	
