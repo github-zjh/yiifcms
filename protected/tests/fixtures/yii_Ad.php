@@ -3,6 +3,7 @@
 return array(
 	/*
 	'sample1'=>array(
+		'position_id' => '',
 		'title' => '',
 		'title_alias' => '',
 		'link_url' => '',
@@ -17,6 +18,7 @@ return array(
 		'create_time' => '',
 	),
 	'sample2'=>array(
+		'position_id' => '',
 		'title' => '',
 		'title_alias' => '',
 		'link_url' => '',

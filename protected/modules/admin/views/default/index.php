@@ -81,7 +81,8 @@
             </ul>            
             <ul index="5" class="left_menu">
            		<li index="0"><a href="<?php echo $this->createUrl('attach/index');?>" target="win"><?php echo Yii::t('admin','Attach Manage');?></a></li>                              
-                <li index="2"><a href="<?php echo $this->createUrl('link/index');?>" target="win"><?php echo Yii::t('admin','Link Manage');?></a></li>
+                <li index="1"><a href="<?php echo $this->createUrl('link/index');?>" target="win"><?php echo Yii::t('admin','Link Manage');?></a></li>                
+                <li index="2"><a href="<?php echo $this->createUrl('adPosition/index');?>" target="win"><?php echo Yii::t('admin','Adposition Manage');?></a></li>
                 <li index="3"><a href="<?php echo $this->createUrl('ad/index');?>" target="win"><?php echo Yii::t('admin','Ads Manage');?></a></li>
               </ul>
             <ul index="6" class="left_menu">

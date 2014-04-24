@@ -44,6 +44,10 @@ return array(
 		'new_open' => '新窗口打开',
 		//Ad
 		
+		//AdPositon
+		'adposition_id' => '广告位ID',
+		'position_name' => '广告位名称',
+		
 		//Post
 		
 		//PostComment

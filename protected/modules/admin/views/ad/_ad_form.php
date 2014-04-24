@@ -8,6 +8,14 @@
 <?php endif?>
 <?php $form = $this->beginWidget('CActiveForm',array('id'=>'xform','htmlOptions'=>array('name'=>'xform','enctype'=>'multipart/form-data'))); ?>
 <table class="form_table">
+
+  <tr>
+    <td class="tb_title"><?php echo Yii::t('admin','AdPosition');?>：</td>
+  </tr>
+  <tr >
+    <td ><?php echo $form->dropDownList($model,'position_id', $this->_adposition); ?></td>
+  </tr>
+  
   <tr>
     <td class="tb_title"><?php echo Yii::t('admin','Ad Title');?>：</td>
   </tr>

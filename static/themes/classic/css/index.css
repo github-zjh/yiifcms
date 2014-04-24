@@ -90,9 +90,10 @@
 	box-shadow: 0 5px 0 #e2534b;
 	filter: progid:DXImageTransform.Microsoft.Shadow(color='#e2534b', Direction=-180, Strength=5);
 }
-#clients { position:relative; width:1170px; height:169px; overflow:hidden; }
+#clients { position:relative; width:1170px; height:180px; overflow:hidden; }
 .client_body { margin-top:40px; width:600%; position:absolute; }
 .client_body li { float:left; margin-right:30px; position:relative; }
+.client_body li a { display:block; }
 
 
 

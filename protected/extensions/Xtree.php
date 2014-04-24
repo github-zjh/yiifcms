@@ -10,7 +10,7 @@ class Xtree
     var $child  = array(-1 => array());
     var $layer  = array(0 => 0);
     var $parent = array();
-    var $value_field = '';
+    var $value_field = array();
     /**
      * 构造函数
      *
@@ -133,7 +133,10 @@ class Xtree
 
     function getValue($id)
     {    	
-        return $this->data[$id][$this->value_field];
+    	foreach((array)$this->value_field as $field){
+    		$data[$field] = $this->data[$id][$field];
+    	}
+        return $data;
     }
 
     function getLayer($id, $space = false)

@@ -5,6 +5,7 @@
  *
  * The followings are the available columns in table '{{Ad}}':
  * @property string $id
+ * @property string $position_id
  * @property string $title
  * @property string $title_alias
  * @property string $link_url
@@ -36,17 +37,17 @@ class Ad extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title', 'required'),
+			array('position_id, title', 'required'),
+			array('position_id, width, height, click_count, sort_order, create_time', 'length', 'max'=>10),
 			array('title', 'length', 'max'=>50),
 			array('title_alias', 'length', 'max'=>40),
 			array('link_url, image_url', 'length', 'max'=>255),
-			array('width, height, click_count, sort_order, create_time', 'length', 'max'=>10),
 			array('attach_file', 'length', 'max'=>100),
 			array('status_is', 'length', 'max'=>1),
 			array('intro', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, title_alias, link_url, image_url, width, height, intro, click_count, attach_file, sort_order, status_is, create_time', 'safe', 'on'=>'search'),
+			array('id, position_id, title, title_alias, link_url, image_url, width, height, intro, click_count, attach_file, sort_order, status_is, create_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,6 +69,7 @@ class Ad extends CActiveRecord
 	{
 		return array(
 			'id' => 'Id',
+			'position_id' => Yii::t('model','position_name'),
 			'title' => 'Title',
 			'title_alias' => 'Title Alias',
 			'link_url' => 'Link Url',
@@ -102,6 +104,8 @@ class Ad extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id,true);
+
+		$criteria->compare('position_id',$this->position_id,true);
 
 		$criteria->compare('title',$this->title,true);
 

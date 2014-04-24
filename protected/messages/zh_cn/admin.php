@@ -195,4 +195,7 @@ return array (
 	'Seconds' => '秒',
 	'Forbidden to upload' => '禁止上传',
 	'Menu Manage' => '导航管理',
+	'AdPosition' => '广告位',
+	'Adposition Manage' => '广告位管理',
+	'AdPosition Name' => '广告位名称',
 );

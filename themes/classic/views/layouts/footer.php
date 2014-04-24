@@ -49,7 +49,9 @@
 	</ul>
 	<div id="copyright">	
 		<div class="clear">
-			<span>CopyRight</span>	
+			<span><?php echo $this->_setting['site_copyright'];?></span>	
+			<span><?php echo $this->_setting['site_icp'];?></span>
+			<span>E-mail：<?php echo $this->_setting['admin_email'];?></span>
 			<ul class="outer">
 				<li><a href="javascript:;"><img src="<?php echo $this->_stylePath;?>/images/tmp/tmp_g_icon.png" /></a></li>
 				<li><a href="javascript:;"><img src="<?php echo $this->_stylePath;?>/images/tmp/tmp_g_icon.png" /></a></li>

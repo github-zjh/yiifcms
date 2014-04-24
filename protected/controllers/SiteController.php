@@ -34,8 +34,15 @@ class SiteController extends FrontBase
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'	
-		
-		$this->render('index');
+		//首页banner幻灯片
+		$banner = Ad::model()->findAll('position_id=:pid', array(':pid'=>1));
+		//SEO
+		$this->_seoTitle = $this->_setting['seo_title'];	
+		$this->_seoKeywords = $this->_setting['seo_keywords'];
+		$this->_seoDescription = $this->_setting['seo_description'];
+		//友情链接
+		$links = Link::model()->findAll("logo !=''", array('order'=>'sortorder ASC, id DESC'));
+		$this->render('index',array('banner'=>$banner,'links'=>$links));
 	}
 
 	/**

@@ -23,7 +23,7 @@ class AdminModule extends CWebModule
 			),
 			'errorHandler'=>array(
 			// use 'site/error' action to display errors
-				'errorAction'=>'default/error',
+				'errorAction'=>'/admin/default/error',
 			),
 		)
 		);

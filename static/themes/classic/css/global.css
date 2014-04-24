@@ -95,7 +95,7 @@ filter: progid:DXImageTransform.Microsoft.Shadow(color='#e2534b', Direction=-180
 #footer .footer_right .text { padding-left:20px; width:300px; }
 #copyright { background-color:#6ab3ac; }
 #copyright div { width:1170px; margin:0 auto;}
-#copyright span { float:left; line-height:50px;}
+#copyright span { float:left; line-height:50px; margin-right:20px;}
 #copyright .outer { float:right; padding-top:15px; }
 #copyright .outer a { display:block; }
 #copyright .outer li { float:left; width:22px; margin-left:20px; }

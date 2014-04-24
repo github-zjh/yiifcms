@@ -1,20 +1,27 @@
 	<link rel="stylesheet" href="<?php echo $this->_stylePath;?>/css/index.css" />
+	<?php if($banner):?>
 	<div id="slide" class="clear">
 		<a href="javascript:;" class="slide_btn slide_left"></a>
 		<ul class="slide_image clear">
-			<li><a href="javascript:;"><img src="<?php echo $this->_stylePath;?>/images/tmp/tmp_slide_001.png" /></a></li>
-			<li><a href="javascript:;"><img src="<?php echo $this->_stylePath;?>/images/tmp/tmp_slide_002.png" /></a></li>
-			<li><a href="javascript:;"><img src="<?php echo $this->_stylePath;?>/images/tmp/tmp_slide_003.png" /></a></li>			
+			<?php foreach($banner as $ban):?>			
+			<li>
+				<a href="<?php echo $ban->attributes['link_url']?$ban->attributes['link_url']:$this->createUrl('/');?>" title="<?php echo $ban->attributes['title'];?>">
+					<img src="<?php echo $ban->attributes['image_url']?$ban->attributes['image_url']:$ban->attributes['attach_file'];?>" />
+				</a>
+			</li>
+			<?php endforeach;?>				
 		</ul>
 		<input type="hidden" id="slide_position_left" value="0" />
 		<a href="javascript:;" class="slide_btn slide_right"></a>
 	</div>
+	<?php endif;?>
+	<?php if($banner):?>
 	<ul id="slide_change" class="clear">
-		<li><a href="javascript:;" class="select"></a></li>
-		<li><a href="javascript:;"></a></li>
-		<li><a href="javascript:;"></a></li>
+		<?php for($i=0; $i<count($banner);$i++):?>				
+		<li><a href="javascript:;" <?php if($i==0):?>class="select"<?php endif;?>></a></li>		
+		<?php endfor;?>
 	</ul>
-	
+	<?php endif;?>
 	<div id="intro">		
 		<div class="intro_title">
 			<a href="#" class="view_more">View More</a>
@@ -59,19 +66,11 @@
 			<li class="client_line"><img src="<?php echo $this->_stylePath;?>/images/grey_line_x.png" /></li>
 			<li class="client_btn"><input type="hidden" id="client_left" value="0" /><a href="javascript:;" class="clf_btn"><</a><a href="javascript:;" class="crt_btn">></a></li>
 		</ul>
+		<?php if($links):?>
 		<ul class="client_body clear">
-			<li><a href="#"><img src="<?php echo $this->_stylePath;?>/images/tmp/tmp_client_img.png" /></a></li>
-			<li><a href="#"><img src="<?php echo $this->_stylePath;?>/images/tmp/tmp_client_img.png" /></a></li>
-			<li><a href="#"><img src="<?php echo $this->_stylePath;?>/images/tmp/tmp_client_img.png" /></a></li>
-			<li><a href="#"><img src="<?php echo $this->_stylePath;?>/images/tmp/tmp_client_img.png" /></a></li>
-			<li><a href="#"><img src="<?php echo $this->_stylePath;?>/images/tmp/tmp_client_img.png" /></a></li>
-			<li><a href="#"><img src="<?php echo $this->_stylePath;?>/images/tmp/tmp_client_img.png" /></a></li>
-			<li><a href="#"><img src="<?php echo $this->_stylePath;?>/images/tmp/tmp_client_img.png" /></a></li>
-			<li><a href="#"><img src="<?php echo $this->_stylePath;?>/images/tmp/tmp_client_img.png" /></a></li>
-			<li><a href="#"><img src="<?php echo $this->_stylePath;?>/images/tmp/tmp_client_img.png" /></a></li>
-			<li><a href="#"><img src="<?php echo $this->_stylePath;?>/images/tmp/tmp_client_img.png" /></a></li>
-			<li><a href="#"><img src="<?php echo $this->_stylePath;?>/images/tmp/tmp_client_img.png" /></a></li>
-			<li><a href="#"><img src="<?php echo $this->_stylePath;?>/images/tmp/tmp_client_img.png" /></a></li>
-			<li><a href="#"><img src="<?php echo $this->_stylePath;?>/images/tmp/tmp_client_img.png" /></a></li>
+			<?php foreach($links as $link):?>
+			<li><a href="<?php echo $link->attributes['link'];?>" title="<?php echo $link->attributes['title'];?>" target="_blank"><img width="170" height="90" src="<?php echo $link->attributes['logo'];?>" /></a></li>
+			<?php endforeach;?>			
 		</ul>
+		<?php endif;?>
 	</div>

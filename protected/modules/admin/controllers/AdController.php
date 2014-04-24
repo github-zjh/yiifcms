@@ -8,6 +8,7 @@
  */
 class AdController extends Backend
 {
+	public $_adposition = ''; //广告位
 	/**
 	 * !CodeTemplates.overridecomment.nonjd!
 	 * @see CController::beforeAction()
@@ -22,6 +23,16 @@ class AdController extends Backend
 		return true;
 	}
 	
+	public function init(){
+		parent::init();
+		//广告位
+		$positions = AdPosition::model()->findAll();
+		foreach((array)$positions as $pv){
+			$this->_adposition[''] = "==请选择广告位=="; 
+			$this->_adposition[$pv->id] = $pv->position;
+		}
+	}
+	
     /**
 	 * 广告管理
 	 *
@@ -30,8 +41,10 @@ class AdController extends Backend
     {        
         $model = new Ad();
         $criteria = new CDbCriteria();
-        $condition = '1';
+        $condition = '1';        
         $title = $this->_request->getParam('title');
+        $position_id = $this->_request->getParam('positionID');
+        $position_id && $condition .= ' AND position_id ='.$position_id;
         $title && $condition .= ' AND title LIKE \'%' . $title . '%\'';
         $criteria->condition = $condition;    
         $count = $model->count($criteria);
@@ -41,7 +54,7 @@ class AdController extends Backend
         $pages->params = is_array($pageParams) ? $pageParams : array ();
         $criteria->limit = $pages->pageSize;
         $criteria->offset = $pages->currentPage * $pages->pageSize;
-        $result = $model->findAll($criteria);
+        $result = $model->findAll($criteria);        
         $this->render('ad_index', array ('datalist' => $result , 'pagebar' => $pages ));
     }
 
@@ -51,8 +64,7 @@ class AdController extends Backend
 	 */
     public function actionAdCreate ()
     {        
-        $model = new Ad();       
-        
+        $model = new Ad();   
         if (isset($_POST['Ad'])) {
             $model->attributes = $_POST['Ad'];
         	if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
@@ -68,7 +80,7 @@ class AdController extends Backend
                 $this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
             }
         }        
-        $this->render('ad_create', array ('model' => $model ));
+        $this->render('ad_create', array ('model' => $model));
     }
 
     /**

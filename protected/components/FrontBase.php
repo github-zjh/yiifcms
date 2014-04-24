@@ -30,6 +30,8 @@ class FrontBase extends Controller
 	public $_seoKeywords = '';
 	public $_seoDescription = '';
 	public $_stylePath = ''; //当前主题对应的样式目录
+	public $_public_menu = ''; //菜单导航
+	public $_cur_url = ''; //当前URL
 	/**
 	 * !CodeTemplates.overridecomment.nonjd!
 	 * @see CController::init()
@@ -57,5 +59,15 @@ EOT;
 		//主题设置
 		Yii::app()->theme = $this->_setting['theme'];
 		$this->_stylePath = $this->_baseUrl.'/static/themes/'.$this->_setting['theme'];
+		
+		//菜单导航
+		$menus = Menu::model()->findAll();	
+		$tree = new Xtree();	
+		foreach((array)$menus as $menu){
+			$data[] = $menu->attributes;
+		}
+		$tree->setTree($data, 'id', 'parent_id', array('menu_name','menu_link'));
+		$this->_public_menu = $tree->getArrayList(0);
+		$this->_cur_url = Yii::app()->request->getUrl();
 	}
 }
