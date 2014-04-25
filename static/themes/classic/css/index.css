@@ -6,8 +6,8 @@
 #slide .slide_image li { width:1440px; float:left; }
 #slide .slide_left { left:0;}
 #slide .slide_right { right:0; background-image:url(../images/slide_right.png); }
-#slide_change { display:inline-block; }
-#slide_change li { float:left; line-height:50px; width:80px; }
+#slide_change { display:inline-block; padding:22px 0; }
+#slide_change li { float:left; width:80px; }
 #slide_change li a { display:inline-block; width:60px; height:6px; margin:0 auto; background-color:#b0b8b9; }
 #slide_change li a.select { background-color:#e2534b; }
 
