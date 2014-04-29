@@ -38,7 +38,7 @@ return array(
 		'recommendPosition|create' => '推荐位添加',
 		'recommendPosition|update' => '推荐位更新',
 		'recommendPosition|delete' => '推荐位删除',
-		'recommendPosition|view' => '查看内容管理',		
+		'recommendPosition|view' => '推荐内容',		
 		'recommendPosition|batch' => '批量操作',
 		
 		//Special
