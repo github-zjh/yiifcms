@@ -30,7 +30,16 @@ return array(
 		'post|comment' => '评论管理',
 		'post|commentUpdate' => '评论更新',
 		'post|tags' => '标签管理',
-		'post|batch' => '批量操作',		
+		'post|batch' => '批量操作',	
+		
+		//RecommendPost
+		'recommendPosition' => '推荐位管理',
+		'recommendPosition|index' => '推荐位列表',
+		'recommendPosition|create' => '推荐位添加',
+		'recommendPosition|update' => '推荐位更新',
+		'recommendPosition|delete' => '推荐位删除',
+		'recommendPosition|view' => '查看内容管理',		
+		'recommendPosition|batch' => '批量操作',
 		
 		//Special
 		'special' => '专题管理',
@@ -65,6 +74,14 @@ return array(
 		'link|update' => '链接更新',
 		'link|delete' => '链接删除',
 		'link|batch' => '批量操作',
+		
+		//AdPosition
+		'adPosition' => '广告位管理',
+		'adPosition|index' => '广告位列表',
+		'adPosition|create' => '广告位添加',
+		'adPosition|update' => '广告位更新',
+		'adPosition|delete' => '广告位删除',
+		'adPosition|batch' => '批量操作',
 		
 		//Ad
 		'ad' => '广告管理',

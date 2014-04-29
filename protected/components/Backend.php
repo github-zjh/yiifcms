@@ -29,13 +29,14 @@ class Backend extends BackendBase
 			'setting' => array('seo','upload','template','custom'), 		//网站设置
 			'catalog' => array('index','create','update','delete','batch'), //栏目管理
 			'post' => array('index','create','update','delete', 'comment','commentUpdate','tags','batch'), //内容管理	
+			'recommendPosition' => array('index','create','update','delete', 'view','batch'), //推荐位管理
 			'special' => array('index','create','update','delete','batch'), //专题管理
-			'user' => array('index','create','update','delete','batch'), 	//用户管理
+			'user' => array('index','create','update','delete','batch', 'group', 'groupCreate','groupUpdate'), 	//用户管理
 			'question' => array('index','update','batch'), 					//留言管理
 			'link' => array('index','create','update','delete','batch'), 	//链接管理
+			'adPosition' => array('index','create','update','delete','batch'),//广告位管理
 			'ad' => array('index','create','update','delete','batch'), 		//广告管理
-			'attach' => array('index','batch'), 							//附件管理
-			'ad' => array('index','create','update','delete','batch'), 		//广告管理
+			'attach' => array('index','batch'), 							//附件管理					
 			'database' => array('index','query','doQuery','execute','export', 'database','operate'), 		//数据库管理
 		
 		);
