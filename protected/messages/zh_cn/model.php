@@ -48,6 +48,11 @@ return array(
 		'adposition_id' => '广告位ID',
 		'position_name' => '广告位名称',
 		
+		//RecommendPositon
+		'recommend_id' => '推荐位ID',
+		'recommend_name' => '推荐位名称',
+		'recommend_type' => '推荐位类型',
+		
 		//Post
 		
 		//PostComment

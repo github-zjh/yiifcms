@@ -127,10 +127,27 @@ class Controller extends CController
 		return array( 'data'=>$var, 'dataSerialize'=>empty( $var )? '': serialize( $var ) );
 	
 	}
-	
+	/**
+	 * 格式化输出样式
+	 * @param string $str
+	 * @return string
+	 */
+	public function formatStyle($str = ''){
+		$arr_style =  unserialize($str);
+		$style = '';
+		if($arr_style){
+			$arr_style['bold'] == 'Y' && $style .= "font-weight:bold;";
+			$arr_style['underline'] == 'Y' && $style .= "text-decoration:underline;";
+			$arr_style['color'] && $style .= "color:#".$arr_style['color'];			
+		}
+		return $style;
+	}
 	
 	/**
 	 * 查询字符生成
+	 * @param array $getArray
+	 * @param array $keys
+	 * @return unknown
 	 */
 	static public function buildCondition( array $getArray, array $keys = array() ) {
 		if ( $getArray ) {

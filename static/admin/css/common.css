@@ -27,6 +27,7 @@ iframe { margin: 0; width: 100%; }
 .clear { zoom: 1; }
 .clear:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
 .searchArea{padding: 1px;height:40px;}
+span.required { color:#F00;}
 
 /*定义新型浏览器特性*/
 ::-webkit-scrollbar{width:10px;height:10px}

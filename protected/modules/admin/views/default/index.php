@@ -68,10 +68,11 @@
             </ul>
             <ul index="3" class="left_menu">
                 <li index="0"><a href="<?php echo $this->createUrl('post/index');?>" target="win"><?php echo Yii::t('admin','Content Manage');?></a></li>
-                <li index="1"><a href="<?php echo $this->createUrl('post/comment');?>" target="win"><?php echo Yii::t('admin','Comment Manage');?></a></li>
-                <li index="2"><a href="<?php echo $this->createUrl('post/tags');?>" target="win"><?php echo Yii::t('admin','Tags Manage');?></a></li>
-                <li index="3"><a href="<?php echo $this->createUrl('special/index');?>" target="win"><?php echo Yii::t('admin','Special Manage');?></a></li>
-                <li index="4"><a href="<?php echo $this->createUrl('page/index');?>" target="win"><?php echo Yii::t('admin','Page Manage');?></a></li>
+                <li index="1"><a href="<?php echo $this->createUrl('recommendPosition/index');?>" target="win"><?php echo Yii::t('admin','RecommendPosition Manage');?></a></li>               
+                <li index="2"><a href="<?php echo $this->createUrl('special/index');?>" target="win"><?php echo Yii::t('admin','Special Manage');?></a></li>
+                <li index="3"><a href="<?php echo $this->createUrl('page/index');?>" target="win"><?php echo Yii::t('admin','Page Manage');?></a></li>
+                <li index="4"><a href="<?php echo $this->createUrl('post/comment');?>" target="win"><?php echo Yii::t('admin','Comment Manage');?></a></li>
+                <li index="5"><a href="<?php echo $this->createUrl('post/tags');?>" target="win"><?php echo Yii::t('admin','Tags Manage');?></a></li>
               </ul>
             <ul index="4" class="left_menu">
                 <li index="0"><a href="<?php echo $this->createUrl('user/index');?>" target="win"><?php echo Yii::t('admin','User List');?></a></li>

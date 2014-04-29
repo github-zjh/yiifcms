@@ -1,13 +1,23 @@
 <?php
 /**
- * 广告位管理
+ * 推荐位管理
  * 
  * @author        zhao jinhan <326196998@qq.com>
  * @copyright     Copyright (c) 2014-2015. All rights reserved.
  * 
  */
-class AdPositionController extends Backend
+class RecommendPositionController extends Backend
 {
+	protected $_recom_type = array(); //推荐位类型
+	public function init(){
+		parent::init();
+		$this->_recom_type = array(
+				''=>Yii::t('admin','Please Select Recommend Type'), 
+				'post'=>Yii::t('admin','Recomend Type Post'),
+				'news'=>Yii::t('admin','Recomend Type News'),
+				'goods'=>Yii::t('admin','Recomend Type Goods')				
+		);
+	}
 	/**
 	 * !CodeTemplates.overridecomment.nonjd!
 	 * @see CController::beforeAction()
@@ -23,12 +33,12 @@ class AdPositionController extends Backend
 	}
 	
     /**
-	 * 广告位管理
+	 * 推荐位管理
 	 *
 	 */
     public function actionIndex ()
     {        
-        $model = new AdPosition();
+        $model = new RecommendPosition();
         $criteria = new CDbCriteria();
         $condition = '1';
         $title = $this->_request->getParam('title');       
@@ -46,15 +56,15 @@ class AdPositionController extends Backend
     }
 
     /**
-	 * 广告位添加
+	 * 推荐位添加
 	 *
 	 */
     public function actionCreate ()
     {        
-        $model = new AdPosition();       
+        $model = new RecommendPosition();       
         
-        if (isset($_POST['AdPosition'])) {
-            $model->attributes = $_POST['AdPosition'];        	      
+        if (isset($_POST['RecommendPosition'])) {
+            $model->attributes = $_POST['RecommendPosition'];        	      
             if ($model->save()) {
                 $this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
             }
@@ -63,13 +73,13 @@ class AdPositionController extends Backend
     }
 
     /**
-	 * 更新广告位
+	 * 更新推荐位
 	 */
     public function actionUpdate ($id)
     {        
-        $model = AdPosition::model()->findByPk($id);           
-        if (isset($_POST['AdPosition'])) {        	
-            $model->attributes = $_POST['AdPosition'];            
+        $model = RecommendPosition::model()->findByPk($id);           
+        if (isset($_POST['RecommendPosition'])) {        	
+            $model->attributes = $_POST['RecommendPosition'];            
             if ($model->save()) {               
                 $this->message('success',Yii::t('admin','Update Success'),$this->createUrl('index'));
             }
@@ -77,7 +87,29 @@ class AdPositionController extends Backend
         $this->render('update', array ('model' => $model ));
     
     }
-
+    /**
+     * 查看推荐的内容
+     * @param unknown $id
+     */    
+	public function actionView($id){
+		$recomPosition = RecommendPosition::model()->findByPk($id);
+		$model = new RecommendPost();
+		$criteria = new CDbCriteria();
+		$condition = '1';		
+		$id = $this->_request->getParam('id');
+		$id && $condition .= ' AND id =' . $id;
+		$title && $condition .= ' AND title LIKE \'%' . $title . '%\'';
+		$criteria->condition = $condition;
+		$count = $model->count($criteria);
+		$pages = new CPagination($count);
+		$pages->pageSize = 10;
+		$pageParams = $this->buildCondition($_GET, array ('id', 'title' ));
+		$pages->params = is_array($pageParams) ? $pageParams : array ();		
+		$criteria->limit = $pages->pageSize;
+		$criteria->offset = $pages->currentPage * $pages->pageSize;
+		$result = $model->with('posts')->findAll($criteria);	
+		$this->render('view', array ('datalist' => $result , 'recom_position'=>$recomPosition, 'pagebar' => $pages ));
+	}
     /**
 	 * 批量操作
 	 *
@@ -100,9 +132,11 @@ class AdPositionController extends Backend
         switch ($command) {
             case 'Delete':
        			 foreach((array)$ids as $id){
-            		$adModel = AdPosition::model()->findByPk($id);
-            		if($adModel){            			
-            			$adModel->delete();
+            		$reModel = RecommendPosition::model()->findByPk($id);
+            		if($reModel){            			
+            			$reModel->delete();
+            			//同时删除推荐的内容
+            			RecommendPost::model()->deleteAll('id='.$id);
             		}
             	}
                 break;    

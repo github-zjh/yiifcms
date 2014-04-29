@@ -59,8 +59,10 @@ class PostController extends Backend
         $pages->params = is_array( $pageParams ) ? $pageParams : array ();
         $criteria->limit = $pages->pageSize;
         $criteria->offset = $pages->currentPage * $pages->pageSize;
-        $result = $model->findAll( $criteria );       
-        $this->render( 'index', array ( 'datalist' => $result , 'pagebar' => $pages ) );
+        $result = $model->findAll( $criteria );    
+        //推荐位
+        $recom_list = RecommendPosition::model()->findAll(array('order'=>'id'));
+        $this->render( 'index', array ( 'datalist' => $result , 'pagebar' => $pages ,'recom_list'=>$recom_list) );
     }
 
     /**
@@ -74,12 +76,11 @@ class PostController extends Backend
     	{
     		$model->attributes=$_POST['Post'];
     		//标题样式
-    		$title_style = $this->_request->getPost('style');
-    		
-    		if(!$title_style['bold']){
+    		$title_style = $this->_request->getPost('style');   
+    		if($title_style['bold'] != 'Y'){
     			unset($title_style['bold']);
     		}
-    		if(!$title_style['underline']){
+    		if($title_style['underline'] != 'Y'){
     			unset($title_style['underline']);
     		}
     		if(!$title_style['color']){
@@ -87,6 +88,8 @@ class PostController extends Backend
     		}
     		if($title_style){    			
     			$model->title_style = serialize($title_style);
+    		}else{
+    			$model->title_style = '';
     		}
     		
     		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
@@ -139,7 +142,7 @@ class PostController extends Backend
     	$this->render('update',array(
     			'model'=>$model,
     	));       
-    }
+    }   
 
     /**
      * 更新
@@ -152,11 +155,11 @@ class PostController extends Backend
     	{
     		$model->attributes=$_POST['Post'];
     		//标题样式
-    		$title_style = $this->_request->getPost('style');    		  		    		
-    		if(!$title_style['bold']){
+    		$title_style = $this->_request->getPost('style');   
+    		if($title_style['bold'] != 'Y'){
     			unset($title_style['bold']);
     		}
-    		if(!$title_style['underline']){
+    		if($title_style['underline'] != 'Y'){
     			unset($title_style['underline']);
     		}
     		if(!$title_style['color']){
@@ -164,6 +167,8 @@ class PostController extends Backend
     		}
     		if($title_style){    			
     			$model->title_style = serialize($title_style);
+    		}else{
+    			$model->title_style = '';
     		}
     		
     		
@@ -379,11 +384,20 @@ class PostController extends Backend
             break;
         case 'commend':     
         	//文章推荐
-        	foreach((array)$ids as $id){
-        		$postModel = Post::model()->findByPk($id);
-        		if($postModel){
-        			$postModel->commend = 'Y';
-        			$postModel->save();
+        	foreach((array)$ids as $id){        		
+        		$recom_id = intval($_POST['recom_id']);
+        		if($recom_id){
+        			$postModel = Post::model()->findByPk($id);
+	        		if($postModel){
+	        			$postModel->commend = 'Y';
+	        			$postModel->save();
+	        			$recom_post = new RecommendPost();
+	        			$recom_post->id = $recom_id;
+	        			$recom_post->post_id = $id;
+	        			$recom_post->save();
+	        		}
+        		}else{
+        			$this->message('error', Yii::t('admin','RecommendPosition is Required'));
         		}
         	}                 
             break;
