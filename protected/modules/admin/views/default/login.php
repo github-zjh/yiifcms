@@ -15,8 +15,7 @@
     <?php if (CHtml::errorSummary($model)):?>
     	<?php //echo CHtml::errorSummary($model); ?>	
 	<?php endif?>
-    </div>
-    <div class="logo"></div>
+    </div>    
     <div class="form">
      <?php 
       $form=$this->beginWidget('CActiveForm', array(
