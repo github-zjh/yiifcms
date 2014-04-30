@@ -127,7 +127,7 @@ class User extends CActiveRecord
 				$this->addError('groupid',Yii::t('admin','Group Is Required'));
 				return false;
 			}	
-			$this->password = CPasswordHelper::hashPassword($this->password);
+			$this->password = CPasswordHelper::hashPassword($this->password, 8);
 			$this->addtime = time();					
 		}		
 		return true;		

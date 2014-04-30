@@ -115,7 +115,7 @@ class UserController extends Backend
             if(empty($_POST['User']['password'])){
             	$_POST['User']['password'] = $model->password;
             }else{
-            	$_POST['User']['password'] = CPasswordHelper::hashPassword($_POST['User']['password']);
+            	$_POST['User']['password'] = CPasswordHelper::hashPassword($_POST['User']['password'],8);
             }     
             
             $model->attributes = $_POST['User'];
