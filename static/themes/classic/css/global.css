@@ -25,15 +25,21 @@ iframe { margin: 0; width: 100%; }
 .clear { zoom: 1; }
 .clear:after { content: "."; height: 0; clear: both; visibility: hidden; display:block; }
 * html .clear {height: 1%;} 
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus {  
+	border:1px;	
+	border-color: #E2534B;
+    box-shadow: 0 0 3px #E2534B;
+    outline: medium none;}
 
 /* 公共头部header */
-#header { height:80px; padding:0 60px; background-color:#76c7c0; color:#FFFFFF; }
-
-#msbox { float:right; width:960px; padding-top:25px; }
+#header { position:fixed; z-index:999; width:100%; padding:10px 0; background-color:#76c7c0; color:#FFFFFF; }
+#header .header_main { width:1170px; margin:0 auto; }
+#msbox { float:left; width:800px; }
 #logo { float:left;}
+#logo .logo_a { display:block; width:150px;}
 #menu { float:left; }
-#menu li { float:left; margin:0 7px; line-height:33px; position:relative; z-index:999;}
-#menu a { height:33px; display:block; padding:0 20px; color:#FFFFFF; font-size:14px; font-weight:bold; }
+#menu li { float:left; margin:0 7px; line-height:26px; position:relative; z-index:999;}
+#menu a { height:26px; display:block; padding:0 20px; color:#FFFFFF; font-size:14px; font-weight:bold; }
 #menu a.select, #menu a:hover { border-radius:5px; background-color:#62a29e;
 -webkit-box-shadow:0 5px 0 #528b86;
 -moz-box-shadow: 0 5px 0 #528b86;
@@ -42,25 +48,46 @@ filter: progid:DXImageTransform.Microsoft.Shadow(color='#528b86', Direction=-180
 text-decoration:none;
 }
 #menu a:hover { 
-background:#e8645a url(../images/down_arrows.png) no-repeat 6px 15px;
+background:#e8645a url(../images/down_arrows.png) no-repeat 6px 12px;
 -webkit-box-shadow:0 5px 0 #e2534b;
 -moz-box-shadow: 0 5px 0 #e2534b;
 box-shadow: 0 5px 0 #e2534b;
 filter: progid:DXImageTransform.Microsoft.Shadow(color='#e2534b', Direction=-180, Strength=5);
 }
 #menu .space { height:10px; position:relative;}
-#menu .child_box { display:none; position:absolute; top:42px; padding-top:7px; background:url(../images/ico_up.png) no-repeat 15px 1px;}
-#menu .child_menu { width:200px; padding:5px; border-radius:5px; background-color:#e2534b;}
-#menu .child_menu li { margin:0; float:none; margin-bottom:5px; line-height:30px;  background-color:#e8645a;}
+#menu .child_box { display:none; position:absolute; top:36px; padding-top:7px; background:url(../images/ico_up.png) no-repeat 15px 1px;}
+#menu .child_menu { width:150px; padding:5px; border-radius:5px; background-color:#e2534b;}
+#menu .child_menu li { margin:0; float:none; margin-bottom:5px; line-height:26px;  background-color:#e8645a;}
 #menu .child_menu li.last { margin-bottom:0;}
 #menu .child_menu li a { border-radius:2px; background: url(../images/right_arrows.png) no-repeat 12px center;}
 #menu .child_menu li a:hover { background-color:#76c7c0;}
 
-#search { float:right; margin-top:4px; width:230px; }
-#search input { width:200px; padding:4px;}
+#search { float:right; }
+#search .search_btn { line-height:33px; width:50px; border-radius:0 3px 3px 0; background-color:#EAEAEA; text-decoration:none; }
+#search .search_btn:hover { background-color:#CCCCCC; }
+#search input {  border-radius:3px 0 0 3px; width:200px; padding:8px 4px;}
 #search a { float:right; }
 #search a img { margin-top:4px; }
 
+#login { float:right; width:auto; }
+#login a { 
+	display:inline-block;
+	width:70px;
+	height:26px; line-height:26px; color:#FFFFFF; font-size:14px;
+ 	border-radius:5px; background-color:#62a29e;
+	-webkit-box-shadow:0 5px 0 #528b86;
+	-moz-box-shadow: 0 5px 0 #528b86;
+	box-shadow: 0 5px 0 #528b86;
+	filter: progid:DXImageTransform.Microsoft.Shadow(color='#528b86', Direction=-180, Strength=5);
+	text-decoration:none;
+}
+#login a:hover {
+	background:#e8645a;
+	-webkit-box-shadow:0 5px 0 #e2534b;
+	-moz-box-shadow: 0 5px 0 #e2534b;
+	box-shadow: 0 5px 0 #e2534b;
+	filter: progid:DXImageTransform.Microsoft.Shadow(color='#e2534b', Direction=-180, Strength=5);
+}
 
 /* 公共内容main */
 #bread_crumbs { background-color:#ececec; margin-bottom:50px;}
@@ -81,7 +108,7 @@ filter: progid:DXImageTransform.Microsoft.Shadow(color='#e2534b', Direction=-180
 /* 公共底部footer */
 #footer { background-color:#76c7c0; color:#FFFFFF; }
 #footer * { color:#FFFFFF; }
-#footer .ft_header {  padding:38px 0; width:1170px; margin:0 auto;}
+#footer .ft_header {  padding:15px 0; width:1170px; margin:0 auto;}
 #footer .ft_header li { float:left; text-align:left; }
 #footer .footer_left { width:370px;}
 #footer .footer_mid { width:160px;}

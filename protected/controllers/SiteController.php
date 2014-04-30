@@ -90,6 +90,7 @@ class SiteController extends FrontBase
 	 */
 	public function actionLogin()
 	{
+		$this->layout = false;
 		$model=new FloginForm;
 
 		// if it is ajax validation request

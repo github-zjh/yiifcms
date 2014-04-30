@@ -30,14 +30,7 @@
 			</ul>
 		</li>
 		<li class="footer_right">
-			<h2>from the <strong>BOLG</strong></h2>
-			<div class="text_box clear">
-				<label><img src="<?php echo $this->_stylePath;?>/images/tmp/tmp_blog_icon.png" /></label>
-				<div class="text">
-					<p>asdfsdfasdfsdfasdfsdfasdfsdfasdfsdfasdfsdfasdfsdfasdfsdfasdfsdfasdfsdfasdfsdfasdfsdfasdfsdf</p>
-					<span>asdfsdf</span>
-				</div>				
-			</div>
+			<h2>from the <strong>BOLG</strong></h2>			
 			<div class="clear">
 				<label><img src="<?php echo $this->_stylePath;?>/images/tmp/tmp_blog_icon.png" /></label>
 				<div class="text">

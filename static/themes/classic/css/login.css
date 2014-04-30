@@ -1,0 +1,100 @@
+@CHARSET "UTF-8";
+#wrapper { position:relative; padding-top:100px; }
+.form { width: 900px; margin:0 auto; height:500px;}
+.wrapper_bg { height:800px; width:100%;  background:url(../images/login_02.jpg) no-repeat; position:absolute; top:0; z-index:-2; }
+#login-form { float:right; }
+#login-form .mod_head {
+	background: none repeat scroll 0 0 #3579A6;
+    border-radius: 10px 10px 0 0;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: normal;
+    height: 76px;
+    line-height: 76px;
+    padding: 0 40px;
+    width: 324px;
+	
+}
+#login-form .register_btn {
+	background-color: #4BC7EA;
+    border: 1px solid #295477;
+    border-radius: 10px;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: normal;
+    height: 46px;
+    line-height: 46px;
+    margin-top: 15px;
+    text-align: center;
+    text-decoration: none;
+    width: 164px;
+}
+#login-form .mod_body {
+ background: none repeat scroll 0 0 #F5F5F5;
+    border-left: 1px solid #C9C9C9;
+    border-right: 1px solid #C9C9C9;
+    padding: 40px;
+    width: 324px;
+
+}
+#login-form .mod_footer {
+	background: none repeat scroll 0 0 #E6E6E6;
+    border-color: -moz-use-text-color #C9C9C9 #C9C9C9;
+    border-image: none;
+    border-radius: 0 0 10px 10px;
+    border-right: 1px solid #C9C9C9;
+    border-style: none solid solid;
+    border-width: medium 1px 1px;
+    height: 71px;
+    line-height: 71px;
+    padding: 0 40px;
+    width: 324px;
+}
+#login-form input.form-control {
+	padding-left:10px; 
+	border-color: #EBEBEB #EBEBEB #EBEBEB -moz-use-text-color;
+    border-image: none;
+    border-radius: 0 5px 5px 0;
+    border-style: solid solid solid none;
+    border-width: 1px 1px 1px medium;
+    height: 40px;
+    margin: 0;
+    width: 198px;
+}
+#login-form li { line-height: 38px; margin-bottom: 20px; }
+#login-form li.error_message { background-color:#F2DEDE; border: 1px solid #EED3D7; }
+#login-form .error_message em { display:block; color:#B94A48; }
+#login_submit {
+	float:right; 
+	border-radius: 4px;    
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;      
+    padding: 6px 12px;    
+	line-height:1.5em;
+    vertical-align: middle;
+    white-space: nowrap;
+	background-color: #5CB85C;
+    border-color: #4CAE4C;
+	min-width:92px;
+	color:#FFFFFF;
+	cursor:pointer;
+}
+#login-radio {
+	width:auto;
+	line-height:normal;
+}
+
+.login_bg {  
+	background-color:#000000; 
+	border-radius: 10px;
+    height: 409px;    
+    opacity: 0.2;
+    position: absolute;    
+    width: 900px;	  
+	z-index:-1; 
+}
+.mod_footer a { font-size:14px; color: #428BCA; }
+
+
+
