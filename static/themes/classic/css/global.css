@@ -32,7 +32,7 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
     outline: medium none;}
 
 /* 公共头部header */
-#header { position:fixed; z-index:999; width:100%; padding:10px 0; background-color:#76c7c0; color:#FFFFFF; }
+#header { position:fixed; top:0; z-index:999; width:100%; padding:10px 0; background-color:#76c7c0; color:#FFFFFF; }
 #header .header_main { width:1170px; margin:0 auto; }
 #msbox { float:left; width:800px; }
 #logo { float:left;}
@@ -90,6 +90,7 @@ filter: progid:DXImageTransform.Microsoft.Shadow(color='#e2534b', Direction=-180
 }
 
 /* 公共内容main */
+#main { margin-top:56px; }
 #bread_crumbs { background-color:#ececec; margin-bottom:50px;}
 .crumb_box { width:1170px; margin:0 auto;}
 #bread_crumbs h1.crumb_title { float:left; font-size:20px; line-height:80px; }
