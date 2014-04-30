@@ -52,7 +52,7 @@
 }
 #login-form input.form-control {
 	padding-left:10px; 
-	border-color: #EBEBEB #EBEBEB #EBEBEB -moz-use-text-color;
+	border-color: #EBEBEB;
     border-image: none;
     border-radius: 0 5px 5px 0;
     border-style: solid solid solid none;
