@@ -35,12 +35,12 @@ $(document).ready(function(){
       <tr class="tb_header">
         <th width="10%">ID</th>
         <th><?php echo Yii::t('admin','Title');?></th>
-        <th width="16%"><?php echo Yii::t('admin','Categorys');?></th>
-        <th width="9%"><?php echo Yii::t('admin','Status');?></th>
-        <th width="9%"><?php echo Yii::t('admin','Recommend');?></th>
-        <th width="9%"><?php echo Yii::t('admin','Views');?></th>
+        <th width="12%"><?php echo Yii::t('admin','Categorys');?></th>
+        <th width="8%"><?php echo Yii::t('admin','Status');?></th>
+        <th width="8%"><?php echo Yii::t('admin','Recommend');?></th>
+        <th width="8%"><?php echo Yii::t('admin','Views');?></th>
         <th width="15%"><?php echo Yii::t('admin','Add Time');?></th>
-        <th width="8%"><?php echo Yii::t('admin','Operate');?></th>
+        <th><?php echo Yii::t('admin','Operate');?></th>
       </tr>
     </thead>
     <?php foreach ($datalist as $row):?>
@@ -54,7 +54,11 @@ $(document).ready(function(){
       <td><?php if($row->commend == 'Y'){echo Yii::t('admin','Yes');}else{echo Yii::t('admin','No');}?></td>
       <td><span ><?php echo $row->view_count?></span></td>
       <td ><?php echo date('Y-m-d H:i',$row->create_time)?></td>
-      <td ><a href="<?php echo  $this->createUrl('update',array('id'=>$row->id))?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;<a href="<?php echo  $this->createUrl('batch',array('command'=>'delete','id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->_baseUrl?>/static/admin/images/delete.png" align="absmiddle" /></a></td>
+      <td >
+      	<a href="<?php echo  $this->createUrl('update',array('id'=>$row->id))?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
+      	<a href="<?php echo  $this->createUrl('batch',array('command'=>'delete','id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->_baseUrl?>/static/admin/images/delete.png" align="absmiddle" /></a>&nbsp;&nbsp;
+      	<a href="<?php echo  $this->createUrl('/post/show',array('id'=>$row['id']))?>" target="_blank"><img src="<?php echo $this->_baseUrl?>/static/admin/images/view.png" align="absmiddle" /></a>
+      </td>
     </tr>
     <?php endforeach;?>
     <tr class="operate">

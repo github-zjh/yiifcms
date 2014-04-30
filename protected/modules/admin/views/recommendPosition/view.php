@@ -5,12 +5,11 @@
       <li><a href="<?php echo $this->createUrl('index')?>" class="actionBtn"><span><?php echo Yii::t('admin','RecommendPosition Manage');?></span></a></li>
     </ul>
     <div class="search right">
-      <?php $form = $this->beginWidget('CActiveForm',array('id'=>'searchForm','method'=>'get','action'=>array('index'),'htmlOptions'=>array('name'=>'xform', 'class'=>'right '))); ?>
+      <?php $form = $this->beginWidget('CActiveForm',array('id'=>'searchForm','method'=>'get','action'=>array('view'),'htmlOptions'=>array('name'=>'xform', 'class'=>'right '))); ?>
      
   <?php echo Yii::t('admin','Title');?>
-      <input id="title" type="text" name="title" value="" class="txt" size="15"/>
-  <?php echo Yii::t('admin','Alias');?>
-      <input id="titleAlias" type="text" name="titleAlias" value="" class="txt" size="15"/>
+      <input id="title" type="text" name="title" value="" class="txt" size="15"/>  
+      <input id="id" type="hidden" name="id" value="<?php echo $this->_request->getParam('id');?>" />
       <input name="searchsubmit" type="submit"  value="<?php echo Yii::t('admin','Query');?>" class="button "/>
       <input name="searchsubmit" type="reset"  value="<?php echo Yii::t('admin','Reset');?>" class="button "/>
       <script type="text/javascript">

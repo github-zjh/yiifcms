@@ -42,7 +42,7 @@ class RecommendPost extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'posts'=>array(self::HAS_MANY, 'Post', '','on' => 't.post_id=posts.id')	
+			'posts'=>array(self::HAS_MANY, 'Post', '','on' => 't.post_id=posts.id','together'=>true)	
 		);
 	}
 

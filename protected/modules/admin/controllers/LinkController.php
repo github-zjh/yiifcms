@@ -46,7 +46,7 @@ class LinkController extends Backend
         $criteria->limit = $pages->pageSize;
         $criteria->offset = $pages->currentPage * $pages->pageSize;
         $result = $model->findAll($criteria);
-        $this->render('link_index', array ('datalist' => $result , 'pagebar' => $pages ));
+        $this->render('index', array ('datalist' => $result , 'pagebar' => $pages ));
     }
     
     /**
@@ -71,7 +71,7 @@ class LinkController extends Backend
             }
         }
         
-        $this->render('link_create', array ('model' => $model ));
+        $this->render('create', array ('model' => $model ));
     
     }
 
@@ -105,7 +105,7 @@ class LinkController extends Backend
         	if($model->save())
         		$this->message('success',Yii::t('admin','Update Success'),$this->createUrl('index'));
         }
-        $this->render('link_update', array ('model' => $model ));
+        $this->render('update', array ('model' => $model ));
     
     }
    

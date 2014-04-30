@@ -41,13 +41,13 @@ class RecommendPositionController extends Backend
         $model = new RecommendPosition();
         $criteria = new CDbCriteria();
         $condition = '1';
-        $title = $this->_request->getParam('title');       
-        $title && $condition .= ' AND title LIKE \'%' . $title . '%\'';
+        $recommend_name = $this->_request->getParam('recommend_name');       
+        $recommend_name && $condition .= ' AND recommend_name LIKE \'%' . $recommend_name . '%\'';
         $criteria->condition = $condition;    
         $count = $model->count($criteria);
         $pages = new CPagination($count);
         $pages->pageSize = 13;
-        $pageParams = $this->buildCondition($_GET, array ('title' ));
+        $pageParams = $this->buildCondition($_GET, array ('recommend_name' ));
         $pages->params = is_array($pageParams) ? $pageParams : array ();
         $criteria->limit = $pages->pageSize;
         $criteria->offset = $pages->currentPage * $pages->pageSize;
@@ -95,19 +95,21 @@ class RecommendPositionController extends Backend
 		$recomPosition = RecommendPosition::model()->findByPk($id);
 		$model = new RecommendPost();
 		$criteria = new CDbCriteria();
-		$condition = '1';		
+		$condition = '1 = 1';		
 		$id = $this->_request->getParam('id');
-		$id && $condition .= ' AND id =' . $id;
-		$title && $condition .= ' AND title LIKE \'%' . $title . '%\'';
-		$criteria->condition = $condition;
-		$count = $model->count($criteria);
+		$title = $this->_request->getParam('title');
+		$id && $condition .= ' AND t.id =' . $id;
+		$title && $condition .= ' AND posts.title LIKE \'%' . $title . '%\'';
+		$criteria->condition = $condition;				
+		$criteria->with = array('posts');
+		$count = $model->count($criteria);		
 		$pages = new CPagination($count);
-		$pages->pageSize = 10;
+		$pages->pageSize = 20;
 		$pageParams = $this->buildCondition($_GET, array ('id', 'title' ));
 		$pages->params = is_array($pageParams) ? $pageParams : array ();		
 		$criteria->limit = $pages->pageSize;
 		$criteria->offset = $pages->currentPage * $pages->pageSize;
-		$result = $model->with('posts')->findAll($criteria);	
+		$result = $model->findAll($criteria);	
 		$this->render('view', array ('datalist' => $result , 'recom_position'=>$recomPosition, 'pagebar' => $pages ));
 	}
     /**

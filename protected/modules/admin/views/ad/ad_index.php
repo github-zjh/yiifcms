@@ -6,12 +6,12 @@
     </ul>
     <div class="search right">
       <?php $form = $this->beginWidget('CActiveForm',array('id'=>'searchForm','method'=>'get','action'=>array('index'),'htmlOptions'=>array('name'=>'xform'))); ?>
-      <?php echo Yii::t('admin','Ad Manage');?>
       <select name="positionID" id="positionID">            
         <?php foreach((array)$this->_adposition as $key=> $position):?>
         <option value="<?php echo $key;?>"><?php echo $position;?></option>
         <?php endforeach;?>
       </select>
+      <?php echo Yii::t('admin','Title');?>
       <input id="title" type="text" name="title" value="" class="txt" size="15"/>
       <input name="searchsubmit" type="submit" value="<?php echo Yii::t('admin','Query');?>" class="button"/>
       <script type="text/javascript">
@@ -47,7 +47,11 @@ $(document).ready(function(){
       </td>   
       <td><?php echo $row->title_alias?></td>   
       <td ><?php echo date('Y-m-d H:i',$row->create_time)?></td>
-      <td ><a href="<?php echo  $this->createUrl('adUpdate',array('id'=>$row->id))?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;<a href="<?php echo  $this->createUrl('batch',array('command'=>'adDelete', 'id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->_baseUrl?>/static/admin/images/delete.png" align="absmiddle" /></a></td>
+      <td >
+      	<a href="<?php echo  $this->createUrl('adUpdate',array('id'=>$row->id))?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
+      	<a href="<?php echo  $this->createUrl('batch',array('command'=>'adDelete', 'id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->_baseUrl?>/static/admin/images/delete.png" align="absmiddle" /></a>&nbsp;&nbsp;
+      	<a href="<?php echo  $row->link_url;?>" target="_blank"><img src="<?php echo $this->_baseUrl?>/static/admin/images/view.png" align="absmiddle" /></a>
+      </td>
     </tr>
     <?php endforeach;?>
     <tr class="submit">
