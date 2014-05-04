@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>登录</title>
+	<title><?php echo CHtml::encode($this->_seoTitle);?></title>
 	<base href="<?php echo $this->_request->hostinfo;?>" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="<?php echo $this->_yii->language;?>" />
@@ -20,27 +20,27 @@
 				'validateOnSubmit'=>true,
 			),
 		)); ?>			
-				<div class="mod_head">
-					<a class="register_btn fr" href="http://localhost/wecenter/?/account/register/">注册新用户</a>
-					<i class="fa fa-user"></i>
-					<span class="hidden-xs">登录</span>
+				<div class="mod_head clear">
+					<a class="register_btn fr" href="<?php echo $this->createUrl('site/register');?>">注册新用户</a>					
+					<span class="login_span fl"><i class="fa fa_tuser"></i>登录</span>
 				</div>
 				<div class="mod_body">					
 					<input type="hidden" value="http://localhost/wecenter/?/people/list/" name="return_url">
 					<ul>
-						<li>
-							<label for="FloginForm_username" class="label_icon_user"></label>
+						<li class="clear">
+							<label for="FloginForm_username" class="label_icon_user"><i class="fa fa_user"></i></label>
 							<input type="text" name="FloginForm[username]" placeholder="邮箱/用户名" class="form-control" id="FloginForm_username">
 						</li>
-						<li>
-							<label for="FloginForm_password" class="label_icon_pw"></label>
+						<li class="clear">
+							<label for="FloginForm_password" class="label_icon_pw"><i class="fa fa_pw"></i></label>
 							<input type="password" name="FloginForm[password]" placeholder="密码" class="form-control" id="FloginForm_password">
 						</li>
 						
 						<?php if (CHtml::errorSummary($model)):?>
 						<li class="error_message">
 						<?php foreach($model->geterrors() as $error):?>
-						<em><?php echo $error[0];?></em>
+						<em><i class="fa fa_error"></i><?php echo $error[0];?></em>
+						<?php break;?>
 						<?php endforeach;?>	
 						</li>						
 						<?php endif?>

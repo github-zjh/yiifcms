@@ -90,6 +90,11 @@ class SiteController extends FrontBase
 	 */
 	public function actionLogin()
 	{
+		//登录状态
+		if(!Yii::app()->user->getIsGuest()){
+			$this->redirect(Yii::app()->homeUrl);
+			exit;
+		}
 		$this->layout = false;
 		$model=new FloginForm;
 
@@ -106,9 +111,14 @@ class SiteController extends FrontBase
 			$model->attributes=$_POST['FloginForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login()){
-				$this->redirect(Yii::app()->user->returnUrl);
+				$this->message('success','登录成功',Yii::app()->user->returnUrl);
+				//$this->redirect(Yii::app()->user->returnUrl);
 			}
 		}
+		//seo
+		$this->_seoTitle = '登录 - '.$this->_setting['site_name'];
+		$this->_seoKeywords = '登录';
+		$this->_seoDescription = '登录';
 		// display the login form
 		$this->render('login',array('model'=>$model));
 	}

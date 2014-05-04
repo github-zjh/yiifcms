@@ -147,6 +147,13 @@
 				$(".client_body").animate({left: move_left+'px'}, "slow");
 			}
 		});
+		//登录状态
+		$("#logout").mouseover(function(){
+			$("#drop_down_user").show();
+		});
+		$("#logout").mouseout(function(){
+			$("#drop_down_user").hide();
+		});
 	});
 </script>
 <!-- Js script结束 -->

@@ -5,6 +5,13 @@
  * @copyright     Copyright (c) 2014-2015. All rights reserved.
  *
  **/ 
+@font-face {
+    font-family: "FontAwesome";
+    font-style: normal;
+    font-weight: normal;
+    src: url("../fonts/fontawesome-webfont.eot?#iefix&v=4.0.3") format("embedded-opentype"), url("../fonts/fontawesome-webfont.woff?v=4.0.3") format("woff"), url("../fonts/fontawesome-webfont.ttf?v=4.0.3") format("truetype"), url("../fonts/fontawesome-webfont.svg?v=4.0.3#fontawesomeregular") format("svg");
+}
+
 * { word-wrap: break-word; outline: none; }
 html { margin: 0; width: 100%; height: 100%; }
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { margin: 0; padding: 0; }
@@ -13,8 +20,7 @@ body, td, input, textarea, select, button { color: #555; font: 12px "Microsoft Y
 input , img, textarea{ border:none;}
 ul, ol { list-style: none; }
 h1, h2, h3, h4, h5, h6 { font-weight: normal; font-size: 100%;  }
-a { text-decoration: none; color: #555; }
-a:hover { text-decoration: underline; }
+a { text-decoration: none;}
 em, cite, th { font-style: normal; font-weight: normal; font-size: 12px }
 table { border-collapse: collapse; }
 td, th { height: 25px; text-align: left; }
@@ -30,16 +36,18 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
 	border-color: #E2534B;
     box-shadow: 0 0 3px #E2534B;
     outline: medium none;}
+.fa { display:inline-block; line-height:1; font-family:FontAwesome; font-style:normal; font-weight:normal;}
 
 /* 公共头部header */
 #header { position:fixed; top:0; z-index:999; width:100%; padding:10px 0; background-color:#76c7c0; color:#FFFFFF; }
+#header a { color:#FFFFFF; }
 #header .header_main { width:1170px; margin:0 auto; }
 #msbox { float:left; width:800px; }
 #logo { float:left;}
 #logo .logo_a { display:block; width:150px;}
 #menu { float:left; }
 #menu li { float:left; margin:0 7px; line-height:26px; position:relative; z-index:999;}
-#menu a { height:26px; display:block; padding:0 20px; color:#FFFFFF; font-size:14px; font-weight:bold; }
+#menu a { height:26px; display:block; padding:0 20px; font-size:14px; font-weight:bold; }
 #menu a.select, #menu a:hover { border-radius:5px; background-color:#62a29e;
 -webkit-box-shadow:0 5px 0 #528b86;
 -moz-box-shadow: 0 5px 0 #528b86;
@@ -63,7 +71,7 @@ filter: progid:DXImageTransform.Microsoft.Shadow(color='#e2534b', Direction=-180
 #menu .child_menu li a:hover { background-color:#76c7c0;}
 
 #search { float:right; }
-#search .search_btn { line-height:33px; width:50px; border-radius:0 3px 3px 0; background-color:#EAEAEA; text-decoration:none; }
+#search .search_btn { line-height:33px; width:50px; border-radius:0 3px 3px 0; background-color:#EAEAEA; color:#555555; }
 #search .search_btn:hover { background-color:#CCCCCC; }
 #search input {  border-radius:3px 0 0 3px; width:200px; padding:8px 4px;}
 #search a { float:right; }
@@ -89,6 +97,13 @@ filter: progid:DXImageTransform.Microsoft.Shadow(color='#e2534b', Direction=-180
 	filter: progid:DXImageTransform.Microsoft.Shadow(color='#e2534b', Direction=-180, Strength=5);
 }
 
+#logout { float:right; width:auto; position:relative;}
+#logout .show_drop { display:inline-block; padding-left:30px; line-height:32px; background:url(../images/avatar-mid-img.png) no-repeat left center;}
+#drop_down_user { display:none; position:absolute; width:100%;}
+#drop_down_user dt { height:14px;}
+#drop_down_user a{ display:block; background-color:#76C7C0; border-top:1px solid #528B86; padding:0 10px; line-height:32px; height:32px;}
+#drop_down_user a:hover { background-color:#62A29E;}
+
 /* 公共内容main */
 #main { margin-top:56px; }
 #bread_crumbs { background-color:#ececec; margin-bottom:50px;}
@@ -109,6 +124,7 @@ filter: progid:DXImageTransform.Microsoft.Shadow(color='#e2534b', Direction=-180
 /* 公共底部footer */
 #footer { background-color:#76c7c0; color:#FFFFFF; }
 #footer * { color:#FFFFFF; }
+#footer a { text-decoration:underline; }
 #footer .ft_header {  padding:15px 0; width:1170px; margin:0 auto;}
 #footer .ft_header li { float:left; text-align:left; }
 #footer .footer_left { width:370px;}

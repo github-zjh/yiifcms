@@ -13,7 +13,7 @@
 <!-- 头部header开始 -->
 <div id="header">
 	<div class="header_main clear">
-		<div id="logo"><a class="logo_a" href="<?php echo $this->_request->hostinfo;?>"><?php echo $this->_setting['site_name'];?></a></div>
+		<div id="logo"><a class="logo_a" href="<?php echo Yii::app()->homeUrl;?>"><?php echo $this->_setting['site_name'];?></a></div>
 		<div id="msbox" class="clear">
 			<ul id="menu">			
 				<?php foreach((array)$this->_public_menu as $menu):?>
@@ -39,10 +39,22 @@
 				<input type="text" name="keyword" value="" placeholder="请输入想要搜索的内容"/>			
 			</form>		
 		</div>	
-		<div id="login">
-				<a href="<?php echo $this->createUrl('site/login');?>">登录</a>
-				<a href="<?php echo $this->createUrl('site/register');?>">注册</a>
+		<?php if(Yii::app()->user->getIsGuest()):?>	
+		<div id="login">			
+			<a href="<?php echo $this->createUrl('site/login');?>">登录</a>
+			<a href="<?php echo $this->createUrl('site/register');?>">注册</a>			
 		</div>
-		</div>	
+		<?php else:?>
+		<div id="logout">		
+			<a href="#" class="show_drop"><?php echo Yii::app()->user->name;?></a>
+			<dl id="drop_down_user">
+				<dt></dt>
+				<dd><a href="<?php echo $this->createUrl('site/logout');?>">退出</a></dd>
+				<dd><a href="<?php echo $this->createUrl('site/logout');?>">退出</a></dd>
+				<dd><a href="<?php echo $this->createUrl('site/logout');?>">退出</a></dd>
+			</dl>						
+		</div>
+		<?php endif;?>
+	</div>	
 </div>
 <!-- 头部header结束 -->

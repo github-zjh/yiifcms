@@ -1,8 +1,8 @@
 @CHARSET "UTF-8";
 #wrapper { position:relative; padding-top:100px; }
-.form { width: 900px; margin:0 auto; height:500px;}
+.form { width: 700px; margin:0 auto; height:500px;}
 .wrapper_bg { height:800px; width:100%;  background:url(../images/login_02.jpg) no-repeat; position:absolute; top:0; z-index:-2; }
-#login-form { float:right; }
+#login-form { float:right; width: 324px;}
 #login-form .mod_head {
 	background: none repeat scroll 0 0 #3579A6;
     border-radius: 10px 10px 0 0;
@@ -11,10 +11,9 @@
     font-weight: normal;
     height: 76px;
     line-height: 76px;
-    padding: 0 40px;
-    width: 324px;
-	
+    padding: 0 40px;    
 }
+
 #login-form .register_btn {
 	background-color: #4BC7EA;
     border: 1px solid #295477;
@@ -30,13 +29,15 @@
     width: 164px;
 }
 #login-form .mod_body {
- background: none repeat scroll 0 0 #F5F5F5;
+ 	background: none repeat scroll 0 0 #F5F5F5;
     border-left: 1px solid #C9C9C9;
     border-right: 1px solid #C9C9C9;
-    padding: 40px;
-    width: 324px;
-
+    padding: 40px 0;    
 }
+#login-form .label_icon_user, #login-form .label_icon_pw { float:left;  display:inline-block; border-radius:5px 0 0 5px; width:43px; height:42px; line-height:42px; text-align:center; background-color:#C2E5F3; }
+#login-form .fa_user:before, .fa_tuser:before { font-size:18px; content: "\f007"; color:#FFFFFF; }
+#login-form .fa_tuser:before { margin-right:5px;}
+#login-form .fa_pw:before { font-size:18px; content: "\f084"; color:#FFFFFF;}
 #login-form .mod_footer {
 	background: none repeat scroll 0 0 #E6E6E6;
     border-color: -moz-use-text-color #C9C9C9 #C9C9C9;
@@ -47,10 +48,10 @@
     border-width: medium 1px 1px;
     height: 71px;
     line-height: 71px;
-    padding: 0 40px;
-    width: 324px;
+    padding: 0 40px;    
 }
 #login-form input.form-control {
+	float:left;
 	padding-left:10px; 
 	border-color: #EBEBEB;
     border-image: none;
@@ -61,8 +62,11 @@
     margin: 0;
     width: 198px;
 }
+#login-form ul { width:252px; margin:0 auto; }
 #login-form li { line-height: 38px; margin-bottom: 20px; }
-#login-form li.error_message { background-color:#F2DEDE; border: 1px solid #EED3D7; }
+#login-form li.error_message { background-color:#F2DEDE;  border-radius:5px; border: 1px solid #EED3D7; }
+#login-form .fa_error:before { content: "\f00d"; margin-right:10px;}
+#login-form li.last { text-align:left; }
 #login-form .error_message em { display:block; color:#B94A48; }
 #login_submit {
 	float:right; 
@@ -91,7 +95,7 @@
     height: 409px;    
     opacity: 0.2;
     position: absolute;    
-    width: 900px;	  
+    width: 700px;	  
 	z-index:-1; 
 }
 .mod_footer a { font-size:14px; color: #428BCA; }
