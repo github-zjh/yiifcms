@@ -4,7 +4,6 @@
  * 后端控制基础类  
  * @author zhaojinhan <326196998@qq.com>
  * @copyright Copyright (c) 2014-2015 Personal. All rights reserved.
- * @link http://yiicms.icode100.com
  * @version v1.0.0
  * 
  */

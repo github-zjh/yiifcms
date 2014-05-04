@@ -22,21 +22,22 @@ class DefaultController extends BackendBase
 		return array(
 				// captcha action renders the CAPTCHA image displayed on the contact page
 				'captcha'=>array(
-						'class'=>'CCaptchaAction',
+						'class'=>'MyCaptchaAction',
 						'backColor'=>0xf4f4f4,  //背景色		
 						'foreColor'=> 0x3C5880,	//前景色			
-						'fontFile' => $this->_webRoot.'/static/public/fonts/msyh.ttf', //自定义字体
+						'fontFile' => $this->_webRoot.'/static/public/fonts/maturasc.ttf', //自定义字体
 						'padding'=>0,
 						'width' => 90,
 						'height'=>30,
 						'minLength'=>4,
 						'maxLength'=>4,
-						'offset' => 2,    //字符间距						
+						'testLimit'=>0,   //不限制输错次数
+						'offset' => 2,    //字符间距		
 				),
 		);
 	}
 	
-	public function actionLogin(){			
+	public function actionLogin(){
 		$returnUrl = Yii::app()->user->__returnUrl;
 		if(!Yii::app()->user->getIsGuest()){
 			//$this->redirect(array('/admin/'));

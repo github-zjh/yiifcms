@@ -15,8 +15,17 @@ class SiteController extends FrontBase
 		return array(
 			// captcha action renders the CAPTCHA image displayed on the contact page
 			'captcha'=>array(
-				'class'=>'CCaptchaAction',
-				'backColor'=>0xFFFFFF,
+						'class'=>'MyCaptchaAction',
+						'backColor'=>0xf4f4f4,  //背景色		
+						'foreColor'=> 0x3C5880,	//前景色			
+						'fontFile' => $this->_webRoot.'/static/public/fonts/maturasc.ttf', //自定义字体
+						'padding'=>0,
+						'width' => 90,
+						'height'=>30,
+						'minLength'=>6,
+						'maxLength'=>6,
+						'testLimit'=>0,   //不限制输错次数
+						'offset' => 2,    //字符间距		
 			),
 			// page action renders "static" pages stored under 'protected/views/site/pages'
 			// They can be accessed via: index.php?r=site/page&view=FileName
