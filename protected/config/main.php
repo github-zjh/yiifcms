@@ -6,8 +6,7 @@
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 return array(
-	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'My Yii App',
+	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',	
 	'language'=>'zh_cn',
 	'theme'=>'default',
 	'timeZone'=>'Asia/Shanghai',
@@ -112,6 +111,11 @@ return array(
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
 	'params'=>array(
+		//自定义配置
+		'static'=>array(
+			'admin' => '/static/admin',
+			'public' => '/static/public',
+		),
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
 	),

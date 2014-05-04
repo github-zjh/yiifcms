@@ -14,7 +14,7 @@ class DefaultController extends BackendBase
 		$config = Setting::model()->findAll('scope=:scope',array(':scope'=>'base'));
 		foreach ($config as $key => $row) {
 			$this->setting_base[$row['variable']] = $row['value'];
-		}
+		}		
 	}
 		
 	public function actions()

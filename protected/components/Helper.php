@@ -1,12 +1,19 @@
 <?php
 /**
- * 切割utf-8格式的字符串
+ * 助手类
  * @author zhao jinhan
  * @version v1.0.0
+ * @author Administrator
  *
  */
 class Helper extends CController
 {
+		/**
+		 * 切割utf-8格式的字符串
+		 * @author zhao jinhan
+		 * @version v1.0.0
+		 *
+		 */
         public static function truncate_utf8_string($string, $length, $etc = '...')
         {
             $result = '';
@@ -37,4 +44,5 @@ class Helper extends CController
             }
             return $result;
         }
+        
 }

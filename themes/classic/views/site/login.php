@@ -13,13 +13,7 @@
 <body>			
 	<div id="wrapper">
 		<div class="form clear">
-		<?php $form=$this->beginWidget('CActiveForm', array(
-			'id'=>'login-form',
-			'enableClientValidation'=>true,
-			'clientOptions'=>array(
-				'validateOnSubmit'=>true,
-			),
-		)); ?>			
+		<?php $form=$this->beginWidget('CActiveForm', array('id'=>'login-form')); ?>			
 				<div class="mod_head clear">
 					<a class="register_btn fr" href="<?php echo $this->createUrl('site/register');?>">注册新用户</a>					
 					<span class="login_span fl"><i class="fa fa_tuser"></i>登录</span>
@@ -35,7 +29,7 @@
 							<label for="FloginForm_password" class="label_icon_pw"><i class="fa fa_pw"></i></label>
 							<input type="password" name="FloginForm[password]" placeholder="密码" class="form-control" id="FloginForm_password">
 						</li>
-						
+						<!-- 错误信息显示 -->
 						<?php if (CHtml::errorSummary($model)):?>
 						<li class="error_message">
 						<?php foreach($model->geterrors() as $error):?>
@@ -55,10 +49,8 @@
 				</div>
 				<div class="mod_footer">
 					<a class="fr" href="<?php echo $this->_request->hostinfo;?>">返回首页&nbsp;&nbsp;>></a>					
-				</div>
-			
-			
-		<?php $this->endWidget(); ?>
+				</div>				
+		    <?php $this->endWidget(); ?>
 			<div class="login_bg"></div>
 		</div><!-- form -->		
 		

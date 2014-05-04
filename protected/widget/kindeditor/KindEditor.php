@@ -15,7 +15,7 @@ class KindEditor extends CInputWidget{
 	public $target;
 
 	/**
-	 * 获获资源文件路径
+	 * 获取资源文件路径
 	 *
 	 * @return [type] [description]
 	 */

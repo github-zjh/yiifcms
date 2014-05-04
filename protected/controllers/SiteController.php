@@ -31,9 +31,7 @@ class SiteController extends FrontBase
 	 * when an action is not explicitly requested by users.
 	 */
 	public function actionIndex()
-	{
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'	
+	{		
 		//首页banner幻灯片
 		$banner = Ad::model()->findAll('position_id=:pid', array(':pid'=>1));
 		//SEO
@@ -118,7 +116,8 @@ class SiteController extends FrontBase
 		//seo
 		$this->_seoTitle = '登录 - '.$this->_setting['site_name'];
 		$this->_seoKeywords = '登录';
-		$this->_seoDescription = '登录';
+		$this->_seoDescription = '登录';		
+		
 		// display the login form
 		$this->render('login',array('model'=>$model));
 	}

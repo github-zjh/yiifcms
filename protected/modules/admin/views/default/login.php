@@ -19,12 +19,12 @@
     <div class="form">
      <?php 
       $form=$this->beginWidget('CActiveForm', array(
-		'id'=>'login-form',
-		/* 'enableClientValidation'=>true,
+		'id'=>'login-form',		
 		'enableAjaxValidation' => true,
+		'enableClientValidation'=>true,
 		'clientOptions'=>array(
 			'validateOnSubmit'=>true,
-		), */		
+		),
 	)); ?>
       <dl>
         <dt><?php echo Yii::t('common','UserName');?></dt>

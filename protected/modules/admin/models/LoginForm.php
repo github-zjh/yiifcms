@@ -54,14 +54,16 @@ class LoginForm extends CFormModel
 	{
 		if(!$this->hasErrors())
 		{
-			$tmpuser = User::model()->find('username=:username',array('username'=>$this->username));
+			$tmpuser = User::model()->find('username=:username',array('username'=>$this->username));			
+			$this->_identity=new UserIdentity($this->username,$this->password);					
+			if(!$this->_identity->authenticate()){
+				$this->addError('password',Yii::t('common','Incorrect username or password.'));
+				return false;
+			}
 			if(!$this->checkAcl($tmpuser->groupid, 'default/login')){
 				$this->addError('username', Yii::t('admin','You have no right to visit.'));
 				return false;
 			}
-			$this->_identity=new UserIdentity($this->username,$this->password);					
-			if(!$this->_identity->authenticate())
-				$this->addError('password',Yii::t('common','Incorrect username or password.'));
 		}
 	}
 

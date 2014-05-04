@@ -9,10 +9,9 @@
  * 
  */
 class Backend extends BackendBase
-{
-	
+{	
 	public function init(){		
-		parent::init();
+		parent::init();			
 		parent::auth();
 	}
 	/**

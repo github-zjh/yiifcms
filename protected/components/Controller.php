@@ -36,6 +36,7 @@ class Controller extends CController
 	protected  $_baseUrl = '';
 	protected  $_basePath = ''; //应用程序目录
 	protected  $_webRoot = '';  //网站根目录
+	protected  $_static_public = ''; //公共资源目录	
 	protected  $_adminGroupID = 10; //系统管理员用户组ID
 	
 	public function init ()
@@ -44,8 +45,9 @@ class Controller extends CController
 		$this->_request = Yii::app()->request;		
 		$this->_theme = Yii::app()->theme;
 		$this->_baseUrl = Yii::app()->baseUrl;
-		$this->_basePath = Yii::app()->basePath;
-		$this->_webRoot = dirname($this->_basePath);
+		$this->_basePath = Yii::app()->basePath;		
+		$this->_webRoot = Yii::getPathOfAlias('webroot');
+		$this->_static_public = Yii::app()->params['static']['public'];		
 		$settings = Setting::model()->findAll();
 		foreach ($settings as $key => $row) {
 			$this->_setting[$row['variable']] = $row['value'];

@@ -26,6 +26,11 @@ class BackendBase extends Controller
 	*/
 	public $breadcrumbs=array();	
 		
+	protected  $_static_admin = ''; //后端样式目录
+	public function init(){
+		parent::init();
+		$this->_static_admin = Yii::app()->params['static']['admin'];
+	}
 	
 	/**
 	 * 登录验证
