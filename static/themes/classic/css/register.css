@@ -1,0 +1,43 @@
+@CHARSET "UTF-8";
+body { background-color:#FFFFFF; }
+.reg_head { height:150px; width:100%; background-color:#76C7C0;}
+.reg_head h1 { padding-top:30px;  color:#FFFFFF; font-size:16px; letter-spacing:2px; }
+.reg_body { position:relative; top:-70px; width:700px; margin:0 auto;}
+.reg_body h2 { line-height:70px; height:70px; border-radius:5px 5px 0 0; background-color:#3579A6; color:#FFFFFF; font-size:24px; font-weight:bold;}
+
+#register-form { width:700px; margin:0 auto; border:1px solid #CCCCCC; border-radius:0 0 5px 5px; background-color:#F5F5F5; }
+#register-form .label_icon_user, #login-form .label_icon_pw { float:left;  display:inline-block; border-radius:5px 0 0 5px; width:43px; height:42px; line-height:42px; text-align:center; background-color:#C2E5F3; }
+#register-form .fa_user:before { font-size:18px; content: "\f007"; color:#FFFFFF; }
+#register-form .fa_pw:before { font-size:18px; content: "\f084"; color:#FFFFFF;}
+#register-form .fa_email:before { font-size:18px; content: "@"; color:#FFFFFF;}
+#register-form input.form-control {
+	float:left;
+	padding-left:10px; 
+	border-color: #CCCCCC;
+    border-image: none;
+    border-radius: 0 5px 5px 0;
+    border-style: solid solid solid none;
+    border-width: 1px 1px 1px 0;
+    height: 40px;
+    margin: 0;
+    width: 250px;
+}
+#register-form input.captcha { border-style:solid; border-width:1px; border-radius:5px; width:130px;}
+#register-form .captcha_img { float:left; width:140px; margin-left:20px; line-height:42px; height:42px; background-color:#CCCCCC;  border-radius:5px;}
+#register-form .captcha_img a { color:#666666; }
+#register-form ul { width:430px; padding:40px 0; margin-left:200px; }
+#register-form li { line-height: 38px; margin-bottom: 20px; }
+#register-form li .errorMessage { float:right; width:100px; background-color:#F2DEDE;  border-radius:5px; border: 1px solid #EED3D7; }
+#register-form .fa_error:before { content: "\f00d"; margin-right:10px;}
+#register-form li.last { text-align:left; }
+#register-form .error_message em { display:block; color:#B94A48; }
+#register_submit { float:right; border-radius: 4px; display: inline-block; font-size: 14px; font-weight: 400; padding: 6px 12px;  
+	margin-right:127px;  line-height:1.5em;  vertical-align: middle; white-space: nowrap;background-color: #5CB85C; border-color: #4CAE4C; min-width:92px;
+	color:#FFFFFF;	cursor:pointer;
+}
+#register-form .login_link { color:#428BCA; }
+.copyright { margin-top:30px; }
+.copyright p { line-height:30px; }
+
+
+

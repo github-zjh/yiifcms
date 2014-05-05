@@ -1,4 +1,3 @@
-	<link rel="stylesheet" href="<?php echo $this->_stylePath;?>/css/error.css" />
 	<div id="content" class="clear">
 		<h2 class="img_error"><?php echo CHtml::encode($message); ?></h2>		
 		<ul class="continue">

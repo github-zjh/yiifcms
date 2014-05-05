@@ -29,6 +29,7 @@ return array (
 	'Username is exists' =>'用户名已经存在',
 	'Username is required' => '用户名不能为空',
 	'Password is required' => '密码不能为空',
+	'Email is required' => '邮箱不能为空',
 	'Incorrect username or password.'=>'用户名或密码错误',
 	'Login Success' => '登录成功',	
 	'Image' => '图片',

@@ -6,9 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="<?php echo $this->_yii->language;?>" />
 	<meta name="keywords" content="<?php echo $this->_seoKeywords;?>" />
-	<meta name="description" content="<?php echo $this->_seoDescription;?>" />
-	<link rel="stylesheet" href="<?php echo $this->_stylePath;?>/css/global.css" />
-	<link rel="stylesheet" href="<?php echo $this->_stylePath;?>/css/login.css" />		
+	<meta name="description" content="<?php echo $this->_seoDescription;?>" />		
 </head>
 <body>			
 	<div id="wrapper">
@@ -19,7 +17,7 @@
 					<span class="login_span fl"><i class="fa fa_tuser"></i>登录</span>
 				</div>
 				<div class="mod_body">					
-					<input type="hidden" value="http://localhost/wecenter/?/people/list/" name="return_url">
+					<input type="hidden" value="<?php echo $ret_url;?>" name="ret_url" />
 					<ul>
 						<li class="clear">
 							<label for="FloginForm_username" class="label_icon_user"><i class="fa fa_user"></i></label>
@@ -43,7 +41,7 @@
 							<input type="submit" id="login_submit" name="submit" value="登录" />
 							<input type="checkbox" name="rememberMe" value="1" id="login-radio">
 							<label for="login-radio">记住我</label>
-							<a href="http://localhost/wecenter/?/account/find_password/">忘记密码</a>
+							<a href="<?php echo $this->createUrl('site/forgetpw')?>" class="forgetpw">忘记密码</a>
 						</li>
 					</ul>					
 				</div>
@@ -55,8 +53,12 @@
 		</div><!-- form -->		
 		
 		<div class="wrapper_bg"></div>
-	</div>
-	
+		
+		<div class="copyright">
+			<p>Copyright © 2014 - 2015, All Rights Reserved</p>
+			<p>Powered By Yii FrameWork  当前时区: GMT +8   RSS Feed</p>
+		</div>
+	</div>	
 </body>
 </html>
 	

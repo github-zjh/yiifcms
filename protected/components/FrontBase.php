@@ -69,5 +69,8 @@ EOT;
 		$tree->setTree($data, 'id', 'parent_id', array('menu_name','menu_link'));
 		$this->_public_menu = $tree->getArrayList(0);
 		$this->_cur_url = Yii::app()->request->getUrl();
+		
+		//加载公共资源
+		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/global.css");		
 	}
 }

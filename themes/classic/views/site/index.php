@@ -1,27 +1,3 @@
-	<link rel="stylesheet" href="<?php echo $this->_stylePath;?>/css/index.css" />
-	<?php if($banner):?>
-	<div id="slide" class="clear">
-		<a href="javascript:;" class="slide_btn slide_left"></a>
-		<ul class="slide_image clear">
-			<?php foreach($banner as $ban):?>			
-			<li>
-				<a href="<?php echo $ban->attributes['link_url']?$ban->attributes['link_url']:$this->createUrl('/');?>" title="<?php echo $ban->attributes['title'];?>">
-					<img src="<?php echo $ban->attributes['image_url']?$ban->attributes['image_url']:$ban->attributes['attach_file'];?>" />
-				</a>
-			</li>
-			<?php endforeach;?>				
-		</ul>
-		<input type="hidden" id="slide_position_left" value="0" />
-		<a href="javascript:;" class="slide_btn slide_right"></a>
-	</div>
-	<?php endif;?>
-	<?php if($banner):?>
-	<ul id="slide_change" class="clear">
-		<?php for($i=0; $i<count($banner);$i++):?>				
-		<li><a href="javascript:;" <?php if($i==0):?>class="select"<?php endif;?>></a></li>		
-		<?php endfor;?>
-	</ul>
-	<?php endif;?>
 	<div id="intro">		
 		<div class="intro_title">
 			<a href="#" class="view_more">View More</a>

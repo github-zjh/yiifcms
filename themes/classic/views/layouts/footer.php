@@ -58,66 +58,13 @@
 <!-- Js script开始 -->
 <script type="text/javascript">
 	$(function(){		
+		//导航菜单
 		$("#menu li a").mouseover(function(){
 			$(this).next().next("div.child_box").show();
 		});
 		$("#menu li").mouseleave(function(){
 			$(this).children("div.child_box").hide();
 		});		
-		
-		//幻灯片大图切换
-		var sli_len = $(".slide_image li").width();		
-		var sclient_len = $(".slide_image li").length;
-		var smax_len = (sclient_len-1)*sli_len;			
-		$("#slide_position_left").val(0);
-		$(".slide_right").click(function(){	
-			//向左滑动		
-			var scur_left = parseFloat($("#slide_position_left").val());			
-			var smove_left = scur_left - sli_len;
-			if(Math.abs(smove_left) > smax_len){
-				//跳到开头
-				var index = 0;
-				$("#slide_position_left").val(0);
-				$(".slide_image").animate({left: '0px'}, "slow");
-			}else{
-				var index = Math.abs(smove_left)/sli_len;
-				$("#slide_position_left").val(smove_left);
-				$(".slide_image").animate({left: smove_left+'px'}, "slow");
-			}
-			//选中的a	
-			$("#slide_change a").removeClass("select");
-			$("#slide_change a:eq("+index+")").addClass("select");
-			
-		});
-		$(".slide_left").click(function(){
-			//向右滑动	
-			var scur_left = parseFloat($("#slide_position_left").val());					
-			var smove_left = scur_left + sli_len;	
-			if(scur_left == 0){
-				//跳到最后
-				var index = smax_len/sli_len;
-				$("#slide_position_left").val('-'+smax_len);
-				$(".slide_image").animate({left: '-'+smax_len+'px'}, "slow");
-			}else{
-				var index = Math.abs(smove_left)/sli_len;
-				$("#slide_position_left").val(smove_left);
-				$(".slide_image").animate({left: smove_left+'px'}, "slow");
-			}
-			//选中的a索引			
-			$("#slide_change a").removeClass("select");
-			$("#slide_change a:eq("+index+")").addClass("select");
-			
-		});
-		$("#slide_change a").click(function(){
-			var cur_left = parseFloat($("#slide_position_left").val());
-			var index = $(this).parent("li").index();			
-			var move_left = index>0?'-'+index*sli_len:0;			
-			$("#slide_position_left").val(move_left);
-			$(".slide_image").animate({left: move_left+'px'}, "slow");
-			$("#slide_change a").removeClass("select");
-			$(this).addClass("select");
-		});
-		
 		
 		//友情链接滑动				
 		var li_len = $(".client_body li").width();		

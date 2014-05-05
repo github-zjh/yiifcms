@@ -5,9 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="<?php echo $this->_yii->language;?>" />
 	<meta name="keywords" content="<?php echo $this->_seoKeywords;?>" />
-	<meta name="description" content="<?php echo $this->_seoDescription;?>" />
-	<link rel="stylesheet" href="<?php echo $this->_stylePath;?>/css/global.css" />
-	<script type="text/javascript" src="<?php echo $this->_stylePath;?>/js/jquery-1.7.1.min.js"></script>
+	<meta name="description" content="<?php echo $this->_seoDescription;?>" />	
 </head>
 <body>
 <!-- 头部header开始 -->

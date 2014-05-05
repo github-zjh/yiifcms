@@ -16,7 +16,7 @@ class SiteController extends FrontBase
 			// captcha action renders the CAPTCHA image displayed on the contact page
 			'captcha'=>array(
 						'class'=>'MyCaptchaAction',
-						'backColor'=>0xf4f4f4,  //背景色		
+						'backColor'=>0xCCCCCC,  //背景色		
 						'foreColor'=> 0x3C5880,	//前景色			
 						'fontFile' => $this->_webRoot.'/static/public/fonts/maturasc.ttf', //自定义字体
 						'padding'=>0,
@@ -47,6 +47,11 @@ class SiteController extends FrontBase
 		$this->_seoTitle = $this->_setting['seo_title'];	
 		$this->_seoKeywords = $this->_setting['seo_keywords'];
 		$this->_seoDescription = $this->_setting['seo_description'];
+		
+		//加载样式表
+		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/index.css");
+		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
+		
 		//友情链接
 		$links = Link::model()->findAll("logo !=''", array('order'=>'sortorder ASC, id DESC'));
 		$this->render('index',array('banner'=>$banner,'links'=>$links));
@@ -56,13 +61,16 @@ class SiteController extends FrontBase
 	 * This is the action to handle external exceptions.
 	 */
 	public function actionError()
-	{
+	{		
 		if($error=Yii::app()->errorHandler->error)
 		{
 			if(Yii::app()->request->isAjaxRequest)
 				echo $error['message'];
-			else
+			else{
+				//加载样式表
+				Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/error.css");				
 				$this->render('error', $error);
+			}
 		}
 	}
 
@@ -89,11 +97,13 @@ class SiteController extends FrontBase
 				$this->refresh();
 			}
 		}
+		//加载样式表
+		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/contact.css");
 		$this->render('contact',array('model'=>$model));
 	}
 
 	/**
-	 * Displays the login page
+	 * 登录
 	 */
 	public function actionLogin()
 	{
@@ -102,6 +112,29 @@ class SiteController extends FrontBase
 			$this->redirect(Yii::app()->homeUrl);
 			exit;
 		}
+		//获取登录前的URL
+		if (!empty($_GET['ret_url']))
+		{
+			$ret_url = trim($_GET['ret_url']);
+		}
+		else
+		{
+			if (isset($_SERVER['HTTP_REFERER']))
+			{
+				$ret_url = $_SERVER['HTTP_REFERER'];
+			}
+			else
+			{
+				$ret_url = Yii::app()->user->returnUrl;
+			}
+		}		
+		/* 防止登陆成功后跳转到登陆、退出的页面 */
+		$ret_url = strtolower($ret_url);		
+		if (str_replace(array('site/login', 'site/logout', 'site/register'), '', $ret_url) != $ret_url)
+		{
+			$ret_url = Yii::app()->user->returnUrl;
+		}		
+		
 		$this->layout = false;
 		$model=new FloginForm;
 
@@ -118,31 +151,74 @@ class SiteController extends FrontBase
 			$model->attributes=$_POST['FloginForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login()){
-				$this->message('success','登录成功',Yii::app()->user->returnUrl);
-				//$this->redirect(Yii::app()->user->returnUrl);
+				$this->message('success','登录成功',$_POST['ret_url']);
+				//$this->redirect($ret_url);
 			}
 		}
-		//seo
+		//set seo
 		$this->_seoTitle = '登录 - '.$this->_setting['site_name'];
 		$this->_seoKeywords = '登录';
-		$this->_seoDescription = '登录';		
+		$this->_seoDescription = '登录';	
+		//加载样式表
+		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/login.css");
 		
 		// display the login form
-		$this->render('login',array('model'=>$model));
+		$this->render('login',array('model'=>$model,'ret_url'=>$ret_url));
 	}
 
 	/**
-	 * Logs out the current user and redirect to homepage.
+	 * 退出
 	 */
 	public function actionLogout()
 	{
 		Yii::app()->user->logout(false);
 		$this->redirect(Yii::app()->homeUrl);
 	}
+	
+	/**
+	 * 注册
+	 */
+	public function actionRegister(){
+		//登录状态
+		if(!Yii::app()->user->getIsGuest()){
+			$this->redirect(Yii::app()->homeUrl);
+			exit;
+		}
+		$this->layout = false;
+		$model=new RegisterForm();
+		
+		// if it is ajax validation request
+		if(isset($_POST['ajax']) && $_POST['ajax']==='register-form')
+		{
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
+		
+		// collect user input data
+		if(isset($_POST['RegisterForm']))
+		{
+			$model->attributes=$_POST['RegisterForm'];
+			// validate user input and redirect to the previous page if valid
+			if($model->validate() && $model->login()){
+				$this->message('success','注册成功',Yii::app()->user->returnUrl);
+				//$this->redirect(Yii::app()->user->returnUrl);
+			}
+		}
+		//set seo
+		$this->_seoTitle = '注册新用户 - '.$this->_setting['site_name'];
+		$this->_seoKeywords = '注册新用户';
+		$this->_seoDescription = '注册新用户';
+		//加载样式表
+		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/register.css");
+		$this->render('register',array('model'=>$model));
+	}
+	
 	/**
 	 * 关于我们
 	 */
 	public function actionAbout(){
+		//加载样式表
+		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/about.css");
 		$this->render('about');
 	}
 
