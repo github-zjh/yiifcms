@@ -39,7 +39,7 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
 .fa { display:inline-block; line-height:1; font-family:FontAwesome; font-style:normal; font-weight:normal;}
 
 /* 公共头部header */
-#header { position:fixed; top:0; z-index:999; width:100%; padding:10px 0; background-color:#76c7c0; color:#FFFFFF; }
+#header { position:fixed; top:0; z-index:999; width:100%; padding:10px 0; background-color:#428BCA; color:#FFFFFF; }
 #header a { color:#FFFFFF; }
 #header .header_main { width:1170px; margin:0 auto; }
 #msbox { float:left; width:800px; }
@@ -48,11 +48,11 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
 #menu { float:left; }
 #menu li { float:left; margin:0 7px; line-height:26px; position:relative; z-index:999;}
 #menu a { height:26px; display:block; padding:0 20px; font-size:14px; font-weight:bold; }
-#menu a.select, #menu a:hover { border-radius:5px; background-color:#62a29e;
--webkit-box-shadow:0 5px 0 #528b86;
--moz-box-shadow: 0 5px 0 #528b86;
-box-shadow: 0 5px 0 #528b86;
-filter: progid:DXImageTransform.Microsoft.Shadow(color='#528b86', Direction=-180, Strength=5);
+#menu a.select, #menu a:hover { border-radius:5px; background-color:#5CB85C;
+-webkit-box-shadow:0 5px 0 #4CAE4C;
+-moz-box-shadow: 0 5px 0 #4CAE4C;
+box-shadow: 0 5px 0 #4CAE4C;
+filter: progid:DXImageTransform.Microsoft.Shadow(color='#4CAE4C', Direction=-180, Strength=5);
 text-decoration:none;
 }
 #menu a:hover { 
@@ -82,11 +82,11 @@ filter: progid:DXImageTransform.Microsoft.Shadow(color='#e2534b', Direction=-180
 	display:inline-block;
 	width:70px;
 	height:26px; line-height:26px; color:#FFFFFF; font-size:14px;
- 	border-radius:5px; background-color:#62a29e;
-	-webkit-box-shadow:0 5px 0 #528b86;
-	-moz-box-shadow: 0 5px 0 #528b86;
-	box-shadow: 0 5px 0 #528b86;
-	filter: progid:DXImageTransform.Microsoft.Shadow(color='#528b86', Direction=-180, Strength=5);
+ 	border-radius:5px; background-color:#5CB85C;
+	-webkit-box-shadow:0 5px 0 #4CAE4C;
+	-moz-box-shadow: 0 5px 0 #4CAE4C;
+	box-shadow: 0 5px 0 #4CAE4C;
+	filter: progid:DXImageTransform.Microsoft.Shadow(color='#4CAE4C', Direction=-180, Strength=5);
 	text-decoration:none;
 }
 #login a:hover {
@@ -101,8 +101,8 @@ filter: progid:DXImageTransform.Microsoft.Shadow(color='#e2534b', Direction=-180
 #logout .show_drop { display:inline-block; padding-left:30px; line-height:32px; background:url(../images/avatar-mid-img.png) no-repeat left center;}
 #drop_down_user { display:none; position:absolute; width:100%;}
 #drop_down_user dt { height:14px;}
-#drop_down_user a{ display:block; background-color:#76C7C0; border-top:1px solid #528B86; padding:0 10px; line-height:32px; height:32px;}
-#drop_down_user a:hover { background-color:#62A29E;}
+#drop_down_user a{ display:block; background-color:#76C7C0; border-top:1px solid #4CAE4C; padding:0 10px; line-height:32px; height:32px;}
+#drop_down_user a:hover { background-color:#5CB85C;}
 
 /* 公共内容main */
 #main { margin-top:56px; }
@@ -122,14 +122,14 @@ filter: progid:DXImageTransform.Microsoft.Shadow(color='#e2534b', Direction=-180
 #page li.next_page { padding-left:20px; padding-right:0; }
 
 /* 公共底部footer */
-#footer { background-color:#76c7c0; color:#FFFFFF; }
+#footer { background-color:#428BCA; color:#FFFFFF; }
 #footer * { color:#FFFFFF; }
 #footer a { text-decoration:underline; }
 #footer .ft_header {  padding:15px 0; width:1170px; margin:0 auto;}
 #footer .ft_header li { float:left; text-align:left; }
 #footer .footer_left { width:370px;}
 #footer .footer_mid { width:160px;}
-#footer .footer_mid h2 { color:#3b6360; text-align:center; }
+#footer .footer_mid h2 { text-align:center; }
 #footer .footer_mid li { float:none; text-align:center; }
 #footer li h2 { margin-bottom:30px; font-size:20px; font-weight:bold;}
 #footer .ft_header .footer_right { margin-left:40px;}
@@ -137,7 +137,7 @@ filter: progid:DXImageTransform.Microsoft.Shadow(color='#e2534b', Direction=-180
 #footer .footer_right label, .footer_right .text { float:left; }
 #footer .footer_right .text_box { margin-bottom:20px; }
 #footer .footer_right .text { padding-left:20px; width:300px; }
-#copyright { background-color:#6ab3ac; }
+#copyright { background-color:#3579A6; }
 #copyright div { width:1170px; margin:0 auto;}
 #copyright span { float:left; line-height:50px; margin-right:20px;}
 #copyright .outer { float:right; padding-top:15px; }

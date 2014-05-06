@@ -35,7 +35,7 @@
 				</li>
 				<li class="clear">
 					<label for="RegisterForm_email" class="label_icon_user"><i class="fa fa_email"></i></label>
-					<?php echo $form->textField($model, 'email', array('class'=>'form-control  validate[required]','value'=>'','placeholder'=>'邮箱'));?>
+					<?php echo $form->textField($model, 'email', array('class'=>'form-control  validate[required] inputMailList','value'=>'','placeholder'=>'邮箱', 'autocomplete' => 'off'));?>
 					<?php echo $form->error($model,'email'); ?>       
 				</li>
 				<li class="clear">					
@@ -51,7 +51,11 @@
 				</li>
 			</ul>				
 		<?php $this->endWidget();?>
-		
+		<script type="text/javascript">	
+			$(function(){
+				$(".inputMailList").mailAutoComplete();
+			});					
+		</script>
 		<div class="copyright">
 			<p>Copyright © 2014 - 2015, All Rights Reserved</p>
 			<p>Powered By Yii FrameWork  当前时区: GMT +8   RSS Feed</p>

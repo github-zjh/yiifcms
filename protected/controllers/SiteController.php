@@ -186,7 +186,7 @@ class SiteController extends FrontBase
 		}
 		$this->layout = false;
 		$model=new RegisterForm();
-		
+		$userModel = new User();
 		// if it is ajax validation request
 		if(isset($_POST['ajax']) && $_POST['ajax']==='register-form')
 		{
@@ -198,18 +198,27 @@ class SiteController extends FrontBase
 		if(isset($_POST['RegisterForm']))
 		{
 			$model->attributes=$_POST['RegisterForm'];
+			
+			$userModel->username = $model->username;
+			$userModel->password = $model->password;
+			$userModel->email = $model->email;	
+			$userModel->groupid = 1;		
 			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login()){
-				$this->message('success','注册成功',Yii::app()->user->returnUrl);
+			if($userModel->save()){
+				$this->message('success','注册成功, 正在进入登录页面...', $this->createUrl('login'));
 				//$this->redirect(Yii::app()->user->returnUrl);
+			}else{
+				$this->message('error','注册失败', $this->createUrl('register'));
 			}
 		}
 		//set seo
 		$this->_seoTitle = '注册新用户 - '.$this->_setting['site_name'];
 		$this->_seoKeywords = '注册新用户';
 		$this->_seoDescription = '注册新用户';
-		//加载样式表
+		//加载css,js
 		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/register.css");
+		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.mailAutoComplete-4.0.js", CClientScript::POS_END);
+		
 		$this->render('register',array('model'=>$model));
 	}
 	

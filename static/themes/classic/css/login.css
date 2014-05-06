@@ -3,8 +3,8 @@
 .form { width: 700px; margin:0 auto; height:500px;}
 .wrapper_bg { height:800px; width:100%;  background:url(../images/login_02.jpg) no-repeat; position:absolute; top:0; z-index:-2; }
 #login-form { float:right; width: 324px;}
-#login-form .mod_head {
-	background: none repeat scroll 0 0 #3579A6;
+#login-form .mod_head {	
+	background: none repeat scroll 0 0 #428BCA;
     border-radius: 10px 10px 0 0;
     color: #FFFFFF;
     font-size: 16px;
@@ -15,8 +15,7 @@
 }
 
 #login-form .register_btn {
-	background-color: #4BC7EA;
-    border: 1px solid #295477;
+	background-color: #4BC7EA;    
     border-radius: 10px;
     color: #FFFFFF;
     font-size: 14px;

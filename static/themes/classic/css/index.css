@@ -45,22 +45,14 @@
 	position:relative;
 	bottom:-60px;
 	border-radius:5px; 
-	background-color:#76c7c0;
-	-webkit-box-shadow:0 5px 0 #62b9b0;
-	-moz-box-shadow: 0 5px 0 #62b9b0;
-	box-shadow: 0 5px 0 #62b9b0;
-	filter: progid:DXImageTransform.Microsoft.Shadow(color='#62b9b0', Direction=-180, Strength=5);
+	background-color:#428BCA;	
 	text-decoration:none;
 	font-size:14px;
 	color:#FFFFFF;
 	text-align:center;	
 }
 #intro ul li a:hover {	
-	background-color:#e8645a;
-	-webkit-box-shadow:0 5px 0 #e2534b;
-	-moz-box-shadow: 0 5px 0 #e2534b;
-	box-shadow: 0 5px 0 #e2534b;
-	filter: progid:DXImageTransform.Microsoft.Shadow(color='#e2534b', Direction=-180, Strength=5);
+	background-color:#e8645a;	
 }
 
 
