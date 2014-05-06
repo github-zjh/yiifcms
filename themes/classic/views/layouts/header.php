@@ -15,8 +15,8 @@
 		<div id="msbox" class="clear">
 			<ul id="menu">			
 				<?php foreach((array)$this->_public_menu as $menu):?>
-				<li>
-					<a href="<?php echo $menu['value']['menu_link'];?>" <?php if($this->_cur_url == $menu['value']['menu_link']):?><?php endif;?>><?php echo $menu['value']['menu_name'];?></a>	
+				<li <?php if($this->_cur_url == $menu['value']['menu_link']):?> class="selected"<?php endif;?>>
+					<a href="<?php echo $menu['value']['menu_link'];?>"><?php echo $menu['value']['menu_name'];?></a>	
 					<div class="space"></div>
 					<div class="child_box">
 						<?php if($menu['children']):?>					

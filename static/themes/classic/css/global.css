@@ -48,7 +48,8 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
 #menu { float:left; }
 #menu li { float:left; margin:0 7px; line-height:26px; position:relative; z-index:999;}
 #menu a { height:26px; display:block; padding:0 20px; font-size:14px; font-weight:bold; }
-#menu a.select, #menu a:hover { border-radius:5px; background-color:#5CB85C;
+#menu li.selected { border-bottom:1px solid #FFFFFF;}
+#menu a:hover { border-radius:5px; background-color:#5CB85C;
 -webkit-box-shadow:0 5px 0 #4CAE4C;
 -moz-box-shadow: 0 5px 0 #4CAE4C;
 box-shadow: 0 5px 0 #4CAE4C;
