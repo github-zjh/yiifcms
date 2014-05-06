@@ -48,7 +48,7 @@ class SiteController extends FrontBase
 		$this->_seoKeywords = $this->_setting['seo_keywords'];
 		$this->_seoDescription = $this->_setting['seo_description'];
 		
-		//加载样式表
+		//加载css,js
 		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/index.css");
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
 		
@@ -67,8 +67,10 @@ class SiteController extends FrontBase
 			if(Yii::app()->request->isAjaxRequest)
 				echo $error['message'];
 			else{
-				//加载样式表
-				Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/error.css");				
+				//加载css,js
+				Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/error.css");	
+				Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
+				
 				$this->render('error', $error);
 			}
 		}

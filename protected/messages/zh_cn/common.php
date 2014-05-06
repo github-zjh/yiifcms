@@ -46,4 +46,5 @@ return array (
 	'Add Success' => '添加成功',
 	'Redirect Url' => '跳转地址',
 	'Access Deny' => '您无权访问',
+	'User Center' => '用户中心',
 );

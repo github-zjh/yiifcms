@@ -100,10 +100,10 @@ filter: progid:DXImageTransform.Microsoft.Shadow(color='#e2534b', Direction=-180
 
 #logout { float:right; width:auto; position:relative;}
 #logout .show_drop { display:inline-block; padding-left:30px; line-height:32px; background:url(../images/avatar-mid-img.png) no-repeat left center;}
-#drop_down_user { display:none; position:absolute; width:100%;}
+#drop_down_user { display:none; position:absolute; left:-25%; width:150%;}
 #drop_down_user dt { height:14px;}
-#drop_down_user a{ display:block; background-color:#76C7C0; border-top:1px solid #4CAE4C; padding:0 10px; line-height:32px; height:32px;}
-#drop_down_user a:hover { background-color:#5CB85C;}
+#drop_down_user a{ display:block; background-color:#3579A6; border-top:1px solid #FFFFFF; padding-left:20px; line-height:32px; height:32px; text-align:left; }
+#drop_down_user a:hover { background-color:#428BCA;}
 
 /* 公共内容main */
 #main { margin-top:56px; }

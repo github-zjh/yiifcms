@@ -47,6 +47,7 @@
 				</li>
 				<li class="last clear">
 					<a href="<?php echo $this->createUrl('site/login');?>" class="login_link">已有账号？</a>
+					<a href="<?php echo $this->createUrl('site/index');?>" class="login_link">下次注册</a>
 					<input type="submit" id="register_submit" name="submit" value="注册" />
 				</li>
 			</ul>				

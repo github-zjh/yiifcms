@@ -21,7 +21,10 @@ class UserController extends FrontBase
 	 */
 	public function actionIndex()
 	{		
-		$this->_seoTitle = 'User Center';
+		$this->_seoTitle = Yii::t('common','User Center').' - '.$this->_setting['site_name'];
+		//加载css,js
+		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
+		
 		$this->render('index');
 	}
 

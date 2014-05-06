@@ -47,8 +47,8 @@
 			<a href="#" class="show_drop"><?php echo Yii::app()->user->name;?></a>
 			<dl id="drop_down_user">
 				<dt></dt>
-				<dd><a href="<?php echo $this->createUrl('site/logout');?>">退出</a></dd>
-				<dd><a href="<?php echo $this->createUrl('site/logout');?>">退出</a></dd>
+				<dd><a href="<?php echo $this->createUrl('user/index', array('id'=>Yii::app()->user->id));?>">个人中心</a></dd>
+				<dd><a href="<?php echo $this->createUrl('user/set', array('id'=>Yii::app()->user->id));?>">设置</a></dd>
 				<dd><a href="<?php echo $this->createUrl('site/logout');?>">退出</a></dd>
 			</dl>						
 		</div>
