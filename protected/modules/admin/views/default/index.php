@@ -30,7 +30,7 @@
         <div><a href="<?php echo $this->createUrl('user/index');?>" target="win" hidefocus>用户</a></div>
       </li>      
       <li index="5">
-        <div><a href="<?php echo $this->createUrl('attach/index');?>" target="win" hidefocus>组件</a></div>
+        <div><a href="<?php echo $this->createUrl('recommendPosition/index');?>" target="win" hidefocus>组件</a></div>
       </li>
       <li index="6">
         <div><a href="<?php echo $this->createUrl('database/index');?>" target="win" hidefocus>工具</a></div>
