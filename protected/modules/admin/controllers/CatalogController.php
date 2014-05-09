@@ -64,6 +64,9 @@ class CatalogController extends Backend
 	    		$model->attach_file = $upload->_file_name;
 	    		$model->attach_thumb = $upload->_thumb_name;
     		}
+    		$now = time();
+    		$model->create_time = $now;
+    		$model->update_time = $now;
     		if($model->save())
     			$this->redirect(array('index'));    		
     	}
@@ -107,6 +110,7 @@ class CatalogController extends Backend
 	    		$model->attach_file = $upload->_file_name;
 	    		$model->attach_thumb = $upload->_thumb_name;
     		}
+    		$model->update_time = time();
         	if($model->save())
         		$this->message('success',Yii::t('admin','Update Success'),$this->createUrl('index'));
         }

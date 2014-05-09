@@ -12,7 +12,8 @@
     <tr class="tb_header">
       <th width="8%"> ID</th>
       <th width="8%"> <?php echo Yii::t('admin', 'Sort Order');?></th>
-      <th width="30%"><?php echo Yii::t('admin', 'Title Name');?></th>      
+      <th width="30%"><?php echo Yii::t('admin', 'Title Name');?></th>  
+      <th width="10%"><?php echo Yii::t('admin', 'Catalog Type');?></th>     
       <th width="15%"><?php echo Yii::t('admin','Add Time');?></th>
       <th width="15%"><?php echo Yii::t('admin','Update Time');?></th>
       <th><?php echo Yii::t('admin','Operate');?></th>
@@ -31,7 +32,8 @@
         <?php endif;?>
         <?php if($row['status_is'] == 'N'):?>
         <img src="<?php echo $this->_baseUrl?>/static/admin/images/error.png" align="absmiddle" />[<?php echo Yii::t('admin','Hidden');?>]
-        <?php endif;?></td>      
+        <?php endif;?></td>     
+      <td ><?php echo Yii::t('admin','Type '.ucfirst($row['type']));?></td> 
       <td ><?php echo date('Y-m-d H:i',$row['create_time'])?></td>
       <td ><?php echo date('Y-m-d H:i',$row['update_time'])?></td>
       <td >

@@ -1,5 +1,5 @@
 <div id="contentHeader">
-  <h3><?php echo Yii::t('admin','Article Manage');?></h3>
+  <h3><?php echo Yii::t('admin','Image Manage');?></h3>
   <div class="searchArea">
     <ul class="action left" >
       <li class="current"><a href="<?php echo $this->createUrl('index')?>" class="actionBtn"><span><?php echo Yii::t('admin','Go Back');?></span></a></li>
@@ -8,5 +8,5 @@
     <div class="search right"> </div>
   </div>
 </div>
-<?php $this->renderPartial('_post_form',array('model'=>$model, 'imageList'=>$imageList, 'style'=>$style))?>
+<?php $this->renderPartial('_form',array('model'=>$model, 'imageList'=>$imageList, 'style'=>$style))?>
 

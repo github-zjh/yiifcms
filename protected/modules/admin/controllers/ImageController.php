@@ -1,20 +1,20 @@
 <?php
 /**
- * 内容管理控制器类
+ * 图集管理控制器类
  * 
  * @author        zhao jinhan <326196998@qq.com>
  * @copyright     Copyright (c) 2014-2015. All rights reserved.
  */
 
-class PostController extends Backend
+class ImageController extends Backend
 {
 	protected $_catalog;
 	protected $_special;
 	
 	public function init(){
 		parent::init();
-		//文章栏目
-		$this->_catalog = Catalog::model()->findAll('status_is=:status AND type=:type',array(':status'=>'Y',':type'=>'article'));
+		//图集栏目
+		$this->_catalog = Catalog::model()->findAll('status_is=:status AND type=:type',array(':status'=>'Y',':type'=>'image'));
 		//专题
 		$this->_special = Special::model()->findAll('status_is=:status',array('status'=>'Y'));
 	}
@@ -41,7 +41,7 @@ class PostController extends Backend
     public function actionIndex() {
         $model = new Post();
         $criteria = new CDbCriteria();
-        $condition = "type = 'article'";
+        $condition = "type = 'image'";
         $title = trim( $this->_request->getParam( 'title' ) );
         $titleAlias = trim( $this->_request->getParam( 'titleAlias' ) );
         $catalogId = intval( $this->_request->getParam( 'catalogId' ) );

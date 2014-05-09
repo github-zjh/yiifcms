@@ -13,6 +13,14 @@ $(function(){
 </script>
 <?php $form = $this->beginWidget('CActiveForm',array('id'=>'xform','htmlOptions'=>array('name'=>'xform', 'enctype'=>'multipart/form-data'))); ?>
 <table class="form_table">
+
+ <tr>
+    <td class="tb_title"><?php echo Yii::t('admin','Catalog Type');?>：</td>
+  </tr>
+  <tr >
+    <td class="tb_title"><?php echo $form->dropDownList($model,'type',array('article'=>Yii::t('admin','Type Article'), 'image'=>Yii::t('admin','Type Image'), 'soft'=>Yii::t('admin','Type Soft'), 'video'=>Yii::t('admin','Type Video'), 'goods'=>Yii::t('admin','Type Goods')));?></td>
+  </tr>
+
   <tr>
     <td class="tb_title"><?php echo Yii::t('admin','Title Name');?>：</td>
   </tr>
@@ -42,31 +50,7 @@ $(function(){
         <?php endforeach;?>
       </select></td>
   </tr>
-  <tr>
-    <td class="tb_title"><?php echo Yii::t('admin','Show Method');?>：</td>
-  </tr>
-  <tr >
-    <td class="tb_title"><?php echo $form->dropDownList($model,'display_type',array('list'=>Yii::t('admin','List'), 'page'=>Yii::t('admin','Page')));?></td>
-  </tr>
-  <tr>
-    <td class="tb_title"><?php echo Yii::t('admin','Show Numbers Of Per Page');?>：</td>
-  </tr>
-  <tr >
-    <td class="tb_title"><?php echo $form->textField($model,'page_size',array('size'=>5,'maxlength'=>5)); ?></td>
-  </tr>
   
-  <tr>
-    <td class="tb_title"><?php echo Yii::t('admin','Template List');?>：</td>
-  </tr>
-  <tr >
-    <td ><?php echo $form->dropDownList($model,'template_list',array('list_post'=>Yii::t('admin','Post List Template'), 'list_page'=>Yii::t('admin','Page List Template'),'list_goods'=>Yii::t('admin','Goods List Template'))); ?><?php echo $model->template_list;?></td>
-  </tr> 
-  <tr>
-    <td class="tb_title"><?php echo Yii::t('admin','Template Show');?>：</td>
-  </tr>
-  <tr >
-    <td ><?php echo $form->dropDownList($model,'template_show',array('show_post'=>Yii::t('admin','Post Show Template'), 'show_page'=>Yii::t('admin','Page Show Template'), 'show_goods'=>Yii::t('admin','Goods Show Template'))); ?><?php echo $model->template_show;?></td>
-  </tr>
   <tr>
     <td class="tb_title"><?php echo Yii::t('common','Redirect Url');?>：</td>
   </tr>

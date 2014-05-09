@@ -1,5 +1,5 @@
 <div id="contentHeader">
-  <h3><?php echo Yii::t('admin','Article Manage');?></h3>
+  <h3><?php echo Yii::t('admin','Video Manage');?></h3>
   <div class="searchArea">
     <ul class="action left">
       <li><a href="<?php echo $this->createUrl('create')?>" class="actionBtn"><span><?php echo Yii::t('admin','add');?></span></a></li>
@@ -57,7 +57,7 @@ $(document).ready(function(){
       <td >
       	<a href="<?php echo  $this->createUrl('update',array('id'=>$row->id))?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
       	<a href="<?php echo  $this->createUrl('batch',array('command'=>'delete','id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->_baseUrl?>/static/admin/images/delete.png" align="absmiddle" /></a>&nbsp;&nbsp;
-      	<a href="<?php echo  $this->createUrl('/post/view',array('id'=>$row['id']))?>" target="_blank"><img src="<?php echo $this->_baseUrl?>/static/admin/images/view.png" align="absmiddle" /></a>
+      	<a href="<?php echo  $this->createUrl('/video/view',array('id'=>$row['id']))?>" target="_blank"><img src="<?php echo $this->_baseUrl?>/static/admin/images/view.png" align="absmiddle" /></a>
       </td>
     </tr>
     <?php endforeach;?>

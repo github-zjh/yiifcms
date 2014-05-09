@@ -13,7 +13,8 @@ class AuthController extends Backend
 	{
 		parent::init();
 		parent::auth();
-		$this->_db = Yii::app()->db;		
+		$this->_db = Yii::app()->db;	
+		exit('暂不开启,后续待开发');
 	}
 	
 	/**
@@ -43,8 +44,7 @@ class AuthController extends Backend
 	 *
 	 */
     public function actionInit ()
-    {       
-    	
+    {    
         $auth=Yii::app()->authManager;  
         // remove all operations, roles, child relationships, and assignments
         $auth->clearAll();    

@@ -21,11 +21,11 @@
 					<div class="content_type"></div>
 				</div>
 				<div class="list_body">
-					<h2><a href="#">Duis dapibus aliquam mi, eget euismod sem scelerisque ut</a></h2>
+					<h2><a href="<?php echo $this->createUrl('post/show',array('id'=>$post->id));?>"><?php echo $post->title;?></a></h2>
 					<p class="view_info">
 						<span>posted by <em>Admin</em></span>
-						<span class="tags"><em>Admin,&nbsp;&nbsp;</em><em>Admin</em></span>
-						<span class="views"><em>45</em></span>
+						<span class="tags"><em><?php echo $post->tags;?>,&nbsp;&nbsp;</em><em>Admin</em></span>
+						<span class="views"><em><?php echo $post->view_count;?></em></span>
 					</p>
 					<div class="content_info">
 						Maecenas eget turpis turpis. Nunc vel metus augue. 
@@ -54,7 +54,7 @@
 				<h3>10&nbsp;&nbsp;Comments</h3>
 				<ul>
 					<li class="clear">
-						<img src="images/default_avatar.png" class="avatar" />
+						<img src="<?php echo $this->_stylePath;?>/images/default_avatar.png" class="avatar" />
 						<div class="comment_desc">
 							<p class="desc_head">
 								<strong class="user">Admin</strong>
@@ -65,7 +65,7 @@
 					</li>
 					
 					<li class="clear">
-						<img src="images/default_avatar.png" class="avatar" />
+						<img src="<?php echo $this->_stylePath;?>/images/default_avatar.png" class="avatar" />
 						<div class="comment_desc">
 							<p class="desc_head">
 								<strong class="user">Admin</strong>
@@ -75,18 +75,8 @@
 						</div>
 					</li>
 				</ul>
-				
-				<form class="contact_form">
-					<table>
-						<CAPTION>我要评论:</CAPTION>
-						<tr><th>用户名：</th><td><input type="text" value="" /></td></tr>
-						<tr><th>邮箱：</th><td><input type="text" value="" /></td></tr>						
-						<tr><th>内容：</th><td><textarea></textarea></td></tr>
-						<tr class="sub_tr"><td></td><td><a href="javascript:;" class="submit">提交</a></td></tr>
-					</table>				
-				</form>
-			</div>
-			
+				<?php $this->renderPartial('_comment');?>				
+			</div>			
 		</div>
 		<div class="content_right">
 			<dl class="category">
@@ -115,4 +105,3 @@
 		</div>
 		
 	</div>	
-	

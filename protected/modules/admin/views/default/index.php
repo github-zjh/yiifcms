@@ -65,26 +65,30 @@
             <ul index="2" class="left_menu">
             	<li index="0"><a href="<?php echo $this->createUrl('catalog/index');?>" target="win"><?php echo Yii::t('admin','Catalog Manage');?></a></li>
             	<li index="1"><a href="<?php echo $this->createUrl('menu/index');?>" target="win"><?php echo Yii::t('admin','Menu Manage');?></a></li>
+            	<li index="2"><a href="<?php echo $this->createUrl('special/index');?>" target="win"><?php echo Yii::t('admin','Special Manage');?></a></li>                
             </ul>
             <ul index="3" class="left_menu">
-                <li index="0"><a href="<?php echo $this->createUrl('post/index');?>" target="win"><?php echo Yii::t('admin','Content Manage');?></a></li>
-                <li index="1"><a href="<?php echo $this->createUrl('recommendPosition/index');?>" target="win"><?php echo Yii::t('admin','RecommendPosition Manage');?></a></li>               
-                <li index="2"><a href="<?php echo $this->createUrl('special/index');?>" target="win"><?php echo Yii::t('admin','Special Manage');?></a></li>
-                <li index="3"><a href="<?php echo $this->createUrl('page/index');?>" target="win"><?php echo Yii::t('admin','Page Manage');?></a></li>
-                <li index="4"><a href="<?php echo $this->createUrl('post/comment');?>" target="win"><?php echo Yii::t('admin','Comment Manage');?></a></li>
-                <li index="5"><a href="<?php echo $this->createUrl('post/tags');?>" target="win"><?php echo Yii::t('admin','Tags Manage');?></a></li>
-              </ul>
+                <li index="0"><a href="<?php echo $this->createUrl('post/index');?>" target="win"><?php echo Yii::t('admin','Article Manage');?></a></li>
+                <li index="1"><a href="<?php echo $this->createUrl('image/index');?>" target="win"><?php echo Yii::t('admin','Image Manage');?></a></li>
+                <li index="2"><a href="<?php echo $this->createUrl('soft/index');?>" target="win"><?php echo Yii::t('admin','Soft Manage');?></a></li>
+                <li index="3"><a href="<?php echo $this->createUrl('video/index');?>" target="win"><?php echo Yii::t('admin','Video Manage');?></a></li>
+                <li index="4"><a href="<?php echo $this->createUrl('goods/index');?>" target="win"><?php echo Yii::t('admin','Goods Manage');?></a></li>
+                <li index="5"><a href="<?php echo $this->createUrl('page/index');?>" target="win"><?php echo Yii::t('admin','Page Manage');?></a></li>                   
+            </ul>
             <ul index="4" class="left_menu">
                 <li index="0"><a href="<?php echo $this->createUrl('user/index');?>" target="win"><?php echo Yii::t('admin','User List');?></a></li>
                 <li index="1"><a href="<?php echo $this->createUrl('user/admin');?>" target="win"><?php echo Yii::t('admin','Admin List');?></a></li>   
                 <li index="2"><a href="<?php echo $this->createUrl('user/group');?>" target="win"><?php echo Yii::t('admin','Group Manage');?></a></li>              
-                <li index="3"><a href="<?php echo $this->createUrl('question/index');?>" target="win"><?php echo Yii::t('admin','Question List');?></a></li>
+                <li index="3"><a href="<?php echo $this->createUrl('question/index');?>" target="win"><?php echo Yii::t('admin','Question List');?></a></li>            	
             </ul>            
             <ul index="5" class="left_menu">
-           		<li index="0"><a href="<?php echo $this->createUrl('attach/index');?>" target="win"><?php echo Yii::t('admin','Attach Manage');?></a></li>                              
-                <li index="1"><a href="<?php echo $this->createUrl('link/index');?>" target="win"><?php echo Yii::t('admin','Link Manage');?></a></li>                
-                <li index="2"><a href="<?php echo $this->createUrl('adPosition/index');?>" target="win"><?php echo Yii::t('admin','Adposition Manage');?></a></li>
-                <li index="3"><a href="<?php echo $this->createUrl('ad/index');?>" target="win"><?php echo Yii::t('admin','Ads Manage');?></a></li>
+                <li index="0"><a href="<?php echo $this->createUrl('recommendPosition/index');?>" target="win"><?php echo Yii::t('admin','RecommendPosition Manage');?></a></li> 
+           		<li index="1"><a href="<?php echo $this->createUrl('attach/index');?>" target="win"><?php echo Yii::t('admin','Attach Manage');?></a></li> 				
+                <li index="2"><a href="<?php echo $this->createUrl('link/index');?>" target="win"><?php echo Yii::t('admin','Link Manage');?></a></li>                          
+                <li index="3"><a href="<?php echo $this->createUrl('adPosition/index');?>" target="win"><?php echo Yii::t('admin','Adposition Manage');?></a></li>
+                <li index="4"><a href="<?php echo $this->createUrl('ad/index');?>" target="win"><?php echo Yii::t('admin','Ads Manage');?></a></li>
+                <li index="5"><a href="<?php echo $this->createUrl('post/comment');?>" target="win"><?php echo Yii::t('admin','Comment Manage');?></a></li>
+                <li index="6"><a href="<?php echo $this->createUrl('post/tags');?>" target="win"><?php echo Yii::t('admin','Tags Manage');?></a></li>                             
               </ul>
             <ul index="6" class="left_menu">
                 <li index="0"><a href="<?php echo $this->createUrl('database/index');?>" target="win"><?php echo Yii::t('admin','Database Manage');?></a></li>

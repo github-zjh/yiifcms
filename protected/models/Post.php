@@ -22,7 +22,7 @@ class Post extends CActiveRecord
 	public function rules()
 	{
 		return array(
-			array('title, content', 'required'),
+			array('title, catalog_id', 'required'),
 			array('catalog_id, special_id', 'numerical', 'integerOnly'=>true),
 			array('user_id, view_count, favorite_count, attention_count, last_update_time, reply_count, sort_desc, create_time', 'length', 'max'=>10),
 			array('nickname', 'length', 'max'=>30),
