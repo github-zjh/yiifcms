@@ -204,6 +204,7 @@ class SiteController extends FrontBase
 			$userModel->username = $model->username;
 			$userModel->password = $model->password;
 			$userModel->email = $model->email;	
+			$userModel->status = -1; //待审核，要验证邮箱
 			$userModel->groupid = 1;		
 			// validate user input and redirect to the previous page if valid
 			if($userModel->save()){

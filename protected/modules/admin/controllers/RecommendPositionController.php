@@ -11,11 +11,12 @@ class RecommendPositionController extends Backend
 	protected $_recom_type = array(); //推荐位类型
 	public function init(){
 		parent::init();
-		$this->_recom_type = array(
-				''=>Yii::t('admin','Please Select Recommend Type'), 
-				'post'=>Yii::t('admin','Recomend Type Post'),
-				'news'=>Yii::t('admin','Recomend Type News'),
-				'goods'=>Yii::t('admin','Recomend Type Goods')				
+		$this->_recom_type =array(				
+				'article'=>Yii::t('admin','Type Article'), 
+				'image'=>Yii::t('admin','Type Image'), 
+				'soft'=>Yii::t('admin','Type Soft'), 
+				'video'=>Yii::t('admin','Type Video'), 
+				'goods'=>Yii::t('admin','Type Goods')		
 		);
 	}
 	/**
@@ -41,7 +42,9 @@ class RecommendPositionController extends Backend
         $model = new RecommendPosition();
         $criteria = new CDbCriteria();
         $condition = '1';
-        $recommend_name = $this->_request->getParam('recommend_name');       
+        $recommend_type = $this->_request->getParam('recommend_type');
+        $recommend_name = $this->_request->getParam('recommend_name');   
+        $recommend_type && $condition .= ' AND type= "'.$recommend_type.'"';
         $recommend_name && $condition .= ' AND recommend_name LIKE \'%' . $recommend_name . '%\'';
         $criteria->condition = $condition;    
         $count = $model->count($criteria);

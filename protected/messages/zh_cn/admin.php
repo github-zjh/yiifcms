@@ -220,4 +220,5 @@ return array (
 	'View Content' => '查看内容',
 	'View Recommend Content' => '查看推荐的内容',
 	'View'=> '查看',
+	'No Catalog' => '没有相关栏目, 请先添加栏目。',
 );

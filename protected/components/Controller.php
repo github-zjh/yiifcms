@@ -123,6 +123,8 @@ class Controller extends CController
 			if ( $row ) {
 				$var[$key]['fileId'] = $data['fileId'][$key];
 				$var[$key]['file'] = $row;
+				$var[$key]['desc'] = $data['desc'][$key];
+				$var[$key]['url'] = $data['url'][$key];
 			}
 	
 		}

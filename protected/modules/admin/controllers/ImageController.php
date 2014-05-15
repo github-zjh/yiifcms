@@ -138,7 +138,11 @@ class ImageController extends Backend
     		if($model->save())
     			$this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
     	}
-    	
+    	//判断有无图集栏目
+    	$image_cat = Catalog::model()->find('type=:type', array(':type'=>'image'));
+    	if(!$image_cat){
+    		$this->message('error',Yii::t('admin','No Catalog'),$this->createUrl('index'));
+    	}
     	$this->render('update',array(
     			'model'=>$model,
     	));       

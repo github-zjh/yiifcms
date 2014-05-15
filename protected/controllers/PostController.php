@@ -19,10 +19,9 @@ class PostController extends FrontBase
    */
   public function actionIndex() {  	
     $catalog = trim( $this->_request->getParam( 'catalog' ) );
-    $keyword = trim( $this->_request->getParam( 'keyword' ) );
-    $tpl = 'list_post';
+    $keyword = trim( $this->_request->getParam( 'keyword' ) );    
     $this->_seoTitle = '文章列表 - '.$this->_setting['site_name'];
-    $this->render( $tpl);
+    $this->render( 'index');
   }
   
   /**

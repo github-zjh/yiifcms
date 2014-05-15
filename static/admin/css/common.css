@@ -75,7 +75,7 @@ cursor: pointer }
 .btnBlue{ border: border: 1px solid #3079ED; background: #DFEFFF; color: #FFF; }
 .button .btnDefault{ border: border: 1px solid #3079ED; background: #4D90FE; color: #FFF; }
 .operate, .submit { height: 45px }
-#fileListWarp li{float:left; padding:3px 5px;}
+#fileListWarp li{float:left; padding:3px 5px; margin:5px; border:1px dotted #666666; }
 /* 错误提示*/
 .erro_div { padding: 5px; background: #FFFF80; border: 1px solid #C4C43C; }
 .erro_div .error_message p { font-size: 14px; font-weight: bold; }

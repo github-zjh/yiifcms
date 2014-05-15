@@ -138,7 +138,11 @@ class PostController extends Backend
     		if($model->save())
     			$this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
     	}
-    	
+    	//判断有无文章栏目
+    	$article_cat = Catalog::model()->find('type=:type', array(':type'=>'article'));
+    	if(!$article_cat){
+    		$this->message('error',Yii::t('admin','No Catalog'),$this->createUrl('index'));
+    	}
     	$this->render('update',array(
     			'model'=>$model,
     	));       

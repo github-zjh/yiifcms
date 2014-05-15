@@ -6,6 +6,12 @@
     </ul>
     <div class="search right">
       <?php $form = $this->beginWidget('CActiveForm',array('id'=>'searchForm','method'=>'get','action'=>array('index'),'htmlOptions'=>array('name'=>'xform'))); ?>
+      <?php echo Yii::t('admin','RecommendPosition Type');?>
+      <select id="recommend_type" type="text" name="recommend_type">
+      	  <?php foreach((array)$this->_recom_type as $tk => $tv):?>
+      	  <option value="<?php echo $tk;?>"><?php echo $tv;?></option>
+      	  <?php endforeach;?>
+      </select>      
       <?php echo Yii::t('admin','RecommendPosition Name');?>
       <input id="recommend_name" type="text" name="recommend_name" value="" class="txt" size="15"/>
       <input name="searchsubmit" type="submit" value="<?php echo Yii::t('admin','Query');?>" class="button"/>
@@ -17,6 +23,7 @@ $(function(){
       <?php $form=$this->endWidget(); ?>
       <script type="text/javascript">
 $(document).ready(function(){
+	$("#recommend_type").val('<?php echo Yii::app()->request->getParam('recommend_type')?>');
 	$("#recommend_name").val('<?php echo Yii::app()->request->getParam('recommend_name')?>');
 });
 </script> </div>
@@ -26,14 +33,16 @@ $(document).ready(function(){
   <form method="post" action="<?php echo $this->createUrl('batch')?>" name="cpform" >
     <tr class="tb_header">
       <th width="5%">ID</th>
-      <th width="20%"><?php echo Yii::t('admin','RecommendPosition Name');?></th>   
+      <th width="20%"><?php echo Yii::t('admin','RecommendPosition Name');?></th> 
+      <th width="20%"><?php echo Yii::t('admin','RecommendPosition Type');?></th>   
       <th><?php echo Yii::t('admin','Operate');?></th>
     </tr>
     <?php foreach ($datalist as $row):?>
     <tr class="tb_list">
       <td ><input type="checkbox" name="id[]" value="<?php echo $row->id?>">
-        <?php echo $row->id?></td>
+        <?php echo $row->id?></td>      
       <td ><?php echo $row->recommend_name;?></td>   
+      <td ><?php echo Yii::t('admin','Type '.ucfirst($row->type));?></td>
       <td >
 	      <a href="<?php echo  $this->createUrl('Update',array('id'=>$row->id))?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
 	      <a href="<?php echo  $this->createUrl('batch',array('command'=>'Delete', 'id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->_baseUrl?>/static/admin/images/delete.png" align="absmiddle" /></a>&nbsp;&nbsp;

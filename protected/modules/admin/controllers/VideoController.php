@@ -138,7 +138,11 @@ class VideoController extends Backend
     		if($model->save())
     			$this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
     	}
-    	
+    	//判断有无视频栏目
+    	$video_cat = Catalog::model()->find('type=:type', array(':type'=>'video'));
+    	if(!$video_cat){
+    		$this->message('error',Yii::t('admin','No Catalog'),$this->createUrl('index'));
+    	}
     	$this->render('update',array(
     			'model'=>$model,
     	));       
