@@ -181,7 +181,7 @@ class SiteController extends FrontBase
 	 * 注册
 	 */
 	public function actionRegister(){
-		var_dump(Helper::sendMail(0, '376685457@qq.com', 'yiicms', '测试邮件<p><a href="baidu.com">百度一下</a></p>'));
+		
 		//登录状态
 		if(!Yii::app()->user->getIsGuest()){
 			$this->redirect(Yii::app()->homeUrl);
