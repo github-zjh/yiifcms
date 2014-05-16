@@ -116,7 +116,15 @@ return array(
 			'admin' => '/static/admin',
 			'public' => '/static/public',
 		),
-		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
+		//邮件配置
+		'mailer'=>array(
+			'Host' => 'smtp.126.com', //邮件服务器
+			'Port' => '25', 		  //邮件服务器端口
+			'Timeout' => '2',		  //发送请求超时
+			'ContentType' => 'text/html', //发送文档类型
+			'Username' => 'xb_zjh@126.com',  //发件人邮箱
+			'Password' => 'zjh376685457',    //发件人邮箱密码
+			'FromName' => '系统管理员',       //发送人名称			
+		)		
 	),
 );
