@@ -256,12 +256,12 @@ html,body,div,p,a,h3{margin:0;padding:0;}
 	    $body2 = '<div class="tips_wrap">
     <div class="tips_inner">
         <div class="tips_img">
-            <img src="' . Yii::app()->baseUrl . '/static/images/' . $images . '"/>
+            <img src="' . Yii::app()->baseUrl . '/static/public/images/' . $images . '"/>
         </div>
         <div class="tips_info">
 	
             <p class="' . $class . '">' . $content . '</p>    
-            		<p class="return">您可能没有权限浏览该页面，请获取相关权限后再访问！<a href="' . $redirect . '">点击这里返回</a></p>        
+            		<p class="return"><a href="' . $redirect . '">点击这里返回</a></p>        
         </div>
     </div>
 </div>';

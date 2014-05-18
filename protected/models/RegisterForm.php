@@ -74,7 +74,7 @@ class RegisterForm extends CFormModel
 		}
 		$email = User::model()->find("email=:email", array(':email'=>$this->email));
 		if($email){
-			$this->addError('email', Yii::t('common','Email is exists'));
+			$this->addError('email', Yii::t('common','Existing Email'));
 			return false;
 		}
 	}

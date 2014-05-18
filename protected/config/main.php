@@ -125,6 +125,7 @@ return array(
 			'Username' => 'xb_zjh@126.com',  //发件人邮箱
 			'Password' => 'zjh376685457',    //发件人邮箱密码
 			'FromName' => '系统管理员',       //发送人名称			
-		)		
+		),
+		'safestr'=> '!(^*##@', //安全分隔符		
 	),
 );

@@ -180,7 +180,7 @@ class SiteController extends FrontBase
 	/**
 	 * 注册
 	 */
-	public function actionRegister(){
+	public function actionRegister(){		
 		
 		//登录状态
 		if(!Yii::app()->user->getIsGuest()){
@@ -209,8 +209,8 @@ class SiteController extends FrontBase
 			$userModel->groupid = 1;		
 			// validate user input and redirect to the previous page if valid
 			if($userModel->save()){
-				$this->message('success','注册成功, 正在进入登录页面...', $this->createUrl('login'));
-				//$this->redirect(Yii::app()->user->returnUrl);
+				$this->activeAccount(array('id'=>$userModel->uid, 'email'=>$userModel->email, 'username'=>$userModel->username));
+				$this->message('success','注册成功, 请登录您的邮箱进行账号激活！', $this->createUrl('login'), 5);				
 			}else{
 				$this->message('error','注册失败', $this->createUrl('register'));
 			}
@@ -224,6 +224,54 @@ class SiteController extends FrontBase
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.mailAutoComplete-4.0.js", CClientScript::POS_END);
 		
 		$this->render('register',array('model'=>$model));
+	}
+	/**
+	 * 账号激活
+	 * @param unknown $params
+	 */
+	public function activeAccount($params = array())
+	{
+		//生成校验字符串	
+		if(!$params['id'] || !$params['username'] || !$params['email']){
+			return false;
+		}	
+		$safestr = Yii::app ()->params ['safestr'];  //安全分隔符
+		$salt = base64_encode(mt_rand(0,time()));  //随机盐
+		$authcode = crypt($params['id'].$safestr.$params['email'], $salt);
+	    $authurl = $this->_request->hostInfo.$this->createUrl('site/authEmail', array('id'=>$params['id'], 'authcode'=>$authcode));
+		$subject = $this->_setting['site_name'].' 账号激活';
+		$message = Yii::t('common','Register Email', 
+				array('{username}'=>$params['username'],
+					'{sitename}'=>$this->_setting['site_name'],
+					'{authurl}'=>$authurl,
+					'{admin_email}'=>$this->_setting['admin_email']));
+		Helper::sendMail(0, $params['email'], $subject, $message);				
+		
+	}
+	/**
+	 * 验证账号激活邮件
+	 */
+	public function actionAuthEmail(){
+		$id = $this->_request->getParam('id');
+		$user = User::model()->findByPk($id);
+		if(!$user){
+			$this->message('error','验证用户不存在', $this->createUrl('site/index'),0, true);
+		}
+		if((time()-$user->addtime)/1 > 2){
+			//超过2小时视为过期
+			$this->message('error','链接已失效！', $this->createUrl('site/index'),0, true);
+		}
+		$safestr = Yii::app ()->params ['safestr'];  //安全分隔符
+		$email = $user->email;
+		$authcode = $this->_request->getParam('authcode');	
+		if(crypt($id.$safestr.$email, $authcode) == $authcode){
+			//验证通过
+			$user->status = 1;
+			$user->save();
+			$this->message('success','验证通过，您的账号已激活。', $this->createUrl('login'));
+		}else{
+			$this->message('error','验证失败，请重新发送邮件。', $this->createUrl('register'));
+		}	
 	}
 	
 	/**

@@ -34,6 +34,7 @@ return array (
 	'username length is between 6 and 40' => '用户名长度介于6~40个字符',
 	'password length is between 6 and 30' => '密码长度介于6~30个字符',
 	'Email is required' => '邮箱不能为空',
+	'Existing Email' => '邮箱已被使用',
 	'Incorrect username or password.'=>'用户名或密码错误',
 	'Login Success' => '登录成功',	
 	'Image' => '图片',
@@ -47,4 +48,8 @@ return array (
 	'Redirect Url' => '跳转地址',
 	'Access Deny' => '您无权访问',
 	'User Center' => '用户中心',
+	'Register Email'=>'<p>尊敬的新用户：{username} 您好，欢迎注册{sitename}，为了更好的为您服务，请点击下面链接进行账号激活：<br/>
+						<a href="{authurl}">{authurl}</a><br/>如果上面链接不能点击，请复制到浏览器地址栏中进行访问。<br/>
+						再次感谢您的光顾，如果有其他疑问，
+						请联系本网站的管理员<a href="mailto">{admin_email}</a>。</p>'
 );
