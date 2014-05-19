@@ -36,6 +36,7 @@ $(document).ready(function(){
         <th width="8%"><?php echo Yii::t('admin','Status');?></th>    
         <th width="8%"><?php echo Yii::t('admin','Down Count');?></th>     
         <th width="15%"><?php echo Yii::t('admin','Add Time');?></th>
+        <th width="15%"><?php echo Yii::t('admin','Update Time');?></th>
         <th><?php echo Yii::t('admin','Operate');?></th>
       </tr>
     </thead>
@@ -49,7 +50,8 @@ $(document).ready(function(){
       <td ><?php echo $row->catalog->catalog_name?></td>
       <td><?php if($row->status == 'Y'){echo Yii::t('admin','Show');}else{echo "<span class='red'>".Yii::t('admin','Hidden')."</span>";}?></td>
       <td><span ><?php echo $row->down_count?></span></td>
-      <td ><?php echo date('Y-m-d H:i',$row->addtime)?></td>
+      <td ><?php echo date('Y-m-d H:i',$row->create_time)?></td>
+      <td ><?php echo date('Y-m-d H:i',$row->update_time)?></td>
       <td >
       	<a href="<?php echo  $this->createUrl('update',array('id'=>$row->id))?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
       	<a href="<?php echo  $this->createUrl('batch',array('command'=>'delete','id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->_baseUrl?>/static/admin/images/delete.png" align="absmiddle" /></a>&nbsp;&nbsp;

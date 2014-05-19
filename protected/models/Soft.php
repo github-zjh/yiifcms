@@ -17,7 +17,8 @@
  * @property string $softlink
  * @property string $introduce
  * @property integer $pay
- * @property string $addtime
+ * @property string $update_time
+ * @property string $create_time
  * @property integer $down_count
  * @property string $status
  * @property string $seo_title
@@ -44,15 +45,14 @@ class Soft extends CActiveRecord
 		return array(
 			array('catalog_id, pay, down_count', 'numerical', 'integerOnly'=>true),
 			array('title, cover_image, softlink', 'length', 'max'=>100),
-			array('filetype, language, softtype, softsize', 'length', 'max'=>10),
+			array('filetype, language, softtype, softsize, update_time, create_time', 'length', 'max'=>10),
 			array('os', 'length', 'max'=>30),
 			array('softrank, status', 'length', 'max'=>1),
-			array('addtime', 'length', 'max'=>11),
 			array('seo_title, seo_keywords', 'length', 'max'=>255),
 			array('introduce, seo_description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, catalog_id, cover_image, filetype, language, softtype, os, softrank, softsize, softlink, introduce, pay, addtime, down_count, status, seo_title, seo_description, seo_keywords', 'safe', 'on'=>'search'),
+			array('id, title, catalog_id, cover_image, filetype, language, softtype, os, softrank, softsize, softlink, introduce, pay, update_time, create_time, down_count, status, seo_title, seo_description, seo_keywords', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -87,7 +87,8 @@ class Soft extends CActiveRecord
 			'softlink' => 'Softlink',
 			'introduce' => 'Introduce',
 			'pay' => 'Pay',
-			'addtime' => 'Addtime',
+			'update_time' => 'Update Time',
+			'create_time' => 'Create Time',
 			'down_count' => 'Down Count',
 			'status' => 'Status',
 			'seo_title' => 'Seo Title',
@@ -140,7 +141,9 @@ class Soft extends CActiveRecord
 
 		$criteria->compare('pay',$this->pay);
 
-		$criteria->compare('addtime',$this->addtime,true);
+		$criteria->compare('update_time',$this->update_time,true);
+
+		$criteria->compare('create_time',$this->create_time,true);
 
 		$criteria->compare('down_count',$this->down_count);
 

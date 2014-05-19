@@ -1,6 +1,6 @@
 # your database backup
 # version:5.5.27-log
-# time:2014-05-19 17:41:30
+# time:2014-05-19 17:56:23
 # --------------------------------------------------------
 
 
@@ -211,13 +211,12 @@ CREATE TABLE `yii_post` (
   `status_is` enum('Y','N') NOT NULL DEFAULT 'Y' COMMENT '新闻状态',
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '录入时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='内容管理';
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COMMENT='内容管理';
 
 INSERT INTO `yii_post` VALUES('1','1','','','价值1960元JJ林俊杰「时线Time Line」世界巡回演唱会北京站VIP门票2张，百度团购免费送啦！9月28日首都体育馆','','','','','5','0','','','','','','【中奖号码计算方法】：开奖日前一天的“全国福利彩票新3D开奖号码”+“全国体育彩票排列5开奖号码”+“百度收盘股价小数点后两位” = 10位数（即3组数字合并，10位均按顺序排列，此10位数若首位为0则去掉）。<br />★ 以此10位数整除以活动截止日（xxx年x月xx日 23:59:59）的所有抽奖人数（每个抽奖号即为一个抽奖人数），得到的余数+1即为本次活动的获奖号码<br />① 若获奖号码不足7位，则再加上本次所有抽奖人数，直至加到不为空的抽奖号码为止，此号码为本次活动的中奖号码。<br />② 获奖号码满足7位，但中奖号码为空，则再减去本次抽奖人数之和，直至减不为空的抽奖号码为止，此号码为本次活动的中奖号码。<br />③ 如彩票开奖方开奖时间滞后,或股票交易所休市则本活动开奖日也将进行相应的顺延；<br />④如果当天需要开多个奖，则用此号码分别+011 +021 +031……得出当天其他获奖号码。如果开奖最后一天抽奖号码加值后超过了总参加人数，则将抽奖号码减去总参加人数得到新的抽奖号码。<br /><p>	若您的“抽奖号”与最终获奖号码完全一致，就可以获得本次活动的大奖啦！</p><p>	<img src=\"/cms/uploads/201309/523a32fdf1f07.jpg\" alt=\"\" /> </p>★ 例如：<br />如2013年7月10日<br />新3D号码：4,8,7<br />排列5号码：8，2，9，0，5<br />百度股票收盘价：93.43 小数点后2位：4,3<br />将这3组数依序合并后得到4878290543<br />如果截止至7月15日23:59:59活动结束时的抽奖人数为28999<br />以4878290543整除以28999，商为168222，余数：20765&nbsp;<br />得到余数加1， 20765+1=20766。<br />不足7位数，则20766+28999+……+28999=1006732<br />：【兑奖流程】：1、我们的客服人员会与中奖者电话联系，并核实百度账号和手机号码等，确认获奖信息和使用规则。<br />2、中奖用户在体验特权前1天内，请电话联系团团。（4000-998-998）<br />3、若因信息错误或无效等造成的开奖后15个工作日内无法联系到中奖者，视为中奖者自动放弃该奖品，中奖号码+1顺延下一位。','','','','','14','Y','Y','uploads/201309/523a32e18f2c4.jpg','uploads/201309/thumb_523a32e18f2c4.jpg','0','0','N','1379545939','0','Y','0','Y','1379545825');
 INSERT INTO `yii_post` VALUES('14','1','','','App Annie获1500万美元投资 将持续扩展国际业务','','','','','2','1','','','','','','<p>	（朱旭冬）9月18日晚间消息，移动智能市场数据平台App Annie 今日宣布完成一轮总金额为1500万美元的融资，由红杉资本的美国基金领投，现有投资者IDG资本、Greycroft 、e.Ventures 和 Infinity Venture 参与跟投。</p><p>	红杉资本硅谷办事处合伙人 Tim Lee 与 uSamp 首席执行官 Alan Gould 将加入App Annie董事会。</p><p>	App Annie 表示，此轮融得的资金将用于加速 App Annie 的产品开发、增长其销售额并壮大其设在旧金山的营销总部，并扩大其遍布亚洲和欧洲的办事处。</p><p>	随着今年全球智能手机出货量将超过1 亿部的预期，应用软件和数字内容经济大幅增长。App Annie 在过去12个月内用户数扩大两倍，每月营收增长三倍。App Annie 首席执行官Bertrand Schmitt 表示，增长的用户群证明公司重塑企业分析和提取适合商业用途的有用洞察信息的方式是成功的。</p><p>	红杉资本硅谷办事处合伙人 Tim Lee 认为， App Annie 在新数字经济分析领域处于极为有利的地位。“App Annie 的产品对从事移动通信行业的每位从业者来说都是必备的。在红杉资本，我们多年来一直使用他们的产品帮助我们找到有突破力的创业公司。 App Annie 在新数字经济分析领域处于极为有利的地位，并将成为黄金标准。”他说。</p><p>	Bertrand Schmitt 则表示， “对我们来说，红杉资本不仅仅是投资者，同时也是合作伙伴和顾问，它将帮助我们加速我们扩大平台的计划，这样所有企业都可了解全球应用软件和数字内容生态系统。”</p><p>	App Annie 的商业智能平台由 Analytics、Store Stats 和 Intelligence 组成。现今，收益排名前 100 位的 iOS 应用发行商中超过 90% 在使用App Annie 的产品，这其中包含 Google、微软和腾讯。</p>','','','','App,Annie,美元投资,国际业务','1','N','Y','uploads/201309/523a549bd42fe.jpg','uploads/201309/thumb_523a549bd42fe.jpg','0','0','N','0','0','Y','0','Y','1379554460');
 INSERT INTO `yii_post` VALUES('15','1','','','Groupon收购本地体验初创公司SideTour','','a:1:{s:5:\"color\";s:0:\"\";}','','','2','1','','','','','','<p>	据国外媒体报道，团购巨人Groupon今日宣布，公司已经收购了本地体验初创公司SideTour。后者是一个帮助人们发现、预订和参加本地活动的市场平台，Groupon没有透露这项收购交易的具体条款。</p><p>	SideTour精选了一些独具特色且有人主持的聚会类活动，让客户们能够与相应领域的资深专家面对面地交流，从而更加了解自己所在的城市和他们关心的事。</p><p>	GrouponLive业务总经理格雷格鲁丁（Greg Rudin）称：“SideTour精心策划的各种本地体验将进一步拓展Groupon的愿景，也就是将Groupon打造成消费者可以随时随地访问的平台。如果Groupon能够提供这些极具个性化的活动、旅游和值得铭记的聚会，我们就能够为我们的客户提供更多有趣的方法，帮助他们探索和发现最好的本地体验。”</p><p>	那些活动大多为私人聚会，人数平均在12人左右，涵盖的行业包括视频、饮料、建筑、历史、艺术等等。SideTour目前提供的公开和私人聚会多达500多种，使用这个平台的聚会主持超过了400人。那些主持者包括厨师、艺术家、奥运金牌获得者、星探和品酒师等等。</p><p>	SideTour的首席执行官韦平戈亚尔（Vipin Goyal）称：“我们很高兴有机会把我们独创的聚会服务提供给这么多热衷于本地体验的人。Groupon可以帮助我们发现更多的本地专家并为他们提供一个与更多客户沟通的平台。”</p><p>	SideTour将继续独立经营一段时间，Groupon将通过其电子邮件、网页和移动渠道向它的4300万活跃用户推广SideTour的聚会服务。</p><p>	SideTour创立于2011年，目前在芝加哥、纽约、费城和华盛顿特区设有办事机构。它计划在未来几个月里开辟更多的市场。</p>','','','','','3','Y','Y','uploads/201309/523a54c220262.jpg','uploads/201309/thumb_523a54c220262.jpg','0','0','N','0','0','Y','0','Y','1379554498');
 INSERT INTO `yii_post` VALUES('16','1','','','美国下令FCC修改规定 禁止运营商锁定所售手机','','a:3:{s:4:\"bold\";s:1:\"Y\";s:9:\"underline\";s:1:\"Y\";s:5:\"color\";s:6:\"FF2969\";}','','','2','1','','a:2:{i:0;a:4:{s:6:\"fileId\";s:2:\"36\";s:4:\"file\";s:37:\"uploads/images/201405/21e1adee63a.png\";s:4:\"desc\";s:2:\"04\";s:3:\"url\";s:5:\"04url\";}i:1;a:4:{s:6:\"fileId\";s:2:\"37\";s:4:\"file\";s:37:\"uploads/images/201405/f23850e09dc.png\";s:4:\"desc\";s:2:\"05\";s:3:\"url\";s:5:\"05url\";}}','','','','<p>	在手机解锁上，美国消费者和运营商展开持久战，美国政府和白宫逐渐站在消费者一边。</p><p>	近日美国电信和信息管理局（NTIA）正式向联邦通信委员会（FCC）发函，要求修改规定，未来移动运营商销售给用户的手机、平板等，均不能锁定于网络。</p><p>	所谓“锁定”，指的是运营商通过技术手段，限制某一部手机和平板，只能使用自家的移动网络进行通信。</p><p>	上述机构对FCC表示，消费者应该获得更多自由，选择不同的移动通信服务商，自由使用自己合法购买的移动设备，对相关规定进行修改之后，可以增强移动通信市场的竞争，增加消费者满意度。</p><p>	目前还不清楚FCC是否会痛快答应修改规定的要求。众所周知的是，美国电信行业，也雇请了游说团体，捍卫对手机锁定的做法。</p><p>	据报道，1990年代以前，美国电信运营商销售的手机，均未锁定于自家网络。此后，为了降低用户流失率，运营商开始锁定手机。不过，对于熟悉IT知识的民间高手来说，根据网络资源对手机进行解锁，难度并不大。</p><p>	1998年，美国通过《千年数字版权法》，法律本意是要抑制盗版，但最后却禁止了用户对手机解锁。从2006年以来，支持消费者的美国议员们，也屡屡要求修改法律，允许用户自由解锁。</p><p>	在移动运营商看来，他们对用户购买手机的价格进行了大额补贴，目的是通过用户在一年或两年的合同期限内，用花费流量费的消费，弥补运营商购机补贴。如果让用户自由解锁，将损害运营商的利益。</p><p>	以苹果手机为例，运营商捆绑两年合约的补贴价格为199美元，但是其裸机零售价超过600美元，这400多美元其实由运营商买单。</p><p>	上述机构NTIA还指出，只要是消费者承诺继续使用某种服务，或是针对提前结束合约支付了违约罚金等，美国的运营商就应该免费帮助用户进行解锁。</p>','','','','美国,,禁止运营商,锁定手机','28','Y','Y','uploads/201309/523a54f7d9591.jpg','uploads/201309/thumb_523a54f7d9591.jpg','1','2','Y','0','4','N','5','N','1379554552');
-INSERT INTO `yii_post` VALUES('19','1','','','45','','','','','1','0','','a:3:{i:0;a:4:{s:6:\"fileId\";s:2:\"39\";s:4:\"file\";s:37:\"uploads/images/201405/18fc17a1283.png\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:1;a:4:{s:6:\"fileId\";s:2:\"40\";s:4:\"file\";s:37:\"uploads/images/201405/d5972d17ce2.png\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:2;a:4:{s:6:\"fileId\";s:2:\"42\";s:4:\"file\";s:37:\"uploads/images/201405/cf5655f0b6a.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','','','','','','1','N','N','','','0','0','N','0','0','Y','0','Y','0');
 
 DROP TABLE IF EXISTS `yii_post_comment`;
 CREATE TABLE `yii_post_comment` (
@@ -333,8 +332,7 @@ CREATE TABLE `yii_session` (
 
 INSERT INTO `yii_session` VALUES('oi8kf1ko74bbjb7pmbdan10r72','1400494097','');
 INSERT INTO `yii_session` VALUES('i9lj2a918kaoeia2apad68hpp2','1400495131','');
-INSERT INTO `yii_session` VALUES('pa1i12lse37q1ludlvd4847b45','1400493199','');
-INSERT INTO `yii_session` VALUES('v8aokt010faaje4lq2s5me0ov6','1400496089','Yii.CCaptchaAction.33c9b0a4.user.captcha|s:6:\"mfrb2e\";Yii.CCaptchaAction.33c9b0a4.user.captchacount|i:1;admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.33c9b0a4.admin/default.captcha|s:4:\"9cdp\";Yii.CCaptchaAction.33c9b0a4.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
+INSERT INTO `yii_session` VALUES('v8aokt010faaje4lq2s5me0ov6','1400496981','Yii.CCaptchaAction.33c9b0a4.user.captcha|s:6:\"mfrb2e\";Yii.CCaptchaAction.33c9b0a4.user.captchacount|i:1;admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.33c9b0a4.admin/default.captcha|s:4:\"9cdp\";Yii.CCaptchaAction.33c9b0a4.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
 
 DROP TABLE IF EXISTS `yii_setting`;
 CREATE TABLE `yii_setting` (
@@ -392,7 +390,8 @@ CREATE TABLE `yii_soft` (
   `softlink` varchar(100) DEFAULT '' COMMENT '软件外部下载链接',
   `introduce` text COMMENT '软件简介',
   `pay` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '支付费用',
-  `addtime` int(10) unsigned DEFAULT NULL COMMENT '发布时间',
+  `update_time` int(10) unsigned DEFAULT NULL COMMENT '最近更新时间',
+  `create_time` int(10) unsigned DEFAULT NULL COMMENT '发布时间',
   `down_count` smallint(8) unsigned DEFAULT '0' COMMENT '下载次数',
   `status` enum('Y','N') DEFAULT 'Y' COMMENT '是否显示',
   `seo_title` varchar(255) NOT NULL DEFAULT '' COMMENT 'SEO标题',
@@ -401,19 +400,36 @@ CREATE TABLE `yii_soft` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='软件管理表';
 
-INSERT INTO `yii_soft` VALUES('1','test1','11','','.zip','简体中文','国产软件','Win2003,WinXP,Win2000,Win9X','5','1830 KB','','<p>一、使用环境<br />
+INSERT INTO `yii_soft` VALUES('1','test1','11','','.zip','简体中文','国产软件','Win2003,WinXP,Win2000,Win9X','5','1830 KB','','<p>
+	一、使用环境<br />
 <br />
-1、<strong>使用许可协议：</strong><a href=\"http://www.dedecms.com/html/zuixindongtai/20070112/65.html\"><u><strong>http://www.dedecms.com/html/zuixindongtai/20070112/65.html</strong></u></a></p>
-<p>2、<strong>购买DedeCms商业授权或技术支持：</strong><a href=\"http://bbs.dedecms.com/read.php?tid=8791\" target=\"_blank\"><u><strong>http://bbs.dedecms.com/read.php?tid=8791</strong></u></a></p>
-<p>3、PHP4.x 5.x版本，支持GD，非安全模式（在安全模式中使用可能会有很多难于预料的错误）<br />
+1、<strong>使用许可协议：</strong><a href=\"http://www.dedecms.com/html/zuixindongtai/20070112/65.html\"><u><strong>http://www.dedecms.com/html/zuixindongtai/20070112/65.html</strong></u></a>
+</p>
+<p>
+	2、<strong>购买DedeCms商业授权或技术支持：</strong><a href=\"http://bbs.dedecms.com/read.php?tid=8791\" target=\"_blank\"><u><strong>http://bbs.dedecms.com/read.php?tid=8791</strong></u></a>
+</p>
+<p>
+	3、PHP4.x 5.x版本，支持GD，非安全模式（在安全模式中使用可能会有很多难于预料的错误）<br />
 4、MySQL 3.2x、4.0x、4.1、5.x 版本<br />
-5、服务器平台，所有支持运行PHP的服务器平台</p>
-<p>二、安装步骤</p>
-<p>把本目录下的所有文件，上传到你要安装的位置，然后运行网址</p>
-<p>http://你的域名/安装目录/setup/index.php</p>
-<p>按要求填写好 MySQL和管理员的信息，完成安装后即可使用。</p>
-<p>四、主要功能说明：</p>
-<p>一、频道模型管理<br />
+5、服务器平台，所有支持运行PHP的服务器平台
+</p>
+<p>
+	二、安装步骤
+</p>
+<p>
+	把本目录下的所有文件，上传到你要安装的位置，然后运行网址
+</p>
+<p>
+	http://你的域名/安装目录/setup/index.php
+</p>
+<p>
+	按要求填写好 MySQL和管理员的信息，完成安装后即可使用。
+</p>
+<p>
+	四、主要功能说明：
+</p>
+<p>
+	一、频道模型管理<br />
 1、支持开关频道模型；<br />
 2、支持完全个性开发的频道模型；<br />
 3、支持通过向导自动生成的频道模型；<br />
@@ -482,13 +498,17 @@ INSERT INTO `yii_soft` VALUES('1','test1','11','','.zip','简体中文','国产�
 4、支持过滤已下载内容；<br />
 5、采集采用一键式运行，简化了原来的先采种子后采内容的方式；<br />
 6、数据导入支持分段，并允许导入后即时生成HTML。<br />
-&nbsp;</p>','0','1379545939','0','Y','','','');
-INSERT INTO `yii_soft` VALUES('2','test2','11','','.rar','简体中文','国产软件','Win2003,WinXP,Win2000,Win9X','5','2 MB','','<p><strong><span class=\"tpc_title\"><font color=\"#ff0000\" size=\"3\">最新版瑞星杀毒软件会误认本站合法文件sys_data_done.php（数据备份还原程序）为病毒，本地测试前请先关闭瑞星，并且在问题解决前服务器上不要安装瑞星杀毒软件，以免导致你的网站的数据备份还原功能失效。</font></span></strong></p>
-<p><strong><span class=\"tpc_title\">Dedecms V4.0 版更新内容或新增功能说明<br />
+&nbsp;
+</p>','0','1400493352','1379545939','0','Y','','','');
+INSERT INTO `yii_soft` VALUES('2','test2','11','','.rar','简体中文','国产软件','Win2003,WinXP,Win2000,Win9X','5','2 MB','','<p>
+	<strong><span class=\"tpc_title\"><span>最新版瑞星杀毒软件会误认本站合法文件sys_data_done.php（数据备份还原程序）为病毒，本地测试前请先关闭瑞星，并且在问题解决前服务器上不要安装瑞星杀毒软件，以免导致你的网站的数据备份还原功能失效。</span></span></strong>
+</p>
+<p>
+	<strong><span class=\"tpc_title\">Dedecms V4.0 版更新内容或新增功能说明<br />
 </span><br />
 使用许可协议：<a href=\"http://bbs.dedecms.com/read.php?tid=14893\" target=\"_blank\">http://bbs.dedecms.com/read.php?tid=14893</a><br />
 <br />
-</strong><span id=\"a_ajax_14797\" class=\"tpc_content\"><font size=\"2\">1、修复了3.1版已知的所有Bug；<br />
+</strong><span id=\"a_ajax_14797\" class=\"tpc_content\"><span>1、修复了3.1版已知的所有Bug；<br />
 <br />
 2、重点新增功能：<br />
 (1)自由列表；<br />
@@ -519,8 +539,9 @@ INSERT INTO `yii_soft` VALUES('2','test2','11','','.rar','简体中文','国产�
 <br />
 12、新版的后台突破了以往一统式菜单的局限性，为Dedecms以后的发展提供了更大的空间。<br />
 <br />
-13、严格检查了并限制了会员上传附件程序的可能存在的安全问题，提高了安全性。</font></span><br />
-&nbsp;</p>','0','1379545939','0','Y','','','');
+13、严格检查了并限制了会员上传附件程序的可能存在的安全问题，提高了安全性。</span></span><br />
+&nbsp;
+</p>','0','1400493348','1379545939','0','Y','','','');
 
 DROP TABLE IF EXISTS `yii_special`;
 CREATE TABLE `yii_special` (
@@ -578,10 +599,7 @@ INSERT INTO `yii_upload` VALUES('28','1','email_hui.gif','uploads/attached/image
 INSERT INTO `yii_upload` VALUES('35','1','4.png','uploads/images/201405/e591eae944b.png','','png','application/octet-stream','624','0','','1400139041');
 INSERT INTO `yii_upload` VALUES('36','1','4.png','uploads/images/201405/21e1adee63a.png','','png','application/octet-stream','624','0','','1400139407');
 INSERT INTO `yii_upload` VALUES('37','1','5.png','uploads/images/201405/f23850e09dc.png','','png','application/octet-stream','1724','0','','1400139621');
-INSERT INTO `yii_upload` VALUES('39','1','3.png','uploads/images/201405/18fc17a1283.png','','png','application/octet-stream','1158','0','','1400141355');
-INSERT INTO `yii_upload` VALUES('40','1','5.png','uploads/images/201405/d5972d17ce2.png','','png','application/octet-stream','1724','0','','1400141462');
 INSERT INTO `yii_upload` VALUES('41','1','4.png','uploads/images/201405/157922e4cf3.png','','png','application/octet-stream','624','0','','1400141603');
-INSERT INTO `yii_upload` VALUES('42','1','gall.jpg','uploads/images/201405/cf5655f0b6a.jpg','','jpg','application/octet-stream','15879','0','','1400142372');
 INSERT INTO `yii_upload` VALUES('43','1','3.png','uploads/images/201405/c5fa21d533b.png','','png','application/octet-stream','1158','0','','1400205224');
 INSERT INTO `yii_upload` VALUES('44','1','5.png','uploads/images/201405/12d4aa28af4.png','','png','application/octet-stream','1724','0','','1400205363');
 

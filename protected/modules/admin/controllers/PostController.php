@@ -134,7 +134,7 @@ class PostController extends Backend
     				$model_tag->save();
     			}
     		}
-    		
+    		$model->create_time = time();
     		if($model->save())
     			$this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
     	}
@@ -214,7 +214,8 @@ class PostController extends Backend
     				$model_tag->create_time = time();
     				$model_tag->save();
     			}
-    		}    		
+    		} 
+    		$model->last_update_time = time();
     		if($model->save())
     			$this->message('success',Yii::t('admin','Update Success'),$this->createUrl('index'));
     	}else{

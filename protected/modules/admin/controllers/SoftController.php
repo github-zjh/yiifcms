@@ -86,7 +86,7 @@ class SoftController extends Backend
 	    		}    		
 	    		$model->cover_image = $upload->_file_name;	    		
     		}  
-    		    		
+    		$model->create_time = time();
     		if($model->save())
     			$this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
     	}
@@ -125,7 +125,7 @@ class SoftController extends Backend
 	    		}    		
 	    		$model->cover_image = $upload->_file_name;	    		
     		}
-    		
+    		$model->update_time = time();
     		if($model->save())
     			$this->message('success',Yii::t('admin','Update Success'),$this->createUrl('index'));
     	}	
