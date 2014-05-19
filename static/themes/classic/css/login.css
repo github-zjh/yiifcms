@@ -84,9 +84,10 @@
 	color:#FFFFFF;
 	cursor:pointer;
 }
-#login-radio {
+.login-radio {
 	width:auto;
 	line-height:normal;
+	vertical-align: middle;
 }
 .forgetpw { color:#428BCA; }
 .login_bg {  

@@ -13,9 +13,7 @@
         <?php endforeach;?>
       </select>
   <?php echo Yii::t('admin','Title');?>
-      <input id="title" type="text" name="title" value="" class="txt" size="15"/>
-  <?php echo Yii::t('admin','Alias');?>
-      <input id="titleAlias" type="text" name="titleAlias" value="" class="txt" size="15"/>
+      <input id="title" type="text" name="title" value="" class="txt" size="15"/> 
       <input name="searchsubmit" type="submit"  value="<?php echo Yii::t('admin','Query');?>" class="button "/>
       <input name="searchsubmit" type="reset"  value="<?php echo Yii::t('admin','Reset');?>" class="button "/>     
       <?php $form=$this->endWidget(); ?>
@@ -25,7 +23,6 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#title").val('<?php echo Yii::app()->request->getParam('title')?>');
-	$("#titleAlias").val('<?php echo Yii::app()->request->getParam('titleAlias')?>');
 	$("#catalogId").val('<?php echo Yii::app()->request->getParam('catalogId')?>');
 });
 </script>
@@ -47,8 +44,9 @@ $(document).ready(function(){
     <tr class="tb_list" <?php if($row->status_is=='N'):?>style=" background:#F0F7FC"<?php endif?>>
       <td ><input type="checkbox" name="id[]" value="<?php echo $row->id?>">
         <?php echo $row->id?></td>
-      <td ><a href="<?php echo $row->getUrl() ?>" title="<?php echo $row->title; ?>" target="_blank" style="<?php echo $this->formatStyle($row->title_style);?>"><?php echo Helper::truncate_utf8_string($row->title, 20);?></a><br />
-        <span class="alias"><?php echo $row->title_alias?></span></td>
+      <td >
+      	<a href="<?php echo $this->createUrl('/video/view', array('id'=>$row['id'])); ?>" title="<?php echo $row->title; ?>" target="_blank" style="<?php echo $this->formatStyle($row->title_style);?>"><?php echo Helper::truncate_utf8_string($row->title, 20);?></a><br />
+      </td>
       <td ><?php echo $row->catalog->catalog_name?></td>
       <td><?php if($row->status_is == 'Y'){echo Yii::t('admin','Show');}else{echo "<span class='red'>".Yii::t('admin','Hidden')."</span>";}?></td>
       <td><?php if($row->commend == 'Y'){echo Yii::t('admin','Yes');}else{echo Yii::t('admin','No');}?></td>

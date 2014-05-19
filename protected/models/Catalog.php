@@ -6,9 +6,7 @@
  * The followings are the available columns in table '{{Catalog}}':
  * @property string $id
  * @property string $parent_id
- * @property string $catalog_name
- * @property string $catalog_name_second
- * @property string $catalog_name_alias
+ * @property string $catalog_name 
  * @property string $content
  * @property string $seo_title
  * @property string $seo_keywords
@@ -43,13 +41,13 @@ class Catalog extends CActiveRecord
 		return array(
 			array('catalog_name, type', 'required'),			
 			array('parent_id, sort_order, data_count, create_time, update_time', 'length', 'max'=>10),
-			array('catalog_name, catalog_name_second, catalog_name_alias, seo_title, attach_file, attach_thumb', 'length', 'max'=>100),
+			array('catalog_name, seo_title, attach_file, attach_thumb', 'length', 'max'=>100),
 			array('seo_keywords, redirect_url', 'length', 'max'=>255),
 			array('status_is', 'length', 'max'=>1),			
 			array('content, seo_description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, parent_id, type, catalog_name, catalog_name_second, catalog_name_alias, content, seo_title, seo_keywords, seo_description, attach_file, attach_thumb, sort_order, data_count, status_is, redirect_url, type, create_time, update_time', 'safe', 'on'=>'search'),
+			array('id, parent_id, type, catalog_name, content, seo_title, seo_keywords, seo_description, attach_file, attach_thumb, sort_order, data_count, status_is, redirect_url, type, create_time, update_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -72,9 +70,7 @@ class Catalog extends CActiveRecord
 		return array(
 			'id' => Yii::t('model','catalog_id'),
 			'parent_id' => Yii::t('model','parent_id'),
-			'catalog_name' => Yii::t('model','catalog_name'),
-			'catalog_name_second' => Yii::t('model','catalog_name_second'),
-			'catalog_name_alias' => Yii::t('model','catalog_name_alias'),
+			'catalog_name' => Yii::t('model','catalog_name'),		
 			'content' => Yii::t('model','content'),
 			'seo_title' => Yii::t('model','seo_title'),
 			'seo_keywords' => Yii::t('model','seo_keywords'),
@@ -113,11 +109,7 @@ class Catalog extends CActiveRecord
 
 		$criteria->compare('parent_id',$this->parent_id,true);
 
-		$criteria->compare('catalog_name',$this->catalog_name,true);
-
-		$criteria->compare('catalog_name_second',$this->catalog_name_second,true);
-
-		$criteria->compare('catalog_name_alias',$this->catalog_name_alias,true);
+		$criteria->compare('catalog_name',$this->catalog_name,true);		
 
 		$criteria->compare('content',$this->content,true);
 

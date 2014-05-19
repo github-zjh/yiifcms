@@ -28,12 +28,11 @@ class Post extends CActiveRecord
 			array('nickname', 'length', 'max'=>30),
 			array('author, html_path, html_file, copy_from', 'length', 'max'=>100),
 			array('title, title_second, title_style, seo_title, seo_keywords, copy_url, redirect_url, tags, attach_file, attach_thumb', 'length', 'max'=>255),
-			array('title_alias', 'length', 'max'=>50),			
 			array('commend, attach_status, top_line, reply_allow, status_is', 'length', 'max'=>1),
 			array('intro, image_list, seo_description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, user_id, nickname, author, title, title_second, title_alias, title_style, html_path, html_file, catalog_id, special_id, intro, image_list, seo_title, seo_description, seo_keywords, content, copy_from, copy_url, redirect_url, tags, view_count, commend, attach_status, attach_file, attach_thumb, favorite_count, attention_count, top_line, last_update_time, reply_count, reply_allow, sort_desc, status_is, create_time', 'safe', 'on'=>'search'),
+			array('id, user_id, nickname, author, title, title_second, title_style, html_path, html_file, catalog_id, special_id, intro, image_list, seo_title, seo_description, seo_keywords, content, copy_from, copy_url, redirect_url, tags, view_count, commend, attach_status, attach_file, attach_thumb, favorite_count, attention_count, top_line, last_update_time, reply_count, reply_allow, sort_desc, status_is, create_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,8 +59,7 @@ class Post extends CActiveRecord
 			'nickname' => '用户名',
 			'author' => '作者',
 			'title' => '标题',
-			'title_second' => '副标题',
-			'title_alias' => '别名 ',
+			'title_second' => '副标题',			
 			'title_style' => '标题样式',			
 			'html_path' => 'html路径',
 			'html_file' => 'html文件名',			
@@ -112,18 +110,8 @@ class Post extends CActiveRecord
 	public function beforeSave ()
     {
        	parent::beforeSave();
-        $this->tags && $this->tags = str_replace(array ('，' , ', ' , ' ,',' ' ), ',', $this->tags);
-        $this->title_alias && $this->title_alias = str_replace(array (' ' , ', ' , ' ,' ), '-', $this->title_alias);
+        $this->tags && $this->tags = str_replace(array ('，' , ', ' , ' ,',' ' ), ',', $this->tags);        
         return true;
     }
-
-	/**
-	 * 获取url
-	 */
-	public function getUrl()
-	{
-	    $array['id']= $this->id;
-	    $this->title_alias && $array['title']= $this->title_alias;
-	    return Yii::app()->createUrl('post/show',$array);
-	}
+	
 }

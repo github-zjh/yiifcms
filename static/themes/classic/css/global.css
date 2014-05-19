@@ -99,7 +99,7 @@ filter: progid:DXImageTransform.Microsoft.Shadow(color='#e2534b', Direction=-180
 }
 
 #logout { float:right; width:auto; position:relative;}
-#logout .show_drop { display:inline-block; padding-left:30px; line-height:32px; }
+#logout .show_drop { display:inline-block; line-height:32px; }
 #logout .show_drop img { border-radius:3px; vertical-align:middle; }
 #logout .show_drop label { line-height:32px; height:32px;}
 #drop_down_user { display:none; position:absolute; left:-25%; width:150%;}

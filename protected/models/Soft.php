@@ -5,15 +5,24 @@
  *
  * The followings are the available columns in table '{{soft}}':
  * @property integer $id
+ * @property string $title
+ * @property integer $catalog_id
+ * @property string $cover_image
  * @property string $filetype
  * @property string $language
  * @property string $softtype
  * @property string $os
- * @property integer $softrank
+ * @property string $softrank
  * @property string $softsize
  * @property string $softlink
  * @property string $introduce
  * @property integer $pay
+ * @property string $addtime
+ * @property integer $down_count
+ * @property string $status
+ * @property string $seo_title
+ * @property string $seo_description
+ * @property string $seo_keywords
  */
 class Soft extends CActiveRecord
 {
@@ -33,14 +42,17 @@ class Soft extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('softrank, pay', 'numerical', 'integerOnly'=>true),
+			array('catalog_id, pay, down_count', 'numerical', 'integerOnly'=>true),
+			array('title, cover_image, softlink', 'length', 'max'=>100),
 			array('filetype, language, softtype, softsize', 'length', 'max'=>10),
 			array('os', 'length', 'max'=>30),
-			array('softlink', 'length', 'max'=>100),
-			array('introduce', 'safe'),
+			array('softrank, status', 'length', 'max'=>1),
+			array('addtime', 'length', 'max'=>11),
+			array('seo_title, seo_keywords', 'length', 'max'=>255),
+			array('introduce, seo_description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, filetype, language, softtype, os, softrank, softsize, softlink, introduce, pay', 'safe', 'on'=>'search'),
+			array('id, title, catalog_id, cover_image, filetype, language, softtype, os, softrank, softsize, softlink, introduce, pay, addtime, down_count, status, seo_title, seo_description, seo_keywords', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -52,7 +64,8 @@ class Soft extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-		);
+	        'catalog'=>array(self::BELONGS_TO, 'Catalog', 'catalog_id', 'alias'=>'catalog', 'select'=>'id,catalog_name'),
+	    );
 	}
 
 	/**
@@ -62,6 +75,9 @@ class Soft extends CActiveRecord
 	{
 		return array(
 			'id' => 'Id',
+			'title' => 'Title',
+			'catalog_id' => 'Catalog',
+			'cover_image' => 'Cover Image',
 			'filetype' => 'Filetype',
 			'language' => 'Language',
 			'softtype' => 'Softtype',
@@ -71,6 +87,12 @@ class Soft extends CActiveRecord
 			'softlink' => 'Softlink',
 			'introduce' => 'Introduce',
 			'pay' => 'Pay',
+			'addtime' => 'Addtime',
+			'down_count' => 'Down Count',
+			'status' => 'Status',
+			'seo_title' => 'Seo Title',
+			'seo_description' => 'Seo Description',
+			'seo_keywords' => 'Seo Keywords',
 		);
 	}
 
@@ -94,6 +116,12 @@ class Soft extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 
+		$criteria->compare('title',$this->title,true);
+
+		$criteria->compare('catalog_id',$this->catalog_id);
+
+		$criteria->compare('cover_image',$this->cover_image,true);
+
 		$criteria->compare('filetype',$this->filetype,true);
 
 		$criteria->compare('language',$this->language,true);
@@ -102,7 +130,7 @@ class Soft extends CActiveRecord
 
 		$criteria->compare('os',$this->os,true);
 
-		$criteria->compare('softrank',$this->softrank);
+		$criteria->compare('softrank',$this->softrank,true);
 
 		$criteria->compare('softsize',$this->softsize,true);
 
@@ -111,6 +139,18 @@ class Soft extends CActiveRecord
 		$criteria->compare('introduce',$this->introduce,true);
 
 		$criteria->compare('pay',$this->pay);
+
+		$criteria->compare('addtime',$this->addtime,true);
+
+		$criteria->compare('down_count',$this->down_count);
+
+		$criteria->compare('status',$this->status,true);
+
+		$criteria->compare('seo_title',$this->seo_title,true);
+
+		$criteria->compare('seo_description',$this->seo_description,true);
+
+		$criteria->compare('seo_keywords',$this->seo_keywords,true);
 
 		return new CActiveDataProvider('Soft', array(
 			'criteria'=>$criteria,

@@ -26,19 +26,7 @@ $(function(){
   </tr>
   <tr >
     <td ><?php echo $form->textField($model,'catalog_name',array('size'=>40,'maxlength'=>128, 'class'=>'validate[required]')); ?></td>
-  </tr>
-  <tr>
-    <td class="tb_title"><?php echo Yii::t('admin','Title Name Alias');?>：</td>
-  </tr>
-  <tr >
-    <td ><?php echo $form->textField($model,'catalog_name_second',array('size'=>40,'maxlength'=>128, 'class'=>'validate[required]')); ?></td>
-  </tr>
-  <tr>
-    <td class="tb_title"><?php echo Yii::t('admin','Unique Mark (Combination of letters or Numbers)');?>：</td>
-  </tr>
-  <tr >
-    <td ><?php echo $form->textField($model,'catalog_name_alias',array('size'=>40,'maxlength'=>128)); ?></td>
-  </tr>
+  </tr>  
   <tr>
     <td class="tb_title"><?php echo Yii::t('admin','Belong Category');?>：</td>
   </tr>

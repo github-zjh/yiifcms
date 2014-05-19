@@ -26,13 +26,7 @@
   </tr>
   <tr >
     <td  ><?php echo $form->textField($model,'title_second',array('size'=>60,'maxlength'=>128)); ?></td>
-  </tr>
-  <tr>
-    <td class="tb_title"><?php echo Yii::t('admin','Unique Mark (Combination of letters or Numbers)');?>：</td>
-  </tr>
-  <tr >
-    <td ><?php echo $form->textField($model,'title_alias',array('size'=>60,'maxlength'=>128)); ?></td>
-  </tr>
+  </tr>  
   <tr>
     <td class="tb_title"><?php echo Yii::t('admin','Belong Category');?>/<?php echo Yii::t('admin','Belong Special');?>：</td>
   </tr>
