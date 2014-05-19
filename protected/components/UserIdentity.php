@@ -22,12 +22,13 @@ class UserIdentity extends CUserIdentity
 		$user=User::model()->find('LOWER(username)=?',array(strtolower($this->username)));
 		if($user===null)
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
-		else if(!$user->validatePassword($this->password) || ($user->status != 1))
+		else if(!$user->validatePassword($this->password) || $user->status == 0)
 			$this->errorCode=self::ERROR_PASSWORD_INVALID;
 		else{
 			$this->_id=$user->uid;
 			//把用户信息存入SESSION
 			$group = UserGroup::model()->findByPk($user->groupid);
+			$this->setState('status', $user->status);
 			$this->setState('groupid', $user->groupid);
 			$this->setState('groupname', $group->group_name);
 			$this->setState('email', $user->email);

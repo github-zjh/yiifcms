@@ -13,7 +13,7 @@
 		<div class="form clear">
 		<?php $form=$this->beginWidget('CActiveForm', array('id'=>'login-form')); ?>			
 				<div class="mod_head clear">
-					<a class="register_btn fr" href="<?php echo $this->createUrl('site/register');?>">注册新用户</a>					
+					<a class="register_btn fr" href="<?php echo $this->createUrl('register');?>">注册新用户</a>					
 					<span class="login_span fl"><i class="fa fa_tuser"></i>登录</span>
 				</div>
 				<div class="mod_body">					
@@ -41,7 +41,7 @@
 							<input type="submit" id="login_submit" name="submit" value="登录" />
 							<input type="checkbox" name="rememberMe" value="1" id="login-radio">
 							<label for="login-radio">记住我</label>
-							<a href="<?php echo $this->createUrl('site/forgetpw')?>" class="forgetpw">忘记密码</a>
+							<a href="<?php echo $this->createUrl('forgetpw')?>" class="forgetpw">忘记密码</a>
 						</li>
 					</ul>					
 				</div>

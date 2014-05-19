@@ -58,6 +58,7 @@
     border-style: solid solid solid none;
     border-width: 1px 1px 1px medium;
     height: 40px;
+	line-height:40px;
     margin: 0;
     width: 198px;
 }
@@ -88,11 +89,11 @@
 	line-height:normal;
 }
 .forgetpw { color:#428BCA; }
-
 .login_bg {  
 	background-color:#000000; 
 	border-radius: 10px;
     height: 409px;    
+	filter:alpha(opacity=20); 
     opacity: 0.2;
     position: absolute;    
     width: 700px;	  

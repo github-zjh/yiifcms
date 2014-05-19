@@ -49,13 +49,11 @@ class Helper extends CController
 	}
 	/**
 	 * 邮件发送
-	 * 
-	 * @param string $to
-	 *        	要发送的人的邮箱
+	 * @param number $id  用户id
+	 * @param string $toemail
 	 * @param string $subject
-	 *        	邮件标题
 	 * @param string $message
-	 *        	邮件内容
+	 * @return boolean
 	 */
 	public static function sendMail($id = 0, $toemail = '', $subject = '', $message = '') {
 		
@@ -90,6 +88,10 @@ class Helper extends CController
 			$mailer->Body = $message;
 		} else {
 			// 查询要发送的邮件
+			if($mailer->times > 3 && $mailer->status='failed'){
+				//有3次发送失败，则不再发送
+				return false;
+			}
 			$mailer->AddAddress ( $log->accept );
 			$mailer->Subject = $log->subject;
 			$mailer->Body = $log->message;

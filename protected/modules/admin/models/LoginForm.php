@@ -60,7 +60,7 @@ class LoginForm extends CFormModel
 				$this->addError('password',Yii::t('common','Incorrect username or password.'));
 				return false;
 			}
-			if(!$this->checkAcl($tmpuser->groupid, 'default/login')){
+			if(!$this->checkAcl($tmpuser->groupid, 'default/login') || $tmpuser->status != 1){
 				$this->addError('username', Yii::t('admin','You have no right to visit.'));
 				return false;
 			}

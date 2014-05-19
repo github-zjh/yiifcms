@@ -19,12 +19,13 @@ body { background-color:#FFFFFF; }
     border-style: solid solid solid none;
     border-width: 1px 1px 1px 0;
     height: 40px;
+	line-height:40px;
     margin: 0;
     width: 250px;	
 }
 #register-form input.captcha { border-style:solid; border-width:1px; border-radius:5px; width:130px;}
 #register-form .captcha_img { float:left; width:140px; margin-left:20px; line-height:42px; height:42px; background-color:#CCCCCC;  border-radius:5px;}
-#register-form .captcha_img a { color:#666666; }
+#register-form .captcha_img a { color:#428BCA; }
 #register-form .form_box { width:490px; padding:40px 0; margin-left:200px; }
 #register-form .form_box li { height:38px; line-height: 38px; margin-bottom: 20px; }
 #register-form .form_box li .errorMessage { float:right; width:160px; background-color:#F2DEDE;  border-radius:5px; border: 1px solid #EED3D7; }

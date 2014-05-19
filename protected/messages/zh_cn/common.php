@@ -48,8 +48,8 @@ return array (
 	'Redirect Url' => '跳转地址',
 	'Access Deny' => '您无权访问',
 	'User Center' => '用户中心',
-	'Register Email'=>'<p>尊敬的新用户：{username} 您好，欢迎注册{sitename}，为了更好的为您服务，请点击下面链接进行账号激活：<br/>
-						<a href="{authurl}">{authurl}</a><br/>如果上面链接不能点击，请复制到浏览器地址栏中进行访问。<br/>
-						再次感谢您的光顾，如果有其他疑问，
-						请联系本网站的管理员<a href="mailto">{admin_email}</a>。</p>'
+	'Register Email'=>'<p>尊敬的新用户：{username} 您好，欢迎注册{sitename}，为了更好的为您服务，请尽快点击下面链接进行账号激活：<br/><br/>
+						<a href="{authurl}">{authurl}</a><br/><br/>(如果上面链接不能点击，请复制到浏览器地址栏中进行访问。)<br/><br/>
+						==================<br/><br/>再次感谢您的光顾，如果有其他疑问，
+						请联系本网站的管理员：<a href="mailto:{admin_email}">{admin_email}</a>。</p>'
 );

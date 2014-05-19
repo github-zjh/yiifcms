@@ -39,17 +39,20 @@
 		</div>	
 		<?php if(Yii::app()->user->getIsGuest()):?>	
 		<div id="login">			
-			<a href="<?php echo $this->createUrl('site/login');?>">登录</a>
-			<a href="<?php echo $this->createUrl('site/register');?>">注册</a>			
+			<a href="<?php echo $this->createUrl('user/login');?>">登录</a>
+			<a href="<?php echo $this->createUrl('user/register');?>">注册</a>			
 		</div>
 		<?php else:?>
 		<div id="logout">		
-			<a href="#" class="show_drop"><?php echo Yii::app()->user->name;?></a>
+			<a href="<?php echo $this->createUrl('user/index', array('id'=>Yii::app()->user->id));?>" class="show_drop">
+				<img src="<?php echo $this->_stylePath.'/images/avatar-small-img.png';?>" width="24" height="24" />
+				<label><?php echo Yii::app()->user->name;?></label>
+			</a>
 			<dl id="drop_down_user">
 				<dt></dt>
 				<dd><a href="<?php echo $this->createUrl('user/index', array('id'=>Yii::app()->user->id));?>">个人中心</a></dd>
 				<dd><a href="<?php echo $this->createUrl('user/set', array('id'=>Yii::app()->user->id));?>">设置</a></dd>
-				<dd><a href="<?php echo $this->createUrl('site/logout');?>">退出</a></dd>
+				<dd><a href="<?php echo $this->createUrl('user/logout');?>">退出</a></dd>
 			</dl>						
 		</div>
 		<?php endif;?>
