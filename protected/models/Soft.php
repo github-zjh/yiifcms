@@ -46,7 +46,7 @@ class Soft extends CActiveRecord
 			array('catalog_id, pay, down_count', 'numerical', 'integerOnly'=>true),
 			array('title, cover_image, softlink', 'length', 'max'=>100),
 			array('filetype, language, softtype, softsize, update_time, create_time', 'length', 'max'=>10),
-			array('os', 'length', 'max'=>30),
+			array('os', 'length', 'max'=>100),
 			array('softrank, status', 'length', 'max'=>1),
 			array('seo_title, seo_keywords', 'length', 'max'=>255),
 			array('introduce, seo_description', 'safe'),

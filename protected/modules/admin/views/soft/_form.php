@@ -42,6 +42,17 @@
   	</td>
   </tr>
   <tr>
+  	<td class="tb_title"><?php echo Yii::t('admin','Soft Language');?>：
+    	<?php echo $form->dropDownList($model,'language',array('zh_cn'=>Yii::t('admin','zh_cn'),'zh_tw'=>Yii::t('admin','zh_tw'), 'en'=>Yii::t('admin','en'), 'i18n'=>Yii::t('admin','i18n'))); ?>
+  		&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo Yii::t('admin','Soft Rank');?>：
+     	<?php echo $form->dropDownList($model,'softrank',array('5'=>Yii::t('admin','5 Stars'),'4'=>Yii::t('admin','4 Stars'),'3'=>Yii::t('admin','3 Stars'),'2'=>Yii::t('admin','2 Stars'),'1'=>Yii::t('admin','1 Stars'))); ?>
+    	&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo Yii::t('admin','Soft Type');?>
+    	<?php echo $form->dropDownList($model,'softtype',array('domestic'=>Yii::t('admin','Domestic Soft'),'foreign'=>Yii::t('admin','Foreign Soft'))); ?>
+    	&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo Yii::t('admin','Soft OS');?>
+    	<?php echo $form->checkBoxList($model,'os',array('Linux'=>'Linux', 'Win2003'=>'Win2003','WinXP'=>'WinXP', 'Win8'=>'Win8'), array('separator'=>'&nbsp;&nbsp;')); ?>
+    </td>
+  </tr>    
+  <tr>
     <td class="tb_title"><?php echo Yii::t('admin','Description');?>：</td>
   </tr>
   <tr >

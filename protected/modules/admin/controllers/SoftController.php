@@ -72,9 +72,9 @@ class SoftController extends Backend
         
         $model = new Soft();       
     	if(isset($_POST['Soft']))
-    	{
-    		$model->attributes=$_POST['Soft'];    		
-    		
+    	{    		
+    		$model->attributes=$_POST['Soft'];  
+    		$model->os = implode(',',$model->os);
     		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
 	    		//封面图片
 	    		$upload = new XUpload;	    		
@@ -107,11 +107,12 @@ class SoftController extends Backend
      * @param  $id
      */
     public function actionUpdate( $id ) {
-    	$model = Soft::model()->findByPk($id);    	
+    	$model = Soft::model()->findByPk($id);  
+    	$model->os = explode(',',$model->os);
     	if(isset($_POST['Soft']))
     	{
-    		$model->attributes=$_POST['Soft'];    		
-    		
+    		$model->attributes=$_POST['Soft'];  
+    		$model->os = implode(',',$model->os);
     		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
 	    		//封面图片
 	    		$upload = new XUpload;
