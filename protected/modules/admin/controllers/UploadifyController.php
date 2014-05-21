@@ -88,7 +88,7 @@ class UploadifyController extends Backend
     		$file->_allow_exts = 'exe,zip,tar,gz,msi,7z';  //文件类型限制
     		$file->_rand_name = false;                   //用原来的名称
     		if(is_array($_FILES['file']) && !empty($_FILES['file'])){
-    			foreach($_FILES['file'] as $value){
+    			foreach($_FILES['file'] as $value){    				
     				if(is_array($value)){
     					$files = $_FILES['file'];
     				}else{
@@ -98,9 +98,10 @@ class UploadifyController extends Backend
     			}
     		}else{
     			exit( CJSON::encode( array ( 'state' => 'error' , 'message' => Yii::t('admin','Please select a file.') ) ) );
-    		}    		
-    		foreach($files as $simplefile){
-    			$file->uploadFile($simplefile);
+    		}    	
+    		
+    		foreach($files as $simplefile){    			
+    			$file->uploadFile($simplefile);    		
     			if($file->_error){
     				exit( CJSON::encode( array ( 'state' => 'error' , 'message' => Yii::t('admin',$file->_error) ) ) );
     			}else{
@@ -112,14 +113,12 @@ class UploadifyController extends Backend
     				$model->file_ext = $file->_file_ext;
     				$model->file_mime = $file->_mime_type;
     				$model->file_size = $file->_file_size;
-    				$model->create_time = time();
-    				if ( $model->save() ) {    					
+    				$model->create_time = time();    			
+    				if ( $model->save() ) {    
     					exit(CJSON::encode(array ( 'state' => 'success' , 'realname' => $file->_real_name,'fileId'=> $model->id)));
-    					
-    				} else {
+    				} else {    				
     					$file->deleteFile($file->_file_name);    				
     					exit(CJSON::encode(array ( 'state' => 'error' , 'message' => Yii::t('admin','Save failed, Upload error') )));
-    					
     				}
     
     			}

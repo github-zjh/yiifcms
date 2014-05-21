@@ -9,6 +9,17 @@
 class Helper extends CController
 {
 	/**
+	 * 判断当前服务器系统
+	 * @return string
+	 */
+	public static function getOS(){
+		if(PATH_SEPARATOR == ':'){
+			return 'Linux';
+		}else{
+			return 'Windows';
+		}
+	}
+	/**
 	 * 当前微妙数
 	 * @return number
 	 */

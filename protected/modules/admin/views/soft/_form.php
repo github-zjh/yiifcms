@@ -136,10 +136,9 @@ $(function(){
 	        'buttonText': '选择文件..',
 	        'fileObjName': 'file',
 	        'method': 'post',
-	        'multi': true,
-			'queueID': 'fileQueue',
-	        'uploadLimit': 1,
-	        'file_size_limit' : '50MB',
+	        'multi': true,	        	        
+			'queueID': 'fileQueue',	        
+	        'fileSizeLimit' : '50MB',
 	        'fileTypeExts': '*.exe;*.zip;*.tar;*.gz;*.msi;*.7z;',
 	        'buttonImage': '<?php echo $this->_baseUrl?>/static/public/js/uploadify/select.png',
 	        'formData': {
@@ -149,7 +148,10 @@ $(function(){
 	        },
 	        'swf': '<?php echo $this->_baseUrl;?>/static/public/js/uploadify/uploadify.swf',
 	        'uploader': '<?php echo $this->createUrl('uploadify/file')?>',  
-	        'onUploadSuccess': function(file, data, response) { 		        
+	        'onSelect' : function(file) {  
+	            this.addPostParam("file",encodeURI(file.name));//改变文件名的编码
+	        },
+	        'onUploadSuccess': function(file, data, response) { 	
 	            var json = $.parseJSON(data);   
 	            if (json.state == 'success') {
 	                $imgHtml = '<li id="file_' + json.fileId + '">';
@@ -161,6 +163,9 @@ $(function(){
 	            } else {
 	                alert(json.message);
 	            }
+	        },
+	        'onUploadError' : function(file, errorCode, errorMsg, errorString) {
+	            alert(file.name + ' 上传失败。详细信息: ' + errorString);
 	        }
 	    });
 	 	

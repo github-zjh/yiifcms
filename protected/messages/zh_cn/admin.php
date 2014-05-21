@@ -79,6 +79,7 @@ return array (
 	'File size is too large.' => '文件大小超出限制',
 	'Make thumb is failed.' => '生成缩略图失败',
 	'Add watermark failed' => '添加水印失败',
+	'Upload Failed, Can not MoveUp Tmp File.' =>'上传失败，不能移动临时文件',
 	'Upload Success' => '上传成功',
 	'Save failed, Upload error'=>'数据写入失败，上传错误',
 	'Update Success' => '更新成功',

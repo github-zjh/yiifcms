@@ -61,7 +61,7 @@ class XUpload {
 	 * @return boolean
 	 */
 	public function uploadFile($file = '', $thumb = false, $watermark = false){		
-		if($this->checkUpload($file)){
+		if($this->checkUpload($file)){			
 			//验证通过
 			$real_thumb = false;
 			$real_watermark = false;	
@@ -79,8 +79,7 @@ class XUpload {
 			if(!is_dir($save_path)){
 				mkdir($save_path, 0777, true);
 			}
-			$this->_file_name = $save_path .= $filename;
-			
+			$this->_file_name = $save_path .= $filename;			
 			if($real_thumb){
 				//生成缩略图
 				$this->makeThumb($this->_tmp_name, $filename);						
@@ -88,8 +87,22 @@ class XUpload {
 			if($real_watermark){
 				//添加水印
 				$this->waterMark($this->_tmp_name, $save_path);
-			}else{
-				move_uploaded_file($this->_tmp_name, $save_path);
+			}else{						
+				if(Helper::getOS()=='Linux'){
+					//解决linux下中文文件名乱码的问题
+					$save_path = iconv("UTF-8", "GBK", $save_path); 
+					$mv = move_uploaded_file($this->_tmp_name, $save_path);
+					$save_path_ch = iconv("GBK", "UTF-8", $save_path);
+					rename($save_path, $save_path_ch);   // 重命名一下文件
+				}else{
+					//解决windows下中文文件名乱码的问题
+					$save_path = iconv("UTF-8", "GB2312", $save_path); 
+					$mv = move_uploaded_file($this->_tmp_name, $save_path);
+				}
+				if(!$mv){					
+					$this->_error = 'Upload Failed, Can not MoveUp Tmp File.';
+					return false;
+				}				
 			}
 			
 			return true;
@@ -244,8 +257,7 @@ class XUpload {
 	 * @param string $type
 	 * @return boolean
 	 */
-	public function checkUpload($file = ''){		
-		
+	public function checkUpload($file = ''){	
 		if($file && $file['error'] == UPLOAD_ERR_OK){			
 			$this->_tmp_name = $file['tmp_name'];
 			$this->_real_name = $file['name'];
