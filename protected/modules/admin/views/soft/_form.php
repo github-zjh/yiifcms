@@ -21,7 +21,7 @@
     <td class="tb_title"><?php echo Yii::t('admin','Belong Category');?>：</td>
   </tr>
   <tr >
-    <td ><select name="Soft[catalog_id]" id="Soft_catalog_id" onchange="changeCatalog(this)">
+    <td ><select name="Soft[catalog_id]" id="Soft_catalog_id">
         <?php foreach((array)Catalog::get(0, $this->_catalog) as $catalog):?>
         <option value="<?php echo $catalog['id']?>" <?php $this->selected($catalog['id'], $model->catalog_id);?>><?php echo $catalog['str_repeat']?><?php echo $catalog['catalog_name']?></option>
         <?php endforeach;?>
@@ -41,6 +41,31 @@
       	<?php endif;?>     
   	</td>
   </tr>
+  
+  <tr>
+    <td class="tb_title"><?php echo Yii::t('admin','Soft Upload');?>：</td>
+  </tr>
+  <tr >
+    <td colspan="2" >
+    	<?php echo $form->hiddenField($model,'fileid'); ?>
+      	<form>
+		  <input id="uploadFile" name="uploadFile" type="file" multiple="true">
+		  <ul id="fileList">
+		  		<?php if($model->fileid>0):?>
+		  		<?php $file = Upload::model()->findByPk($model->fileid);?>
+		  		<?php if($file):?>
+		  		<li id="file_<?php echo $model->fileid;?>">
+		  			<a href="/<?php echo $file->file_name;?>"><?php echo $file->real_name;?></a><br/>
+		  			<a href="javascript:uploadifyRemove('<?php echo $model->fileid;?>','file_','Soft_fileid')">删除</a>
+		  		</li>
+		  		<?php endif;?>
+		  		<?php endif;?>
+		  </ul>
+		  <div id="fileQueue" style="clear:both"></div>
+		</form>		
+  	</td>
+  </tr>
+  
   <tr>
   	<td class="tb_title"><?php echo Yii::t('admin','Soft Language');?>：
     	<?php echo $form->dropDownList($model,'language',array('zh_cn'=>Yii::t('admin','zh_cn'),'zh_tw'=>Yii::t('admin','zh_tw'), 'en'=>Yii::t('admin','en'), 'i18n'=>Yii::t('admin','i18n'))); ?>
@@ -106,19 +131,43 @@
 <script type="text/javascript">
 $(function(){
 	$("#xform").validationEngine();
+	//上传
+	 $('#uploadFile').uploadify({
+	        'buttonText': '选择文件..',
+	        'fileObjName': 'file',
+	        'method': 'post',
+	        'multi': true,
+			'queueID': 'fileQueue',
+	        'uploadLimit': 1,
+	        'file_size_limit' : '50MB',
+	        'fileTypeExts': '*.exe;*.zip;*.tar;*.gz;*.msi;*.7z;',
+	        'buttonImage': '<?php echo $this->_baseUrl?>/static/public/js/uploadify/select.png',
+	        'formData': {
+	            'sessionId'   : '<?php echo Yii::app()->session->sessionID; ?>',
+				'timestamp'   : '<?php echo time();?>',
+				'token'       : '<?php echo md5('unique_salt'.time()); ?>'
+	        },
+	        'swf': '<?php echo $this->_baseUrl;?>/static/public/js/uploadify/uploadify.swf',
+	        'uploader': '<?php echo $this->createUrl('uploadify/file')?>',  
+	        'onUploadSuccess': function(file, data, response) { 		        
+	            var json = $.parseJSON(data);   
+	            if (json.state == 'success') {
+	                $imgHtml = '<li id="file_' + json.fileId + '">';
+	                $imgHtml += '<a href="javascript:;">' + json.realname;
+	                $imgHtml += '</a>&nbsp;<br />';	                                
+	                $imgHtml += '<a href="javascript:uploadifyRemove(&quot;' + json.fileId + '&quot;,&quot;file_&quot;,&quot;Soft_fileid&quot;)">删除</a>';
+	                $("#Soft_fileid").val(json.fileId);	               
+	                $("#fileList").append($imgHtml);
+	            } else {
+	                alert(json.message);
+	            }
+	        }
+	    });
+	 	
 });
+
 </script>
 <?php $form=$this->endWidget(); ?>
-<script>
-function changeCatalog(ths){
-	$.post("<?php echo $this->createUrl('ajax/attr2content')?>", {catalog:ths.value}, function(res){
-		if(res.state == 'success'){
-			$("#attr2cotnent").html(res.text);
-			$("#attrArea").show();
-		}else{
-			$("#attrArea").hide();
-			$("#attr2cotnent").html('');
-		}
-	},'json');
-}
-</script>
+
+<script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/public/js/uploadify/jquery.uploadify.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo $this->_baseUrl?>/static/public/js/uploadify/uploadify.css">

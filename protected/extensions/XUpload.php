@@ -12,9 +12,7 @@ define('THUMB_WIDTH',300);
 define('THUMB_HEIGHT',300);
 
 class XUpload {
-	
-	public $_max_upload_filesize = 2097152;         			//默认上传大小限制为2M
-	public $_max_file_uploads = 200;                			//上传超时时间
+	public $_max_upload_filesize = '';
 	public $_image_path = 'uploads/images/';        			//默认图片上传路径
 	public $_thumb_path = 'uploads/thumbs/';        			//默认缩略图上传路径
 	public $_file_path = 'uploads/files/';          			//默认文件上传路径
@@ -30,13 +28,27 @@ class XUpload {
 	public $_file_size = ''; 									//文件大小
 	public $_mime_type = '';									//MIME类型
 	public $_is_image = false;									//是不是图片
+	public $_rand_name = true;								    //是否生成随机文件名
 	public $_thumb_prefix = 'small_';			    			//缩略图前缀
 	public $_error = '';										//错误信息
 	
 	public function __construct(){		
-		//定义文件上传上限
-		ini_set( 'upload_max_filesize',$this->_max_upload_size);		
-		ini_set( 'max_file_uploads',$this->_max_file_uploads);
+		//获取环境限制
+		$size = ini_get('upload_max_filesize');
+		$len = strlen($size);		
+		$byte = $size[$len-1];		
+		$num = substr($size, 0, $len-1);		
+		switch(strtoupper($byte)){
+			case 'M':
+				$this->_max_upload_filesize = $num*1024*1024;
+				break;
+			case 'K':
+				$this->_max_upload_filesize = $num*1024;
+				break;
+			default:
+				$this->_max_upload_filesize = $num;
+				break;
+		}
 	}	
 	
 	/**
@@ -63,7 +75,7 @@ class XUpload {
 			}	
 			
 			$save_path .= date('Ym',time()).'/';			
-			$filename = substr(md5(uniqid('file')), 0,11).'.'.$this->_file_ext; 				
+			$filename = $this->_rand_name?substr(md5(uniqid('file')), 0,11).'.'.$this->_file_ext:$this->_real_name; 				
 			if(!is_dir($save_path)){
 				mkdir($save_path, 0777, true);
 			}
@@ -232,7 +244,8 @@ class XUpload {
 	 * @param string $type
 	 * @return boolean
 	 */
-	public function checkUpload($file = ''){
+	public function checkUpload($file = ''){		
+		
 		if($file && $file['error'] == UPLOAD_ERR_OK){			
 			$this->_tmp_name = $file['tmp_name'];
 			$this->_real_name = $file['name'];
@@ -240,7 +253,7 @@ class XUpload {
 			$this->_mime_type = $file['type'];
 			$this->_file_size = $file['size'];	
 			
-			if(in_array($this->_file_ext, array('png','jpg','jgeg','gif'))){
+			if(in_array($this->_file_ext, array('bmp', 'png','jpg','jgeg','gif'))){
 				$this->_is_image = true;
 			}
 			
@@ -249,8 +262,7 @@ class XUpload {
 				$this->_error = 'File type is error, Please upload a legal file.';
 				return false;
 			}elseif($file['size'] > $this->_max_upload_filesize){
-				//文件大小超出限制
-				$size = $this->byteFormat($this->_max_upload_filesize);
+				//文件大小超出限制				
 				$this->_error = 'File size is too large.';
 				return false;
 			}else{

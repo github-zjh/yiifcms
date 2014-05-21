@@ -15,4 +15,8 @@
   RewriteRule static/(.*).(php)$ – [F] 
   RewriteRule themes/(.*).(php)$ – [F]
   RewriteRule uploads/(.*).(php)$ – [F] 
+  
+  # 设置环境限制
+  php_value upload_max_filesize 50M
+  php_value post_max_size 50M
 </IfModule>  

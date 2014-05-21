@@ -19,7 +19,7 @@ class UploadifyController extends Backend
     }
 
     /**
-     * 上传
+     * 上传图片
      */
     public function actionBasicExecute() {     
         if ( $this->method() == 'POST' ) {
@@ -77,6 +77,56 @@ class UploadifyController extends Backend
             
         }
     }        
+    
+    /**
+     * 上传文件(单个不能超过50M)
+     */
+    public function actionFile() {     	
+    	if ( $this->method() == 'POST' ) {
+    		$adminiUserId = Yii::app()->user->id;
+    		$file = new XUpload;    
+    		$file->_allow_exts = 'exe,zip,tar,gz,msi,7z';  //文件类型限制
+    		$file->_rand_name = false;                   //用原来的名称
+    		if(is_array($_FILES['file']) && !empty($_FILES['file'])){
+    			foreach($_FILES['file'] as $value){
+    				if(is_array($value)){
+    					$files = $_FILES['file'];
+    				}else{
+    					$files = array($_FILES['file']);
+    				}
+    				break;
+    			}
+    		}else{
+    			exit( CJSON::encode( array ( 'state' => 'error' , 'message' => Yii::t('admin','Please select a file.') ) ) );
+    		}    		
+    		foreach($files as $simplefile){
+    			$file->uploadFile($simplefile);
+    			if($file->_error){
+    				exit( CJSON::encode( array ( 'state' => 'error' , 'message' => Yii::t('admin',$file->_error) ) ) );
+    			}else{
+    				$model = new Upload();
+    				$model->user_id = intval( $adminiUserId );
+    				$model->file_name = $file->_file_name;
+    				$model->thumb_name = $file->_thumb_name;
+    				$model->real_name = $file->_real_name;
+    				$model->file_ext = $file->_file_ext;
+    				$model->file_mime = $file->_mime_type;
+    				$model->file_size = $file->_file_size;
+    				$model->create_time = time();
+    				if ( $model->save() ) {    					
+    					exit(CJSON::encode(array ( 'state' => 'success' , 'realname' => $file->_real_name,'fileId'=> $model->id)));
+    					
+    				} else {
+    					$file->deleteFile($file->_file_name);    				
+    					exit(CJSON::encode(array ( 'state' => 'error' , 'message' => Yii::t('admin','Save failed, Upload error') )));
+    					
+    				}
+    
+    			}
+    		}
+    
+    	}
+    }
     
 
     /**

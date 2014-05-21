@@ -238,4 +238,5 @@ return array (
 	'1 Stars' => '一星级',
 	'Domestic Soft' => '国产软件',
 	'Foreign Soft' => '国外软件',
+	'Soft Upload' => '软件上传'
 );
