@@ -81,7 +81,9 @@
     <td ><?php echo $form->textArea($model,'content', array('class'=>'validate[required]')); ?>
       <?php $this->widget('application.widget.kindeditor.KindEditor',array(
 	  'target'=>array(
-	  	'#Post_content'=>array('uploadJson'=>$this->createUrl('/admin/uploadify/basicexecute', array('from'=>'editor')),		
+	  	'#Post_content'=>array(
+		'uploadJson'=>$this->createUrl('/admin/uploadify/basicexecute', array('from'=>'editor')),
+		'fileManagerJson'=>$this->createUrl('/admin/kindeditor/'),
 		'allowFileManager'=>true, 		
 	  	'extraFileUploadParams'=>array(array('sessionId'=>Yii::app()->session->sessionID))))));?></td>
   </tr>

@@ -66,8 +66,10 @@ $(function(){
     <td ><?php echo $form->textArea($model,'content'); ?>      
       <?php $this->widget('application.widget.kindeditor.KindEditor',array(
 	  'target'=>array(
-	  	'#Catalog_content'=>array('uploadJson'=>$this->createUrl('/admin/uploadify/basicexecute', array('from'=>'editor')),		
-		'allowFileManager'=>true, 		
+	  	'#Catalog_content'=>array(
+		'uploadJson'=>$this->createUrl('/admin/uploadify/basicexecute', array('from'=>'editor')),
+		'fileManagerJson'=>$this->createUrl('/admin/kindeditor/'),		
+		'allowFileManager'=>true,	
 	  	'extraFileUploadParams'=>array(array('sessionId'=>Yii::app()->session->sessionID))))));?></td>
   </tr>
   <tr>
