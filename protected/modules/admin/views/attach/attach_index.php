@@ -29,7 +29,7 @@ $(document).ready(function(){
   <form method="post" action="<?php echo $this->createUrl('batch')?>" name="cpform" >
     <tr class="tb_header">
       <th width="8%">ID</th>
-      <th width="20%"><?php echo Yii::t('common','Image');?></th>
+      <th width="20%"><?php echo Yii::t('admin','File Name');?></th>
       <th><?php echo Yii::t('admin','Real Name');?></th>
       <th width="10%"><?php echo Yii::t('admin','Size');?></th>
       <th width="15%"><?php echo Yii::t('admin','Add Time');?></th>
@@ -38,7 +38,15 @@ $(document).ready(function(){
     <?php foreach ($datalist as $row):?>
     <tr class="tb_list">
       <td ><input type="checkbox" name="id[]" value="<?php echo $row->id?>"><?php echo $row->id?></td>
-      <td ><a href="<?php echo $this->_baseUrl.'/'.$row->file_name?>" target="_blank"><img src="<?php echo $this->_baseUrl.'/'.$row->file_name?>" alt="<?php echo $row->real_name?>" width="70" title="<?php echo $row->real_name?>"/></a></td>
+      <td >
+      	<a href="<?php echo $this->_baseUrl.'/'.$row->file_name?>" target="_blank">
+      		<?php if(in_array($row->file_ext, array('jpg','png','bmp','gif'))):?>
+      		<img src="<?php echo $this->_baseUrl.'/'.$row->file_name?>" alt="<?php echo $row->real_name?>" width="70"  height="70" title="<?php echo $row->real_name?>"/>
+      		<?php else:?>
+      		<?php echo $row->real_name?>
+      		<?php endif;?>
+      	</a>
+      </td>
       <td ><p><?php echo $row->real_name?></p>
         
       <!--<td ></td>-->

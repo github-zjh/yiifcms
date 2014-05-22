@@ -85,7 +85,7 @@ class UploadifyController extends Backend
     	if ( $this->method() == 'POST' ) {
     		$adminiUserId = Yii::app()->user->id;
     		$file = new XUpload;    
-    		$file->_allow_exts = 'exe,zip,tar,gz,msi,7z';  //文件类型限制
+    		$file->_allow_exts = 'pdf,doc,docx,xls,ppt,exe,zip,tar,gz,msi,7z';  //文件类型限制
     		$file->_rand_name = false;                   //用原来的名称
     		if(is_array($_FILES['file']) && !empty($_FILES['file'])){
     			foreach($_FILES['file'] as $value){    				
@@ -138,8 +138,8 @@ class UploadifyController extends Backend
             $imageModel = Upload::model()->findByPk( $imageId );
             if ( $imageModel ==false )
                 throw new Exception( "附件已经被删除" );
-            @unlink( $imageModel->file_name );
-            @unlink( $imageModel->thumb_name );
+            XUpload::deleteFile($imageModel->file_name);
+            XUpload::deleteFile($imageModel->thumb_name);           
             if ( !$imageModel->delete() )
                 throw new Exception( "数据删除失败" );
             $var['state'] = 'success';

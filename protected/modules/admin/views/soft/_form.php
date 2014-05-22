@@ -46,19 +46,22 @@
     <td class="tb_title"><?php echo Yii::t('admin','Soft Upload');?>：</td>
   </tr>
   <tr >
-    <td colspan="2" >
-    	<?php echo $form->hiddenField($model,'fileid'); ?>
+    <td colspan="2" >    	
       	<form>
 		  <input id="uploadFile" name="uploadFile" type="file" multiple="true">
 		  <ul id="fileList">
-		  		<?php if($model->fileid>0):?>
-		  		<?php $file = Upload::model()->findByPk($model->fileid);?>
+		  		<?php if($model->fileid):?>
+		  		<?php $arr = explode(',',$model->fileid);?>
+		  		<?php foreach((array)$arr as $value):?>		  		
+		  		<?php $file = Upload::model()->findByPk($value);?>
 		  		<?php if($file):?>
-		  		<li id="file_<?php echo $model->fileid;?>">
+		  		<li id="file_<?php echo $file->id;?>">
 		  			<a href="/<?php echo $file->file_name;?>"><?php echo $file->real_name;?></a><br/>
-		  			<a href="javascript:uploadifyRemove('<?php echo $model->fileid;?>','file_','Soft_fileid')">删除</a>
+		  			<input type="hidden" name="fileid[]" value="<?php echo $file->id;?>" />
+		  			<a href="javascript:uploadifyRemove('<?php echo $file->id;?>','file_')">删除</a>
 		  		</li>
 		  		<?php endif;?>
+		  		<?php endforeach;?>
 		  		<?php endif;?>
 		  </ul>
 		  <div id="fileQueue" style="clear:both"></div>
@@ -132,14 +135,15 @@
 $(function(){
 	$("#xform").validationEngine();
 	//上传
-	 $('#uploadFile').uploadify({
+	 $('#uploadFile').uploadify({		 	
+		    'overrideEvents':['onDialogClose','onSelectError','onUploadSuccess','onUploadError','onFallback'],  //覆盖原来的触发函数  	
 	        'buttonText': '选择文件..',
 	        'fileObjName': 'file',
 	        'method': 'post',
 	        'multi': true,	        	        
-			'queueID': 'fileQueue',	        
+			'queueID': 'fileQueue',	
 	        'fileSizeLimit' : '50MB',
-	        'fileTypeExts': '*.exe;*.zip;*.tar;*.gz;*.msi;*.7z;',
+	        'fileTypeExts': '*.pdf;*.doc;*.docx;*.xls;*.ppt;*.exe;*.zip;*.tar;*.gz;*.msi;*.7z;',
 	        'buttonImage': '<?php echo $this->_baseUrl?>/static/public/js/uploadify/select.png',
 	        'formData': {
 	            'sessionId'   : '<?php echo Yii::app()->session->sessionID; ?>',
@@ -147,25 +151,35 @@ $(function(){
 				'token'       : '<?php echo md5('unique_salt'.time()); ?>'
 	        },
 	        'swf': '<?php echo $this->_baseUrl;?>/static/public/js/uploadify/uploadify.swf',
-	        'uploader': '<?php echo $this->createUrl('uploadify/file')?>',  
-	        'onSelect' : function(file) {  
-	            this.addPostParam("file",encodeURI(file.name));//改变文件名的编码
-	        },
+	        'uploader': '<?php echo $this->createUrl('uploadify/file')?>',	                
+	       	'onSelectError':function(file, errorCode, errorMsg){
+		       	var msg = '';
+		     	switch(errorCode){		     		
+		     		case -110:
+		     			msg += "上传文件大小超过限制的"+$("#uploadFile").uploadify('settings','fileSizeLimit');
+		     			break;
+		     		case -130:
+		     			msg += "只允许上传："+$("#uploadFile").uploadify('settings','fileTypeExts')+" 格式的文件";
+		     		default:
+		     			msg += "上传错误："+errorCode+" "+errorMsg;
+		     			break;
+		     	}
+		     	alert(msg);
+		     },			        
 	        'onUploadSuccess': function(file, data, response) { 	
 	            var json = $.parseJSON(data);   
-	            if (json.state == 'success') {
-	                $imgHtml = '<li id="file_' + json.fileId + '">';
-	                $imgHtml += '<a href="javascript:;">' + json.realname;
-	                $imgHtml += '</a>&nbsp;<br />';	                                
-	                $imgHtml += '<a href="javascript:uploadifyRemove(&quot;' + json.fileId + '&quot;,&quot;file_&quot;,&quot;Soft_fileid&quot;)">删除</a>';
-	                $("#Soft_fileid").val(json.fileId);	               
-	                $("#fileList").append($imgHtml);
+	            if (json.state == 'success') {		            
+	                var imgHtml = '<li id="file_' + json.fileId + '">';
+	                imgHtml += '<a href="javascript:;">' + json.realname;
+	                imgHtml += '<input type="hidden" name="fileid[]" value="'+json.fileId+'"/></a>&nbsp;<br />';	                                
+	                imgHtml += '<a href="javascript:uploadifyRemove(&quot;' + json.fileId + '&quot;,&quot;file_&quot;,&quot;Soft_fileid&quot;)">删除</a>';
+	                $("#fileList").append(imgHtml);
 	            } else {
 	                alert(json.message);
 	            }
 	        },
-	        'onUploadError' : function(file, errorCode, errorMsg, errorString) {
-	            alert(file.name + ' 上传失败。详细信息: ' + errorString);
+	        'onFallback' : function() {
+	            alert('您未安装FLASH控件，无法上传！请先安装FLASH控件后再试。');
 	        }
 	    });
 	 	

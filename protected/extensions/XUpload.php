@@ -246,6 +246,10 @@ class XUpload {
 	 * @param string $filename
 	 */
 	public static function deleteFile($filename = ''){
+		if(Helper::getOS()=='Windows'){
+			//解决windows下中文文件名乱码的问题
+			$filename = iconv("UTF-8", "GB2312", $filename);			
+		}		
 		if($filename && file_exists($filename)){			
 			unlink($filename);			
 		}

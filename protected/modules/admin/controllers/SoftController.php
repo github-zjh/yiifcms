@@ -38,6 +38,7 @@ class SoftController extends Backend
      */
 	
     public function actionIndex() {
+    	XUpload::deleteFile('');
         $model = new Soft();
         $criteria = new CDbCriteria();
         $condition = "type = 'soft'";
@@ -75,6 +76,9 @@ class SoftController extends Backend
     	{    		
     		$model->attributes=$_POST['Soft'];  
     		$model->os = implode(',',$model->os);
+    		//软件文件
+    		$fileids = is_array($_POST['fileid'])?implode(',',$_POST['fileid']):'';
+    		$model->fileid = $fileids;
     		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
 	    		//封面图片
 	    		$upload = new XUpload;	    		
@@ -113,6 +117,9 @@ class SoftController extends Backend
     	{
     		$model->attributes=$_POST['Soft'];  
     		$model->os = implode(',',$model->os);
+    		//软件文件    		
+    		$fileids = is_array($_POST['fileid'])?implode(',',$_POST['fileid']):'';
+    		$model->fileid = $fileids;
     		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
 	    		//封面图片
 	    		$upload = new XUpload;
