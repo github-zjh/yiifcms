@@ -147,14 +147,14 @@ $(function(){
 	$("#xform").validationEngine();
 	//上传
 	 $('#uploadFile').uploadify({		 	
-		    'overrideEvents':['onDialogClose','onSelectError','onUploadSuccess','onUploadError','onFallback'],  //覆盖原来的触发函数  	
+		    //'overrideEvents':['onDialogClose','onSelectError','onUploadSuccess','onUploadError','onFallback'],  //覆盖原来的触发函数  	
 	        'buttonText': '选择文件..',
 	        'fileObjName': 'file',
 	        'method': 'post',
 	        'multi': true,	        	        
 			'queueID': 'fileQueue',	
 	        'fileSizeLimit' : '50MB',
-	        'fileTypeExts': '*.mv;*.avi;*.mp4;*.flv;*.rmvb;*.mov;*.asf;*.wmv;*.3GP;*.ra;*.rm;',
+	        'fileTypeExts': '*.mv;*.swf;*.avi;*.mp4;*.flv;*.rmvb;*.mov;*.asf;*.wmv;*.3GP;*.ra;*.rm;',
 	        'buttonImage': '<?php echo $this->_baseUrl?>/static/public/js/uploadify/select.png',
 	        'formData': {
 	            'sessionId'   : '<?php echo Yii::app()->session->sessionID; ?>',

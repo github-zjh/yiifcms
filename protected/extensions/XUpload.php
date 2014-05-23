@@ -61,7 +61,7 @@ class XUpload {
 	 * @return boolean
 	 */
 	public function uploadFile($file = '', $thumb = false, $watermark = false){		
-		if($this->checkUpload($file)){			
+		if($this->checkUpload($file)){						
 			//验证通过
 			$real_thumb = false;
 			$real_watermark = false;	
@@ -79,7 +79,7 @@ class XUpload {
 			if(!is_dir($save_path)){
 				mkdir($save_path, 0777, true);
 			}
-			$this->_file_name = $save_path .= $filename;			
+			$this->_file_name = $save_path .= $filename;				
 			if($real_thumb){
 				//生成缩略图
 				$this->makeThumb($this->_tmp_name, $filename);						
@@ -90,13 +90,25 @@ class XUpload {
 			}else{						
 				if(Helper::getOS()=='Linux'){
 					//解决linux下中文文件名乱码的问题
-					$save_path = iconv("UTF-8", "GBK", $save_path); 
-					$mv = move_uploaded_file($this->_tmp_name, $save_path);
-					$save_path_ch = iconv("GBK", "UTF-8", $save_path);
-					rename($save_path, $save_path_ch);   // 重命名一下文件
+					$save_path_new = @iconv("UTF-8", "GB2312", $save_path);
+					if(!$save_path_new){
+						//转换失败
+						$this->_error = 'File Names Contains doesnt recognize Chinese';
+						return false;
+					}										
+					$mv = move_uploaded_file($this->_tmp_name, $save_path_new);
+					$save_path_ch = @iconv("GBK", "UTF-8", $save_path);											
+					
+					// 重命名一下文件
+					rename($save_path, $save_path_ch?$save_path_ch:$save_path);   
 				}else{
-					//解决windows下中文文件名乱码的问题
-					$save_path = iconv("UTF-8", "GB2312", $save_path); 
+					//解决windows下中文文件名乱码的问题					
+					$save_path = @iconv("UTF-8", "GB2312", $save_path);
+					if(!$save_path){
+						//转换失败
+						$this->_error = 'File Names Contains doesnt recognize Chinese';
+						return false;
+					}					
 					$mv = move_uploaded_file($this->_tmp_name, $save_path);
 				}
 				if(!$mv){					
@@ -267,8 +279,7 @@ class XUpload {
 			$this->_real_name = $file['name'];
 			$this->_file_ext = $this->getExt($file['name']);
 			$this->_mime_type = $file['type'];
-			$this->_file_size = $file['size'];	
-			
+			$this->_file_size = $file['size'];				
 			if(in_array($this->_file_ext, array('bmp', 'png','jpg','jgeg','gif'))){
 				$this->_is_image = true;
 			}
@@ -281,12 +292,12 @@ class XUpload {
 				//文件大小超出限制				
 				$this->_error = 'File size is too large.';
 				return false;
-			}else{
+			}else{				
 				if(!is_uploaded_file($this->_tmp_name)){
 					//非法上传
 					$this->_error = 'File source is Invalid.';
 					return false;
-				}
+				}				
 			}
 			
 		}else{
@@ -303,7 +314,7 @@ class XUpload {
 	 * @param string $realname 文件名
 	 * @return boolean
 	 */
-	private function getExt($realname) {
+	private function getExt($realname) {		
 		$pathinfo = pathinfo($realname);
 		return strtolower($pathinfo['extension']);
 	}

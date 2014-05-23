@@ -252,4 +252,5 @@ return array (
 	'Lan_korean' => '韩文字幕',
 	'Lan_zh_en' => '中英双字幕',
 	'Lan_other' => '未知字幕',
+	'File Names Contains doesnt recognize Chinese' => '文件名中含有不能识别的中文，请修改后再上传。'
 );

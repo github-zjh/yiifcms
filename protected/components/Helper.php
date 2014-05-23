@@ -124,5 +124,38 @@ class Helper extends CController
 			return false;
 		}
 	}
+	/**
+	 * 判断字符串是utf-8 还是gb2312
+	 * @param unknown $str
+	 * @param string $default
+	 * @return string
+	 */
+	public static function utf8_gb2312($str, $default = 'gb2312')
+	{
+	    $str = preg_replace("/[\x01-\x7F]+/", "", $str);
+	    if (empty($str)) return $default;
+	    
+	    $preg =  array(
+	        "gb2312" => "/^([\xA1-\xF7][\xA0-\xFE])+$/", //正则判断是否是gb2312
+	        "utf-8" => "/^[\x{4E00}-\x{9FA5}]+$/u",      //正则判断是否是汉字(utf8编码的条件了)，这个范围实际上已经包含了繁体中文字了
+	    );
+	
+	    if ($default == 'gb2312') {
+	        $option = 'utf-8';
+	    } else {
+	        $option = 'gb2312';
+	    }
+	
+	    if (!preg_match($preg[$default], $str)) {
+	        return $option;
+	    }
+	    $str = @iconv($default, $option, $str);
+	    
+	    //不能转成 $option, 说明原来的不是 $default
+	    if (empty($str)) {
+	        return $option;
+	    }
+	    return $default;
+	}
         
 }
