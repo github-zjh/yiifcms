@@ -32,7 +32,7 @@
 				</li>
 				<?php endforeach;?>			
 			</ul>
-			<form id="search">
+			<form id="search" class="clear">
 				<a class="search_btn" href="javascript:;">搜索</a>
 				<input type="text" name="keyword" value="" placeholder="请输入想要搜索的内容"/>			
 			</form>		

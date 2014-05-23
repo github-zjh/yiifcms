@@ -64,12 +64,10 @@ box-shadow: 0 5px 0 #e2534b;
 #menu .child_menu li a { border-radius:2px; background: url(../images/right_arrows.png) no-repeat 12px center;}
 #menu .child_menu li a:hover {  background:#76c7c0 url(../images/right_arrows.png) no-repeat 12px center;}
 
-#search { float:right; }
-#search .search_btn { line-height:33px; width:50px; border-radius:0 3px 3px 0; background-color:#EAEAEA; color:#555555; }
+#search { float:right; width:250px;}
+#search .search_btn { float:right;line-height:33px; height:33px; width:50px; border-radius:0 3px 3px 0; background-color:#EAEAEA; color:#555555; }
 #search .search_btn:hover { background-color:#CCCCCC; }
-#search input {  border-radius:3px 0 0 3px; width:200px; padding:8px 4px;}
-#search a { float:right; }
-#search a img { margin-top:4px; }
+#search input { float:left; border-radius:3px 0 0 3px; width:200px; height:33px; line-height:33px; text-indent:4px;}
 
 #login { float:right; width:auto; }
 #login a { 
