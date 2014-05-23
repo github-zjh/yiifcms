@@ -1,6 +1,6 @@
 # your database backup
-# version:5.5.27-log
-# time:2014-05-23 16:55:22
+# version:5.6.16
+# time:2014-05-23 21:08:12
 # --------------------------------------------------------
 
 
@@ -331,8 +331,10 @@ CREATE TABLE `yii_session` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='session表';
 
-INSERT INTO `yii_session` VALUES('9d0b996es0dqotv7kccancvkk1','1400836531','');
-INSERT INTO `yii_session` VALUES('ht3pngu5ag7lvkog49793k05t2','1400838920','admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.33c9b0a4.admin/default.captcha|s:4:\"3cka\";Yii.CCaptchaAction.33c9b0a4.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
+INSERT INTO `yii_session` VALUES('ecoqo3eqdib2ck4dljlkuebjs1','1400852562','admin__returnUrl|s:10:\"/admin.htm\";');
+INSERT INTO `yii_session` VALUES('slqvt2h9bqo39sos0f6k7qmqg0','1400852562','admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.af6bc074.admin/default.captcha|s:4:\"dd9h\";Yii.CCaptchaAction.af6bc074.admin/default.captchacount|i:1;');
+INSERT INTO `yii_session` VALUES('sinfqm97ot4266dab5snm3p957','1400853254','admin__returnUrl|s:10:\"/admin.htm\";');
+INSERT INTO `yii_session` VALUES('eihu9h3p7o0bhhrli4q40r78k6','1400854090','admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.af6bc074.admin/default.captcha|s:4:\"l37d\";Yii.CCaptchaAction.af6bc074.admin/default.captchacount|i:3;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
 
 DROP TABLE IF EXISTS `yii_setting`;
 CREATE TABLE `yii_setting` (
@@ -402,33 +404,7 @@ CREATE TABLE `yii_soft` (
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='软件管理表';
 
 INSERT INTO `yii_soft` VALUES('3',' 腾讯QQ2013 SP6 官方正式版','11','','','','zh_cn','domestic','Win2003,WinXP,Win8','5','','','<span>QQ产品团队经过数月的奋战，全新感觉的QQ2013 Beta1版本终于打造完成，QQ2013拥有全新登录界面，登录速度更快捷；安全模块的升级让你的QQ更安全，群视频秀让群聊更有氛围。本站提供qq2013最新版官方下载,腾讯qq2013官方下载正式版。</span>','0','1400750629','1400549982','0','Y','','','');
-INSERT INTO `yii_soft` VALUES('4','阿里旺旺 2014卖家版 V7.20.36T 正式版','11','uploads/images/201405/6a30a96a755.jpg','','','zh_cn','domestic','Win2003,WinXP,Win8','5','','','<p>
-	<br />
-</p>
-<p>
-	【阿里旺旺 2014卖家版概括介绍】
-</p>
-<p>
-	免费网商沟通软件。
-</p>
-<p>
-	<br />
-</p>
-<br />
-【阿里旺旺 2014卖家版基本介绍】<br />
-<p>
-	阿里旺旺，是阿里巴巴为商人度身定做的免费网上商务沟通软件。它能帮您轻松找客户，发布、管理商业信息；及时把握商机，随时洽谈做生意！
-</p>
-<p>
-	<br />
-</p>
-&nbsp;&nbsp;&nbsp;<br />
-【阿里旺旺 2014卖家版软件特点】<br />
-1. 随时联系客户 <br />
-每一条信息都标记着您的在线状态 , 让商人随时联系您<br />
-2. 海量商机搜索 <br />
-不登录网站，快速搜索阿里巴巴大市场 600 万商机！ <br />
-3. 巧发','0','1400752129','1400550081','0','Y','','','');
+INSERT INTO `yii_soft` VALUES('4','阿里旺旺 2014卖家版 V7.20.36T 正式版','11','uploads/images/201405/6a30a96a755.jpg','','','zh_cn','domestic','Win2003,WinXP,Win8','5','','','<p>	<br /></p><p>	【阿里旺旺 2014卖家版概括介绍】</p><p>	免费网商沟通软件。</p><p>	<br /></p><br />【阿里旺旺 2014卖家版基本介绍】<br /><p>	阿里旺旺，是阿里巴巴为商人度身定做的免费网上商务沟通软件。它能帮您轻松找客户，发布、管理商业信息；及时把握商机，随时洽谈做生意！</p><p>	<br /></p>&nbsp;&nbsp;&nbsp;<br />【阿里旺旺 2014卖家版软件特点】<br />1. 随时联系客户 <br />每一条信息都标记着您的在线状态 , 让商人随时联系您<br />2. 海量商机搜索 <br />不登录网站，快速搜索阿里巴巴大市场 600 万商机！ <br />3. 巧发','0','1400752129','1400550081','0','Y','','','');
 
 DROP TABLE IF EXISTS `yii_special`;
 CREATE TABLE `yii_special` (
@@ -467,7 +443,7 @@ CREATE TABLE `yii_upload` (
   `access` varchar(255) NOT NULL DEFAULT '' COMMENT '权限控制',
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '上传时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COMMENT='附件';
+) ENGINE=MyISAM AUTO_INCREMENT=47 DEFAULT CHARSET=utf8 COMMENT='附件';
 
 INSERT INTO `yii_upload` VALUES('20','1','5.png','uploads/images/201403/3b68894af12.png','','png','application/octet-stream','1724','0','','1394775273');
 INSERT INTO `yii_upload` VALUES('19','1','4.png','uploads/images/201403/7b1f180d893.png','','png','application/octet-stream','624','0','','1394766396');
@@ -551,7 +527,7 @@ CREATE TABLE `yii_video` (
   `seo_description` text COMMENT 'SEO描述',
   `seo_keywords` varchar(255) NOT NULL DEFAULT '' COMMENT 'SEO关键字',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='软件管理表';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='视频管理表';
 
-INSERT INTO `yii_video` VALUES('1','美国队长','12','','','englise','science','0','','','美国队长','0','','1400834656','0','Y','','','');
+INSERT INTO `yii_video` VALUES('1','美国队长','12','','','englise','science','0','','','美国队长','0','1400850481','1400834656','0','Y','','','');
 

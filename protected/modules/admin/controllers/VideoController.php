@@ -135,6 +135,8 @@ class VideoController extends Backend
 	    		$model->cover_image = $upload->_file_name;	    		
     		}
     		$model->update_time = time();
+    		if($model->save())
+    			$this->message('success',Yii::t('admin','Update Success'),$this->createUrl('index'));
     	}	
     	    	
     	$this->render('update',array('model'=>$model));    	

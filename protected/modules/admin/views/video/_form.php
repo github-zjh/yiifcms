@@ -154,7 +154,7 @@ $(function(){
 	        'multi': true,	        	        
 			'queueID': 'fileQueue',	
 	        'fileSizeLimit' : '50MB',
-	        'fileTypeExts': '*.pdf;*.doc;*.docx;*.xls;*.ppt;*.exe;*.zip;*.tar;*.gz;*.msi;*.7z;',
+	        'fileTypeExts': '*.mv;*.avi;*.mp4;*.flv;*.rmvb;*.mov;*.asf;*.wmv;*.3GP;*.ra;*.rm;',
 	        'buttonImage': '<?php echo $this->_baseUrl?>/static/public/js/uploadify/select.png',
 	        'formData': {
 	            'sessionId'   : '<?php echo Yii::app()->session->sessionID; ?>',
