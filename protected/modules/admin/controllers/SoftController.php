@@ -9,8 +9,7 @@
 class SoftController extends Backend
 {
 	protected $_catalog;
-	protected $_special;
-	
+		
 	public function init(){
 		parent::init();
 		//栏目
@@ -37,16 +36,13 @@ class SoftController extends Backend
      *
      */
 	
-    public function actionIndex() {
-    	XUpload::deleteFile('');
+    public function actionIndex() {    	
         $model = new Soft();
         $criteria = new CDbCriteria();
         $condition = "type = 'soft'";
-        $title = trim( $this->_request->getParam( 'title' ) );
-        $titleAlias = trim( $this->_request->getParam( 'titleAlias' ) );
+        $title = trim( $this->_request->getParam( 'title' ) );      
         $catalogId = intval( $this->_request->getParam( 'catalogId' ) );
-        $title && $condition .= ' AND title LIKE \'%' . $title . '%\'';
-        $titleAlias && $condition .= ' AND title_alias LIKE \'%' . $titleAlias . '%\'';
+        $title && $condition .= ' AND title LIKE \'%' . $title . '%\'';        
         $catalogId && $condition .= ' AND catalog_id= ' . $catalogId;
         $criteria->condition = $condition;
         $criteria->order = 't.id DESC';
@@ -61,7 +57,7 @@ class SoftController extends Backend
         $criteria->offset = $pages->currentPage * $pages->pageSize;
         $result = $model->findAll( $criteria );    
         //推荐位
-        $recom_list = RecommendPosition::model()->findAll(array('order'=>'id'));
+        $recom_list = RecommendPosition::model()->findAll('type=:type', array(':type'=>'soft'));
         $this->render( 'index', array ( 'datalist' => $result , 'pagebar' => $pages ,'recom_list'=>$recom_list) );
     }
 

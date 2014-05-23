@@ -9,14 +9,21 @@
 class VideoController extends Backend
 {
 	protected $_catalog;
-	protected $_special;
+	protected $_video_type;	
 	
 	public function init(){
 		parent::init();
 		//视频栏目
 		$this->_catalog = Catalog::model()->findAll('status_is=:status AND type=:type',array(':status'=>'Y',':type'=>'video'));
-		//专题
-		$this->_special = Special::model()->findAll('status_is=:status',array('status'=>'Y'));
+		$this->_video_type = array(
+					'comedy'=>'喜剧',
+					'active'=>'动作',
+					'story' => '剧情',
+					'science'=>'科幻',
+					'terrified'=>'惊悚',
+					'war'=>'战争', 
+	    			'sexy'=>'伦理'
+				);    	
 	}
 	
 	/**
@@ -39,14 +46,12 @@ class VideoController extends Backend
      */
 	
     public function actionIndex() {
-        $model = new Post();
+        $model = new Video();
         $criteria = new CDbCriteria();
         $condition = "type = 'video'";
-        $title = trim( $this->_request->getParam( 'title' ) );
-        $titleAlias = trim( $this->_request->getParam( 'titleAlias' ) );
+        $name = trim( $this->_request->getParam( 'name' ) );        
         $catalogId = intval( $this->_request->getParam( 'catalogId' ) );
-        $title && $condition .= ' AND title LIKE \'%' . $title . '%\'';
-        $titleAlias && $condition .= ' AND title_alias LIKE \'%' . $titleAlias . '%\'';
+        $title && $condition .= ' AND name LIKE \'%' . $name . '%\'';        
         $catalogId && $condition .= ' AND catalog_id= ' . $catalogId;
         $criteria->condition = $condition;
         $criteria->order = 't.id DESC';
@@ -61,7 +66,7 @@ class VideoController extends Backend
         $criteria->offset = $pages->currentPage * $pages->pageSize;
         $result = $model->findAll( $criteria );    
         //推荐位
-        $recom_list = RecommendPosition::model()->findAll(array('order'=>'id'));
+        $recom_list = RecommendPosition::model()->findAll('type=:type', array(':type'=>'video'));
         $this->render( 'index', array ( 'datalist' => $result , 'pagebar' => $pages ,'recom_list'=>$recom_list) );
     }
 
@@ -69,72 +74,27 @@ class VideoController extends Backend
      * 新增数据
      *
      */
-    public function actionCreate() {
-        
-        $model = new Post();       
-    	if(isset($_POST['Post']))
-    	{
-    		$model->attributes=$_POST['Post'];
-    		//标题样式
-    		$title_style = $this->_request->getPost('style');   
-    		if($title_style['bold'] != 'Y'){
-    			unset($title_style['bold']);
-    		}
-    		if($title_style['underline'] != 'Y'){
-    			unset($title_style['underline']);
-    		}
-    		if(!$title_style['color']){
-    			unset($title_style['color']);
-    		}
-    		if($title_style){    			
-    			$model->title_style = serialize($title_style);
-    		}else{
-    			$model->title_style = '';
-    		}
-    		
+    public function actionCreate() 
+    {        
+     	$model = new Video();       
+    	if(isset($_POST['Video']))
+    	{    		
+    		$model->attributes=$_POST['Video'];      		
+    		//软件文件
+    		$fileids = is_array($_POST['fileid'])?implode(',',$_POST['fileid']):'';
+    		$model->fileid = $fileids;
     		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
 	    		//封面图片
-	    		$upload = new XUpload;
-	    		$upload->_thumb_width = 100;
-	    		$upload->_thumb_height = 100;
-	    		$upload->uploadFile($_FILES['attach'], true);
+	    		$upload = new XUpload;	    		
+	    		$upload->uploadFile($_FILES['attach']);
 	    		if($upload->_error){
-	    			$upload->deleteFile($upload->_file_name);
-	    			$upload->deleteFile($upload->_thumb_name);
+	    			$upload->deleteFile($upload->_file_name);	    		
 	    			$this->message('error', Yii::t('admin',$upload->_error));
 	    			return;
 	    		}    		
-	    		$model->attach_file = $upload->_file_name;
-	    		$model->attach_thumb = $upload->_thumb_name;
-    		}
-    		//组图
-    		$imageList = $this->_request->getPost( 'imageList' );
-    		$imageListSerialize = $this->imageListSerialize($imageList);
-    		$model->image_list = $imageListSerialize['dataSerialize'];
-    		
-    		//标签
-    		$tags = trim($_POST['Post']['tags']);
-    		$explodeTags = array_unique(explode(',', str_replace(array (' ' , '，' ), ',', $tags)));
-    		$tagCount = 0;
-    		foreach ((array) $explodeTags as $value) {
-    			$tagCount ++;
-    			if ($tagCount >= 10) {
-    				unset($explodeTags);
-    				break;
-    			}
-    			$model_tag = new PostTags();
-    			$get_tags = $model_tag->find('tag_name=:tagname', array(':tagname'=>$value));
-    			if($get_tags){
-    				$get_tags->data_count = $get_tags->data_count+1;
-    				$get_tags->save();
-    			}else{
-    				$model_tag->data_count = 1;
-    				$model_tag->tag_name = $value;
-    				$model_tag->create_time = time();
-    				$model_tag->save();
-    			}
-    		}
-    		
+	    		$model->cover_image = $upload->_file_name;	    		
+    		}  
+    		$model->create_time = time();
     		if($model->save())
     			$this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
     	}
@@ -154,28 +114,13 @@ class VideoController extends Backend
      * @param  $id
      */
     public function actionUpdate( $id ) {
-    	$model = Post::model()->findByPk($id);    	
-    	if(isset($_POST['Post']))
+    	$model = Video::model()->findByPk($id);    	
+    	if(isset($_POST['Video']))
     	{
-    		$model->attributes=$_POST['Post'];
-    		//标题样式
-    		$title_style = $this->_request->getPost('style');   
-    		if($title_style['bold'] != 'Y'){
-    			unset($title_style['bold']);
-    		}
-    		if($title_style['underline'] != 'Y'){
-    			unset($title_style['underline']);
-    		}
-    		if(!$title_style['color']){
-    			unset($title_style['color']);
-    		}
-    		if($title_style){    			
-    			$model->title_style = serialize($title_style);
-    		}else{
-    			$model->title_style = '';
-    		}
-    		
-    		
+    		$model->attributes=$_POST['Video']; 
+    		//视频文件    		
+    		$fileids = is_array($_POST['fileid'])?implode(',',$_POST['fileid']):'';
+    		$model->fileid = $fileids;
     		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
 	    		//封面图片
 	    		$upload = new XUpload;
@@ -183,50 +128,16 @@ class VideoController extends Backend
 	    		$upload->_thumb_height = 100;    		
 	    		$upload->uploadFile($_FILES['attach'], true);
 	    		if($upload->_error){
-	    			$upload->deleteFile($upload->_file_name);
-	    			$upload->deleteFile($upload->_thumb_name);
+	    			$upload->deleteFile($upload->_file_name);	    			
 	    			$this->message('error', Yii::t('admin',$upload->_error));
 	    			return;
 	    		}    		
-	    		$model->attach_file = $upload->_file_name;
-	    		$model->attach_thumb = $upload->_thumb_name;
+	    		$model->cover_image = $upload->_file_name;	    		
     		}
-    		//组图
-    		$imageList = $this->_request->getPost( 'imageList' );
-    		$imageListSerialize = $this->imageListSerialize($imageList);
-    		$model->image_list = $imageListSerialize['dataSerialize'];
-    		
-    		//标签    		
-    		$tags = trim($_POST['Post']['tags']);    		
-    		$explodeTags = array_unique(explode(',', str_replace(array (' ' , '，' ), ',', $tags)));
-    		$tagCount = 0;
-    		foreach ((array) $explodeTags as $value) {
-    			$tagCount ++;
-    			if ($tagCount >= 10) {
-    				unset($explodeTags);
-    				break;
-    			}    			
-    			$model_tag = new PostTags();
-    			$get_tags = $model_tag->find('tag_name=:tagname', array(':tagname'=>$value));    			
-    			if(!$get_tags){    				    				
-    				$model_tag->data_count = 1;
-    				$model_tag->tag_name = $value;
-    				$model_tag->create_time = time();
-    				$model_tag->save();
-    			}
-    		}    		
-    		if($model->save())
-    			$this->message('success',Yii::t('admin','Update Success'),$this->createUrl('index'));
-    	}else{
-    		$imageList = unserialize($model->image_list);
-    		$style = unserialize($model->title_style);
-    	}   	
+    		$model->update_time = time();
+    	}	
     	    	
-    	$this->render('update',array(
-    			'model'=>$model,
-    			'imageList' => $imageList,
-    			'style' => $style,
-    	));    	
+    	$this->render('update',array('model'=>$model));    	
         
     }
 

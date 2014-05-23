@@ -1,0 +1,46 @@
+<?php
+
+return array(
+	/*
+	'sample1'=>array(
+		'name' => '',
+		'catalog_id' => '',
+		'cover_image' => '',
+		'fileid' => '',
+		'language' => '',
+		'video_type' => '',
+		'video_score' => '',
+		'video_size' => '',
+		'download' => '',
+		'introduce' => '',
+		'pay' => '',
+		'update_time' => '',
+		'create_time' => '',
+		'down_count' => '',
+		'status' => '',
+		'seo_title' => '',
+		'seo_description' => '',
+		'seo_keywords' => '',
+	),
+	'sample2'=>array(
+		'name' => '',
+		'catalog_id' => '',
+		'cover_image' => '',
+		'fileid' => '',
+		'language' => '',
+		'video_type' => '',
+		'video_score' => '',
+		'video_size' => '',
+		'download' => '',
+		'introduce' => '',
+		'pay' => '',
+		'update_time' => '',
+		'create_time' => '',
+		'down_count' => '',
+		'status' => '',
+		'seo_title' => '',
+		'seo_description' => '',
+		'seo_keywords' => '',
+	),
+	*/
+);

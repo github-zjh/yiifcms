@@ -1,6 +1,6 @@
 # your database backup
 # version:5.5.27-log
-# time:2014-05-22 17:52:10
+# time:2014-05-23 16:55:22
 # --------------------------------------------------------
 
 
@@ -55,7 +55,7 @@ CREATE TABLE `yii_catalog` (
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '录入时间',
   `update_time` int(10) unsigned DEFAULT '0' COMMENT '修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='全局分类';
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='全局分类';
 
 INSERT INTO `yii_catalog` VALUES('1','article','0','新闻','新闻<br />','d','d','d','uploads/images/201403/8a4b5e11db6.png','uploads/thumbs/201403/small_8a4b5e11db6.png','0','0','Y','','1379545020','1394509418');
 INSERT INTO `yii_catalog` VALUES('2','article','1','公司动态','公司动态栏目介绍','','','','uploads/images/201402/98f97227c00.png','','2','0','Y','','1379545199','1394509418');
@@ -67,6 +67,8 @@ INSERT INTO `yii_catalog` VALUES('8','image','0','图集','','','','','','','0',
 INSERT INTO `yii_catalog` VALUES('9','image','8','最新热图','最新热图','最新热图','最新热图','最新热图','','','0','0','Y','','0','1399616723');
 INSERT INTO `yii_catalog` VALUES('10','soft','0','热门软件','','热门软件','热门软件','热门软件','','','0','0','Y','','1400489000','1400489000');
 INSERT INTO `yii_catalog` VALUES('11','soft','10','网站软件','网站软件','网站软件','网站软件','网站软件','','','0','0','Y','','1400489069','1400489069');
+INSERT INTO `yii_catalog` VALUES('12','video','0','最新视频','','','','','','','0','0','Y','','1400828336','1400828336');
+INSERT INTO `yii_catalog` VALUES('13','video','12','最新电影','','','','','','','0','0','Y','','1400828453','1400828453');
 
 DROP TABLE IF EXISTS `yii_link`;
 CREATE TABLE `yii_link` (
@@ -304,9 +306,11 @@ CREATE TABLE `yii_recommend_position` (
   `recommend_name` varchar(100) DEFAULT NULL COMMENT '推荐位名称',
   `type` enum('article','image','soft','video','goods') NOT NULL DEFAULT 'article' COMMENT '栏目类型',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='推荐位表';
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='推荐位表';
 
 INSERT INTO `yii_recommend_position` VALUES('1','首页文章推荐','article');
+INSERT INTO `yii_recommend_position` VALUES('3','图集推荐','image');
+INSERT INTO `yii_recommend_position` VALUES('4','图集推荐二','image');
 
 DROP TABLE IF EXISTS `yii_recommend_post`;
 CREATE TABLE `yii_recommend_post` (
@@ -327,9 +331,8 @@ CREATE TABLE `yii_session` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='session表';
 
-INSERT INTO `yii_session` VALUES('p51q5ksfelcjkhhamt0cfp2h00','1400754415','admin__returnUrl|s:10:\"/admin.htm\";');
-INSERT INTO `yii_session` VALUES('n99u0ic9b31jbvl60tr85alr22','1400755199','admin__returnUrl|s:10:\"/admin.htm\";');
-INSERT INTO `yii_session` VALUES('dem5jfmcduo9vdgjgd2flsu0q2','1400755929','admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.33c9b0a4.admin/default.captcha|s:4:\"dcfe\";Yii.CCaptchaAction.33c9b0a4.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
+INSERT INTO `yii_session` VALUES('9d0b996es0dqotv7kccancvkk1','1400836531','');
+INSERT INTO `yii_session` VALUES('ht3pngu5ag7lvkog49793k05t2','1400838920','admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.33c9b0a4.admin/default.captcha|s:4:\"3cka\";Yii.CCaptchaAction.33c9b0a4.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
 
 DROP TABLE IF EXISTS `yii_setting`;
 CREATE TABLE `yii_setting` (
@@ -378,7 +381,7 @@ CREATE TABLE `yii_soft` (
   `title` varchar(100) DEFAULT '' COMMENT '软件标题',
   `catalog_id` smallint(5) unsigned DEFAULT '0' COMMENT '分类id ',
   `cover_image` varchar(100) DEFAULT '' COMMENT '封面图片',
-  `fileid` varchar(50) DEFAULT NULL COMMENT '文件id',
+  `fileid` varchar(255) DEFAULT NULL COMMENT '文件id',
   `filetype` varchar(10) NOT NULL DEFAULT '' COMMENT '文件类型',
   `language` varchar(10) NOT NULL DEFAULT '' COMMENT '软件语言',
   `softtype` varchar(10) NOT NULL DEFAULT '' COMMENT '软件类型',
@@ -525,4 +528,30 @@ INSERT INTO `yii_user_group` VALUES('7','VIP⑦用户','');
 INSERT INTO `yii_user_group` VALUES('8','VIP⑧用户','');
 INSERT INTO `yii_user_group` VALUES('9','网站编辑','default|login,catalog|index,catalog|create,all,link|index,link|create,link|update,link|delete,link|batch');
 INSERT INTO `yii_user_group` VALUES('10','系统管理员','Administrator');
+
+DROP TABLE IF EXISTS `yii_video`;
+CREATE TABLE `yii_video` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT '' COMMENT '视频名称',
+  `catalog_id` smallint(5) unsigned DEFAULT '0' COMMENT '分类id ',
+  `cover_image` varchar(100) DEFAULT '' COMMENT '封面图片',
+  `fileid` varchar(255) DEFAULT NULL COMMENT '文件id',
+  `language` varchar(10) NOT NULL DEFAULT '' COMMENT '视频语言',
+  `video_type` varchar(10) NOT NULL DEFAULT '' COMMENT '视频类型',
+  `video_score` mediumint(2) unsigned NOT NULL DEFAULT '0' COMMENT '视频评分',
+  `video_size` varchar(10) NOT NULL DEFAULT '' COMMENT '视频大小',
+  `download` varchar(100) DEFAULT '' COMMENT '下载链接',
+  `introduce` text COMMENT '软件简介',
+  `pay` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '支付费用',
+  `update_time` int(10) unsigned DEFAULT NULL COMMENT '最近更新时间',
+  `create_time` int(10) unsigned DEFAULT NULL COMMENT '发布时间',
+  `down_count` smallint(8) unsigned DEFAULT '0' COMMENT '下载次数',
+  `status` enum('Y','N') DEFAULT 'Y' COMMENT '是否显示',
+  `seo_title` varchar(255) NOT NULL DEFAULT '' COMMENT 'SEO标题',
+  `seo_description` text COMMENT 'SEO描述',
+  `seo_keywords` varchar(255) NOT NULL DEFAULT '' COMMENT 'SEO关键字',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='软件管理表';
+
+INSERT INTO `yii_video` VALUES('1','美国队长','12','','','englise','science','0','','','美国队长','0','','1400834656','0','Y','','','');
 

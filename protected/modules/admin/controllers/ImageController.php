@@ -61,7 +61,7 @@ class ImageController extends Backend
         $criteria->offset = $pages->currentPage * $pages->pageSize;
         $result = $model->findAll( $criteria );    
         //推荐位
-        $recom_list = RecommendPosition::model()->findAll(array('order'=>'id'));
+        $recom_list = RecommendPosition::model()->findAll('type=:type', array(':type'=>'image'));
         $this->render( 'index', array ( 'datalist' => $result , 'pagebar' => $pages ,'recom_list'=>$recom_list) );
     }
 

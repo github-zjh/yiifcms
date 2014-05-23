@@ -239,5 +239,17 @@ return array (
 	'1 Stars' => '一星级',
 	'Domestic Soft' => '国产软件',
 	'Foreign Soft' => '国外软件',
-	'Soft Upload' => '软件上传'
+	'Soft Upload' => '软件上传',
+	'Video Name' => '视频名称',
+	'Download Link' => '下载链接',
+	'Video Upload' => '视频上传',
+	'Video Language' => '视频语言',
+	'Video Score' => '视频评分',
+	'Video Type' => '视频类型',
+	'Lan_chinese' =>'中文字幕',
+	'Lan_englise' => '英文字幕',
+	'Lan_japanese' => '日文字幕',
+	'Lan_korean' => '韩文字幕',
+	'Lan_zh_en' => '中英双字幕',
+	'Lan_other' => '未知字幕',
 );
