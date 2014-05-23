@@ -46,30 +46,23 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
 #logo { float:left;}
 #logo .logo_a { display:block; width:150px;}
 #menu { float:left; }
-#menu li { float:left; margin:0 7px; line-height:26px; position:relative; z-index:999;}
-#menu a { height:26px; display:block; padding:0 20px; font-size:14px; font-weight:bold; }
+#menu li { width:100px; float:left; margin:0 7px; line-height:26px; position:relative; z-index:999;}
+#menu a { height:26px; line-height:26px; display:block; padding:0 20px; font-size:14px; font-weight:bold; }
 #menu li.selected { border-bottom:1px solid #FFFFFF;}
-#menu a:hover { border-radius:5px; background-color:#5CB85C;
--webkit-box-shadow:0 5px 0 #4CAE4C;
--moz-box-shadow: 0 5px 0 #4CAE4C;
-box-shadow: 0 5px 0 #4CAE4C;
-filter: progid:DXImageTransform.Microsoft.Shadow(color='#4CAE4C', Direction=-180, Strength=5);
-text-decoration:none;
-}
 #menu a:hover { 
+border-radius:5px; 
 background:#e8645a url(../images/down_arrows.png) no-repeat 6px 12px;
 -webkit-box-shadow:0 5px 0 #e2534b;
 -moz-box-shadow: 0 5px 0 #e2534b;
 box-shadow: 0 5px 0 #e2534b;
-filter: progid:DXImageTransform.Microsoft.Shadow(color='#e2534b', Direction=-180, Strength=5);
 }
-#menu .space { height:10px; position:relative;}
-#menu .child_box { display:none; position:absolute; top:36px; padding-top:7px; background:url(../images/ico_up.png) no-repeat 15px 1px;}
+#menu .space { height:10px; line-height:10px;}
+#menu .child_box { display:none; position:absolute; top:36px; left:0; padding-top:7px; background:url(../images/ico_up.png) no-repeat 15px 1px;}
 #menu .child_menu { width:150px; padding:5px; border-radius:5px; background-color:#e2534b;}
-#menu .child_menu li { margin:0; float:none; margin-bottom:5px; line-height:26px;  background-color:#e8645a;}
+#menu .child_menu li { width:auto; margin:0; float:none; margin-bottom:5px; line-height:26px;  background-color:#e8645a;}
 #menu .child_menu li.last { margin-bottom:0;}
 #menu .child_menu li a { border-radius:2px; background: url(../images/right_arrows.png) no-repeat 12px center;}
-#menu .child_menu li a:hover { background-color:#76c7c0;}
+#menu .child_menu li a:hover {  background:#76c7c0 url(../images/right_arrows.png) no-repeat 12px center;}
 
 #search { float:right; }
 #search .search_btn { line-height:33px; width:50px; border-radius:0 3px 3px 0; background-color:#EAEAEA; color:#555555; }
