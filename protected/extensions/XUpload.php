@@ -90,7 +90,7 @@ class XUpload {
 			}else{						
 				if(Helper::getOS()=='Linux'){
 					//解决linux下中文文件名乱码的问题
-					$save_path_new = @iconv("UTF-8", "GB2312", $save_path);
+					$save_path_new = Helper::safeEncoding($save_path,'GB2312');
 					if(!$save_path_new){
 						//转换失败
 						$this->_error = 'File Names Contains doesnt recognize Chinese';
@@ -103,7 +103,7 @@ class XUpload {
 					rename($save_path, $save_path_ch?$save_path_ch:$save_path);   
 				}else{
 					//解决windows下中文文件名乱码的问题					
-					$save_path = @iconv("UTF-8", "GB2312", $save_path);
+					$save_path = Helper::safeEncoding($save_path,'GB2312');
 					if(!$save_path){
 						//转换失败
 						$this->_error = 'File Names Contains doesnt recognize Chinese';
