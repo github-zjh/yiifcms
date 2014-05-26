@@ -1,0 +1,15 @@
+@CHARSET "UTF-8";
+
+/* 个人中心 */
+.user { width:1170px; margin:0 auto; padding:20px 0; text-align:left; }
+.user_left { width:60%; }
+.user_right { width:30%; }
+.user_left .base_box { padding:20px; border:1px solid #DDDDDD; border-radius:5px; background-color:#F0F0F0;}
+.user_left .base_info { float:left; padding-left:20px;}
+.base_info li { line-height:33px; font-size:16px; font-weight:bold; }
+.base_info li label { width:85px; display:inline-block; font-weight:normal; }
+.user_left .edit_btn { float:right; width:80px; height:32px; line-height:32px; background-color:#5CB85C; border-radius:3px; font-size:14px; color:#FFFFFF; text-align:center; }
+.user_left .fa_edit:before { content:"\f044"; }
+
+/* 编辑资料 */
+

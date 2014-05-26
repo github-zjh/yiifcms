@@ -15,7 +15,7 @@
 * { word-wrap: break-word; outline: none; }
 html { margin: 0; width: 100%; height: 100%; }
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { margin: 0; padding: 0; }
-body { width:100%; background: #F3F3F3; text-align: center; overflow: auto; }
+body { width:100%; background: #FFFFFF; text-align: center; overflow: auto; }
 body, td, input, textarea, select, button { color: #555; font: 12px "Microsoft Yahei", Verdana, Lucida, Helvetica, Arial, sans-serif; }
 input , img, textarea{ border:none;}
 ul, ol { list-style: none; }

@@ -43,21 +43,41 @@ class UserController extends FrontBase
 				),
 		);
 	}
+	
 
 	/**
-	 * Lists all models.
+	 * 个人中心
+	 *
 	 */
 	public function actionIndex()
-	{		
+	{
 		$this->_seoTitle = Yii::t('common','User Center').' - '.$this->_setting['site_name'];
 		//加载css,js
+		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/user.css");
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
-		
+	
 		$this->render('index');
+	}
+	
+	
+
+	/**
+	 * 编辑资料
+	 *
+	 */
+	public function actionEdit()
+	{
+		$this->_seoTitle = Yii::t('common','Edit User').' - '.$this->_setting['site_name'];
+		//加载css,js
+		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/user.css");
+		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
+	
+		$this->render('edit');
 	}
 	
 	/**
 	 * 登录
+	 * 
 	 */
 	public function actionLogin()
 	{

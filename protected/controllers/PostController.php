@@ -21,6 +21,11 @@ class PostController extends FrontBase
     $catalog = trim( $this->_request->getParam( 'catalog' ) );
     $keyword = trim( $this->_request->getParam( 'keyword' ) );    
     $this->_seoTitle = '文章列表 - '.$this->_setting['site_name'];
+    
+   //加载css,js	
+    Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/list.css");
+	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
+	
     $this->render( 'index');
   }
   

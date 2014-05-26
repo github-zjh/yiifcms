@@ -1,4 +1,3 @@
-	<link rel="stylesheet" href="<?php echo $this->_stylePath;?>/css/list.css" />
 	<div id="bread_crumbs">
 		<div class="crumb_box clear">
 			<h1 class="crumb_title">List</h1>
