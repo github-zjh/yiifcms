@@ -33,7 +33,7 @@
     border-right: 1px solid #C9C9C9;
     padding: 40px 0;    
 }
-#login-form .label_icon_user, #login-form .label_icon_pw { float:left;  display:inline-block; border-radius:5px 0 0 5px; width:43px; height:42px; line-height:42px; text-align:center; background-color:#C2E5F3; }
+#login-form .label_icon_user, #login-form .label_icon_pw { float:left;  display:inline-block; border-radius:5px 0 0 5px; width:43px; height:42px; line-height:42px; text-align:center; background-color:#82C2E1; }
 #login-form .fa_user:before, .fa_tuser:before { font-size:18px; content: "\f007"; color:#FFFFFF; }
 #login-form .fa_tuser:before { margin-right:5px;}
 #login-form .fa_pw:before { font-size:18px; content: "\f084"; color:#FFFFFF;}
