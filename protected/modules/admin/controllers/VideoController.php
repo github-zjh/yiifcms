@@ -60,7 +60,7 @@ class VideoController extends Backend
         $pages = new CPagination( $count );
         $pages->pageSize = 10;
         //根据title,catelogId,titleAlias查询
-        $pageParams = $this->buildCondition( $_GET, array ( 'title' , 'catalogId','titleAlias' ) );
+        $pageParams = $this->buildCondition( $_GET, array ( 'name' , 'catalogId') );
         $pages->params = is_array( $pageParams ) ? $pageParams : array ();
         $criteria->limit = $pages->pageSize;
         $criteria->offset = $pages->currentPage * $pages->pageSize;
@@ -95,6 +95,7 @@ class VideoController extends Backend
 	    		$model->cover_image = $upload->_file_name;	    		
     		}  
     		$model->create_time = time();
+    		$model->update_time = $model->create_time;
     		if($model->save())
     			$this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
     	}

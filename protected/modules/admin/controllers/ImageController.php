@@ -134,7 +134,8 @@ class ImageController extends Backend
     				$model_tag->save();
     			}
     		}
-    		
+    		$model->create_time = time();
+    		$model->update_time = $model->create_time;
     		if($model->save())
     			$this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
     	}
@@ -314,7 +315,7 @@ class ImageController extends Backend
 
         switch ( $command ) {
         case 'delete':      
-        	//删除文章     
+        	//删除图集     
         	foreach((array)$ids as $id){
         		$postModel = Post::model()->findByPk($id);
         		if($postModel){
@@ -367,7 +368,7 @@ class ImageController extends Backend
             }
             break;
         case 'show':     
-        	//文章显示      
+        	//图集显示      
         	foreach((array)$ids as $id){
         		$postModel = Post::model()->findByPk($id);        		
         		if($postModel){
@@ -377,7 +378,7 @@ class ImageController extends Backend
             }
             break;
         case 'hidden':     
-        	//文章隐藏      
+        	//图集隐藏      
         	foreach((array)$ids as $id){
         		$postModel = Post::model()->findByPk($id);        		
         		if($postModel){
@@ -387,7 +388,7 @@ class ImageController extends Backend
             }
             break;
         case 'commend':     
-        	//文章推荐
+        	//图集推荐
         	foreach((array)$ids as $id){        		
         		$recom_id = intval($_POST['recom_id']);
         		if($recom_id){
@@ -406,7 +407,7 @@ class ImageController extends Backend
         	}                 
             break;
         case 'unCommend': 
-        	//文章取消推荐
+        	//图集取消推荐
         	foreach((array)$ids as $id){
         		$postModel = Post::model()->findByPk($id);
         		if($postModel){

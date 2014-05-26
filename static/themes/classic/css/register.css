@@ -4,7 +4,8 @@ body { background-color:#FFFFFF; }
 .reg_head h1 { padding-top:30px;  color:#FFFFFF; font-size:16px; letter-spacing:2px; }
 .reg_body { position:relative; top:-70px; width:700px; margin:0 auto;}
 .reg_body h2 { line-height:70px; height:70px; border-radius:5px 5px 0 0; background-color:#428BCA; color:#FFFFFF; font-size:24px; font-weight:bold;}
-
+#register-form .notice { width:500px; margin:0 auto; margin-top:20px; text-align:left; line-height:28px; }
+#register-form .notice strong { color:#428BCA;}
 #register-form { width:698px; margin:0 auto; border:1px solid #CCCCCC; border-radius:0 0 5px 5px; background-color:#F5F5F5; }
 #register-form .label_icon_user, #login-form .label_icon_pw { float:left;  display:inline-block; border-radius:5px 0 0 5px; width:43px; height:42px; line-height:42px; text-align:center; background-color:#C2E5F3; }
 #register-form .fa_user:before { font-size:18px; content: "\f007"; color:#FFFFFF; }
@@ -26,7 +27,7 @@ body { background-color:#FFFFFF; }
 #register-form input.captcha { border-style:solid; border-width:1px; border-radius:5px; width:130px;}
 #register-form .captcha_img { float:left; width:140px; margin-left:20px; line-height:42px; height:42px; background-color:#CCCCCC;  border-radius:5px;}
 #register-form .captcha_img a { color:#428BCA; }
-#register-form .form_box { width:490px; padding:40px 0; margin-left:200px; }
+#register-form .form_box { width:490px; padding:20px 0 40px 0; margin-left:200px; }
 #register-form .form_box li { height:38px; line-height: 38px; margin-bottom: 20px; }
 #register-form .form_box li .errorMessage { float:right; width:160px; background-color:#F2DEDE;  border-radius:5px; border: 1px solid #EED3D7; }
 #register-form .fa_error:before { content: "\f00d"; margin-right:10px;}

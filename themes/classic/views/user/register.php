@@ -22,6 +22,7 @@
 				),
 			)); 
 		?>		
+			<p class="notice">温馨提示：请牢记您的账号和密码，并且填写<strong>常用邮箱</strong>作为找回密码的唯一凭证。注册成功后，您会收到<strong>激活账号</strong>的邮件，请注意查收。</p>
 			<ul class="form_box">
 				<li class="clear">
 					<label for="RegisterForm_username" class="label_icon_user"><i class="fa fa_user"></i></label>

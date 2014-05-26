@@ -46,9 +46,9 @@ class Soft extends CActiveRecord
 		return array(
 			array('catalog_id, pay, down_count', 'numerical', 'integerOnly'=>true),
 			array('title, cover_image, os, softlink', 'length', 'max'=>100),
-			array('fileid, filetype, language, softtype, softsize, update_time, create_time', 'length', 'max'=>10),
+			array('fileid, seo_title, seo_keywords', 'length', 'max'=>255),
+			array('filetype, language, softtype, softsize, update_time, create_time', 'length', 'max'=>10),
 			array('softrank, status', 'length', 'max'=>1),
-			array('seo_title, seo_keywords', 'length', 'max'=>255),
 			array('introduce, seo_description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

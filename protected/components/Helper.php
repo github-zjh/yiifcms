@@ -29,7 +29,7 @@ class Helper extends CController
 	}
 	
 	/**
-	 * 切割utf-8格式的字符串
+	 * 切割utf-8格式的字符串(一个汉字或者字符占一个字节)
 	 * 
 	 * @author zhao jinhan
 	 * @version v1.0.0

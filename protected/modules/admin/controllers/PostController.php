@@ -135,6 +135,7 @@ class PostController extends Backend
     			}
     		}
     		$model->create_time = time();
+    		$model->last_update_time = $model->create_time;
     		if($model->save())
     			$this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
     	}

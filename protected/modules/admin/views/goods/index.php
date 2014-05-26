@@ -12,10 +12,9 @@
         <option value="<?php echo $catalog['id']?>"><?php echo $catalog['str_repeat']?><?php echo $catalog['catalog_name']?></option>
         <?php endforeach;?>
       </select>
-  <?php echo Yii::t('admin','Title');?>
-      <input id="title" type="text" name="title" value="" class="txt" size="15"/>
-  <?php echo Yii::t('admin','Alias');?>
-      <input id="titleAlias" type="text" name="titleAlias" value="" class="txt" size="15"/>
+  <?php echo Yii::t('admin','Goods Name');?>
+      <input id="goods_name" type="text" name="goods_name" value="" class="txt" size="15"/> 
+    
       <input name="searchsubmit" type="submit"  value="<?php echo Yii::t('admin','Query');?>" class="button "/>
       <input name="searchsubmit" type="reset"  value="<?php echo Yii::t('admin','Reset');?>" class="button "/>     
       <?php $form=$this->endWidget(); ?>
@@ -24,8 +23,7 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
-	$("#title").val('<?php echo Yii::app()->request->getParam('title')?>');
-	$("#titleAlias").val('<?php echo Yii::app()->request->getParam('titleAlias')?>');
+	$("#goods_name").val('<?php echo Yii::app()->request->getParam('title')?>');
 	$("#catalogId").val('<?php echo Yii::app()->request->getParam('catalogId')?>');
 });
 </script>
@@ -34,7 +32,7 @@ $(document).ready(function(){
     <thead>
       <tr class="tb_header">
         <th width="10%">ID</th>
-        <th><?php echo Yii::t('admin','Title');?></th>
+        <th><?php echo Yii::t('admin','Goods Name');?></th>
         <th width="12%"><?php echo Yii::t('admin','Categorys');?></th>
         <th width="8%"><?php echo Yii::t('admin','Status');?></th>
         <th width="8%"><?php echo Yii::t('admin','Recommend');?></th>
@@ -44,15 +42,16 @@ $(document).ready(function(){
       </tr>
     </thead>
     <?php foreach ($datalist as $row):?>
-    <tr class="tb_list" <?php if($row->status_is=='N'):?>style=" background:#F0F7FC"<?php endif?>>
+    <tr class="tb_list" <?php if($row->status=='N'):?>style=" background:#F0F7FC"<?php endif?>>
       <td ><input type="checkbox" name="id[]" value="<?php echo $row->id?>">
         <?php echo $row->id?></td>
-      <td ><a href="<?php echo $row->getUrl() ?>" title="<?php echo $row->title; ?>" target="_blank" style="<?php echo $this->formatStyle($row->title_style);?>"><?php echo Helper::truncate_utf8_string($row->title, 20);?></a><br />
-        <span class="alias"><?php echo $row->title_alias?></span></td>
+      <td >
+      	<a href="<?php echo $this->createUrl('/goods/view', array('id'=>$row['id']));?>" title="<?php echo $row->goods_name; ?>" target="_blank"><?php echo Helper::truncate_utf8_string($row->goods_name, 20);?></a><br />
+      </td>
       <td ><?php echo $row->catalog->catalog_name?></td>
-      <td><?php if($row->status_is == 'Y'){echo Yii::t('admin','Show');}else{echo "<span class='red'>".Yii::t('admin','Hidden')."</span>";}?></td>
-      <td><?php if($row->commend == 'Y'){echo Yii::t('admin','Yes');}else{echo Yii::t('admin','No');}?></td>
-      <td><span ><?php echo $row->view_count?></span></td>
+      <td><?php if($row->status == 'Y'){echo Yii::t('admin','Show');}else{echo "<span class='red'>".Yii::t('admin','Hidden')."</span>";}?></td>
+      <td><?php if($row->recom_id > 0){echo Yii::t('admin','Yes');}else{echo Yii::t('admin','No');}?></td>
+      <td><span ><?php echo $row->views?></span></td>
       <td ><?php echo date('Y-m-d H:i',$row->create_time)?></td>
       <td >
       	<a href="<?php echo  $this->createUrl('update',array('id'=>$row->id))?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;

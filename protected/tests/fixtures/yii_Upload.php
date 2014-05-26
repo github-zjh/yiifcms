@@ -11,7 +11,6 @@ return array(
 		'file_mime' => '',
 		'file_size' => '',
 		'down_count' => '',
-		'access' => '',
 		'create_time' => '',
 	),
 	'sample2'=>array(
@@ -23,7 +22,6 @@ return array(
 		'file_mime' => '',
 		'file_size' => '',
 		'down_count' => '',
-		'access' => '',
 		'create_time' => '',
 	),
 	*/

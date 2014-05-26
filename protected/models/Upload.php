@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This is the model class for table "{{Upload}}".
+ * This is the model class for table "{{upload}}".
  *
- * The followings are the available columns in table '{{Upload}}':
+ * The followings are the available columns in table '{{upload}}':
  * @property string $id
  * @property string $user_id
  * @property string $real_name
@@ -13,7 +13,6 @@
  * @property string $file_mime
  * @property string $file_size
  * @property string $down_count
- * @property string $access
  * @property string $create_time
  */
 class Upload extends CActiveRecord
@@ -23,7 +22,7 @@ class Upload extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{Upload}}';
+		return '{{upload}}';
 	}
 
 	/**
@@ -35,13 +34,13 @@ class Upload extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('user_id, file_size, down_count, create_time', 'length', 'max'=>10),
-			array('real_name, thumb_name, access', 'length', 'max'=>255),
+			array('real_name, thumb_name', 'length', 'max'=>255),
 			array('file_name', 'length', 'max'=>100),
 			array('file_ext', 'length', 'max'=>5),
 			array('file_mime', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, user_id, real_name, file_name, thumb_name, file_ext, file_mime, file_size, down_count, access, create_time', 'safe', 'on'=>'search'),
+			array('id, user_id, real_name, file_name, thumb_name, file_ext, file_mime, file_size, down_count, create_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,7 +70,6 @@ class Upload extends CActiveRecord
 			'file_mime' => 'File Mime',
 			'file_size' => 'File Size',
 			'down_count' => 'Down Count',
-			'access' => 'Access',
 			'create_time' => 'Create Time',
 		);
 	}
@@ -111,8 +109,6 @@ class Upload extends CActiveRecord
 		$criteria->compare('file_size',$this->file_size,true);
 
 		$criteria->compare('down_count',$this->down_count,true);
-
-		$criteria->compare('access',$this->access,true);
 
 		$criteria->compare('create_time',$this->create_time,true);
 
