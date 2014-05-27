@@ -1,15 +1,50 @@
 @CHARSET "UTF-8";
 
 /* 个人中心 */
-.user { width:1170px; margin:0 auto; padding:20px 0; text-align:left; }
+.user { width:1170px; margin:0 auto; padding:40px 0; text-align:left; }
 .user_left { width:60%; }
 .user_right { width:30%; }
 .user_left .base_box { padding:20px; border:1px solid #DDDDDD; border-radius:5px; background-color:#F0F0F0;}
 .user_left .base_info { float:left; padding-left:20px;}
 .base_info li { line-height:33px; font-size:16px; font-weight:bold; }
-.base_info li label { width:85px; display:inline-block; font-weight:normal; }
+.base_info li label { width:100px; display:inline-block; font-weight:normal; }
+.base_info li span { font-size:12px;}
 .user_left .edit_btn { float:right; width:80px; height:32px; line-height:32px; background-color:#5CB85C; border-radius:3px; font-size:14px; color:#FFFFFF; text-align:center; }
 .user_left .fa_edit:before { content:"\f044"; }
 
 /* 编辑资料 */
-
+.user_edit  h2 { background-color:#F7F7F7; border-top:1px solid #DDDDDD; padding-left:20px; font-size:16px; line-height:32px; }
+.user_edit #edit_form { padding:20px 0; }
+.user_edit .base_table { width:90%; margin:0 auto; }
+.base_table tr { line-height:33px; }
+.base_table th { width:10%; font-size:14px; padding-bottom:10px;}
+.base_table td { font-size:14px; padding-bottom:10px; }
+.base_table input { 
+	width:260px;
+	height:33px; 
+	line-height:33px;
+	background-color: #E5E6E6;
+    border-left: 1px solid #666666;
+    border-radius: 3px;
+    border-top: 1px solid #666666;
+    padding: 0 10px;
+}
+.base_table textarea { 
+	width:260px;
+	padding: 10px;
+	background-color: #E5E6E6;
+    border-left: 1px solid #666666;
+    border-radius: 3px;
+    border-top: 1px solid #666666;
+	min-width:260px; max-width:260px; 
+	min-height:80px; max-height:80px; height:80px; }
+.base_table .submit {	
+	border-radius: 4px; 	
+	font-size: 14px; 
+	background-color: #5CB85C;
+	border-color: #4CAE4C; 
+	width:80px;
+	color:#FFFFFF;
+	text-align:center;
+	cursor:pointer;
+}

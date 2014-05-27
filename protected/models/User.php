@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This is the model class for table "{{User}}".
+ * This is the model class for table "{{user}}".
  *
- * The followings are the available columns in table '{{User}}':
+ * The followings are the available columns in table '{{user}}':
  * @property string $uid
  * @property string $username
  * @property string $password
@@ -11,6 +11,13 @@
  * @property string $groupid
  * @property integer $status
  * @property integer $addtime
+ * @property string $nickname
+ * @property string $sign
+ * @property string $web
+ * @property string $mobile
+ * @property string $qq
+ * @property string $last_login_ip
+ * @property string $logins
  */
 class User extends CActiveRecord
 {
@@ -19,7 +26,7 @@ class User extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{User}}';
+		return '{{user}}';
 	}
 
 	/**
@@ -30,15 +37,16 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, password, email, groupid', 'required' , 'on' => 'create'),
-			array('username, email, groupid', 'required' , 'on' => 'update'),
-			array('username, password, verifyCode', 'required' , 'on' => 'login'),
+			array('username, password, email', 'required'),
 			array('status, addtime', 'numerical', 'integerOnly'=>true),
-			array('username, password, email', 'length', 'max'=>100),
-			array('groupid', 'length', 'max'=>10),
+			array('username, password, email, sign, web', 'length', 'max'=>100),
+			array('groupid, logins', 'length', 'max'=>10),
+			array('nickname', 'length', 'max'=>50),
+			array('mobile, qq', 'length', 'max'=>11),
+			array('last_login_ip', 'length', 'max'=>15),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('uid, username, password, email, groupid, status, addtime', 'safe', 'on'=>'search'),
+			array('uid, username, password, email, groupid, status, addtime, nickname, sign, web, mobile, qq, last_login_ip, logins', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -66,6 +74,13 @@ class User extends CActiveRecord
 			'groupid' => Yii::t('model','groupid'),
 			'status' => Yii::t('model','status'),
 			'addtime' => Yii::t('model','addtime'),
+			'nickname' => Yii::t('model','nickname'),
+			'sign' => Yii::t('model','sign'),
+			'web' => Yii::t('model','web'),
+			'mobile' => Yii::t('model','mobile'),
+			'qq' => Yii::t('model','qq'),
+			'last_login_ip' => Yii::t('model','last_login_ip'),
+			'logins' => Yii::t('model','logins'),
 		);
 	}
 
@@ -101,6 +116,20 @@ class User extends CActiveRecord
 
 		$criteria->compare('addtime',$this->addtime);
 
+		$criteria->compare('nickname',$this->nickname,true);
+
+		$criteria->compare('sign',$this->sign,true);
+
+		$criteria->compare('web',$this->web,true);
+
+		$criteria->compare('mobile',$this->mobile,true);
+
+		$criteria->compare('qq',$this->qq,true);
+
+		$criteria->compare('last_login_ip',$this->last_login_ip,true);
+
+		$criteria->compare('logins',$this->logins,true);
+
 		return new CActiveDataProvider('User', array(
 			'criteria'=>$criteria,
 		));
@@ -121,16 +150,16 @@ class User extends CActiveRecord
 	 */
 	protected function beforeSave ()
 	{
-		if ($this->isNewRecord) {		
+		if ($this->isNewRecord) {
 			if($this->groupid <= 0)
 			{
 				$this->addError('groupid',Yii::t('admin','Group Is Required'));
 				return false;
-			}	
+			}
 			$this->password = CPasswordHelper::hashPassword($this->password, 8);
-			$this->addtime = time();					
-		}		
-		return true;		
+			$this->addtime = time();
+		}
+		return true;
 	}
 	
 	/**
@@ -139,6 +168,6 @@ class User extends CActiveRecord
 	 * @return [type]           [description]
 	 */
 	public function validatePassword($password){
-		return CPasswordHelper::verifyPassword($password, $this->password);				
+		return CPasswordHelper::verifyPassword($password, $this->password);
 	}
 }

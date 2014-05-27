@@ -44,15 +44,15 @@
 		</div>
 		<?php else:?>
 		<div id="logout">		
-			<a href="<?php echo $this->createUrl('user/index', array('id'=>Yii::app()->user->id));?>" class="show_drop">
+			<a href="<?php echo $this->createUrl('user/index');?>" class="show_drop">
 				<img src="<?php echo $this->_stylePath.'/images/avatar-small-img.png';?>" width="24" height="24" />
 				<label><?php echo Yii::app()->user->name;?></label>
 			</a>
 			<dl id="drop_down_user">
 				<dt></dt>
-				<dd><a href="<?php echo $this->createUrl('user/index', array('id'=>Yii::app()->user->id));?>">个人中心</a></dd>
-				<dd><a href="<?php echo $this->createUrl('user/set', array('id'=>Yii::app()->user->id));?>">设置</a></dd>
-				<dd><a href="<?php echo $this->createUrl('user/logout');?>">退出</a></dd>
+				<dd><a href="<?php echo $this->createUrl('user/index');?>"><i class="fa fa_userinfo"></i>个人中心</a></dd>
+				<dd><a href="<?php echo $this->createUrl('user/edit');?>"><i class="fa fa_setting"></i>设置</a></dd>
+				<dd><a href="<?php echo $this->createUrl('user/logout');?>"><i class="fa fa_poweroff"></i>退出</a></dd>
 			</dl>						
 		</div>
 		<?php endif;?>

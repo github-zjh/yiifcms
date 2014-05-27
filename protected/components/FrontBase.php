@@ -73,4 +73,41 @@ EOT;
 		//加载公共资源
 		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/global.css");		
 	}
+	
+	/**
+	 * 验证登录状态
+	 *
+	 */
+	public function auth(){
+		if (isset($_POST['sessionId'])) {
+			$session = Yii::app()->getSession();
+			$session->close();
+			$session->sessionID = $_POST['sessionId'];
+			$session->open();
+		}
+		if(Yii::app()->user->getIsGuest()){
+			$loginUrl = $this->createUrl('user/login');
+			$this->redirect($loginUrl);			
+		}		
+	}
+	
+	/**
+	 * 需要登录验证配置
+	 * !CodeTemplates.overridecomment.nonjd!
+	 * @see CController::beforeAction()
+	 */
+	public function beforeAction($action){
+		$controller = Yii::app()->getController()->id;
+		$action = $action->id;
+		//需要登录的页面
+		$need_auth = array(
+				'user/index',				
+				'user/edit',
+				
+		);		
+		if(in_array($controller.'/'.$action, $need_auth)){
+			$this->auth();			
+		}		
+		return true;
+	}
 }

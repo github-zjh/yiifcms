@@ -14,7 +14,7 @@ class UserController extends FrontBase
 	/**
 	 * @var CActiveRecord the currently loaded data model instance.
 	 */
-	private $_model;
+	private $_model;	
 	
 	/**
 	 * Declares class-based actions.
@@ -55,8 +55,10 @@ class UserController extends FrontBase
 		//加载css,js
 		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/user.css");
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
-	
-		$this->render('index');
+		//基本资料
+		$uid = Yii::app()->user->id;
+		$profile = User::model()->findByPk($uid);		
+		$this->render('index', array('profile'=>$profile));
 	}
 	
 	
@@ -71,8 +73,14 @@ class UserController extends FrontBase
 		//加载css,js
 		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/user.css");
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
-	
-		$this->render('edit');
+	    $model = $this->loadModel();	    
+	    if(isset($_POST['User'])){
+	    	$model->attributes = $_POST['User'];
+	    	if($model->save()){
+	    		$this->redirect($this->createUrl('index'));
+	    	}
+	    }
+		$this->render('edit', array('model'=>$model));
 	}
 	
 	/**
@@ -125,6 +133,13 @@ class UserController extends FrontBase
 			$model->attributes=$_POST['FloginForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login()){
+				
+				//更新登录次数和ip				
+				$user = $this->loadModel();					
+				$user->logins = $user->logins + 1;
+				$user->last_login_ip = $this->getClientIP();
+				$user->save();
+				
 				$this->message('success','登录成功',$_POST['ret_url']);
 				//$this->redirect($ret_url);
 			}
@@ -178,9 +193,11 @@ class UserController extends FrontBase
 			$userModel->password = $model->password;
 			$userModel->email = $model->email;
 			$userModel->status = -1; //待审核，要验证邮箱
-			$userModel->groupid = 1;
+			$userModel->groupid = 1;			
+			$userModel->nickname = $userModel->username;
+			$userModel->logins = 0;
 			// validate user input and redirect to the previous page if valid
-			if($userModel->save()){
+			if($userModel->save()){				
 				$this->activeAccount(array('id'=>$userModel->uid, 'email'=>$userModel->email, 'username'=>$userModel->username));
 				$this->message('success','注册成功, 请登录您的邮箱进行账号激活！', $this->createUrl('login'), 5);
 			}else{
@@ -255,8 +272,9 @@ class UserController extends FrontBase
 	{
 		if($this->_model===null)
 		{
-			if(isset($_GET['id']))
-				$this->_model=User::model()->findbyPk($_GET['id']);
+			$uid = Yii::app()->user->id;
+			if(isset($uid))
+				$this->_model=User::model()->findbyPk($uid);
 			if($this->_model===null)
 				throw new CHttpException(404,'The requested page does not exist.');
 		}

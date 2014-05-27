@@ -97,6 +97,10 @@ box-shadow: 0 5px 0 #e2534b;
 #drop_down_user dt { height:14px;}
 #drop_down_user a{ display:block; background-color:#3579A6; border-top:1px solid #FFFFFF; padding-left:20px; line-height:32px; height:32px; text-align:left; }
 #drop_down_user a:hover { background-color:#428BCA;}
+#drop_down_user .fa { margin-right:10px; }
+#drop_down_user .fa_userinfo:before { content: "\f007";}
+#drop_down_user .fa_setting:before { content: "\f013";}
+#drop_down_user .fa_poweroff:before { content: "\f011";}
 
 /* 公共内容main */
 #main { margin-top:56px; }

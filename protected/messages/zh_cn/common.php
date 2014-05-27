@@ -53,4 +53,6 @@ return array (
 						==================<br/><br/>再次感谢您的光顾，如果有其他疑问，
 						请联系本网站的管理员：<a href="mailto:{admin_email}">{admin_email}</a>。</p>',
 	'Edit User' => '编辑资料',
+	'Save' => '保存',
+	'Base Profile' => '基本资料',
 );

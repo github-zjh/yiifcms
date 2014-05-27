@@ -10,7 +10,7 @@ body { background-color:#FFFFFF; }
 #register-form .label_icon_user, #login-form .label_icon_pw { float:left;  display:inline-block; border-radius:5px 0 0 5px; width:43px; height:42px; line-height:42px; text-align:center; background-color:#82C2E1; }
 #register-form .fa_user:before { font-size:18px; content: "\f007"; color:#FFFFFF; }
 #register-form .fa_pw:before { font-size:18px; content: "\f084"; color:#FFFFFF;}
-#register-form .fa_email:before { font-size:18px; content: "@"; color:#FFFFFF;}
+#register-form .fa_email:before { font-size:18px; content: "\f003"; color:#FFFFFF;}
 #register-form input.form-control {
 	float:left;
 	padding-left:10px; 
