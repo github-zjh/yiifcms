@@ -20,29 +20,67 @@
 				<tr><th><?php echo $form->label($model,'mobile');?>：</th><td><?php echo $form->textField($model,'mobile');?></td></tr>				
 			</table>
 			<dl class="upload_avatar">
-				<dt><img id="avatar_src" alt="我的头像" src="<?php echo $model->avatar?$model->avatar:$this->_stylePath.'/images/avatar-max-img.png';?>"></dt>
+				<dt><img id="avatar_src" width="100" height="100" alt="我的头像" src="<?php echo $model->avatar?$model->avatar:$this->_stylePath.'/images/avatar-max-img.png';?>"></dt>
 				<dd class="upload_desc clear">
 					<p>上传头像</p>
 					<p>仅支持JPG,PNG,GIF,BMP格式的图片</p>
 					<div class="upload_btn">
 						<a href="javascript:;" class="btn_text"><?php echo Yii::t('common','Upload Image');?></a>
-						<?php echo $form->fileField($model,'avatar', array('class'=>"btn_file"));?>
+						<input type="file" id="uploadAvatar" />
+						<?php echo $form->hiddenField($model,'avatar');?>
+						<div id="fileQueue" style="clear:both"></div>
 						<script type="text/javascript">
-							$(function(){
-								$("#User_avatar").change(function(){
-									var avatar = $(this).val();
-									if(avatar){
-										$.post("<?php echo $this->createUrl('user/setting');?>",{'ajax':'upload_avatar','User_avatar':avatar},function(data){
-											$(".upload_avatar_status").show();
-											if(data.state == 'error'){												
-												$("#upload_msg").text(data.message).css("color","#F00");
-											}
-										},'json');
-									}
-								});
-							});
+						$(function(){							
+							//上传
+							 $('#uploadAvatar').uploadify({		 	
+								    'overrideEvents':['onDialogClose','onSelectError','onUploadSuccess','onUploadError','onFallback'],  //覆盖原来的触发函数  	
+							        'buttonText': '<?php echo Yii::t('common','Upload Image');?>',
+							        'fileObjName': 'imgFile',
+							        'method': 'post',
+							        'multi': false,	        	        
+									'queueID': 'fileQueue',	
+							        'fileSizeLimit' : '2MB',
+							        'fileTypeExts': '*.jpg;*.png;*.gif;*.bmp;',
+							        'formData': {
+							            'sessionId'   : '<?php echo Yii::app()->session->sessionID; ?>',
+										'timestamp'   : '<?php echo time();?>',
+										'token'       : '<?php echo md5('unique_salt'.time()); ?>'
+							        },
+							        'swf': '<?php echo $this->_baseUrl;?>/static/public/js/uploadify/uploadify.swf',
+							        'uploader': '<?php echo $this->createUrl('uploadify/index',array('dir'=>'avatar','thumb'=>true));?>',	                
+							       	'onSelectError':function(file, errorCode, errorMsg){
+								       	var msg = '';
+								     	switch(errorCode){		     		
+								     		case -110:
+								     			msg += "上传文件大小超过限制的"+$("#uploadFile").uploadify('settings','fileSizeLimit');
+								     			break;
+								     		case -130:
+								     			msg += "只允许上传："+$("#uploadFile").uploadify('settings','fileTypeExts')+" 格式的文件";
+								     		default:
+								     			msg += "上传错误："+errorCode+" "+errorMsg;
+								     			break;
+								     	}
+								     	$(".upload_avatar_status").show();
+								     	$("#upload_msg").text(msg);
+								     },			        
+							        'onUploadSuccess': function(file, data, response) { 								        
+							            var json = $.parseJSON(data);    
+							            if (json.state == 'success') {		            
+							               $("#User_avatar").val(json.thumb);
+							               $("#avatar_src").attr('src',json.thumb);
+							            } else {
+							            	$(".upload_avatar_status").show();
+									     	$("#upload_msg").text(json.message);
+							            }
+							        },
+							        'onFallback' : function() {
+							            alert('您未安装FLASH控件，无法上传！请先安装FLASH控件后再试。');
+							        }
+							    });
+							 	
+						});
 						</script>
-						<!-- <input type="file" class="btn_file" name="avatar" value="" /> -->												
+																		
 					</div>				
 					<span class="upload_avatar_status"><i class="ajax_loading"></i><span id="upload_msg">文件上传中...</span></span>						
 				</dd>
@@ -52,3 +90,4 @@
 			
 		<?php $this->endWidget();?>
 	</div>
+	<script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/public/js/uploadify/jquery.uploadify.min.js"></script>

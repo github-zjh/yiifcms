@@ -105,6 +105,8 @@ EOT;
 				'user/setting',
 				'user/settingPwd',
 				'user/settingEmail',
+				'uploadify/index',
+				'uploadify/file',
 				
 		);		
 		if(in_array($controller.'/'.$action, $need_auth)){

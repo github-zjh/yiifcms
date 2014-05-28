@@ -49,7 +49,7 @@
 .upload_desc .upload_btn { float:left; width:80px; height:28px; position:relative; bottom:-5px; overflow:hidden; }
 .upload_btn .btn_text { display:block; height:28px; line-height:28px; border-radius: 4px; font-size: 14px;	background-color: #5CB85C;
 	border-color: #4CAE4C;	color:#FFFFFF;	text-align:center;}
-.upload_btn .btn_file { position:absolute; top:0; opacity:0; cursor:pointer; }
+.upload_btn .uploadify { position:absolute; top:0; opacity:0; cursor:pointer; }
 .upload_avatar_status { display:none; float:left; margin-left:10px; padding-left:16px; position:relative; bottom:-10px; background:url(../images/ajax_loading.gif) no-repeat;}
 #edit_form .submit {	
 	margin-top:20px;
