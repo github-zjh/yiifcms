@@ -51,7 +51,7 @@
 			<dl id="drop_down_user">
 				<dt></dt>
 				<dd><a href="<?php echo $this->createUrl('user/index');?>"><i class="fa fa_userinfo"></i>个人中心</a></dd>
-				<dd><a href="<?php echo $this->createUrl('user/edit');?>"><i class="fa fa_setting"></i>设置</a></dd>
+				<dd><a href="<?php echo $this->createUrl('user/setting');?>"><i class="fa fa_setting"></i>设置</a></dd>
 				<dd><a href="<?php echo $this->createUrl('user/logout');?>"><i class="fa fa_poweroff"></i>退出</a></dd>
 			</dl>						
 		</div>

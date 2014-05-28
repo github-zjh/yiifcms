@@ -1,5 +1,11 @@
 	<div class="user user_edit">
-		<h2><?php echo Yii::t('common','Base Profile');?></h2>
+		<ul class="tab_menu clear">		
+			<li class="active"><a href="<?php echo $this->createUrl('user/settingEmail');?>"><?php echo Yii::t('common','Setting Email');?></a></li>
+			<li><a href="<?php echo $this->createUrl('user/settingPwd');?>"><?php echo Yii::t('common','Setting Pwd');?></a></li>
+			<li><a href="<?php echo $this->createUrl('user/setting');?>"><?php echo Yii::t('common','Base Profile');?></a></li>
+			<h2><?php echo Yii::t('common','User Setting');?></h2>
+		</ul>
+		<h3><?php echo Yii::t('common','Setting Email');?></h3>
 		<?php 
 			$form=$this->beginWidget('CActiveForm',
 			array('id'=>'edit_form','htmlOptions'=>array('name'=>'edit_form','enctype'=>'multipart/form-data'))); 

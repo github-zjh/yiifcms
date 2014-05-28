@@ -12,8 +12,13 @@
 .user_left .edit_btn { float:right; width:80px; height:32px; line-height:32px; background-color:#5CB85C; border-radius:3px; font-size:14px; color:#FFFFFF; text-align:center; }
 .user_left .fa_edit:before { content:"\f044"; }
 
-/* 编辑资料 */
-.user_edit  h2 { background-color:#F7F7F7; border-top:1px solid #DDDDDD; padding-left:20px; font-size:16px; line-height:32px; }
+/* 用户设置 */
+.user_edit .tab_menu {  border-bottom:1px solid #DDDDDD;}
+.user_edit .tab_menu li { float:right; width:100px;  border:1px solid #DDDDDD; border-bottom:none; margin-left:4px; line-height:33px; font-size:14px; text-align:center; }
+.tab_menu li a { display:block; color:#428BCA; }
+.tab_menu li a:hover, .tab_menu li.active a { position:relative; bottom:-1px; background-color:#FFFFFF; color:#555555; }
+.tab_menu h2 { float:left; padding-left:20px; font-size:18px; line-height:33px;}
+.user_edit  h3 { background-color:#F7F7F7; padding-left:20px; font-size:16px; line-height:32px; }
 .user_edit #edit_form { padding:20px 0; }
 .user_edit .base_table { width:90%; margin:0 auto; }
 .base_table tr { line-height:33px; }

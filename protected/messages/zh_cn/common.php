@@ -52,7 +52,10 @@ return array (
 						<a href="{authurl}">{authurl}</a><br/><br/>(如果上面链接不能点击，请复制到浏览器地址栏中进行访问。)<br/><br/>
 						==================<br/><br/>再次感谢您的光顾，如果有其他疑问，
 						请联系本网站的管理员：<a href="mailto:{admin_email}">{admin_email}</a>。</p>',
-	'Edit User' => '编辑资料',
+	'User Setting' => '用户设置',
+	'Edit' => '编辑',
 	'Save' => '保存',
 	'Base Profile' => '基本资料',
+	'Setting Email' => '邮箱修改',
+	'Setting Pwd' => '密码修改',
 );

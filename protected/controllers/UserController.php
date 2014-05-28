@@ -61,15 +61,13 @@ class UserController extends FrontBase
 		$this->render('index', array('profile'=>$profile));
 	}
 	
-	
-
 	/**
-	 * 编辑资料
-	 *
-	 */
-	public function actionEdit()
-	{
-		$this->_seoTitle = Yii::t('common','Edit User').' - '.$this->_setting['site_name'];
+	 * 用户设置
+	 * @param string $setting
+	 */	
+	public function actionSetting()
+	{		
+		$this->_seoTitle = Yii::t('common','User Setting').' - '.Yii::t('common','Base Profile').' - '.$this->_setting['site_name'];
 		//加载css,js
 		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/user.css");
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
@@ -80,7 +78,47 @@ class UserController extends FrontBase
 	    		$this->redirect($this->createUrl('index'));
 	    	}
 	    }
-		$this->render('edit', array('model'=>$model));
+		$this->render('setting_profile', array('model'=>$model));
+	}
+	
+	/**
+	 * 修改邮箱
+	 * @param string $setting
+	 */
+	public function actionSettingEmail()
+	{
+		$this->_seoTitle = Yii::t('common','User Setting').' - '.Yii::t('common','Setting Email').' - '.$this->_setting['site_name'];
+		//加载css,js
+		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/user.css");
+		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
+		$model = $this->loadModel();
+		if(isset($_POST['User'])){
+			$model->attributes = $_POST['User'];
+			if($model->save()){
+				$this->redirect($this->createUrl('index'));
+			}
+		}
+		$this->render('setting_email', array('model'=>$model));
+	}
+	
+	/**
+	 * 修改密码
+	 * @param string $setting
+	 */
+	public function actionSettingPwd()
+	{
+		$this->_seoTitle = Yii::t('common','User Setting').' - '.Yii::t('common','Setting Pwd').' - '.$this->_setting['site_name'];
+		//加载css,js
+		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/user.css");
+		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
+		$model = $this->loadModel();
+		if(isset($_POST['User'])){
+			$model->attributes = $_POST['User'];
+			if($model->save()){
+				$this->redirect($this->createUrl('index'));
+			}
+		}
+		$this->render('setting_pwd', array('model'=>$model));
 	}
 	
 	/**

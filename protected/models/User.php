@@ -41,6 +41,7 @@ class User extends CActiveRecord
 			array('status, addtime', 'numerical', 'integerOnly'=>true),
 			array('username, password, email, sign, web', 'length', 'max'=>100),
 			array('groupid, logins', 'length', 'max'=>10),
+			array('nickname','unique'),
 			array('nickname', 'length', 'max'=>50),
 			array('mobile, qq', 'length', 'max'=>11),
 			array('last_login_ip', 'length', 'max'=>15),
