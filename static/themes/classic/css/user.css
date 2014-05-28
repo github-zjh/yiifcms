@@ -20,10 +20,9 @@
 .tab_menu h2 { float:left; padding-left:20px; font-size:18px; line-height:33px;}
 .user_edit  h3 { background-color:#F7F7F7; padding-left:20px; font-size:16px; line-height:32px; }
 .user_edit #edit_form { padding:20px 0; }
-.user_edit .base_table { width:90%; margin:0 auto; }
+.user_edit .base_table { float:left; margin-left:5%; width:40%; }
 .base_table tr { line-height:33px; }
-.base_table th { width:10%; font-size:14px; padding-bottom:10px;}
-.base_table td { font-size:14px; padding-bottom:10px; }
+.base_table th, .base_table td{ font-size:14px; padding-bottom:10px;}
 .base_table input { 
 	width:260px;
 	height:33px; 
@@ -43,7 +42,19 @@
     border-top: 1px solid #666666;
 	min-width:260px; max-width:260px; 
 	min-height:80px; max-height:80px; height:80px; }
-.base_table .submit {	
+.upload_avatar { float:right; width:40%;}
+.upload_avatar dt { width:100px; float:left;}
+.upload_avatar .upload_desc { float:left; padding-left:20px;}
+.upload_desc p { line-height:33px;}
+.upload_desc .upload_btn { float:left; width:80px; height:28px; position:relative; bottom:-5px; overflow:hidden; }
+.upload_btn .btn_text { display:block; height:28px; line-height:28px; border-radius: 4px; font-size: 14px;	background-color: #5CB85C;
+	border-color: #4CAE4C;	color:#FFFFFF;	text-align:center;}
+.upload_btn .btn_file { position:absolute; top:0; opacity:0; cursor:pointer; }
+.upload_avatar_status { display:none; float:left; margin-left:10px; padding-left:16px; position:relative; bottom:-10px; background:url(../images/ajax_loading.gif) no-repeat;}
+#edit_form .submit {	
+	margin-top:20px;
+	margin-left:29%;
+	height:33px;
 	border-radius: 4px; 	
 	font-size: 14px; 
 	background-color: #5CB85C;

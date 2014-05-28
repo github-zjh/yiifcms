@@ -58,4 +58,5 @@ return array (
 	'Base Profile' => '基本资料',
 	'Setting Email' => '邮箱修改',
 	'Setting Pwd' => '密码修改',
+	'Upload Image' => '上传图片',
 );

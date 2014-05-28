@@ -102,7 +102,9 @@ EOT;
 		//需要登录的页面
 		$need_auth = array(
 				'user/index',				
-				'user/edit',
+				'user/setting',
+				'user/settingPwd',
+				'user/settingEmail',
 				
 		);		
 		if(in_array($controller.'/'.$action, $need_auth)){

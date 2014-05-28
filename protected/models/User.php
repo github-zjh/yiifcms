@@ -11,6 +11,7 @@
  * @property string $groupid
  * @property integer $status
  * @property integer $addtime
+ * @property string $avatar
  * @property string $nickname
  * @property string $sign
  * @property string $web
@@ -39,15 +40,14 @@ class User extends CActiveRecord
 		return array(
 			array('username, password, email', 'required'),
 			array('status, addtime', 'numerical', 'integerOnly'=>true),
-			array('username, password, email, sign, web', 'length', 'max'=>100),
+			array('username, password, email, avatar, sign, web', 'length', 'max'=>100),
 			array('groupid, logins', 'length', 'max'=>10),
-			array('nickname','unique'),
 			array('nickname', 'length', 'max'=>50),
 			array('mobile, qq', 'length', 'max'=>11),
 			array('last_login_ip', 'length', 'max'=>15),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('uid, username, password, email, groupid, status, addtime, nickname, sign, web, mobile, qq, last_login_ip, logins', 'safe', 'on'=>'search'),
+			array('uid, username, password, email, groupid, status, addtime, avatar, nickname, sign, web, mobile, qq, last_login_ip, logins', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,7 +67,7 @@ class User extends CActiveRecord
 	 */
 	public function attributeLabels()
 	{
-		return array(
+		return array(		
 			'uid' => Yii::t('model','uid'),
 			'username' => Yii::t('model','username'),
 			'password' => Yii::t('model','password'),
@@ -75,6 +75,7 @@ class User extends CActiveRecord
 			'groupid' => Yii::t('model','groupid'),
 			'status' => Yii::t('model','status'),
 			'addtime' => Yii::t('model','addtime'),
+			'avatar' => Yii::t('model','avatar'),
 			'nickname' => Yii::t('model','nickname'),
 			'sign' => Yii::t('model','sign'),
 			'web' => Yii::t('model','web'),
@@ -116,6 +117,8 @@ class User extends CActiveRecord
 		$criteria->compare('status',$this->status);
 
 		$criteria->compare('addtime',$this->addtime);
+
+		$criteria->compare('avatar',$this->avatar,true);
 
 		$criteria->compare('nickname',$this->nickname,true);
 

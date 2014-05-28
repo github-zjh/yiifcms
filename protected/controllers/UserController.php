@@ -71,7 +71,34 @@ class UserController extends FrontBase
 		//加载css,js
 		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/user.css");
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
+		
 	    $model = $this->loadModel();	    
+	    
+	    // if it is ajax validation request
+	    if(isset($_POST['ajax']) && $_POST['ajax']==='edit_form')
+	    {
+	    	echo CActiveForm::validate($model);
+	    	Yii::app()->end();
+	    }
+	    // if it is ajax validation request
+	    if(isset($_POST['ajax']) && $_POST['ajax']==='upload_avatar')
+	    {	    	
+	    	//上传头像
+	    	$upload = new XUpload;
+	    	$upload->_image_path = 'upload/avatar/';
+	    	$upload->_thumb_path = 'upload/avatar/';
+	    	$upload->_max_upload_filesize = '2M';
+	    	$upload->_thumb_height = '100';
+	    	$upload->_thumb_width = '100';	    	
+	    	$upload->uploadFile($_FILES['User[avatar]'], true);
+	    	if($upload->_error){
+	    		$upload->deleteFile($upload->_file_name);
+	    		$upload->deleteFile($upload->_thumb_name);
+	    		exit( CJSON::encode( array ( 'state' => 'error' , 'message' => Yii::t('admin',$upload->_error) ) ) );
+	    	}else{
+	    		exit( CJSON::encode( array ( 'state' => 'success' , 'file' =>  $uploadModel->file_name ) ) );
+	    	}
+	    }
 	    if(isset($_POST['User'])){
 	    	$model->attributes = $_POST['User'];
 	    	if($model->save()){
@@ -91,7 +118,8 @@ class UserController extends FrontBase
 		//加载css,js
 		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/user.css");
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
-		$model = $this->loadModel();
+		$model = $this->loadModel();		
+		
 		if(isset($_POST['User'])){
 			$model->attributes = $_POST['User'];
 			if($model->save()){
