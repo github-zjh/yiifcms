@@ -36,21 +36,25 @@
 .base_table textarea { 
 	width:260px;
 	padding: 10px;
+	overflow-y:auto;
 	background-color: #E5E6E6;
     border-left: 1px solid #666666;
     border-radius: 3px;
     border-top: 1px solid #666666;
 	min-width:260px; max-width:260px; 
 	min-height:80px; max-height:80px; height:80px; }
-.upload_avatar { float:right; width:40%;}
+.upload_avatar { float:right; width:50%;}
 .upload_avatar dt { width:100px; float:left;}
 .upload_avatar .upload_desc { float:left; padding-left:20px;}
 .upload_desc p { line-height:33px;}
-.upload_desc .upload_btn { float:left; width:80px; height:28px; position:relative; bottom:-5px; overflow:hidden; }
-.upload_btn .btn_text { display:block; height:28px; line-height:28px; border-radius: 4px; font-size: 14px;	background-color: #5CB85C;
-	border-color: #4CAE4C;	color:#FFFFFF;	text-align:center;}
-.upload_btn .uploadify { position:absolute; top:0; opacity:0; cursor:pointer; }
-.upload_avatar_status { display:none; float:left; margin-left:10px; padding-left:16px; position:relative; bottom:-10px; background:url(../images/ajax_loading.gif) no-repeat;}
+.upload_cut_box { width:300px; float:left;}	
+.upload_desc .upload_btn { float:left; width:80px; height:28px; position:relative; overflow:hidden; }
+.btn_text { display:block; height:28px; line-height:28px; border-radius: 4px; font-size: 14px;	background-color: #5CB85C;border-color: #4CAE4C;	color:#FFFFFF;	text-align:center;}
+.submit_cut { width:80px; height:28px; margin-top:10px; padding-left:20px; float:left;}
+.upload_btn .uploadify { position:absolute; top:0; opacity:0; cursor:pointer; filter:alpha(opacity=0);}
+.upload_avatar_status { display:none; float:left; margin-left:10px; padding-left:16px; position:relative; background:url(../images/ajax_loading.gif) no-repeat; bottom:-5px; }
+
+	
 #edit_form .submit {	
 	margin-top:20px;
 	margin-left:29%;

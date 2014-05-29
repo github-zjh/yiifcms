@@ -18,16 +18,20 @@
 				<tr><th><?php echo $form->label($model,'web');?>：</th><td><?php echo $form->textField($model,'web');?></td></tr>
 				<tr><th><?php echo $form->label($model,'qq');?>：</th><td><?php echo $form->textField($model,'qq');?></td></tr>
 				<tr><th><?php echo $form->label($model,'mobile');?>：</th><td><?php echo $form->textField($model,'mobile');?></td></tr>				
-			</table>
+			</table>			
 			<dl class="upload_avatar">
-				<dt><img id="avatar_src" width="100" height="100" alt="我的头像" src="<?php echo $model->avatar?$model->avatar:$this->_stylePath.'/images/avatar-max-img.png';?>"></dt>
+				<div class="upload_cut_box"><img width="300" heigth="300" src="<?php echo $this->_stylePath.'/images/avatar_cut_box.jpg';?>" id="cropbox" /></div>
+				<dt class="upload_desc">					
+					<img id="avatar_src" width="100" height="100" alt="我的头像" src="<?php echo $model->avatar?$model->avatar:$this->_stylePath.'/images/avatar-max-img.png';?>">
+				</dt>
 				<dd class="upload_desc clear">
 					<p>上传头像</p>
-					<p>仅支持JPG,PNG,GIF,BMP格式的图片</p>
+					<p>仅支持JPG,PNG,GIF,BMP格式的图片,<br/>大小不小于100*100。</p>
 					<div class="upload_btn">
 						<a href="javascript:;" class="btn_text"><?php echo Yii::t('common','Upload Image');?></a>
 						<input type="file" id="uploadAvatar" />
 						<?php echo $form->hiddenField($model,'avatar');?>
+						<input type="hidden" id="tmpFile" />
 						<div id="fileQueue" style="clear:both"></div>
 						<script type="text/javascript">
 						$(function(){							
@@ -35,11 +39,13 @@
 							 $('#uploadAvatar').uploadify({		 	
 								    'overrideEvents':['onDialogClose','onSelectError','onUploadSuccess','onUploadError','onFallback'],  //覆盖原来的触发函数  	
 							        'buttonText': '<?php echo Yii::t('common','Upload Image');?>',
-							        'fileObjName': 'imgFile',
+							        'fileObjName': 'avatar',
 							        'method': 'post',
 							        'multi': false,	        	        
 									'queueID': 'fileQueue',	
 							        'fileSizeLimit' : '2MB',
+							        'queueSizeLimit' : 1,
+							        'uploadLimit':1,
 							        'fileTypeExts': '*.jpg;*.png;*.gif;*.bmp;',
 							        'formData': {
 							            'sessionId'   : '<?php echo Yii::app()->session->sessionID; ?>',
@@ -47,7 +53,7 @@
 										'token'       : '<?php echo md5('unique_salt'.time()); ?>'
 							        },
 							        'swf': '<?php echo $this->_baseUrl;?>/static/public/js/uploadify/uploadify.swf',
-							        'uploader': '<?php echo $this->createUrl('uploadify/index',array('dir'=>'avatar','thumb'=>true));?>',	                
+							        'uploader': '<?php echo $this->createUrl('uploadify/avatar');?>',	                
 							       	'onSelectError':function(file, errorCode, errorMsg){
 								       	var msg = '';
 								     	switch(errorCode){		     		
@@ -62,14 +68,27 @@
 								     	}
 								     	$(".upload_avatar_status").show();
 								     	$("#upload_msg").text(msg);
-								     },			        
-							        'onUploadSuccess': function(file, data, response) { 								        
-							            var json = $.parseJSON(data);    
-							            if (json.state == 'success') {		            
-							               $("#User_avatar").val(json.thumb);
-							               $("#avatar_src").attr('src',json.thumb);
-							            } else {
-							            	$(".upload_avatar_status").show();
+								     },		
+								     'onUploadStart' : function(file) {
+								    	 $(".upload_avatar_status").show();	
+								    	 $("#upload_msg").text('文件上传中...');
+								     }, 								        
+							        'onUploadSuccess': function(file, data, response) {								       								        
+							            var json = $.parseJSON(data);  
+							            if (json.state == 'success') {		   
+							               $(".upload_avatar_status").show().html('上传成功').css('color',"#F00");         
+							               $("#tmpFile").val(json.file);
+							               $("#cropbox").attr('src',json.file);
+
+							               //加载上传的图片
+							               $('#cropbox').Jcrop({
+											      aspectRatio: 1,
+											      onSelect: updateCoords,
+											      minSize:   [ 100, 100],
+											      maxSize:   [ 100, 100]						     
+											});
+												               
+							            } else {							            	
 									     	$("#upload_msg").text(json.message);
 							            }
 							        },
@@ -79,10 +98,59 @@
 							    });
 							 	
 						});
+
+						//裁剪图片
+						$(function(){						   
+						    $("#submit_cut").click(function(){
+							    var file = $("#tmpFile").val();
+							    if(file){
+							    var x = parseInt($('#x').val());
+							    var y = parseInt($('#y').val());
+							    var w = parseInt($('#w').val());
+							    var h = parseInt($('#h').val());
+						    	 if (w>0) {
+									$.post("<?php echo $this->createUrl('uploadify/submitCut');?>",{'file':file,'x':x,'y':y,'w':w,'h':h},
+									 function(data){
+										if(data.state == 'success'){
+											$("#User_avatar").val(data.avatar);											
+											$("#avatar_src").attr('src',data.avatar+'?r='+Math.random()); //防止浏览器缓存
+											$(".upload_avatar_status").show().html('剪切成功').css('color',"#F00");										    	
+										}else{
+											$("#upload_msg").text(data.message);
+										}
+									},'json');
+
+						    	 }else{
+						    	  	alert('请选择剪切区域再提交');
+						    	 }		
+							    }else{
+							    	alert('请上传一个图片');
+								 }			    	
+						    	  
+							});
+						  });
+
+						  function updateCoords(c)
+						  {
+						    $('#x').val(c.x);
+						    $('#y').val(c.y);
+						    $('#w').val(c.w);
+						    $('#h').val(c.h);
+						  };
+						  
 						</script>
 																		
 					</div>				
-					<span class="upload_avatar_status"><i class="ajax_loading"></i><span id="upload_msg">文件上传中...</span></span>						
+					<span class="upload_avatar_status"><i class="ajax_loading"></i><span id="upload_msg">文件上传中...</span></span>		
+				</dd>
+				<dd class="submit_cut">
+					<a class="btn_text" id="submit_cut" href="javascript:;">
+						<input type="hidden" id="x" name="x" />
+						<input type="hidden" id="y" name="y" />
+						<input type="hidden" id="w" name="w" />
+						<input type="hidden" id="h" name="h" />
+						确认剪切				
+					</a>	
 				</dd>
 			</dl>
 			<div class="clear"></div>
@@ -91,3 +159,4 @@
 		<?php $this->endWidget();?>
 	</div>
 	<script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/public/js/uploadify/jquery.uploadify.min.js"></script>
+	<script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/public/js/jquery/jquery.Jcrop.min.js"></script>	

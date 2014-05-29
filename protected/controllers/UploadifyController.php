@@ -82,7 +82,86 @@ class UploadifyController extends FrontBase
             }            	
             
         }
-    }        
+    }      
+
+    /**
+     * 上传头像
+     */
+    public function actionAvatar() {
+    	if (Yii::app()->request->isPostRequest) {    		
+    		$file = new XUpload;    		
+    		$dir = 'avatar';
+			$file->_image_path = 'uploads/' . $dir . '/';	
+			$file->_thumb_path = 'uploads/' . $dir . '/';
+    		if(is_array($_FILES['avatar']) && !empty($_FILES['avatar'])){    			
+    			$file->uploadFile($_FILES['avatar'],true);
+    			if($file->_error){    				
+    				$file->deleteFile($file->_thumb_name);
+    				exit( CJSON::encode( array ( 'status' => 'error' , 'message' => Yii::t('admin',$file->_error) ) ) );
+    			}else{    			
+    				$uid = Yii::app()->user->id;
+    				$file->deleteFile($file->_file_name);        			
+    				list($basepath_1, $basepath_2, $basepath_3, $basename) = explode('/',$file->_file_name);     				
+    				$basepath = $basepath_1.'/'.$basepath_2.'/'.$basepath_3;
+    				$old_file_name = $basepath.'/'.$uid.'_old_'.$basename;    				
+    				@rename($file->_thumb_name, $old_file_name); //删除大图保留缩略图,并重命名
+    				exit( CJSON::encode( array ( 'state' => 'success' , 'message' => Yii::t('admin','Upload Success') , 'file' => $old_file_name)));
+    			}    			
+    		}else{
+    			exit( CJSON::encode( array ( 'state' => 'error' , 'message' => Yii::t('admin','Please select a file.') ) ) );
+    		}    		
+    
+    	}
+    }
+    /**
+     * 提交剪切
+     * 
+     */
+    public function actionSubmitCut(){
+    	if (Yii::app()->request->isPostRequest) {
+    		//接收缩略图
+	    	$filename = $_POST['file'];  
+	    	//MIME TYPE  	
+	    	$image_info = XUpload::getImageInfo($filename);
+	    	$pathinfo = pathinfo($filename);
+	    	//带扩展名的文件名称
+	    	$basename = $pathinfo['basename'];
+	    	 	
+	    	if(file_exists($filename)){
+		    	//上传成功后剪切
+		    	$mime = strtolower($image_info['mime']);		    	
+		    	if($mime == 'image/gif' ){
+		    		$im = @imagecreatefromgif($filename); /* Attempt to open */
+		    		$outfun = 'imagegif';
+		    	} elseif($mime == 'image/png' ){
+		    		$im = @imagecreatefrompng($filename); /* Attempt to open */
+		    		$outfun = 'imagepng';
+		    	} else{
+		    		$im = @imagecreatefromjpeg($filename); /* Attempt to open */
+		    		$outfun = 'imagejpeg';
+		    	}
+		    	$bgimg = ImageCreateTrueColor( 100, 100 );
+		    	$white = imagecolorallocate($bgimg, 255, 255, 255);
+		    	//填充背景色为白色
+		    	imagefill($bgimg,0,0,$white);		    	
+		    	imagecopyresampled($bgimg,$im,0,0,$_POST['x'],$_POST['y'],100,100,$_POST['w'],$_POST['h']);	 
+		    	$uid = Yii::app()->user->id;
+		    	$avatar_path = 'uploads/avatar/'.date('Ym');
+		    	if(!is_dir($avatar_path)){
+		    		mkdir($avatar_path, 0777, true);
+		    	}
+		    	$avatar_path .= '/small_'.$basename;		    	
+		    	//输出图片
+		    	$outfun($bgimg, $avatar_path);
+		    	imagedestroy($bgimg);
+		    	exit( CJSON::encode( array ( 'state' => 'success' , 'message' => Yii::t('admin','Upload Success') , 'avatar' => $avatar_path)));
+	    	}else{
+	    		exit( CJSON::encode( array ( 'state' => 'error' , 'message' => Yii::t('admin','Please select a file.'))));
+	    	}
+    	}else{
+    		exit( CJSON::encode( array ( 'state' => 'error' , 'message' => Yii::t('admin','Please select a file.'))));
+    	}
+    }
     
     /**
      * 上传文件(单个不能超过50M)
@@ -133,29 +212,7 @@ class UploadifyController extends FrontBase
     		}
     
     	}
-    }
-    
+    }    
 
-    /**
-     * 删除附件
-     * @return [type] [description]
-     */
-    public function actionRemove() {
-        $imageId = intval( $this->_request->getParam( 'imageId' ) );
-        try {
-            $imageModel = Upload::model()->findByPk( $imageId );
-            if ( $imageModel ==false )
-                throw new Exception( "附件已经被删除" );
-            XUpload::deleteFile($imageModel->file_name);
-            XUpload::deleteFile($imageModel->thumb_name);           
-            if ( !$imageModel->delete() )
-                throw new Exception( "数据删除失败" );
-            $var['state'] = 'success';
-            $var['message'] = '删除完成';
-        } catch ( Exception $e ) {
-            $var['state'] = 'errro';
-            $var['message'] = '失败：'.$e->getMessage();
-        }
-        exit( CJSON::encode( $var ) );
-    }
+    
 }

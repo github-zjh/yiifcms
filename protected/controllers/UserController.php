@@ -72,10 +72,10 @@ class UserController extends FrontBase
 		//加载css,js
 		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/user.css");
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
+		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/jquery.Jcrop.min.css");		
 		
 	    $model = $this->loadModel();	    
-	    $old_avatar = $model->avatar;
-	    $old_small_avatar = str_replace('small_','',$old_avatar);
+	    $old_avatar = $model->avatar;	   
 	    // if it is ajax validation request
 	    if(isset($_POST['ajax']) && $_POST['ajax']==='edit_form')
 	    {
@@ -83,13 +83,25 @@ class UserController extends FrontBase
 	    	Yii::app()->end();
 	    }	    
 	    if(isset($_POST['User'])){
-	    	$model->attributes = $_POST['User'];	    		    	
+	    	$model->attributes = $_POST['User'];
+	    	//把确定上传的头像重命名
+	    	$new_avatar =  str_replace('old_','',$model->avatar);	 
+	    	@rename($model->avatar,$new_avatar);
+	    	$model->avatar = $new_avatar;    		    	
 	    	if($model->save()){	    	
 	    		if($old_avatar != $model->avatar){
-	    			XUpload::deleteFile($old_avatar);
-	    			XUpload::deleteFile($old_small_avatar);
-	    			Upload::model()->deleteAll('file_name=:file_name', array(':file_name'=>$old_small_avatar));
+	    			XUpload::deleteFile($old_avatar);	    		   			
 	    		}	
+	    		//删除游离的图片
+	    		$avatar_path =  'uploads/avatar';
+	    		$old_files = Helper::scanfDir($avatar_path, true);	    		
+	    		foreach((array)$old_files['files'] as $old){		    			    			  			
+	    			$path_parts = pathinfo ( $old );
+    				if (! strstr ( $path_parts ['basename'], $model->uid.'_old_' )) {
+    					continue;
+    				}
+    				XUpload::deleteFile($old);	    			
+	    		}	   		  
 	    		$this->redirect($this->createUrl('index'));
 	    	}
 	    }

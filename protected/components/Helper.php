@@ -58,6 +58,31 @@ class Helper extends CController
 		}
 		return $result;
 	}
+	
+	/**
+	 * 遍历文件夹
+	 * @param string $dir
+	 * @param boolean $all  true表示递归遍历
+	 * @return array
+	 */
+	public static function scanfDir($dir='', $all = false){		
+		static $ret = array();
+		if ( false !== ($handle = opendir ( $dir ))) {
+			while ( false !== ($file = readdir ( $handle )) ) {
+				if ($file != '.' && $file !== '..' && $file !== '.git') {
+					$cur_path = $dir . '/' . $file;
+					if (is_dir ( $cur_path )) {
+						$ret['dirs'][] =$cur_path;
+						$all && self::scanfDir( $cur_path);
+					} else {
+						$ret ['files'] [] = $cur_path;
+					}
+				}
+			}
+			closedir ( $handle );
+		}
+		return $ret;		
+	}
 	/**
 	 * 邮件发送
 	 * @param number $id  用户id

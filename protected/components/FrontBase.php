@@ -78,7 +78,7 @@ EOT;
 	 * 验证登录状态
 	 *
 	 */
-	public function auth(){
+	public function auth($ret_url = '/'){
 		if (isset($_POST['sessionId'])) {
 			$session = Yii::app()->getSession();
 			$session->close();
@@ -86,7 +86,7 @@ EOT;
 			$session->open();
 		}
 		if(Yii::app()->user->getIsGuest()){
-			$loginUrl = $this->createUrl('user/login');
+			$loginUrl = $this->createUrl('user/login',array('ret_url'=>$ret_url));
 			$this->redirect($loginUrl);			
 		}		
 	}
@@ -106,11 +106,13 @@ EOT;
 				'user/settingPwd',
 				'user/settingEmail',
 				'uploadify/index',
+				'uploadify/avatar',
+				'uploadify/submitCut',
 				'uploadify/file',
 				
 		);		
 		if(in_array($controller.'/'.$action, $need_auth)){
-			$this->auth();			
+			$this->auth($this->createUrl($controller.'/'.$action));			
 		}		
 		return true;
 	}
