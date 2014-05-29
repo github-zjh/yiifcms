@@ -26,7 +26,7 @@
 				</dt>
 				<dd class="upload_desc clear">
 					<p>上传头像</p>
-					<p>仅支持JPG,PNG,GIF,BMP格式的图片,<br/>大小不小于100*100。</p>
+					<p>仅支持JPG,PNG,GIF,BMP格式的图片,<br/>大小不超过1M。</p>
 					<div class="upload_btn">
 						<a href="javascript:;" class="btn_text"><?php echo Yii::t('common','Upload Image');?></a>
 						<input type="file" id="uploadAvatar" />
@@ -43,7 +43,7 @@
 							        'method': 'post',
 							        'multi': false,	        	        
 									'queueID': 'fileQueue',	
-							        'fileSizeLimit' : '2MB',
+							        'fileSizeLimit' : '1MB',
 							        'queueSizeLimit' : 1,
 							        'uploadLimit':1,
 							        'fileTypeExts': '*.jpg;*.png;*.gif;*.bmp;',
@@ -58,16 +58,19 @@
 								       	var msg = '';
 								     	switch(errorCode){		     		
 								     		case -110:
-								     			msg += "上传文件大小超过限制的"+$("#uploadFile").uploadify('settings','fileSizeLimit');
+								     			msg = "上传文件大小超过"+$("#uploadAvatar").uploadify('settings','fileSizeLimit');
 								     			break;
 								     		case -130:
-								     			msg += "只允许上传："+$("#uploadFile").uploadify('settings','fileTypeExts')+" 格式的文件";
-								     		default:
-								     			msg += "上传错误："+errorCode+" "+errorMsg;
+								     			msg = "只允许上传："+$("#uploadFile").uploadify('settings','fileTypeExts')+" 格式的文件";
+								     			break;
+								     		case -100:
+								     			msg = "只能上传一张图片，请刷新页面后更换";
+								     			break;
+									     	default:
+								     			msg += "上传错误："+errorCode;
 								     			break;
 								     	}
-								     	$(".upload_avatar_status").show();
-								     	$("#upload_msg").text(msg);
+								     	alert(msg);
 								     },		
 								     'onUploadStart' : function(file) {
 								    	 $(".upload_avatar_status").show();	
