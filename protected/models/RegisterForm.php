@@ -78,20 +78,6 @@ class RegisterForm extends CFormModel
 			return false;
 		}
 	}
-
-	/**
-	 * Authenticates the password.
-	 * This is the 'authenticate' validator as declared in rules().
-	 */
-	public function authenticate()
-	{
-		if(!$this->hasErrors())
-		{
-			$tmpuser = User::model()->find('username=:username',array('username'=>$this->username));
-			$this->_identity=new UserIdentity($this->username,$this->password);					
-			if(!$this->_identity->authenticate())
-				$this->addError('password',Yii::t('common','Incorrect username or password.'));
-		}
-	}
+	
 	
 }

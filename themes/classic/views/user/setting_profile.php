@@ -30,7 +30,7 @@
 			<dl class="upload_avatar">
 				<div class="upload_cut_box"><img width="300" heigth="300" src="<?php echo $this->_stylePath.'/images/avatar_cut_box.jpg';?>" id="cropbox" /></div>
 				<dt class="upload_desc">					
-					<img id="avatar_src" width="100" height="100" alt="<?php echo Yii::t('common','My Avatar');?>" src="<?php echo $model->avatar?$model->avatar:$this->_stylePath.'/images/avatar-max-img.png';?>">
+					<img id="avatar_src" width="100" height="100" alt="<?php echo Yii::t('common','My Avatar');?>" src="<?php echo file_exists($model->avatar)?$model->avatar:$this->_stylePath.'/images/avatar-max-img.png';?>">
 				</dt>
 				<dd class="upload_desc clear">
 					<p><?php echo Yii::t('common','Upload Avatar');?></p>

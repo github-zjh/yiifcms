@@ -8,12 +8,14 @@
 		<h3><?php echo Yii::t('common','Setting Pwd');?></h3>
 		<?php 
 			$form=$this->beginWidget('CActiveForm',
-			array('id'=>'edit_form','htmlOptions'=>array('name'=>'edit_form', 'enctype'=>'multipart/form-data'))); 
+			array('id'=>'edit_form',
+				'htmlOptions'=>array('name'=>'edit_form'),			
+				)); 
 		?>
-			<table class="base_table">
-				<tr><th><label><?php echo Yii::t('common','Init Password');?>：</label：</th><td><input type="password" name="initPassword" value=""/></td></tr>
-				<tr><th><label><?php echo Yii::t('common','New Password');?>：</label</th><td><input type="password" name="newPassword" value=""/></td></tr>	
-				<tr><th><label><?php echo Yii::t('common','Confirm Password');?>：</label</th><td><input type="password" name="confirmPassword" value=""/></td></tr>							
+			<table class="base_table">			
+				<tr><th><?php echo $form->label($model,'initpassword');?>：</label：</th><td><?php echo $form->passwordField($model,'initpassword');?></td></tr>
+				<tr><th><?php echo $form->label($model,'newpassword');?>：</label</th><td><?php echo $form->passwordField($model,'newpassword');?></td></tr>	
+				<tr><th><?php echo $form->label($model,'confirmpassword');?>：</label</th><td><?php echo $form->passwordField($model,'confirmpassword');?></td></tr>							
 				<tr>
 					<td></td>
 					<td>

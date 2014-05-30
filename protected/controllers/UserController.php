@@ -76,12 +76,7 @@ class UserController extends FrontBase
 		
 	    $model = $this->loadModel();	    
 	    $old_avatar = $model->avatar;	   
-	    // if it is ajax validation request
-	    if(isset($_POST['ajax']) && $_POST['ajax']==='edit_form')
-	    {
-	    	echo CActiveForm::validate($model);
-	    	Yii::app()->end();
-	    }	    
+	  	    
 	    if(isset($_POST['User'])){
 	    	$model->attributes = $_POST['User'];
 	    	//把确定上传的头像重命名
@@ -118,7 +113,7 @@ class UserController extends FrontBase
 		//加载css,js
 		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/user.css");
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
-		$model = $this->loadModel();		
+		$model = $this->loadModel();	
 		
 		if(isset($_POST['User'])){
 			$model->attributes = $_POST['User'];
@@ -139,13 +134,20 @@ class UserController extends FrontBase
 		//加载css,js
 		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/user.css");
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
-		$model = $this->loadModel();
-		if(isset($_POST['User'])){
-			$model->attributes = $_POST['User'];
-			if($model->save()){
-				$this->redirect($this->createUrl('index'));
+		$user = $this->loadModel();
+		
+		$model = new SetPwdForm();
+		$model->id = $user->uid;	
+							
+		if(isset($_POST['SetPwdForm'])){
+			$model->attributes = $_POST['SetPwdForm'];	
+			if($model->validate()){
+				$user->password = User::createPassword($model->newpassword);
+				if($user->save()){
+					$this->message('success',Yii::t('common','Update Password Success'),$this->createUrl('user/logout'));
+				}	
 			}
-		}
+		}		
 		$this->render('setting_pwd', array('model'=>$model));
 	}
 	

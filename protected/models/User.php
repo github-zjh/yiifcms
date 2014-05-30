@@ -42,12 +42,12 @@ class User extends CActiveRecord
 			array('username, password, email, avatar, sign, web', 'length', 'max'=>100),
 			array('groupid, logins', 'length', 'max'=>10),				
 			array('nickname', 'length', 'max'=>50),
-			array('nickname', 'unique'),
-			array('web','checkWeb'),
-			array('qq','length', 'min'=>6),
-			array('mobile, qq', 'length', 'max'=>11),
+			array('nickname', 'unique', 'on'=>'update'),
+			array('web','checkWeb', 'on'=>'update'),
+			array('qq','length', 'min'=>6, 'on'=>'update'),
+			array('mobile, qq', 'length', 'max'=>11, 'on'=>'update'),
 			array('mobile, qq, status, addtime', 'numerical', 'integerOnly'=>true),
-			array('mobile','checkMobile'),
+			array('mobile','checkMobile', 'on'=>'update'),
 			array('last_login_ip', 'length', 'max'=>15),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -71,7 +71,7 @@ class User extends CActiveRecord
 	 */
 	public function checkWeb(){
 		$reg = '/^http[s]?:\/\/[a-z\d]+[\.][a-z\d]+[\.](com|net|cn|org|com\.cn)$/';
-		if(!preg_match($reg, $this->web)){
+		if($this->web && !preg_match($reg, $this->web)){
 			$this->addError('web', Yii::t('common','Web Is Invalid'));
 			return false;
 		}
@@ -82,7 +82,7 @@ class User extends CActiveRecord
 	 */
 	public function checkMobile(){
 		$reg = '/^1[3|5|8]\d{9}$/';
-		if(!preg_match($reg, $this->mobile)){
+		if($this->mobile && !preg_match($reg, $this->mobile)){
 			$this->addError('mobile', Yii::t('common','Mobile Is Invalid'));
 			return false;
 		}
@@ -186,10 +186,17 @@ class User extends CActiveRecord
 				$this->addError('groupid',Yii::t('admin','Group Is Required'));
 				return false;
 			}
-			$this->password = CPasswordHelper::hashPassword($this->password, 8);
+			$this->password = $this->createPassword($this->password);
 			$this->addtime = time();
 		}
 		return true;
+	}
+	/**
+	 * 生成密码
+	 * @return string
+	 */
+	public static function createPassword($password=''){
+		return CPasswordHelper::hashPassword($password, 8);
 	}
 	
 	/**
@@ -197,7 +204,7 @@ class User extends CActiveRecord
 	 * @param  [type] $password [description]
 	 * @return [type]           [description]
 	 */
-	public function validatePassword($password){
+	public function validatePassword($password){		
 		return CPasswordHelper::verifyPassword($password, $this->password);
 	}
 }

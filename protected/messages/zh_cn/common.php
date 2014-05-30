@@ -33,6 +33,7 @@ return array (
 	'Password is required' => '密码不能为空',
 	'username length is between 6 and 40' => '用户名长度介于6~40个字符',
 	'password length is between 6 and 30' => '密码长度介于6~30个字符',
+	'new password length is between 6 and 30' => '新密码长度介于6~30个字符',
 	'Email is required' => '邮箱不能为空',
 	'Existing Email' => '邮箱已被使用',
 	'Incorrect username or password.'=>'用户名或密码错误',
@@ -77,4 +78,10 @@ return array (
 	'Upload Image' => '上传图片',
 	'Mobile Is Invalid' => '请输入有效的手机号码',
 	'Web Is Invalid' => '请输入有效的网址(带http://)',
+	'Init Password' => '原始密码',
+	'New Password' => '新密码',
+	'Confirm Password' => '确认密码',	
+	'Twice Password Is Not Equal' =>'两次密码输入不一致',
+	'Update Password Success' => '修改密码成功，请重新登录',
+	'Init Password Is Wrong' => '原始密码错误，请重新输入',
 );
