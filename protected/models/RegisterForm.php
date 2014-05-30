@@ -67,7 +67,7 @@ class RegisterForm extends CFormModel
 	 * 校验邮箱
 	 */
 	function checkEmail(){
-		$reg = '/^[a-zA-Z0-9_]+@[qq|126|163|sina|hotmail|yahoo|gmail|sohu|live]+(\.com)?[\.][com|cn]+$/';
+		$reg = '/^[a-zA-Z0-9_]+@(qq|126|163|sina|hotmail|yahoo|gmail|sohu|live)(\.com|\.com\.cn)$/';
 		if(!preg_match($reg, $this->email)){
 			$this->addError('email', Yii::t('common','Email Format Is Wrong'));
 			return false;

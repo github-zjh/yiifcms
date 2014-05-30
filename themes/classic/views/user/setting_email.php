@@ -8,17 +8,22 @@
 		<h3><?php echo Yii::t('common','Setting Email');?></h3>
 		<?php 
 			$form=$this->beginWidget('CActiveForm',
-			array('id'=>'edit_form','htmlOptions'=>array('name'=>'edit_form','enctype'=>'multipart/form-data'))); 
+			array('id'=>'edit_form','htmlOptions'=>array('name'=>'edit_form', 'enctype'=>'multipart/form-data'))); 
 		?>
 			<table class="base_table">
-				<tr><th><?php echo $form->label($model,'username');?>：</th><td><?php echo Yii::app()->user->name;?></td></tr>
-				<tr><th><?php echo $form->label($model,'email');?>：</th><td><?php echo Yii::app()->user->email;?></td></tr>
-				<tr><th><?php echo $form->label($model,'nickname');?>：</th><td><?php echo $form->textField($model,'nickname');?></td></tr>
-				<tr><th><?php echo $form->label($model,'sign');?>：</th><td><?php echo $form->textArea($model,'sign');?></td></tr>
-				<tr><th><?php echo $form->label($model,'web');?>：</th><td><?php echo $form->textField($model,'web');?></td></tr>
-				<tr><th><?php echo $form->label($model,'qq');?>：</th><td><?php echo $form->textField($model,'qq');?></td></tr>
-				<tr><th><?php echo $form->label($model,'mobile');?>：</th><td><?php echo $form->textField($model,'mobile');?></td></tr>
-				<tr><td></td><td><input type="submit" class="submit" value="<?php echo Yii::t('common','Save');?>" /></td></tr>
+				<tr><th><label><?php echo Yii::t('common','Init Password');?>：</label：</th><td><input type="password" name="initPassword" value=""/></td></tr>
+				<tr><th><label><?php echo Yii::t('common','New Password');?>：</label</th><td><input type="password" name="newPassword" value=""/></td></tr>	
+				<tr><th><label><?php echo Yii::t('common','Confirm Password');?>：</label</th><td><input type="password" name="confirmPassword" value=""/></td></tr>							
+				<tr>
+					<td></td>
+					<td>
+						<?php if (CHtml::errorSummary($model)):?>
+						<div class="error_message"> <?php echo CHtml::errorSummary($model); ?> </div>
+						<?php endif?>
+					</td>
+				</tr>				
 			</table>
+			<div class="clear"></div>
+			<input type="submit" class="submit" value="<?php echo Yii::t('common','Save');?>" />
 		<?php $this->endWidget();?>
 	</div>

@@ -38,12 +38,16 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, password, email', 'required'),
-			array('status, addtime', 'numerical', 'integerOnly'=>true),
+			array('username, password, email', 'required'),			
 			array('username, password, email, avatar, sign, web', 'length', 'max'=>100),
-			array('groupid, logins', 'length', 'max'=>10),
+			array('groupid, logins', 'length', 'max'=>10),				
 			array('nickname', 'length', 'max'=>50),
+			array('nickname', 'unique'),
+			array('web','checkWeb'),
+			array('qq','length', 'min'=>6),
 			array('mobile, qq', 'length', 'max'=>11),
+			array('mobile, qq, status, addtime', 'numerical', 'integerOnly'=>true),
+			array('mobile','checkMobile'),
 			array('last_login_ip', 'length', 'max'=>15),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -60,6 +64,28 @@ class User extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 		);
+	}
+	
+	/**
+	 * 校验个人网址
+	 */
+	public function checkWeb(){
+		$reg = '/^http[s]?:\/\/[a-z\d]+[\.][a-z\d]+[\.](com|net|cn|org|com\.cn)$/';
+		if(!preg_match($reg, $this->web)){
+			$this->addError('web', Yii::t('common','Web Is Invalid'));
+			return false;
+		}
+	}
+	
+	/**
+	 * 校验手机号码
+	 */
+	public function checkMobile(){
+		$reg = '/^1[3|5|8]\d{9}$/';
+		if(!preg_match($reg, $this->mobile)){
+			$this->addError('mobile', Yii::t('common','Mobile Is Invalid'));
+			return false;
+		}
 	}
 
 	/**
