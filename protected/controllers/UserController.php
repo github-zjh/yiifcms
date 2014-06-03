@@ -323,15 +323,15 @@ class UserController extends FrontBase
 			// validate user input and redirect to the previous page if valid
 			if($userModel->save()){				
 				$this->activeAccount(array('id'=>$userModel->uid, 'email'=>$userModel->email, 'username'=>$userModel->username));
-				$this->message('success','注册成功, 请登录您的邮箱进行账号激活！', $this->createUrl('login'), 5);
+				$this->message('success', Yii::t('Register Success'), $this->createUrl('login'), 5);
 			}else{
-				$this->message('error','注册失败', $this->createUrl('register'));
+				$this->message('error',Yii::t('Register Failed'), $this->createUrl('register'));
 			}
 		}
 		//set seo
-		$this->_seoTitle = '注册新用户 - '.$this->_setting['site_name'];
-		$this->_seoKeywords = '注册新用户';
-		$this->_seoDescription = '注册新用户';
+		$this->_seoTitle = Yii::t('common','Register New User').' - '.$this->_setting['site_name'];
+		$this->_seoKeywords = Yii::t('common','Register New User');
+		$this->_seoDescription = Yii::t('common','Register New User');
 		//加载css,js
 		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/register.css");
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.mailAutoComplete-4.0.js", CClientScript::POS_END);
@@ -352,7 +352,7 @@ class UserController extends FrontBase
 		$salt = base64_encode(mt_rand(0,time()));  //随机盐
 		$authcode = crypt($params['id'].$safestr.$params['email'], $salt);
 		$authurl = $this->_request->hostInfo.$this->createUrl('authEmail', array('id'=>$params['id'], 'authcode'=>$authcode));
-		$subject = $this->_setting['site_name'].' 账号激活';
+		$subject = $this->_setting['site_name'].' '.Yii::t('common','Account Active');
 		$message = Yii::t('common','Register Email',
 				array('{username}'=>$params['username'],
 						'{sitename}'=>$this->_setting['site_name'],
@@ -368,11 +368,11 @@ class UserController extends FrontBase
 		$id = $this->_request->getParam('id');
 		$user = User::model()->findByPk($id);
 		if(!$user){
-			$this->message('error','验证用户不存在', $this->createUrl('site/index'),0, true);
+			$this->message('error',Yii::t('common','Auth Account Do Not Exist'), $this->createUrl('site/index'),0, true);
 		}
 		if((time()-$user->addtime)/3600 > 2){
 			//超过2小时视为过期
-			$this->message('error','链接已失效！', $this->createUrl('site/index'),0, true);
+			$this->message('error',Yii::t('common','The link is invalid'), $this->createUrl('site/index'),0, true);
 		}
 		$safestr = Yii::app ()->params ['safestr'];  //安全分隔符
 		$email = $user->email;
@@ -381,9 +381,9 @@ class UserController extends FrontBase
 			//验证通过
 			$user->status = 1;
 			$user->save();
-			$this->message('success','验证通过，您的账号已激活。', $this->createUrl('login'));
+			$this->message('success',Yii::t('common','Auth Success'), $this->createUrl('login'));
 		}else{
-			$this->message('error','验证失败，请重新发送邮件。', $this->createUrl('register'));
+			$this->message('error',Yii::t('common','Auth Failed'), $this->createUrl('register'));
 		}
 	}
 
@@ -400,7 +400,7 @@ class UserController extends FrontBase
 			if(isset($uid))
 				$this->_model=User::model()->findbyPk($uid);
 			if($this->_model===null)
-				throw new CHttpException(404,'The requested page does not exist.');
+				throw new CHttpException(404,Yii::t('common','The requested page does not exist.'));
 		}
 		return $this->_model;
 	}

@@ -17,6 +17,7 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
+	'The requested page does not exist.'=>'请求页面不存在(404)',
 	'Contact' => '联系我们',
 	'Login' => '登录',
 	'Logout' => '退出',
@@ -31,11 +32,21 @@ return array (
 	'Email Format Is Wrong' => '邮箱格式不正确',
 	'Username is required' => '用户名不能为空',
 	'Password is required' => '密码不能为空',
+	
+	//注册
 	'username length is between 6 and 40' => '用户名长度介于6~40个字符',
 	'password length is between 6 and 30' => '密码长度介于6~30个字符',
 	'new password length is between 6 and 30' => '新密码长度介于6~30个字符',
 	'Email is required' => '邮箱不能为空',
 	'Existing Email' => '邮箱已被使用',
+	'Register New User' => '注册新用户',
+	'Account Active' => '账号激活',
+	'Register Success' => '注册成功, 请登录您的邮箱进行账号激活！',
+	'Register Failed'=>'注册失败',
+	'Auth Account Do Not Exist'=>'验证用户不存在',
+	'The link is invalid'=>'链接已失效！',
+	'Auth Success'=>'验证通过，您的账号已激活。',
+	'Auth Failed'=>'验证失败，请重新发送邮件。',	
 	'Incorrect username or password.'=>'用户名或密码错误',
 	'Login Success' => '登录成功',	
 	'Image' => '图片',
