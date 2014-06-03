@@ -11,34 +11,39 @@
 	<div id="content" class="clear">
 		<div class="content_left">
 			<ul class="content_list">
+			<?php foreach((array)$posts as $post):?>
+			<?php $tags = explode(',',$post->tags); $tags_len = count($tags);?>
+			<?php if($post->catalog->type == 'article'):?>
 			<!-- 文字类型 -->
 				<li class="list_box clear">
 					<div class="list_head">
 						<div class="date_time">
-							<p>May</p>
-							<strong>26</strong>
+							<p><?php echo date('M',$post->last_update_time)?></p>
+							<strong><?php echo date('d',$post->last_update_time)?></strong>
 						</div>
 						<div class="content_type"></div>
 					</div>
 					<div class="list_body">
-						<h2><a href="#">Duis dapibus aliquam mi, eget euismod sem scelerisque ut</a></h2>
+						<h2><a href="<?php echo $this->createUrl('post/view', array('id'=>$post->id));?>"><?php echo $post->title;?></a></h2>
 						<p class="view_info">
-							<span>posted by <em>Admin</em></span>
-							<span class="tags"><em>Admin,&nbsp;&nbsp;</em><em>Admin</em></span>
-							<span class="views"><em>45</em></span>
+							<span><?php echo Yii::t('common','Copy From')?>： <em><?php echo $post->copy_from?$post->copy_from:Yii::t('common','System Manager');?></em></span>
+							<?php if($tags_len > 0):?>
+							<span class="tags">
+								<?php $i = 1; foreach((array)$tags as $tag):?>
+								<em><?php echo $tag;?><?php if($i<$tags_len):?>,&nbsp;&nbsp;<?php endif;?></em>
+								<?php $i++;?>
+								<?php endforeach;?>								
+							</span>
+							<?php endif;?>
+							<span class="views"><em><?php echo $post->view_count;?></em></span>
 						</p>
-						<p class="content_info">Maecenas eget turpis turpis. Nunc vel metus augue. 
-						Aenean euismod cursus ligula eget dapibus. 
-						Praesent vel erat in tortor placerat dignissim. 
-						Duis dapibus aliquam mi, eget euismod sem scelerisque ut. 
-						Vivamus at elit quis urna adipiscing iaculis. 
-						Curabitur vitae velit in neque dictum blandit. 
-						Proin in iaculis neque. 
-						Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-						<a href="#readMore" class="continue_read">继续阅读</a>
+						<p class="content_info">
+							<?php echo $post->intro?$post->intro:'...';?>
+						</p>
+						<a href="<?php echo $this->createUrl('post/view', array('id'=>$post->id));?>" class="continue_read">继续阅读</a>
 					</div>
 				</li>
-				
+				<?php elseif($post->catalog->type == 'image'):?>
 				<!-- 图片类型 -->
 				<li class="list_box clear">
 					<div class="list_head">
@@ -49,7 +54,7 @@
 						<div class="content_type type_image"></div>
 					</div>
 					<div class="list_body">
-						<h2><a href="#">Duis dapibus aliquam mi, eget euismod sem scelerisque ut</a></h2>
+						<h2><a href="#"><?php echo $post->title;?></a></h2>
 						<p class="view_info">
 							<span>posted by <em>Admin</em></span>
 							<span class="tags"><em>Admin,&nbsp;&nbsp;</em><em>Admin</em></span>
@@ -66,6 +71,9 @@
 						<a href="#readMore" class="continue_read">继续阅读</a>
 					</div>
 				</li>
+				<?php endif;?>
+				<?php endforeach;?>
+				
 				
 				<!-- 视频类型 -->
 				<li class="list_box clear">

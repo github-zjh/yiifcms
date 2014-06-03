@@ -53,7 +53,7 @@ class PostController extends Backend
         $pages = new CPagination( $count );
         $pages->pageSize = 10;
         //根据title,catelogId,titleAlias查询
-        $pageParams = $this->buildCondition( $_GET, array ( 'title' , 'catalogId','titleAlias' ) );
+        $pageParams = $this->buildCondition( $_GET, array ( 'title' , 'catalogId' ) );
         $pages->params = is_array( $pageParams ) ? $pageParams : array ();
         $criteria->limit = $pages->pageSize;
         $criteria->offset = $pages->currentPage * $pages->pageSize;

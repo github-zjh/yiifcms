@@ -12,21 +12,50 @@ class PostController extends FrontBase
 	public function init(){
 		parent::init();
 		//栏目
-		$this->_catalog = Catalog::model()->findAll('status_is=:status',array('status'=>'Y'));
+		$this->_catalog = Catalog::model()->findAll('status_is=:status AND type IN (:article, :image)',array(':status'=>'Y',':article'=>'article',':image'=>'image'));
 	}
   /**
    * 首页
    */
   public function actionIndex() {  	
-    $catalog = trim( $this->_request->getParam( 'catalog' ) );
-    $keyword = trim( $this->_request->getParam( 'keyword' ) );    
-    $this->_seoTitle = '文章列表 - '.$this->_setting['site_name'];
-    
+    $catalog_id = trim( $this->_request->getParam( 'catalog_id' ) );
+    $keyword = trim( $this->_request->getParam( 'keyword' ) );
+    $catalog = Catalog::model()->findByPk($catalog_id);    
+    $catalog_ids = Catalog::get($catalog?$catalog_id:0, $this->_catalog);
+    $all_ids = Helper::array_key_values($catalog_ids, 'id');
+    $db_in_ids = implode(',',$all_ids);
+    //SEO
+    if($catalog){
+    	$this->_seoTitle = $catalog->seo_title;
+    	$this->_seoKeywords = $catalog->seo_keywords;
+    	$this->_seoDescription = $catalog->seo_description;    	
+    }else{ 
+    	$this->_seoTitle = Yii::t('common','PostListTitle').' - '.$this->_setting['site_name'];
+    	$this->_seoKeywords = Yii::t('common','PostListKeywords');
+    	$this->_seoDescription = Yii::t('common','PostListDescription',array('{site_name}'=>$this->_setting['site_name']));
+    }
+    //分页
+    $post = new Post();
+    $criteria = new CDbCriteria();
+    $condition = "t.status_is = 'Y'";
+    $keyword && $condition .= ' AND title LIKE \'%' . $keyword . '%\'';
+    $condition .= ' AND catalog_id IN ('.$db_in_ids.')';
+   
+    $criteria->condition = $condition;
+    $criteria->order = 'view_count DESC, t.id DESC';
+    $criteria->with = array ( 'catalog' );
+    $criteria->select = "title, id, t.image_list, t.last_update_time,t.intro, t.tags, t.view_count";
+   
+    $count = $post->count( $criteria );
+    $pages = new CPagination( $count );
+    $pages->pageSize = 10;
+    $datalist = $post->findAll($criteria);
+   
    //加载css,js	
     Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/list.css");
 	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
 	
-    $this->render( 'index');
+    $this->render( 'index', array('posts'=>$datalist,'pagebar' => $pages));
   }
   
   /**
