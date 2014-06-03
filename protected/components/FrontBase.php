@@ -96,23 +96,24 @@ EOT;
 	 * !CodeTemplates.overridecomment.nonjd!
 	 * @see CController::beforeAction()
 	 */
-	public function beforeAction($action){
+	public function beforeAction($action){		
 		$controller = Yii::app()->getController()->id;
-		$action = $action->id;
-		//需要登录的页面
+		$actionID = $action->id;	
+	
+		//需要登录的页面,要小写
 		$need_auth = array(
 				'user/index',				
 				'user/setting',
-				'user/settingPwd',
-				'user/settingEmail',
+				'user/settingpwd',
+				'user/settingemail',
 				'uploadify/index',
 				'uploadify/avatar',
-				'uploadify/submitCut',
+				'uploadify/submitcut',
 				'uploadify/file',
 				
 		);		
-		if(in_array($controller.'/'.$action, $need_auth)){
-			$this->auth($this->createUrl($controller.'/'.$action));			
+		if(in_array(strtolower($controller.'/'.$actionID), $need_auth)){
+			$this->auth($this->createUrl($controller.'/'.$actionID));			
 		}		
 		return true;
 	}

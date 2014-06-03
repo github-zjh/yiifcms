@@ -46,7 +46,7 @@ return array(
 		'urlManager'=>array(			
 			'urlFormat'=>'path',
 			'showScriptName'=>false,			
-			'urlSuffix'=>'.htm',
+			'urlSuffix'=>'.htm',			
 			'rules'=>array(	
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
@@ -124,7 +124,7 @@ return array(
 			'ContentType' => 'text/html', //发送文档类型
 			'Username' => 'xb_zjh@126.com',  //发件人邮箱
 			'Password' => 'zjh376685457',    //发件人邮箱密码
-			'FromName' => '系统管理员',       //发送人名称			
+			'FromName' => '我的yii网站',       //发送人名称			
 		),
 		'safestr'=> '!(^*##@', //安全分隔符		
 	),

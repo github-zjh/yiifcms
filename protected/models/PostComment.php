@@ -47,7 +47,7 @@ class PostComment extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-	        'post'=>array(self::BELONGS_TO, 'Post', 'post_id',  'select'=>'id,title,title_alias,title_second '),
+	        'post'=>array(self::BELONGS_TO, 'Post', 'post_id',  'select'=>'id,title'),
 	    );
 	}
 

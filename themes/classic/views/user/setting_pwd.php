@@ -13,9 +13,9 @@
 				)); 
 		?>
 			<table class="base_table">			
-				<tr><th><?php echo $form->label($model,'initpassword');?>：</label：</th><td><?php echo $form->passwordField($model,'initpassword');?></td></tr>
-				<tr><th><?php echo $form->label($model,'newpassword');?>：</label</th><td><?php echo $form->passwordField($model,'newpassword');?></td></tr>	
-				<tr><th><?php echo $form->label($model,'confirmpassword');?>：</label</th><td><?php echo $form->passwordField($model,'confirmpassword');?></td></tr>							
+				<tr><th><?php echo $form->label($model,'initpassword');?>：：</th><td><?php echo $form->passwordField($model,'initpassword');?></td></tr>
+				<tr><th><?php echo $form->label($model,'newpassword');?>：</th><td><?php echo $form->passwordField($model,'newpassword');?></td></tr>	
+				<tr><th><?php echo $form->label($model,'confirmpassword');?>：</th><td><?php echo $form->passwordField($model,'confirmpassword');?></td></tr>							
 				<tr>
 					<td></td>
 					<td>

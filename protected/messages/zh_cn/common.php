@@ -84,4 +84,19 @@ return array (
 	'Twice Password Is Not Equal' =>'两次密码输入不一致',
 	'Update Password Success' => '修改密码成功，请重新登录',
 	'Init Password Is Wrong' => '原始密码错误，请重新输入',
+	'Init Email' => '原始邮箱',
+	'New Email' => '新邮箱',
+	'Email Captcha' => '验证码',
+	'Please Input Right Init Email' => '请输入正确的原始邮箱',
+	'Please Input Right New Email' => '请输入合法的新邮箱',
+	'Please Input Right Email Captcha' => '请输入正确的接收的邮箱验证码',
+	'Please Input Different Email' =>'请输入一个不同的邮箱',
+	'Click Send Email' => '点击发送邮件',
+	'Reset Email Subject' => '重设邮箱',
+	'Reset Email Content' => '<p>尊敬的用户：{username} 您好，您已经申请修改邮箱操作，请输入下面的验证码进行验证：<br/><br/>
+						{email_captcha}<br/><br/>
+						==================<br/><br/>如果不是您本人操作，请尽快联系本网站的管理员：<a href="mailto:{admin_email}">{admin_email}</a>。</p>',
+	'Sending..' => '发送中...',
+	'Send Success' => '发送成功',	
+	'Reset Email Success' => '重设邮箱成功',
 );

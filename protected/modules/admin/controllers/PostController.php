@@ -42,11 +42,9 @@ class PostController extends Backend
         $model = new Post();
         $criteria = new CDbCriteria();
         $condition = "type = 'article'";
-        $title = trim( $this->_request->getParam( 'title' ) );
-        $titleAlias = trim( $this->_request->getParam( 'titleAlias' ) );
+        $title = trim( $this->_request->getParam( 'title' ) );        
         $catalogId = intval( $this->_request->getParam( 'catalogId' ) );
-        $title && $condition .= ' AND title LIKE \'%' . $title . '%\'';
-        $titleAlias && $condition .= ' AND title_alias LIKE \'%' . $titleAlias . '%\'';
+        $title && $condition .= ' AND title LIKE \'%' . $title . '%\'';        
         $catalogId && $condition .= ' AND catalog_id= ' . $catalogId;
         $criteria->condition = $condition;
         $criteria->order = 't.id DESC';

@@ -115,13 +115,69 @@ class UserController extends FrontBase
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
 		$model = $this->loadModel();	
 		
-		if(isset($_POST['User'])){
-			$model->attributes = $_POST['User'];
-			if($model->save()){
-				$this->redirect($this->createUrl('index'));
+		if($this->_request->isPostRequest){	
+			//发送验证码		
+			$reg = '/^[a-zA-Z0-9_]+@(qq|126|163|sina|hotmail|yahoo|gmail|sohu|live)(\.com|\.com\.cn)$/';
+			if($_POST['ajax'] == 'edit_form'){
+				
+				//ajax 请求
+				$initemail = trim($_POST['initemail']);
+				if($initemail != $model->email){
+					exit( CJSON::encode( array ( 'status' => 'error' , 'field'=>'initEmail', 'message' => Yii::t('common','Please Input Right Init Email') ) ) );
+				}else{
+					$email = trim($_POST['email']);				
+					if($email && preg_match($reg, $email)){
+						if($email == $model->email){
+							//新邮箱和旧邮箱相同
+							exit( CJSON::encode( array ( 'status' => 'error' ,  'field'=>'newEmail', 'message' => Yii::t('common','Please Input Different Email') ) ) );
+						}
+						$exit_email = User::model()->find('email=:email', array(':email'=>$email));
+						if(!$exit_email){
+							//校验邮箱唯一性
+							$acceptCaptcha = Yii::app()->session[$email.'_captcha'] = substr(mt_rand(0,time()),2,6);
+							$subject = Yii::t('common','Reset Email Subject');
+							$message = Yii::t('common','Reset Email Content', array('{username}'=>$model->username, '{email_captcha}'=>$acceptCaptcha,'{admin_email}'=>$this->_setting['admin_email']));
+							Helper::sendMail(0, $email, $subject, $message);			
+							exit( CJSON::encode( array ( 'status' => 'success' , 'message' => Yii::t('common','Send Success') ) ) );
+						}else{
+							exit( CJSON::encode( array ( 'status' => 'error' , 'field'=>'newEmail', 'message' => Yii::t('common','Existing Email') ) ) );
+						}
+					}else{
+						exit( CJSON::encode( array ( 'status' => 'error' , 'field'=>'newEmail', 'message' => Yii::t('common','Please Input Right New Email') ) ) );					
+					}		
+				}			
+			}else{
+			
+				$post = array_map('trim', $_POST);
+				$initemail = $post['initEmail'];
+				$newemail = $post['newEmail'];
+				$captcha = $post['captchaEmail'];
+				if($initemail != $model->email){
+					$model->addError('email',Yii::t('common','Please Input Right Init Email'));
+				}else{
+					
+					if(!$newemail || !preg_match($reg, $newemail)){
+						$model->addError('email',Yii::t('common','Please Input Right New Email'));
+					}else{
+						if($newemail == $model->email){
+							//校验邮箱唯一性
+							$model->addError('email',Yii::t('common','Please Input Different Email'));
+						}else{
+							$acceptCaptcha = Yii::app()->session[$newemail.'_captcha'];
+							if(!$captcha || $captcha != $acceptCaptcha){
+								$model->addError('email',Yii::t('common','Please Input Right Email Captcha'));
+							}
+						}
+					}
+				}
+				$model->email = $newemail;		
+				if(!$model->getErrors() && $model->save()){
+					unset(Yii::app()->session[$newemail.'_captcha']);
+					$this->message('success',Yii::t('common','Reset Email Success'),$this->createUrl('index'));
+				}
 			}
 		}
-		$this->render('setting_email', array('model'=>$model));
+		$this->render('setting_email', array('model'=>$model,'post'=>$post));
 	}
 	
 	/**
@@ -208,14 +264,14 @@ class UserController extends FrontBase
 				$user->last_login_ip = $this->getClientIP();
 				$user->save();
 				
-				$this->message('success','登录成功',$_POST['ret_url']);
+				$this->message('success',Yii::t('common','Login Success'),$_POST['ret_url']);
 				//$this->redirect($ret_url);
 			}
 		}
 		//set seo
-		$this->_seoTitle = '登录 - '.$this->_setting['site_name'];
-		$this->_seoKeywords = '登录';
-		$this->_seoDescription = '登录';
+		$this->_seoTitle = Yii::t('common','Login').' - '.$this->_setting['site_name'];
+		$this->_seoKeywords = Yii::t('common','Login');
+		$this->_seoDescription = Yii::t('common','Login');
 		//加载样式表
 		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/login.css");
 	
