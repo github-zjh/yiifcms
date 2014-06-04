@@ -1,27 +1,19 @@
-	<div id="bread_crumbs">
-		<div class="crumb_box clear">
-			<h1 class="crumb_title">List</h1>
-			<ul class="crumb_menu">
-				<li><a href="./index.html">Home</a><span>/</span></li>
-				<li><a href="./list.html">List</a></li>
-			</ul>
-		</div>		
-	</div>
+	<!-- 导航面包屑开始 -->
+	<?php $this->renderPartial('/layouts/nav',array('navs'=>$navs));?>
+	<!-- 导航面包屑结束 -->
 	
 	<div id="content" class="clear">
 		<div class="content_left">
 			<ul class="content_list">
 			<?php foreach((array)$posts as $post):?>
-			<?php $tags = explode(',',$post->tags); $tags_len = count($tags);?>
-			<?php if($post->catalog->type == 'article'):?>
-			<!-- 文字类型 -->
+				<?php $post_tags = $post->tags?explode(',',$post->tags):array(); $tags_len = count($post_tags);?>	
 				<li class="list_box clear">
 					<div class="list_head">
 						<div class="date_time">
 							<p><?php echo date('M',$post->last_update_time)?></p>
 							<strong><?php echo date('d',$post->last_update_time)?></strong>
 						</div>
-						<div class="content_type"></div>
+						<div class="content_type <?php if($post->catalog->type == 'image'):?> type_image<?php endif;?>"></div>
 					</div>
 					<div class="list_body">
 						<h2><a href="<?php echo $this->createUrl('post/view', array('id'=>$post->id));?>"><?php echo $post->title;?></a></h2>
@@ -29,8 +21,8 @@
 							<span><?php echo Yii::t('common','Copy From')?>： <em><?php echo $post->copy_from?$post->copy_from:Yii::t('common','System Manager');?></em></span>
 							<?php if($tags_len > 0):?>
 							<span class="tags">
-								<?php $i = 1; foreach((array)$tags as $tag):?>
-								<em><?php echo $tag;?><?php if($i<$tags_len):?>,&nbsp;&nbsp;<?php endif;?></em>
+								<?php $i = 1; foreach((array)$post_tags as $ptag):?>
+								<em><?php echo $ptag;?><?php if($i<$tags_len):?>,&nbsp;&nbsp;<?php endif;?></em>
 								<?php $i++;?>
 								<?php endforeach;?>								
 							</span>
@@ -40,43 +32,14 @@
 						<p class="content_info">
 							<?php echo $post->intro?$post->intro:'...';?>
 						</p>
-						<a href="<?php echo $this->createUrl('post/view', array('id'=>$post->id));?>" class="continue_read">继续阅读</a>
+						<a href="<?php echo $this->createUrl('post/view', array('id'=>$post->id));?>" class="continue_read"><?php echo Yii::t('common','Read More');?></a>
 					</div>
-				</li>
-				<?php elseif($post->catalog->type == 'image'):?>
-				<!-- 图片类型 -->
-				<li class="list_box clear">
-					<div class="list_head">
-						<div class="date_time">
-							<p>May</p>
-							<strong>26</strong>
-						</div>
-						<div class="content_type type_image"></div>
-					</div>
-					<div class="list_body">
-						<h2><a href="#"><?php echo $post->title;?></a></h2>
-						<p class="view_info">
-							<span>posted by <em>Admin</em></span>
-							<span class="tags"><em>Admin,&nbsp;&nbsp;</em><em>Admin</em></span>
-							<span class="views"><em>45</em></span>
-						</p>
-						<p class="content_info">Maecenas eget turpis turpis. Nunc vel metus augue. 
-						Aenean euismod cursus ligula eget dapibus. 
-						Praesent vel erat in tortor placerat dignissim. 
-						Duis dapibus aliquam mi, eget euismod sem scelerisque ut. 
-						Vivamus at elit quis urna adipiscing iaculis. 
-						Curabitur vitae velit in neque dictum blandit. 
-						Proin in iaculis neque. 
-						Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-						<a href="#readMore" class="continue_read">继续阅读</a>
-					</div>
-				</li>
-				<?php endif;?>
+				</li>			
 				<?php endforeach;?>
 				
 				
 				<!-- 视频类型 -->
-				<li class="list_box clear">
+				<li class="list_box clear" style="display:none;">
 					<div class="list_head">
 						<div class="date_time">
 							<p>May</p>
@@ -104,40 +67,33 @@
 				</li>
 			</ul>
 			
-			<div id="page">				
-				<ul class="clear">
-					<li class="prev_page"><a href="#"><</a></li>
-					<li><a href="#">1</a></li>
-					<li><a href="#" class="selected">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li class="next_page"><a href="#">></a></li>
-				</ul>
+			<!-- 分页开始 -->
+			<div id="page">	
+				<?php $this->renderPartial('/layouts/pager',array('pagebar'=>$pagebar));?>		
 			</div>
+			<!-- 分页结束 -->
+			
 		</div>
 		<div class="content_right">
 			<dl class="category">
-				<dt>分类</dt>
-				<dd><a href="#">分类一</a></dd>		
-				<dd><a href="#">分类一</a></dd>
-				<dd><a href="#">分类一</a></dd>		
+				<dt><?php echo Yii::t('common','Catagorys');?></dt>
+				<?php foreach((array)$this->_catalog as $cate):?>
+				<dd><a href="<?php echo $this->createUrl('post/index',array('catalog_id'=>$cate->id));?>"><?php echo $cate->catalog_name;?></a></dd>		
+				<?php endforeach;?>					
 			</dl>	
 			
 			<dl class="category tag clear">
-				<dt>Tags</dt>
-				<dd><a href="#">php</a></dd>		
-				<dd><a href="#">mysql</a></dd>
-				<dd><a href="#">memcache</a></dd>	
-				<dd><a href="#">php</a></dd>		
-				<dd><a href="#">mysql</a></dd>
-				<dd><a href="#">memcache</a></dd>	
+				<dt><?php echo Yii::t('common','Tags');?></dt>
+				<?php foreach((array)$tags as $tag):?>				
+				<dd><a href="<?php echo $this->createUrl('tag',array('tag'=>$tag->tag_name));?>"><?php echo $tag->tag_name;?></a></dd>		
+				<?php endforeach;?>					
 			</dl>
 			
 			<dl class="category recent_post">
-				<dt>最近的文章</dt>
-				<dd><a href="#">分类一</a></dd>		
-				<dd><a href="#">分类一</a></dd>
-				<dd><a href="#">分类一</a></dd>		
+				<dt><?php echo Yii::t('common','Last Articles');?></dt>
+				<?php foreach((array)$last_posts as $lp):?>
+				<dd><a title="<?php echo $lp->title;?>" href="<?php echo $this->createUrl('post/view', array('id'=>$lp->id));?>"><?php echo Helper::truncate_utf8_string($lp->title,18);?></a></dd>		
+				<?php endforeach;?>					
 			</dl>		
 		</div>
 		

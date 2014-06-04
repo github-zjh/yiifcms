@@ -27,5 +27,7 @@
 .content_right .tag dd { float:left; background:none; padding:0; margin-right:9px; margin-bottom:10px; }
 .content_right .tag dd a { display:block; padding:0 8px; line-height:25px; background-color:#7f8c8c; border-radius:5px; color:#FFFFFF; text-decoration:none; }
 .content_right .tag dd a:hover { background-color:#e2534b; }
+a { color:#428BCA;}
+a:hover { text-decoration:underline; }
 
 

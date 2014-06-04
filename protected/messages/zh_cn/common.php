@@ -17,13 +17,17 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
+	//公共
 	'The requested page does not exist.'=>'请求页面不存在(404)',
-	'Contact' => '联系我们',
-	'Login' => '登录',
-	'Logout' => '退出',
+	'Contact' => '联系我们',	
 	'About' => '关于',
 	'Home' => '首页',
 	'Post' => '文章',
+	'Nav' => '导航',
+		
+	//登录
+	'Login' => '登录',
+	'Logout' => '退出',
 	'UserName' => '用户名',
 	'PassWord' => '密&nbsp;&nbsp;&nbsp;&nbsp码',
 	'VerifyCode' => '验证码',	  
@@ -119,4 +123,13 @@ return array (
 	'Sending..' => '发送中...',
 	'Send Success' => '发送成功',	
 	'Reset Email Success' => '重设邮箱成功',
+	
+	//分页
+	'First Page' => '首页',
+	'Last Page' => '末页',
+	'Tags' => '标签',
+	'Catagorys' => '分类',
+	'Last Articles'=>'最近的文章',
+	'Read More'=>'继续阅读',
+	
 );

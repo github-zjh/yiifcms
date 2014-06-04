@@ -58,7 +58,7 @@ EOT;
 		
 		//主题设置
 		Yii::app()->theme = $this->_setting['theme'];
-		$this->_stylePath = $this->_baseUrl.'/static/themes/'.$this->_setting['theme'];
+		$this->_stylePath = $this->_baseUrl.'/themes/'.$this->_setting['theme'];
 		
 		//菜单导航
 		$menus = Menu::model()->findAll();	

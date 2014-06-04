@@ -42,11 +42,9 @@ class ImageController extends Backend
         $model = new Post();
         $criteria = new CDbCriteria();
         $condition = "type = 'image'";
-        $title = trim( $this->_request->getParam( 'title' ) );
-        $titleAlias = trim( $this->_request->getParam( 'titleAlias' ) );
+        $title = trim( $this->_request->getParam( 'title' ) );      
         $catalogId = intval( $this->_request->getParam( 'catalogId' ) );
-        $title && $condition .= ' AND title LIKE \'%' . $title . '%\'';
-        $titleAlias && $condition .= ' AND title_alias LIKE \'%' . $titleAlias . '%\'';
+        $title && $condition .= ' AND title LIKE \'%' . $title . '%\'';       
         $catalogId && $condition .= ' AND catalog_id= ' . $catalogId;
         $criteria->condition = $condition;
         $criteria->order = 't.id DESC';
@@ -95,8 +93,8 @@ class ImageController extends Backend
     		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
 	    		//封面图片
 	    		$upload = new XUpload;
-	    		$upload->_thumb_width = 100;
-	    		$upload->_thumb_height = 100;
+	    		$upload->_thumb_width = 300;
+	    		$upload->_thumb_height = 300;
 	    		$upload->uploadFile($_FILES['attach'], true);
 	    		if($upload->_error){
 	    			$upload->deleteFile($upload->_file_name);
@@ -135,7 +133,7 @@ class ImageController extends Backend
     			}
     		}
     		$model->create_time = time();
-    		$model->update_time = $model->create_time;
+    		$model->last_update_time = $model->create_time;
     		if($model->save())
     			$this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
     	}
@@ -180,8 +178,8 @@ class ImageController extends Backend
     		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
 	    		//封面图片
 	    		$upload = new XUpload;
-	    		$upload->_thumb_width = 100;
-	    		$upload->_thumb_height = 100;    		
+	    		$upload->_thumb_width = 300;
+	    		$upload->_thumb_height = 300;    		
 	    		$upload->uploadFile($_FILES['attach'], true);
 	    		if($upload->_error){
 	    			$upload->deleteFile($upload->_file_name);

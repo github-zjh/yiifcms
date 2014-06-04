@@ -111,27 +111,33 @@ class PostController extends Backend
     		$model->image_list = $imageListSerialize['dataSerialize'];
     		
     		//标签
-    		$tags = trim($_POST['Post']['tags']);
-    		$explodeTags = array_unique(explode(',', str_replace(array (' ' , '，' ), ',', $tags)));
+    		$tags = trim($_POST['Post']['tags']);    		
+    		$explodeTags = array_unique(explode(',', str_replace(array (' ' , '，',',' ), ',', $tags)));
     		$tagCount = 0;
+    		$final_tags = array();
     		foreach ((array) $explodeTags as $value) {
-    			$tagCount ++;
-    			if ($tagCount >= 10) {
-    				unset($explodeTags);
-    				break;
+    			$value = trim($value,' ，,');
+    			if($value){
+	    			$final_tags[] = $value;
+	    			$tagCount ++;
+	    			if ($tagCount >= 10) {
+	    				unset($explodeTags);
+	    				break;
+	    			}    			
+	    			$model_tag = new PostTags();
+	    			$get_tags = $model_tag->find('tag_name=:tagname', array(':tagname'=>$value));    			
+	    			if(!$get_tags){    				    				
+	    				$model_tag->data_count = 1;
+	    				$model_tag->tag_name = $value;
+	    				$model_tag->create_time = time();
+	    				$model_tag->save();
+	    			}
     			}
-    			$model_tag = new PostTags();
-    			$get_tags = $model_tag->find('tag_name=:tagname', array(':tagname'=>$value));
-    			if($get_tags){
-    				$get_tags->data_count = $get_tags->data_count+1;
-    				$get_tags->save();
-    			}else{
-    				$model_tag->data_count = 1;
-    				$model_tag->tag_name = $value;
-    				$model_tag->create_time = time();
-    				$model_tag->save();
-    			}
-    		}
+    		} 
+    		//摘要
+    		$model->intro = trim($_POST['Post']['intro'])?$_POST['Post']['intro']:Helper::truncate_utf8_string($_POST['Post']['content'], 200);
+    		
+    		$model->tags = implode(',',$final_tags);
     		$model->create_time = time();
     		$model->last_update_time = $model->create_time;
     		if($model->save())
@@ -197,23 +203,32 @@ class PostController extends Backend
     		
     		//标签    		
     		$tags = trim($_POST['Post']['tags']);    		
-    		$explodeTags = array_unique(explode(',', str_replace(array (' ' , '，' ), ',', $tags)));
+    		$explodeTags = array_unique(explode(',', str_replace(array (' ' , '，',',' ), ',', $tags)));
     		$tagCount = 0;
+    		$final_tags = array();
     		foreach ((array) $explodeTags as $value) {
-    			$tagCount ++;
-    			if ($tagCount >= 10) {
-    				unset($explodeTags);
-    				break;
-    			}    			
-    			$model_tag = new PostTags();
-    			$get_tags = $model_tag->find('tag_name=:tagname', array(':tagname'=>$value));    			
-    			if(!$get_tags){    				    				
-    				$model_tag->data_count = 1;
-    				$model_tag->tag_name = $value;
-    				$model_tag->create_time = time();
-    				$model_tag->save();
+    			$value = trim($value,' ，,');
+    			if($value){
+	    			$final_tags[] = $value;
+	    			$tagCount ++;
+	    			if ($tagCount >= 10) {
+	    				unset($explodeTags);
+	    				break;
+	    			}    			
+	    			$model_tag = new PostTags();
+	    			$get_tags = $model_tag->find('tag_name=:tagname', array(':tagname'=>$value));    			
+	    			if(!$get_tags){    				    				
+	    				$model_tag->data_count = 1;
+	    				$model_tag->tag_name = $value;
+	    				$model_tag->create_time = time();
+	    				$model_tag->save();
+	    			}
     			}
     		} 
+    		//摘要
+    		$model->intro = trim($_POST['Post']['intro'])?$_POST['Post']['intro']:Helper::truncate_utf8_string($_POST['Post']['content'], 200);
+    		
+    		$model->tags = implode(',',$final_tags);
     		$model->last_update_time = time();
     		if($model->save())
     			$this->message('success',Yii::t('admin','Update Success'),$this->createUrl('index'));

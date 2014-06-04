@@ -1,13 +1,6 @@
-		<link rel="stylesheet" href="<?php echo $this->_stylePath;?>/css/show.css" />
-		<div id="bread_crumbs">
-		<div class="crumb_box clear">
-			<h1 class="crumb_title">Show</h1>
-			<ul class="crumb_menu">
-				<li><a href="./index.html">Home</a><span>/</span></li>
-				<li><a href="./list.html">Show</a></li>
-			</ul>
-		</div>		
-	</div>
+	<!-- 导航面包屑开始 -->
+	<?php $this->renderPartial('/layouts/nav',array('navs'=>$navs));?>
+	<!-- 导航面包屑结束 -->
 	
 	<div id="content" class="clear">
 		<div class="content_left">			

@@ -45,7 +45,7 @@ $(document).ready(function(){
       <td ><input type="checkbox" name="id[]" value="<?php echo $row->id?>">
         <?php echo $row->id?></td>
       <td ><a href="<?php echo $this->createUrl('/image/view', array('id'=>$row['id'])); ?>" title="<?php echo $row->title; ?>" target="_blank" style="<?php echo $this->formatStyle($row->title_style);?>"><?php echo Helper::truncate_utf8_string($row->title, 20);?></a><br />
-        <span class="alias"><?php echo $row->title_alias?></span></td>
+        </td>
       <td ><?php echo $row->catalog->catalog_name?></td>
       <td><?php if($row->status_is == 'Y'){echo Yii::t('admin','Show');}else{echo "<span class='red'>".Yii::t('admin','Hidden')."</span>";}?></td>
       <td><?php if($row->commend == 'Y'){echo Yii::t('admin','Yes');}else{echo Yii::t('admin','No');}?></td>

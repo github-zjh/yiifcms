@@ -21,20 +21,24 @@ class PostController extends FrontBase
     $catalog_id = trim( $this->_request->getParam( 'catalog_id' ) );
     $keyword = trim( $this->_request->getParam( 'keyword' ) );
     $catalog = Catalog::model()->findByPk($catalog_id);    
-    $catalog_ids = Catalog::get($catalog?$catalog_id:0, $this->_catalog);
-    $all_ids = Helper::array_key_values($catalog_ids, 'id');
-    $db_in_ids = implode(',',$all_ids);
+    //调取子孙分类和当前分类
+    $catalog_ids = Catalog::get($catalog?$catalog_id:0, $this->_catalog);  
+    $children_ids = Helper::array_key_values($catalog_ids, 'id');     
+    $catalog_id?$all_ids = array_merge($children_ids, (array)$catalog_id):$all_ids = $children_ids;   
+    $db_in_ids = implode(',',$all_ids);   
     //SEO
     if($catalog){
-    	$this->_seoTitle = $catalog->seo_title;
+    	$this->_seoTitle = $catalog->seo_title?$catalog->seo_title:$catalog->catalog_name.' - '.$this->_setting['site_name'];
     	$this->_seoKeywords = $catalog->seo_keywords;
-    	$this->_seoDescription = $catalog->seo_description;    	
+    	$this->_seoDescription = $catalog->seo_description; 
+    	$navs = $catalog->catalog_name;   	
     }else{ 
     	$this->_seoTitle = Yii::t('common','PostListTitle').' - '.$this->_setting['site_name'];
     	$this->_seoKeywords = Yii::t('common','PostListKeywords');
     	$this->_seoDescription = Yii::t('common','PostListDescription',array('{site_name}'=>$this->_setting['site_name']));
+    	$navs = $this->_seoTitle;
     }
-    //分页
+    //查询条件
     $post = new Post();
     $criteria = new CDbCriteria();
     $condition = "t.status_is = 'Y'";
@@ -46,16 +50,27 @@ class PostController extends FrontBase
     $criteria->with = array ( 'catalog' );
     $criteria->select = "title, id, t.image_list, t.last_update_time,t.intro, t.tags, t.view_count";
    
-    $count = $post->count( $criteria );
+    //分页
+    $count = $post->count( $criteria );    
     $pages = new CPagination( $count );
     $pages->pageSize = 10;
+    
+    $criteria->limit = $pages->pageSize;
+    $criteria->offset = $pages->currentPage * $pages->pageSize;
+    
     $datalist = $post->findAll($criteria);
    
-   //加载css,js	
+    //标签
+    $tags = PostTags::model()->findAll(array('order'=>'data_count DESC','limit'=>20));
+    
+    //最近的文章
+    $last_posts = Post::model()->findAll(array('order'=>'id DESC','limit'=>10));
+    
+    //加载css,js	
     Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/list.css");
-	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
+	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");	
 	
-    $this->render( 'index', array('posts'=>$datalist,'pagebar' => $pages));
+    $this->render( 'index', array('navs'=>$navs, 'posts'=>$datalist,'pagebar' => $pages, 'tags'=>$tags, 'last_posts'=>$last_posts));
   }
   
   /**
@@ -73,9 +88,10 @@ class PostController extends FrontBase
     $this->_seoDescription = empty( $post->seo_description ) ? $this->_seoDescription: $post->seo_description;
     $catalogArr = Catalog::model()->findByPk($post->catalog_id);
     
-    //自定义数据
-    //$attrVal = AttrVal::model()->findAll(array('condition'=>'post_id=:postId','with'=>'attr', 'params'=>array('postId'=>$post->id)));
-
+  	//加载css,js	
+    Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/view.css");
+	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
+	
     $tplVar = array(
         'post'=>$post,     
         'catalogArr'=>$catalogArr,
