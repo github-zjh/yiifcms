@@ -3,15 +3,15 @@
 #content { width:1170px; margin:0 auto; text-align:left; margin-bottom:70px; }
 #content .content_left { float:left; width:870px; }
 #content .content_right { float:right; width:270px; }
-.content_list .list_box { padding:40px 0; border-bottom:3px solid #e5e6e6;}
+.content_list .list_box { padding:20px 0; border-bottom:3px solid #e5e6e6;}
 .content_list .list_head { float:left; width:70px; text-align:center; }
-.content_list .list_head .date_time { height:80px; line-height:40px; background-color:#FFFFFF; font-size:16px; }
+.content_list .list_head .date_time { height:90px; line-height:40px; background:url(../images/icon_date.png) center -4px no-repeat; font-size:16px; }
 .content_list .list_body { float:right; width:770px;}
 .content_list .content_type { width:70px; height:70px; margin-top:20px; background:url(../images/type_text.png) no-repeat left center;}
 .content_list .type_image { background-image:url(../images/type_image.png);}
 .content_list .type_video { background-image:url(../images/type_video.png);}
-.content_list .list_body h2 a{ font-size:24px; font-weight:bold; color:#76c7c0; }
-.content_list .list_body .view_info { padding:18px 0 30px 0;}
+.content_list .list_body h2 a{ font-size:18px; font-weight:bold; color:#76c7c0; }
+.content_list .list_body .view_info { padding:18px 0;}
 .content_list .list_body .view_info span { margin-right:15px; }
 .content_list .list_body .view_info em { color:#e2534b; }
 .content_list .list_body .view_info .tags { padding-left:23px; background:url(../images/ico_tag.png) no-repeat left center; }
@@ -19,8 +19,8 @@
 .content_list .list_body .content_info { margin-bottom:20px; }
 .content_list .list_body .continue_read { padding-right:20px; background:url(../images/list_icon.png) no-repeat right center; }
 
-.content_right .category { margin-bottom:50px; }
-.content_right .category dt { font-size:16px; font-weight:bold; margin-bottom:30px; }
+.content_right .category { margin-bottom:30px; }
+.content_right .category dt { height:34px; width:150px; line-height:34px; margin-bottom:30px; background:url(../images/dt_bg.png) no-repeat;  font-size:16px; font-weight:bold; text-align:center;}
 .content_right .category dd { padding-left:16px; margin-bottom:16px; background:url(../images/ico_list_blue.png) no-repeat left center;}
 .content_right .recent_post dd { background-image:url(../images/ico_list_grey.png);}
 

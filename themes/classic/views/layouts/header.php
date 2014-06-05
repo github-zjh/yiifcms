@@ -18,17 +18,17 @@
 				<li <?php if($this->_cur_url == $menu['value']['menu_link']):?> class="selected"<?php endif;?>>
 					<a href="<?php echo $menu['value']['menu_link'];?>"><?php echo $menu['value']['menu_name'];?></a>	
 					<div class="space"></div>
-					<div class="child_box">
-						<?php if($menu['children']):?>					
+					<?php if($menu['children']):?>
+					<div class="child_box">											
 						<ul class="child_menu">
 							<?php $i=1;?>
 							<?php foreach($menu['children'] as $child):?>
 							<li <?php if($i == count($menu['children'])):?> class="last"<?php endif;?>><a href="<?php echo $child['value']['menu_link'];?>"><?php echo $child['value']['menu_name'];?></a></li>
 							<?php $i++;?>
 							<?php endforeach;?>						
-						</ul>
-						<?php endif;?>
-					</div>						
+						</ul>						
+					</div>	
+					<?php endif;?>					
 				</li>
 				<?php endforeach;?>			
 			</ul>

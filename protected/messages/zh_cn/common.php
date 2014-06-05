@@ -36,13 +36,23 @@ return array (
 	'Email Format Is Wrong' => '邮箱格式不正确',
 	'Username is required' => '用户名不能为空',
 	'Password is required' => '密码不能为空',
+	
 	//内容列表页
 	'ContentList' => '内容列表',
 	'PostList' => '文章列表',
 	'ImageList' => '图集列表',
-	'PostListTitle' =>' 最新最全的热门资讯图集文章',
+	'PostListTitle' =>' 最新最全的热门资讯',
 	'PostListKeywords' => '资讯，图集，文章，最新，热门，最全，爆料，头条',
 	'PostListDescription' => '聚合了用户最关心的资讯，关注新闻头条，尽在{site_name}。',
+	
+	'ImageListTitle' =>' 最新最全的热门图集、精品爆图',
+	'ImageListKeywords' => '图集，最新，热门，最全，爆料，搞笑',
+	'ImageListDescription' => '聚合了用户最喜爱的图集，尽在{site_name}。',
+	
+	'SoftListTitle' =>' 最新发布的软件、热门软件、精品软件、下载软件',
+	'SoftListKeywords' => '软件，最新，热门，最全，精品，安全，下载',
+	'SoftListDescription' => '聚合了用户最常用的软件，尽在{site_name}。',
+	
 	'Copy From' =>'来源',
 	'System Manager' => '系统管理员',
 	
@@ -130,6 +140,8 @@ return array (
 	'Tags' => '标签',
 	'Catagorys' => '分类',
 	'Last Articles'=>'最近的文章',
+	'Last Images' => '最近的图集',
+	'Last Softs' => '最近的软件',
 	'Read More'=>'继续阅读',
 	
 );

@@ -12,7 +12,7 @@ class PostController extends FrontBase
 	public function init(){
 		parent::init();
 		//栏目
-		$this->_catalog = Catalog::model()->findAll('status_is=:status AND type IN (:article, :image)',array(':status'=>'Y',':article'=>'article',':image'=>'image'));
+		$this->_catalog = Catalog::model()->findAll('status_is=:status AND type = :type',array(':status'=>'Y',':type'=>'article'));
 	}
   /**
    * 首页
@@ -64,7 +64,7 @@ class PostController extends FrontBase
     $tags = PostTags::model()->findAll(array('order'=>'data_count DESC','limit'=>20));
     
     //最近的文章
-    $last_posts = Post::model()->findAll(array('order'=>'id DESC','limit'=>10));
+    $last_posts = Post::model()->findAll(array('condition'=>'catalog_id IN ('.$db_in_ids.')','order'=>'id DESC','limit'=>10,));
     
     //加载css,js	
     Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/list.css");
