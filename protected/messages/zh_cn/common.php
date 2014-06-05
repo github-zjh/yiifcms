@@ -24,6 +24,10 @@ return array (
 	'Home' => '首页',
 	'Post' => '文章',
 	'Nav' => '导航',
+	'More' => '更多>>',
+	'Search' =>'搜索',
+    'Search Desc'=>'请输入想要搜索的内容',
+	'Share' =>'分享',
 		
 	//登录
 	'Login' => '登录',
@@ -57,6 +61,7 @@ return array (
 	'System Manager' => '系统管理员',
 	
 	//注册
+	'Register' => '注册',
 	'username length is between 6 and 40' => '用户名长度介于6~40个字符',
 	'password length is between 6 and 30' => '密码长度介于6~30个字符',
 	'new password length is between 6 and 30' => '新密码长度介于6~30个字符',
@@ -88,6 +93,7 @@ return array (
 						==================<br/><br/>再次感谢您的光顾，如果有其他疑问，
 						请联系本网站的管理员：<a href="mailto:{admin_email}">{admin_email}</a>。</p>',
 	//个人中心 用户设置
+	'Setting' =>'设置',
 	'User Setting' => '用户设置',
 	'My Avatar' => '我的头像',
 	'Edit' => '编辑',

@@ -8,11 +8,18 @@
 class PostController extends FrontBase
 {
 	protected $_catalog;
+	protected $_menu_unique;
+	protected $_tags;
 	
 	public function init(){
 		parent::init();
 		//栏目
 		$this->_catalog = Catalog::model()->findAll('status_is=:status AND type = :type',array(':status'=>'Y',':type'=>'article'));
+		//导航标示
+		$this->_menu_unique = 'post';
+
+		//标签
+		$this->_tags = PostTags::model()->findAll(array('order'=>'data_count DESC','limit'=>20));
 	}
   /**
    * 首页
@@ -27,16 +34,17 @@ class PostController extends FrontBase
     $catalog_id?$all_ids = array_merge($children_ids, (array)$catalog_id):$all_ids = $children_ids;   
     $db_in_ids = implode(',',$all_ids);   
     //SEO
+    $navs = array();
     if($catalog){
     	$this->_seoTitle = $catalog->seo_title?$catalog->seo_title:$catalog->catalog_name.' - '.$this->_setting['site_name'];
     	$this->_seoKeywords = $catalog->seo_keywords;
     	$this->_seoDescription = $catalog->seo_description; 
-    	$navs = $catalog->catalog_name;   	
+    	$navs[] = array('url'=>$this->createUrl('post/index', array('catalog_id'=>$catalog->id)),'name'=>$catalog->catalog_name);   	
     }else{ 
     	$this->_seoTitle = Yii::t('common','PostListTitle').' - '.$this->_setting['site_name'];
     	$this->_seoKeywords = Yii::t('common','PostListKeywords');
     	$this->_seoDescription = Yii::t('common','PostListDescription',array('{site_name}'=>$this->_setting['site_name']));
-    	$navs = $this->_seoTitle;
+    	$navs[] = array('url'=>$this->_request->getUrl(),'name'=>$this->_seoTitle);  
     }
     //查询条件
     $post = new Post();
@@ -48,7 +56,7 @@ class PostController extends FrontBase
     $criteria->condition = $condition;
     $criteria->order = 'view_count DESC, t.id DESC';
     $criteria->with = array ( 'catalog' );
-    $criteria->select = "title, id, t.image_list, t.last_update_time,t.intro, t.tags, t.view_count";
+    $criteria->select = "title, id, t.attach_thumb, t.image_list, t.copy_from, t.copy_url, t.last_update_time,t.intro, t.tags, t.view_count";
    
     //分页
     $count = $post->count( $criteria );    
@@ -58,10 +66,7 @@ class PostController extends FrontBase
     $criteria->limit = $pages->pageSize;
     $criteria->offset = $pages->currentPage * $pages->pageSize;
     
-    $datalist = $post->findAll($criteria);
-   
-    //标签
-    $tags = PostTags::model()->findAll(array('order'=>'data_count DESC','limit'=>20));
+    $datalist = $post->findAll($criteria);   
     
     //最近的文章
     $last_posts = Post::model()->findAll(array('condition'=>'catalog_id IN ('.$db_in_ids.')','order'=>'id DESC','limit'=>10,));
@@ -79,7 +84,7 @@ class PostController extends FrontBase
   public function actionView( $id ) {
     $post = Post::model()->findByPk( intval( $id ) );
     if ( false == $post )
-        throw new CHttpException( 404, '内容不存在' );
+        throw new CHttpException( 404, Yii::t('common','The requested page does not exist.') );
     //更新浏览次数
     $post->updateCounters(array ('view_count' => 1 ), 'id=:id', array ('id' => $id ));
     //seo信息
@@ -92,9 +97,12 @@ class PostController extends FrontBase
     Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/view.css");
 	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
 	
+	//nav
+	$navs = array();
+	$navs[] = array('url'=>$this->createUrl('post/view',array('id'=>$id)), 'name'=>$post->title);
     $tplVar = array(
         'post'=>$post,     
-        'catalogArr'=>$catalogArr,
+        'navs'=>$navs,
         
     );
     $this->render( 'view', $tplVar);

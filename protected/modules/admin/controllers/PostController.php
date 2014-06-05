@@ -162,7 +162,7 @@ class PostController extends Backend
     	$model = Post::model()->findByPk($id);    	
     	if(isset($_POST['Post']))
     	{
-    		$model->attributes=$_POST['Post'];
+    		$model->attributes=$_POST['Post'];    		
     		//标题样式
     		$title_style = $this->_request->getPost('style');   
     		if($title_style['bold'] != 'Y'){
@@ -230,6 +230,7 @@ class PostController extends Backend
     		
     		$model->tags = implode(',',$final_tags);
     		$model->last_update_time = time();
+    		
     		if($model->save())
     			$this->message('success',Yii::t('admin','Update Success'),$this->createUrl('index'));
     	}else{

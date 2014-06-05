@@ -7,6 +7,7 @@
  * @property string $id
  * @property string $menu_name
  * @property string $menu_link
+ * @property string $unique
  * @property string $status_is
  * @property string $parent_id
  * @property string $sort_order
@@ -32,6 +33,7 @@ class Menu extends CActiveRecord
 		return array(
 			array('menu_name', 'length', 'max'=>30),
 			array('menu_link', 'length', 'max'=>50),
+			array('unique', 'length', 'max'=>20),
 			array('status_is, target', 'length', 'max'=>1),
 			array('parent_id, sort_order', 'length', 'max'=>10),
 			// The following rule is used by search().
@@ -60,6 +62,7 @@ class Menu extends CActiveRecord
 			'id' => Yii::t('model','menu_id'),
 			'menu_name' => Yii::t('model','menu_name'),
 			'menu_link' => Yii::t('model','menu_link'),
+			'unique' => Yii::t('model','menu_unique'),
 			'status_is' => Yii::t('model','status_is'),
 			'parent_id' => Yii::t('model','parent_id'),
 			'sort_order' => Yii::t('model','menu_sort_order'),
@@ -90,6 +93,8 @@ class Menu extends CActiveRecord
 		$criteria->compare('menu_name',$this->menu_name,true);
 
 		$criteria->compare('menu_link',$this->menu_link,true);
+		
+		$criteria->compare('unique',$this->unique,true);
 
 		$criteria->compare('status_is',$this->status_is,true);
 
@@ -134,7 +139,7 @@ class Menu extends CActiveRecord
 		$temparray = array ();
 		foreach ( ( array ) $array as $v ) {
 			if ($v ['parent_id'] == $parentid) {
-				$newarray [] = array ('id' => $v ['id'], 'menu_name' => $v ['menu_name'], 'menu_link' => $v ['menu_link'], 'parent_id' => $v ['parent_id'], 'level' => $level, 'sort_order' => $v ['sort_order'],'status_is' => $v ['status_is'], 'target'=>$v['target'], 'str_repeat' => $str_repeat);
+				$newarray [] = array ('id' => $v ['id'], 'menu_name' => $v ['menu_name'], 'menu_link' => $v ['menu_link'], 'unique' => $v ['unique'], 'parent_id' => $v ['parent_id'], 'level' => $level, 'sort_order' => $v ['sort_order'],'status_is' => $v ['status_is'], 'target'=>$v['target'], 'str_repeat' => $str_repeat);
 	
 				$temparray = self::get ( $v ['id'], $array, ($level + $add) );
 				if ($temparray) {

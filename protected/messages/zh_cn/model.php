@@ -45,6 +45,7 @@ return array(
 		'menu_id' => '菜单ID',
 		'menu_name' => '菜单名称',
 		'menu_link' => '菜单链接',
+		'menu_unique' => '唯一标示',
 		'status_is' => '是否显示',
 		'parent_id' => '上级菜单',
 		'menu_sort_order' => '排序',

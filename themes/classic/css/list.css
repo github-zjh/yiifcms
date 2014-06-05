@@ -17,7 +17,9 @@
 .content_list .list_body .view_info .tags { padding-left:23px; background:url(../images/ico_tag.png) no-repeat left center; }
 .content_list .list_body .view_info .views { padding-left:23px; background:url(../images/ico_view.png) no-repeat left center; }
 .content_list .list_body .content_info { margin-bottom:20px; }
+.content_list .list_body .content_info .content_cover { float:left; border:1px solid #DDDDDD; margin-right:20px;}
 .content_list .list_body .continue_read { padding-right:20px; background:url(../images/list_icon.png) no-repeat right center; }
+
 
 .content_right .category { margin-bottom:30px; }
 .content_right .category dt { height:34px; width:150px; line-height:34px; margin-bottom:30px; background:url(../images/dt_bg.png) no-repeat;  font-size:16px; font-weight:bold; text-align:center;}
@@ -27,6 +29,9 @@
 .content_right .tag dd { float:left; background:none; padding:0; margin-right:9px; margin-bottom:10px; }
 .content_right .tag dd a { display:block; padding:0 8px; line-height:25px; background-color:#7f8c8c; border-radius:5px; color:#FFFFFF; text-decoration:none; }
 .content_right .tag dd a:hover { background-color:#e2534b; }
+.content_right .tag .tag_more { background:none; }
+.content_right .tag .tag_more a { background:none; color:#428BCA; }
+.content_right .tag .tag_more a:hover { background:none;  }
 a { color:#428BCA;}
 a:hover { text-decoration:underline; }
 

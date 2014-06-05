@@ -7,6 +7,13 @@
  */
 class SiteController extends FrontBase
 {	
+	protected $_menu_unique;
+	
+	public function init(){
+		parent::init();		
+		//导航标示
+		$this->_menu_unique = 'index';	
+	}
 
 	/**
 	 * This is the default 'index' action that is invoked

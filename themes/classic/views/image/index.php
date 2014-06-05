@@ -17,7 +17,7 @@
 					<div class="list_body">
 						<h2><a href="<?php echo $this->createUrl('image/view', array('id'=>$post->id));?>"><?php echo $post->title;?></a></h2>
 						<p class="view_info">
-							<span><?php echo Yii::t('common','Copy From')?>： <em><?php echo $post->copy_from?$post->copy_from:Yii::t('common','System Manager');?></em></span>
+							<span><?php echo Yii::t('common','Copy From')?>：  <em><?php echo $post->copy_from?"<a href='".$post->copy_url."' target='_blank'>".$post->copy_from."</a>":Yii::t('common','System Manager');?></em></span>
 							<?php if($tags_len > 0):?>
 							<span class="tags">
 								<?php $i = 1; foreach((array)$post_tags as $ptag):?>
@@ -28,7 +28,7 @@
 							<?php endif;?>
 							<span class="views"><em><?php echo $post->view_count;?></em></span>
 						</p>
-						<p class="content_info">
+						<p class="content_info">							
 							<?php echo $post->intro?$post->intro:'...';?>
 						</p>
 						<a href="<?php echo $this->createUrl('image/view', array('id'=>$post->id));?>" class="continue_read"><?php echo Yii::t('common','Read More');?></a>

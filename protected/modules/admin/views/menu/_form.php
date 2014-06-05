@@ -26,6 +26,14 @@ $(function(){
   <tr >
     <td ><?php echo $form->textField($model,'menu_link',array('size'=>40,'maxlength'=>128, 'class'=>'validate[required]')); ?></td>
   </tr> 
+  
+  <tr>
+    <td class="tb_title"><?php echo $form->labelEx($model,'unique'); ?>：</td>
+  </tr>
+  <tr >
+    <td ><?php echo $form->textField($model,'unique',array('size'=>40,'maxlength'=>20, 'class'=>'validate[required]')); ?></td>
+  </tr> 
+  
   <tr>
     <td class="tb_title"><?php echo $form->labelEx($model,'parent_id'); ?>：</td>
   </tr>

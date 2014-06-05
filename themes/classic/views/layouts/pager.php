@@ -1,3 +1,4 @@
+<div id="page">
 <?php
 /**
  * 公共分页widget
@@ -7,7 +8,7 @@
 $this->widget('CLinkPager',array(
 		'header'=>'',
 		'pages'=>$pagebar,
-		'cssFile' =>'false',
+		'cssFile' =>false,
 		'firstPageLabel' =>Yii::t('common','First Page'),
 		'lastPageLabel' => Yii::t('common','Last Page'),
 		'prevPageLabel' => '<<',
@@ -16,3 +17,4 @@ $this->widget('CLinkPager',array(
 		'nextPageCssClass' =>'next_page',
 		'maxButtonCount'=>10,  //分页数量
 ));?>
+</div>

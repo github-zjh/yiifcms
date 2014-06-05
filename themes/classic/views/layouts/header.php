@@ -14,10 +14,9 @@
 		<div id="logo"><a class="logo_a" href="<?php echo Yii::app()->homeUrl;?>"><?php echo $this->_setting['site_name'];?></a></div>
 		<div id="msbox" class="clear">
 			<ul id="menu">			
-				<?php foreach((array)$this->_public_menu as $menu):?>
-				<li <?php if($this->_cur_url == $menu['value']['menu_link']):?> class="selected"<?php endif;?>>
-					<a href="<?php echo $menu['value']['menu_link'];?>"><?php echo $menu['value']['menu_name'];?></a>	
-					<div class="space"></div>
+				<?php foreach((array)$this->_public_menu as $menu):?>				
+				<li <?php if(isset($this->_menu_unique) && $this->_menu_unique == $menu['value']['unique']):?> class="selected"<?php endif;?>>
+					<a href="<?php echo $menu['value']['menu_link'];?>"><?php echo $menu['value']['menu_name'];?></a>
 					<?php if($menu['children']):?>
 					<div class="child_box">											
 						<ul class="child_menu">
@@ -33,14 +32,14 @@
 				<?php endforeach;?>			
 			</ul>
 			<form id="search" class="clear">
-				<a class="search_btn" href="javascript:;">搜索</a>
-				<input type="text" name="keyword" value="" placeholder="请输入想要搜索的内容"/>			
+				<a class="search_btn" href="javascript:;"><?php echo Yii::t('common','Search');?></a>
+				<input type="text" name="keyword" value="" placeholder="<?php echo Yii::t('common','Search Desc');?>"/>			
 			</form>		
 		</div>	
 		<?php if(Yii::app()->user->getIsGuest()):?>	
 		<div id="login">			
-			<a href="<?php echo $this->createUrl('user/login');?>">登录</a>
-			<a href="<?php echo $this->createUrl('user/register');?>">注册</a>			
+			<a href="<?php echo $this->createUrl('user/login');?>"><?php echo Yii::t('common','Login');?></a>
+			<a href="<?php echo $this->createUrl('user/register');?>"><?php echo Yii::t('common','Register');?></a>			
 		</div>
 		<?php else:?>
 		<div id="logout">		
@@ -50,9 +49,9 @@
 			</a>
 			<dl id="drop_down_user">
 				<dt></dt>
-				<dd><a href="<?php echo $this->createUrl('user/index');?>"><i class="fa fa_userinfo"></i>个人中心</a></dd>
-				<dd><a href="<?php echo $this->createUrl('user/setting');?>"><i class="fa fa_setting"></i>设置</a></dd>
-				<dd><a href="<?php echo $this->createUrl('user/logout');?>"><i class="fa fa_poweroff"></i>退出</a></dd>
+				<dd><a href="<?php echo $this->createUrl('user/index');?>"><i class="fa fa_userinfo"></i><?php echo Yii::t('common','User Center');?></a></dd>
+				<dd><a href="<?php echo $this->createUrl('user/setting');?>"><i class="fa fa_setting"></i><?php echo Yii::t('common','Setting');?></a></dd>
+				<dd><a href="<?php echo $this->createUrl('user/logout');?>"><i class="fa fa_poweroff"></i><?php echo Yii::t('common','Logout');?></a></dd>
 			</dl>						
 		</div>
 		<?php endif;?>
