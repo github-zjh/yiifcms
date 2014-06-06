@@ -78,7 +78,7 @@
 								     			msg += "<?php echo Yii::t('common','Upload Error');?>"+errorCode;
 								     			break;
 								     	}
-								     	alert(msg);
+								     	$.Zebra_Dialog(msg);	
 								     },		
 								     'onUploadStart' : function(file) {
 								    	 $(".upload_avatar_status").show();	
@@ -104,7 +104,7 @@
 							            }
 							        },
 							        'onFallback' : function() {
-							            alert("<?php echo Yii::t('common','You Should Install Flash');?>");
+							        	$.Zebra_Dialog("<?php echo Yii::t('common','You Should Install Flash')?>");								          
 							        }
 							    });
 							 	
@@ -131,11 +131,11 @@
 										}
 									},'json');
 
-						    	 }else{
-						    	  	alert("<?php echo Yii::t('common','Please Select Cut Area')?>");
+						    	 }else{						    		 
+							    	 $.Zebra_Dialog("<?php echo Yii::t('common','Please Select Cut Area')?>");	
 						    	 }		
-							    }else{
-							    	alert("<?php echo Yii::t('common','Please Upload Image')?>");
+							    }else{							    	
+							    	$.Zebra_Dialog('<?php echo Yii::t('common','Please Upload Image')?>');							    	
 								 }			    	
 						    	  
 							});
@@ -170,5 +170,9 @@
 			
 		<?php $this->endWidget();?>
 	</div>
+	
 	<script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/public/js/uploadify/jquery.uploadify.min.js"></script>
 	<script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/public/js/jquery/jquery.Jcrop.min.js"></script>	
+	<script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/public/js/zebra_dialog/zebra_dialog.js"></script>
+	<link rel="stylesheet" href="<?php echo $this->_baseUrl?>/static/public/js/zebra_dialog/css/zebra_dialog.css" type="text/css">
+	

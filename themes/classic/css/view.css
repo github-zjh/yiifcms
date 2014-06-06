@@ -3,7 +3,7 @@
 #content { width:1170px; margin:0 auto; text-align:left; margin-bottom:70px; }
 #content .content_left { float:left; width:870px; }
 #content .content_right { float:right; width:270px; }
-.content_left .list_box { padding:40px 0; margin-bottom:45px; border-bottom:3px solid #e5e6e6;}
+.content_left .list_box { padding:40px 0; margin-bottom:25px; border-bottom:3px solid #e5e6e6;}
 .content_left .list_head { float:left; width:70px; text-align:center; }
 .content_left .list_head .date_time { height:90px; line-height:40px; background:url(../images/icon_date.png) center -4px no-repeat; font-size:16px; }
 .content_left .list_body { float:right; width:770px;}
@@ -19,7 +19,7 @@
 .content_left .list_body .content_info { margin-bottom:20px; }
 .content_left .share_box { background-color:#ececec; padding:6px 12px;}
 .content_left .share_box strong { font-size:14px;}
-.content_left .share_box ul li { float:left; margin:0 10px; line-height:33px; height:33px;}
+.content_left .share_box ul li { float:left; margin:0 10px; }
 .content_left .comments h3 { line-height:100px; font-size:20px; font-weight:bold; }
 .content_left .comments li { border-bottom:4px solid #e5e6e6; padding-bottom:19px; margin-bottom:19px; }
 .content_left .comments .avatar { float:left;}
@@ -27,8 +27,8 @@
 .comments .comment_desc .desc_head { line-height:28px;}
 .comments .comment_desc .desc_head .user { font-size:14px;}
 .comments .comment_desc .desc_head .submit_time { padding-left:10px; font-size:14px;}
-.comments .contact_form caption { margin-bottom:25px; font-size:20px; font-weight:bold; text-align:left; }
-.comments .contact_form tr { line-height:60px; }
+.comments .contact_form caption { font-size:20px; font-weight:bold; text-align:left; }
+.comments .contact_form tr { line-height:33px; }
 .comments .contact_form th { padding-right:20px; font-weight:bold; font-size:14px;}
 .comments .contact_form input { width:260px; padding:10px; border-left:1px solid #666666; border-top:1px solid #666666; border-radius:3px; background-color:#e5e6e6; }
 .comments .contact_form textarea {  border-left:1px solid #666666; border-top:1px solid #666666; min-width:560px; max-width:560px; min-height:140px; max-height:140px; padding:10px; background-color:#e5e6e6;}

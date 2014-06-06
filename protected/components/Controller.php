@@ -55,6 +55,14 @@ class Controller extends CController
 	}
 	
 	/**
+	 * 跳转到父级窗口
+	 * @param string $url
+	 */
+	public function rediretParentUrl($url=''){
+		exit ("<script>parent.window.location.href='".$url."';</script>");
+	}
+	
+	/**
 	 * 友好显示var_dump
 	 * @param unknown $var
 	 * @param string $echo

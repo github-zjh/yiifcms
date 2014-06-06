@@ -115,29 +115,31 @@ class PostController extends FrontBase
    */
   public function actionPostComment() {
 
-    $nickname = trim( $this->_gets->getParam( 'nickname' ) );
-    $email = trim( $this->_gets->getParam( 'email' ) );
-    $postId = trim( $this->_gets->getParam( 'postId' ) );
-    $comment = trim( $this->_gets->getParam( 'comment' ) );
+    $nickname = trim( $this->_request->getParam( 'nickname' ) );
+    $post_id = trim( $this->_request->getParam( 'post_id' ) );
+    $user_id = trim( $this->_request->getParam( 'user_id' ) );
+    $comment = trim( $this->_request->getParam( 'content' ) );
     try {
-      if ( empty( $postId ) )
-        throw new Exception( '编号丢失' );
-      elseif ( empty( $nickname ) || empty( $email ) ||  empty( $comment ) )
-        throw new Exception( '昵称、邮箱、内容必须填写' );
-      $bagecmsPostCommentModel = new PostComment();
+      if ( empty( $post_id ) ){
+      	exit( CJSON::encode( array('state'=>'error','message'=>'没有选择内容') ) );
+      }      
+      elseif ( empty( $comment )){
+        exit( CJSON::encode( array('state'=>'error','message'=>'这样不好吧，什么都不写') ));
+      }
+      $post_comment = new PostComment();
 
-      $bagecmsPostCommentModel ->attributes = array(
-          'post_id'=> $postId,
+      $post_comment ->attributes = array(
+          'post_id'=> $post_id,
+      	  'user_id'=> $user_id,
           'nickname'=> $nickname,
-          'email'=> $email,
           'content'=> $comment,
       );
 
-      if ( $bagecmsPostCommentModel->save() ) {
+      if ( $post_comment->save() ) {
         $var['state'] = 'success';
         $var['message'] = '提交成功';
       }else {
-        throw new Exception( CHtml::errorSummary( $bagecmsPostCommentModel, null, null, array ( 'firstError' => '' ) ) );
+        throw new Exception( CHtml::errorSummary( $post_comment, null, null, array ( 'firstError' => '' ) ) );
       }
       
     } catch ( Exception $e ) {

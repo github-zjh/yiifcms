@@ -46,15 +46,8 @@ class BackendBase extends Controller
 			$loginUrl = $this->createUrl('/admin/default/login');	
 			$this->rediretParentUrl($loginUrl);
 		}
-	}
+	}	
 	
-	/**
-	 * 跳转到父级窗口
-	 * @param string $url
-	 */
-	public function rediretParentUrl($url=''){		
-		exit ("<script>parent.window.location.href='".$url."';</script>");
-	}
 	
 	/**
 	 * 引用字符串

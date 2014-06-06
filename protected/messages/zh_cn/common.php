@@ -28,6 +28,7 @@ return array (
 	'Search' =>'搜索',
     'Search Desc'=>'请输入想要搜索的内容',
 	'Share' =>'分享',
+	'Show Message' =>'提示信息',
 		
 	//登录
 	'Login' => '登录',

@@ -123,6 +123,10 @@ box-shadow: 0 5px 0 #e2534b;
 #page li.prev_page { padding-left:0; padding-right:10px;}
 #page li.next_page { padding-left:10px; padding-right:0; }
 
+/* 返回顶部 */
+#back_top { display:none; width:35px; height:35px; position:fixed; right:0; bottom:300px; z-index:999; background:url(../images/back_top.png) no-repeat;}
+#back_top:hover { background-position:-35px 0;}
+
 /* 公共底部footer */
 #footer { background-color:#428BCA; color:#FFFFFF; }
 #footer * { color:#FFFFFF; }

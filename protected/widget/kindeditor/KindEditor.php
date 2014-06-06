@@ -41,7 +41,9 @@ class KindEditor extends CInputWidget{
 
 			$script .= '
 	 '.$editObj.' = K.create("'.$key.'", {
-	     '.$systemDefault . $combineParams .'
+	     '.$systemDefault . $combineParams .' ,afterBlur:function(){
+            this.sync();
+        }           
 	});
 	'.$editObj.'.sync();
 ';

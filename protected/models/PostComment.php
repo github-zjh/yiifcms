@@ -27,15 +27,13 @@ class PostComment extends CActiveRecord
 		return array(
 			array('content', 'required'),
 			array('post_id, user_id, create_time', 'length', 'max'=>10),
-			array('nickname', 'length', 'max'=>60),
-			array('email', 'email'),
-			array('email', 'length', 'max'=>50),
+			array('nickname', 'length', 'max'=>60),	
 			array('status_is, status_answer', 'length', 'max'=>1),
 			array('client_ip', 'length', 'max'=>5),
 			array('answer_content', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, post_id, user_id, nickname, email, content, status_is, status_answer, answer_content, client_ip, create_time', 'safe', 'on'=>'search'),
+			array('id, post_id, user_id, nickname, content, status_is, status_answer, answer_content, client_ip, create_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,8 +58,7 @@ class PostComment extends CActiveRecord
 			'id' => 'id',
 			'post_id' => '标题id',
 			'user_id' => '用户ID',
-			'nickname' => '用户名',
-			'email' => '邮箱',
+			'nickname' => '用户名',			
 			'content' => '评论内容',
 			'status_is' => '状态',
 			'status_answer' => 'Status Answer',

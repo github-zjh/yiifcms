@@ -1,0 +1,63 @@
+@CHARSET "UTF-8";
+body {background-color:#E7EDEF;}
+#login-form { width: 324px; margin:0 auto;}
+#login-form .mod_body { padding: 20px 0;  }
+#login-form .label_icon_user, #login-form .label_icon_pw { float:left;  display:inline-block; border-radius:5px 0 0 5px; width:43px; height:42px; line-height:42px; text-align:center; background-color:#82C2E1; }
+#login-form .fa_user:before, .fa_tuser:before { font-size:18px; content: "\f007"; color:#FFFFFF; }
+#login-form .fa_tuser:before { margin-right:5px;}
+#login-form .fa_pw:before { font-size:18px; content: "\f084"; color:#FFFFFF;}
+#login-form .mod_footer {
+	background: none repeat scroll 0 0 #E6E6E6;
+    border-color: #EBEBEB;
+    border-image: none;
+    border-radius: 0 0 10px 10px;
+    border-right: 1px solid #C9C9C9;
+    border-style: none solid solid;
+    border-width: medium 1px 1px;
+    height: 71px;
+    line-height: 71px;
+    padding: 0 40px;    
+}
+#login-form input.form-control {
+	float:left;
+	padding-left:10px; 
+	border-color: #CCCCCC;
+    border-image: none;
+    border-radius: 0 5px 5px 0;
+    border-style: solid solid solid none;
+    border-width: 1px 1px 1px medium;
+    height: 40px;
+	line-height:40px;
+    margin: 0;
+    width: 198px;
+}
+#login-form ul { width:252px; margin:0 auto; }
+#login-form li { line-height: 38px; margin-bottom: 20px; }
+#login-form li.error_message { background-color:#F2DEDE;  border-radius:5px; border: 1px solid #EED3D7; }
+#login-form .fa_error:before { content: "\f00d"; margin-right:10px;}
+#login-form li.last { text-align:left; }
+#login-form .error_message em { display:block; color:#B94A48; }
+#login_submit {
+	float:right; 
+	border-radius: 4px;    
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;      
+    padding: 6px 12px;    
+	line-height:1.5em;
+    vertical-align: middle;
+    white-space: nowrap;
+	background-color: #5CB85C;
+    border-color: #4CAE4C;
+	min-width:92px;
+	color:#FFFFFF;
+	cursor:pointer;
+}
+.login-radio {
+	width:auto;
+	line-height:normal;
+	vertical-align: middle;
+}
+.forgetpw { color:#428BCA; }
+
+
