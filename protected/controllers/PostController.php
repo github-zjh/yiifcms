@@ -21,6 +21,35 @@ class PostController extends FrontBase
 		//标签
 		$this->_tags = PostTags::model()->findAll(array('order'=>'data_count DESC','limit'=>20));
 	}
+	
+	/**
+	 * Declares class-based actions.
+	 */
+	public function actions()
+	{
+		return array(
+				// captcha action renders the CAPTCHA image displayed on the contact page
+				'captcha'=>array(
+						'class'=>'MyCaptchaAction',
+						'backColor'=>0xCCCCCC,  //背景色
+						'foreColor'=> 0x3C5880,	//前景色
+						//'fontFile' => $this->_webRoot.'/static/public/fonts/maturasc.ttf', //自定义字体
+						'padding'=>0,
+						'width' => 90,
+						'height'=>30,
+						'minLength'=>4,
+						'maxLength'=>6,
+						'testLimit'=>0,   //不限制输错次数
+						'offset' => 2,    //字符间距
+				),
+				// page action renders "static" pages stored under 'protected/views/site/pages'
+				// They can be accessed via: index.php?r=site/page&view=FileName
+				'page'=>array(
+						'class'=>'CViewAction',
+				),
+		);
+	}
+	
   /**
    * 首页
    */
@@ -81,7 +110,7 @@ class PostController extends FrontBase
   /**
    * 浏览详细内容
    */
-  public function actionView( $id ) {
+  public function actionView( $id ) {  	
     $post = Post::model()->findByPk( intval( $id ) );
     if ( false == $post )
         throw new CHttpException( 404, Yii::t('common','The requested page does not exist.') );
@@ -97,13 +126,16 @@ class PostController extends FrontBase
     Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/view.css");
 	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
 	
+	//评论内容
+	$comments = PostComment::model()->findAll("post_id=:post_id AND status_is=:status order by id DESC" , array(":post_id"=>$id, ":status"=>'Y'));
+	
 	//nav
 	$navs = array();
 	$navs[] = array('url'=>$this->createUrl('post/view',array('id'=>$id)), 'name'=>$post->title);
     $tplVar = array(
         'post'=>$post,     
         'navs'=>$navs,
-        
+        'comments'=>$comments
     );
     $this->render( 'view', $tplVar);
   }
@@ -114,17 +146,19 @@ class PostController extends FrontBase
    * @return [type] [description]
    */
   public function actionPostComment() {
-
     $nickname = trim( $this->_request->getParam( 'nickname' ) );
     $post_id = trim( $this->_request->getParam( 'post_id' ) );
     $user_id = trim( $this->_request->getParam( 'user_id' ) );
     $comment = trim( $this->_request->getParam( 'content' ) );
-    try {
+    $code = trim( $this->_request->getParam( 'code' ) );
+    try {        	
       if ( empty( $post_id ) ){
-      	exit( CJSON::encode( array('state'=>'error','message'=>'没有选择内容') ) );
+      	exit( CJSON::encode( array('state'=>'error','message'=>Yii::t('common','No Select Content')) ) );
       }      
       elseif ( empty( $comment )){
-        exit( CJSON::encode( array('state'=>'error','message'=>'这样不好吧，什么都不写') ));
+        exit( CJSON::encode( array('state'=>'error','message'=>Yii::t('common','No Comment')) ));
+      }elseif(!$code){
+      	exit( CJSON::encode( array('state'=>'error','message'=>Yii::t('common','VefifyCode Error')) ));
       }
       $post_comment = new PostComment();
 
@@ -133,18 +167,19 @@ class PostController extends FrontBase
       	  'user_id'=> $user_id,
           'nickname'=> $nickname,
           'content'=> $comment,
+      	  'create_time' => time(),
       );
 
       if ( $post_comment->save() ) {
         $var['state'] = 'success';
-        $var['message'] = '提交成功';
+        $var['message'] = Yii::t('common','Submit Success');
       }else {
         throw new Exception( CHtml::errorSummary( $post_comment, null, null, array ( 'firstError' => '' ) ) );
       }
       
     } catch ( Exception $e ) {
       $var['state'] = 'error';
-      $var['message'] = '出现错误：'.$e->getMessage();
+      $var['message'] = Yii::t('common','Catch Error').'：'.$e->getMessage();
     }
     exit( CJSON::encode( $var ) );
   }

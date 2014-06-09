@@ -48,10 +48,20 @@
 							<a title="分享到网易微博" class="bshare-neteasemb"></a>
 							<a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
 							<span class="BSHARE_COUNT bshare-share-count">0</span>
-						</div>
-						<!--<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh"></script>
-						<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
-						-->
+						</div>						
+						
+						<script type="text/javascript" charset="utf-8" id="butonLiteJs"></script>
+						<script type="text/javascript" charset="utf-8" id="bshareJs"></script>
+						
+						<script type="text/javascript">
+							//延迟加载外部js
+							window.onload = shareJs();
+							function shareJs(){
+								$("#butonLiteJs").attr("src","http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh");
+								$("#bshareJs").attr("src","http://static.bshare.cn/b/bshareC0.js");
+							}
+						</script>
+						
 					</li>
 					
 				</ul>
@@ -59,29 +69,21 @@
 			
 			<!-- 评论区 -->
 			<div class="comments">
-				<h3>10&nbsp;&nbsp;Comments</h3>
-				<ul>
+				<h3><?php echo count($comments);?>&nbsp;&nbsp;Comments</h3>				
+				<ul id="comment_list">
+					<?php foreach((array)$comments as $comment):?>
 					<li class="clear">
-						<img src="<?php echo $this->_stylePath;?>/images/default_avatar.png" class="avatar" />
+						<?php $user = User::model()->findByPk($comment->user_id);?>						
+						<img width="70" <?php if($user && $user->avatar):?> src="<?php echo $user->avatar;?>" <?php else:?>  src="<?php echo $this->_stylePath;?>/images/default_avatar.png"  <?php endif;?> class="avatar" />
 						<div class="comment_desc">
 							<p class="desc_head">
-								<strong class="user">Admin</strong>
-								<span class="submit_time">2014年4月23日11:08:56</span>
+								<strong class="user"><?php echo $user->username?$user->username:Yii::t('common','Anonymity')?></strong>
+								<span class="submit_time"><?php echo date('Y年m月d日 H:i:s',$comment->create_time)?></span>
 							</p>
-							<p class="desc_body">asdfasdf</p>
+							<div class="desc_body"><?php echo $comment->content;?></div>
 						</div>						
 					</li>
-					
-					<li class="clear">
-						<img src="<?php echo $this->_stylePath;?>/images/default_avatar.png" class="avatar" />
-						<div class="comment_desc">
-							<p class="desc_head">
-								<strong class="user">Admin</strong>
-								<span class="submit_time">2014年4月23日11:08:56</span>
-							</p>
-							<p class="desc_body">asdfasdf</p>
-						</div>
-					</li>
+					<?php endforeach;?>					
 				</ul>
 				<?php $this->renderPartial('_comment', array('post'=>$post));?>				
 			</div>			

@@ -35,7 +35,8 @@ return array (
 	'Logout' => '退出',
 	'UserName' => '用户名',
 	'PassWord' => '密&nbsp;&nbsp;&nbsp;&nbsp码',
-	'VerifyCode' => '验证码',	  
+	'VerifyCode' => '验证码',
+	'VefifyCode Error' => '验证码错误',	  
 	'Username is exists' =>'用户名已经存在',
 	'Email Is Exist' => '邮箱已被注册',
 	'Email Format Is Wrong' => '邮箱格式不正确',
@@ -151,4 +152,16 @@ return array (
 	'Last Softs' => '最近的软件',
 	'Read More'=>'继续阅读',
 	
+	//评论
+	'User'=>'用户',
+	'Comment' =>'评论',
+	'Content' =>'内容',
+	'No Select Content' => '没有选择内容',
+	'No Comment' => '没有填内容哦，亲~',
+	'Submit Success' => '提交成功',
+	'Catch Error' => '出现错误',
+	'Before Comment' => '要评论先',
+	'Or' => '或者',
+	'I Will Comment' => '我要评论',
+	'Anonymity' => '匿名用户',
 );

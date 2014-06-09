@@ -85,9 +85,9 @@ class KindEditor extends CInputWidget{
 	protected function _checkType( $var ) {
 
 		if ( gettype( $var ) == 'array' )
-			return 'obj';
-		else
 			return 'arr';
+		else
+			return 'obj';
 	}
 
 	/**
@@ -96,7 +96,7 @@ class KindEditor extends CInputWidget{
 	protected function _obj( $key, $item) {
 		$script .=  $dot ."'$key':{";
 		$subDot = '';
-		foreach ( $item as $keys=>$value ) {
+		foreach ( $item as $keys=>$value ) {			
 			$arrkeys = array_keys($value);
 			foreach($arrkeys as $row){
 				$script .= $subDot. "'$row':'{$value[$row]}'";
@@ -156,7 +156,9 @@ class KindEditor extends CInputWidget{
 		$assets = $this->getAssetsPath();		
 		$clientScript = Yii::app()->getClientScript();
 		$clientScript->registerCssFile( $assets.'/themes/default/default.css' );
+		$clientScript->registerCssFile( $assets.'/plugins/code/prettify.css' );
 		$clientScript->registerScriptFile( $assets.'/kindeditor-min.js', CClientScript::POS_END );
+		$clientScript->registerScriptFile( $assets.'/plugins/code/prettify.js', CClientScript::POS_END );
 		$clientScript->registerScriptFile( $assets.'/lang/'.$this->language.'.js', CClientScript::POS_END );
 		$clientScript->registerScript( 'content', $this->makeOptions(), CClientScript::POS_END );
 	}
