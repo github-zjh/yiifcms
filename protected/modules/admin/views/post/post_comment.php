@@ -30,6 +30,7 @@ $(document).ready(function(){
       <th width="10%"><?php echo Yii::t('admin','Comment User');?></th>
       <th width="20%"><?php echo Yii::t('admin','Comment Title');?></th>
       <th ><?php echo Yii::t('admin','Comment Content');?></th>
+      <th width="10%"><?php echo Yii::t('admin','Comment Status');?></th>
       <th width="15%"><?php echo Yii::t('admin','Comment Time');?></th>
       <th width="8%"><?php echo Yii::t('admin','Operate');?></th>
     </tr>
@@ -40,6 +41,7 @@ $(document).ready(function(){
       <td ><?php echo $row->nickname ?></td>
       <td ><?php echo $row->post->title ?></td>
       <td ><?php echo nl2br(htmlspecialchars($row->content)) ?></td>
+      <td ><?php echo $row->status_is=='Y'?"<span style='color:green'>".Yii::t('admin','Pass Checking')."</span>":"<span style='color:red'>".Yii::t('admin','Wait Checking')."</span>"; ?></td>
       <td ><?php echo date('Y-m-d H:i',$row->create_time)?></td>
       <td ><a href="<?php echo  $this->createUrl('commentUpdate',array('id'=>$row->id))?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;<a href="<?php echo  $this->createUrl('batch',array('command'=>'commentDelete','id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->_baseUrl?>/static/admin/images/delete.png" align="absmiddle" /></a></td>
     </tr>

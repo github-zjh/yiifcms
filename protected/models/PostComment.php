@@ -10,7 +10,7 @@
 
 class PostComment extends CActiveRecord
 {
-	
+	public $verifyCode;
 	/**
 	 * @return string 相关的数据库表的名称
 	 */
@@ -31,6 +31,7 @@ class PostComment extends CActiveRecord
 			array('status_is, status_answer', 'length', 'max'=>1),
 			array('client_ip', 'length', 'max'=>5),
 			array('answer_content', 'safe'),
+			array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements(), 'on'=>'create'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, post_id, user_id, nickname, content, status_is, status_answer, answer_content, client_ip, create_time', 'safe', 'on'=>'search'),

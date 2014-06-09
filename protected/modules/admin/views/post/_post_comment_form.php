@@ -23,7 +23,24 @@
     <td class="tb_title"><?php echo Yii::t('admin', 'Content');?>：</td>
   </tr>
   <tr >
-    <td ><?php echo $form->textArea($model,'content',array('rows'=>7,'cols'=>70)); ?></td>
+    <td >
+    	<?php echo $form->textArea($model,'content',array('rows'=>7,'cols'=>70)); ?>
+    	<?php $this->widget('application.widget.kindeditor.KindEditor',array(
+				  'target'=>array(
+				  	'#PostComment_content'=>array(
+						 'themeType'=>'simple',
+				  		 'width'=>'500',	
+						 'height'=>'200',	
+			  			 'items'=>array(
+			  					'fontname', 'fontsize','|','undo', 'redo','|','code', 'forecolor', 'hilitecolor', 'bold', 'italic',
+			  					'underline', 'removeformat', '|', 'justifyleft', 'justifycenter',
+			  					'justifyright', 'insertorderedlist','insertunorderedlist', '|',
+			  					'emoticons', 'image', 'link'),
+						)				  		
+					)						
+				)
+				);?>			
+    </td>
   </tr>
   <tr>
     <td class="tb_title"><?php echo Yii::t('admin', 'Reply Content');?>：</td>

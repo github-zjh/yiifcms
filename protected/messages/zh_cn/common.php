@@ -159,6 +159,7 @@ return array (
 	'No Select Content' => '没有选择内容',
 	'No Comment' => '没有填内容哦，亲~',
 	'Submit Success' => '提交成功',
+	'Submit Success, Waiting Pass' => '提交成功，等待审核',
 	'Catch Error' => '出现错误',
 	'Before Comment' => '要评论先',
 	'Or' => '或者',

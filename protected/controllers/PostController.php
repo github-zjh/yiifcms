@@ -151,28 +151,32 @@ class PostController extends FrontBase
     $user_id = trim( $this->_request->getParam( 'user_id' ) );
     $comment = trim( $this->_request->getParam( 'content' ) );
     $code = trim( $this->_request->getParam( 'code' ) );
-    try {        	
+   
+    try {        
+      $post_comment = new PostComment();
+      
+      $post_comment ->attributes = array(
+      		'post_id'=> $post_id,
+      		'user_id'=> $user_id,
+      		'nickname'=> $nickname,
+      		'content'=> $comment,
+      		'create_time' => time(),
+      		'verifyCode' =>$code,
+      		'status_is' =>'N',  //提交后需要审核
+      );      
+      
       if ( empty( $post_id ) ){
       	exit( CJSON::encode( array('state'=>'error','message'=>Yii::t('common','No Select Content')) ) );
       }      
       elseif ( empty( $comment )){
         exit( CJSON::encode( array('state'=>'error','message'=>Yii::t('common','No Comment')) ));
-      }elseif(!$code){
-      	exit( CJSON::encode( array('state'=>'error','message'=>Yii::t('common','VefifyCode Error')) ));
+      }elseif(!$code  || !$post_comment->validate('verifyCode')){
+      	exit( CJSON::encode( array('state'=>'error','message'=>Yii::t('common','VefifyCode Error')) ) );
       }
-      $post_comment = new PostComment();
-
-      $post_comment ->attributes = array(
-          'post_id'=> $post_id,
-      	  'user_id'=> $user_id,
-          'nickname'=> $nickname,
-          'content'=> $comment,
-      	  'create_time' => time(),
-      );
 
       if ( $post_comment->save() ) {
         $var['state'] = 'success';
-        $var['message'] = Yii::t('common','Submit Success');
+        $var['message'] = Yii::t('common','Submit Success, Waiting Pass');
       }else {
         throw new Exception( CHtml::errorSummary( $post_comment, null, null, array ( 'firstError' => '' ) ) );
       }

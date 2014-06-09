@@ -254,4 +254,7 @@ return array (
 	'Lan_other' => '未知字幕',
 	'File Names Contains doesnt recognize Chinese' => '文件名中含有不能识别的中文，请修改后再上传。',
 	'Goods Name' => '商品名称',
+	'Comment Status' => '评论状态',
+	'Pass Checking' => '审核通过',
+	'Wait Checking' => '待审核',
 );
