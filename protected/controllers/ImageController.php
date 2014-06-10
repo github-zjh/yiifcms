@@ -9,6 +9,7 @@ class ImageController extends FrontBase
 {
 	protected $_catalog;
 	protected $_menu_unique;
+	protected $_tags;
 	
 	public function init(){
 		parent::init();
@@ -16,6 +17,8 @@ class ImageController extends FrontBase
 		$this->_catalog = Catalog::model()->findAll('status_is=:status AND type = :type',array(':status'=>'Y',':type'=>'image'));
 		//导航标示
 		$this->_menu_unique = 'image';
+		//标签
+		$this->_tags = PostTags::model()->findAll(array('order'=>'data_count DESC','limit'=>20));
 	}
 	  /**
 	   * 首页
@@ -80,26 +83,35 @@ class ImageController extends FrontBase
   /**
    * 浏览详细内容
    */
-  public function actionView( $id ) {
+  public function actionView( $id ) {  	
   	$post = Post::model()->findByPk( intval( $id ) );
-  	if ( false == $post )
-  		throw new CHttpException( 404, Yii::t('common','The requested page does not exist.') );
-  	//更新浏览次数
-  	$post->updateCounters(array ('view_count' => 1 ), 'id=:id', array ('id' => $id ));
-  	//seo信息
-  	$this->_seoTitle = empty( $post->seo_title ) ? $post->title  .' - '. $this->_setting['site_name'] : $post->seo_title;
-  	$this->_seoKeywords = empty( $post->seo_keywords ) ? $this->_seoKeywords  : $post->seo_keywords;
-  	$this->_seoDescription = empty( $post->seo_description ) ? $this->_seoDescription: $post->seo_description;
-  	$catalogArr = Catalog::model()->findByPk($post->catalog_id);
-  	
-  	//加载css,js
-  	Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/view.css");
-  	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
-  	$tplVar = array(
-  			'post'=>$post,
-  			'catalogArr'=>$catalogArr,
-  
-  	);
+    if ( false == $post )
+        throw new CHttpException( 404, Yii::t('common','The requested page does not exist.') );
+    //更新浏览次数
+    $post->updateCounters(array ('view_count' => 1 ), 'id=:id', array ('id' => $id ));
+    //seo信息
+    $this->_seoTitle = empty( $post->seo_title ) ? $post->title  .' - '. $this->_setting['site_name'] : $post->seo_title;
+    $this->_seoKeywords = empty( $post->seo_keywords ) ? $this->_seoKeywords  : $post->seo_keywords;
+    $this->_seoDescription = empty( $post->seo_description ) ? $this->_seoDescription: $post->seo_description;
+    $catalogArr = Catalog::model()->findByPk($post->catalog_id);
+    
+  	//加载css,js	
+    Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/view.css");
+    Yii::app()->clientScript->registerCssFile($this->_static_public . "/js/kindeditor/code/prettify.css");
+	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
+	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/kindeditor/code/prettify.js",CClientScript::POS_END);
+	
+	//评论内容
+	$comments = PostComment::model()->findAll("post_id=:post_id AND status_is=:status order by id DESC" , array(":post_id"=>$id, ":status"=>'Y'));
+	
+	//nav
+	$navs = array();
+	$navs[] = array('url'=>$this->createUrl('post/view',array('id'=>$id)), 'name'=>$post->title);
+    $tplVar = array(
+        'post'=>$post,     
+        'navs'=>$navs,
+        'comments'=>$comments
+    );
   	$this->render( 'view', $tplVar);
   }
   

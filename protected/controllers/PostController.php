@@ -124,7 +124,9 @@ class PostController extends FrontBase
     
   	//加载css,js	
     Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/view.css");
+    Yii::app()->clientScript->registerCssFile($this->_static_public . "/js/kindeditor/code/prettify.css");
 	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
+	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/kindeditor/code/prettify.js",CClientScript::POS_END);
 	
 	//评论内容
 	$comments = PostComment::model()->findAll("post_id=:post_id AND status_is=:status order by id DESC" , array(":post_id"=>$id, ":status"=>'Y'));

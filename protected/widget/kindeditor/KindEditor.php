@@ -155,10 +155,8 @@ class KindEditor extends CInputWidget{
 		parent::run();		
 		$assets = $this->getAssetsPath();		
 		$clientScript = Yii::app()->getClientScript();
-		$clientScript->registerCssFile( $assets.'/themes/default/default.css' );
-		$clientScript->registerCssFile( $assets.'/plugins/code/prettify.css' );
-		$clientScript->registerScriptFile( $assets.'/kindeditor-min.js', CClientScript::POS_END );
-		$clientScript->registerScriptFile( $assets.'/plugins/code/prettify.js', CClientScript::POS_END );
+		$clientScript->registerCssFile( $assets.'/themes/default/default.css' );		
+		$clientScript->registerScriptFile( $assets.'/kindeditor-min.js', CClientScript::POS_END );		
 		$clientScript->registerScriptFile( $assets.'/lang/'.$this->language.'.js', CClientScript::POS_END );
 		$clientScript->registerScript( 'content', $this->makeOptions(), CClientScript::POS_END );
 	}
