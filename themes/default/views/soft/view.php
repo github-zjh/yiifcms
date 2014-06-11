@@ -7,30 +7,20 @@
 			<div class="list_box clear">
 				<div class="list_head">
 					<div class="date_time">
-						<p><?php echo date('M',$post->last_update_time)?></p>
+						<p><?php echo date('Y',$soft->update_time)?></p>
 						<strong>
-							<?php echo date('d',$post->last_update_time)?>
-							<br/><?php echo date('H:i:s',$post->last_update_time)?>
+							<?php echo date('m.d',$soft->update_time)?>
+							<br/><?php echo date('H:i:s',$soft->update_time)?>
 						</strong>
 					</div>						
 				</div>
 				<div class="list_body">	
-					<h2><a href="<?php echo $this->createUrl('image/view', array('id'=>$post->id));?>"><?php echo $post->title;?></a></h2>
-					<p class="view_info">
-						<span><?php echo Yii::t('common','Copy From')?>： <em><?php echo $post->copy_from?"<a href='".$post->copy_url."' target='_blank'>".$post->copy_from."</a>":Yii::t('common','System Manager');?></em></span>
-						<?php $post_tags = $post->tags?explode(',',$post->tags):array(); $tags_len = count($post_tags);?>
-						<?php if($tags_len > 0):?>
-						<span class="tags">
-							<?php $i = 1; foreach((array)$post_tags as $ptag):?>
-							<em><a href="<?php echo $this->createUrl('tag/index',array('tag'=>$ptag));?>"><?php echo $ptag;?></a><?php if($i<$tags_len):?>,&nbsp;&nbsp;<?php endif;?></em>
-							<?php $i++;?>
-							<?php endforeach;?>								
-						</span>
-						<?php endif;?>
-						<span class="views"><em><?php echo $post->view_count;?></em></span>
+					<h2><a href="<?php echo $this->createUrl('soft/view', array('id'=>$soft->id));?>"><?php echo $soft->title;?></a></h2>
+					<p class="view_info">						
+						<span class="views"><em><?php echo $soft->down_count;?></em></span>
 					</p>
 					<div class="content_info">
-						<?php echo $post->content;?>
+						<?php echo $soft->introduce;?>
 					</div>
 					
 				</div>

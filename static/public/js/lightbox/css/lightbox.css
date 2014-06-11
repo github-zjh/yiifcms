@@ -11,7 +11,7 @@ body:after {
   left: 0;
   z-index: 9999;
   background-color: black;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  filter:alpha(opacity=80);
   opacity: 0.8;
   display: none;
 }
@@ -140,6 +140,7 @@ body:after {
 .lb-dataContainer {
   margin: 0 auto;
   padding-top: 5px;
+  background-color:#FFFFFF;
   *zoom: 1;
   width: 100%;
   -moz-border-radius-bottomleft: 4px;
@@ -180,7 +181,7 @@ body:after {
   clear: left;
   padding-bottom: 1em;
   font-size: 12px;
-  color: #999999;
+  color: #F00;
 }
 /* line 121, ../sass/lightbox.sass */
 .lb-data .lb-close {

@@ -97,6 +97,8 @@
           <?php foreach((array)$imageList as $key=>$row):?>
           <?php if($row):?>
           <li id="image_<?php echo $row['fileId']?>"><a href="<?php echo $this->_baseUrl?>/<?php echo $row['file']?>" target="_blank"><img src="<?php echo $this->_baseUrl?>/<?php echo $row['file']?>" width="40" height="40" align="absmiddle"></a>&nbsp;<br>
+            <label>描述：</label><input name="imageList[desc][]" type="text" value="<?php echo $row['desc']?>" /><br/>
+            <label>网址：</label><input name="imageList[url][]" type="text" value="<?php echo $row['url']?>" /><br/>
             <a href='javascript:uploadifyRemove("<?php echo $row['fileId']?>", "image_")'><?php echo Yii::t('admin','Delete');?></a>
             <input name="imageList[fileId][]" type="hidden" value="<?php echo $row['fileId']?>">
             <input name="imageList[file][]" type="hidden" value="<?php echo $row['file']?>">

@@ -1,7 +1,7 @@
 <?php if(Yii::app()->user->getIsGuest()):?>
 <span>	
 	<?php echo Yii::t('common','Before Comment');?>
-	<a href="javascript:;" id="need_login"><?php echo Yii::t('common','Login');?></a><?php echo Yii::t('common','Or');?>
+	<a href="javascript:;" id="need_login"><?php echo Yii::t('common','Login');?></a> <?php echo Yii::t('common','Or');?>
 	<a href="<?php echo $this->createUrl('user/register');?>"><?php echo Yii::t('common','Register');?></a>
 </span>
 <?php else:?>

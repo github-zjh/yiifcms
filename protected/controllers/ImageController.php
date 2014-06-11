@@ -55,7 +55,7 @@ class ImageController extends FrontBase
 	    $criteria->condition = $condition;
 	    $criteria->order = 'view_count DESC, t.id DESC';
 	    $criteria->with = array ( 'catalog' );
-	    $criteria->select = "title, id, t.image_list, t.last_update_time,t.intro, t.tags, t.view_count";
+	    $criteria->select = "title, id, t.attach_thumb, t.copy_from, t.copy_url, t.image_list, t.last_update_time,t.intro, t.tags, t.view_count";
 	   
 	    //分页
 	    $count = $post->count( $criteria );    
@@ -74,7 +74,7 @@ class ImageController extends FrontBase
 	    $last_images = Post::model()->findAll(array('condition'=>'catalog_id IN ('.$db_in_ids.')','order'=>'id DESC','limit'=>10,));
 	    
 	    //加载css,js	
-	    Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/list.css");
+	    Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/list.css");	    
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");	
 		
 	    $this->render( 'index', array('navs'=>$navs, 'posts'=>$datalist,'pagebar' => $pages, 'tags'=>$tags, 'last_images'=>$last_images));
@@ -96,11 +96,14 @@ class ImageController extends FrontBase
     $catalogArr = Catalog::model()->findByPk($post->catalog_id);
     
   	//加载css,js	
-    Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/view.css");
+    Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/view.css");   
     Yii::app()->clientScript->registerCssFile($this->_static_public . "/js/kindeditor/code/prettify.css");
+    Yii::app()->clientScript->registerCssFile($this->_static_public . "/js/discuz/zoom.css");
 	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
+	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/discuz/common.js");	
+	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/discuz/zoom.js");
 	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/kindeditor/code/prettify.js",CClientScript::POS_END);
-	
+
 	//评论内容
 	$comments = PostComment::model()->findAll("post_id=:post_id AND status_is=:status order by id DESC" , array(":post_id"=>$id, ":status"=>'Y'));
 	

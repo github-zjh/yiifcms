@@ -9,8 +9,11 @@
 				<li class="list_box clear">
 					<div class="list_head">
 						<div class="date_time">
-							<p><?php echo date('M',$soft->update_time)?></p>
-							<strong><?php echo date('d',$soft->update_time)?></strong>
+							<p><?php echo date('Y',$soft->update_time)?></p>
+							<strong>
+								<?php echo date('m.d',$soft->update_time)?>
+								<br/><?php echo date('H:i:s',$soft->update_time)?>
+							</strong>
 						</div>						
 					</div>
 					<div class="list_body">

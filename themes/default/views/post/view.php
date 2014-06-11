@@ -7,15 +7,15 @@
 			<div class="list_box clear">
 				<div class="list_head">
 					<div class="date_time">
-						<p><?php echo date('M',$post->last_update_time)?></p>
-						<strong>
-							<?php echo date('d',$post->last_update_time)?>
+						<p><?php echo date('Y',$post->last_update_time)?></p>
+						<strong>							
+							<?php echo date('m.d',$post->last_update_time)?>
 							<br/><?php echo date('H:i:s',$post->last_update_time)?>
-						</strong>
+						</strong>	
 					</div>						
 				</div>
 				<div class="list_body">	
-					<h2><a href="<?php echo $this->createUrl('post/view', array('id'=>$post->id));?>"><?php echo $post->title;?></a></h2>
+					<h2><a href="<?php echo $this->createUrl('post/view', array('id'=>$post->id));?>"  style="<?php echo $this->formatStyle($post->title_style);?>"><?php echo $post->title;?></a></h2>
 					<p class="view_info">
 						<span><?php echo Yii::t('common','Copy From')?>： <em><?php echo $post->copy_from?"<a href='".$post->copy_url."' target='_blank'>".$post->copy_from."</a>":Yii::t('common','System Manager');?></em></span>
 						<?php $post_tags = $post->tags?explode(',',$post->tags):array(); $tags_len = count($post_tags);?>

@@ -10,8 +10,11 @@
 				<li class="list_box clear">
 					<div class="list_head">
 						<div class="date_time">
-							<p><?php echo date('M',$post->last_update_time)?></p>
-							<strong><?php echo date('d',$post->last_update_time)?></strong>
+							<p><?php echo date('Y',$post->last_update_time)?></p>
+							<strong>							
+								<?php echo date('m.d',$post->last_update_time)?>
+								<br/><?php echo date('H:i:s',$post->last_update_time)?>
+							</strong>	
 						</div>						
 					</div>
 					<div class="list_body">
@@ -28,7 +31,10 @@
 							<?php endif;?>
 							<span class="views"><em><?php echo $post->view_count;?></em></span>
 						</p>
-						<p class="content_info">							
+						<p class="content_info clear">
+							<?php if(file_exists($post->attach_thumb)):?>
+							<a class="content_cover" alt="<?php echo $post->title;?>" title="<?php echo $post->title;?>" href="<?php echo $this->createUrl('image/view', array('id'=>$post->id));?>"><img src="<?php echo $post->attach_thumb;?>" /></a>
+							<?php endif;?>								
 							<?php echo $post->intro?$post->intro:'...';?>
 						</p>
 						<a href="<?php echo $this->createUrl('image/view', array('id'=>$post->id));?>" class="continue_read"><?php echo Yii::t('common','Read More');?></a>
