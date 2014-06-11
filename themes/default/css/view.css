@@ -5,7 +5,7 @@
 #content .content_right { float:right; width:270px; }
 .content_left .list_box { padding:40px 0; margin-bottom:25px; border-bottom:3px solid #e5e6e6;}
 .content_left .list_head { float:left; width:70px; text-align:center; }
-.content_left .list_head .date_time { height:90px; line-height:40px; background:url(../images/icon_date.png) center -4px no-repeat; font-size:16px; }
+.content_left .list_head .date_time { height:90px; line-height:40px; background:url(../images/icon_date.png) center -4px no-repeat; font-size:14px; }
 .content_left .date_time p { color:#FFFFFF;}
 .content_left .list_body { float:right; width:770px;}
 .content_left .content_type { width:70px; height:70px; margin-top:20px; background:url(../images/type_text.png) no-repeat left center;}
