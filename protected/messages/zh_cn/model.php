@@ -63,7 +63,15 @@ return array(
 		
 		//Post
 		
-		//PostComment
+		//Comment
+		'CommentId' => '评论id',
+		'CommentTopic_id' => '评论主题id',
+		'CommentUser_id' => '评论用户id',
+		'CommentContent' => '评论内容',
+		'CommentStatus' => '评论状态',
+		'CommentType' => '评论类型',
+		'CommentClient_ip' => '评论ip',
+		'CommentCreate_time' => '评论时间',
 		
 		//PostTags
 		

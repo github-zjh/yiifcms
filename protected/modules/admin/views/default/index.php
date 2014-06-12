@@ -87,7 +87,7 @@
                 <li index="2"><a href="<?php echo $this->createUrl('link/index');?>" target="win"><?php echo Yii::t('admin','Link Manage');?></a></li>                          
                 <li index="3"><a href="<?php echo $this->createUrl('adPosition/index');?>" target="win"><?php echo Yii::t('admin','Adposition Manage');?></a></li>
                 <li index="4"><a href="<?php echo $this->createUrl('ad/index');?>" target="win"><?php echo Yii::t('admin','Ads Manage');?></a></li>
-                <li index="5"><a href="<?php echo $this->createUrl('post/comment');?>" target="win"><?php echo Yii::t('admin','Comment Manage');?></a></li>
+                <li index="5"><a href="<?php echo $this->createUrl('comment/index');?>" target="win"><?php echo Yii::t('admin','Comment Manage');?></a></li>
                 <li index="6"><a href="<?php echo $this->createUrl('post/tags');?>" target="win"><?php echo Yii::t('admin','Tags Manage');?></a></li>                             
               </ul>
             <ul index="6" class="left_menu">

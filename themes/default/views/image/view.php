@@ -35,13 +35,13 @@
 						<?php if($post->image_list):?>
 						<?php $pics = unserialize($post->image_list);?>												
 						<div id="show_pics">
-							<a href="javascript:;" id="move_prev" class="prev_btn">向前</a>
+							<a href="javascript:;" id="move_prev" class="prev_btn"><</a>
 							<ul>								
 								<?php foreach((array)$pics as $pic):?>
 								<li><img  id="<?php echo "aimg_".$pic['fileId'];?>" aid="<?php echo $pic['fileId'];?>"  onclick="zoom(this, this.src, 0, 0, 0)" zoomfile="<?php echo $pic['file'];?>" alt="<?php echo $pic['desc'];?>" title="<?php echo $pic['desc'];?>" file="<?php echo $pic['file'];?>" src="<?php echo $pic['file'];?>" /></li>
 								<?php endforeach;?>										
 							</ul>		
-							<a href="javascript:;" id="move_next"  class="prev_btn next_btn">向后</a>					
+							<a href="javascript:;" id="move_next"  class="prev_btn next_btn">></a>					
 						</div>
 						<div id="append_parent"></div><div id="ajaxwaitid"></div>
 						<?php endif;?>

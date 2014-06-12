@@ -22,34 +22,6 @@ class PostController extends FrontBase
 		$this->_tags = PostTags::model()->findAll(array('order'=>'data_count DESC','limit'=>20));
 	}
 	
-	/**
-	 * Declares class-based actions.
-	 */
-	public function actions()
-	{
-		return array(
-				// captcha action renders the CAPTCHA image displayed on the contact page
-				'captcha'=>array(
-						'class'=>'MyCaptchaAction',
-						'backColor'=>0xCCCCCC,  //背景色
-						'foreColor'=> 0x3C5880,	//前景色
-						//'fontFile' => $this->_webRoot.'/static/public/fonts/maturasc.ttf', //自定义字体
-						'padding'=>0,
-						'width' => 90,
-						'height'=>30,
-						'minLength'=>4,
-						'maxLength'=>6,
-						'testLimit'=>0,   //不限制输错次数
-						'offset' => 2,    //字符间距
-				),
-				// page action renders "static" pages stored under 'protected/views/site/pages'
-				// They can be accessed via: index.php?r=site/page&view=FileName
-				'page'=>array(
-						'class'=>'CViewAction',
-				),
-		);
-	}
-	
   /**
    * 首页
    */
@@ -123,70 +95,17 @@ class PostController extends FrontBase
     $catalogArr = Catalog::model()->findByPk($post->catalog_id);
     
   	//加载css,js	
-    Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/view.css");
-    Yii::app()->clientScript->registerCssFile($this->_static_public . "/js/kindeditor/code/prettify.css");
-	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
-	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/kindeditor/code/prettify.js",CClientScript::POS_END);
-	
-	//评论内容
-	$comments = PostComment::model()->findAll("post_id=:post_id AND status_is=:status order by id DESC" , array(":post_id"=>$id, ":status"=>'Y'));
-	
+    Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/view.css");    
+	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");	
+
 	//nav
 	$navs = array();
 	$navs[] = array('url'=>$this->createUrl('post/view',array('id'=>$id)), 'name'=>$post->title);
     $tplVar = array(
         'post'=>$post,     
-        'navs'=>$navs,
-        'comments'=>$comments
+        'navs'=>$navs      
     );
     $this->render( 'view', $tplVar);
   }
-
-  /**
-   * 提交评论
-   *
-   * @return [type] [description]
-   */
-  public function actionPostComment() {
-    $nickname = trim( $this->_request->getParam( 'nickname' ) );
-    $post_id = trim( $this->_request->getParam( 'post_id' ) );
-    $user_id = trim( $this->_request->getParam( 'user_id' ) );
-    $comment = trim( $this->_request->getParam( 'content' ) );
-    $code = trim( $this->_request->getParam( 'code' ) );
-   
-    try {        
-      $post_comment = new PostComment();
-      
-      $post_comment ->attributes = array(
-      		'post_id'=> $post_id,
-      		'user_id'=> $user_id,
-      		'nickname'=> $nickname,
-      		'content'=> $comment,
-      		'create_time' => time(),
-      		'verifyCode' =>$code,
-      		'status_is' =>'N',  //提交后需要审核
-      );      
-      
-      if ( empty( $post_id ) ){
-      	exit( CJSON::encode( array('state'=>'error','message'=>Yii::t('common','No Select Content')) ) );
-      }      
-      elseif ( empty( $comment )){
-        exit( CJSON::encode( array('state'=>'error','message'=>Yii::t('common','No Comment')) ));
-      }elseif(!$code  || !$post_comment->validate('verifyCode')){
-      	exit( CJSON::encode( array('state'=>'error','message'=>Yii::t('common','VefifyCode Error')) ) );
-      }
-
-      if ( $post_comment->save() ) {
-        $var['state'] = 'success';
-        $var['message'] = Yii::t('common','Submit Success, Waiting Pass');
-      }else {
-        throw new Exception( CHtml::errorSummary( $post_comment, null, null, array ( 'firstError' => '' ) ) );
-      }
-      
-    } catch ( Exception $e ) {
-      $var['state'] = 'error';
-      $var['message'] = Yii::t('common','Catch Error').'：'.$e->getMessage();
-    }
-    exit( CJSON::encode( $var ) );
-  }
+  
 }

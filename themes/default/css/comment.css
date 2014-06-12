@@ -1,0 +1,34 @@
+@CHARSET "UTF-8";
+iframe { height:100%;}
+* { text-align:left;}
+.comments h3 { line-height:100px; font-size:20px; font-weight:bold; }
+.comments li { border-bottom:1px solid #e5e6e6; padding-bottom:19px; margin-bottom:19px; }
+.comments .avatar { float:left; border-radius:25px;}
+.comments .comment_desc { float:left; margin-left:10px; }
+.comments .comment_desc .desc_head { line-height:28px;}
+.comments .comment_desc .desc_head .user { font-size:14px;}
+.comments .comment_desc .desc_head .submit_time { padding-left:10px; font-size:14px;}
+
+#comment_form tr { line-height:33px; }
+#comment_form th { padding-right:20px; font-weight:bold; font-size:14px;}
+#comment_form input { border-left:1px solid #666666; border-top:1px solid #666666; border-radius:3px; background-color:#e5e6e6; }
+#comment_form textarea {  border-left:1px solid #666666; border-top:1px solid #666666; min-width:560px; max-width:560px; min-height:140px; max-height:140px; padding:10px; background-color:#e5e6e6;}
+
+#Comment_verifyCode { width:100px; margin-top:20px; border:1px solid #555555; line-height:30px; height:30px;}
+#comment_form .submit {
+	display:block;
+	width:60px; 
+	border:none;
+	margin:20px 0;
+	cursor:pointer;
+	border-radius:5px; background-color:#e8645a;
+	-webkit-box-shadow:0 5px 0 #e2534b;
+	-moz-box-shadow: 0 5px 0 #e2534b;
+	box-shadow: 0 5px 0 #e2534b;
+	filter: progid:DXImageTransform.Microsoft.Shadow(color='#e2534b', Direction=-180, Strength=5);
+	text-decoration:none;
+	font-size:16px;
+	color:#FFFFFF;
+	text-align:center;	
+}
+.comments a { color:#428BCA;}

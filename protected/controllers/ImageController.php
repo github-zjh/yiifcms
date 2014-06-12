@@ -19,7 +19,8 @@ class ImageController extends FrontBase
 		$this->_menu_unique = 'image';
 		//标签
 		$this->_tags = PostTags::model()->findAll(array('order'=>'data_count DESC','limit'=>20));
-	}
+	}	
+	
 	  /**
 	   * 首页
 	   */

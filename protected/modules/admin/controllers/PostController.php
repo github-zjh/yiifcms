@@ -245,50 +245,7 @@ class PostController extends Backend
     	));    	
         
     }
-
-    /**
-     * 评论管理
-     *
-     */
-    public function actionComment() {
-        
-        $model = new PostComment();
-        $criteria = new CDbCriteria();
-        $condition = '1';
-        $postTitle = $this->_request->getParam( 'postTitle' );
-        $content = $this->_request->getParam( 'content' );
-        $postTitle && $condition .= ' AND post.title LIKE \'%' . $postTitle . '%\'';
-        $content && $condition .= ' AND t.content LIKE \'%' . $content . '%\'';
-        $criteria->condition = $condition;
-        $criteria->order = 't.id DESC';
-        $criteria->with = array ( 'post' );
-        $count = $model->count( $criteria );
-        $pages = new CPagination( $count );
-        $pages->pageSize = 13;
-        $pageParams = $this->buildCondition( $_GET, array ( 'postTitle' , 'content' ) );
-        $pages->params = is_array( $pageParams ) ? $pageParams : array ();
-        $criteria->limit = $pages->pageSize;
-        $criteria->offset = $pages->currentPage * $pages->pageSize;
-        $result = $model->findAll( $criteria );
-        $this->render( 'post_comment', array ( 'datalist' => $result , 'pagebar' => $pages ) );
-    }
-
-    /**
-     * 更新
-     *
-     * @param  $id
-     */
-    public function actionCommentUpdate( $id ) {        
-        $model = PostComment::model()->findByPk($id);
-        if ( isset( $_POST['PostComment'] ) ) {
-            $model->attributes = $_POST['PostComment'];
-            if ( $model->save() ) {               
-                $this->redirect( array ( 'comment' ) );
-            }
-        }
-        $this->render( 'post_comment_update', array ( 'model' => $model ) );
-    }
-
+   
     /**
      * 标签管理
      *
@@ -352,36 +309,7 @@ class PostController extends Backend
         			$postModel->delete();
         		}
         	}
-            break;
-        case 'commentDelete':       
-        	//删除评论   
-            foreach((array)$ids as $id){
-        		$commentModel = PostComment::model()->findByPk($id);
-        		if($commentModel){
-        			$commentModel->delete();
-        		}
-            }
-            break;
-        case 'commentVerify':         
-        	//评论审核通过  
-         	foreach((array)$ids as $id){
-        		$commentModel = PostComment::model()->findByPk($id);        		
-        		if($commentModel){
-        			$commentModel->status_is = 'Y';
-        			$commentModel->save();
-        		}
-            }
-            break;
-        case 'commentUnVerify':    
-        	//评论取消审核
-        	foreach((array)$ids as $id){
-        		$commentModel = PostComment::model()->findByPk($id);        		
-        		if($commentModel){
-        			$commentModel->status_is = 'N';
-        			$commentModel->save();
-        		}
-            }
-            break;
+            break;       
         case 'show':     
         	//文章显示      
         	foreach((array)$ids as $id){

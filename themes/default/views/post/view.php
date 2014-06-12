@@ -68,25 +68,7 @@
 			</div>		
 			
 			<!-- 评论区 -->
-			<div class="comments">
-				<h3><?php echo count($comments);?>&nbsp;&nbsp;Comments</h3>				
-				<ul id="comment_list">
-					<?php foreach((array)$comments as $comment):?>
-					<li class="clear">
-						<?php $user = User::model()->findByPk($comment->user_id);?>						
-						<img width="70" <?php if($user && $user->avatar):?> src="<?php echo $user->avatar;?>" <?php else:?>  src="<?php echo $this->_stylePath;?>/images/default_avatar.png"  <?php endif;?> class="avatar" />
-						<div class="comment_desc">
-							<p class="desc_head">
-								<strong class="user"><?php echo $user->username?$user->username:Yii::t('common','Anonymity')?></strong>
-								<span class="submit_time"><?php echo date('Y年m月d日 H:i:s',$comment->create_time)?></span>
-							</p>
-							<div class="desc_body"><?php echo $comment->content;?></div>
-						</div>						
-					</li>
-					<?php endforeach;?>					
-				</ul>
-				<?php $this->renderPartial('_comment', array('post'=>$post));?>				
-			</div>			
+			<iframe src="<?php echo $this->createUrl('comment/create', array('view_url'=>$this->_request->getUrl(),'topic_id'=>$post->id,'topic_type'=>'article'));?>"></iframe>		
 		</div>
 		
 		<!-- 右侧内容开始 -->
@@ -109,7 +91,10 @@
 					});
 				}
 			});
-			
+			//iframe自适应高度
+			$("iframe").load(function() {
+			      $( this).height($(this).contents().height());
+			});	
 		});
 	</script>
 	

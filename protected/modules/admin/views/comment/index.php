@@ -23,11 +23,10 @@ $(document).ready(function(){
     </div>
   </div>
 </div>
+<form method="post" action="<?php echo $this->createUrl('batch')?>" name="cpform" >
 <table class="content_list">
-  <form method="post" action="<?php echo $this->createUrl('batch')?>" name="cpform" >
     <tr class="tb_header">
-      <th width="8%">ID</th>
-      <th width="10%"><?php echo Yii::t('admin','Comment User');?></th>
+      <th width="8%">ID</th>    
       <th width="20%"><?php echo Yii::t('admin','Comment Title');?></th>
       <th ><?php echo Yii::t('admin','Comment Content');?></th>
       <th width="10%"><?php echo Yii::t('admin','Comment Status');?></th>
@@ -35,13 +34,12 @@ $(document).ready(function(){
       <th width="8%"><?php echo Yii::t('admin','Operate');?></th>
     </tr>
     <?php foreach ($datalist as $row):?>
-    <tr class="tb_list" <?php if($row->status_is=='N'):?>style=" background:#F0F7FC"<?php endif?>>
+    <tr class="tb_list" >
       <td ><input type="checkbox" name="id[]" value="<?php echo $row->id?>">
-        <?php echo $row->id?></td>
-      <td ><?php echo $row->nickname ?></td>
+        <?php echo $row->id?></td>      
       <td ><?php echo $row->post->title ?></td>
       <td ><?php echo nl2br(htmlspecialchars($row->content)) ?></td>
-      <td ><?php echo $row->status_is=='Y'?"<span style='color:green'>".Yii::t('admin','Pass Checking')."</span>":"<span style='color:red'>".Yii::t('admin','Wait Checking')."</span>"; ?></td>
+      <td ><?php echo $row->status=='Y'?"<span style='color:green'>".Yii::t('admin','Pass Checking')."</span>":"<span style='color:red'>".Yii::t('admin','Wait Checking')."</span>"; ?></td>
       <td ><?php echo date('Y-m-d H:i',$row->create_time)?></td>
       <td ><a href="<?php echo  $this->createUrl('commentUpdate',array('id'=>$row->id))?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;<a href="<?php echo  $this->createUrl('batch',array('command'=>'commentDelete','id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->_baseUrl?>/static/admin/images/delete.png" align="absmiddle" /></a></td>
     </tr>
@@ -62,6 +60,6 @@ $(document).ready(function(){
           <input id="submit_maskall" class="button confirmSubmit" type="submit" value="<<?php echo Yii::t('common','Submit');?>" name="maskall" />
         </div></td>
     </tr>
-  </form>
 </table>
+</form>
 
