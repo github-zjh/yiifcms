@@ -7,7 +7,61 @@
 	<meta name="keywords" content="<?php echo $this->_seoKeywords;?>" />
 	<meta name="description" content="<?php echo $this->_seoDescription;?>" />	
 </head>
-<body>
+<body>			
+<?php if(Yii::app()->user->getIsGuest()):?>
+<span>	
+	<?php echo Yii::t('common','Before Comment');?>
+	<a href="<?php echo $this->createUrl('user/login', array('ret_url'=>$view_url));?>" target="_top" id="need_login"><?php echo Yii::t('common','Login');?></a> <?php echo Yii::t('common','Or');?>
+	<a href="<?php echo $this->createUrl('user/register');?>" target="_top" ><?php echo Yii::t('common','Register');?></a>
+</span>
+<?php else:?>
+<?php $form=$this->beginWidget('CActiveForm', array('id'=>'comment_form')); ?>	
+	<table>					
+		<caption>对该内容进行评论：</caption>			
+		<tr>			
+			<td width="540px" colspan="2">
+				<?php echo $form->textArea($model, 'content');?>
+				<?php $this->widget('application.widget.kindeditor.KindEditor',array(
+				  'target'=>array(
+					  	'#Comment_content'=>array(
+							 'themeType'=>'simple',
+					  		 'width'=>'100%',	
+							 'height'=>'200',	
+				  			 'items'=>array(
+				  					'fontname', 'fontsize','|','undo', 'redo','|','code', 'forecolor', 'hilitecolor', 'bold', 'italic',
+				  					'underline', 'removeformat', '|', 'justifyleft', 'justifycenter',
+				  					'justifyright', 'insertorderedlist','insertunorderedlist', '|',
+				  					'emoticons', 'image', 'link'),
+							 'resizeType'=>0,
+						)				  		
+					)						
+				)
+				);?>				
+			</td>	
+			<td>
+				<?php if (CHtml::errorSummary($model)):?>
+				<div class="error_message"> <?php echo CHtml::errorSummary($model); ?> </div>
+				<?php endif?>
+			</td>
+		</tr>
+		<tr>			
+			<td class="clear subBox">
+				<div class="fl">
+					<?php echo $form->textField($model,'verifyCode');?>
+					<?php $this->widget ( 'CCaptcha', array ('showRefreshButton' => true, 'clickableImage' => true, 'buttonType' => 'link', 'buttonLabel' => '看不清？换一张', 'imageOptions' => array ('alt' => '点击换图', 'align'=>'absmiddle'  ) ) );?>
+				</div>
+				
+				<div class="fr">
+					<input type="hidden" name="ret_url" value="<?php echo $cur_url;?>" />
+					<input type="submit" class="submit" value="<?php echo Yii::t('common','Submit');?>" />	
+				</div>				
+			</td>	
+			<td></td>	
+		</tr>
+	</table>				
+<?php $this->endWidget();?>
+<?php endif;?>
+
 <div class="comments">
 	<h3><?php echo count($comments);?>&nbsp;&nbsp;Comments</h3>				
 	<ul id="comment_list">
@@ -29,60 +83,8 @@
 	<?php $this->renderPartial('/layouts/pager',array('pagebar'=>$pagebar));?>	
 	<!-- 分页结束 -->
 		
-</div>		
+</div>	
 
-			
-<?php if(Yii::app()->user->getIsGuest()):?>
-<span>	
-	<?php echo Yii::t('common','Before Comment');?>
-	<a href="<?php echo $this->createUrl('user/login', array('ret_url'=>$view_url));?>" target="_top" id="need_login"><?php echo Yii::t('common','Login');?></a> <?php echo Yii::t('common','Or');?>
-	<a href="<?php echo $this->createUrl('user/register');?>" target="_top" ><?php echo Yii::t('common','Register');?></a>
-</span>
-<?php else:?>
-<?php $form=$this->beginWidget('CActiveForm', array('id'=>'comment_form')); ?>	
-	<table>								
-		<tr>			
-			<td>
-				<?php echo $form->textArea($model, 'content');?>
-				<?php $this->widget('application.widget.kindeditor.KindEditor',array(
-				  'target'=>array(
-				  	'#Comment_content'=>array(
-						 'themeType'=>'simple',
-				  		 'width'=>'100%',	
-						 'height'=>'200',	
-			  			 'items'=>array(
-			  					'fontname', 'fontsize','|','undo', 'redo','|','code', 'forecolor', 'hilitecolor', 'bold', 'italic',
-			  					'underline', 'removeformat', '|', 'justifyleft', 'justifycenter',
-			  					'justifyright', 'insertorderedlist','insertunorderedlist', '|',
-			  					'emoticons', 'image', 'link'),
-						)				  		
-					)						
-				)
-				);?>				
-			</td>			
-		</tr>
-		<tr>			
-			<td>
-			<?php echo $form->textField($model,'verifyCode');?>
-			<?php $this->widget ( 'CCaptcha', array ('showRefreshButton' => true, 'clickableImage' => true, 'buttonType' => 'link', 'buttonLabel' => '换一张', 'imageOptions' => array ('alt' => '点击换图', 'align'=>'absmiddle'  ) ) );?>
-			</td>
-		</tr>
-		<tr>			
-			<td>
-				<?php if (CHtml::errorSummary($model)):?>
-				<div class="error_message"> <?php echo CHtml::errorSummary($model); ?> </div>
-				<?php endif?>
-			</td>
-		</tr>
-		<tr class="sub_tr">
-			<td>				
-				<input type="hidden" name="ret_url" value="<?php echo $cur_url;?>" />
-				<input type="submit" class="submit" value="<?php echo Yii::t('common','Submit');?>" />				
-			</td>
-		</tr>
-	</table>				
-<?php $this->endWidget();?>
-<?php endif;?>
 <script type="text/javascript">
 	$(function(){
 		//高亮显示代码
