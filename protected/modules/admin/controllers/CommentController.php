@@ -33,22 +33,24 @@ class CommentController extends Backend
         $model = new Comment();
         $criteria = new CDbCriteria();
         $condition = '1';
-        $postTitle = $this->_request->getParam( 'postTitle' );
+        $title = $this->_request->getParam( 'postTitle' );
         $content = $this->_request->getParam( 'content' );
-        $postTitle && $condition .= ' AND post.title LIKE \'%' . $postTitle . '%\'';
+        $type = $this->_request->getParam( 'type' );
+        $type?$condition .= " AND type='{$type}'":$condition .= " AND type='article'";
+        $title && $condition .= " AND {$type}.title LIKE '%$title %'";
         $content && $condition .= ' AND t.content LIKE \'%' . $content . '%\'';
         $criteria->condition = $condition;
         $criteria->order = 't.id DESC';
-        $criteria->with = array ( 'post' );
+        $criteria->with = array ( $type );
         $count = $model->count( $criteria );
         $pages = new CPagination( $count );
         $pages->pageSize = 13;
-        $pageParams = $this->buildCondition( $_GET, array ( 'postTitle' , 'content' ) );
+        $pageParams = $this->buildCondition( $_GET, array ( 'postTitle' , 'content','type' ) );
         $pages->params = is_array( $pageParams ) ? $pageParams : array ();
         $criteria->limit = $pages->pageSize;
         $criteria->offset = $pages->currentPage * $pages->pageSize;
         $result = $model->findAll( $criteria );
-        $this->render( 'index', array ( 'datalist' => $result , 'pagebar' => $pages ) );
+        $this->render( 'index', array ( 'datalist' => $result , 'pagebar' => $pages, 'type'=>$type ) );
     }
 
     /**

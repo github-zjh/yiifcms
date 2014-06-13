@@ -1,3 +1,4 @@
+<?php if($pagebar->pageCount>1):?>
 <div id="page">
 <?php
 /**
@@ -18,3 +19,4 @@ $this->widget('CLinkPager',array(
 		'maxButtonCount'=>10,  //分页数量
 ));?>
 </div>
+<?php endif;?>

@@ -69,10 +69,21 @@ class CommentController extends FrontBase
   		throw new CHttpException(404, Yii::t('admin','Submit Error'));
   		break;
   	}
-  	//评论内容
-  	$comments = Comment::model()->findAll("topic_id=:topic_id AND status=:status AND type=:type order by id DESC" , array(":topic_id"=>$topic_id, ":status"=>'Y',':type'=>$topic_type));
-  	  	
+  	//评论内容    
   	$model = new Comment('create');
+  	$criteria = new CDbCriteria();
+  	$condition = "topic_id={$topic_id} AND status='Y' AND type='{$topic_type}'";
+  	$criteria->condition = $condition;
+  	$criteria->order = 'id DESC';  
+  	$criteria->select = "id, user_id, topic_id, content, create_time ";
+  	
+  	//分页
+  	$count = $model->count( $criteria );
+  	$pages = new CPagination( $count );
+  	$pages->pageSize = 10;  	 
+  	$criteria->limit = $pages->pageSize;
+  	$criteria->offset = $pages->currentPage * $pages->pageSize;
+  	$comments = $model->findAll($criteria);   
   	
   	//加载css,js
   	Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/comment.css");
@@ -98,7 +109,7 @@ class CommentController extends FrontBase
   		}
   	}
 
-  	$this->render('create', array('model'=>$model, 'view_url'=>$view_url, 'cur_url'=>$cur_url, 'comments'=>$comments));
+  	$this->render('create', array('model'=>$model, 'view_url'=>$view_url, 'cur_url'=>$cur_url, 'comments'=>$comments, 'pagebar'=>$pages));
     
   }
   

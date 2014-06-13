@@ -11,7 +11,10 @@
     <td class="tb_title"><?php echo Yii::t('admin', 'Comment User');?>：</td>
   </tr>
   <tr >
-    <td ><?php echo $form->textField($model,'user_id',array('size'=>30,'maxlength'=>128)); ?></td>
+    <td ><?php echo $form->hiddenField($model,'user_id',array('size'=>30,'maxlength'=>128)); ?>
+    	<?php $user = User::model()->findByPk($model->user_id);?>
+    	<?php echo $user->username;?>
+    </td>
   </tr>
   <tr>
     <td class="tb_title"><?php echo Yii::t('admin', 'IP Address');?>：</td>
@@ -27,7 +30,7 @@
     	<?php echo $form->textArea($model,'content',array('rows'=>7,'cols'=>70)); ?>
     	<?php $this->widget('application.widget.kindeditor.KindEditor',array(
 				  'target'=>array(
-				  	'#PostComment_content'=>array(
+				  	'#Comment_content'=>array(
 						 'themeType'=>'simple',
 				  		 'width'=>'500',	
 						 'height'=>'200',	
@@ -41,18 +44,12 @@
 				)
 				);?>			
     </td>
-  </tr>
-  <tr>
-    <td class="tb_title"><?php echo Yii::t('admin', 'Reply Content');?>：</td>
-  </tr>
-  <tr >
-    <td ><?php echo $form->textArea($model,'answer_content',array('rows'=>7,'cols'=>70)); ?></td>
-  </tr>
+  </tr> 
   <tr>
     <td class="tb_title"><?php echo Yii::t('admin', 'Status');?>：</td>
   </tr>
   <tr >
-    <td ><?php echo $form->dropDownList($model,'status_is',array('Y'=>Yii::t('admin', 'Show'), 'N'=>Yii::t('admin', 'Hidden'))); ?></td>
+    <td ><?php echo $form->dropDownList($model,'status',array('Y'=>Yii::t('admin', 'Show'), 'N'=>Yii::t('admin', 'Hidden'))); ?></td>
   </tr>
   <tr>
     <td class="tb_title"><?php echo Yii::t('admin', 'Submit Time');?>：</td>

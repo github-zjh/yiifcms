@@ -42,15 +42,16 @@ class Video extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('catalog_id, video_score, pay, down_count', 'numerical', 'integerOnly'=>true),
-			array('name, cover_image, download', 'length', 'max'=>100),
+			array('catalog_id, down_count', 'numerical', 'integerOnly'=>true),
+			array('video_score, pay','numerical'),
+			array('title, cover_image, download', 'length', 'max'=>100),
 			array('fileid, seo_title, seo_keywords', 'length', 'max'=>255),
 			array('language, video_type, video_size, update_time, create_time', 'length', 'max'=>10),
 			array('status', 'length', 'max'=>1),
 			array('introduce, seo_description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, catalog_id, cover_image, fileid, language, video_type, video_score, video_size, download, introduce, pay, update_time, create_time, down_count, status, seo_title, seo_description, seo_keywords', 'safe', 'on'=>'search'),
+			array('id, title, catalog_id, cover_image, fileid, language, video_type, video_score, video_size, download, introduce, pay, update_time, create_time, down_count, status, seo_title, seo_description, seo_keywords', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -73,7 +74,7 @@ class Video extends CActiveRecord
 	{
 		return array(
 			'id' => 'Id',
-			'name' => 'Name',
+			'title' => 'Name',
 			'catalog_id' => 'Catalog',
 			'cover_image' => 'Cover Image',
 			'fileid' => 'Fileid',
@@ -114,7 +115,7 @@ class Video extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 
-		$criteria->compare('name',$this->name,true);
+		$criteria->compare('title',$this->title,true);
 
 		$criteria->compare('catalog_id',$this->catalog_id);
 

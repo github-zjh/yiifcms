@@ -13,7 +13,7 @@
         <?php endforeach;?>
       </select>
   <?php echo Yii::t('admin','Video Name');?>
-      <input id="name" type="text" name="name" value="" class="txt" size="15"/>
+      <input id="title" type="text" name="title" value="" class="txt" size="15"/>
       <input name="searchsubmit" type="submit"  value="<?php echo Yii::t('admin','Query');?>" class="button "/>
       <input name="searchreset" type="reset"  value="<?php echo Yii::t('admin','Reset');?>" class="button "/>     
       <?php $form=$this->endWidget(); ?>
@@ -22,7 +22,7 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
-	$("#name").val('<?php echo Yii::app()->request->getParam('name')?>');
+	$("#title").val('<?php echo Yii::app()->request->getParam('title')?>');
 	$("#catalogId").val('<?php echo Yii::app()->request->getParam('catalogId')?>');
 });
 </script>
@@ -45,7 +45,7 @@ $(document).ready(function(){
       <td ><input type="checkbox" name="id[]" value="<?php echo $row->id?>">
         <?php echo $row->id?></td>
       <td >
-      	<a href="<?php echo $this->createUrl('/video/view', array('id'=>$row['id'])); ?>" title="<?php echo $row->name; ?>" target="_blank"><?php echo Helper::truncate_utf8_string($row->name, 20);?></a><br />
+      	<a href="<?php echo $this->createUrl('/video/view', array('id'=>$row['id'])); ?>" title="<?php echo $row->title; ?>" target="_blank"><?php echo Helper::truncate_utf8_string($row->title, 20);?></a><br />
       </td>
       <td ><?php echo $row->catalog->catalog_name?></td>
       <td><?php if($row->status == 'Y'){echo Yii::t('admin','Show');}else{echo "<span class='red'>".Yii::t('admin','Hidden')."</span>";}?></td>

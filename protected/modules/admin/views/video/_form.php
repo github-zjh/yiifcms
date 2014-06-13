@@ -13,7 +13,7 @@
   </tr>
   <tr >
     <td >
-    	<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>128, 'class'=>'validate[required]')); ?>
+    	<?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>128, 'class'=>'validate[required]')); ?>
     </td>
   </tr>
  
@@ -107,7 +107,7 @@
     <td class="tb_title"><?php echo Yii::t('admin','Download Link');?>：</td>
   </tr>
    <tr >
-    <td  ><?php echo $form->textField($model,'download'); ?></td>
+    <td  ><?php echo $form->textField($model,'download',array('size'=>50,'maxlength'=>80)); ?></td>
   </tr>
   <tr>
     <td class="tb_title"><?php echo Yii::t('admin','SEO Title');?>：</td>

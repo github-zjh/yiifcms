@@ -145,72 +145,6 @@ class VideoController extends Backend
     }
 
     /**
-     * 评论管理
-     *
-     */
-    public function actionComment() {
-        
-        $model = new PostComment();
-        $criteria = new CDbCriteria();
-        $condition = '1';
-        $postTitle = $this->_request->getParam( 'postTitle' );
-        $content = $this->_request->getParam( 'content' );
-        $postTitle && $condition .= ' AND post.title LIKE \'%' . $postTitle . '%\'';
-        $content && $condition .= ' AND t.content LIKE \'%' . $content . '%\'';
-        $criteria->condition = $condition;
-        $criteria->order = 't.id DESC';
-        $criteria->with = array ( 'post' );
-        $count = $model->count( $criteria );
-        $pages = new CPagination( $count );
-        $pages->pageSize = 13;
-        $pageParams = $this->buildCondition( $_GET, array ( 'postTitle' , 'content' ) );
-        $pages->params = is_array( $pageParams ) ? $pageParams : array ();
-        $criteria->limit = $pages->pageSize;
-        $criteria->offset = $pages->currentPage * $pages->pageSize;
-        $result = $model->findAll( $criteria );
-        $this->render( 'post_comment', array ( 'datalist' => $result , 'pagebar' => $pages ) );
-    }
-
-    /**
-     * 更新
-     *
-     * @param  $id
-     */
-    public function actionCommentUpdate( $id ) {        
-        $model = PostComment::model()->findByPk($id);
-        if ( isset( $_POST['PostComment'] ) ) {
-            $model->attributes = $_POST['PostComment'];
-            if ( $model->save() ) {               
-                $this->redirect( array ( 'comment' ) );
-            }
-        }
-        $this->render( 'post_comment_update', array ( 'model' => $model ) );
-    }
-
-    /**
-     * 标签管理
-     *
-     */
-    public function actionTags() {
-        $model = new PostTags();
-        $criteria = new CDbCriteria();
-        $condition = '1';
-        $tagName = $this->_request->getParam( 'tagName' );
-        $tagName && $condition .= ' AND tag_name LIKE \'%' . $tagName . '%\'';
-        $criteria->condition = $condition;
-        $criteria->order = 't.id DESC';        
-        $count = $model->count( $criteria );
-        $pages = new CPagination( $count );
-        $pages->pageSize = 13;
-        $pageParams = $this->buildCondition( $_GET, array ( 'tagName') );
-        $pages->params = is_array( $pageParams ) ? $pageParams : array ();
-        $criteria->limit = $pages->pageSize;
-        $criteria->offset = $pages->currentPage * $pages->pageSize;
-        $result = $model->findAll( $criteria );
-        $this->render( 'post_tags', array ( 'datalist' => $result , 'pagebar' => $pages ) );
-    }
-
-    /**
      * 批量操作
      *
      */
@@ -225,110 +159,38 @@ class VideoController extends Backend
             $this->message( 'errorBack', Yii::t('admin','Only POST Or GET') );
         }
         empty( $ids ) && $this->message( 'error', Yii::t('admin','No Select') );
-
+       
         switch ( $command ) {
         case 'delete':      
-        	//删除文章     
+        	//删除视频     
         	foreach((array)$ids as $id){
-        		$postModel = Post::model()->findByPk($id);
-        		if($postModel){
-        			$image_list = $postModel->image_list;
-        			$image_list && $image_list = unserialize($image_list);
-        			if($image_list){
-        				foreach($image_list as $image){
-        					XUpload::deleteFile($image['file']);
-        					$file = Upload::model()->findByPk($image['fileId']);
-        					if($file){
-        						$file->delete();
-        					}
-        				}
-        			}
-        			
-        			XUpload::deleteFile($postModel->attach_file);
-        			XUpload::deleteFile($postModel->attach_thumb);
-        			
+        		$postModel = Video::model()->findByPk($id);
+        		if($postModel){        			
+        			XUpload::deleteFile($postModel->cover_image);
         			$postModel->delete();
         		}
         	}
-            break;
-        case 'commentDelete':       
-        	//删除评论   
-            foreach((array)$ids as $id){
-        		$commentModel = PostComment::model()->findByPk($id);
-        		if($commentModel){
-        			$commentModel->delete();
-        		}
-            }
-            break;
-        case 'commentVerify':         
-        	//评论审核通过  
-         	foreach((array)$ids as $id){
-        		$commentModel = PostComment::model()->findByPk($id);        		
-        		if($commentModel){
-        			$commentModel->status_is = 'Y';
-        			$commentModel->save();
-        		}
-            }
-            break;
-        case 'commentUnVerify':    
-        	//评论取消审核
-        	foreach((array)$ids as $id){
-        		$commentModel = PostComment::model()->findByPk($id);        		
-        		if($commentModel){
-        			$commentModel->status_is = 'N';
-        			$commentModel->save();
-        		}
-            }
-            break;
+            break;      
         case 'show':     
-        	//文章显示      
+        	//视频显示      
         	foreach((array)$ids as $id){
-        		$postModel = Post::model()->findByPk($id);        		
+        		$postModel = Video::model()->findByPk($id);        		
         		if($postModel){
-        			$postModel->status_is = 'Y';
+        			$postModel->status = 'Y';
         			$postModel->save();
         		}
             }
             break;
         case 'hidden':     
-        	//文章隐藏      
+        	//视频隐藏      
         	foreach((array)$ids as $id){
-        		$postModel = Post::model()->findByPk($id);        		
+        		$postModel = Video::model()->findByPk($id);  
         		if($postModel){
-        			$postModel->status_is = 'N';
+        			$postModel->status = 'N';
         			$postModel->save();
         		}
             }
-            break;
-        case 'commend':     
-        	//文章推荐
-        	foreach((array)$ids as $id){        		
-        		$recom_id = intval($_POST['recom_id']);
-        		if($recom_id){
-        			$postModel = Post::model()->findByPk($id);
-	        		if($postModel){
-	        			$postModel->commend = 'Y';
-	        			$postModel->save();
-	        			$recom_post = new RecommendPost();
-	        			$recom_post->id = $recom_id;
-	        			$recom_post->post_id = $id;
-	        			$recom_post->save();
-	        		}
-        		}else{
-        			$this->message('error', Yii::t('admin','RecommendPosition is Required'));
-        		}
-        	}                 
-            break;
-        case 'unCommend': 
-        	//文章取消推荐
-        	foreach((array)$ids as $id){
-        		$postModel = Post::model()->findByPk($id);
-        		if($postModel){
-        			$postModel->commend = 'N';
-        			$postModel->save();
-        		}
-        	}                    
-            break;        
+            break;      
          default:
             throw new CHttpException(404, Yii::t('admin','Error Operation'));
             break;

@@ -25,7 +25,12 @@
 		</li>
 		<?php endforeach;?>					
 	</ul>	
-</div>			
+	<!-- 分页开始 -->			
+	<?php $this->renderPartial('/layouts/pager',array('pagebar'=>$pagebar));?>	
+	<!-- 分页结束 -->
+		
+</div>		
+
 			
 <?php if(Yii::app()->user->getIsGuest()):?>
 <span>	

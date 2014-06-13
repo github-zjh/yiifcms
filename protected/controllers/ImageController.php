@@ -105,16 +105,12 @@ class ImageController extends FrontBase
 	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/discuz/zoom.js");
 	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/kindeditor/code/prettify.js",CClientScript::POS_END);
 
-	//评论内容
-	$comments = PostComment::model()->findAll("post_id=:post_id AND status_is=:status order by id DESC" , array(":post_id"=>$id, ":status"=>'Y'));
-	
 	//nav
 	$navs = array();
 	$navs[] = array('url'=>$this->createUrl('post/view',array('id'=>$id)), 'name'=>$post->title);
     $tplVar = array(
         'post'=>$post,     
-        'navs'=>$navs,
-        'comments'=>$comments
+        'navs'=>$navs
     );
   	$this->render( 'view', $tplVar);
   }
