@@ -32,7 +32,7 @@ iframe { height:100%;}
 	text-align:center;	
 }
 .comments a { color:#428BCA;}
-#comment_form .error_message { width:200; height:auto; padding:50px; background:#FFFFFF url(../images/bubble_bg.png) left -21px no-repeat; border:none;}
+#comment_form .error_message { width:200; height:auto; margin-left:10px; padding:50px; background:#FFFFFF url(../images/bubble_bg.png) left -21px no-repeat; border:none;}
 #comment_form .errorSummary { height:60px; }
 .error_message ul { list-style:decimal inside; }
 #comment_form .subBox div { padding-top:10px;}
