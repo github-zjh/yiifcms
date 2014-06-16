@@ -72,7 +72,8 @@ class Comment extends CActiveRecord
 			'status' => Yii::t('model','CommentStatus'),
 			'type' => Yii::t('model','CommentType'),
  			'client_ip' => Yii::t('model','CommentClient_ip'),
-			'create_time' => Yii::t('model','CommentCreate_time')			
+			'create_time' => Yii::t('model','CommentCreate_time'),
+			'verifyCode' => Yii::t('model','verifyCode')			
 		);
 	}	
 	

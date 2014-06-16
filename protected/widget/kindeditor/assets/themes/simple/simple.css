@@ -39,7 +39,9 @@
 	border-top: 1px solid #CCCCCC;
 	font-size: 0;
 	line-height: 0;
-	*height: 12px;
+	*height: 35px;
+	height:35px;
+	line-height:35px;
 	overflow: hidden;
 	text-align: center;
 	cursor: s-resize;

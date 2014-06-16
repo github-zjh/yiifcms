@@ -72,6 +72,7 @@ return array(
 		'CommentType' => '评论类型',
 		'CommentClient_ip' => '评论ip',
 		'CommentCreate_time' => '评论时间',
+		'verifyCode'=> '验证码',
 		
 		//PostTags
 		

@@ -12,7 +12,7 @@
 <div id="header">
 	<div class="header_main clear">
 		<div id="logo"><a class="logo_a" href="<?php echo Yii::app()->homeUrl;?>"><?php echo $this->_setting['site_name'];?></a></div>
-		<div id="msbox" class="clear">
+		<div id="msbox">			
 			<ul id="menu">			
 				<?php foreach((array)$this->_public_menu as $menu):?>				
 				<li <?php if(isset($this->_menu_unique) && $this->_menu_unique == $menu['value']['unique']):?> class="selected"<?php endif;?>>
@@ -31,10 +31,10 @@
 				</li>
 				<?php endforeach;?>			
 			</ul>
-			<form id="search" class="clear">
+			<form id="search">
 				<a class="search_btn" href="javascript:;"><?php echo Yii::t('common','Search');?></a>
-				<input type="text" name="keyword" value="" placeholder="<?php echo Yii::t('common','Search Desc');?>"/>			
-			</form>		
+				<input type="text" name="keyword" value="" placeholder="<?php echo Yii::t('common','Search Desc');?>"/>
+			</form>				
 		</div>	
 		<?php if(Yii::app()->user->getIsGuest()):?>	
 		<div id="login">			
@@ -47,8 +47,7 @@
 				<img src="<?php echo $this->_stylePath.'/images/avatar-small-img.png';?>" width="24" height="24" />
 				<label><?php echo Yii::app()->user->name;?></label>
 			</a>
-			<dl id="drop_down_user">
-				<dt></dt>
+			<dl id="drop_down_user">				
 				<dd><a href="<?php echo $this->createUrl('user/index');?>"><i class="fa fa_userinfo"></i><?php echo Yii::t('common','User Center');?></a></dd>
 				<dd><a href="<?php echo $this->createUrl('user/setting');?>"><i class="fa fa_setting"></i><?php echo Yii::t('common','Setting');?></a></dd>
 				<dd><a href="<?php echo $this->createUrl('user/logout');?>"><i class="fa fa_poweroff"></i><?php echo Yii::t('common','Logout');?></a></dd>

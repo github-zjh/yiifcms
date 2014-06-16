@@ -35,8 +35,8 @@ class CommentController extends Backend
         $condition = '1';
         $title = $this->_request->getParam( 'postTitle' );
         $content = $this->_request->getParam( 'content' );
-        $type = $this->_request->getParam( 'type' );
-        $type?$condition .= " AND type='{$type}'":$condition .= " AND type='article'";
+        $type = $this->_request->getParam( 'type' )?$this->_request->getParam( 'type' ):'article';
+        $type && $condition .= " AND type='{$type}'";
         $title && $condition .= " AND {$type}.title LIKE '%$title %'";
         $content && $condition .= ' AND t.content LIKE \'%' . $content . '%\'';
         $criteria->condition = $condition;
@@ -63,7 +63,7 @@ class CommentController extends Backend
         if ( isset( $_POST['Comment'] ) ) {
             $model->attributes = $_POST['Comment'];
             if ( $model->save() ) {               
-                $this->redirect( array ( 'comment' ) );
+                $this->message('success',Yii::t('admin','Update Success'),$this->createUrl('index'));
             }
         }
         $this->render( 'update', array ( 'model' => $model ) );

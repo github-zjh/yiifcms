@@ -19,8 +19,7 @@ body { background-color:#FFFFFF; }
     border-radius: 0 5px 5px 0;
     border-style: solid solid solid none;
     border-width: 1px 1px 1px 0;
-    height: 40px;
-	line-height:40px;
+    padding:11px 0 12px 10px;
     margin: 0;
     width: 250px;	
 }

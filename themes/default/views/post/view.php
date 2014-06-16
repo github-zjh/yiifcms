@@ -68,7 +68,7 @@
 			</div>		
 			
 			<!-- 评论区 -->
-			<iframe src="<?php echo $this->createUrl('comment/create', array('view_url'=>$this->_request->getUrl(),'topic_id'=>$post->id,'topic_type'=>'article'));?>"></iframe>		
+			<iframe id="comment_iframe" scrolling="no"  marginheight="0" marginwidth="0" frameborder="0" src="<?php echo $this->createUrl('comment/create', array('view_url'=>$this->_request->getUrl(),'topic_id'=>$post->id,'topic_type'=>'article'));?>"></iframe>		
 		</div>
 		
 		<!-- 右侧内容开始 -->
@@ -91,9 +91,10 @@
 					});
 				}
 			});
+			
 			//iframe自适应高度
 			$("iframe").load(function() {
-			      $( this).height($(this).contents().height());
+			      $( this).height($(this).contents().height());			      
 			});	
 		});
 	</script>

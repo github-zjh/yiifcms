@@ -1,21 +1,23 @@
 @CHARSET "UTF-8";
-iframe { height:100%;}
+
 * { text-align:left;}
+#notice_box { padding:30px 0; margin:0 auto; text-align:center;}
 .comments h3 { line-height:50px; font-size:20px; font-weight:bold; }
 .comments li { border-bottom:1px solid #e5e6e6; padding-bottom:19px; margin-bottom:19px; }
 .comments .avatar { float:left; border-radius:25px;}
-.comments .comment_desc { float:left; margin-left:10px; }
+.comments .comment_desc { float:left; width:80%; margin-left:10px; }
 .comments .comment_desc .desc_head { line-height:28px;}
 .comments .comment_desc .desc_head .user { font-size:14px;}
 .comments .comment_desc .desc_head .submit_time { padding-left:10px; font-size:14px;}
+.desc_foot { padding-top:20px; position:relative; }
 #comment_form { padding:20px 0;}
 #comment_form caption { line-height:33px;}
 #comment_form th { padding-right:20px; font-weight:bold; font-size:14px;}
 #comment_form input { padding-left:5px; border:1px solid #CCCCCC;}
-#comment_form input:focus{ box-shadow:none;}
+#comment_form input[type="text"]:focus{ box-shadow:none;}
 #comment_form textarea {  border-left:1px solid #666666; border-top:1px solid #666666; min-width:560px; max-width:560px; min-height:140px; max-height:140px; padding:10px; background-color:#e5e6e6;}
 
-#Comment_verifyCode { width:100px; border:1px solid #555555; line-height:30px; height:30px;}
+#Comment_verifyCode { width:100px; border:1px solid #555555; padding:5px 0;}
 #comment_form .submit {
 	display:block;
 	width:60px; 
@@ -35,4 +37,9 @@ iframe { height:100%;}
 #comment_form .error_message { width:200; height:auto; margin-left:10px; padding:50px; background:#FFFFFF url(../images/bubble_bg.png) left -21px no-repeat; border:none;}
 #comment_form .errorSummary { height:60px; }
 .error_message ul { list-style:decimal inside; }
-#comment_form .subBox div { padding-top:10px;}
+#comment_form .subBox{ padding:0 5px;  position:relative; bottom:33px;}
+
+/* 回复区域 */
+#reply_box { display:none; float:left; height:200px; position:relative; margin-left:62px; margin-top:10px;}
+.reply_sumbit_box { width:100%; position:relative; text-align:right;  bottom:36px;}
+#reply_submit { width:60px; font-size:14px; line-height:35px; height:35px; text-align:center; border-left:1px solid #CCCCCC; cursor:pointer;}
