@@ -9,7 +9,8 @@
 .comments .comment_desc .desc_head { line-height:28px;}
 .comments .comment_desc .desc_head .user { font-size:14px;}
 .comments .comment_desc .desc_head .submit_time { padding-left:10px; font-size:14px;}
-.desc_foot { padding-top:20px; position:relative; }
+.desc_foot { padding-top:20px;}
+.desc_foot .reply_btn { float:left; width:100%;}
 #comment_form { padding:20px 0;}
 #comment_form caption { line-height:33px;}
 #comment_form th { padding-right:20px; font-weight:bold; font-size:14px;}
@@ -40,6 +41,6 @@
 #comment_form .subBox{ padding:0 5px;  position:relative; bottom:33px;}
 
 /* 回复区域 */
-#reply_box { display:none; float:left; height:200px; position:relative; margin-left:62px; margin-top:10px;}
+#reply_box { display:none; float:left; height:200px; margin-top:10px;}
 .reply_sumbit_box { width:100%; position:relative; text-align:right;  bottom:36px;}
 #reply_submit { width:60px; font-size:14px; line-height:35px; height:35px; text-align:center; border-left:1px solid #CCCCCC; cursor:pointer;}

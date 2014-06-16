@@ -70,27 +70,19 @@
 		<?php foreach((array)$comments as $comment):?>
 		<li class="clear">
 			<?php $user = User::model()->findByPk($comment->user_id);?>						
-			<img width="50" <?php if($user && $user->avatar):?> src="<?php echo $user->avatar;?>" <?php else:?>  src="<?php echo $this->_stylePath;?>/images/default_avatar.png"  <?php endif;?> class="avatar" />
+			<img width="50" <?php if($user && $user->avatar && file_exists($user->avatar)):?> src="<?php echo $user->avatar;?>" <?php else:?>  src="<?php echo $this->_stylePath;?>/images/default_avatar.png"  <?php endif;?> class="avatar" />
 			<div class="comment_desc">
 				<p class="desc_head">
 					<strong class="user"><?php echo $user->username?$user->username:Yii::t('common','Anonymity')?></strong>
 					<span class="submit_time"><?php echo date('Y年m月d日 H:i:s',$comment->create_time)?></span>
 				</p>
 				<div class="desc_body"><?php echo $comment->content;?></div>
-				<div class="desc_foot"><a href="javascript:;" class="reply_btn" data-position="<?php echo $i;?>" data-type="reply" data-attr-cid="<?php echo $comment->id;?>">@:回复</a></div>
+				<div class="desc_foot clear"><a href="javascript:;" class="reply_btn" data-position="<?php echo $i;?>" data-type="reply" data-attr-cid="<?php echo $comment->id;?>">@:回复</a></div>
 			</div>				
 		</li>
 		<?php $i++;?>
 		<?php endforeach;?>	
 	</ul>	
-	
-	<!-- 回复区域 -->
-	<form id="reply_box" data-type="reply_form">
-		<textarea id="reply_content"></textarea>
-		<input type="hidden" value="0" name="comment_id" />
-		<input type="hidden" value="0" name="reply_id" />
-		<div class="reply_sumbit_box"><input type="submit" id="reply_submit" value="<?php echo Yii::t('common','Submit');?>" /></div>
-	</form>	
 	
 	<!-- 分页开始 -->			
 	<?php $this->renderPartial('/layouts/pager',array('pagebar'=>$pagebar));?>	
@@ -113,16 +105,29 @@
             $('#yw0').trigger('click');
         });	
         //ajax回复
-        $("a[data-type='reply']").click(function(){        	
-            $(this).parent().after($("#reply_box").clone(true).show());
-            KindEditor.ready(function(K) {    
+        $("a[data-type='reply']").click(function(){ 
+        	if($(this).next("#reply_box").is(":visible") == true){
+				$("#reply_box").hide();
+				//如果回复框显示了 则隐藏
+            }else{                
+	            $("form[data-type='reply_form']").remove(); 
+	            var html = '<form id="reply_box" data-type="reply_form">'; 
+	            html += '<textarea id="reply_content"></textarea>'; 
+	            html += '<input type="hidden" value="0" name="comment_id" />';  
+	            html += '<input type="hidden" value="0" name="reply_id" />'; 
+	            html += '<div class="reply_sumbit_box"><input type="submit" id="reply_submit" value="<?php echo Yii::t('common','Submit');?>" /></div>';
+	            html += '</form>'; 	
+	            $(this).after(html);            
+            	$("#reply_box").show();
+            	KindEditor.ready(function(K) {    
               	 __reply_content = K.create("#reply_content", {
               	     'themeType':'simple' ,'width':'100%' ,'height':'200' ,'items':['fontname' ,'fontsize' ,'|' ,'undo' ,'redo' ,'|' ,'code' ,'forecolor' ,'hilitecolor' ,'bold' ,'italic' ,'underline' ,'removeformat' ,'|' ,'justifyleft' ,'justifycenter' ,'justifyright' ,'insertorderedlist' ,'insertunorderedlist' ,'|' ,'emoticons' ,'image' ,'link' ],'resizeType':'0'  ,afterBlur:function(){
                           this.sync();
                       }           
               	});
               	__reply_content.sync();
-              });						
+              });
+            }						
         });
         
         $("#reply_submit").click(function(){
