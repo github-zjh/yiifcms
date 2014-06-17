@@ -166,4 +166,8 @@ return array (
 	'I Will Comment' => '我要评论',
 	'Anonymity' => '匿名用户',
 	'You Need Login' => '您需要先登录',
+	'You Can not Rely Yourself' => '您不能对自己回复',
+	'Reply Content Is Too Small' => '回复内容不能少于10个字哦~(-_-!)',
+	'Reply Success' => '回复成功，谢谢！',
+	'Reply Failed' => '回复失败',
 );

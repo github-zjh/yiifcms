@@ -67,18 +67,59 @@
 	<h3><?php echo count($comments);?>&nbsp;&nbsp;Comments</h3>	
 	<ul id="comment_list">		
 		<?php $i = 0;?>
-		<?php foreach((array)$comments as $comment):?>
+		<?php foreach((array)$comments as $comment):?>		
 		<li class="clear">
-			<?php $user = User::model()->findByPk($comment->user_id);?>						
-			<img width="50" <?php if($user && $user->avatar && file_exists($user->avatar)):?> src="<?php echo $user->avatar;?>" <?php else:?>  src="<?php echo $this->_stylePath;?>/images/default_avatar.png"  <?php endif;?> class="avatar" />
+			<?php $cuser = User::model()->findByPk($comment->user_id);?>						
+			<img width="50" <?php if($cuser && $cuser->avatar && file_exists($cuser->avatar)):?> src="<?php echo $cuser->avatar;?>" <?php else:?>  src="<?php echo $this->_stylePath;?>/images/default_avatar.png"  <?php endif;?> class="avatar" />
 			<div class="comment_desc">
 				<p class="desc_head">
-					<strong class="user"><?php echo $user->username?$user->username:Yii::t('common','Anonymity')?></strong>
+					<strong class="user"><?php echo $cuser->username?$cuser->username:Yii::t('common','Anonymity')?></strong>
 					<span class="submit_time"><?php echo date('Y年m月d日 H:i:s',$comment->create_time)?></span>
 				</p>
 				<div class="desc_body"><?php echo $comment->content;?></div>
-				<div class="desc_foot clear"><a <?php if($this->_login_status):?> href="javascript:;" class="reply_btn" data-position="<?php echo $i;?>" data-type="reply" data-attr-cid="<?php echo $comment->id;?>" <?php else:?> href="javascript:alert('<?php echo Yii::t('common','You Need Login');?>');"<?php endif;?>>@:回复</a></div>
+				<div class="desc_foot clear">
+					<a <?php if($this->_login_status):?> href="javascript:;" 
+					class="reply_btn clear" data-type="reply" 
+					data-attr-cid="<?php echo $comment->id;?>" 
+					data-attr-replyid = "0"
+					<?php else:?> href="javascript:alert('<?php echo Yii::t('common','You Need Login');?>');"<?php endif;?>
+					>@:回复</a>
+				</div>
+				
+				<!-- 回复列表 -->
+				<?php if($replies[$comment->id]):?>
+				<ul class="reply_list clear">					
+					<?php $position = 1;?>
+					<?php foreach((array)$replies[$comment->id] as $reply):?>								
+					<li class="clear">
+						<?php $user = User::model()->findByPk($reply->user_id);?>	
+						<?php $rto = Reply::model()->findByPk($reply->reply_id);?>
+						<?php $ruser = User::model()->findByPk($rto->user_id);?>	
+						<div class="comment_desc">							
+							<p class="desc_head">
+								<img width="20" <?php if($user && $user->avatar && file_exists($user->avatar)):?> src="<?php echo $user->avatar;?>" <?php else:?>  src="<?php echo $this->_stylePath;?>/images/default_avatar.png"  <?php endif;?> class="avatar" />
+								<strong class="user"><?php echo $user->username?$user->username:Yii::t('common','Anonymity')?>&nbsp;&nbsp;@:&nbsp;&nbsp;<?php echo $ruser->username?$ruser->username:$cuser->username;?></strong>								
+								<span class="submit_time"><?php echo date('Y年m月d日 H:i:s',$reply->create_time)?></span>
+								<span class="position"><?php echo $position;?>#</span>
+							</p>
+							<div class="desc_body"><?php echo $reply->content;?></div>
+							<div class="desc_foot clear">
+								<a <?php if($this->_login_status):?> href="javascript:;" 
+								class="reply_btn clear" data-type="reply" 
+								data-attr-cid="<?php echo $reply->cid;?>" 
+								data-attr-replyid = "<?php echo $reply->id;?>"
+								<?php else:?> href="javascript:alert('<?php echo Yii::t('common','You Need Login');?>');"<?php endif;?>
+								>@:回复</a>
+							</div>
+						</div>	
+						</li>
+						<?php $position ++;?>
+						<?php endforeach;?>
+					</ul>			
+				<?php endif;?>
+			
 			</div>				
+			
 		</li>
 		<?php $i++;?>
 		<?php endforeach;?>	
@@ -98,8 +139,10 @@
      	}
 	}
 	$(function(){
+		
 		//高亮显示代码
 		prettyPrint();
+		
 		//刷新验证码
 		$("#yw0").ready(function(){
             $('#yw0').trigger('click');
@@ -111,10 +154,12 @@
 				//如果回复框显示了 则隐藏
             }else{                
 	            $("form[data-type='reply_form']").remove(); 
+	            var cid = $(this).attr("data-attr-cid");
+	            var replyid = $(this).attr("data-attr-replyid");
 	            var html = '<form id="reply_box" data-type="reply_form">'; 
 	            html += '<textarea id="reply_content"></textarea>'; 
-	            html += '<input type="hidden" value="0" name="comment_id" />';  
-	            html += '<input type="hidden" value="0" name="reply_id" />'; 
+	            html += '<input type="hidden" value="'+cid+'" name="comment_id" />';  
+	            html += '<input type="hidden" value="'+replyid+'" name="reply_id" />'; 
 	            html += '<div class="reply_sumbit_box"><input type="button" id="reply_submit" value="<?php echo Yii::t('common','Submit');?>" /></div>';
 	            html += '</form>'; 	
 	            $(this).after(html);            
@@ -134,7 +179,12 @@
                     var reply_id = $("input[name='reply_id']").val();
                     var content = $("#reply_content").val();
         			$.post("<?php echo $this->createUrl('comment/reply');?>",{'cid':comment_id,'reply_id':reply_id,'content':content},function(data){
-        				console.log(data);
+            			if(data.status == 'success'){
+							alert(data.message);
+							window.location.href="<?php echo $this->_request->getUrl();?>";							
+            			}else{
+							alert(data.message);							
+                		}
         			},'json');
               });
             }						

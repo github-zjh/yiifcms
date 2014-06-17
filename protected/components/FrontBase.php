@@ -114,6 +114,8 @@ EOT;
 				'uploadify/avatar',
 				'uploadify/submitcut',
 				'uploadify/file',
+				'comment/index',
+				'comment/reply'
 				
 		);		
 		if(in_array(strtolower($controller.'/'.$actionID), $need_auth)){

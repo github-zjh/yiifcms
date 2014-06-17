@@ -85,6 +85,13 @@ class CommentController extends FrontBase
   	$criteria->offset = $pages->currentPage * $pages->pageSize;
   	$comments = $model->findAll($criteria);   
   	
+  	//回复
+  	if($comments){
+  		foreach((array)$comments as $c){  			
+  			$replies[$c->id] = Reply::model()->findAll('cid=:cid AND status=:status ORDER BY id' , array(':cid'=>$c->id,':status'=>'Y'));
+  		}
+  	}
+  	
   	//加载css,js
   	Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/comment.css");
   	Yii::app()->clientScript->registerCssFile($this->_static_public . "/js/kindeditor/code/prettify.css");
@@ -108,16 +115,59 @@ class CommentController extends FrontBase
   			//$this->redirect($ret_url);
   		}
   	}
-  	$this->render('create', array('model'=>$model, 'view_url'=>$view_url, 'cur_url'=>$cur_url, 'comments'=>$comments, 'pagebar'=>$pages));
+  	$data = array(
+  		'model'=>$model, 
+  		'view_url'=>$view_url, 
+  		'cur_url'=>$cur_url, 
+  		'comments'=>$comments,
+  		'pagebar'=>$pages,
+  		'replies'=>$replies
+  	);  	
+  	$this->render('create', $data);
     
   }
   
+  /**
+   * 
+   * 对评论的回复
+   * @author zhao jinhan
+   * @return JSON
+   * 
+   */
   public function actionReply(){
   	  $this->layout = false;
   	  if($this->_request->isPostRequest){
-  	  
+  	  	//当前登录用户id
+  	  	$uid = Yii::app()->user->id;  	  	
+  	  	$cid = intval($_POST['cid']);
+  	  	$reply_id = intval($_POST['reply_id']);
+  	  	$content = $_POST['content'];
+  	  	$comment = Comment::model()->findByPk($cid);
+  	  	$reply = Reply::model()->findByPk($reply_id);
+  	  	if($comment){  	  		
+  	  		//不能对自己的评论和回复而回复
+  	  		if(($comment->user_id == $uid && !$reply) || ($reply && $reply->user_id == $uid)){
+  	  			exit(CJSON::encode(array('status'=>'error','message'=>Yii::t('common','You Can not Rely Yourself'))));
+  	  		}
+  	  		if(!$content || strlen($content)<10){
+  	  			exit(CJSON::encode(array('status'=>'error','message'=>Yii::t('common','Reply Content Is Too Small'))));
+  	  		}
+  	  		$model = new Reply('create');
+  	  		$model->cid = $cid;
+  	  		$model->user_id = $uid;
+  	  		$model->reply_id = $reply_id;
+  	  		$model->content = $content;
+  	  		$model->status = 'Y';
+  	  		$model->create_time = time();
+  	  		if($model->save())
+  	  			exit(CJSON::encode(array('status'=>'success','message'=>Yii::t('common','Reply Success'))));
+  	  		else 
+  	  			exit(CJSON::encode(array('status'=>'error','message'=>Yii::t('common','Reply Failed'))));
+  	  	}else{
+  	  		exit(CJSON::encode(array('status'=>'error','message'=>Yii::t('common','Reply Failed'))));
+  	  	}
   	  }else{
-  	  	
+  	  	exit(CJSON::encode(array('status'=>'error','message'=>Yii::t('common','Reply Failed'))));
   	  }	  
   }  
   

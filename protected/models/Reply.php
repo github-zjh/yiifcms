@@ -5,6 +5,7 @@
  *
  * The followings are the available columns in table '{{reply}}':
  * @property string $id
+ * @property string $user_id
  * @property string $cid
  * @property string $reply_id
  * @property string $content
@@ -29,12 +30,12 @@ class Reply extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('cid, reply_id, create_time', 'length', 'max'=>10),
+			array('user_id, cid, reply_id, create_time', 'length', 'max'=>10),
 			array('status', 'length', 'max'=>1),
 			array('content', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, cid, reply_id, content, status, create_time', 'safe', 'on'=>'search'),
+			array('id, user_id, cid, reply_id, content, status, create_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,6 +57,7 @@ class Reply extends CActiveRecord
 	{
 		return array(
 			'id' => 'Id',
+			'user_id' => 'User',
 			'cid' => 'Cid',
 			'reply_id' => 'Reply',
 			'content' => 'Content',
@@ -83,6 +85,8 @@ class Reply extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id,true);
+
+		$criteria->compare('user_id',$this->user_id,true);
 
 		$criteria->compare('cid',$this->cid,true);
 

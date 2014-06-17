@@ -47,9 +47,9 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
 #logo { float:left;}
 #logo .logo_a { display:block; width:150px;}
 #menu { float:left; height:57px;}
-#menu li { width:auto; float:left; margin:0 7px; position:relative; z-index:999;}
+#menu li { width:auto; height:50px; float:left; margin:0 7px; position:relative; z-index:999;}
 #menu a { padding:3px 20px; font-size:14px; font-weight:bold; text-decoration:none;}
-#menu li.selected a { border-bottom:1px solid #FFFFFF; }
+#menu li.selected { border-bottom:1px solid #FFFFFF; }
 #menu a:hover { 
 border-radius:5px; 
 background:#e8645a url(../images/down_arrows.png) no-repeat 6px 12px;
