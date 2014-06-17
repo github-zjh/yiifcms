@@ -32,11 +32,12 @@ class FrontBase extends Controller
 	public $_stylePath = ''; //当前主题对应的样式目录
 	public $_public_menu = ''; //菜单导航
 	public $_cur_url = ''; //当前URL
+	public $_login_status = false; //当前登录状态
 	/**
 	 * !CodeTemplates.overridecomment.nonjd!
 	 * @see CController::init()
 	 */
-	public function init(){
+	public function init(){		
 		parent::init();		
 		if($this->_setting['site_status'] == 'close'){
 			//网站关闭			
@@ -69,7 +70,10 @@ EOT;
 		$tree->setTree($data, 'id', 'parent_id', array('menu_name','menu_link','unique'));
 		$this->_public_menu = $tree->getArrayList(0);
 		$this->_cur_url = Yii::app()->request->getUrl();
-		
+		//登录状态
+		if(!Yii::app()->user->getIsGuest()){
+			$this->_login_status = true;
+		}
 		//加载公共资源
 		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/global.css");		
 	}

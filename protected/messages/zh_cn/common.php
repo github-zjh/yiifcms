@@ -165,4 +165,5 @@ return array (
 	'Or' => '或者',
 	'I Will Comment' => '我要评论',
 	'Anonymity' => '匿名用户',
+	'You Need Login' => '您需要先登录',
 );

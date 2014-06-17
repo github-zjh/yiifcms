@@ -2,7 +2,7 @@
 	[Discuz!] (C)2001-2099 Comsenz Inc.
 	This is NOT a freeware, use is subject to license terms
 
-	$Id: forum_viewthread.js 28794 2012-03-13 05:39:46Z zhangguosheng $
+	d$Id: forum_viewthread.js 28794 2012-03-13 05:39:46Z zhangguosheng d$
 */
 
 var replyreload = '', attachimgST = new Array(), zoomgroup = new Array(), zoomgroupinit = new Array();
@@ -22,7 +22,7 @@ function attachimgshow(pid, onlyinpost) {
 	aimgcomplete = 0;
 	loadingcount = 0;
 	for(i = 0;i < aimgs.length;i++) {
-		obj = $('aimg_' + aimgs[i]);
+		obj = d$('aimg_' + aimgs[i]);
 		if(!obj) {
 			aimgcomplete++;
 			continue;

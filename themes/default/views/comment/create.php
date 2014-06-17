@@ -8,7 +8,7 @@
 	<meta name="description" content="<?php echo $this->_seoDescription;?>" />		
 </head>
 <body>			
-<?php if(Yii::app()->user->getIsGuest()):?>
+<?php if(!$this->_login_status):?>
 <div id="notice_box">			
 	<?php echo Yii::t('common','Before Comment');?>
 	<a href="<?php echo $this->createUrl('user/login', array('ret_url'=>$view_url));?>" target="_top" id="need_login"><?php echo Yii::t('common','Login');?></a> <?php echo Yii::t('common','Or');?>
@@ -77,7 +77,7 @@
 					<span class="submit_time"><?php echo date('Y年m月d日 H:i:s',$comment->create_time)?></span>
 				</p>
 				<div class="desc_body"><?php echo $comment->content;?></div>
-				<div class="desc_foot clear"><a href="javascript:;" class="reply_btn" data-position="<?php echo $i;?>" data-type="reply" data-attr-cid="<?php echo $comment->id;?>">@:回复</a></div>
+				<div class="desc_foot clear"><a <?php if($this->_login_status):?> href="javascript:;" class="reply_btn" data-position="<?php echo $i;?>" data-type="reply" data-attr-cid="<?php echo $comment->id;?>" <?php else:?> href="javascript:alert('<?php echo Yii::t('common','You Need Login');?>');"<?php endif;?>>@:回复</a></div>
 			</div>				
 		</li>
 		<?php $i++;?>
@@ -104,7 +104,7 @@
 		$("#yw0").ready(function(){
             $('#yw0').trigger('click');
         });	
-        //ajax回复
+        //@回复
         $("a[data-type='reply']").click(function(){ 
         	if($(this).next("#reply_box").is(":visible") == true){
 				$("#reply_box").hide();
@@ -115,7 +115,7 @@
 	            html += '<textarea id="reply_content"></textarea>'; 
 	            html += '<input type="hidden" value="0" name="comment_id" />';  
 	            html += '<input type="hidden" value="0" name="reply_id" />'; 
-	            html += '<div class="reply_sumbit_box"><input type="submit" id="reply_submit" value="<?php echo Yii::t('common','Submit');?>" /></div>';
+	            html += '<div class="reply_sumbit_box"><input type="button" id="reply_submit" value="<?php echo Yii::t('common','Submit');?>" /></div>';
 	            html += '</form>'; 	
 	            $(this).after(html);            
             	$("#reply_box").show();
@@ -127,17 +127,19 @@
               	});
               	__reply_content.sync();
               });
+
+			  //ajax提交
+              $("#reply_submit").click(function(){                    
+                    var comment_id = $("input[name='comment_id']").val();
+                    var reply_id = $("input[name='reply_id']").val();
+                    var content = $("#reply_content").val();
+        			$.post("<?php echo $this->createUrl('comment/reply');?>",{'cid':comment_id,'reply_id':reply_id,'content':content},function(data){
+        				console.log(data);
+        			},'json');
+              });
             }						
         });
         
-        $("#reply_submit").click(function(){
-            var comment_id = $("input[name='comment_id']").val();
-            var reply_id = $("input[name='reply_id']").val();
-            var content = $("#reply_content").val();
-			$.post("<?php echo $this->createUrl('comment/reply');?>",{'cid':comment_id,'reply_id':reply_id,'content':content},function(data){
-				console.log(data);
-			},'json');
-        });
         //循环执行
         clearInterval(test);  //清理一次，下面再执行
         var test = setInterval(function(){

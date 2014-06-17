@@ -108,10 +108,17 @@ class CommentController extends FrontBase
   			//$this->redirect($ret_url);
   		}
   	}
-
   	$this->render('create', array('model'=>$model, 'view_url'=>$view_url, 'cur_url'=>$cur_url, 'comments'=>$comments, 'pagebar'=>$pages));
     
   }
   
+  public function actionReply(){
+  	  $this->layout = false;
+  	  if($this->_request->isPostRequest){
+  	  
+  	  }else{
+  	  	
+  	  }	  
+  }  
   
 }

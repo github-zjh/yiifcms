@@ -2,7 +2,7 @@
 	[Discuz!] (C)2001-2099 Comsenz Inc.
 	This is NOT a freeware, use is subject to license terms
 
-	$Id: common.js 32580 2013-02-22 03:40:28Z monkey $
+	d$Id: common.js 32580 2013-02-22 03:40:28Z monkey d$
 */
 
 var BROWSER = {};
@@ -93,11 +93,11 @@ if(BROWSER.firefox && window.HTMLElement) {
 	});
 }
 
-function $(id) {
+function d$(id) {
 	return !id ? null : document.getElementById(id);
 }
 
-function $C(classname, ele, tag) {
+function d$C(classname, ele, tag) {
 	var returns = [];
 	ele = ele || document;
 	tag = tag || '*';
@@ -114,7 +114,7 @@ function $C(classname, ele, tag) {
 		}
 	}else {
 		eles = ele.getElementsByTagName(tag);
-		var pattern = new RegExp("(^|\\s)"+classname+"(\\s|$)");
+		var pattern = new RegExp("(^|\\s)"+classname+"(\\s|d$)");
 		for (i = 0, L = eles.length; i < L; i++) {
 				if (pattern.test(eles[i].className)) {
 						returns.push(eles[i]);
@@ -190,7 +190,7 @@ function in_array(needle, haystack) {
 }
 
 function trim(str) {
-	return (str + '').replace(/(\s+)$/g, '').replace(/^\s+/g, '');
+	return (str + '').replace(/(\s+)d$/g, '').replace(/^\s+/g, '');
 }
 
 function strlen(str) {
@@ -236,7 +236,7 @@ function htmlspecialchars(str) {
 }
 
 function display(id) {
-	var obj = $(id);
+	var obj = d$(id);
 	if(obj.style.visibility) {
 		obj.style.visibility = obj.style.visibility == 'visible' ? 'hidden' : 'visible';
 	} else {
@@ -293,7 +293,7 @@ function Ajax(recvType, waitId) {
 
 	aj.loading = '请稍候...';
 	aj.recvType = recvType ? recvType : 'XML';
-	aj.waitId = waitId ? $(waitId) : null;
+	aj.waitId = waitId ? d$(waitId) : null;
 
 	aj.resultHandle = null;
 	aj.sendString = '';
@@ -308,7 +308,7 @@ function Ajax(recvType, waitId) {
 	};
 
 	aj.setWaitId = function(waitid) {
-		aj.waitId = typeof waitid == 'object' ? waitid : $(waitid);
+		aj.waitId = typeof waitid == 'object' ? waitid : d$(waitid);
 	};
 
 	aj.createXMLHttpRequest = function() {
@@ -491,7 +491,7 @@ function safescript(id, call, seconds, times, timeoutcall, endcall, index) {
 	}
 }
 
-function $F(func, args, script) {
+function d$F(func, args, script) {
 	var run = function () {
 		var argc = args.length, s = '';
 		for(i = 0;i < argc;i++) {
@@ -522,8 +522,8 @@ function $F(func, args, script) {
 function appendscript(src, text, reload, charset) {
 	var id = hash(src + text);
 	if(!reload && in_array(id, evalscripts)) return;
-	if(reload && $(id)) {
-		$(id).parentNode.removeChild($(id));
+	if(reload && d$(id)) {
+		d$(id).parentNode.removeChild(d$(id));
 	}
 
 	evalscripts.push(id);
@@ -574,7 +574,7 @@ function ajaxupdateevent(o) {
 			_attachEvent(o, ajaxevent, newfunction('ajaxget', ajaxurl, o.getAttribute('ajaxtarget'), o.getAttribute('ajaxwaitid'), o.getAttribute('ajaxloading'), o.getAttribute('ajaxdisplay')));
 			if(o.getAttribute('ajaxfunc')) {
 				o.getAttribute('ajaxfunc').match(/(\w+)\((.+?)\)/);
-				_attachEvent(o, ajaxevent, newfunction(RegExp.$1, RegExp.$2));
+				_attachEvent(o, ajaxevent, newfunction(RegExp.d$1, RegExp.d$2));
 			}
 		}
 	}
@@ -586,7 +586,7 @@ function ajaxget(url, showid, waitid, loading, display, recall) {
 	x.setLoading(loading);
 	x.setWaitId(waitid);
 	x.display = typeof display == 'undefined' || display == null ? '' : display;
-	x.showId = $(showid);
+	x.showId = d$(showid);
 
 	if(url.substr(strlen(url) - 1) == '#') {
 		url = url.substr(0, strlen(url) - 1);
@@ -623,8 +623,8 @@ function ajaxpost(formid, showid, waitid, showidclass, submitbtn, recall) {
 	var waitid = typeof waitid == 'undefined' || waitid === null ? showid : (waitid !== '' ? waitid : '');
 	var showidclass = !showidclass ? '' : showidclass;
 	var ajaxframeid = 'ajaxframe';
-	var ajaxframe = $(ajaxframeid);
-	var curform = $(formid);
+	var ajaxframe = d$(ajaxframeid);
+	var curform = d$(formid);
 	var formtarget = curform.target;
 
 	var handleResult = function() {
@@ -633,13 +633,13 @@ function ajaxpost(formid, showid, waitid, showidclass, submitbtn, recall) {
 
 		showloading('none');
 		try {
-			s = $(ajaxframeid).contentWindow.document.XMLDocument.text;
+			s = d$(ajaxframeid).contentWindow.document.XMLDocument.text;
 		} catch(e) {
 			try {
-				s = $(ajaxframeid).contentWindow.document.documentElement.firstChild.wholeText;
+				s = d$(ajaxframeid).contentWindow.document.documentElement.firstChild.wholeText;
 			} catch(e) {
 				try {
-					s = $(ajaxframeid).contentWindow.document.documentElement.firstChild.nodeValue;
+					s = d$(ajaxframeid).contentWindow.document.documentElement.firstChild.nodeValue;
 				} catch(e) {
 					s = '内部错误，无法显示此内容';
 				}
@@ -651,7 +651,7 @@ function ajaxpost(formid, showid, waitid, showidclass, submitbtn, recall) {
 		}
 		if(showidclass) {
 			if(showidclass != 'onerror') {
-				$(showid).className = showidclass;
+				d$(showid).className = showidclass;
 			} else {
 				showError(s);
 				ajaxerror = true;
@@ -661,10 +661,10 @@ function ajaxpost(formid, showid, waitid, showidclass, submitbtn, recall) {
 			submitbtn.disabled = false;
 		}
 		if(!evaled && (typeof ajaxerror == 'undefined' || !ajaxerror)) {
-			ajaxinnerhtml($(showid), s);
+			ajaxinnerhtml(d$(showid), s);
 		}
 		ajaxerror = null;
-		if($(formid)) $(formid).target = formtarget;
+		if(d$(formid)) d$(formid).target = formtarget;
 		if(typeof recall == 'function') {
 			recall();
 		} else {
@@ -673,11 +673,11 @@ function ajaxpost(formid, showid, waitid, showidclass, submitbtn, recall) {
 		if(!evaled) evalscript(s);
 		ajaxframe.loading = 0;
 		if(!BROWSER.firefox) {
-			$('append_parent').removeChild(ajaxframe.parentNode);
+			d$('append_parent').removeChild(ajaxframe.parentNode);
 		} else {
 			setTimeout(
 				function(){
-					$('append_parent').removeChild(ajaxframe.parentNode);
+					d$('append_parent').removeChild(ajaxframe.parentNode);
 				},
 				100
 			);
@@ -687,8 +687,8 @@ function ajaxpost(formid, showid, waitid, showidclass, submitbtn, recall) {
 		var div = document.createElement('div');
 		div.style.display = 'none';
 		div.innerHTML = '<iframe name="' + ajaxframeid + '" id="' + ajaxframeid + '" loading="1"></iframe>';
-		$('append_parent').appendChild(div);
-		ajaxframe = $(ajaxframeid);
+		d$('append_parent').appendChild(div);
+		ajaxframe = d$(ajaxframeid);
 	} else if(ajaxframe.loading) {
 		return false;
 	}
@@ -721,7 +721,7 @@ function ajaxmenu(ctrlObj, timeout, cache, duration, pos, recall, idclass, conte
 		}
 	}
 	var menuid = ctrlid + '_menu';
-	var menu = $(menuid);
+	var menu = d$(menuid);
 	if(isUndefined(timeout)) timeout = 3000;
 	if(isUndefined(cache)) cache = 1;
 	if(isUndefined(pos)) pos = '43';
@@ -749,7 +749,7 @@ function ajaxmenu(ctrlObj, timeout, cache, duration, pos, recall, idclass, conte
 		menu.style.display = 'none';
 		menu.className = idclass;
 		menu.innerHTML = '<div class="' + contentclass + '" id="' + menuid + '_content"></div>';
-		$('append_parent').appendChild(menu);
+		d$('append_parent').appendChild(menu);
 		var url = (!isUndefined(ctrlObj.attributes['shref']) ? ctrlObj.attributes['shref'].value : (!isUndefined(ctrlObj.href) ? ctrlObj.href : ctrlObj.attributes['href'].value));
 		url += (url.indexOf('?') != -1 ? '&' :'?') + 'ajaxmenu=1';
 		ajaxget(url, menuid + '_content', 'ajaxwaitid', '', '', func);
@@ -785,7 +785,7 @@ function stringxor(s1, s2) {
 }
 
 function showPreview(val, id) {
-	var showObj = $(id);
+	var showObj = d$(id);
 	if(showObj) {
 		showObj.innerHTML = val.replace(/\n/ig, "<bupdateseccoder />");
 	}
@@ -794,8 +794,8 @@ function showPreview(val, id) {
 function showloading(display, waiting) {
 	var display = display ? display : 'block';
 	var waiting = waiting ? waiting : '请稍候...';
-	$('ajaxwaitid').innerHTML = waiting;
-	$('ajaxwaitid').style.display = display;
+	d$('ajaxwaitid').innerHTML = waiting;
+	d$('ajaxwaitid').style.display = display;
 }
 
 function ajaxinnerhtml(showid, s) {
@@ -808,7 +808,7 @@ function ajaxinnerhtml(showid, s) {
 		var div1 = document.createElement('DIV');
 		div1.id = showid.id+'_div';
 		div1.innerHTML = '<table><tbody id="'+showid.id+'_tbody">'+s+'</tbody></table>';
-		$('append_parent').appendChild(div1);
+		d$('append_parent').appendChild(div1);
 		var trs = div1.getElementsByTagName('TR');
 		var l = trs.length;
 		for(var i=0; i<l; i++) {
@@ -856,8 +856,8 @@ function showMenu(v) {
 	var ctrlid = isUndefined(v['ctrlid']) ? v : v['ctrlid'];
 	var showid = isUndefined(v['showid']) ? ctrlid : v['showid'];
 	var menuid = isUndefined(v['menuid']) ? showid + '_menu' : v['menuid'];
-	var ctrlObj = $(ctrlid);
-	var menuObj = $(menuid);
+	var ctrlObj = d$(ctrlid);
+	var menuObj = d$(menuid);
 	if(!menuObj) return;
 	var mtype = isUndefined(v['mtype']) ? 'menu' : v['mtype'];
 	var evt = isUndefined(v['evt']) ? 'mouseover' : v['evt'];
@@ -868,7 +868,7 @@ function showMenu(v) {
 	var maxh = isUndefined(v['maxh']) ? 600 : v['maxh'];
 	var cache = isUndefined(v['cache']) ? 1 : v['cache'];
 	var drag = isUndefined(v['drag']) ? '' : v['drag'];
-	var dragobj = drag && $(drag) ? $(drag) : menuObj;
+	var dragobj = drag && d$(drag) ? d$(drag) : menuObj;
 	var fade = isUndefined(v['fade']) ? 0 : v['fade'];
 	var cover = isUndefined(v['cover']) ? 0 : v['cover'];
 	var zindex = isUndefined(v['zindex']) ? JSMENU['zIndex']['menu'] : v['zindex'];
@@ -966,7 +966,7 @@ function showMenu(v) {
 			coverObj.style.filter = 'progid:DXImageTransform.Microsoft.Alpha(opacity=50)';
 			coverObj.style.opacity = 0.5;
 			coverObj.onclick = function () { hideMenu(); };
-			$('append_parent').appendChild(coverObj);
+			d$('append_parent').appendChild(coverObj);
 			_attachEvent(window, 'load', function () {
 				coverObj.style.height = Math.max(document.documentElement.clientHeight, document.body.offsetHeight) + 'px';
 			}, document);
@@ -977,7 +977,7 @@ function showMenu(v) {
 		dragobj.onmousedown = function(event) {try{dragMenu(menuObj, event, 1);}catch(e){}};
 	}
 
-	if(cover) $(menuid + '_cover').style.display = '';
+	if(cover) d$(menuid + '_cover').style.display = '';
 	if(fade) {
 		var O = 0;
 		var fadeIn = function(O) {
@@ -1006,9 +1006,9 @@ function showMenu(v) {
 	if(pos != '*') {
 		setMenuPosition(showid, menuid, pos);
 	}
-	if(BROWSER.ie && BROWSER.ie < 7 && winhandlekey && $('fwin_' + winhandlekey)) {
-		$(menuid).style.left = (parseInt($(menuid).style.left) - parseInt($('fwin_' + winhandlekey).style.left)) + 'px';
-		$(menuid).style.top = (parseInt($(menuid).style.top) - parseInt($('fwin_' + winhandlekey).style.top)) + 'px';
+	if(BROWSER.ie && BROWSER.ie < 7 && winhandlekey && d$('fwin_' + winhandlekey)) {
+		d$(menuid).style.left = (parseInt(d$(menuid).style.left) - parseInt(d$('fwin_' + winhandlekey).style.left)) + 'px';
+		d$(menuid).style.top = (parseInt(d$(menuid).style.top) - parseInt(d$('fwin_' + winhandlekey).style.top)) + 'px';
 	}
 	if(maxh && menuObj.scrollHeight > maxh) {
 		menuObj.style.height = maxh + 'px';
@@ -1110,8 +1110,8 @@ function dragMenu(menuObj, e, op) {
 	}
 }
 function setMenuPosition(showid, menuid, pos) {
-	var showObj = $(showid);
-	var menuObj = menuid ? $(menuid) : $(showid + '_menu');
+	var showObj = d$(showid);
+	var menuObj = menuid ? d$(menuid) : d$(showid + '_menu');
 	if(isUndefined(pos) || !pos) pos = '43';
 	var basePoint = parseInt(pos.substr(0, 1));
 	var direction = parseInt(pos.substr(1, 1));
@@ -1234,10 +1234,10 @@ function hideMenu(attr, mtype) {
 		}
 		return;
 	}else if(typeof attr == 'string') {
-		var menuObj = $(attr);
+		var menuObj = d$(attr);
 		if(!menuObj || (mtype && menuObj.mtype != mtype)) return;
 		var ctrlObj = '', ctrlclass = '';
-		if((ctrlObj = $(menuObj.getAttribute('ctrlid'))) && (ctrlclass = menuObj.getAttribute('ctrlclass'))) {
+		if((ctrlObj = d$(menuObj.getAttribute('ctrlid'))) && (ctrlclass = menuObj.getAttribute('ctrlclass'))) {
 			var reg = new RegExp(' ' + ctrlclass);
 			ctrlObj.className = ctrlObj.className.replace(reg, '');
 		}
@@ -1246,11 +1246,11 @@ function hideMenu(attr, mtype) {
 			if(menuObj.cache) {
 				if(menuObj.style.visibility != 'hidden') {
 					menuObj.style.display = 'none';
-					if(menuObj.cover) $(attr + '_cover').style.display = 'none';
+					if(menuObj.cover) d$(attr + '_cover').style.display = 'none';
 				}
 			}else {
 				menuObj.parentNode.removeChild(menuObj);
-				if(menuObj.cover) $(attr + '_cover').parentNode.removeChild($(attr + '_cover'));
+				if(menuObj.cover) d$(attr + '_cover').parentNode.removeChild(d$(attr + '_cover'));
 			}
 			var tmp = [];
 			for(var k in JSMENU['active'][menuObj.layer]) {
@@ -1332,7 +1332,7 @@ function showWindow(k, url, mode, cache, menuv) {
 	mode = isUndefined(mode) ? 'get' : mode;
 	cache = isUndefined(cache) ? 1 : cache;
 	var menuid = 'fwin_' + k;
-	var menuObj = $(menuid);
+	var menuObj = d$(menuid);
 	var drag = null;
 	var loadingst = null;
 	var hidedom = '';
@@ -1354,7 +1354,7 @@ function showWindow(k, url, mode, cache, menuv) {
 			}
 			ajaxget(url, 'fwin_content_' + k, null, '', '', function() {initMenu();show();});
 		} else if(mode == 'post') {
-			menuObj.act = $(url).action;
+			menuObj.act = d$(url).action;
 			ajaxpost(url, 'fwin_content_' + k, '', '', '', function() {initMenu();show();});
 		}
 		if(parseInt(BROWSER.ie) != 6) {
@@ -1390,21 +1390,21 @@ function showWindow(k, url, mode, cache, menuv) {
 		menuObj.id = menuid;
 		menuObj.className = 'fwinmask';
 		menuObj.style.display = 'none';
-		$('append_parent').appendChild(menuObj);
-		evt = ' style="cursor:move" onmousedown="dragMenu($(\'' + menuid + '\'), event, 1)" ondblclick="hideWindow(\'' + k + '\')"';
+		d$('append_parent').appendChild(menuObj);
+		evt = ' style="cursor:move" onmousedown="dragMenu(d$(\'' + menuid + '\'), event, 1)" ondblclick="hideWindow(\'' + k + '\')"';
 		if(!BROWSER.ie) {
 			hidedom = '<style type="text/css">object{visibility:hidden;}</style>';
 		}
 		menuObj.innerHTML = hidedom + '<table cellpadding="0" cellspacing="0" class="fwin"><tr><td class="t_l"></td><td class="t_c"' + evt + '></td><td class="t_r"></td></tr><tr><td class="m_l"' + evt + ')">&nbsp;&nbsp;</td><td class="m_c" id="fwin_content_' + k + '">'
 			+ '</td><td class="m_r"' + evt + '"></td></tr><tr><td class="b_l"></td><td class="b_c"' + evt + '></td><td class="b_r"></td></tr></table>';
 		if(mode == 'html') {
-			$('fwin_content_' + k).innerHTML = url;
+			d$('fwin_content_' + k).innerHTML = url;
 			initMenu();
 			show();
 		} else {
 			fetchContent();
 		}
-	} else if((mode == 'get' && (url != menuObj.url || cache != 1)) || (mode == 'post' && $(url).action != menuObj.act)) {
+	} else if((mode == 'get' && (url != menuObj.url || cache != 1)) || (mode == 'post' && d$(url).action != menuObj.act)) {
 		fetchContent();
 	} else {
 		show();
@@ -1451,7 +1451,7 @@ function thumbImg(obj, method) {
 		if(!obj.id) {
 			obj.id = 'img_' + Math.random();
 		}
-		setTimeout("thumbImg($('" + obj.id + "'), " + method + ")", 100);
+		setTimeout("thumbImg(d$('" + obj.id + "'), " + method + ")", 100);
 		return;
 	}
 	zr = zw / zh;
@@ -1486,6 +1486,6 @@ function thumbImg(obj, method) {
 
 var zoomstatus = 1;
 function zoom(obj, zimg, nocover, pn, showexif) {
-	$F('_zoom', arguments);
+	d$F('_zoom', arguments);
 }
 

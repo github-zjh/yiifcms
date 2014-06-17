@@ -1,9 +1,6 @@
 	<!-- 导航面包屑开始 -->
 	<?php $this->renderPartial('/layouts/nav',array('navs'=>$navs));?>
 	<!-- 导航面包屑结束 -->
-	<script>
-	var $j = jQuery.noConflict();
-	</script>
 	<div id="content" class="clear">
 		<div class="content_left">		
 			<div class="list_box clear">
@@ -72,8 +69,8 @@
 							//延迟加载外部js
 							window.onload = shareJs();
 							function shareJs(){								
-								$j("#butonLiteJs").attr("src","http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh");
-								$j("#bshareJs").attr("src","http://static.bshare.cn/b/bshareC0.js");
+								$("#butonLiteJs").attr("src","http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh");
+								$("#bshareJs").attr("src","http://static.bshare.cn/b/bshareC0.js");
 							}
 						</script>
 						
@@ -95,35 +92,35 @@
 	<!-- 返回顶部 -->
 	<a href="javascript:;" id="back_top"></a>
 	<script type="text/javascript">
-		$j(function(){
-			$j(this).scroll(function(){
-				if($j(this).scrollTop() == 0){
-					$j("#back_top").fadeOut();
+		$(function(){
+			$(this).scroll(function(){
+				if($(this).scrollTop() == 0){
+					$("#back_top").fadeOut();
 				}else{					
-					$j("#back_top").fadeIn();
-					$j("#back_top").click(function(){
-						$j("body").scrollTop(0);
+					$("#back_top").fadeIn();
+					$("#back_top").click(function(){
+						$("body").scrollTop(0);
 					});
 				}
 			});	
 			//图集左右滑动
 			var min_left = 0;			
-			var li_width = $j("#show_pics li").width();
-			var li_len = $j("#show_pics li").length;			
+			var li_width = $("#show_pics li").width();
+			var li_len = $("#show_pics li").length;			
 			var max_left = (li_len-3) * li_width;
 			
-			$j("#move_prev").click(function(){
-				var cur_left = $j("#show_pics ul").position().left;				
+			$("#move_prev").click(function(){
+				var cur_left = $("#show_pics ul").position().left;				
 				var move_len = cur_left + li_width;
 				if(cur_left < min_left){
-					$j("#show_pics ul").animate({left: move_len+'px'},200);
+					$("#show_pics ul").animate({left: move_len+'px'},200);
 				}		
 			});
-			$j("#move_next").click(function(){
-				var cur_left = $j("#show_pics ul").position().left;				
+			$("#move_next").click(function(){
+				var cur_left = $("#show_pics ul").position().left;				
 				var move_len = cur_left - li_width;
 				if(Math.abs(cur_left) < max_left){
-					$j("#show_pics ul").animate({left: move_len+'px'},200);
+					$("#show_pics ul").animate({left: move_len+'px'},200);
 				}						
 			});
 				
