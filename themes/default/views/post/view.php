@@ -36,36 +36,7 @@
 				</div>
 			</div>	
 			<!-- 分享按钮 -->
-			<div class="share_box">
-				<ul class="clear">
-					<li><strong><?php echo Yii::t('common','Share');?></strong></li>
-					<li class="clear">
-						<div class="bshare-custom">
-							<a title="分享到QQ空间" class="bshare-qzone"></a>
-							<a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
-							<a title="分享到人人网" class="bshare-renren"></a>
-							<a title="分享到腾讯微博" class="bshare-qqmb"></a>
-							<a title="分享到网易微博" class="bshare-neteasemb"></a>
-							<a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
-							<span class="BSHARE_COUNT bshare-share-count">0</span>
-						</div>						
-						
-						<script type="text/javascript" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh" charset="utf-8" id="butonLiteJs"></script>
-						<script type="text/javascript" src="http://static.bshare.cn/b/bshareC0.js" charset="utf-8" id="bshareJs"></script>
-						
-						<script type="text/javascript">
-							//延迟加载外部js
-							//window.onload = shareJs();
-							/*function shareJs(){
-								$("#butonLiteJs").attr("src","http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh");
-								$("#bshareJs").attr("src","http://static.bshare.cn/b/bshareC0.js");
-							}*/
-						</script>
-						
-					</li>
-					
-				</ul>
-			</div>		
+			<?php $this->renderPartial('/layouts/shareJs');?>
 			
 			<!-- 评论区 -->
 			<iframe id="comment_iframe" scrolling="no"  marginheight="0" marginwidth="0" frameborder="0" src="<?php echo $this->createUrl('comment/create', array('view_url'=>$this->_request->getUrl(),'topic_id'=>$post->id,'topic_type'=>'article'));?>"></iframe>		

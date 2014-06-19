@@ -126,11 +126,10 @@ class SoftController extends FrontBase
 		$soft = Soft::model()->findByPk($id);
 		if($soft){
 			$file = Upload::model()->findByPk($soft->fileid);
-			if($file){
+			if($file && file_exists($file->file_name)){
 				//更新下载次数
-				$down_count = $soft->down_count?$soft->down_count:0;
-				$soft->down_count = $down_count + 1;
-				$soft->save();
+				$soft->updateCounters(array ('down_count' => 1 ), 'id=:id', array ('id' => $id ));
+				
 				//开始下载
 				Yii::app()->request->sendFile($soft->title.'.'.$file->file_ext, file_get_contents($file->file_name));
 				exit;

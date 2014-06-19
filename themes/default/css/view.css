@@ -63,3 +63,7 @@ a:hover { text-decoration:underline; }
 .download_now:hover { background-position:-134px 0;}
 .download_quick:hover { background-position:-134px -44px;}
 
+/* 视频详情 */
+.video_info .info_left { width:auto; margin-right:50px;}
+.video_info .info_score { float:left; }
+

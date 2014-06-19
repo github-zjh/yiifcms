@@ -92,10 +92,14 @@ class VideoController extends FrontBase
 		$this->_seoKeywords = empty ( $video->seo_keywords ) ? $this->_seoKeywords : $post->seo_keywords;
 		$this->_seoDescription = empty ( $video->seo_description ) ? $this->_seoDescription : $video->seo_description;
 		$catalogArr = Catalog::model ()->findByPk ( $video->catalog_id );
+		//更新浏览次数
+		$video->updateCounters(array ('view_count' => 1 ), 'id=:id', array ('id' => $id ));
 		
 		// 加载css,js
 		Yii::app ()->clientScript->registerCssFile ( $this->_stylePath . "/css/view.css" );
+		Yii::app ()->clientScript->registerCssFile ( $this->_stylePath . "/css/score.css" );
 		Yii::app ()->clientScript->registerScriptFile ( $this->_static_public . "/js/jquery/jquery.js" );
+		Yii::app ()->clientScript->registerScriptFile ( $this->_stylePath . "/js/score.js",CClientScript::POS_END );
 		
 		// 最近的软件
 		$last_videos = video::model ()->findAll ( array (
@@ -119,6 +123,36 @@ class VideoController extends FrontBase
 				'last_videos' => $last_videos 
 		);
 		$this->render ( 'view', $tplVar );
+  }
+  
+  
+  public function actionScore(){
+  	//t 总人数 s 从低分人数到高分人数分布
+  	 exit('{"t":20,"s":[9,1,5,3,2]}');
+  }
+  
+  /**
+   *
+   * 视频下载
+   * 
+   */
+  public function actionDownload($id){
+  	$video = Video::model()->findByPk($id);
+  	if($video){
+  		$file = Upload::model()->findByPk($video->fileid);
+  		if($file && file_exists($file->file_name)){
+  			//更新下载次数
+  			$video->updateCounters(array ('down_count' => 1 ), 'id=:id', array ('id' => $id ));
+  		
+  			//开始下载
+  			Yii::app()->request->sendFile($soft->title.'.'.$file->file_ext, file_get_contents($file->file_name));
+  			exit;
+  		}else{
+  			$this->message('error',Yii::t('common','Source Is Not Found'),$this->createUrl('video/view', array('id'=>$id)));
+  		}
+  	}else{
+  		$this->message('error',Yii::t('common','Source Is Not Found'),$this->createUrl('video/view', array('id'=>$id)));
+  	}
   }
   
 }

@@ -8,7 +8,7 @@
 				<div class="list_body">	
 					<h2><a href="<?php echo $this->createUrl('video/view', array('id'=>$video->id));?>"><?php echo $video->title;?></a></h2>
 					
-					<div class="content_info soft_info">
+					<div class="content_info soft_info video_info">
 						<div class="info_head clear">
 							<div class="info_left">		
 								<?php if($video->cover_image && file_exists($video->cover_image)):?>					
@@ -17,6 +17,35 @@
 								<div class="no_cover"><?php echo Yii::t('common','No Cover');?></div>
 								<?php endif;?>
 							</div>
+							
+							<!-- 给视频评分 -->
+							<div class="info_score score">								
+									<div class="score_content" id="score_content">									
+										<div class="score_loading"></div>									
+									</div><!--score_content end-->
+								
+									<div class="score_post">									
+										<div id="starBox">
+											<div class="star_title">给喜欢的影片评分</div>
+											<ul class="starlist" id="starlist">
+												<li i="1"><a href="javascript:void(0);" title="1星" class="star_one">1</a></li>
+												<li i="2"><a href="javascript:void(0);" title="2星" class="star_two">2</a></li>
+												<li i="3"><a href="javascript:void(0);" title="3星" class="star_three">3</a></li>
+												<li i="4"><a href="javascript:void(0);" title="4星" class="star_four">4</a></li>
+												<li i="5"><a href="javascript:void(0);" title="5星" class="star_five">5</a></li>
+											</ul>
+											<div class="star_current_rating" id="star_current_rating"></div>
+										</div><!--starBox end-->
+									
+										<div class="star_tip" id="star_tip">
+											<s id="star_tip_arrow"><i></i></s>
+											<div id="star_desc" class="star_desc"></div>
+										</div><!--star_tip end-->
+									
+									</div><!--score_post end-->
+								
+							</div><!--score end-->
+							
 							
 							<div class="info_right">
 								<ul class="soft_attr">
@@ -28,26 +57,7 @@
 								</ul>
 								
 								<!-- 分享按钮 -->
-								<div class="share_box">
-									<ul class="clear">
-										<li><strong><?php echo Yii::t('common','Share');?></strong></li>
-										<li class="clear">
-											<div class="bshare-custom">
-												<a title="分享到QQ空间" class="bshare-qzone"></a>
-												<a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
-												<a title="分享到人人网" class="bshare-renren"></a>
-												<a title="分享到腾讯微博" class="bshare-qqmb"></a>
-												<a title="分享到网易微博" class="bshare-neteasemb"></a>
-												<a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
-												<span class="BSHARE_COUNT bshare-share-count">0</span>
-											</div>						
-											
-											<script type="text/javascript" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh" charset="utf-8" id="butonLiteJs"></script>
-											<script type="text/javascript" src="http://static.bshare.cn/b/bshareC0.js" charset="utf-8" id="bshareJs"></script>
-											
-										</li>
-									</ul>
-								</div>	
+								<?php $this->renderPartial('/layouts/shareJs');?>	
 								
 								<!-- 下载按钮 -->
 								<div class="clear">
