@@ -51,7 +51,7 @@ class SoftController extends FrontBase
 	    $criteria->condition = $condition;
 	    $criteria->order = 'down_count DESC, t.id DESC';
 	    $criteria->with = array ( 'catalog' );
-	    $criteria->select = "title, id, t.update_time,t.introduce, t.down_count";
+	    $criteria->select = "title, id, t.soft_icon, t.update_time,t.introduce, t.down_count";
 	   
 	    //分页
 	    $count = $post->count( $criteria );    
@@ -75,32 +75,72 @@ class SoftController extends FrontBase
   
   
   /**
-   * 浏览详细内容
+   * 软件详情
+   * @param unknown $id
+   * @throws CHttpException
    */
   public function actionView( $id ) {
-  	$soft = Soft::model()->findByPk( intval( $id ) );
-  	 if ( false == $soft )
-        throw new CHttpException( 404, Yii::t('common','The requested page does not exist.') );
-  	//seo信息
-  	$this->_seoTitle = empty( $soft->seo_title ) ? $soft->title  .' - '. $this->_setting['site_name'] : $soft->seo_title;
-  	$this->_seoKeywords = empty( $soft->seo_keywords ) ? $this->_seoKeywords  : $post->seo_keywords;
-  	$this->_seoDescription = empty( $soft->seo_description ) ? $this->_seoDescription: $soft->seo_description;
-  	$catalogArr = Catalog::model()->findByPk($soft->catalog_id);
-  
-  	//加载css,js
-  	Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/view.css"); 
-  	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");  	
   	
-  	//nav
-	$navs = array();
-	$navs[] = array('url'=>$this->createUrl('soft/view',array('id'=>$id)), 'name'=>$soft->title);
-  
-  	$tplVar = array(
-  			'soft'=>$soft,
-  			'navs'=>$navs
-  	);
-  	$this->render( 'view', $tplVar);
-  }
+  		$soft = Soft::model ()->findByPk ( intval ( $id ) );
+		if (false == $soft)
+			throw new CHttpException ( 404, Yii::t ( 'common', 'The requested page does not exist.' ) );
+			// seo信息
+		$this->_seoTitle = empty ( $soft->seo_title ) ? $soft->title . ' - ' . $this->_setting ['site_name'] : $soft->seo_title;
+		$this->_seoKeywords = empty ( $soft->seo_keywords ) ? $this->_seoKeywords : $post->seo_keywords;
+		$this->_seoDescription = empty ( $soft->seo_description ) ? $this->_seoDescription : $soft->seo_description;
+		$catalogArr = Catalog::model ()->findByPk ( $soft->catalog_id );
+		
+		// 加载css,js
+		Yii::app ()->clientScript->registerCssFile ( $this->_stylePath . "/css/view.css" );
+		Yii::app ()->clientScript->registerScriptFile ( $this->_static_public . "/js/jquery/jquery.js" );
+		
+		// 最近的软件
+		$last_softs = Soft::model ()->findAll ( array (
+				'condition' => 'catalog_id = ' . $soft->catalog_id,
+				'order' => 'id DESC',
+				'limit' => 10 
+		) );
+		
+		// nav
+		$navs = array ();
+		$navs [] = array (
+				'url' => $this->createUrl ( 'soft/view', array (
+						'id' => $id 
+				) ),
+				'name' => $soft->title 
+		);
+		
+		$tplVar = array (
+				'soft' => $soft,
+				'navs' => $navs,
+				'last_softs' => $last_softs 
+		);
+		$this->render ( 'view', $tplVar );
+	}
+	
+	/**
+	 * 
+	 * 软件下载
+	 */
+	public function actionDownload($id){
+		$soft = Soft::model()->findByPk($id);
+		if($soft){
+			$file = Upload::model()->findByPk($soft->fileid);
+			if($file){
+				//更新下载次数
+				$down_count = $soft->down_count?$soft->down_count:0;
+				$soft->down_count = $down_count + 1;
+				$soft->save();
+				//开始下载
+				Yii::app()->request->sendFile($soft->title.'.'.$file->file_ext, file_get_contents($file->file_name));
+				exit;
+			}else{
+				$this->message('error',Yii::t('common','Source Is Not Found'),$this->createUrl('soft/view', array('id'=>$id)));
+			}			
+		}else{
+			$this->message('error',Yii::t('common','Source Is Not Found'),$this->createUrl('soft/view', array('id'=>$id)));
+		}
+	}
   
 }
  

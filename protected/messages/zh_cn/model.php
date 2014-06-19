@@ -74,7 +74,13 @@ return array(
 		'CommentCreate_time' => '评论时间',
 		'verifyCode'=> '验证码',
 		
-		//PostTags
+		//Soft
+		'SoftIcon' => '软件图标',
+		'SoftRank' => '软件等级',
+		'SoftLanguage' => '软件语言',
+		'SoftType' => '软件类型',
+		'SoftOS' => '软件系统',
+		'DownCount' => '下载次数',
 		
 		//Question
 		

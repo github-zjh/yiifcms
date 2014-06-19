@@ -17,7 +17,9 @@
 <?php else:?>
 <?php $form=$this->beginWidget('CActiveForm', array('id'=>'comment_form')); ?>	
 	<table>					
-		<caption>对该内容进行评论：</caption>			
+		<caption><?php echo Yii::t('common','Publish Comment');?>：
+		<span class="normal">( <?php echo Yii::t('common','Comment Notice')?> )</span>
+		</caption>			
 		<tr>			
 			<td width="540px" colspan="2">
 				<?php echo $form->textArea($model, 'content');?>
@@ -64,7 +66,7 @@
 <?php endif;?>
 
 <div class="comments">
-	<h3><?php echo count($comments);?>&nbsp;&nbsp;Comments</h3>	
+	<h3>[ <?php echo Yii::t('common','All Num Comments', array('{num}'=>count($comments)));?> ]</h3>	
 	<ul id="comment_list">		
 		<?php $i = 0;?>
 		<?php foreach((array)$comments as $comment):?>		
@@ -78,12 +80,10 @@
 				</p>
 				<div class="desc_body"><?php echo $comment->content;?></div>
 				<div class="desc_foot clear">
-					<a <?php if($this->_login_status):?> href="javascript:;" 
+					<a href="javascript:;" 
 					class="reply_btn clear" data-type="reply" 
 					data-attr-cid="<?php echo $comment->id;?>" 
-					data-attr-replyid = "0"
-					<?php else:?> href="javascript:alert('<?php echo Yii::t('common','You Need Login');?>');"<?php endif;?>
-					>@:回复</a>
+					data-attr-replyid = "0"	>@:回复<span class="login_notice"></span></a>
 				</div>
 				
 				<!-- 回复列表 -->
@@ -104,12 +104,10 @@
 							</p>
 							<div class="desc_body"><?php echo $reply->content;?></div>
 							<div class="desc_foot clear">
-								<a <?php if($this->_login_status):?> href="javascript:;" 
+								<a href="javascript:;" 
 								class="reply_btn clear" data-type="reply" 
 								data-attr-cid="<?php echo $reply->cid;?>" 
-								data-attr-replyid = "<?php echo $reply->id;?>"
-								<?php else:?> href="javascript:alert('<?php echo Yii::t('common','You Need Login');?>');"<?php endif;?>
-								>@:回复</a>
+								data-attr-replyid = "<?php echo $reply->id;?>">@:回复<span class="login_notice"></span></a>
 							</div>
 						</div>	
 						</li>
@@ -149,6 +147,14 @@
         });	
         //@回复
         $("a[data-type='reply']").click(function(){ 
+            var login_status = '<?php echo $this->_login_status;?>';
+            if(login_status == false){
+                var lg_html = '<?php echo Yii::t('common','You Need First');?><a href="<?php echo $this->createUrl('user/login', array('ret_url'=>$view_url));?>" target="_top" id="need_login"><?php echo Yii::t('common','Login');?></a>';
+                lg_html += '<?php echo Yii::t('common','Or');?><a href="<?php echo $this->createUrl('user/register');?>" target="_top" ><?php echo Yii::t('common','Register');?></a>';
+				$(".login_notice").hide();
+				$(this).children(".login_notice").html(lg_html).show();
+				return;
+            }
         	if($(this).next("#reply_box").is(":visible") == true){
 				$("#reply_box").hide();
 				//如果回复框显示了 则隐藏

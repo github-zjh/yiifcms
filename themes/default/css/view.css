@@ -17,18 +17,19 @@
 .content_left .list_body .view_info em { color:#e2534b; }
 .content_left .list_body .view_info .tags { padding-left:23px; background:url(../images/ico_tag.png) no-repeat left center; }
 .content_left .list_body .view_info .views { padding-left:23px; background:url(../images/ico_view.png) no-repeat left center; }
+.content_left .list_body .view_info .downs { padding-left:23px; background:url(../images/ico_down.png) no-repeat left center; }
 .content_left .list_body .content_info { margin-bottom:20px; }
 .content_left .share_box { background-color:#ececec; padding:6px 12px;}
 .content_left .share_box strong { font-size:14px;}
 .content_left .share_box ul li { float:left; margin:0 10px; }
 
 /* 图集幻灯片 */
-#show_pics { width:750px; height:220px; overflow:hidden; position:relative;}
+#show_pics { width:750px; overflow:hidden; position:relative;}
 #show_pics ul { width:600%; position:relative;}
-#show_pics li { width:250px; display:table-cell; vertical-align:middle;}
-#show_pics .prev_btn { width:40px; height:220px; line-height:220px; opacity:0; filter:alpha(opacity=0); position:absolute; left:0; top:0; z-index:99; text-decoration:none; font-size:24px; text-align:center; color:#FFFFFF;}
-#show_pics .next_btn { left:auto; right:0; }
-#show_pics .prev_btn:hover, #show_pics .next_btn:hover{ opacity:0.5; filter:alpha(opacity=50);  background-color:#7F8C8C;}
+#show_pics li { width:250px; height:278px; border:1px solid #CCCCCC; border-right:none; display:table-cell; text-align:center; vertical-align:middle;}
+#show_pics .prev_btn { width:32px; height:50px; background:url(../images/foc_btn.png) no-repeat left 0; position:absolute; left:0; top:110px; z-index:99;}
+#show_pics .next_btn { left:auto; right:0; background-position:right 0;}
+#show_pics li:hover { background-color:#F0EFE0;}
 #show_pics li img {max-width:250px; max-height:250px; cursor:pointer;}
 
 .content_right .category { margin-bottom:30px; }
@@ -46,4 +47,19 @@
 a { color:#555555;}
 a:hover { text-decoration:underline; }
 
+/* 软件详情 */
+.soft_info { margin-top:20px; border-top:1px dashed #CCCCCC; }
+.info_head { margin:20px 0;  border-bottom:1px dashed #CCCCCC;}
+.info_left { float:left; width:400px; height:300px; overflow:hidden;}
+.info_left .no_cover { background-color:#F0F2F3; text-align:center; line-height:200px;}
+.info_right { float:right; width:300px; height:300px; font-size:14px;}
+.info_right .soft_attr li { line-height:30px; list-style:inside circle;}
+.info_right .share_box { margin:10px 0; padding-left:0;}
+.info_desc h1 { font-weight:bold; font-size:16px; padding:8px 0; color:#666666; }
+.star_empty, .star_full { display:inline-block;width:100px; height:20px; background:url(../images/ico_stars.png) no-repeat left 0;}
+.star_full { background-position:left -27px;}
+.download_now , .download_quick{ width:134px; display:block; height:44px; background:url(../images/download_btn.png) no-repeat left 0;}
+.download_quick { background-position:left -44px;}
+.download_now:hover { background-position:-134px 0;}
+.download_quick:hover { background-position:-134px -44px;}
 

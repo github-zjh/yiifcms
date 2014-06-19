@@ -7,6 +7,7 @@
  * @property integer $id
  * @property string $title
  * @property integer $catalog_id
+ * @property string $soft_icon
  * @property string $cover_image
  * @property string $fileid
  * @property string $filetype
@@ -44,15 +45,16 @@ class Soft extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('catalog_id, pay, down_count', 'numerical', 'integerOnly'=>true),
-			array('title, cover_image, os, softlink', 'length', 'max'=>100),
+			array('catalog_id, down_count', 'numerical', 'integerOnly'=>true),
+			array('pay', 'numerical'),
+			array('title, cover_image, soft_icon, os, softlink', 'length', 'max'=>100),
 			array('fileid, seo_title, seo_keywords', 'length', 'max'=>255),
 			array('filetype, language, softtype, softsize, update_time, create_time', 'length', 'max'=>10),
 			array('softrank, status', 'length', 'max'=>1),
 			array('introduce, seo_description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, catalog_id, cover_image, fileid, filetype, language, softtype, os, softrank, softsize, softlink, introduce, pay, update_time, create_time, down_count, status, seo_title, seo_description, seo_keywords', 'safe', 'on'=>'search'),
+			array('id, title, catalog_id, cover_image, fileid, filetype, language, softtype, soft_icon, os, softrank, softsize, softlink, introduce, pay, update_time, create_time, down_count, status, seo_title, seo_description, seo_keywords', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -77,6 +79,7 @@ class Soft extends CActiveRecord
 			'id' => 'Id',
 			'title' => 'Title',
 			'catalog_id' => 'Catalog',
+			'soft_icon' => 'Soft Icon',
 			'cover_image' => 'Cover Image',
 			'fileid' => 'Fileid',
 			'filetype' => 'Filetype',
@@ -121,6 +124,8 @@ class Soft extends CActiveRecord
 		$criteria->compare('title',$this->title,true);
 
 		$criteria->compare('catalog_id',$this->catalog_id);
+		
+		$criteria->compare('soft_icon',$this->soft_icon,true);
 
 		$criteria->compare('cover_image',$this->cover_image,true);
 

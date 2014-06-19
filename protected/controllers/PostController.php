@@ -92,18 +92,21 @@ class PostController extends FrontBase
     $this->_seoTitle = empty( $post->seo_title ) ? $post->title  .' - '. $this->_setting['site_name'] : $post->seo_title;
     $this->_seoKeywords = empty( $post->seo_keywords ) ? $this->_seoKeywords  : $post->seo_keywords;
     $this->_seoDescription = empty( $post->seo_description ) ? $this->_seoDescription: $post->seo_description;
-    $catalogArr = Catalog::model()->findByPk($post->catalog_id);
-    
+       
   	//加载css,js	
     Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/view.css");    
 	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");	
-
+	
+	//最近的文章
+	$last_posts = Post::model()->findAll(array('condition'=>'catalog_id = '.$post->catalog_id,'order'=>'id DESC','limit'=>10,));
+    
 	//nav
 	$navs = array();
 	$navs[] = array('url'=>$this->createUrl('post/view',array('id'=>$id)), 'name'=>$post->title);
     $tplVar = array(
         'post'=>$post,     
-        'navs'=>$navs      
+        'navs'=>$navs,
+    	'last_posts'=>$last_posts
     );
     $this->render( 'view', $tplVar);
   }

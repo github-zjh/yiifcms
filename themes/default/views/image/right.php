@@ -3,7 +3,7 @@
 			<dl class="category">
 				<dt><?php echo Yii::t('common','Catagorys');?></dt>
 				<?php foreach((array)$this->_catalog as $cate):?>
-				<dd><a href="<?php echo $this->createUrl('post/index',array('catalog_id'=>$cate->id));?>"><?php echo $cate->catalog_name;?></a></dd>		
+				<dd><a href="<?php echo $this->createUrl('image/index',array('catalog_id'=>$cate->id));?>"><?php echo $cate->catalog_name;?></a></dd>		
 				<?php endforeach;?>					
 			</dl>	
 			
@@ -16,9 +16,9 @@
 			</dl>
 			
 			<dl class="category recent_post">
-				<dt><?php echo Yii::t('common','Last Articles');?></dt>
-				<?php foreach((array)$last_posts as $lp):?>
-				<dd><a title="<?php echo $lp->title;?>" href="<?php echo $this->createUrl('post/view', array('id'=>$lp->id));?>"><?php echo Helper::truncate_utf8_string($lp->title,18);?></a></dd>		
+				<dt><?php echo Yii::t('common','Last Images');?></dt>
+				<?php foreach((array)$last_images as $lp):?>
+				<dd><a title="<?php echo $lp->title;?>" href="<?php echo $this->createUrl('image/view', array('id'=>$lp->id));?>"><?php echo Helper::truncate_utf8_string($lp->title,18);?></a></dd>		
 				<?php endforeach;?>					
 			</dl>		
 		</div>

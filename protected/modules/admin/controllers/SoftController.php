@@ -75,6 +75,19 @@ class SoftController extends Backend
     		//软件文件
     		$fileids = is_array($_POST['fileid'])?implode(',',$_POST['fileid']):'';
     		$model->fileid = $fileids;
+    		
+    		if($_FILES['softicon']['error'] == UPLOAD_ERR_OK){
+    			//软件图标
+    			$upload = new XUpload;
+    			$upload->uploadFile($_FILES['softicon']);
+    			if($upload->_error){
+    				$upload->deleteFile($upload->_file_name);
+    				$this->message('error', Yii::t('admin',$upload->_error));
+    				return;
+    			}
+    			$model->soft_icon = $upload->_file_name;
+    		}
+    		
     		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
 	    		//封面图片
 	    		$upload = new XUpload;	    		
@@ -113,16 +126,28 @@ class SoftController extends Backend
     	if(isset($_POST['Soft']))
     	{
     		$model->attributes=$_POST['Soft'];  
+    		if($model->os && is_array($model->os))
     		$model->os = implode(',',$model->os);
     		//软件文件    		
     		$fileids = is_array($_POST['fileid'])?implode(',',$_POST['fileid']):'';
     		$model->fileid = $fileids;
+    		
+    		if($_FILES['softicon']['error'] == UPLOAD_ERR_OK){
+    			//软件图标
+    			$upload = new XUpload;    			
+    			$upload->uploadFile($_FILES['softicon']);
+    			if($upload->_error){
+    				$upload->deleteFile($upload->_file_name);
+    				$this->message('error', Yii::t('admin',$upload->_error));
+    				return;
+    			}
+    			$model->soft_icon = $upload->_file_name;
+    		}
+    		
     		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
 	    		//封面图片
-	    		$upload = new XUpload;
-	    		$upload->_thumb_width = 100;
-	    		$upload->_thumb_height = 100;    		
-	    		$upload->uploadFile($_FILES['attach'], true);
+	    		$upload = new XUpload;	    		 		
+	    		$upload->uploadFile($_FILES['attach']);
 	    		if($upload->_error){
 	    			$upload->deleteFile($upload->_file_name);	    			
 	    			$this->message('error', Yii::t('admin',$upload->_error));

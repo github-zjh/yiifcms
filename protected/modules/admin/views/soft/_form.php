@@ -28,6 +28,21 @@
       </select>
     </td>
   </tr>  
+  
+  <tr>
+    <td class="tb_title"><?php echo Yii::t('model','SoftIcon');?>(120*120)：</td>
+  </tr>
+  <tr >
+    <td colspan="2" >
+    	<input name="softicon" type="file" />
+      	<?php if ($model->soft_icon):?>
+      	<a href="<?php echo $this->_baseUrl.'/'. $model->soft_icon?>" target="_blank">
+      		<img style="padding:5px; border:1px solid #cccccc;" src="<?php echo $this->_baseUrl.'/'. $model->soft_icon;?>" width="50" align="absmiddle" />
+      	</a>
+      	<?php endif;?>     
+  	</td>
+  </tr>
+  
   <tr>
     <td class="tb_title"><?php echo Yii::t('admin','Cover Image');?>：</td>
   </tr>

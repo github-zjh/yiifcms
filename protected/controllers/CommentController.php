@@ -99,11 +99,15 @@ class CommentController extends FrontBase
   	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/kindeditor/code/prettify.js",CClientScript::POS_END);
   	
   	if($this->_request->isPostRequest){
+  		$uid = Yii::app()->user->id;
+  		if(!$uid){
+  			$this->message('script', Yii::t('common','You Need Login'));
+  		}
   		
   		$model->attributes = $_POST['Comment'];
   		$model->topic_id = $topic_id;
   		$model->type = $topic_type;
-  		$model->user_id = Yii::app()->user->id;
+  		$model->user_id = $uid;
   		$model->status = 'N';
   		$model->client_ip = $this->getClientIP();
   		$model->create_time = time();
@@ -139,6 +143,9 @@ class CommentController extends FrontBase
   	  if($this->_request->isPostRequest){
   	  	//当前登录用户id
   	  	$uid = Yii::app()->user->id;  	  	
+  	  	if(!$uid){
+  	  		exit(CJSON::encode(array('status'=>'error','message'=>Yii::t('common','You Need Login'))));
+  	  	}
   	  	$cid = intval($_POST['cid']);
   	  	$reply_id = intval($_POST['reply_id']);
   	  	$content = $_POST['content'];

@@ -8,24 +8,22 @@
 			<?php foreach((array)$softs as $soft):?>					
 				<li class="list_box clear">
 					<div class="list_head">
-						<div class="date_time">
-							<p><?php echo date('Y',$soft->update_time)?></p>
-							<strong>
-								<?php echo date('m.d',$soft->update_time)?>
-								<br/><?php echo date('H:i:s',$soft->update_time)?>
-							</strong>
-						</div>						
+						<a href="<?php echo $this->createUrl('soft/view', array('id'=>$soft->id));?>" title="<?php echo $soft->title;?>">
+							<?php if($soft->soft_icon && file_exists($soft->soft_icon)):?>
+							<img src="<?php echo $soft->soft_icon;?>" width="60" height="60" alt="<?php echo $soft->title;?>"/>
+							<?php else:?>
+							<img src="<?php echo $this->_stylePath;?>/images/ico_none.jpg" width="60" height="60" alt="<?php echo $soft->title;?>"/>
+							<?php endif;?>	
+						</a>
+									
 					</div>
 					<div class="list_body">
-						<h2><a href="<?php echo $this->createUrl('soft/view', array('id'=>$soft->id));?>"><?php echo $soft->title;?></a></h2>
+						<h2><a href="<?php echo $this->createUrl('soft/view', array('id'=>$soft->id));?>"  title="<?php echo $soft->title;?>"><?php echo $soft->title;?></a></h2>
 						<p class="view_info">
-							<span></span>
-							<span class="views"><em><?php echo $soft->down_count;?></em></span>
-						</p>
-						<p class="content_info">
-							<?php echo $soft->introduce?$soft->introduce:'...';?>
-						</p>
-						<a href="<?php echo $this->createUrl('soft/view', array('id'=>$soft->id));?>" class="continue_read"><?php echo Yii::t('common','Read More');?></a>
+							<span>更新时间：<?php echo date('Y-m-d H:i',$soft->update_time)?></span>
+							<span class="downs"><em><?php echo $soft->down_count;?></em></span>							
+						</p>						
+						<a href="<?php echo $this->createUrl('soft/view', array('id'=>$soft->id));?>" class="continue_read">[<?php echo Yii::t('common','View Info');?>]</a>
 					</div>
 				</li>			
 				<?php endforeach;?>

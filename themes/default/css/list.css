@@ -17,6 +17,7 @@
 .content_list .list_body .view_info em { color:#e2534b; }
 .content_list .list_body .view_info .tags { padding-left:23px; background:url(../images/ico_tag.png) no-repeat left center; }
 .content_list .list_body .view_info .views { padding-left:23px; background:url(../images/ico_view.png) no-repeat left center; }
+.content_list .list_body .view_info .downs { padding-left:23px; background:url(../images/ico_down.png) no-repeat left center; }
 .content_list .list_body .content_info { margin-bottom:20px; }
 .content_list .list_body .content_info .content_cover { float:left; border:1px solid #DDDDDD; margin-right:20px;}
 .content_list .list_body .continue_read { padding-right:20px; background:url(../images/list_icon.png) no-repeat right center; }

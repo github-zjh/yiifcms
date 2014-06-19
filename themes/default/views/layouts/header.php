@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->_yii->language;?>" lang="<?php echo $this->_yii->language;?>">
 <head>	
 	<title><?php echo CHtml::encode($this->_seoTitle); ?></title>
-	<base href="<?php echo $this->_request->hostinfo;?>" />
+	<base href="<?php echo $this->_request->hostinfo;?>" />	
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="<?php echo $this->_yii->language;?>" />
 	<meta name="keywords" content="<?php echo $this->_seoKeywords;?>" />

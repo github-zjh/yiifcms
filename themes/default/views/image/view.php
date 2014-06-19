@@ -32,13 +32,13 @@
 						<?php if($post->image_list):?>
 						<?php $pics = unserialize($post->image_list);?>												
 						<div id="show_pics">
-							<a href="javascript:;" id="move_prev" class="prev_btn"><</a>
+							<a href="javascript:;" title="上一个" id="move_prev" class="prev_btn"></a>
 							<ul>								
 								<?php foreach((array)$pics as $pic):?>
 								<li><img  id="<?php echo "aimg_".$pic['fileId'];?>" aid="<?php echo $pic['fileId'];?>"  onclick="zoom(this, this.src, 0, 0, 0)" zoomfile="<?php echo $pic['file'];?>" alt="<?php echo $pic['desc'];?>" title="<?php echo $pic['desc'];?>" file="<?php echo $pic['file'];?>" src="<?php echo $pic['file'];?>" /></li>
 								<?php endforeach;?>										
 							</ul>		
-							<a href="javascript:;" id="move_next"  class="prev_btn next_btn">></a>					
+							<a href="javascript:;" title="下一个" id="move_next"  class="prev_btn next_btn"></a>					
 						</div>
 						<div id="append_parent"></div><div id="ajaxwaitid"></div>
 						<?php endif;?>
@@ -84,7 +84,7 @@
 		</div>
 		
 		<!-- 右侧内容开始 -->
-		<?php $this->renderPartial('right',array('last_softs'=>$last_softs));?>	
+		<?php $this->renderPartial('right',array('last_images'=>$last_images));?>	
 		<!-- 右侧内容结束 -->		
 		
 	</div>
@@ -93,16 +93,19 @@
 	<a href="javascript:;" id="back_top"></a>
 	<script type="text/javascript">
 		$(function(){
-			$(this).scroll(function(){
-				if($(this).scrollTop() == 0){
-					$("#back_top").fadeOut();
-				}else{					
-					$("#back_top").fadeIn();
-					$("#back_top").click(function(){
-						$("body").scrollTop(0);
-					});
+			$(window).scroll(function(){				
+				var scrollt = $(this).scrollTop(); //获取滚动后的高度 
+				if(scrollt > 200){
+					$("#back_top").fadeIn(200);					
+				}else{		
+					$("#back_top").fadeOut(200);					
 				}
-			});	
+			});
+			
+			$("#back_top").click(function(){						
+				$("html,body").animate({scrollTop:"0px"},200);
+			});
+			
 			//图集左右滑动
 			var min_left = 0;			
 			var li_width = $("#show_pics li").width();

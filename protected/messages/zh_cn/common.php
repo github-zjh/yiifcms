@@ -29,6 +29,8 @@ return array (
     'Search Desc'=>'请输入想要搜索的内容',
 	'Share' =>'分享',
 	'Show Message' =>'提示信息',
+	'All' => '所有',
+	'UpdateTime' => '更新时间',
 		
 	//登录
 	'Login' => '登录',
@@ -61,6 +63,8 @@ return array (
 	
 	'Copy From' =>'来源',
 	'System Manager' => '系统管理员',
+	'Read More'=>'继续阅读',
+	'View Info' => '查看详情',
 	
 	//注册
 	'Register' => '注册',
@@ -149,8 +153,7 @@ return array (
 	'Catagorys' => '分类',
 	'Last Articles'=>'最近的文章',
 	'Last Images' => '最近的图集',
-	'Last Softs' => '最近的软件',
-	'Read More'=>'继续阅读',
+	'Last Softs' => '最近的软件',	
 	
 	//评论
 	'User'=>'用户',
@@ -170,4 +173,12 @@ return array (
 	'Reply Content Is Too Small' => '回复内容不能少于10个字哦~(-_-!)',
 	'Reply Success' => '回复成功，谢谢！',
 	'Reply Failed' => '回复失败',
+	'All Num Comments' => '共{num}条评论',
+	'Publish Comment' => '发表评论',
+	'Comment Notice' => '文明发言 谢绝灌水',
+	'You Need First' => '您需要先',
+	
+	/* 软件 */
+	'No Cover' =>'暂无封面!',
+	'Source Is Not Found' => '该资源不存在，或者已经删除'
 );

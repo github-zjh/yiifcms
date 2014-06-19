@@ -50,16 +50,16 @@
 							<span class="BSHARE_COUNT bshare-share-count">0</span>
 						</div>						
 						
-						<script type="text/javascript" charset="utf-8" id="butonLiteJs"></script>
-						<script type="text/javascript" charset="utf-8" id="bshareJs"></script>
+						<script type="text/javascript" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh" charset="utf-8" id="butonLiteJs"></script>
+						<script type="text/javascript" src="http://static.bshare.cn/b/bshareC0.js" charset="utf-8" id="bshareJs"></script>
 						
 						<script type="text/javascript">
 							//延迟加载外部js
-							window.onload = shareJs();
-							function shareJs(){
+							//window.onload = shareJs();
+							/*function shareJs(){
 								$("#butonLiteJs").attr("src","http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh");
 								$("#bshareJs").attr("src","http://static.bshare.cn/b/bshareC0.js");
-							}
+							}*/
 						</script>
 						
 					</li>
@@ -72,24 +72,26 @@
 		</div>
 		
 		<!-- 右侧内容开始 -->
-		<?php $this->renderPartial('right',array('last_softs'=>$last_softs));?>	
+		<?php $this->renderPartial('right',array('last_posts'=>$last_posts));?>	
 		<!-- 右侧内容结束 -->		
 		
 	</div>
 	
 	<!-- 返回顶部 -->
-	<a href="javascript:;" id="back_top"></a>
+	<a href="javascript:;" title="返回顶部" id="back_top"></a>
 	<script type="text/javascript">
 		$(function(){
-			$(this).scroll(function(){
-				if($(this).scrollTop() == 0){
-					$("#back_top").fadeOut();
-				}else{					
-					$("#back_top").fadeIn();
-					$("#back_top").click(function(){
-						$("body").scrollTop(0);
-					});
+			$(window).scroll(function(){				
+				var scrollt = $(this).scrollTop(); //获取滚动后的高度 
+				if(scrollt > 200){
+					$("#back_top").fadeIn(200);					
+				}else{		
+					$("#back_top").fadeOut(200);					
 				}
+			});
+			
+			$("#back_top").click(function(){						
+				$("html,body").animate({scrollTop:"0px"},200);
 			});
 			
 			//iframe自适应高度
