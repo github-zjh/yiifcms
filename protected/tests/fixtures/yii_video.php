@@ -3,7 +3,7 @@
 return array(
 	/*
 	'sample1'=>array(
-		'name' => '',
+		'title' => '',
 		'catalog_id' => '',
 		'cover_image' => '',
 		'fileid' => '',
@@ -16,6 +16,7 @@ return array(
 		'pay' => '',
 		'update_time' => '',
 		'create_time' => '',
+		'view_count' => '',
 		'down_count' => '',
 		'status' => '',
 		'seo_title' => '',
@@ -23,7 +24,7 @@ return array(
 		'seo_keywords' => '',
 	),
 	'sample2'=>array(
-		'name' => '',
+		'title' => '',
 		'catalog_id' => '',
 		'cover_image' => '',
 		'fileid' => '',
@@ -36,6 +37,7 @@ return array(
 		'pay' => '',
 		'update_time' => '',
 		'create_time' => '',
+		'view_count' => '',
 		'down_count' => '',
 		'status' => '',
 		'seo_title' => '',

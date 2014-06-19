@@ -5,19 +5,20 @@
  *
  * The followings are the available columns in table '{{video}}':
  * @property integer $id
- * @property string $name
+ * @property string $title
  * @property integer $catalog_id
  * @property string $cover_image
  * @property string $fileid
  * @property string $language
  * @property string $video_type
- * @property integer $video_score
+ * @property string $video_score
  * @property string $video_size
  * @property string $download
  * @property string $introduce
- * @property integer $pay
+ * @property string $pay
  * @property string $update_time
  * @property string $create_time
+ * @property integer $view_count
  * @property integer $down_count
  * @property string $status
  * @property string $seo_title
@@ -42,16 +43,17 @@ class Video extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('catalog_id, down_count', 'numerical', 'integerOnly'=>true),
-			array('video_score, pay','numerical'),
+			array('catalog_id, view_count, down_count', 'numerical', 'integerOnly'=>true),
+			array('video_score','numerical'),
 			array('title, cover_image, download', 'length', 'max'=>100),
 			array('fileid, seo_title, seo_keywords', 'length', 'max'=>255),
-			array('language, video_type, video_size, update_time, create_time', 'length', 'max'=>10),
+			array('language, video_type, video_size, pay, update_time, create_time', 'length', 'max'=>10),
+			array('video_score', 'length', 'max'=>3),
 			array('status', 'length', 'max'=>1),
 			array('introduce, seo_description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, catalog_id, cover_image, fileid, language, video_type, video_score, video_size, download, introduce, pay, update_time, create_time, down_count, status, seo_title, seo_description, seo_keywords', 'safe', 'on'=>'search'),
+			array('id, title, catalog_id, cover_image, fileid, language, video_type, video_score, video_size, download, introduce, pay, update_time, create_time, view_count, down_count, status, seo_title, seo_description, seo_keywords', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,7 +64,7 @@ class Video extends CActiveRecord
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
-		return array(
+			return array(
 	        'catalog'=>array(self::BELONGS_TO, 'Catalog', 'catalog_id', 'alias'=>'catalog', 'select'=>'id,catalog_name'),
 	    );
 	}
@@ -74,7 +76,7 @@ class Video extends CActiveRecord
 	{
 		return array(
 			'id' => 'Id',
-			'title' => 'Name',
+			'title' => 'Title',
 			'catalog_id' => 'Catalog',
 			'cover_image' => 'Cover Image',
 			'fileid' => 'Fileid',
@@ -87,6 +89,7 @@ class Video extends CActiveRecord
 			'pay' => 'Pay',
 			'update_time' => 'Update Time',
 			'create_time' => 'Create Time',
+			'view_count' => 'View Count',
 			'down_count' => 'Down Count',
 			'status' => 'Status',
 			'seo_title' => 'Seo Title',
@@ -127,7 +130,7 @@ class Video extends CActiveRecord
 
 		$criteria->compare('video_type',$this->video_type,true);
 
-		$criteria->compare('video_score',$this->video_score);
+		$criteria->compare('video_score',$this->video_score,true);
 
 		$criteria->compare('video_size',$this->video_size,true);
 
@@ -135,11 +138,13 @@ class Video extends CActiveRecord
 
 		$criteria->compare('introduce',$this->introduce,true);
 
-		$criteria->compare('pay',$this->pay);
+		$criteria->compare('pay',$this->pay,true);
 
 		$criteria->compare('update_time',$this->update_time,true);
 
 		$criteria->compare('create_time',$this->create_time,true);
+
+		$criteria->compare('view_count',$this->view_count);
 
 		$criteria->compare('down_count',$this->down_count);
 

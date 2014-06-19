@@ -5,49 +5,120 @@
  * @author        zhao jinhan <326196998@qq.com>
  * @copyright     Copyright (c) 2014-2015 . All rights reserved. 
  */
-class ImageController extends FrontBase
+class VideoController extends FrontBase
 {
 	protected $_catalog;
-	
+	protected $_video_type;
 	public function init(){
 		parent::init();
 		//栏目
-		$this->_catalog = Catalog::model()->findAll('status_is=:status',array('status'=>'Y'));
+		$this->_catalog = Catalog::model()->findAll('status_is=:status AND type = :type',array(':status'=>'Y',':type'=>'video'));
+		$this->_video_type = array(
+				'comedy'=>'喜剧',
+				'active'=>'动作',
+				'story' => '剧情',
+				'science'=>'科幻',
+				'terrified'=>'惊悚',
+				'war'=>'战争',
+				'sexy'=>'伦理'
+		);
 	}
   /**
    * 首页
    */
   public function actionIndex() {  	
-    $catalog = trim( $this->_request->getParam( 'catalog' ) );
-    $keyword = trim( $this->_request->getParam( 'keyword' ) );    
-    $this->_seoTitle = '视频列表 - '.$this->_setting['site_name'];
-    $this->render('index');
+        $catalog_id = trim( $this->_request->getParam( 'catalog_id' ) );
+	    $keyword = trim( $this->_request->getParam( 'keyword' ) );
+	    $catalog = Catalog::model()->findByPk($catalog_id);    
+	    //调取子孙分类和当前分类
+	    $catalog_ids = Catalog::get($catalog?$catalog_id:0, $this->_catalog);  
+	    $children_ids = Helper::array_key_values($catalog_ids, 'id');     
+	    $catalog_id?$all_ids = array_merge($children_ids, (array)$catalog_id):$all_ids = $children_ids;   
+	    $db_in_ids = implode(',',$all_ids);   
+	    //SEO
+	    $navs = array();
+	    if($catalog){
+	    	$this->_seoTitle = $catalog->seo_title?$catalog->seo_title:$catalog->catalog_name.' - '.$this->_setting['site_name'];
+	    	$this->_seoKeywords = $catalog->seo_keywords;
+	    	$this->_seoDescription = $catalog->seo_description; 
+	    	$navs[] = array('url'=>$this->createUrl('video/index', array('catalog_id'=>$catalog->id)),'name'=>$catalog->catalog_name);   		
+	    }else{ 
+	    	$this->_seoTitle = Yii::t('common','VideoListTitle').' - '.$this->_setting['site_name'];
+	    	$this->_seoKeywords = Yii::t('common','VideoListKeywords');
+	    	$this->_seoDescription = Yii::t('common','VideoListDescription',array('{site_name}'=>$this->_setting['site_name']));
+	    	$navs[] = array('url'=>$this->_request->getUrl(),'name'=>$this->_seoTitle); 
+	    }
+	    //查询条件
+	    $post = new Video();
+	    $criteria = new CDbCriteria();
+	    $condition = "t.status = 'Y'";
+	    $keyword && $condition .= ' AND title LIKE \'%' . $keyword . '%\'';
+	    $condition .= ' AND catalog_id IN ('.$db_in_ids.')';
+	   
+	    $criteria->condition = $condition;
+	    $criteria->order = 'video_score DESC, view_count DESC, t.id DESC';
+	    $criteria->with = array ( 'catalog' );
+	    $criteria->select = "title, id, t.cover_image, t.video_score,  t.update_time,t.introduce, t.view_count";
+	   
+	    //分页
+	    $count = $post->count( $criteria );    
+	    $pages = new CPagination( $count );
+	    $pages->pageSize = 20;
+	    
+	    $criteria->limit = $pages->pageSize;
+	    $criteria->offset = $pages->currentPage * $pages->pageSize;
+	    
+	    $datalist = $post->findAll($criteria);
+	
+	    //最近的视频
+	    $last_videos = Video::model()->findAll(array('condition'=>'catalog_id IN ('.$db_in_ids.')','order'=>'id DESC','limit'=>10,));
+	    
+	    //加载css,js	
+	    Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/list.css");	    
+		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");	
+		
+	    $this->render( 'index', array('navs'=>$navs, 'videos'=>$datalist,'pagebar' => $pages, 'last_videos'=>$last_videos));
   }
   
   /**
    * 浏览详细内容
    */
   public function actionView( $id ) {
-  	$post = Post::model()->findByPk( intval( $id ) );
-  	if ( false == $post )
-  		throw new CHttpException( 404, '内容不存在' );
-  	//更新浏览次数
-  	$post->updateCounters(array ('view_count' => 1 ), 'id=:id', array ('id' => $id ));
-  	//seo信息
-  	$this->_seoTitle = empty( $post->seo_title ) ? $post->title  .' - '. $this->_setting['site_name'] : $post->seo_title;
-  	$this->_seoKeywords = empty( $post->seo_keywords ) ? $this->_seoKeywords  : $post->seo_keywords;
-  	$this->_seoDescription = empty( $post->seo_description ) ? $this->_seoDescription: $post->seo_description;
-  	$catalogArr = Catalog::model()->findByPk($post->catalog_id);
-  
-  	//自定义数据
-  	//$attrVal = AttrVal::model()->findAll(array('condition'=>'post_id=:postId','with'=>'attr', 'params'=>array('postId'=>$post->id)));
-  
-  	$tplVar = array(
-  			'post'=>$post,
-  			'catalogArr'=>$catalogArr,
-  
-  	);
-  	$this->render( 'view', $tplVar);
+  		$video = video::model ()->findByPk ( intval ( $id ) );
+		if (false == $video)
+			throw new CHttpException ( 404, Yii::t ( 'common', 'The requested page does not exist.' ) );
+			// seo信息
+		$this->_seoTitle = empty ( $video->seo_title ) ? $video->title . ' - ' . $this->_setting ['site_name'] : $video->seo_title;
+		$this->_seoKeywords = empty ( $video->seo_keywords ) ? $this->_seoKeywords : $post->seo_keywords;
+		$this->_seoDescription = empty ( $video->seo_description ) ? $this->_seoDescription : $video->seo_description;
+		$catalogArr = Catalog::model ()->findByPk ( $video->catalog_id );
+		
+		// 加载css,js
+		Yii::app ()->clientScript->registerCssFile ( $this->_stylePath . "/css/view.css" );
+		Yii::app ()->clientScript->registerScriptFile ( $this->_static_public . "/js/jquery/jquery.js" );
+		
+		// 最近的软件
+		$last_videos = video::model ()->findAll ( array (
+				'condition' => 'catalog_id = ' . $video->catalog_id,
+				'order' => 'id DESC',
+				'limit' => 10 
+		) );
+		
+		// nav
+		$navs = array ();
+		$navs [] = array (
+				'url' => $this->createUrl ( 'video/view', array (
+						'id' => $id 
+				) ),
+				'name' => $video->title 
+		);
+		
+		$tplVar = array (
+				'video' => $video,
+				'navs' => $navs,
+				'last_videos' => $last_videos 
+		);
+		$this->render ( 'view', $tplVar );
   }
   
 }

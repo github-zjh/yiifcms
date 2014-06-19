@@ -49,6 +49,8 @@ return array (
 	'ContentList' => '内容列表',
 	'PostList' => '文章列表',
 	'ImageList' => '图集列表',
+	'SoftList' => '软件列表',
+	'VideoList' => '视频列表',
 	'PostListTitle' =>' 最新最全的热门资讯',
 	'PostListKeywords' => '资讯，图集，文章，最新，热门，最全，爆料，头条',
 	'PostListDescription' => '聚合了用户最关心的资讯，关注新闻头条，尽在{site_name}。',
@@ -60,6 +62,10 @@ return array (
 	'SoftListTitle' =>' 最新发布的软件、热门软件、精品软件、下载软件',
 	'SoftListKeywords' => '软件，最新，热门，最全，精品，安全，下载',
 	'SoftListDescription' => '聚合了用户最常用的软件，尽在{site_name}。',
+	
+	'VideoListTitle' =>' 最新上映的电影、热门视频、热播电视剧、下载视频',
+	'VideoListKeywords' => '视频，电影，微电影，电视剧，MV，MTV，最新，热门，热播，高清，下载',
+	'VideoListDescription' => '聚合了用户最喜爱的视频，尽在{site_name}。',
 	
 	'Copy From' =>'来源',
 	'System Manager' => '系统管理员',
@@ -154,6 +160,7 @@ return array (
 	'Last Articles'=>'最近的文章',
 	'Last Images' => '最近的图集',
 	'Last Softs' => '最近的软件',	
+	'Last Videos' => '最近的视频',
 	
 	//评论
 	'User'=>'用户',

@@ -82,6 +82,12 @@ return array(
 		'SoftOS' => '软件系统',
 		'DownCount' => '下载次数',
 		
+		//video
+		'VideoScore' => '视频评分',
+		'VideoType' => '视频类型',
+		'VideoLanguage' => '视频字幕',	
+		'DownCount' => '下载次数',
+		
 		//Question
 		
 		//Special

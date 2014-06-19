@@ -1,107 +1,102 @@
-		<link rel="stylesheet" href="<?php echo $this->_stylePath;?>/css/show.css" />
-		<div id="bread_crumbs">
-		<div class="crumb_box clear">
-			<h1 class="crumb_title">Show</h1>
-			<ul class="crumb_menu">
-				<li><a href="./index.html">Home</a><span>/</span></li>
-				<li><a href="./list.html">Show</a></li>
-			</ul>
-		</div>		
-	</div>
+	<!-- 导航面包屑开始 -->
+	<?php $this->renderPartial('/layouts/nav',array('navs'=>$navs));?>
+	<!-- 导航面包屑结束 -->
 	
 	<div id="content" class="clear">
-		<div class="content_left">			
-			<!-- 文字类型 -->
-			<div class="list_box clear">
-				<div class="list_head">
-					<div class="date_time">
-						<p>May</p>
-						<strong>26</strong>
+		<div class="content_left">		
+			<div class="list_box clear">				
+				<div class="list_body">	
+					<h2><a href="<?php echo $this->createUrl('video/view', array('id'=>$video->id));?>"><?php echo $video->title;?></a></h2>
+					
+					<div class="content_info soft_info">
+						<div class="info_head clear">
+							<div class="info_left">		
+								<?php if($video->cover_image && file_exists($video->cover_image)):?>					
+								<img src="<?php echo $video->cover_image;?>" alt="<?php echo $video->title;?>" />
+								<?php else:?>
+								<div class="no_cover"><?php echo Yii::t('common','No Cover');?></div>
+								<?php endif;?>
+							</div>
+							
+							<div class="info_right">
+								<ul class="soft_attr">
+									<li><?php echo Yii::t('model','VideoType');?>：<?php echo $this->_video_type[$video->video_type];?></li>
+									<li><?php echo Yii::t('model','VideoLanguage');?>：<?php echo Yii::t('admin','Lan_'.$video->language);?></li>
+									<li><?php echo Yii::t('model','VideoScore');?>：<?php echo $video->video_score;?></li>
+									<li><?php echo Yii::t('common','UpdateTime');?>：<?php echo date('Y年m月d日',$video->update_time);?></li>
+									<li><?php echo Yii::t('model','DownCount');?>：<?php echo $video->down_count;?></li>
+								</ul>
+								
+								<!-- 分享按钮 -->
+								<div class="share_box">
+									<ul class="clear">
+										<li><strong><?php echo Yii::t('common','Share');?></strong></li>
+										<li class="clear">
+											<div class="bshare-custom">
+												<a title="分享到QQ空间" class="bshare-qzone"></a>
+												<a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
+												<a title="分享到人人网" class="bshare-renren"></a>
+												<a title="分享到腾讯微博" class="bshare-qqmb"></a>
+												<a title="分享到网易微博" class="bshare-neteasemb"></a>
+												<a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+												<span class="BSHARE_COUNT bshare-share-count">0</span>
+											</div>						
+											
+											<script type="text/javascript" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh" charset="utf-8" id="butonLiteJs"></script>
+											<script type="text/javascript" src="http://static.bshare.cn/b/bshareC0.js" charset="utf-8" id="bshareJs"></script>
+											
+										</li>
+									</ul>
+								</div>	
+								
+								<!-- 下载按钮 -->
+								<div class="clear">
+									<a href="<?php echo $this->createUrl('video/download', array('id'=>$video->id));?>" target="_blank" class="fl download_now"></a>
+									<?php if($video->download):?>
+									<a href="<?php echo $video->download;?>" target="_blank" class="fr download_quick"></a>
+									<?php endif;?>
+								</div>
+								
+							</div>												
+						</div>
+							
+						<div class="info_desc clear">
+							<h1>视频简介：</h1>
+							<?php echo $soft->introduce;?>
+						</div>						
 					</div>
-					<div class="content_type"></div>
+					
 				</div>
-				<div class="list_body">
-					<h2><a href="<?php echo $this->createUrl('post/show',array('id'=>$post->id));?>"><?php echo $post->title;?></a></h2>
-					<p class="view_info">
-						<span>posted by <em>Admin</em></span>
-						<span class="tags"><em><?php echo $post->tags;?>,&nbsp;&nbsp;</em><em>Admin</em></span>
-						<span class="views"><em><?php echo $post->view_count;?></em></span>
-					</p>
-					<div class="content_info">
-						Maecenas eget turpis turpis. Nunc vel metus augue. 
-					Aenean euismod cursus ligula eget dapibus. 
-					Praesent vel erat in tortor placerat dignissim. 
-					Duis dapibus aliquam mi, eget euismod sem scelerisque ut. 
-					Vivamus at elit quis urna adipiscing iaculis. 
-					Curabitur vitae velit in neque dictum blandit. 
-					Proin in iaculis neque. 
-					Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.						
-					</div>						
-				</div>
-			</div>	
-			<!-- 分享按钮 -->
-			<div class="share_box">
-				<ul class="clear">
-					<li><strong>Share</strong></li>
-					<li><a href="#"></a></li>
-					<li><a href="#"></a></li>
-					<li><a href="#"></a></li>
-				</ul>
-			</div>		
+			</div>				
 			
 			<!-- 评论区 -->
-			<div class="comments">
-				<h3>10&nbsp;&nbsp;Comments</h3>
-				<ul>
-					<li class="clear">
-						<img src="<?php echo $this->_stylePath;?>/images/default_avatar.png" class="avatar" />
-						<div class="comment_desc">
-							<p class="desc_head">
-								<strong class="user">Admin</strong>
-								<span class="submit_time">2014年4月23日11:08:56</span>
-							</p>
-							<p class="desc_body">asdfasdf</p>
-						</div>						
-					</li>
-					
-					<li class="clear">
-						<img src="<?php echo $this->_stylePath;?>/images/default_avatar.png" class="avatar" />
-						<div class="comment_desc">
-							<p class="desc_head">
-								<strong class="user">Admin</strong>
-								<span class="submit_time">2014年4月23日11:08:56</span>
-							</p>
-							<p class="desc_body">asdfasdf</p>
-						</div>
-					</li>
-				</ul>
-				<?php $this->renderPartial('_comment');?>				
-			</div>			
-		</div>
-		<div class="content_right">
-			<dl class="category">
-				<dt>分类</dt>
-				<dd><a href="#">分类一</a></dd>		
-				<dd><a href="#">分类一</a></dd>
-				<dd><a href="#">分类一</a></dd>		
-			</dl>	
-			
-			<dl class="category tag clear">
-				<dt>Tags</dt>
-				<dd><a href="#">php</a></dd>		
-				<dd><a href="#">mysql</a></dd>
-				<dd><a href="#">memcache</a></dd>	
-				<dd><a href="#">php</a></dd>		
-				<dd><a href="#">mysql</a></dd>
-				<dd><a href="#">memcache</a></dd>	
-			</dl>
-			
-			<dl class="category recent_post">
-				<dt>最近的文章</dt>
-				<dd><a href="#">分类一</a></dd>		
-				<dd><a href="#">分类一</a></dd>
-				<dd><a href="#">分类一</a></dd>		
-			</dl>		
+			<iframe id="comment_iframe" scrolling="no" marginheight="0" marginwidth="0" frameborder="0" src="<?php echo $this->createUrl('comment/create', array('view_url'=>$this->_request->getUrl(),'topic_id'=>$video->id,'topic_type'=>'video'));?>"></iframe>			
 		</div>
 		
-	</div>	
+		<!-- 右侧内容开始 -->
+		<?php $this->renderPartial('right',array('last_videos'=>$last_videos));?>	
+		<!-- 右侧内容结束 -->		
+		
+	</div>
+	
+	<!-- 返回顶部 -->
+	<a href="javascript:;" id="back_top"></a>
+	<script type="text/javascript">
+		$(function(){
+			$(window).scroll(function(){				
+				var scrollt = $(this).scrollTop(); //获取滚动后的高度 
+				if(scrollt > 200){
+					$("#back_top").fadeIn(200);					
+				}else{		
+					$("#back_top").fadeOut(200);					
+				}
+			});
+			
+			$("#back_top").click(function(){						
+				$("html,body").animate({scrollTop:"0px"},200);
+			});
+			
+		});
+	</script>
+	
+			

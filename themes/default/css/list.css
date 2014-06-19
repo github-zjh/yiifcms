@@ -37,4 +37,15 @@
 a { color:#555555}
 a:hover { text-decoration:underline; }
 
+/* 视频列表 */
+.video_list li.list_box { float:left; width:150px; padding:0; border:none; margin-right:24px; margin-bottom:10px;}
+.video_list .list_body { width:auto; }
+.video_list .video_a { display:block; position:relative; text-decoration:none;}
+.video_list h2 a.video_title { width:100%; display:block; text-align:center; font-weight:normal;}
+.video_list .v_play_score { display:block; width:30px; height:30px; line-height:30px; border-radius:14px; text-align:center; position:absolute; right:-10px; top:-10px; font-size:14px; font-style:italic; background-color:#E8645A; color:#FFFFFF;}
+.video_list .v_play_mask { background-color:#000000; display: block; height: 100%; left: 0; opacity: 0.5; filter:alpha(opacity=50); position: absolute; top: 0; visibility: hidden; width: 100%;}
+.video_list .v_play_icon { background: url(../images/play_normal.png) no-repeat;  display: block;
+    height: 42px;  left: 50%; margin: -21px 0 0 -21px; position: absolute; top: 50%; visibility: hidden; width: 42px;}
+.video_list .video_a:hover .v_play_mask, .video_list .video_a:hover .v_play_icon{ visibility: visible;}
+
 
