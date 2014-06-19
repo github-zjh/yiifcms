@@ -12,6 +12,7 @@ class DatabaseController extends Backend
 
     private $_db;
     private $_bakupPath;
+    private $_spaceSql = '#---------------//space-------------//space------------//space--------------#';  //分割sql语句定界符
     public function init ()
     {
         parent::init();
@@ -328,47 +329,8 @@ class DatabaseController extends Backend
      */
     private function _sqlExecute ($sql)
     {
-        $sqls = self::_sqlSplit($sql);
-        if (is_array($sqls)) {
-            foreach ($sqls as $sql) {
-                if (trim($sql) != '') {
-                    $this->_db->createCommand($sql)->execute();
-                }
-            }
-        } else {
-            $this->_db->createCommand($sql)->execute();
-        }
+    	$this->_db->createCommand($sql)->execute();       
         return true;
-    }
-
-    /**
-     * 拆分sql
-     * @param  $sql
-     */
-    private function _sqlSplit ($sql)
-    {
-        if ($this->_db->serverVersion > '4.1' && $this->_db->charset) {
-            $sql = preg_replace("/TYPE=(InnoDB|MyISAM|MEMORY)( DEFAULT CHARSET=[^; ]+)?/", "ENGINE=\\1 DEFAULT CHARSET=" . $this->_db->charset, $sql);
-        }
-        if ($this->_db->tablePrefix != "os_")
-            $sql = str_replace("`os_", '`' . $this->_db->tablePrefix, $sql);
-        $sql = str_replace("\r", "\n", $sql);
-        $ret = array ();
-        $num = 0;
-        $queriesarray = explode(";\n", trim($sql));
-        unset($sql);
-        foreach ($queriesarray as $query) {
-            $ret[$num] = '';
-            $queries = explode("\n", trim($query));
-            $queries = array_filter($queries);
-            foreach ($queries as $query) {
-                $str1 = substr($query, 0, 1);
-                if ($str1 != '#' && $str1 != '-')
-                    $ret[$num] .= $query;
-            }
-            $num ++;
-        }
-        return ($ret);
     }
 
     /**
