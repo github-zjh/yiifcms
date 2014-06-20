@@ -56,6 +56,7 @@ class Comment extends CActiveRecord
 			'image'=>array(self::BELONGS_TO, 'Post', 'topic_id',  'select'=>'id,title'),
 			'soft'=>array(self::BELONGS_TO, 'Soft', 'topic_id',  'select'=>'id,title'),
 			'video'=>array(self::BELONGS_TO, 'Video', 'topic_id',  'select'=>'id,title'),
+			'goods'=>array(self::BELONGS_TO, 'Goods', 'topic_id',  'select'=>'id,goods_name, goods_name as title'),
 	    );
 	}
 

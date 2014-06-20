@@ -61,7 +61,11 @@ return array(
 		'recommend_name' => '推荐位名称',
 		'recommend_type' => '推荐位类型',
 		
-		//Post
+		//ModelType
+		'MTid' => '内容模型id',
+		'MTtype_key' => '内容模型标示',
+		'MTtype_name' => '内容模型名称',
+		'MTtype_table' => '内容模型数据表(不含前缀)',
 		
 		//Comment
 		'CommentId' => '评论id',

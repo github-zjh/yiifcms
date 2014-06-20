@@ -38,6 +38,7 @@ class Controller extends CController
 	protected  $_webRoot = '';  //网站根目录
 	protected  $_static_public = ''; //公共资源目录	
 	protected  $_adminGroupID = 10; //系统管理员用户组ID
+	protected  $_type_ids = array(); //内容模型id
 	
 	public function init ()
 	{		
@@ -52,6 +53,12 @@ class Controller extends CController
 		foreach ($settings as $key => $row) {
 			$this->_setting[$row['variable']] = $row['value'];
 		}
+		$model_types = ModelType::model()->findAll();
+		if($model_types && is_array($model_types)){
+			foreach($model_types as $tp){
+				$this->_type_ids[$tp->type_key] = $tp->id;
+			}
+		}		
 	}
 	
 	/**

@@ -10,11 +10,14 @@ class ImageController extends Backend
 {
 	protected $_catalog;
 	protected $_special;
+	protected $_type;
 	
 	public function init(){
 		parent::init();
+		//内容模型id
+		$this->_type = $this->_type_ids['image'];
 		//图集栏目
-		$this->_catalog = Catalog::model()->findAll('status_is=:status AND type=:type',array(':status'=>'Y',':type'=>'image'));
+		$this->_catalog = Catalog::model()->findAll('status_is=:status AND type=:type',array(':status'=>'Y',':type'=>$this->_type));
 		//专题
 		$this->_special = Special::model()->findAll('status_is=:status',array('status'=>'Y'));
 	}
@@ -41,7 +44,7 @@ class ImageController extends Backend
     public function actionIndex() {
         $model = new Post();
         $criteria = new CDbCriteria();
-        $condition = "type = 'image'";
+        $condition = "type = ".$this->_type;
         $title = trim( $this->_request->getParam( 'title' ) );      
         $catalogId = intval( $this->_request->getParam( 'catalogId' ) );
         $title && $condition .= ' AND title LIKE \'%' . $title . '%\'';       
@@ -59,7 +62,7 @@ class ImageController extends Backend
         $criteria->offset = $pages->currentPage * $pages->pageSize;
         $result = $model->findAll( $criteria );    
         //推荐位
-        $recom_list = RecommendPosition::model()->findAll('type=:type', array(':type'=>'image'));
+        $recom_list = RecommendPosition::model()->findAll('type=:type', array(':type'=>$this->_type));
         $this->render( 'index', array ( 'datalist' => $result , 'pagebar' => $pages ,'recom_list'=>$recom_list) );
     }
 
@@ -138,7 +141,7 @@ class ImageController extends Backend
     			$this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
     	}
     	//判断有无图集栏目
-    	$image_cat = Catalog::model()->find('type=:type', array(':type'=>'image'));
+    	$image_cat = Catalog::model()->find('type=:type', array(':type'=>$this->_type));
     	if(!$image_cat){
     		$this->message('error',Yii::t('admin','No Catalog'),$this->createUrl('index'));
     	}

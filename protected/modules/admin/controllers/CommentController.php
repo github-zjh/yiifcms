@@ -8,7 +8,7 @@
  */
 class CommentController extends Backend
 {
-	
+	protected $_model_type;
 	/**
 	 * !CodeTemplates.overridecomment.nonjd!
 	 * @see CController::beforeAction()
@@ -29,19 +29,24 @@ class CommentController extends Backend
      *
      */
     public function actionIndex() {
-        
+    	$this->_model_type = ModelType::model()->findAll();
         $model = new Comment();
         $criteria = new CDbCriteria();
         $condition = '1';
         $title = $this->_request->getParam( 'postTitle' );
         $content = $this->_request->getParam( 'content' );
-        $type = $this->_request->getParam( 'type' )?$this->_request->getParam( 'type' ):'article';
-        $type && $condition .= " AND type='{$type}'";
-        $title && $condition .= " AND {$type}.title LIKE '%$title %'";
+        $type = $this->_request->getParam( 'type' )?$this->_request->getParam( 'type' ):$this->_type_ids['article'];
+        $type && $condition .= " AND type={$type}";
+        $table = array_search($type,$this->_type_ids);
+        if($table == 'goods'){
+        	$title && $condition .= " AND {$table}.goods_name LIKE '%$title %'";
+        }else{
+        	$title && $condition .= " AND {$table}.title LIKE '%$title %'";
+        }        
         $content && $condition .= ' AND t.content LIKE \'%' . $content . '%\'';
         $criteria->condition = $condition;
         $criteria->order = 't.id DESC';
-        $criteria->with = array ( $type );
+        $criteria->with = array ( $table );
         $count = $model->count( $criteria );
         $pages = new CPagination( $count );
         $pages->pageSize = 13;
@@ -50,7 +55,7 @@ class CommentController extends Backend
         $criteria->limit = $pages->pageSize;
         $criteria->offset = $pages->currentPage * $pages->pageSize;
         $result = $model->findAll( $criteria );
-        $this->render( 'index', array ( 'datalist' => $result , 'pagebar' => $pages, 'type'=>$type ) );
+        $this->render( 'index', array ( 'datalist' => $result , 'pagebar' => $pages, 'table'=>$table ) );
     }
 
     /**

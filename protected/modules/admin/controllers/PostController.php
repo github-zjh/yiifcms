@@ -10,11 +10,14 @@ class PostController extends Backend
 {
 	protected $_catalog;
 	protected $_special;
+	protected $_type;
 	
 	public function init(){
 		parent::init();
+		//内容模型id
+		$this->_type = $this->_type_ids['article'];
 		//文章栏目
-		$this->_catalog = Catalog::model()->findAll('status_is=:status AND type=:type',array(':status'=>'Y',':type'=>'article'));
+		$this->_catalog = Catalog::model()->findAll('status_is=:status AND type=:type',array(':status'=>'Y',':type'=>$this->_type));
 		//专题
 		$this->_special = Special::model()->findAll('status_is=:status',array('status'=>'Y'));
 	}
@@ -41,7 +44,7 @@ class PostController extends Backend
     public function actionIndex() {
         $model = new Post();
         $criteria = new CDbCriteria();
-        $condition = "type = 'article'";
+        $condition = "type = ".$this->_type;
         $title = trim( $this->_request->getParam( 'title' ) );        
         $catalogId = intval( $this->_request->getParam( 'catalogId' ) );
         $title && $condition .= ' AND title LIKE \'%' . $title . '%\'';        
@@ -59,7 +62,7 @@ class PostController extends Backend
         $criteria->offset = $pages->currentPage * $pages->pageSize;
         $result = $model->findAll( $criteria );    
         //推荐位
-        $recom_list = RecommendPosition::model()->findAll('type=:type', array(':type'=>'article'), array('order'=>'id'));
+        $recom_list = RecommendPosition::model()->findAll('type=:type', array(':type'=>$this->_type), array('order'=>'id'));
         $this->render( 'index', array ( 'datalist' => $result , 'pagebar' => $pages ,'recom_list'=>$recom_list) );
     }
 
@@ -144,7 +147,7 @@ class PostController extends Backend
     			$this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
     	}
     	//判断有无文章栏目
-    	$article_cat = Catalog::model()->find('type=:type', array(':type'=>'article'));
+    	$article_cat = Catalog::model()->find('type=:type', array(':type'=>$this->_type));
     	if(!$article_cat){
     		$this->message('error',Yii::t('admin','No Catalog'),$this->createUrl('index'));
     	}

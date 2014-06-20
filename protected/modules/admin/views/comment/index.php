@@ -3,11 +3,9 @@
   <div class="searchArea">    
     <div class="search right">
       <?php $form = $this->beginWidget('CActiveForm',array('id'=>'searchForm','method'=>'get','htmlOptions'=>array('name'=>'xform'))); ?>
-      <?php $types = array('article'=>Yii::t('admin','Type Article'), 'image'=>Yii::t('admin','Type Image'), 'soft'=>Yii::t('admin','Type Soft'), 'video'=>Yii::t('admin','Type Video'), 'goods'=>Yii::t('admin','Type Goods'));?>
-  <?php echo Yii::t('model','CommentType');?>    
       <select id="type" name="type">
-      	  <?php foreach($types as $tk=>$tv):?>
-      	  <option value="<?php echo $tk?>"><?php echo $tv;?></option>
+      	  <?php foreach($this->_model_type as $tv):?>
+      	  <option value="<?php echo $tv->id;?>"><?php echo $tv->type_name;?></option>
       	  <?php endforeach;?>
       </select>
   <?php echo Yii::t('admin','Comment Title');?>
@@ -45,7 +43,7 @@ $(document).ready(function(){
     <tr class="tb_list" >
       <td ><input type="checkbox" name="id[]" value="<?php echo $row->id?>">
         <?php echo $row>id?></td>      
-      <td ><?php echo $row->$type->title ?></td>
+      <td ><?php echo $row->$table->title ?></td>
       <td ><?php echo nl2br(htmlspecialchars($row->content)) ?></td>
       <td ><?php echo $row->status=='Y'?"<span style='color:green'>".Yii::t('admin','Pass Checking')."</span>":"<span style='color:red'>".Yii::t('admin','Wait Checking')."</span>"; ?></td>
       <td ><?php echo date('Y-m-d H:i',$row->create_time)?></td>

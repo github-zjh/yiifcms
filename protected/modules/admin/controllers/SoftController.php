@@ -9,11 +9,14 @@
 class SoftController extends Backend
 {
 	protected $_catalog;
+	protected $_type;
 		
 	public function init(){
 		parent::init();
+		//内容模型id
+		$this->_type = $this->_type_ids['soft'];
 		//栏目
-		$this->_catalog = Catalog::model()->findAll('status_is=:status_is AND type=:type',array(':status_is'=>'Y',':type'=>'soft'));
+		$this->_catalog = Catalog::model()->findAll('status_is=:status_is AND type=:type',array(':status_is'=>'Y',':type'=>$this->_type));
 		
 	}
 	
@@ -39,7 +42,7 @@ class SoftController extends Backend
     public function actionIndex() {    	
         $model = new Soft();
         $criteria = new CDbCriteria();
-        $condition = "type = 'soft'";
+        $condition = "type = ".$this->_type;
         $title = trim( $this->_request->getParam( 'title' ) );      
         $catalogId = intval( $this->_request->getParam( 'catalogId' ) );
         $title && $condition .= ' AND title LIKE \'%' . $title . '%\'';        
@@ -57,7 +60,7 @@ class SoftController extends Backend
         $criteria->offset = $pages->currentPage * $pages->pageSize;
         $result = $model->findAll( $criteria );    
         //推荐位
-        $recom_list = RecommendPosition::model()->findAll('type=:type', array(':type'=>'soft'));
+        $recom_list = RecommendPosition::model()->findAll('type=:type', array(':type'=>$this->_type));
         $this->render( 'index', array ( 'datalist' => $result , 'pagebar' => $pages ,'recom_list'=>$recom_list) );
     }
 
@@ -105,7 +108,7 @@ class SoftController extends Backend
     			$this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
     	}
     	//判断有无软件栏目
-    	$soft_cat = Catalog::model()->find('type=:type', array(':type'=>'soft'));
+    	$soft_cat = Catalog::model()->find('type=:type', array(':type'=>$this->_type));
     	if(!$soft_cat){
     		$this->message('error',Yii::t('admin','No Catalog'),$this->createUrl('index'));
     	}

@@ -72,7 +72,7 @@ class CommentController extends FrontBase
   	//评论内容    
   	$model = new Comment('create');
   	$criteria = new CDbCriteria();
-  	$condition = "topic_id={$topic_id} AND status='Y' AND type='{$topic_type}'";
+  	$condition = "topic_id={$topic_id} AND status='Y' AND type={$this->_type_ids[$topic_type]}";
   	$criteria->condition = $condition;
   	$criteria->order = 'id DESC';  
   	$criteria->select = "id, user_id, topic_id, content, create_time ";
@@ -106,7 +106,7 @@ class CommentController extends FrontBase
   		
   		$model->attributes = $_POST['Comment'];
   		$model->topic_id = $topic_id;
-  		$model->type = $topic_type;
+  		$model->type = $this->_type_ids[$topic_type];
   		$model->user_id = $uid;
   		$model->status = 'N';
   		$model->client_ip = $this->getClientIP();

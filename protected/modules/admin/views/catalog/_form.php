@@ -18,7 +18,13 @@ $(function(){
     <td class="tb_title"><?php echo Yii::t('admin','Catalog Type');?>：</td>
   </tr>
   <tr >
-    <td class="tb_title"><?php echo $form->dropDownList($model,'type',array('article'=>Yii::t('admin','Type Article'), 'image'=>Yii::t('admin','Type Image'), 'soft'=>Yii::t('admin','Type Soft'), 'video'=>Yii::t('admin','Type Video'), 'goods'=>Yii::t('admin','Type Goods')));?></td>
+    <td class="tb_title">
+    	<select name="Catalog[type]" id="Catalog_type">        
+        <?php foreach((array)$this->_model_type as $type):?>
+        <option value="<?php echo $type['id']?>" <?php $this->selected($type['id'], $model->type);?>><?php echo $type->type_name;?></option>
+        <?php endforeach;?>
+      </select>
+    </td>
   </tr>
 
   <tr>

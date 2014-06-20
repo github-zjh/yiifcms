@@ -133,7 +133,7 @@
 	//iframe去除滚动条
 	function removeScroll(iframeId){		
 		if(window.parent != window){
-    	    parent.document.getElementById(iframeId).style.height = (document.body.scrollHeight)+"px";
+    	    parent.document.getElementById(iframeId).style.height = (window.document.body.scrollHeight)+"px";
      	}
 	}
 	$(function(){

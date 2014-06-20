@@ -11,13 +11,7 @@ class RecommendPositionController extends Backend
 	protected $_recom_type = array(); //推荐位类型
 	public function init(){
 		parent::init();
-		$this->_recom_type =array(				
-				'article'=>Yii::t('admin','Type Article'), 
-				'image'=>Yii::t('admin','Type Image'), 
-				'soft'=>Yii::t('admin','Type Soft'), 
-				'video'=>Yii::t('admin','Type Video'), 
-				'goods'=>Yii::t('admin','Type Goods')		
-		);
+		$this->_recom_type = ModelType::model()->findAll();
 	}
 	/**
 	 * !CodeTemplates.overridecomment.nonjd!

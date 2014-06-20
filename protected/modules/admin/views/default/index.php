@@ -28,11 +28,17 @@
       </li>
       <li index="4">
         <div><a href="<?php echo $this->createUrl('user/index');?>" target="win" hidefocus>用户</a></div>
-      </li>      
+      </li>     
       <li index="5">
+        <div><a href="<?php echo $this->createUrl('ad/index');?>" target="win" hidefocus>广告</a></div>
+      </li> 
+      <li index="6">
         <div><a href="<?php echo $this->createUrl('recommendPosition/index');?>" target="win" hidefocus>组件</a></div>
       </li>
-      <li index="6">
+      <li index="7">
+        <div><a href="<?php echo $this->createUrl('modeltype/index');?>" target="win" hidefocus>模型</a></div>
+      </li>
+      <li index="8">
         <div><a href="<?php echo $this->createUrl('database/index');?>" target="win" hidefocus>工具</a></div>
       </li>
           </ul>
@@ -80,17 +86,24 @@
                 <li index="1"><a href="<?php echo $this->createUrl('user/admin');?>" target="win"><?php echo Yii::t('admin','Admin List');?></a></li>   
                 <li index="2"><a href="<?php echo $this->createUrl('user/group');?>" target="win"><?php echo Yii::t('admin','Group Manage');?></a></li>              
                 <li index="3"><a href="<?php echo $this->createUrl('question/index');?>" target="win"><?php echo Yii::t('admin','Question List');?></a></li>            	
-            </ul>            
-            <ul index="5" class="left_menu">
+            </ul>      
+            <ul index="5" class="left_menu">             	
+                <li index="0"><a href="<?php echo $this->createUrl('ad/index');?>" target="win"><?php echo Yii::t('admin','Ads Manage');?></a></li>
+                <li index="1"><a href="<?php echo $this->createUrl('adPosition/index');?>" target="win"><?php echo Yii::t('admin','Adposition Manage');?></a></li>
+            </ul>      
+            <ul index="6" class="left_menu">
                 <li index="0"><a href="<?php echo $this->createUrl('recommendPosition/index');?>" target="win"><?php echo Yii::t('admin','RecommendPosition Manage');?></a></li> 
            		<li index="1"><a href="<?php echo $this->createUrl('attach/index');?>" target="win"><?php echo Yii::t('admin','Attach Manage');?></a></li> 				
-                <li index="2"><a href="<?php echo $this->createUrl('link/index');?>" target="win"><?php echo Yii::t('admin','Link Manage');?></a></li>                          
-                <li index="3"><a href="<?php echo $this->createUrl('adPosition/index');?>" target="win"><?php echo Yii::t('admin','Adposition Manage');?></a></li>
-                <li index="4"><a href="<?php echo $this->createUrl('ad/index');?>" target="win"><?php echo Yii::t('admin','Ads Manage');?></a></li>
+                <li index="2"><a href="<?php echo $this->createUrl('link/index');?>" target="win"><?php echo Yii::t('admin','Link Manage');?></a></li>  
                 <li index="5"><a href="<?php echo $this->createUrl('comment/index');?>" target="win"><?php echo Yii::t('admin','Comment Manage');?></a></li>
                 <li index="6"><a href="<?php echo $this->createUrl('post/tags');?>" target="win"><?php echo Yii::t('admin','Tags Manage');?></a></li>                             
               </ul>
-            <ul index="6" class="left_menu">
+              
+             <ul index="7" class="left_menu">
+                <li index="0"><a href="<?php echo $this->createUrl('modeltype/index');?>" target="win"><?php echo Yii::t('admin','Modeltype Manage');?></a></li>            
+             </ul>
+              
+            <ul index="8" class="left_menu">
                 <li index="0"><a href="<?php echo $this->createUrl('database/index');?>" target="win"><?php echo Yii::t('admin','Database Manage');?></a></li>
                 <li index="1"><a href="<?php echo $this->createUrl('cache/index');?>" target="win"><?php echo Yii::t('admin','Cache Manage');?></a></li>
                 <li index="2"><a href="<?php echo $this->createUrl('auth/index');?>" target="win"><?php echo Yii::t('admin','Auth Manage');?></a></li>

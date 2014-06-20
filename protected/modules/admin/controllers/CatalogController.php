@@ -8,6 +8,7 @@
 class CatalogController extends Backend
 {
 	protected $_catalog;
+	protected $_model_type;
 	/**
 	 * @var CActiveRecord the currently loaded data model instance.
 	 */
@@ -17,7 +18,7 @@ class CatalogController extends Backend
 		//栏目
 		parent::init();
 		$this->_catalog = Catalog::model()->findAll();
-		
+		$this->_model_type = ModelType::model()->findAll();
 	}
 	/**
 	 * !CodeTemplates.overridecomment.nonjd!

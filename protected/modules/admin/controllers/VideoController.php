@@ -10,11 +10,13 @@ class VideoController extends Backend
 {
 	protected $_catalog;
 	protected $_video_type;	
+	protected $_type;
 	
 	public function init(){
 		parent::init();
+		$this->_type = $this->_type_ids['video'];
 		//视频栏目
-		$this->_catalog = Catalog::model()->findAll('status_is=:status AND type=:type',array(':status'=>'Y',':type'=>'video'));
+		$this->_catalog = Catalog::model()->findAll('status_is=:status AND type=:type',array(':status'=>'Y',':type'=>$this->_type));
 		$this->_video_type = array(
 					'comedy'=>'喜剧',
 					'active'=>'动作',
@@ -48,7 +50,7 @@ class VideoController extends Backend
     public function actionIndex() {
         $model = new Video();
         $criteria = new CDbCriteria();
-        $condition = "type = 'video'";
+        $condition = "type = ".$this->_type;
         $name = trim( $this->_request->getParam( 'name' ) );        
         $catalogId = intval( $this->_request->getParam( 'catalogId' ) );
         $title && $condition .= ' AND name LIKE \'%' . $name . '%\'';        
@@ -66,7 +68,7 @@ class VideoController extends Backend
         $criteria->offset = $pages->currentPage * $pages->pageSize;
         $result = $model->findAll( $criteria );    
         //推荐位
-        $recom_list = RecommendPosition::model()->findAll('type=:type', array(':type'=>'video'));
+        $recom_list = RecommendPosition::model()->findAll('type=:type', array(':type'=>$this->_type));
         $this->render( 'index', array ( 'datalist' => $result , 'pagebar' => $pages ,'recom_list'=>$recom_list) );
     }
 
@@ -100,7 +102,7 @@ class VideoController extends Backend
     			$this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
     	}
     	//判断有无视频栏目
-    	$video_cat = Catalog::model()->find('type=:type', array(':type'=>'video'));
+    	$video_cat = Catalog::model()->find('type=:type', array(':type'=>$this->_type));
     	if(!$video_cat){
     		$this->message('error',Yii::t('admin','No Catalog'),$this->createUrl('index'));
     	}

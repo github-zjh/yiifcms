@@ -8,8 +8,8 @@
       <?php $form = $this->beginWidget('CActiveForm',array('id'=>'searchForm','method'=>'get','action'=>array('index'),'htmlOptions'=>array('name'=>'xform'))); ?>
       <?php echo Yii::t('admin','RecommendPosition Type');?>
       <select id="recommend_type" type="text" name="recommend_type">
-      	  <?php foreach((array)$this->_recom_type as $tk => $tv):?>
-      	  <option value="<?php echo $tk;?>"><?php echo $tv;?></option>
+      	  <?php foreach((array)$this->_recom_type as $tv):?>
+      	  <option value="<?php echo $tv->id;?>"><?php echo $tv->type_name;?></option>
       	  <?php endforeach;?>
       </select>      
       <?php echo Yii::t('admin','RecommendPosition Name');?>

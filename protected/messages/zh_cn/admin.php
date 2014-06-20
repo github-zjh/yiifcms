@@ -17,6 +17,8 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
+	/* 共用 */
+	'Status' => '状态',
 	'_address'=>'地址',
 	'_telephone' => '电话',
 	'_fax'		=> '传真',
@@ -257,4 +259,7 @@ return array (
 	'Comment Status' => '评论状态',
 	'Pass Checking' => '审核通过',
 	'Wait Checking' => '待审核',
+	
+	/* 模型管理 */
+    'Modeltype Manage' => '内容模型管理',
 );

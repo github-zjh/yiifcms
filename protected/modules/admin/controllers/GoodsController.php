@@ -10,11 +10,14 @@ class GoodsController extends Backend
 {
 	protected $_catalog;
 	protected $_special;
+	protected $_type;
 	
 	public function init(){
 		parent::init();
+		//内容模型id
+		$this->_type = $this->_type_ids['goods'];
 		//栏目
-		$this->_catalog = Catalog::model()->findAll('status_is=:status AND type=:type',array(':status'=>'Y',':type'=>'goods'));
+		$this->_catalog = Catalog::model()->findAll('status_is=:status AND type=:type',array(':status'=>'Y',':type'=>$this->_type));
 		
 	}
 	
@@ -40,7 +43,7 @@ class GoodsController extends Backend
     public function actionIndex() {
         $model = new Goods();
         $criteria = new CDbCriteria();
-        $condition = "type = 'goods'";
+        $condition = "type = ".$this->_type;
         $goods_name = trim( $this->_request->getParam( 'goods_name' ) );     
         $catalogId = intval( $this->_request->getParam( 'catalogId' ) );
         $goods_name && $condition .= ' AND goods_name LIKE \'%' . $goods_name . '%\'';       
@@ -100,7 +103,7 @@ class GoodsController extends Backend
     			$this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
     	}
     	//判断有无商品栏目
-    	$goods_cat = Catalog::model()->find('type=:type', array(':type'=>'goods'));
+    	$goods_cat = Catalog::model()->find('type=:type', array(':type'=>$this->_type));
     	if(!$goods_cat){
     		$this->message('error',Yii::t('admin','No Catalog'),$this->createUrl('index'));
     	}
