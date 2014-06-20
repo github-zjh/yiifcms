@@ -61,6 +61,8 @@ class SiteController extends FrontBase
 	 */
 	public function actionContact()
 	{
+		//导航标示
+		$this->_menu_unique = 'contact';
 		$model=new ContactForm;
 		if(isset($_POST['ContactForm']))
 		{
@@ -88,6 +90,8 @@ class SiteController extends FrontBase
 	 * 关于我们
 	 */
 	public function actionAbout(){
+		//导航标示
+		$this->_menu_unique = 'about';
 		//加载样式表
 		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/about.css");
 		$this->render('about');

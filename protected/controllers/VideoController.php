@@ -9,6 +9,8 @@ class VideoController extends FrontBase
 {
 	protected $_catalog;
 	protected $_video_type;
+	protected $_menu_unique;
+	
 	public function init(){
 		parent::init();
 		//栏目
@@ -22,6 +24,8 @@ class VideoController extends FrontBase
 				'war'=>'战争',
 				'sexy'=>'伦理'
 		);
+		//导航标示
+		$this->_menu_unique = 'video';
 	}
   /**
    * 首页
