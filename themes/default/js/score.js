@@ -1,8 +1,6 @@
 //jQuery cookie
 jQuery.cookie=function(name,value,options){if(typeof value!='undefined'){options=options||{};if(value===null){value='';options.expires=-1}var expires='';if(options.expires&&(typeof options.expires=='number'||options.expires.toUTCString)){var date;if(typeof options.expires=='number'){date=new Date();date.setTime(date.getTime()+(options.expires*24*60*60*1000))}else{date=options.expires}expires='; expires='+date.toUTCString()}var path=options.path?'; path='+(options.path):'';var domain=options.domain?'; domain='+(options.domain):'';var secure=options.secure?'; secure':'';document.cookie=[name,'=',encodeURIComponent(value),expires,path,domain,secure].join('')}else{var cookieValue=null;if(document.cookie&&document.cookie!=''){var cookies=document.cookie.split(';');for(var i=0;i<cookies.length;i++){var cookie=jQuery.trim(cookies[i]);if(cookie.substring(0,name.length+1)==(name+'=')){cookieValue=decodeURIComponent(cookie.substring(name.length+1));break}}}return cookieValue}};
 
-var star = {vid:'1498',vt:'jsfoot 网页特效'};
-
 (function($){
 
 star.score = {
@@ -30,6 +28,9 @@ star.score = {
 		var _len = 60;	
 		var _avg = data.t>0?((data.s[0]+2*data.s[1]+3*data.s[2]+4*data.s[3]+5*data.s[4])/t*2).toFixed(1):'0.0';		
 		_avg = _avg.substring(0,3);
+		var reg=/^\.|\.$/gi;  //去除前后多余的点号
+		_avg=_avg.replace(reg,""); 
+		
 		ret.push('<div class="score_avg"><span><em>' + _avg + '</em><i>' + _avg + '</i></span></div>');
 		ret.push('<div class="score_total">共 <span>'+data.t+'</span> 人<br />参与评分</div>');
 		ret.push('<ul class="score_list">');	

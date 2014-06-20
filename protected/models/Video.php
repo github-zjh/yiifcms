@@ -20,6 +20,7 @@
  * @property string $create_time
  * @property integer $view_count
  * @property integer $down_count
+ * @property string $voted
  * @property string $status
  * @property string $seo_title
  * @property string $seo_description
@@ -44,8 +45,7 @@ class Video extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('catalog_id, view_count, down_count', 'numerical', 'integerOnly'=>true),
-			array('video_score','numerical'),
-			array('title, cover_image, download', 'length', 'max'=>100),
+			array('title, cover_image, download, voted', 'length', 'max'=>100),
 			array('fileid, seo_title, seo_keywords', 'length', 'max'=>255),
 			array('language, video_type, video_size, pay, update_time, create_time', 'length', 'max'=>10),
 			array('video_score', 'length', 'max'=>3),
@@ -53,7 +53,7 @@ class Video extends CActiveRecord
 			array('introduce, seo_description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, catalog_id, cover_image, fileid, language, video_type, video_score, video_size, download, introduce, pay, update_time, create_time, view_count, down_count, status, seo_title, seo_description, seo_keywords', 'safe', 'on'=>'search'),
+			array('id, title, catalog_id, cover_image, fileid, language, video_type, video_score, video_size, download, introduce, pay, update_time, create_time, view_count, down_count, voted, status, seo_title, seo_description, seo_keywords', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,7 +64,7 @@ class Video extends CActiveRecord
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
-			return array(
+		return array(
 	        'catalog'=>array(self::BELONGS_TO, 'Catalog', 'catalog_id', 'alias'=>'catalog', 'select'=>'id,catalog_name'),
 	    );
 	}
@@ -91,6 +91,7 @@ class Video extends CActiveRecord
 			'create_time' => 'Create Time',
 			'view_count' => 'View Count',
 			'down_count' => 'Down Count',
+			'voted' => 'Voted',
 			'status' => 'Status',
 			'seo_title' => 'Seo Title',
 			'seo_description' => 'Seo Description',
@@ -147,6 +148,8 @@ class Video extends CActiveRecord
 		$criteria->compare('view_count',$this->view_count);
 
 		$criteria->compare('down_count',$this->down_count);
+
+		$criteria->compare('voted',$this->voted,true);
 
 		$criteria->compare('status',$this->status,true);
 

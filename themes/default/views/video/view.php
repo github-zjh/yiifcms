@@ -24,7 +24,10 @@
 										<div class="score_loading"></div>									
 									</div><!--score_content end-->
 								
-									<div class="score_post">									
+									<div class="score_post">			
+									<script type="text/javascript">
+										var star = {vid:'<?php echo $video->id;?>'};
+									</script>						
 										<div id="starBox">
 											<div class="star_title">给喜欢的影片评分</div>
 											<ul class="starlist" id="starlist">

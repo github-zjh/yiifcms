@@ -1,6 +1,6 @@
 # your database backup
 # version:5.5.27-log
-# time:2014-06-20 11:51:23
+# time:2014-06-20 15:39:51
 # --------------------------------------------------------
 
 
@@ -618,7 +618,7 @@ CREATE TABLE `yii_session` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='session表';
 
-INSERT INTO `yii_session` VALUES('vj26m0iinof5no390beobcctq1','1403239882','admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.33c9b0a4.admin/default.captcha|s:4:\"7ula\";Yii.CCaptchaAction.33c9b0a4.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}6cb602a7c53e8febaeafaaea1085c566__id|s:2:\"31\";6cb602a7c53e8febaeafaaea1085c566__name|s:8:\"testUser\";6cb602a7c53e8febaeafaaea1085c566status|s:1:\"1\";6cb602a7c53e8febaeafaaea1085c566groupid|s:1:\"1\";6cb602a7c53e8febaeafaaea1085c566groupname|s:12:\"普通用户\";6cb602a7c53e8febaeafaaea1085c566email|s:17:\"1441044277@qq.com\";6cb602a7c53e8febaeafaaea1085c566__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}Yii.CCaptchaAction.33c9b0a4.comment.captcha|s:5:\"ue7ee\";Yii.CCaptchaAction.33c9b0a4.comment.captchacount|i:1;');
+INSERT INTO `yii_session` VALUES('spar6moqij1a7598p095gudn57','1403253590','admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.33c9b0a4.admin/default.captcha|s:4:\"rulh\";Yii.CCaptchaAction.33c9b0a4.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
 
 DROP TABLE IF EXISTS `yii_setting`;
 CREATE TABLE `yii_setting` (
@@ -821,6 +821,7 @@ CREATE TABLE `yii_video` (
   `create_time` int(10) unsigned DEFAULT NULL COMMENT '发布时间',
   `view_count` smallint(8) unsigned DEFAULT NULL COMMENT '观看次数',
   `down_count` smallint(8) unsigned DEFAULT '0' COMMENT '下载次数',
+  `voted` varchar(100) DEFAULT NULL COMMENT '投票结果',
   `status` enum('Y','N') DEFAULT 'Y' COMMENT '是否显示',
   `seo_title` varchar(255) NOT NULL DEFAULT '' COMMENT 'SEO标题',
   `seo_description` text COMMENT 'SEO描述',
@@ -828,10 +829,10 @@ CREATE TABLE `yii_video` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='软件管理表';
 
-INSERT INTO `yii_video` VALUES('1','美国队长','12','uploads/images/201406/827a03cb8cb.jpg','','englise','science','8.8','','','美国队长','0.00','1403146013','1400834656','16','0','Y','','','');
-INSERT INTO `yii_video` VALUES('2','钢铁侠','13','uploads/images/201406/bf941705b16.jpg','','chinese','comedy','0.0','','','','0.00','1403148128','1403148128','0','0','Y','','','');
-INSERT INTO `yii_video` VALUES('3','明日边缘','13','uploads/images/201406/4cc06a97d5a.jpg','','chinese','comedy','0.0','','','','0.00','1403148264','1403148264','0','0','Y','','','');
-INSERT INTO `yii_video` VALUES('4','窃听风云3','13','uploads/images/201406/a02a34ce432.jpg','','chinese','comedy','0.0','','','','0.00','1403148306','1403148306','0','0','Y','','','');
-INSERT INTO `yii_video` VALUES('5','终结者4','13','uploads/images/201406/0bb513c708b.jpg','','chinese','comedy','0.0','','','','0.00','1403148363','1403148363','0','0','Y','','','');
-INSERT INTO `yii_video` VALUES('6','孤胆保镖','13','uploads/images/201406/566eb360159.jpg','','chinese','active','0.0','','','','0.00','1403148418','1403148418','1','0','Y','','','');
+INSERT INTO `yii_video` VALUES('1','美国队长','12','uploads/images/201406/827a03cb8cb.jpg','','englise','science','8.5','','','美国队长','0.00','1403146013','1400834656','53','0','{\"t\":8,\"s\":[0,1,1,1,5]}','Y','','','');
+INSERT INTO `yii_video` VALUES('2','钢铁侠','13','uploads/images/201406/bf941705b16.jpg','','chinese','comedy','0.0','','','','0.00','1403148128','1403148128','0','0','','Y','','','');
+INSERT INTO `yii_video` VALUES('3','明日边缘','13','uploads/images/201406/4cc06a97d5a.jpg','','chinese','comedy','0.0','','','','0.00','1403148264','1403148264','1','0','','Y','','','');
+INSERT INTO `yii_video` VALUES('4','窃听风云3','13','uploads/images/201406/a02a34ce432.jpg','','chinese','comedy','8.0','','','','0.00','1403148306','1403148306','4','0','{\"t\":1,\"s\":[0,0,0,1,0]}','Y','','','');
+INSERT INTO `yii_video` VALUES('5','终结者4','13','uploads/images/201406/0bb513c708b.jpg','','chinese','comedy','0.0','','','','0.00','1403148363','1403148363','0','0','','Y','','','');
+INSERT INTO `yii_video` VALUES('6','孤胆保镖','13','uploads/images/201406/566eb360159.jpg','','chinese','active','6.0','','','','0.00','1403148418','1403148418','4','0','{\"t\":1,\"s\":[0,0,1,0,0]}','Y','','','');
 
