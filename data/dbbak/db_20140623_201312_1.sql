@@ -1,6 +1,6 @@
 # your database backup
-# version:5.5.27-log
-# time:2014-06-23 17:34:21
+# version:5.6.16
+# time:2014-06-23 20:13:12
 # --------------------------------------------------------
 
 
@@ -84,8 +84,8 @@ CREATE TABLE `yii_comment` (
 ) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COMMENT='评论表';
 
 INSERT INTO `yii_comment` VALUES('31','22','31','第三张亮了！<img src=\"http://www.yii.local/assets/60e0a036/plugins/emoticons/images/13.gif\" alt=\"\" border=\"0\" />','Y','2','127.0.0.1','1402628120');
-INSERT INTO `yii_comment` VALUES('32','1','31','内容排版 不太好吧 <img src=\"http://www.yii.local/assets/60e0a036/plugins/emoticons/images/10.gif\" alt=\"\" border=\"0\" /><br />','Y','1','127.0.0.1','1402882240');
-INSERT INTO `yii_comment` VALUES('33','1','31','再试一次','Y','1','127.0.0.1','1402889690');
+INSERT INTO `yii_comment` VALUES('32','16','31','内容排版 不太好吧 <img src=\"http://www.yii.local/assets/60e0a036/plugins/emoticons/images/10.gif\" alt=\"\" border=\"0\" /><br />','Y','1','127.0.0.1','1402882240');
+INSERT INTO `yii_comment` VALUES('33','16','31','再试一次','Y','1','127.0.0.1','1402889690');
 INSERT INTO `yii_comment` VALUES('34','4','31','旺旺还不错 <img src=\"http://www.yii.local/assets/60e0a036/plugins/emoticons/images/65.gif\" alt=\"\" border=\"0\" /><br />','Y','3','127.0.0.1','1403055802');
 INSERT INTO `yii_comment` VALUES('35','23','31','这篇文章很不错','Y','1','127.0.0.1','1403515888');
 INSERT INTO `yii_comment` VALUES('36','23','31','asdf','Y','1','127.0.0.1','1403515940');
@@ -233,8 +233,8 @@ CREATE TABLE `yii_page` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='单页';
 
-INSERT INTO `yii_page` VALUES('1','关于我们','','about','','','BageCms是一款基于php5+mysql5开发的多功能开源的网站内容管理系统。使用高性能的PHP5的web应用程序开发框架YII构建，具有操作简单、稳定、安全、高效、跨平台等特点。采用MVC设计模式，模板定制方便灵活，内置小挂工具，方便制作各类功能和效果，BageCms可用于企业建站、个人博客、资讯门户、图片站等各类型站点','<p>	BageCms是一款基于php5+mysql5开发的多功能开源的网站内容管理系统。使用高性能的PHP5的web应用程序开发框架YII构建，具有操作简单、稳定、安全、高效、跨平台等特点。采用MVC设计模式，模板定制方便灵活，内置小挂工具，方便制作各类功能和效果，BageCms可用于企业建站、个人博客、资讯门户、图片站等各类型站点。<br /><br />特点：<br /><br />1.开源免费<br />无论是个人还是企业展示型网站均可用本系统来完成<br /><br />2.数据调用方便快捷<br />自主研发的数据调用模块，能快速调用各类型数据，方便建站<br /><br />3.应用范围广<br />这套系统不是企业网站管理系统，也不是博客程序，更不是专业的图片管理系统，但它却具备大部分企业站、博客站、图片站的功能<br /><br />4.安全高性能<br />基于高性能的PHP5的web应用程序开发框架YII构建具有稳定、安全、高效、跨平台等特点<br /><br />5.URL自定义<br />系统支持自定义伪静态显示方式，良好的支持搜索引擎SEO。个性化设置每个栏目、内容的标题标签、描述标签、关键词标签<br /><br />6.自定义数据模型<br />系统可自定义数据模型满足各种表示形式和字段需求<br /><br />7.完善的后台权限控制<br />特有的管理员权限管理机制，可以灵活设置管理员的栏目管理权限、网站信息的添加、修改、删除权限等<br /><br /><br />系统运行环境：<br />数据库： mysql5+<br />PHP版本：php5.2.+<br />服务器：linux,unix,freebsd等<br /><br />官方网址：http://www.bagecms.com<br />下载地址：http://www.bagecms.com/download/bagecms<br /><br />演示地址：http://demo.bagecms.com<br />后台地址：http://demo.bagecms.com/admini<br />用户：bagecms<br />密码：bagecms</p><p>	<br /></p>','','','','','uploads/201309/logo.jpg','uploads/201309/logo.jpg','0','0','Y','1322999570');
-INSERT INTO `yii_page` VALUES('2','联系我们','','contact','','','','<p>	QQ:5565907</p><p>	QQ群：139869141</p><p>	BageCMS官方网站：<a href=\"http://www.bagecms.com\" target=\"_blank\">http://www.bagecms.com</a></p><p>	八哥软件官方网站：<a href=\"http://www.bagesoft.cn\" target=\"_blank\">http://www.bagesoft.cn</a></p>','','','','','','','0','0','N','1322999588');
+INSERT INTO `yii_page` VALUES('1','关于我们','','about','','','','yiicms','','','','','uploads/201309/logo.jpg','uploads/201309/logo.jpg','0','0','Y','1322999570');
+INSERT INTO `yii_page` VALUES('2','联系我们','','contact','','','','b','','','','','','','0','0','N','1322999588');
 INSERT INTO `yii_page` VALUES('3','企业文化','','cultural','','','企业文化是企业为解决生存和发展的问题的而树立形成的，被组织成员认为有效而共享，并共同遵循的基本信念和认知。 企业文化集中体现了一个企业经营管理的核心主张，以及由此产生的组织行为。','<div>	<div>		迪尔和肯尼迪把企业文化整个理论系统概述为5个要素，即企业环境、价值观、英雄人物、文化仪式和文化网络。	</div>	<div>		企业环境是指企业的性质、企业的经营方向、外部环境、企业的社会形象、与外界的联系等方面。它往往决定企业的行为。	</div>	<div>		价值观是指企业内成员对某个事件或某种行为好与坏、善与恶、正确与错误、是否值得仿效的一致认识。价值观是企业文化的核心，统一的价值观使企业内成员在判断自己行为时具有统一的标准，并以此来选择自己的行为。	</div>	<div>		英雄人物是指企业文化的核心人物或企业文化的人格化，其作用在于作为一种活的样板，给企业中其他员工提供可供仿效的榜样，对企业文化的形成和强化起着极为重要的作用。	</div>	<div>		文化仪式是指企业内的各种表彰、奖励活动、聚会以及文娱活动等，它可以把企业中发生的某些事情戏剧化和形象化，来生动的宣传和体现本企业的价值观，使人们通过这些生动活泼的活动来领会企业文化的内涵，使企业文化“寓教于乐”之中。	</div>	<div>		文化网络是指非正式的信息传递渠道，主要是传播文化信息。它是由某种非正式的组织和人群，以及某一特定场合所组成，它所传递出的信息往往能反映出职工的愿望和心态。	</div>	<h3>		产生	</h3>	<div>		企业领导者把文化的变化人的功能应用于企业，以解决现代企业管理中的问题，就有了企业文化。企业管理理论和企业文化管理理论都追求效益。但前者为追求效益而把人当作客体，后者为追求效益把文化概念自觉应用于企业，把具有丰富创造性的人作为管理理论的中心。这种指导思想反映到企业管理中去，就有了人们称之为企业文化的种种观念。	</div>	<h3>		认识	</h3>	<div>		从企业文化的现实出发，进行深入的调查研究，把握企业文化各种现象之间的本质联系。依据实践经验，从感认认识到理性认识，进行科学的概括、总结。	</div>	<h3>		意义	</h3>	<div>		一．企业文化能激发员工的使命感。不管是什么企业都有它的责任和使命，企业使命感是全体员工工作的目标和方向，是企业不断发展或前进的动力之源。	</div>	<div>		二．企业文化能凝聚员工的归属感。　企业文化的作用就是通过企业价值观的提炼和传播，让一群来自不同地方的人共同追求同一个梦想。	</div>	<div>		三．企业文化能加强员工的责任感。企业要通过大量的资料和文件宣传员工责任感的重要性，管理人员要给全体员工灌输责任意识，危机意识和团队意识，要让大家清楚地认识企业是全体员工共同的企业。	</div>	<div>		四．企业文化能赋予员工的荣誉感。每个人都要在自己的工作岗位，工作领域，多做贡献，多出成绩，多追求荣誉感。	</div>	<div>		五．企业文化能实现员工的成就感。一个企业的繁荣昌盛关系到每一个公司员工的生存，企业繁荣了，员工们就会引以为豪，会更积极努力的进取，荣耀越高，成就感就越大，越明显。	</div></div><div></div>','','','','','','','0','0','Y','1331877791');
 INSERT INTO `yii_page` VALUES('4','管理团队1','','team','','','团队是现代企业管理中战斗的核心，几乎没有一家企业不谈团队，好象团队就是企业做大做强的灵丹妙药，只要抓紧团队建设就能有锦锈前程了。团队是个好东西，但怎样的团队才算一个好团队，怎样才能运作好一个团队呢？却是许多企业管理者不甚了然的，于是在企业团队建设的过程中就出现了许多弊病，例如从理论著作中生搬硬套到团队运作里面，是很难产生好团队的。','<div>	<div>		团队是现代企业管理中战斗的核心，几乎没有一家企业不谈团队，好象团队就是企业做大做强的灵丹妙药，只要抓紧团队建设就能有锦锈前程了。团队是个好东西，但怎样的团队才算一个好团队，怎样才能运作好一个团队呢？却是许多企业管理者不甚了然的，于是在企业团队建设的过程中就出现了许多弊病，例如从理论著作中生搬硬套到团队运作里面，是很难产生好团队的。任何理念都不能执着，执着生僵化，就会蜕变为形式主义，后果很糟糕。在如今企业管理者热火朝天进行的团队建设中就存在这个问题，将团队作为企业文化建设的至上准则是不恰当的，是不符合多元化的现实状况的。	</div>	<div>		一个优秀的企业管理者，应该怎样管理员工?道理也很简单，那就是要给员工创造一个充分利用自己的个性将工作干得最好的条件。不一定什么都要团队化，太死板了。虽然现在的企业也都提倡创新，但如果管理者过分强调团队精神，则员工的创新精神必然受到压抑。压抑个性就是压抑创新，没有个性哪来的创新?说得极端一点，企业管理者要谨防团队建设法西斯化。团队是需要的，企业管理者在团队建设的同时要遵循一个原则，不能压抑员工的个性。在团队内部，企业管理者要给员工充分的自由，少说几句少数服从多数，要知道，聪明的人在世界上还就占少数。	</div>	<div>		企业管理者应该解放思想，要有多元化的思维。不同的企业，团队的性质也不一样。要量体裁衣建设符合企业内在要求的团队，要灵活变化，别搞一刀切。如果该企业是劳动密集型企业，那你可以建设一支高度纪律性组织性的团队。如果该企业是知识密集型企业，那就要以自由主义来管理员工了，建立一支人尽其才的团队是最重要的，严格说算不上是团队，也没必要强调团队，更注重的应该是员工的个人创造力，千万别让团队束缚住员工的头脑，当然应该有的纪律和合作也是不可少的。如果企业既有创造型员工也有操作型员工，那可将团队建设重点放到操作型员工身上。需要注意的一点是，越聪明的人越倾向个人主义，这个情况，企业管理者要注意有的放矢。	</div></div><div></div>','','','','','','','0','0','Y','1379392484');
 
@@ -276,11 +276,231 @@ CREATE TABLE `yii_post` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='内容管理';
 
-INSERT INTO `yii_post` VALUES('1','1','价值1960元JJ林俊杰「时线Time Line」世界巡回演唱会北京站VIP门票2张，百度团购免费送啦！9月28日首都体育馆','','','','','2','0','【中奖号码计算方法】：开奖日前一天的“全国福利彩票新3D开奖号码”+“全国体育彩票排列5开奖号码”+“百度收盘股价小数点后两位” = 10位数（即3组数字合并，10位均按顺序排列，此10位数若首位为0则去掉）。★ ...','','','','','【中奖号码计算方法】：开奖日前一天的“全国福利彩票新3D开奖号码”+“全国体育彩票排列5开奖号码”+“百度收盘股价小数点后两位” = 10位数（即3组数字合并，10位均按顺序排列，此10位数若首位为0则去掉）。<br />★ 以此10位数整除以活动截止日（xxx年x月xx日 23:59:59）的所有抽奖人数（每个抽奖号即为一个抽奖人数），得到的余数+1即为本次活动的获奖号码<br />① 若获奖号码不足7位，则再加上本次所有抽奖人数，直至加到不为空的抽奖号码为止，此号码为本次活动的中奖号码。<br />② 获奖号码满足7位，但中奖号码为空，则再减去本次抽奖人数之和，直至减不为空的抽奖号码为止，此号码为本次活动的中奖号码。<br />③ 如彩票开奖方开奖时间滞后,或股票交易所休市则本活动开奖日也将进行相应的顺延；<br />④如果当天需要开多个奖，则用此号码分别+011 +021 +031……得出当天其他获奖号码。如果开奖最后一天抽奖号码加值后超过了总参加人数，则将抽奖号码减去总参加人数得到新的抽奖号码。<br /><p>	若您的“抽奖号”与最终获奖号码完全一致，就可以获得本次活动的大奖啦！</p><p>	<img src=\"/cms/uploads/201309/523a32fdf1f07.jpg\" alt=\"\" /> </p>★ 例如：<br />如2013年7月10日<br />新3D号码：4,8,7<br />排列5号码：8，2，9，0，5<br />百度股票收盘价：93.43 小数点后2位：4,3<br />将这3组数依序合并后得到4878290543<br />如果截止至7月15日23:59:59活动结束时的抽奖人数为28999<br />以4878290543整除以28999，商为168222，余数：20765&nbsp;<br />得到余数加1， 20765+1=20766。<br />不足7位数，则20766+28999+……+28999=1006732<br />：【兑奖流程】：1、我们的客服人员会与中奖者电话联系，并核实百度账号和手机号码等，确认获奖信息和使用规则。<br />2、中奖用户在体验特权前1天内，请电话联系团团。（4000-998-998）<br />3、若因信息错误或无效等造成的开奖后15个工作日内无法联系到中奖者，视为中奖者自动放弃该奖品，中奖号码+1顺延下一位。','','','','','284','Y','Y','uploads/201309/523a32e18f2c4.jpg','uploads/201309/thumb_523a32e18f2c4.jpg','0','0','N','1401871656','0','Y','0','Y','1379545825');
-INSERT INTO `yii_post` VALUES('14','1','App Annie获1500万美元投资 将持续扩展国际业务','','','','','2','1','（朱旭冬）9月18日晚间消息，移动智能市场数据平台App Annie 今日宣布完成一轮总金额为1500万美元的融资，由红杉资本的美国基金领投，现有投资者IDG资本、Greycroft 、e.Ventures 和 Infinity Venture 参与跟投。...','','','','','<p>	（朱旭冬）9月18日晚间消息，移动智能市场数据平台App Annie 今日宣布完成一轮总金额为1500万美元的融资，由红杉资本的美国基金领投，现有投资者IDG资本、Greycroft 、e.Ventures 和 Infinity Venture 参与跟投。</p><p>	红杉资本硅谷办事处合伙人 Tim Lee 与 uSamp 首席执行官 Alan Gould 将加入App Annie董事会。</p><p>	App Annie 表示，此轮融得的资金将用于加速 App Annie 的产品开发、增长其销售额并壮大其设在旧金山的营销总部，并扩大其遍布亚洲和欧洲的办事处。</p><p>	随着今年全球智能手机出货量将超过1 亿部的预期，应用软件和数字内容经济大幅增长。App Annie 在过去12个月内用户数扩大两倍，每月营收增长三倍。App Annie 首席执行官Bertrand Schmitt 表示，增长的用户群证明公司重塑企业分析和提取适合商业用途的有用洞察信息的方式是成功的。</p><p>	红杉资本硅谷办事处合伙人 Tim Lee 认为， App Annie 在新数字经济分析领域处于极为有利的地位。“App Annie 的产品对从事移动通信行业的每位从业者来说都是必备的。在红杉资本，我们多年来一直使用他们的产品帮助我们找到有突破力的创业公司。 App Annie 在新数字经济分析领域处于极为有利的地位，并将成为黄金标准。”他说。</p><p>	Bertrand Schmitt 则表示， “对我们来说，红杉资本不仅仅是投资者，同时也是合作伙伴和顾问，它将帮助我们加速我们扩大平台的计划，这样所有企业都可了解全球应用软件和数字内容生态系统。”</p><p>	App Annie 的商业智能平台由 Analytics、Store Stats 和 Intelligence 组成。现今，收益排名前 100 位的 iOS 应用发行商中超过 90% 在使用App Annie 的产品，这其中包含 Google、微软和腾讯。</p>','','','','App,Annie,美元投资,国际业务','11','N','Y','uploads/201309/523a549bd42fe.jpg','uploads/201309/thumb_523a549bd42fe.jpg','0','0','N','1401871554','0','Y','0','Y','1379554460');
-INSERT INTO `yii_post` VALUES('15','1','Groupon收购本地体验初创公司SideTour','','','','','2','1','','','','','','<p>	据国外媒体报道，团购巨人Groupon今日宣布，公司已经收购了本地体验初创公司SideTour。后者是一个帮助人们发现、预订和参加本地活动的市场平台，Groupon没有透露这项收购交易的具体条款。</p><p>	SideTour精选了一些独具特色且有人主持的聚会类活动，让客户们能够与相应领域的资深专家面对面地交流，从而更加了解自己所在的城市和他们关心的事。</p><p>	GrouponLive业务总经理格雷格鲁丁（Greg Rudin）称：“SideTour精心策划的各种本地体验将进一步拓展Groupon的愿景，也就是将Groupon打造成消费者可以随时随地访问的平台。如果Groupon能够提供这些极具个性化的活动、旅游和值得铭记的聚会，我们就能够为我们的客户提供更多有趣的方法，帮助他们探索和发现最好的本地体验。”</p><p>	那些活动大多为私人聚会，人数平均在12人左右，涵盖的行业包括视频、饮料、建筑、历史、艺术等等。SideTour目前提供的公开和私人聚会多达500多种，使用这个平台的聚会主持超过了400人。那些主持者包括厨师、艺术家、奥运金牌获得者、星探和品酒师等等。</p><p>	SideTour的首席执行官韦平戈亚尔（Vipin Goyal）称：“我们很高兴有机会把我们独创的聚会服务提供给这么多热衷于本地体验的人。Groupon可以帮助我们发现更多的本地专家并为他们提供一个与更多客户沟通的平台。”</p><p>	SideTour将继续独立经营一段时间，Groupon将通过其电子邮件、网页和移动渠道向它的4300万活跃用户推广SideTour的聚会服务。</p><p>	SideTour创立于2011年，目前在芝加哥、纽约、费城和华盛顿特区设有办事机构。它计划在未来几个月里开辟更多的市场。</p>','','','','','14','Y','Y','uploads/201309/523a54c220262.jpg','uploads/201309/thumb_523a54c220262.jpg','0','0','N','1401871231','0','Y','0','Y','1379554498');
-INSERT INTO `yii_post` VALUES('16','1','美国下令FCC修改规定 禁止运营商锁定所售手机','','a:3:{s:4:\"bold\";s:1:\"Y\";s:9:\"underline\";s:1:\"Y\";s:5:\"color\";s:6:\"FF2969\";}','','','2','1','在手机解锁上，美国消费者和运营商展开持久战，美国政府和白宫逐渐站在消费者一边。	近日美国电信和信息管理局（NTIA）正式向联邦通信委员会（FCC）发函，要求修改规定，未来移动运营商销售给用户的手机、平板...','a:2:{i:0;a:4:{s:6:\"fileId\";s:2:\"36\";s:4:\"file\";s:37:\"uploads/images/201405/21e1adee63a.png\";s:4:\"desc\";s:2:\"04\";s:3:\"url\";s:5:\"04url\";}i:1;a:4:{s:6:\"fileId\";s:2:\"37\";s:4:\"file\";s:37:\"uploads/images/201405/f23850e09dc.png\";s:4:\"desc\";s:2:\"05\";s:3:\"url\";s:5:\"05url\";}}','','','','<p>	在手机解锁上，美国消费者和运营商展开持久战，美国政府和白宫逐渐站在消费者一边。</p><p>	近日美国电信和信息管理局（NTIA）正式向联邦通信委员会（FCC）发函，要求修改规定，未来移动运营商销售给用户的手机、平板等，均不能锁定于网络。</p><p>	所谓“锁定”，指的是运营商通过技术手段，限制某一部手机和平板，只能使用自家的移动网络进行通信。</p><p>	上述机构对FCC表示，消费者应该获得更多自由，选择不同的移动通信服务商，自由使用自己合法购买的移动设备，对相关规定进行修改之后，可以增强移动通信市场的竞争，增加消费者满意度。</p><p>	目前还不清楚FCC是否会痛快答应修改规定的要求。众所周知的是，美国电信行业，也雇请了游说团体，捍卫对手机锁定的做法。</p><p>	据报道，1990年代以前，美国电信运营商销售的手机，均未锁定于自家网络。此后，为了降低用户流失率，运营商开始锁定手机。不过，对于熟悉IT知识的民间高手来说，根据网络资源对手机进行解锁，难度并不大。</p><p>	1998年，美国通过《千年数字版权法》，法律本意是要抑制盗版，但最后却禁止了用户对手机解锁。从2006年以来，支持消费者的美国议员们，也屡屡要求修改法律，允许用户自由解锁。</p><p>	在移动运营商看来，他们对用户购买手机的价格进行了大额补贴，目的是通过用户在一年或两年的合同期限内，用花费流量费的消费，弥补运营商购机补贴。如果让用户自由解锁，将损害运营商的利益。</p><p>	以苹果手机为例，运营商捆绑两年合约的补贴价格为199美元，但是其裸机零售价超过600美元，这400多美元其实由运营商买单。</p><p>	上述机构NTIA还指出，只要是消费者承诺继续使用某种服务，或是针对提前结束合约支付了违约罚金等，美国的运营商就应该免费帮助用户进行解锁。</p>','','','','美国,禁止运营商,锁定手机','516','Y','Y','uploads/201309/523a54f7d9591.jpg','uploads/201309/thumb_523a54f7d9591.jpg','1','2','Y','1401936478','4','N','5','Y','1379554552');
-INSERT INTO `yii_post` VALUES('22','1','图盟 每日囧图05.24','','','','','9','0','','a:4:{i:0;a:4:{s:6:\"fileId\";s:2:\"63\";s:4:\"file\";s:37:\"uploads/images/201406/d6bf42140c0.jpg\";s:4:\"desc\";s:2:\"01\";s:3:\"url\";s:3:\"011\";}i:1;a:4:{s:6:\"fileId\";s:2:\"64\";s:4:\"file\";s:37:\"uploads/images/201406/4ca469fcfbf.jpg\";s:4:\"desc\";s:2:\"02\";s:3:\"url\";s:3:\"022\";}i:2;a:4:{s:6:\"fileId\";s:2:\"65\";s:4:\"file\";s:37:\"uploads/images/201406/018817f4a8f.gif\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:3;a:4:{s:6:\"fileId\";s:2:\"66\";s:4:\"file\";s:37:\"uploads/images/201406/6042f7935d0.gif\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','','猫扑','http://dzh.mop.com/ttq/20140523/0/zF7lFlI2d0ef25F7.shtml','','','386','N','N','uploads/images/201406/badc32cd99a.gif','uploads/thumbs/201406/small_badc32cd99a.gif','0','0','N','1401864736','0','Y','0','Y','1401864736');
+INSERT INTO `yii_post` VALUES('14','1','App Annie获1500万美元投资 将持续扩展国际业务','','','','','2','1','（朱旭冬）9月18日晚间消息，移动智能市场数据平台App Annie 今日宣布完成一轮总金额为1500万美元的融资，由红杉资本的美国基金领投，现有投资者IDG资本、Greycroft 、e.Ventures 和 Infinity Venture 参与跟投。...','','','','','<p>	（朱旭冬）9月18日晚间消息，移动智能市场数据平台App Annie 今日宣布完成一轮总金额为1500万美元的融资，由红杉资本的美国基金领投，现有投资者IDG资本、Greycroft 、e.Ventures 和 Infinity Venture 参与跟投。</p><p>	红杉资本硅谷办事处合伙人 Tim Lee 与 uSamp 首席执行官 Alan Gould 将加入App Annie董事会。</p><p>	App Annie 表示，此轮融得的资金将用于加速 App Annie 的产品开发、增长其销售额并壮大其设在旧金山的营销总部，并扩大其遍布亚洲和欧洲的办事处。</p><p>	随着今年全球智能手机出货量将超过1 亿部的预期，应用软件和数字内容经济大幅增长。App Annie 在过去12个月内用户数扩大两倍，每月营收增长三倍。App Annie 首席执行官Bertrand Schmitt 表示，增长的用户群证明公司重塑企业分析和提取适合商业用途的有用洞察信息的方式是成功的。</p><p>	红杉资本硅谷办事处合伙人 Tim Lee 认为， App Annie 在新数字经济分析领域处于极为有利的地位。“App Annie 的产品对从事移动通信行业的每位从业者来说都是必备的。在红杉资本，我们多年来一直使用他们的产品帮助我们找到有突破力的创业公司。 App Annie 在新数字经济分析领域处于极为有利的地位，并将成为黄金标准。”他说。</p><p>	Bertrand Schmitt 则表示， “对我们来说，红杉资本不仅仅是投资者，同时也是合作伙伴和顾问，它将帮助我们加速我们扩大平台的计划，这样所有企业都可了解全球应用软件和数字内容生态系统。”</p><p>	App Annie 的商业智能平台由 Analytics、Store Stats 和 Intelligence 组成。现今，收益排名前 100 位的 iOS 应用发行商中超过 90% 在使用App Annie 的产品，这其中包含 Google、微软和腾讯。</p>','','','','App,Annie,美元投资,国际业务','12','N','Y','uploads/201309/523a549bd42fe.jpg','uploads/201309/thumb_523a549bd42fe.jpg','0','0','N','1401871554','0','Y','0','Y','1379554460');
+INSERT INTO `yii_post` VALUES('15','1','Groupon收购本地体验初创公司SideTour','','','','','2','1','','','','','','<p>	据国外媒体报道，团购巨人Groupon今日宣布，公司已经收购了本地体验初创公司SideTour。后者是一个帮助人们发现、预订和参加本地活动的市场平台，Groupon没有透露这项收购交易的具体条款。</p><p>	SideTour精选了一些独具特色且有人主持的聚会类活动，让客户们能够与相应领域的资深专家面对面地交流，从而更加了解自己所在的城市和他们关心的事。</p><p>	GrouponLive业务总经理格雷格鲁丁（Greg Rudin）称：“SideTour精心策划的各种本地体验将进一步拓展Groupon的愿景，也就是将Groupon打造成消费者可以随时随地访问的平台。如果Groupon能够提供这些极具个性化的活动、旅游和值得铭记的聚会，我们就能够为我们的客户提供更多有趣的方法，帮助他们探索和发现最好的本地体验。”</p><p>	那些活动大多为私人聚会，人数平均在12人左右，涵盖的行业包括视频、饮料、建筑、历史、艺术等等。SideTour目前提供的公开和私人聚会多达500多种，使用这个平台的聚会主持超过了400人。那些主持者包括厨师、艺术家、奥运金牌获得者、星探和品酒师等等。</p><p>	SideTour的首席执行官韦平戈亚尔（Vipin Goyal）称：“我们很高兴有机会把我们独创的聚会服务提供给这么多热衷于本地体验的人。Groupon可以帮助我们发现更多的本地专家并为他们提供一个与更多客户沟通的平台。”</p><p>	SideTour将继续独立经营一段时间，Groupon将通过其电子邮件、网页和移动渠道向它的4300万活跃用户推广SideTour的聚会服务。</p><p>	SideTour创立于2011年，目前在芝加哥、纽约、费城和华盛顿特区设有办事机构。它计划在未来几个月里开辟更多的市场。</p>','','','','','15','Y','Y','uploads/201309/523a54c220262.jpg','uploads/201309/thumb_523a54c220262.jpg','0','0','N','1401871231','0','Y','0','Y','1379554498');
+INSERT INTO `yii_post` VALUES('16','1','程序员必须知道的10大基础实用算法及其讲解','','a:3:{s:4:\"bold\";s:1:\"Y\";s:9:\"underline\";s:1:\"Y\";s:5:\"color\";s:6:\"FF2969\";}','','','2','1','在手机解锁上，美国消费者和运营商展开持久战，美国政府和白宫逐渐站在消费者一边。	近日美国电信和信息管理局（NTIA）正式向联邦通信委员会（FCC）发函，要求修改规定，未来移动运营商销售给用户的手机、平板...','a:2:{i:0;a:4:{s:6:\"fileId\";s:2:\"36\";s:4:\"file\";s:37:\"uploads/images/201405/21e1adee63a.png\";s:4:\"desc\";s:2:\"04\";s:3:\"url\";s:5:\"04url\";}i:1;a:4:{s:6:\"fileId\";s:2:\"37\";s:4:\"file\";s:37:\"uploads/images/201405/f23850e09dc.png\";s:4:\"desc\";s:2:\"05\";s:3:\"url\";s:5:\"05url\";}}','','','','<p>
+	<a href=\"http://geek.csdn.net/news/detail/12027\">程序员必须知道的10大基础实用算法及其讲解</a>，包括：
+</p>
+<ol>
+	<li>
+		快速排序算法；
+	</li>
+	<li>
+		堆排序算法（Heapsort）：是指利用堆这种数据结构所设计的一种排序算法；
+	</li>
+	<li>
+		归并排序（Merge sort，台湾译作：合并排序）：是建立在归并操作上的一种有效的排序算法；
+	</li>
+	<li>
+		二分查找(线性查找算法)：是一种在有序数组中查找某一特定元素的搜索算法；
+	</li>
+	<li>
+		BFPRT算法解决的问题十分经典，即从某n个元素的序列中选出第k大（第k小）的元素，通过巧妙的分析，BFPRT可以保证在最坏情况下仍为线性时间复杂度；
+	</li>
+	<li>
+		深度优先搜索算法（Depth-First-Search）：是搜索算法的一种；
+	</li>
+	<li>
+		广度优先搜索算法（Breadth-First-Search）：是一种图形搜索算法；
+	</li>
+	<li>
+		戴克斯特拉算法（Dijkstra’s algorithm）；
+	</li>
+	<li>
+		动态规划算法（Dynamic programming）；
+	</li>
+	<li>
+		朴素贝叶斯分类算法是一种基于贝叶斯定理的简单概率分类算法。
+	</li>
+</ol>
+<p>
+	上面的这篇文章为本周的热门文章，有着不错的评论。具体的算法步骤详情请移步<a href=\"http://geek.csdn.net/news/detail/12027\">原文</a>阅读并可参与讨论。
+</p>
+<h2>
+	一、 <a href=\"http://geek.csdn.net/news/detail/12327\">Eclipse 4.4 将于 6 月 25 日发布，代号 Luna</a>
+</h2>
+<p>
+	代号为 Luna 的下一个 Eclipse 的主要版本 4.4 将于 6月25日 发布。新版本值得关注的特性包括：
+</p>
+<ul>
+	<li>
+		完全支持 Java™ 8
+	</li>
+	<li>
+		提供全新的黑色主题，默认显示行号，允许隐藏 quick access 工具条
+	</li>
+	<li>
+		Sirius allows architects to easily create their own graphical 
+modeling workbenches by leveraging the Eclipse modeling technologies, 
+including Eclipse Modeling Framework (EMF) and Graphical Modeling 
+Framework (GMF)
+	</li>
+	<li>
+		Equinox includes a full implementation of the R6 Core Framework as well as several compendium service implementations
+	</li>
+	<li>
+		ECF\'s implementation of OSGi Remote Service/Remote Service Admin 
+standard has been enhanced to use Java 8\'s CompleteableFuture for 
+asynchronous remote services.
+	</li>
+	<li>
+		Code Recommenders integrates the Snipmatch code snippet search 
+engine and adds the ability to easily contribute new snippets to a 
+shared repository.
+	</li>
+	<li>
+		The new QVTi debugger extends the new OCL debugger.
+	</li>
+</ul>
+<h2>
+	二、 <a href=\"http://geek.csdn.net/news/detail/12801\">Java 8新特性终极指南</a>
+</h2>
+<p>
+	Java 8已经公布有一段时间了，种种迹象表明Java 8是一个有重大改变的发行版。文章把所有Java 8的重要特性收集整理成一篇单独的文章，主要有以下几个方面：
+</p>
+<ul>
+	<li>
+		Java语言的新特性——Lambdas表达式与Functional接口、接口的默认与静态方法、方法引用、重复注解、更好的类型推测机制、扩展注解的支持
+	</li>
+	<li>
+		Java编译器的新特性——参数名字
+	</li>
+	<li>
+		Java 类库的新特性——Optional、Streams、Date/Time API (JSR 310)、JavaScript引擎Nashorn、Base64、并行（parallel）数组、并发（Concurrency）
+	</li>
+	<li>
+		新增的Java工具——Nashorn引擎: jjs、类依赖分析器: jdeps
+	</li>
+	<li>
+		Java虚拟机（JVM）的新特性
+	</li>
+</ul>
+<h2>
+	三、<a href=\"http://geek.csdn.net/news/detail/12808\">程序员长期保持身心健康的几点建议</a>
+</h2>
+<ol>
+	<li>
+		要学会走开
+	</li>
+	<li>
+		在家少编程
+	</li>
+	<li>
+		少叫外卖，中午出去吃
+	</li>
+	<li>
+		有一个或几个非技术的兴趣爱好，或者体育锻炼项目
+	</li>
+	<li>
+		休假
+	</li>
+	<li>
+		最最最最关键，要有一个妹子
+	</li>
+</ol>
+<h2>
+	四、 <a href=\"http://geek.csdn.net/news/detail/12349\">程序员自我提高的几点建议 很实诚</a>
+</h2>
+<p>
+	中国程序员的成长是与其学习环境相关，据统计，现时做计算机软件开发的人员65%是大专及本科学历，15%是来自于其他的培训机构。可见一个开发人员大致的学习经历和初步经验来自于大学。下面是针对程序员自我提高的几点建议：
+</p>
+<ol>
+	<li>
+		提高文档编写能力
+	</li>
+	<li>
+		养成好的编码规范和编码习惯
+	</li>
+	<li>
+		提高对软件需求的理解
+	</li>
+	<li>
+		复用性和模块化思想
+	</li>
+	<li>
+		锻炼自己的测试能力
+	</li>
+	<li>
+		问题是最好的学习机会
+	</li>
+</ol>
+<h2>
+	五、 <a href=\"http://geek.csdn.net/news/detail/11885\">Java 8中几个不易察觉的错误</a>
+</h2>
+<ul>
+	<li>
+		不小心重用了流
+	</li>
+	<li>
+		不小心创建了一个“无限”流
+	</li>
+	<li>
+		不小心创建了一个“隐藏的”无限流
+	</li>
+	<li>
+		不小心创建了一个”隐藏”的并行无限流
+	</li>
+	<li>
+		操作的顺序错误
+	</li>
+	<li>
+		使用过滤器来遍历文件系统
+	</li>
+	<li>
+		修改流内部的集合
+	</li>
+	<li>
+		忘了去消费流
+	</li>
+	<li>
+		并行流死锁
+	</li>
+</ul>
+<p>
+	引入了流和函数式编程之后，我们开始会碰到许多新的难以发现的BUG。这些BUG很难避免，除非你见过并且还时刻保持警惕。你必须去考虑操作的顺序，还得注意流是不是无限的。
+</p>
+<p>
+	流是一个非常强大的工具，但也是一个首先得去熟练掌握的工具。
+</p>
+<h2>
+	六、 <a href=\"http://geek.csdn.net/news/detail/12354\">Google I/O 2014大会很有可能发布的10大惊喜</a>
+</h2>
+<p>
+	一年一度的谷歌 Google I/O 开发者年会将在本月的 25 日和 26 日在美国的旧金山举行，今年的 Google I/O 大会又将带给大家什么惊喜呢？请看：
+</p>
+<ul>
+	<li>
+		Nexus 8
+	</li>
+	<li>
+		安卓5.0
+	</li>
+	<li>
+		谷歌眼镜正式上市
+	</li>
+	<li>
+		Android Wear
+	</li>
+	<li>
+		Silver项目
+	</li>
+	<li>
+		Project Ara模块化手机
+	</li>
+	<li>
+		Android车载系统
+	</li>
+	<li>
+		Google Fit服务
+	</li>
+	<li>
+		Nest——Nest或许会带来修复另一款烟雾探测器Protect的相关消息
+	</li>
+	<li>
+		Google Fiber
+	</li>
+</ul>','','','','程序员','519','Y','Y','uploads/201309/523a54f7d9591.jpg','uploads/201309/thumb_523a54f7d9591.jpg','1','2','Y','1403525041','4','N','5','Y','1379554552');
+INSERT INTO `yii_post` VALUES('22','1','图盟 每日囧图05.24','','','','','9','0','','a:4:{i:0;a:4:{s:6:\"fileId\";s:2:\"63\";s:4:\"file\";s:37:\"uploads/images/201406/d6bf42140c0.jpg\";s:4:\"desc\";s:2:\"01\";s:3:\"url\";s:3:\"011\";}i:1;a:4:{s:6:\"fileId\";s:2:\"64\";s:4:\"file\";s:37:\"uploads/images/201406/4ca469fcfbf.jpg\";s:4:\"desc\";s:2:\"02\";s:3:\"url\";s:3:\"022\";}i:2;a:4:{s:6:\"fileId\";s:2:\"65\";s:4:\"file\";s:37:\"uploads/images/201406/018817f4a8f.gif\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:3;a:4:{s:6:\"fileId\";s:2:\"66\";s:4:\"file\";s:37:\"uploads/images/201406/6042f7935d0.gif\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','','猫扑','http://dzh.mop.com/ttq/20140523/0/zF7lFlI2d0ef25F7.shtml','','','387','N','N','uploads/images/201406/badc32cd99a.gif','uploads/thumbs/201406/small_badc32cd99a.gif','0','0','N','1401864736','0','Y','0','Y','1401864736');
 INSERT INTO `yii_post` VALUES('23','1','Facebook POP，迈向大师操作之路','','','','','3','0','Facebook发布Paper后，不满足于将其作为一个概念性产品，反而更进一步开源了其背后的动画引擎POP。POP的开发者是Kimon Tsinteris，曾致力于创造出逼真的、充满物力效应的体验。POP也是在这个理念下催生出来的结果。 ','','','','','<p>
 	Facebook发布Paper之后，似乎还不满足于只是将其作为一个概念性产品，反而更进一步开源了其背后的动画引擎POP（https://github.com/facebook/pop），此举大有三年前发布的iOS&nbsp;UI框架Three20（https://github.com/facebookarchive/three20）的意味。而POP开源后不负Facebook的厚望，在GitHub上不足一个月的时间，就已拥有了6000多个Star，非常火爆。
 </p>
@@ -508,7 +728,7 @@ CREATE TABLE `yii_post_tags` (
   `data_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '数据总数',
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '录入时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COMMENT='新闻标签';
+) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COMMENT='新闻标签';
 
 INSERT INTO `yii_post_tags` VALUES('1','贵族养生','1','1379546108');
 INSERT INTO `yii_post_tags` VALUES('2','休闲放松','1','1379546108');
@@ -546,6 +766,7 @@ INSERT INTO `yii_post_tags` VALUES('33','宣布','1','1379554696');
 INSERT INTO `yii_post_tags` VALUES('34','Lumia1520','1','1379554696');
 INSERT INTO `yii_post_tags` VALUES('35','yii','4','1395211247');
 INSERT INTO `yii_post_tags` VALUES('36','新品','1','1395212757');
+INSERT INTO `yii_post_tags` VALUES('37','程序员','1','1403525041');
 
 DROP TABLE IF EXISTS `yii_question`;
 CREATE TABLE `yii_question` (
@@ -616,7 +837,7 @@ CREATE TABLE `yii_session` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='session表';
 
-INSERT INTO `yii_session` VALUES('nvet35c03ph3dm2qbltqjopgt4','1403519659','admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.33c9b0a4.admin/default.captcha|s:4:\"1bnn\";Yii.CCaptchaAction.33c9b0a4.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}Yii.CCaptchaAction.33c9b0a4.user.captcha|s:6:\"rddded\";Yii.CCaptchaAction.33c9b0a4.user.captchacount|i:1;6cb602a7c53e8febaeafaaea1085c566__id|s:2:\"31\";6cb602a7c53e8febaeafaaea1085c566__name|s:8:\"testUser\";6cb602a7c53e8febaeafaaea1085c566status|s:1:\"1\";6cb602a7c53e8febaeafaaea1085c566groupid|s:1:\"1\";6cb602a7c53e8febaeafaaea1085c566groupname|s:12:\"普通用户\";6cb602a7c53e8febaeafaaea1085c566email|s:17:\"1441044277@qq.com\";6cb602a7c53e8febaeafaaea1085c566__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}Yii.CCaptchaAction.33c9b0a4.question.captcha|s:6:\"bbnapf\";Yii.CCaptchaAction.33c9b0a4.question.captchacount|i:7;Yii.CCaptchaAction.33c9b0a4.comment.captcha|s:6:\"jk2egb\";Yii.CCaptchaAction.33c9b0a4.comment.captchacount|i:1;');
+INSERT INTO `yii_session` VALUES('5a4jvu9p70rsrhvc694lha5ff3','1403529190','admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.af6bc074.admin/default.captcha|s:4:\"fehd\";Yii.CCaptchaAction.af6bc074.admin/default.captchacount|i:3;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}Yii.CCaptchaAction.af6bc074.question.captcha|s:6:\"pd4dq9\";Yii.CCaptchaAction.af6bc074.question.captchacount|i:2;');
 
 DROP TABLE IF EXISTS `yii_setting`;
 CREATE TABLE `yii_setting` (
@@ -832,5 +1053,5 @@ INSERT INTO `yii_video` VALUES('2','钢铁侠','13','uploads/images/201406/bf941
 INSERT INTO `yii_video` VALUES('3','明日边缘','13','uploads/images/201406/4cc06a97d5a.jpg','','chinese','comedy','0.0','','','','0.00','1403148264','1403148264','1','0','','Y','','','');
 INSERT INTO `yii_video` VALUES('4','窃听风云3','13','uploads/images/201406/a02a34ce432.jpg','','chinese','comedy','8.0','','','','0.00','1403148306','1403148306','4','0','{\"t\":1,\"s\":[0,0,0,1,0]}','Y','','','');
 INSERT INTO `yii_video` VALUES('5','终结者4','13','uploads/images/201406/0bb513c708b.jpg','','chinese','comedy','0.0','','','','0.00','1403148363','1403148363','0','0','','Y','','','');
-INSERT INTO `yii_video` VALUES('6','孤胆保镖','13','uploads/images/201406/566eb360159.jpg','','chinese','active','6.0','','','','0.00','1403148418','1403148418','4','0','{\"t\":1,\"s\":[0,0,1,0,0]}','Y','','','');
+INSERT INTO `yii_video` VALUES('6','孤胆保镖','13','uploads/images/201406/566eb360159.jpg','','chinese','active','8.0','','','','0.00','1403148418','1403148418','6','0','{\"t\":2,\"s\":[0,0,1,0,1]}','Y','','','');
 

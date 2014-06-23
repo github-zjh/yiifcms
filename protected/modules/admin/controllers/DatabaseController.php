@@ -98,9 +98,7 @@ class DatabaseController extends Backend
     {
         if ($this->method() == 'POST') {            
             $sql = $this->_request->getParam('command');
-            $sqls = self::_sqlSplit($sql);
-            foreach ($sqls as $execute)
-                self::_execute($execute);
+            self::_execute($sql);           
         }
     }
 
@@ -339,7 +337,7 @@ class DatabaseController extends Backend
     private function _execute ($command = '')
     {
         $exeSql = empty($command) ? trim($this->_request->getParam('command')) : $command;        
-        $formatExeSql = $this->_sqlSplit($exeSql);
+        $formatExeSql = array($exeSql);
         foreach ($formatExeSql as $sql) {
             if (empty($sql))
                 continue;
