@@ -93,6 +93,14 @@ return array(
 		'DownCount' => '下载次数',
 		
 		//Question
+		'QuestionId' => '留言ID',
+		'QuestionRealname' => '姓名',
+		'QuestionEmail' => '邮箱',
+		'QuestionTelephone' => '手机号码',
+		'QuestionQuestion' => '留言内容',
+		'QuestionQq' => 'qq',	
+		'QuestionClient_ip' => '客户端ip',
+		'QuestionCreate_time' => '留言时间',	
 		
 		//Special
 		

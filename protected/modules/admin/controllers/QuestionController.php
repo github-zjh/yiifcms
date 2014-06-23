@@ -36,7 +36,7 @@ class QuestionController extends Backend
         $criteria->order = 't.id DESC';
         $count = $model->count( $criteria );
         $pages = new CPagination( $count );
-        $pages->pageSize = 13;
+        $pages->pageSize = 15;
         $pageParams = $this->buildCondition( $_GET, array ( 'site_name' ) );
         $pages->params = is_array( $pageParams ) ? $pageParams : array ();
         $criteria->limit = $pages->pageSize;

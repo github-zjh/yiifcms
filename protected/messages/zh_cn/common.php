@@ -19,6 +19,7 @@
 return array (
 	//公共
 	'The requested page does not exist.'=>'请求页面不存在(404)',
+	'Unknown Error'=> '未知错误',
 	'Contact' => '联系我们',	
 	'About' => '关于',
 	'Home' => '首页',
@@ -187,5 +188,16 @@ return array (
 	
 	/* 软件 */
 	'No Cover' =>'暂无封面!',
-	'Source Is Not Found' => '该资源不存在，或者已经删除'
+	'Source Is Not Found' => '该资源不存在，或者已经删除',
+	
+	/* 单页 */
+	'Page Menu' => '栏目导航',
+	
+	/* 留言反馈 */	
+	'Question Title' => '留言反馈',
+	'Question Keywords' => '留言，建议，意见，反馈',
+	'Question Description' => '如果您有什么意见或者建议，请反馈给我们，我们会第一时间处理，谢谢。',
+	'Question Submit Success' => '已提交，谢谢您的反馈！',
+	'Mobile Number Is Wrong' => '手机号码格式不正确',
+	'QQ Number Is Wrong' => 'QQ号码格式不正确',
 );

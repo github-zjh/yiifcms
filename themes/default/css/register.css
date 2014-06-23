@@ -1,9 +1,9 @@
 @CHARSET "UTF-8";
 body { background-color:#FFFFFF; }
-.reg_head { height:150px; width:100%; background-color:#82C2E1;}
+.reg_head { height:150px; width:100%; background-color:#82C2E1; text-align:center;}
 .reg_head h1 { padding-top:30px;  color:#FFFFFF; font-size:16px; letter-spacing:2px; }
 .reg_body { position:relative; top:-70px; width:700px; margin:0 auto;}
-.reg_body h2 { line-height:70px; height:70px; border-radius:5px 5px 0 0; background-color:#428BCA; color:#FFFFFF; font-size:24px; font-weight:bold;}
+.reg_body h2 { line-height:70px; height:70px; text-align:center; border-radius:5px 5px 0 0; background-color:#428BCA; color:#FFFFFF; font-size:24px; font-weight:bold;}
 #register-form .notice { width:500px; margin:0 auto; margin-top:20px; text-align:left; line-height:28px; }
 #register-form .notice strong { color:#428BCA;}
 #register-form { width:698px; margin:0 auto; border:1px solid #CCCCCC; border-radius:0 0 5px 5px; background-color:#F5F5F5; }
@@ -28,7 +28,7 @@ body { background-color:#FFFFFF; }
 #register-form .captcha_img a { color:#428BCA; }
 #register-form .form_box { width:490px; padding:20px 0 40px 0; margin-left:200px; }
 #register-form .form_box li { height:38px; line-height: 38px; margin-bottom: 20px; }
-#register-form .form_box li .errorMessage { float:right; width:160px; background-color:#F2DEDE;  border-radius:5px; border: 1px solid #EED3D7; }
+#register-form .form_box li .errorMessage { float:right; width:160px; background-color:#F2DEDE;  border-radius:5px; border: 1px solid #EED3D7; text-align:center;}
 #register-form .fa_error:before { content: "\f00d"; margin-right:10px;}
 #register-form .form_box li.last { text-align:left; }
 #register-form .error_message em { display:block; color:#B94A48; }
@@ -37,7 +37,7 @@ body { background-color:#FFFFFF; }
 	color:#FFFFFF;	cursor:pointer;
 }
 #register-form .login_link { color:#428BCA; }
-.copyright { margin-top:30px; }
+.copyright { margin-top:30px; text-align:center;}
 .copyright p { line-height:30px; }
 
 #register-form .form_box .emailist{ left:43px; border:1px solid #bdbdbd; border-radius: 4px; background-color:#fff; color:#666; font-size:14px; list-style-type:0; padding:0; margin:0; overflow:hidden;}

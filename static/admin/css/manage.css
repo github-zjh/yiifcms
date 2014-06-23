@@ -16,16 +16,17 @@ body { margin: 0; padding: 0; overflow: hidden; min-width: 950px; }
 .header .nav ul { margin-top: 59px; height: 36px; line-height: 36px; margin-left: -1px; *display:inline;
 zoom: 1; }
 .header .nav ul li {font-size: 14px; height: 36px; line-height: 36px; float: left; text-align: center; margin: 0 3px 0 0; }
-.header .nav ul li a { display: block; padding: 0 15px; color: #3B5999; text-decoration: none; font-weight: bold; background-image: url(about:blank); }
+.header .nav ul li a { display: block; padding: 0 15px; color: #666666; text-decoration: none; font-weight: bold; background-image: url(about:blank); }
+.header .nav ul li a:hover,
 .header .nav ul li.active,
 .header .nav ul li.active div,
-.header .nav ul li.active a { background: #3C5880 }
+.header .nav ul li.active a { background: #996600 }
 .header .nav ul li.active { background-position: 0 -36px; background-repeat: repeat-x; overflow: hidden; }
-.header .nav ul li.active a { background-position: 100% -72px; color: #FFF; }
+.header .nav ul li.active a, .header .nav ul li a:hover { background-position: 100% -72px; color: #FFF; }
 .header .logininfo { float: right; height: 32px; line-height: 32px; color: #fff; margin: 10px 10px 0 0; font-size: 12px; }
 .header .logininfo em { font-style: normal; }
-.header .logininfo a { color: #2C4A77; text-decoration: none; }
-.header .logininfo span.welcome { font-weight: bold; color: #2C4A77 }
+.header .logininfo a { color: #333300; text-decoration: none; }
+.header .logininfo span.welcome { font-weight: bold; color: #333300 }
 .loginmain { margin: 100px 0; }
 .main { width: 100%; min-height: 200px; display: inline-block; }
 .main .mainA { width: 159px; height: 100%; font-size: 12px; float: left; border-right: 1px solid #E2E2E2; background: whiteSmoke }
@@ -42,9 +43,9 @@ zoom: 1; }
 .main .mainD th { font-weight: normal; white-space: pre; text-align: right; padding-right: 10px; }
 .menu ul { margin: 0; padding: 0; width: 136px; margin: 8px; list-style: none; }
 .menu ul li { height: 30px; line-height: 30px; margin: 0 0 5px; padding: 0; text-align: left; }
-.menu ul li a { color: #2C4A77; display: block; height: 30px; line-height: 30px; font-size: 12px; text-decoration: none; text-indent: 28px; }
+.menu ul li a { color: #333300; display: block; height: 30px; line-height: 30px; font-size: 12px; text-decoration: none; text-indent: 28px; }
 .menu ul li a:hover { background: #DCE0E1; text-decoration: none; font-weight: bold; }
-.menu ul li.active a { background: #3C5880; color: #FFF; font-weight: bold; }
+.menu ul li.active a { background: #996600; color: #FFF; font-weight: bold; }
 .txt { border: 1px solid; border-color: #666 #ccc #ccc #666; outline: none; padding: 4px 5px; width: 150px; }
 .txt:hover { border-color: #09c; background: #F5F9FD; }
 .btn { border: 1px solid #09c; background: #64C3E9; color: #fff; padding: 5px 30px; padding: 8px 30px 3px\9; *padding:6px 15px 2px;
@@ -56,7 +57,7 @@ border: none\9; }
 #loginform .msg { position: absolute; top: -40px; color: #f50; margin: 0 20px; width: 250px; line-height: 20px; }
 #loginform span { position: relative; display: inline-block; line-height: 0; }
 #loginform span img { visibility: hidden; cursor: pointer; position: absolute; top: 0; left: 100%; margin-left: 2px; }
-.topline { width: auto; height: 3px; border-right: 0; background: #3C5880 }
+.topline { width: auto; height: 3px; border-right: 0; background: #996600 }
 
 /*重写样式*/
 html,

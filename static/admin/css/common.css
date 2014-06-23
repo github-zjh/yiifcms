@@ -59,13 +59,13 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus { border-
 .tbTitle{background: #eef3f7; font-size:14px; font-weight:bold}
 .action{padding:5px 0}
 .action li{float:left; margin-right:5px}
-.action li a{ background: #51B148; color: #FFF; font: bold 14px arial, sans-serif; padding: 0.15em 1em; text-transform: uppercase;   margin: 0; overflow: visible; width: auto; *width: 1;
+.action li a{ background: #666666; color: #FFF; font: bold 14px arial, sans-serif; padding: 0.15em 1em; text-transform: uppercase;   margin: 0; overflow: visible; width: auto; *width: 1;
 cursor: pointer; padding:7px 20px; display:block }
-.action li a:hover{ background: #00A3CF;}
-.action li a.current{background: #00A3CF;}
-.actionLink{ background: #51B148; color: #FFF; font: bold 14px arial, sans-serif; padding: 0.15em 1em; text-transform: uppercase;   margin: 0; overflow: visible; width: auto; *width: 1;
+.action li a:hover{ background: #996600;}
+.action li a.current{background: #996600;}
+.actionLink{ background: #009966; color: #FFF; font: bold 14px arial, sans-serif; padding: 0.15em 1em; text-transform: uppercase;   margin: 0; overflow: visible; width: auto; *width: 1;
 cursor: pointer; padding:5px 10px; display:inline-block }
-.actionLink:hover{ background: #00A3CF;}
+.actionLink:hover{ background: #996600;}
 /*------------*/
 .form_table td { border-bottom: #eee 1px solid; height: 30px; line-height: 25px; padding-left: 5px; }
 .form_table td.tb_title { font-weight: bold }

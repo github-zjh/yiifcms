@@ -63,7 +63,7 @@ class PostController extends FrontBase
     //分页
     $count = $post->count( $criteria );    
     $pages = new CPagination( $count );
-    $pages->pageSize = 1;
+    $pages->pageSize = 15;
     
     $criteria->limit = $pages->pageSize;
     $criteria->offset = $pages->currentPage * $pages->pageSize;

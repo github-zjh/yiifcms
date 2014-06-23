@@ -206,9 +206,9 @@ class Controller extends CController
 				break;
 			case 'script':
 				if ( empty( $redirect ) ) {
-					exit( '<script language="javascript">alert("' . $content . '");window.history.back(-1)</script>' );
+					exit( '<script type="text/javascript">alert("' . $content . '");window.history.back(-1)</script>' );
 				} else {
-					exit( '<script language="javascript">alert("' . $content . '");window.location=" ' . $redirect . '   "</script>' );
+					exit( '<script type="text/javascript">alert("' . $content . '");window.location=" ' . $redirect . '   "</script>' );
 				}
 				break;
 		}

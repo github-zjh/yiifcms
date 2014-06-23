@@ -40,7 +40,7 @@
 					<?php echo $form->error($model,'email'); ?>       
 				</li>
 				<li class="clear">					
-					<?php echo $form->textField($model, 'verifyCode', array('class'=>'form-control captcha','value'=>'','placeholder'=>'验证码'));?>
+					<?php echo $form->textField($model, 'verifyCode', array('class'=>'form-control captcha','placeholder'=>'验证码'));?>
 					<div class="captcha_img">
 						<?php $this->widget ( 'CCaptcha', array ('showRefreshButton' => true, 'clickableImage' => true, 'buttonType' => 'link', 'buttonLabel' => '换一张', 'imageOptions' => array ('alt' => '点击换图', 'align'=>'absmiddle'  ) ) );?>
 					</div>

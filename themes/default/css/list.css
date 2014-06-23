@@ -24,7 +24,7 @@
 
 
 .content_right .category { margin-bottom:30px; }
-.content_right .category dt { height:34px; width:150px; line-height:34px; margin-bottom:30px; background-color:#428BCA; color:#FFFFFF; border-radius:5px; font-size:16px; font-weight:bold; text-align:center;}
+.content_right .category dt { height:34px; width:150px; line-height:34px; margin-bottom:30px; background-color:#996600; color:#FFFFFF; border-radius:5px; font-size:16px; font-weight:bold; text-align:center;}
 .content_right .category dd { padding-left:16px; margin-bottom:16px; background:url(../images/ico_list_blue.png) no-repeat left center;}
 .content_right .recent_post dd { background-image:url(../images/ico_list_grey.png);}
 

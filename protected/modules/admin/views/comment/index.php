@@ -42,7 +42,7 @@ $(document).ready(function(){
     <?php foreach ($datalist as $row):?>   
     <tr class="tb_list" >
       <td ><input type="checkbox" name="id[]" value="<?php echo $row->id?>">
-        <?php echo $row>id?></td>      
+        <?php echo $row->id?></td>      
       <td ><?php echo $row->$table->title ?></td>
       <td ><?php echo nl2br(htmlspecialchars($row->content)) ?></td>
       <td ><?php echo $row->status=='Y'?"<span style='color:green'>".Yii::t('admin','Pass Checking')."</span>":"<span style='color:red'>".Yii::t('admin','Wait Checking')."</span>"; ?></td>
@@ -63,7 +63,7 @@ $(document).ready(function(){
             <option value="commentVerify"><?php echo Yii::t('admin','Verify Pass');?></option>
             <option value="commentUnVerify"><?php echo Yii::t('admin','Cancel Verify');?></option>
           </select>
-          <input id="submit_maskall" class="button confirmSubmit" type="submit" value="<<?php echo Yii::t('common','Submit');?>" name="maskall" />
+          <input id="submit_maskall" class="button confirmSubmit" type="submit" value="<?php echo Yii::t('common','Submit');?>" name="maskall" />
         </div></td>
     </tr>
 </table>

@@ -7,6 +7,7 @@
  */
 class PageController extends FrontBase
 {	
+	protected $_menu_unique;
 	
  /**
   *  详情
@@ -26,7 +27,8 @@ class PageController extends FrontBase
       $this->_seoDescription = $page->seo_description;
       
       //所有单页
-      $pagelists = Page::model()->findAll('status=:status ORDER BY sort_order ASC, id DESC' , array(':status'=>'Y'));
+      $pagelists = Page::model()->findAll('status=:status ORDER BY sort_order, id' , array(':status'=>'Y'));
+      $this->_menu_unique = $title_alias;
       
       //导航
       $navs[] = array('url'=>$this->_request->getUrl(),'name'=>$page->title);

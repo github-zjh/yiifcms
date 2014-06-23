@@ -1,0 +1,40 @@
+@CHARSET "UTF-8";
+
+#content  { width:1170px; margin:0 auto; text-align:left; margin-bottom:70px; }
+.crumb_menu a { color:#555555; }
+.local_address { margin:60px 0; padding:28px 18px; background-color:#ececec;}
+.question_form { float:left; width:68%; }
+.question_form caption { margin-bottom:10px; font-size:20px; font-weight:bold; text-align:left; }
+.question_form tr { line-height:60px; }
+.question_form th { padding-right:20px; font-weight:bold; font-size:14px;}
+.question_form input[type="text"] { width:260px; padding:10px; border-left:1px solid #666666; border-top:1px solid #666666; border-radius:3px; background-color:#e5e6e6; }
+.question_form textarea { border-left:1px solid #666666; border-top:1px solid #666666; min-width:500px; max-width:500px; min-height:240px; max-height:240px; padding:10px; background-color:#e5e6e6;}
+.question_form #Question_verifyCode { width:120px;}
+.question_form .submit {
+	display:block;
+	width:110px; 
+	margin-top:30px; 	
+	height:40px;
+	border-radius:5px; background-color:#e8645a;
+	-webkit-box-shadow:0 5px 0 #e2534b;
+	-moz-box-shadow: 0 5px 0 #e2534b;
+	box-shadow: 0 5px 0 #e2534b;
+	filter: progid:DXImageTransform.Microsoft.Shadow(color='#e2534b', Direction=-180, Strength=5);
+	text-decoration:none;
+	font-size:24px;
+	color:#FFFFFF;
+	text-align:center;
+	cursor:pointer;	
+}
+.question_form .errorMessage { line-height:37px; background-color:#F2DEDE;  border-radius:5px; border: 1px solid #EED3D7; text-align:center;}
+.question_form .errorMessage:before { content: "X"; margin-right:10px;}
+
+.contact_address { float:right; width:30%;}
+.contact_address .address_title { margin-bottom:10px; font-size:16px; font-weight:bold;}
+.contact_address .address_list li { line-height:38px; }
+
+
+
+
+
+

@@ -14,7 +14,12 @@
 <table class="form_table">
   <tr>
     <td ><div class="custom_title"><?php echo Yii::t('admin','UserName');?>：</div>
-      <?php echo $form->textField($model,'username',array('size'=>50,'maxlength'=>128)); ?></td>
+    <?php echo $form->hiddenField($model,'user_id');?>
+      <?php $user = User::model()->findByPk($model->user_id); echo $user->username?$user->username:'网友';?></td>
+  </tr>
+  <tr>
+    <td ><div class="custom_title"><?php echo Yii::t('admin','IP');?>：</div>
+      <?php echo $model->client_ip?$model->client_ip:'未知'; ?></td>
   </tr>
   <tr>
     <td ><div class="custom_title"><?php echo Yii::t('admin','RealName');?>：</div>
@@ -29,17 +34,13 @@
       <?php echo $form->textField($model,'telephone',array('size'=>50,'maxlength'=>128)); ?></td>
   </tr>
   <tr>
-    <td ><div class="custom_title"><?php echo Yii::t('admin','Other Contact Method');?>：</div>
-      <?php echo $form->textField($model,'contact_other',array('size'=>50,'maxlength'=>128)); ?></td>
+    <td ><div class="custom_title"><?php echo Yii::t('admin','QQ');?>：</div>
+      <?php echo $form->textField($model,'qq',array('size'=>50,'maxlength'=>128)); ?></td>
   </tr>
   <tr>
     <td><div class="custom_title"><?php echo Yii::t('admin','Question Content');?>：</div>
       <?php echo $form->textArea($model,'question',array('rows'=>10, 'cols'=>70)); ?></td>
-  </tr>
-  <tr>
-    <td><div class="custom_title"><?php echo Yii::t('admin','Question Reply');?>：</div>
-      <?php echo $form->textArea($model,'answer_content',array('rows'=>10, 'cols'=>70)); ?></td>
-  </tr>
+  </tr>  
   <tr class="submit">
     <td ><input type="submit" name="editsubmit" value="<?php echo Yii::t('common','Submit');?>" class="button" tabindex="3" /></td>
   </tr>

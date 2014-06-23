@@ -32,10 +32,7 @@ $(document).ready(function(){
     <tr class="tb_list">
       <td ><input type="checkbox" name="id[]" value="<?php echo $row->id?>">
         <?php echo $row->id?></td>
-      <td ><?php echo nl2br(htmlspecialchars($row->question))?>
-        <?php if($row->answer_content):?>
-        <div class="answer_content"><?php echo htmlspecialchars($row->answer_content)?></div>
-        <?php endif?></td>
+      <td ><?php echo nl2br(htmlspecialchars($row->question))?></td>
       <td ><?php echo date('Y-m-d H:i',$row->create_time)?></td>
       <td ><a href="<?php echo  $this->createUrl('update',array('id'=>$row->id))?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;<a href="<?php echo  $this->createUrl('batch',array('command'=>'delete', 'id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->_baseUrl?>/static/admin/images/delete.png" align="absmiddle" /></a></td>
     </tr>
@@ -49,7 +46,7 @@ $(document).ready(function(){
           <label for="chkall"><?php echo Yii::t('admin','Check All');?></label>
           <select name="command">
             <option value=""><?php echo Yii::t('admin','Select Operate');?></option>
-            <option value="adminLoggerDelete"><?php echo Yii::t('admin','Delete');?></option>
+            <option value="delete"><?php echo Yii::t('admin','Delete');?></option>
           </select>
           <input id="submit_maskall" class="button confirmSubmit" type="submit" value="<?php echo Yii::t('common','Submit');?>" name="maskall" />
         </div></td>

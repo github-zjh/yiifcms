@@ -1,31 +1,28 @@
 <?php
 
 /**
- * This is the model class for table "{{Question}}".
+ * This is the model class for table "{{question}}".
  *
- * The followings are the available columns in table '{{Question}}':
+ * The followings are the available columns in table '{{question}}':
  * @property string $id
  * @property string $user_id
- * @property integer $scope
- * @property string $username
  * @property string $realname
  * @property string $email
  * @property string $telephone
+ * @property string $qq
  * @property string $question
- * @property string $contact_other
- * @property string $answer_status
- * @property string $answer_content
- * @property string $status_is
+ * @property string $client_ip
  * @property string $create_time
  */
 class Question extends CActiveRecord
 {
+	public $verifyCode;
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return '{{Question}}';
+		return '{{question}}';
 	}
 
 	/**
@@ -36,19 +33,43 @@ class Question extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('question', 'required'),
-			array('scope', 'numerical', 'integerOnly'=>true),
+			array('realname, email, question', 'required'),
+			array('verifyCode','required','on'=>'create'),
 			array('user_id, create_time', 'length', 'max'=>10),
-			array('username, contact_other', 'length', 'max'=>100),
-			array('realname', 'length', 'max'=>50),
-			array('email', 'length', 'max'=>60),
-			array('telephone', 'length', 'max'=>20),
-			array('answer_status, status_is', 'length', 'max'=>1),
-			array('answer_content', 'safe'),
+			array('realname', 'length', 'max'=>50),			
+			array('email','email'),		
+			array('telephone','checkPhone'),
+			array('qq', 'checkQQ'),
+			array('client_ip', 'length', 'max'=>15),
+			array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements()),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, user_id, scope, username, realname, email, telephone, question, contact_other, answer_status, answer_content, status_is, create_time', 'safe', 'on'=>'search'),
+			array('id, user_id, realname, email, telephone, qq, question, client_ip, create_time', 'safe', 'on'=>'search'),
 		);
+	}
+	
+	/**
+	 * 
+	 * 校验手机号码
+	 */
+	public function checkPhone(){
+		if($this->telephone && !preg_match('/^1[3|5|8]\d{9}$/', $this->telephone)){
+			$this->addError('telephone',Yii::t('common','Mobile Number Is Wrong'));
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 *
+	 * 校验qq号码
+	 */
+	public function checkQQ(){
+		if($this->qq && !preg_match('/^\d{6,12}$/', $this->qq)){
+			$this->addError('qq',Yii::t('common','QQ Number Is Wrong'));
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -68,19 +89,16 @@ class Question extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
-			'user_id' => 'User',
-			'scope' => 'Scope',
-			'username' => 'Username',
-			'realname' => 'Realname',
-			'email' => 'Email',
-			'telephone' => 'Telephone',
-			'question' => 'Question',
-			'contact_other' => 'Contact Other',
-			'answer_status' => 'Answer Status',
-			'answer_content' => 'Answer Content',
-			'status_is' => 'Status Is',
-			'create_time' => 'Create Time',
+			'id' => Yii::t('model','QuestionId'),
+			'user_id' => Yii::t('model','QuestionUser_id'),
+			'realname' => Yii::t('model','QuestionRealname'),
+			'email' => Yii::t('model','QuestionEmail'),
+			'telephone' => Yii::t('model','QuestionTelephone'),
+			'qq' => Yii::t('model','QuestionQq'),
+			'question' => Yii::t('model','QuestionQuestion'),
+			'client_ip' => Yii::t('model','QuestionClient_ip'),
+			'create_time' => Yii::t('model','QuestionCreate_time'),
+			'verifyCode' => Yii::t('model','verifyCode'),
 		);
 	}
 
@@ -106,27 +124,21 @@ class Question extends CActiveRecord
 
 		$criteria->compare('user_id',$this->user_id,true);
 
-		$criteria->compare('scope',$this->scope);
-
-		$criteria->compare('username',$this->username,true);
-
 		$criteria->compare('realname',$this->realname,true);
 
 		$criteria->compare('email',$this->email,true);
 
 		$criteria->compare('telephone',$this->telephone,true);
 
+		$criteria->compare('qq',$this->qq,true);
+
 		$criteria->compare('question',$this->question,true);
 
-		$criteria->compare('contact_other',$this->contact_other,true);
-
-		$criteria->compare('answer_status',$this->answer_status,true);
-
-		$criteria->compare('answer_content',$this->answer_content,true);
-
-		$criteria->compare('status_is',$this->status_is,true);
+		$criteria->compare('client_ip',$this->client_ip,true);
 
 		$criteria->compare('create_time',$this->create_time,true);
+		
+		$criteria->compare('verifyCode',$this->verifyCode,true);
 
 		return new CActiveDataProvider('Question', array(
 			'criteria'=>$criteria,

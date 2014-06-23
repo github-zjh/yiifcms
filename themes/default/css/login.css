@@ -63,7 +63,7 @@
 }
 #login-form ul { width:252px; margin:0 auto; }
 #login-form li { line-height: 38px; margin-bottom: 20px; }
-#login-form li.error_message { background-color:#F2DEDE;  border-radius:5px; border: 1px solid #EED3D7; }
+#login-form li.error_message { background-color:#F2DEDE;  border-radius:5px; border: 1px solid #EED3D7; text-align:center;}
 #login-form .fa_error:before { content: "\f00d"; margin-right:10px;}
 #login-form li.last { text-align:left; }
 #login-form .error_message em { display:block; color:#B94A48; }
@@ -100,7 +100,7 @@
 	z-index:-1; 
 }
 .mod_footer a { font-size:14px; color: #428BCA; }
-.copyright { margin-top:30px; }
+.copyright { margin-top:30px; text-align:center;}
 .copyright p { line-height:30px; }
 
 
