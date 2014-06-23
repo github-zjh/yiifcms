@@ -31,6 +31,7 @@ $(document).ready(function(){
       <th width="8%">ID</th>
       <th width="25%"><?php echo Yii::t('admin','Title');?></th>
       <th width="15%"><?php echo Yii::t('admin','Add Time');?></th>
+      <th width="15%"><?php echo Yii::t('admin','Status');?></th>
       <th><?php echo Yii::t('admin','Operate');?></th>
     </tr>
     <?php foreach ($datalist as $row):?>
@@ -40,6 +41,7 @@ $(document).ready(function(){
       <td ><?php echo $row->title?><br />
         <?php echo $row->title_alias?></td>
       <td ><?php echo date('Y-m-d H:i',$row->create_time)?></td>
+      <td><?php if($row->status == 'Y'){echo Yii::t('admin','Show');}else{echo "<span class='red'>".Yii::t('admin','Hidden')."</span>";}?></td>
       <td ><a href="<?php echo  $this->createUrl('update',array('id'=>$row->id))?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;<a href="<?php echo  $this->createUrl('batch',array('command'=>'delete', 'id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->_baseUrl?>/static/admin/images/delete.png" align="absmiddle" /></a></td>
     </tr>
     <?php endforeach;?>
@@ -53,6 +55,8 @@ $(document).ready(function(){
           <select name="command">
             <option value=""><?php echo Yii::t('admin','Select Operate');?></option>
             <option value="delete"><?php echo Yii::t('admin','Delete');?></option>
+            <option value="show"><?php echo Yii::t('admin','Show');?></option>
+            <option value="hidden"><?php echo Yii::t('admin','Hidden');?></option>
           </select>
           <input id="submit_maskall" class="button confirmSubmit" type="submit" value="<?php echo Yii::t('common','Submit');?>" name="maskall" />
         </div></td>

@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This is the model class for table "{{Page}}".
+ * This is the model class for table "{{page}}".
  *
- * The followings are the available columns in table '{{Page}}':
+ * The followings are the available columns in table '{{page}}':
  * @property string $id
  * @property string $title
  * @property string $title_second
@@ -20,7 +20,7 @@
  * @property string $attach_thumb
  * @property integer $sort_order
  * @property string $view_count
- * @property string $status_is
+ * @property string $status
  * @property string $create_time
  */
 class Page extends CActiveRecord
@@ -30,7 +30,7 @@ class Page extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{Page}}';
+		return '{{page}}';
 	}
 
 	/**
@@ -49,11 +49,11 @@ class Page extends CActiveRecord
 			array('template', 'length', 'max'=>30),
 			array('attach_file, attach_thumb', 'length', 'max'=>60),
 			array('view_count, create_time', 'length', 'max'=>10),
-			array('status_is', 'length', 'max'=>1),
+			array('status', 'length', 'max'=>1),
 			array('intro, seo_description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, title_second, title_alias, html_path, html_file, intro, content, seo_title, seo_keywords, seo_description, template, attach_file, attach_thumb, sort_order, view_count, status_is, create_time', 'safe', 'on'=>'search'),
+			array('id, title, title_second, title_alias, html_path, html_file, intro, content, seo_title, seo_keywords, seo_description, template, attach_file, attach_thumb, sort_order, view_count, status, create_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -90,7 +90,7 @@ class Page extends CActiveRecord
 			'attach_thumb' => 'Attach Thumb',
 			'sort_order' => 'Sort Order',
 			'view_count' => 'View Count',
-			'status_is' => 'Status Is',
+			'status' => 'Status',
 			'create_time' => 'Create Time',
 		);
 	}
@@ -145,7 +145,7 @@ class Page extends CActiveRecord
 
 		$criteria->compare('view_count',$this->view_count,true);
 
-		$criteria->compare('status_is',$this->status_is,true);
+		$criteria->compare('status',$this->status,true);
 
 		$criteria->compare('create_time',$this->create_time,true);
 

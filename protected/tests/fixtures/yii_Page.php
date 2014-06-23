@@ -18,7 +18,7 @@ return array(
 		'attach_thumb' => '',
 		'sort_order' => '',
 		'view_count' => '',
-		'status_is' => '',
+		'status' => '',
 		'create_time' => '',
 	),
 	'sample2'=>array(
@@ -37,7 +37,7 @@ return array(
 		'attach_thumb' => '',
 		'sort_order' => '',
 		'view_count' => '',
-		'status_is' => '',
+		'status' => '',
 		'create_time' => '',
 	),
 	*/

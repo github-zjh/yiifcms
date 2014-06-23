@@ -16,13 +16,13 @@
 			<ul id="menu">			
 				<?php foreach((array)$this->_public_menu as $menu):?>				
 				<li <?php if(isset($this->_menu_unique) && $this->_menu_unique == $menu['value']['unique']):?> class="selected"<?php endif;?>>
-					<a href="<?php echo $menu['value']['menu_link'];?>"><?php echo $menu['value']['menu_name'];?></a>
+					<a href="<?php echo $menu['value']['menu_link'];?>" <?php if($menu['value']['target']== 'Y'):?> target="_blank" <?php endif;?>><?php echo $menu['value']['menu_name'];?></a>
 					<?php if($menu['children']):?>
 					<div class="child_box">											
 						<ul class="child_menu">
 							<?php $i=1;?>
 							<?php foreach($menu['children'] as $child):?>
-							<li <?php if($i == count($menu['children'])):?> class="last"<?php endif;?>><a href="<?php echo $child['value']['menu_link'];?>"><?php echo $child['value']['menu_name'];?></a></li>
+							<li <?php if($i == count($menu['children'])):?> class="last"<?php endif;?>><a href="<?php echo $child['value']['menu_link'];?>" <?php if($child['value']['target']== 'Y'):?> target="_blank" <?php endif;?>><?php echo $child['value']['menu_name'];?></a></li>
 							<?php $i++;?>
 							<?php endforeach;?>						
 						</ul>						

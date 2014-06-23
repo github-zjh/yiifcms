@@ -26,7 +26,7 @@ class PostController extends FrontBase
   /**
    * 首页
    */
-  public function actionIndex() {  	
+  public function actionIndex() {  
     $catalog_id = trim( $this->_request->getParam( 'catalog_id' ) );
     $keyword = trim( $this->_request->getParam( 'keyword' ) );
     $catalog = Catalog::model()->findByPk($catalog_id);    
@@ -63,7 +63,7 @@ class PostController extends FrontBase
     //分页
     $count = $post->count( $criteria );    
     $pages = new CPagination( $count );
-    $pages->pageSize = 10;
+    $pages->pageSize = 1;
     
     $criteria->limit = $pages->pageSize;
     $criteria->offset = $pages->currentPage * $pages->pageSize;

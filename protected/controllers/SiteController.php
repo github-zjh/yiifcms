@@ -81,21 +81,15 @@ class SiteController extends FrontBase
 				$this->refresh();
 			}
 		}
+		
+		//SEO
+		$this->_seoTitle = $this->_setting['seo_title'];
+		$this->_seoKeywords = $this->_setting['seo_keywords'];
+		$this->_seoDescription = $this->_setting['seo_description'];
+		
 		//加载样式表
 		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/contact.css");
 		$this->render('contact',array('model'=>$model));
 	}	
-	
-	/**
-	 * 关于我们
-	 */
-	public function actionAbout(){
-		//导航标示
-		$this->_menu_unique = 'about';
-		//加载样式表
-		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/about.css");
-		$this->render('about');
-	}
-
 	
 }

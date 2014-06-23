@@ -125,6 +125,24 @@ class PageController extends Backend
             		}
             	}
             	break;
+            case 'show' :
+				foreach ( ( array ) $ids as $id ) {
+					$pageModel = Page::model ()->findByPk ( $id );
+					if ($pageModel) {
+						$pageModel->status = 'Y';
+						$pageModel->save ();
+					}
+				}
+				break;
+			case 'hidden' :
+				foreach ( ( array ) $ids as $id ) {
+					$pageModel = Page::model ()->findByPk ( $id );
+					if ($pageModel) {
+						$pageModel->status = 'N';
+						$pageModel->save ();
+					}
+				}
+				break;
             default:
                 throw new CHttpException(404, Yii::t('admin','Error Operation'));
                 break;

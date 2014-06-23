@@ -11,10 +11,10 @@ class SoftController extends FrontBase
 	protected $_menu_unique;
 	
 	public function init(){
-		parent::init();
+		parent::init();		
 		//导航标示
 		$this->_menu_unique = 'soft';
-		//栏目
+		//栏目		
 		$this->_catalog = Catalog::model()->findAll('status_is=:status AND type = :type',array(':status'=>'Y',':type'=>$this->_type_ids['soft']));
 	}
 	  /**
@@ -122,8 +122,8 @@ class SoftController extends FrontBase
 	 * 
 	 * 软件下载
 	 */
-	public function actionDownload($id){
-		$soft = Soft::model()->findByPk($id);
+	public function actionDownload($id){		
+		$soft = Soft::model()->findByPk($id);		
 		if($soft){
 			$file = Upload::model()->findByPk($soft->fileid);
 			if($file && file_exists($file->file_name)){
@@ -134,10 +134,10 @@ class SoftController extends FrontBase
 				Yii::app()->request->sendFile($soft->title.'.'.$file->file_ext, file_get_contents($file->file_name));
 				exit;
 			}else{
-				$this->message('error',Yii::t('common','Source Is Not Found'),$this->createUrl('soft/view', array('id'=>$id)));
+				throw new CHttpException(404, Yii::t('common','Source Is Not Found'));	
 			}			
 		}else{
-			$this->message('error',Yii::t('common','Source Is Not Found'),$this->createUrl('soft/view', array('id'=>$id)));
+			throw new CHttpException(404, Yii::t('common','Source Is Not Found'));	
 		}
 	}
   

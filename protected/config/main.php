@@ -48,9 +48,14 @@ return array(
 			'showScriptName'=>false,			
 			'urlSuffix'=>'.htm',			
 			'rules'=>array(	
+				'page/<title_alias:\w+>'=>'page/index',   //单页		
+				'<controller:\w+>/<action:\w+>/cat_<catalog_id:\d+>/page_<page:\d+>'=>'<controller>/<action>', //分页
+				'<controller:\w+>/<action:\w+>/page_<page:\d+>'=>'<controller>/<action>', //分页
+				'<controller:\w+>/<action:\w+>/cat_<catalog_id:\d+>' => '<controller>/<action>',  //内容列表				
+				'tag/<tag:\w+>' => 'tag/',            //标签搜索页										
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',				
+				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',				
 			),
 		),
 		
@@ -124,7 +129,7 @@ return array(
 			'ContentType' => 'text/html', //发送文档类型
 			'Username' => 'xb_zjh@126.com',  //发件人邮箱
 			'Password' => 'zjh376685457',    //发件人邮箱密码
-			'FromName' => '我的yii网站',       //发送人名称			
+			'FromName' => '我的yii网站<xb_zjh@126.com>',       //发送人名称			
 		),
 		'safestr'=> '!(^*##@', //安全分隔符		
 	),

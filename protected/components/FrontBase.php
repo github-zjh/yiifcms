@@ -67,8 +67,8 @@ EOT;
 		foreach((array)$menus as $menu){
 			$data[] = $menu->attributes;
 		}
-		$tree->setTree($data, 'id', 'parent_id', array('menu_name','menu_link','unique'));
-		$this->_public_menu = $tree->getArrayList(0);
+		$tree->setTree($data, 'id', 'parent_id', array('menu_name','menu_link','unique','target'));
+		$this->_public_menu = $tree->getArrayList(0);		
 		$this->_cur_url = Yii::app()->request->getUrl();
 		//登录状态
 		if(!Yii::app()->user->getIsGuest()){

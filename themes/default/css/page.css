@@ -1,23 +1,29 @@
 @CHARSET "UTF-8";
 
- #content { width:1170px; margin:0 auto; text-align:left; margin-bottom:70px; }
- .list_box { padding:40px 0; margin-bottom:45px; border-bottom:3px solid #e5e6e6;}
- .list_head { float:left; width:70px; text-align:center; }
- .list_head .date_time { height:80px; line-height:40px; background-color:#FFFFFF; font-size:16px; }
- .list_body { float:right; width:970px;}
- .content_type { width:70px; height:70px; margin-top:20px; background:url(../images/type_text.png) no-repeat left center;}
- .type_image { background-image:url(../images/type_image.png);}
- .type_video { background-image:url(../images/type_video.png);}
- .list_body h2 a{ font-size:24px; font-weight:bold; color:#76c7c0; }
- .list_body .view_info { padding:18px 0 30px 0;}
- .list_body .view_info span { margin-right:15px; }
- .list_body .view_info em { color:#e2534b; }
- .list_body .view_info .tags { padding-left:23px; background:url(../images/ico_tag.png) no-repeat left center; }
- .list_body .view_info .views { padding-left:23px; background:url(../images/ico_view.png) no-repeat left center; }
- .list_body .content_info { margin-bottom:20px; }
- .share_box { background-color:#ececec; padding:16px 12px;}
- .share_box strong { font-size:14px; line-height:40px;}
- .share_box ul li { float:left; margin:0 10px;}
- .share_box li a { display:block; width:40px; height:40px; background:url(../images/tmp/tmp_ico_share.png) no-repeat center center;}
+#main { width:1170px; margin:0 auto; margin-top:67px;}
+.page_left { float:left; width:auto;}
+.page_right { float:right; width:68%;}
+a { color:#555555; }
 
+#bread_crumbs { margin:0; }
+.page_right .crumb_box { width:auto;}
+
+.page_left dt {
+    background-color: #428bca;    
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    height: 34px;
+    line-height: 34px;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 150px;
+}
+.page_left dd {    
+	border:1px dotted #DDDDDD;
+	padding:10px 16px;
+	margin-bottom:10px;     
+}
+.page_left dd.selected { background-color:#e8645a;}
+.page_left dd.selected a{ color:#FFFFFF;}
 

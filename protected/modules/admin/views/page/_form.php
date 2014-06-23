@@ -73,6 +73,18 @@
   <tr >
     <td ><?php echo CHtml::activeTextArea($model,'seo_description',array('rows'=>5, 'cols'=>80)); ?></td>
   </tr>
+  
+   <tr >
+    <td class="tb_title"><?php echo Yii::t('admin','Status');?>：</td>
+  </tr>
+  <tr >
+    <td >
+    	<?php echo $form->dropDownList($model,'status',array('Y'=>Yii::t('admin','Show'), 'N'=>Yii::t('admin','Hidden'))); ?>
+        <?php echo Yii::t('admin','Sort Order');?> <?php echo $form->textField($model,'sort_order',array('size'=>5,'maxlength'=>10)); ?>
+    
+    </td>
+  </tr>
+  
   <tr class="submit">
     <td ><input name="oAttach" type="hidden" value="<?php echo $model->attach_file ?>" />
       <input name="oThumb" type="hidden" value="<?php echo $model->attach_thumb ?>" />

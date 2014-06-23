@@ -3,7 +3,7 @@
 	$this->renderPartial('/layouts/header');
 ?>
 <!-- 内容main开始 -->
-<div id="main">
+<div id="main" class="clear">
 	<?php echo $content;?>
 </div>
 <!-- 内容main结束 -->
