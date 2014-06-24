@@ -33,7 +33,7 @@
 
 .content_right .category { margin-bottom:30px; }
 .content_right .category dt { background-color: #cccccc; border-left: 4px solid #996600;  font-size: 16px;
-    font-weight: bold; height: 34px; line-height: 34px; margin-bottom: 30px; text-align: center; width: 150px;}
+    font-weight: bold; height: 34px; line-height: 34px; margin-bottom: 30px; text-align: center; width: 150px; color:#555555; }
 .content_right .category dd { padding-left:16px; margin-bottom:16px; background:url(../images/ico_list_blue.png) no-repeat left center;}
 .content_right .recent_post dd { background-image:url(../images/ico_list_grey.png);}
 

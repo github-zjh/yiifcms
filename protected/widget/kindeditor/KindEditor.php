@@ -43,7 +43,8 @@ class KindEditor extends CInputWidget{
 	 '.$editObj.' = K.create("'.$key.'", {
 	     '.$systemDefault . $combineParams .' ,afterBlur:function(){
             this.sync();
-        }           
+        },"emoticonsPath":"/static/public/emoticons/images/",
+	            
 	});
 	'.$editObj.'.sync();
 ';
@@ -153,7 +154,7 @@ class KindEditor extends CInputWidget{
 	 */
 	public function run() {
 		parent::run();		
-		$assets = $this->getAssetsPath();		
+		$assets = $this->getAssetsPath();			
 		$clientScript = Yii::app()->getClientScript();
 		$clientScript->registerCssFile( $assets.'/themes/default/default.css' );		
 		$clientScript->registerScriptFile( $assets.'/kindeditor-min.js', CClientScript::POS_END );		

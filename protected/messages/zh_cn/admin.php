@@ -259,7 +259,9 @@ return array (
 	'Comment Status' => '评论状态',
 	'Pass Checking' => '审核通过',
 	'Wait Checking' => '待审核',
-	
+	'Reset Tags' => '重新统计标签',
+	'Reset Tags Success' => '统计标签成功',
+		
 	/* 模型管理 */
     'Modeltype Manage' => '内容模型管理',
 );

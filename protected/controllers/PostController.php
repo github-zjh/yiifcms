@@ -95,8 +95,11 @@ class PostController extends FrontBase
     $this->_seoDescription = empty( $post->seo_description ) ? $this->_seoDescription: $post->seo_description;
        
   	//加载css,js	
-    Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/view.css");    
-	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");	
+    Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/view.css");    		
+	Yii::app()->clientScript->registerCssFile($this->_static_public . "/js/kindeditor/code/prettify.css");
+	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
+	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/kindeditor/code/prettify.js",CClientScript::POS_END);
+	 
 	
 	//最近的文章
 	$last_posts = Post::model()->findAll(array('condition'=>'catalog_id = '.$post->catalog_id,'order'=>'id DESC','limit'=>10,));

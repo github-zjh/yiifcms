@@ -271,6 +271,25 @@ class PostController extends Backend
         $result = $model->findAll( $criteria );
         $this->render( 'post_tags', array ( 'datalist' => $result , 'pagebar' => $pages ) );
     }
+    
+    /**
+     * 
+     * 重新统计标签，删除不匹配的标签
+     * 
+     */
+    public function actionResetTags(){
+    	$tags = PostTags::model()->findAll();
+    	foreach((array) $tags as $tag){    		
+    		$post = Post::model()->findAll("FIND_IN_SET(:tag, tags)", array(':tag'=>$tag->tag_name));    		
+    		if(!$post){
+    			$tag->delete();
+    		}else{
+    			$tag->data_count = count($post);
+    			$tag->save();
+    		}
+    	}
+    	$this->message('success',Yii::t('admin','Reset Tags Success'),$this->createUrl('post/tags'));
+    }
 
     /**
      * 批量操作
@@ -312,7 +331,16 @@ class PostController extends Backend
         			$postModel->delete();
         		}
         	}
-            break;       
+            break;  
+       case 'tagsDelete':
+				// 删除标签
+				foreach ( ( array ) $ids as $id ) {
+					$tagModel = PostTags::model ()->findByPk ( $id );
+					if ($tagModel) {
+						$tagModel->delete ();
+					}
+				}
+				break;
         case 'show':     
         	//文章显示      
         	foreach((array)$ids as $id){

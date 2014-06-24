@@ -10,10 +10,17 @@
 				<a title="分享到网易微博" class="bshare-neteasemb"></a>
 				<a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
 				<span class="BSHARE_COUNT bshare-share-count">0</span>
-			</div>						
+			</div>		
 			
-			<script type="text/javascript" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh" charset="utf-8" id="butonLiteJs"></script>
-			<script type="text/javascript" src="http://static.bshare.cn/b/bshareC0.js" charset="utf-8" id="bshareJs"></script>
+			<script type="text/javascript" charset="utf-8" id="butonLiteJs"></script>
+			<script type="text/javascript" charset="utf-8" id="bshareJs"></script>
+							
+			<script type="text/javascript">
+				$(function(){
+					$("#butonLiteJs").attr("src","http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh");
+					$("#bshareJs").attr("src","http://static.bshare.cn/b/bshareC0.js");
+				});
+			</script>		
 			
 		</li>
 	</ul>

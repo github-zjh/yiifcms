@@ -1,7 +1,8 @@
 <div id="contentHeader">
   <h3><?php echo Yii::t('admin','Tags Manage');?></h3>
   <div class="searchArea">
-    <ul class="action left" >
+    <ul class="action left">
+      <li><a href="<?php echo $this->createUrl('post/resetTags')?>" class="actionBtn"><span><?php echo Yii::t('admin','Reset Tags');?></span></a></li>
     </ul>
     <div class="search right">
       <?php $form = $this->beginWidget('CActiveForm',array('id'=>'searchForm','method'=>'get','action'=>array('newsTags'),'htmlOptions'=>array('name'=>'xform'))); ?>

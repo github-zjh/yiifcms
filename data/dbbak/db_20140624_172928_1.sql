@@ -1,6 +1,6 @@
 # your database backup
 # version:5.5.27-log
-# time:2014-06-24 11:12:35
+# time:2014-06-24 17:29:28
 # --------------------------------------------------------
 
 
@@ -83,10 +83,10 @@ CREATE TABLE `yii_comment` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COMMENT='评论表';
 
-INSERT INTO `yii_comment` VALUES('31','22','31','第三张亮了！<img src=\"http://www.yii.local/assets/60e0a036/plugins/emoticons/images/13.gif\" alt=\"\" border=\"0\" />','Y','2','127.0.0.1','1402628120');
-INSERT INTO `yii_comment` VALUES('32','16','31','内容排版 不太好吧 <img src=\"http://www.yii.local/assets/60e0a036/plugins/emoticons/images/10.gif\" alt=\"\" border=\"0\" /><br />','Y','1','127.0.0.1','1402882240');
+INSERT INTO `yii_comment` VALUES('31','22','31','第三张亮了！<img src=\"/static/public/emoticons/images/13.gif\" alt=\"\" border=\"0\" />','Y','2','127.0.0.1','1402628120');
+INSERT INTO `yii_comment` VALUES('32','16','31','内容排版 不太好吧 <img src=\"/static/public/emoticons/images/10.gif\" alt=\"\" border=\"0\" /><br />','Y','1','127.0.0.1','1402882240');
 INSERT INTO `yii_comment` VALUES('33','16','31','再试一次','Y','1','127.0.0.1','1402889690');
-INSERT INTO `yii_comment` VALUES('34','4','31','旺旺还不错 <img src=\"http://www.yii.local/assets/60e0a036/plugins/emoticons/images/65.gif\" alt=\"\" border=\"0\" /><br />','Y','3','127.0.0.1','1403055802');
+INSERT INTO `yii_comment` VALUES('34','4','31','旺旺还不错 <img src=\"/static/public/emoticons/images/65.gif\" alt=\"\" border=\"0\" /><br />','Y','3','127.0.0.1','1403055802');
 INSERT INTO `yii_comment` VALUES('35','23','31','这篇文章很不错','Y','1','127.0.0.1','1403515888');
 INSERT INTO `yii_comment` VALUES('36','23','31','asdf','Y','1','127.0.0.1','1403515940');
 
@@ -276,28 +276,38 @@ CREATE TABLE `yii_post` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='内容管理';
 
-INSERT INTO `yii_post` VALUES('14','1','App Annie获1500万美元投资 将持续扩展国际业务','','','','','2','1','（朱旭冬）9月18日晚间消息，移动智能市场数据平台App Annie 今日宣布完成一轮总金额为1500万美元的融资，由红杉资本的美国基金领投，现有投资者IDG资本、Greycroft 、e.Ventures 和 Infinity Venture 参与跟投。...','','','','','<p>	（朱旭冬）9月18日晚间消息，移动智能市场数据平台App Annie 今日宣布完成一轮总金额为1500万美元的融资，由红杉资本的美国基金领投，现有投资者IDG资本、Greycroft 、e.Ventures 和 Infinity Venture 参与跟投。</p><p>	红杉资本硅谷办事处合伙人 Tim Lee 与 uSamp 首席执行官 Alan Gould 将加入App Annie董事会。</p><p>	App Annie 表示，此轮融得的资金将用于加速 App Annie 的产品开发、增长其销售额并壮大其设在旧金山的营销总部，并扩大其遍布亚洲和欧洲的办事处。</p><p>	随着今年全球智能手机出货量将超过1 亿部的预期，应用软件和数字内容经济大幅增长。App Annie 在过去12个月内用户数扩大两倍，每月营收增长三倍。App Annie 首席执行官Bertrand Schmitt 表示，增长的用户群证明公司重塑企业分析和提取适合商业用途的有用洞察信息的方式是成功的。</p><p>	红杉资本硅谷办事处合伙人 Tim Lee 认为， App Annie 在新数字经济分析领域处于极为有利的地位。“App Annie 的产品对从事移动通信行业的每位从业者来说都是必备的。在红杉资本，我们多年来一直使用他们的产品帮助我们找到有突破力的创业公司。 App Annie 在新数字经济分析领域处于极为有利的地位，并将成为黄金标准。”他说。</p><p>	Bertrand Schmitt 则表示， “对我们来说，红杉资本不仅仅是投资者，同时也是合作伙伴和顾问，它将帮助我们加速我们扩大平台的计划，这样所有企业都可了解全球应用软件和数字内容生态系统。”</p><p>	App Annie 的商业智能平台由 Analytics、Store Stats 和 Intelligence 组成。现今，收益排名前 100 位的 iOS 应用发行商中超过 90% 在使用App Annie 的产品，这其中包含 Google、微软和腾讯。</p>','','','','App,Annie,美元投资,国际业务','12','N','Y','uploads/201309/523a549bd42fe.jpg','uploads/201309/thumb_523a549bd42fe.jpg','0','0','N','1401871554','0','Y','0','Y','1379554460');
+INSERT INTO `yii_post` VALUES('14','1','App Annie获1500万美元投资 将持续扩展国际业务','','','','','2','1','（朱旭冬）9月18日晚间消息，移动智能市场数据平台App Annie 今日宣布完成一轮总金额为1500万美元的融资，由红杉资本的美国基金领投，现有投资者IDG资本、Greycroft 、e.Ventures 和 Infinity Venture 参与跟投。...','','','','','<p>	（朱旭冬）9月18日晚间消息，移动智能市场数据平台App Annie 今日宣布完成一轮总金额为1500万美元的融资，由红杉资本的美国基金领投，现有投资者IDG资本、Greycroft 、e.Ventures 和 Infinity Venture 参与跟投。</p><p>	红杉资本硅谷办事处合伙人 Tim Lee 与 uSamp 首席执行官 Alan Gould 将加入App Annie董事会。</p><p>	App Annie 表示，此轮融得的资金将用于加速 App Annie 的产品开发、增长其销售额并壮大其设在旧金山的营销总部，并扩大其遍布亚洲和欧洲的办事处。</p><p>	随着今年全球智能手机出货量将超过1 亿部的预期，应用软件和数字内容经济大幅增长。App Annie 在过去12个月内用户数扩大两倍，每月营收增长三倍。App Annie 首席执行官Bertrand Schmitt 表示，增长的用户群证明公司重塑企业分析和提取适合商业用途的有用洞察信息的方式是成功的。</p><p>	红杉资本硅谷办事处合伙人 Tim Lee 认为， App Annie 在新数字经济分析领域处于极为有利的地位。“App Annie 的产品对从事移动通信行业的每位从业者来说都是必备的。在红杉资本，我们多年来一直使用他们的产品帮助我们找到有突破力的创业公司。 App Annie 在新数字经济分析领域处于极为有利的地位，并将成为黄金标准。”他说。</p><p>	Bertrand Schmitt 则表示， “对我们来说，红杉资本不仅仅是投资者，同时也是合作伙伴和顾问，它将帮助我们加速我们扩大平台的计划，这样所有企业都可了解全球应用软件和数字内容生态系统。”</p><p>	App Annie 的商业智能平台由 Analytics、Store Stats 和 Intelligence 组成。现今，收益排名前 100 位的 iOS 应用发行商中超过 90% 在使用App Annie 的产品，这其中包含 Google、微软和腾讯。</p>','','','','App,Annie,美元投资,国际业务','14','N','Y','uploads/201309/523a549bd42fe.jpg','uploads/201309/thumb_523a549bd42fe.jpg','0','0','N','1401871554','0','Y','0','Y','1379554460');
 INSERT INTO `yii_post` VALUES('15','1','Groupon收购本地体验初创公司SideTour','','','','','2','1','据国外媒体报道，团购巨人Groupon今日宣布，公司已经收购了本地体验初创公司SideTour。后者是一个帮助人们发现、预订和参加本地活动的市场平台，Groupon没有透露这项收购交易的具体条款','','','','','<p>
-	<span style=\"font-size:14px;\">据国外媒体报道，团购巨人Groupon今日宣布，公司已经收购了本地体验初创公司SideTour。后者是一个帮助人们发现、预订和参加本地活动的市场平台，Groupon没有透露这项收购交易的具体条款。</span>
+	<span style=\"font-size:14px;\">据国外媒体报道，团购巨人Groupon今日宣布，公司已经收购了本地体验初创公司SideTour。后者是一个帮助人们发现、预订和参加本地活动的市场平台，Groupon没有透露这项收购交易的具体条款。</span> 
 </p>
 <p>
-	<span style=\"font-size:14px;\">SideTour精选了一些独具特色且有人主持的聚会类活动，让客户们能够与相应领域的资深专家面对面地交流，从而更加了解自己所在的城市和他们关心的事。</span>
+	<span style=\"font-size:14px;\">SideTour精选了一些独具特色且有人主持的聚会类活动，让客户们能够与相应领域的资深专家面对面地交流，从而更加了解自己所在的城市和他们关心的事。</span> 
 </p>
 <p>
-	<span style=\"font-size:14px;\">GrouponLive业务总经理格雷格鲁丁（Greg Rudin）称：“SideTour精心策划的各种本地体验将进一步拓展Groupon的愿景，也就是将Groupon打造成消费者可以随时随地访问的平台。如果Groupon能够提供这些极具个性化的活动、旅游和值得铭记的聚会，我们就能够为我们的客户提供更多有趣的方法，帮助他们探索和发现最好的本地体验。”</span>
+	<span style=\"font-size:14px;\">GrouponLive业务总经理格雷格鲁丁（Greg Rudin）称：“SideTour精心策划的各种本地体验将进一步拓展Groupon的愿景，也就是将Groupon打造成消费者可以随时随地访问的平台。如果Groupon能够提供这些极具个性化的活动、旅游和值得铭记的聚会，我们就能够为我们的客户提供更多有趣的方法，帮助他们探索和发现最好的本地体验。”</span> 
 </p>
 <p>
-	<span style=\"font-size:14px;\">那些活动大多为私人聚会，人数平均在12人左右，涵盖的行业包括视频、饮料、建筑、历史、艺术等等。SideTour目前提供的公开和私人聚会多达500多种，使用这个平台的聚会主持超过了400人。那些主持者包括厨师、艺术家、奥运金牌获得者、星探和品酒师等等。</span>
+	<span style=\"font-size:14px;\">那些活动大多为私人聚会，人数平均在12人左右，涵盖的行业包括视频、饮料、建筑、历史、艺术等等。SideTour目前提供的公开和私人聚会多达500多种，使用这个平台的聚会主持超过了400人。那些主持者包括厨师、艺术家、奥运金牌获得者、星探和品酒师等等。</span> 
 </p>
 <p>
-	<span style=\"font-size:14px;\">SideTour的首席执行官韦平戈亚尔（Vipin Goyal）称：“我们很高兴有机会把我们独创的聚会服务提供给这么多热衷于本地体验的人。Groupon可以帮助我们发现更多的本地专家并为他们提供一个与更多客户沟通的平台。”</span>
+	<span style=\"font-size:14px;\">SideTour的首席执行官韦平戈亚尔（Vipin Goyal）称：“我们很高兴有机会把我们独创的聚会服务提供给这么多热衷于本地体验的人。Groupon可以帮助我们发现更多的本地专家并为他们提供一个与更多客户沟通的平台。”</span> 
 </p>
 <p>
-	<span style=\"font-size:14px;\">SideTour将继续独立经营一段时间，Groupon将通过其电子邮件、网页和移动渠道向它的4300万活跃用户推广SideTour的聚会服务。</span>
+	<span style=\"font-size:14px;\">SideTour将继续独立经营一段时间，Groupon将通过其电子邮件、网页和移动渠道向它的4300万活跃用户推广SideTour的聚会服务。</span> 
 </p>
 <p>
 	<span style=\"font-size:14px;\">SideTour创立于2011年，目前在芝加哥、纽约、费城和华盛顿特区设有办事机构。它计划在未来几个月里开辟更多的市场。</span>
-</p>','','','','Groupon','19','Y','Y','uploads/201309/523a54c220262.jpg','uploads/201309/thumb_523a54c220262.jpg','0','0','N','1403576439','0','Y','0','Y','1379554498');
+</p>
+<p>
+	<br />
+<span style=\"font-size:14px;\"></span>
+</p>
+<p>
+	<span style=\"font-size:14px;\">
+<pre class=\"prettyprint lang-js\">alert(\'哈哈\')</pre>
+<br />
+</span> 
+</p>','','','','Groupon','21','Y','Y','uploads/201309/523a54c220262.jpg','uploads/201309/thumb_523a54c220262.jpg','0','0','N','1403598795','0','Y','0','Y','1379554498');
 INSERT INTO `yii_post` VALUES('16','1','程序员必须知道的10大基础实用算法及其讲解','','a:3:{s:4:\"bold\";s:1:\"Y\";s:9:\"underline\";s:1:\"Y\";s:5:\"color\";s:6:\"FF2969\";}','','','2','1','在手机解锁上，美国消费者和运营商展开持久战，美国政府和白宫逐渐站在消费者一边。	近日美国电信和信息管理局（NTIA）正式向联邦通信委员会（FCC）发函，要求修改规定，未来移动运营商销售给用户的手机、平板...','a:2:{i:0;a:4:{s:6:\"fileId\";s:2:\"36\";s:4:\"file\";s:37:\"uploads/images/201405/21e1adee63a.png\";s:4:\"desc\";s:2:\"04\";s:3:\"url\";s:5:\"04url\";}i:1;a:4:{s:6:\"fileId\";s:2:\"37\";s:4:\"file\";s:37:\"uploads/images/201405/f23850e09dc.png\";s:4:\"desc\";s:2:\"05\";s:3:\"url\";s:5:\"05url\";}}','','','','<p>
 	<a href=\"http://geek.csdn.net/news/detail/12027\"><span style=\"font-size:14px;\">程序员必须知道的10大基础实用算法及其讲解</span></a><span style=\"font-size:14px;\">，包括：</span> 
 </p>
@@ -313,7 +323,7 @@ INSERT INTO `yii_post` VALUES('16','1','程序员必须知道的10大基础实�
 			<span style=\"font-size:14px;\">二分查找(线性查找算法)：是一种在有序数组中查找某一特定元素的搜索算法；</span> 
 		</li>
 		<li>
-			<span style=\"font-size:14px;\">BFPRT算法解决的问题十分经典，即从某n个元素的序列中选出第k大（第k小）的元素，通过巧妙的分析，BFPRT可以保证在最坏情况下仍为线性时</span>
+			<span style=\"font-size:14px;\">BFPRT算法解决的问题十分经典，即从某n个元素的序列中选出第k大（第k小）的元素，通过巧妙的分析，BFPRT可以保证在最坏情况下仍为线性时</span> 
 		</li>
 		<li>
 			<span style=\"font-size:14px;\">快速排序算法；</span> 
@@ -530,8 +540,8 @@ shared repository.</span>
 	<li>
 		<span style=\"font-size:14px;\">Google Fiber</span> 
 	</li>
-</ul>','','','','程序员','558','Y','Y','uploads/201309/523a54f7d9591.jpg','uploads/201309/thumb_523a54f7d9591.jpg','1','2','Y','1403578585','4','N','5','Y','1379554552');
-INSERT INTO `yii_post` VALUES('22','1','图盟 每日囧图05.24','','','','','9','0','','a:4:{i:0;a:4:{s:6:\"fileId\";s:2:\"63\";s:4:\"file\";s:37:\"uploads/images/201406/d6bf42140c0.jpg\";s:4:\"desc\";s:2:\"01\";s:3:\"url\";s:3:\"011\";}i:1;a:4:{s:6:\"fileId\";s:2:\"64\";s:4:\"file\";s:37:\"uploads/images/201406/4ca469fcfbf.jpg\";s:4:\"desc\";s:2:\"02\";s:3:\"url\";s:3:\"022\";}i:2;a:4:{s:6:\"fileId\";s:2:\"65\";s:4:\"file\";s:37:\"uploads/images/201406/018817f4a8f.gif\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:3;a:4:{s:6:\"fileId\";s:2:\"66\";s:4:\"file\";s:37:\"uploads/images/201406/6042f7935d0.gif\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','','猫扑','http://dzh.mop.com/ttq/20140523/0/zF7lFlI2d0ef25F7.shtml','','','390','N','N','uploads/images/201406/badc32cd99a.gif','uploads/thumbs/201406/small_badc32cd99a.gif','0','0','N','1401864736','0','Y','0','Y','1401864736');
+</ul>','','','','程序员','576','Y','Y','uploads/201309/523a54f7d9591.jpg','uploads/201309/thumb_523a54f7d9591.jpg','1','2','Y','1403598760','4','N','5','Y','1379554552');
+INSERT INTO `yii_post` VALUES('22','1','图盟 每日囧图05.24','','','','','9','0','','a:4:{i:0;a:4:{s:6:\"fileId\";s:2:\"63\";s:4:\"file\";s:37:\"uploads/images/201406/d6bf42140c0.jpg\";s:4:\"desc\";s:2:\"01\";s:3:\"url\";s:3:\"011\";}i:1;a:4:{s:6:\"fileId\";s:2:\"64\";s:4:\"file\";s:37:\"uploads/images/201406/4ca469fcfbf.jpg\";s:4:\"desc\";s:2:\"02\";s:3:\"url\";s:3:\"022\";}i:2;a:4:{s:6:\"fileId\";s:2:\"65\";s:4:\"file\";s:37:\"uploads/images/201406/018817f4a8f.gif\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:3;a:4:{s:6:\"fileId\";s:2:\"66\";s:4:\"file\";s:37:\"uploads/images/201406/6042f7935d0.gif\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','','猫扑','http://dzh.mop.com/ttq/20140523/0/zF7lFlI2d0ef25F7.shtml','','囧图','430','N','N','uploads/images/201406/badc32cd99a.gif','uploads/thumbs/201406/small_badc32cd99a.gif','0','0','N','1401864736','0','Y','0','Y','1401864736');
 INSERT INTO `yii_post` VALUES('23','1','Facebook POP，迈向大师操作之路','','','','','3','0','Facebook发布Paper后，不满足于将其作为一个概念性产品，反而更进一步开源了其背后的动画引擎POP。POP的开发者是Kimon Tsinteris，曾致力于创造出逼真的、充满物力效应的体验。POP也是在这个理念下催生出来的结果。 ','','','','','<p>
 	Facebook发布Paper之后，似乎还不满足于只是将其作为一个概念性产品，反而更进一步开源了其背后的动画引擎POP（https://github.com/facebook/pop），此举大有三年前发布的iOS&nbsp;UI框架Three20（https://github.com/facebookarchive/three20）的意味。而POP开源后不负Facebook的厚望，在GitHub上不足一个月的时间，就已拥有了6000多个Star，非常火爆。
 </p>
@@ -750,7 +760,7 @@ INSERT INTO `yii_post` VALUES('23','1','Facebook POP，迈向大师操作之路'
 </p>
 <p>
 	这里我们使用UIGraphicsBeginImageContext-WithOptions()去开启绘画上下文，动画结束后使用UIGraphicsEndImageContext()来清空绘画的上下文。这两个函数主要是影响画板的大小。
-</p>','csdn','http://www.csdn.net/article/2014-06-04/2820077-Facebook-POP-Practice','','','36','N','N','uploads/images/201406/1053bfe806b.png','uploads/thumbs/201406/small_1053bfe806b.png','0','0','N','1403233283','0','Y','0','Y','1401955341');
+</p>','csdn','http://www.csdn.net/article/2014-06-04/2820077-Facebook-POP-Practice','','Facebook,国际业务','37','N','N','uploads/images/201406/1053bfe806b.png','uploads/thumbs/201406/small_1053bfe806b.png','0','0','N','1403601502','0','Y','0','Y','1401955341');
 
 DROP TABLE IF EXISTS `yii_post_tags`;
 CREATE TABLE `yii_post_tags` (
@@ -759,44 +769,14 @@ CREATE TABLE `yii_post_tags` (
   `data_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '数据总数',
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '录入时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COMMENT='新闻标签';
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COMMENT='新闻标签';
 
-INSERT INTO `yii_post_tags` VALUES('1','贵族养生','1','1379546108');
-INSERT INTO `yii_post_tags` VALUES('2','休闲放松','1','1379546108');
-INSERT INTO `yii_post_tags` VALUES('3','麦乐迪','1','1379546248');
-INSERT INTO `yii_post_tags` VALUES('4','KTV','1','1379546248');
-INSERT INTO `yii_post_tags` VALUES('5','iOS7','1','1379546869');
-INSERT INTO `yii_post_tags` VALUES('6','普通用户','1','1379546869');
-INSERT INTO `yii_post_tags` VALUES('7','全新图标设计','1','1379546869');
-INSERT INTO `yii_post_tags` VALUES('8','甲骨文','1','1379547034');
-INSERT INTO `yii_post_tags` VALUES('9','净利润','1','1379547034');
-INSERT INTO `yii_post_tags` VALUES('10','谷歌','1','1379554258');
-INSERT INTO `yii_post_tags` VALUES('11','追踪工具','1','1379554258');
-INSERT INTO `yii_post_tags` VALUES('12','AdID','1','1379554258');
-INSERT INTO `yii_post_tags` VALUES('13','洗牌','1','1379554258');
-INSERT INTO `yii_post_tags` VALUES('14','微软','1','1379554317');
-INSERT INTO `yii_post_tags` VALUES('15','Windows8.1','1','1379554317');
-INSERT INTO `yii_post_tags` VALUES('16','基本版售价','1','1379554317');
-INSERT INTO `yii_post_tags` VALUES('17','三星','1','1379554397');
-INSERT INTO `yii_post_tags` VALUES('18','智能手表','1','1379554397');
-INSERT INTO `yii_post_tags` VALUES('19','二代产品','1','1379554397');
-INSERT INTO `yii_post_tags` VALUES('20','App','1','1379554460');
-INSERT INTO `yii_post_tags` VALUES('21','Annie','1','1379554460');
+INSERT INTO `yii_post_tags` VALUES('23','国际业务','2','1379554460');
 INSERT INTO `yii_post_tags` VALUES('22','美元投资','1','1379554460');
-INSERT INTO `yii_post_tags` VALUES('23','国际业务','1','1379554460');
-INSERT INTO `yii_post_tags` VALUES('24','美国','1','1379554552');
-INSERT INTO `yii_post_tags` VALUES('25','禁止运营商','1','1379554552');
-INSERT INTO `yii_post_tags` VALUES('26','锁定手机','1','1379554552');
-INSERT INTO `yii_post_tags` VALUES('27','Facebook','5','1379554636');
-INSERT INTO `yii_post_tags` VALUES('28','高管','1','1379554636');
-INSERT INTO `yii_post_tags` VALUES('29','离职','1','1379554636');
-INSERT INTO `yii_post_tags` VALUES('30','投奔','1','1379554636');
-INSERT INTO `yii_post_tags` VALUES('31','阿里巴巴','5','1379554636');
-INSERT INTO `yii_post_tags` VALUES('32','诺基亚','1','1379554696');
-INSERT INTO `yii_post_tags` VALUES('33','宣布','1','1379554696');
-INSERT INTO `yii_post_tags` VALUES('34','Lumia1520','1','1379554696');
-INSERT INTO `yii_post_tags` VALUES('35','yii','4','1395211247');
-INSERT INTO `yii_post_tags` VALUES('36','新品','1','1395212757');
+INSERT INTO `yii_post_tags` VALUES('21','Annie','1','1379554460');
+INSERT INTO `yii_post_tags` VALUES('20','App','1','1379554460');
+INSERT INTO `yii_post_tags` VALUES('40','囧图','1','1403601928');
+INSERT INTO `yii_post_tags` VALUES('39','Facebook','1','1403601502');
 INSERT INTO `yii_post_tags` VALUES('37','程序员','1','1403525041');
 INSERT INTO `yii_post_tags` VALUES('38','Groupon','1','1403576439');
 
@@ -852,7 +832,7 @@ CREATE TABLE `yii_reply` (
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='评论回复表';
 
 INSERT INTO `yii_reply` VALUES('2','1','33','0','正好五个字','Y','1402993685');
-INSERT INTO `yii_reply` VALUES('3','31','33','2','太没营养了吧 <img src=\"http://www.yii.local/assets/60e0a036/plugins/emoticons/images/13.gif\" alt=\"\" border=\"0\" /><br />','Y','1402997219');
+INSERT INTO `yii_reply` VALUES('3','31','33','2','太没营养了吧 <img src=\"/static/public/emoticons/images/13.gif\" alt=\"\" border=\"0\" /><br />','Y','1402997219');
 INSERT INTO `yii_reply` VALUES('4','31','33','2','<pre class=\"prettyprint lang-php\">  phpinfo();</pre>','Y','1402998048');
 INSERT INTO `yii_reply` VALUES('5','31','33','2','<pre class=\"prettyprint lang-html\">&lt;link type=\"text/css\" rel=\"stylesheet\" href=\"./kindeditor/plugins/code/prettify.css\"/&gt;</pre>','Y','1402998870');
 INSERT INTO `yii_reply` VALUES('6','1','33','5','<pre class=\"prettyprint lang-php\">echo \"&lt;pre&gt;\";
@@ -869,7 +849,7 @@ CREATE TABLE `yii_session` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='session表';
 
-INSERT INTO `yii_session` VALUES('akatc9qi56h87mrm7vt4n3d0t5','1403583154','admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.33c9b0a4.admin/default.captcha|s:4:\"bbnb\";Yii.CCaptchaAction.33c9b0a4.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}Yii.CCaptchaAction.33c9b0a4.question.captcha|s:6:\"837qnb\";Yii.CCaptchaAction.33c9b0a4.question.captchacount|i:5;');
+INSERT INTO `yii_session` VALUES('m4pnr1vsqprraqcinv7lifhq50','1403605767','admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.33c9b0a4.admin/default.captcha|s:4:\"bbnb\";Yii.CCaptchaAction.33c9b0a4.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}Yii.CCaptchaAction.33c9b0a4.question.captcha|s:6:\"837qnb\";Yii.CCaptchaAction.33c9b0a4.question.captchacount|i:5;6cb602a7c53e8febaeafaaea1085c566__id|s:2:\"31\";6cb602a7c53e8febaeafaaea1085c566__name|s:8:\"testUser\";6cb602a7c53e8febaeafaaea1085c566status|s:1:\"1\";6cb602a7c53e8febaeafaaea1085c566groupid|s:1:\"1\";6cb602a7c53e8febaeafaaea1085c566groupname|s:12:\"普通用户\";6cb602a7c53e8febaeafaaea1085c566email|s:17:\"1441044277@qq.com\";6cb602a7c53e8febaeafaaea1085c566__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}Yii.CCaptchaAction.33c9b0a4.comment.captcha|s:4:\"3c6d\";Yii.CCaptchaAction.33c9b0a4.comment.captchacount|i:1;');
 
 DROP TABLE IF EXISTS `yii_setting`;
 CREATE TABLE `yii_setting` (
@@ -1031,7 +1011,7 @@ CREATE TABLE `yii_user` (
 INSERT INTO `yii_user` VALUES('1','zjh_admin','$2a$08$O9zKWgiL8YBa5Lzss2G5PO08tAj1HmI6R.2J3hLXPC9lPcLPPx5GS','xb_zjh@126.com','10','1','1379001600','','','','','NULL','','','0');
 INSERT INTO `yii_user` VALUES('2','没那么简单','$2a$13$5HFLakgTxQyyfzcZFQElWOk5W.OHhPnfwKXLAYwokPNVsZSyW4Tqy','376685457@qq.com','9','1','1379091600','','','','','','','','0');
 INSERT INTO `yii_user` VALUES('7','微博评论','$2a$13$TEpIe58TLJIUmLuoE7pYD.KK74cRlLXSaNoXf0bnxbcLFFmmW1E5u','xweibo_user85589@sina.com','1','1','1379101600','','','','','','','','0');
-INSERT INTO `yii_user` VALUES('31','testUser','$2a$08$QuvI8Ory.KMdKvmaCV/g9O8AoVTQMMvDrS.wvkOnEWBIBJwm3kLsq','1441044277@qq.com','1','1','1399346040','uploads/avatar/201405/small_31_c696db73478.jpg','nicename','这个家伙很懒，什么都不写','http://www.baidu.com','','','127.0.0.1','34');
+INSERT INTO `yii_user` VALUES('31','testUser','$2a$08$QuvI8Ory.KMdKvmaCV/g9O8AoVTQMMvDrS.wvkOnEWBIBJwm3kLsq','1441044277@qq.com','1','1','1399346040','uploads/avatar/201405/small_31_c696db73478.jpg','nicename','这个家伙很懒，什么都不写','http://www.baidu.com','','','127.0.0.1','35');
 INSERT INTO `yii_user` VALUES('32','test123','$2a$08$IrFpdJZKlMTUoiLS/D79kOiFfy9MInvsRQuoNc5hiCSL9qSISQxIm','test123@qq.com','1','1','1399346280','','','','','','','','0');
 INSERT INTO `yii_user` VALUES('33','test001','$2a$08$mmxLn6zpboN/Q2BnDfk4MesW4qbcIRD0ONmiuJ/gwv1X1kuinCTge','326196998@qq.com','1','1','1400462626','uploads/avatar/201405/small_33_0681827b824.png','','','','','','127.0.0.1','8');
 
@@ -1084,6 +1064,6 @@ INSERT INTO `yii_video` VALUES('1','美国队长','12','uploads/images/201406/82
 INSERT INTO `yii_video` VALUES('2','钢铁侠','13','uploads/images/201406/bf941705b16.jpg','','chinese','comedy','0.0','','','','0.00','1403148128','1403148128','0','0','','Y','','','');
 INSERT INTO `yii_video` VALUES('3','明日边缘','13','uploads/images/201406/4cc06a97d5a.jpg','','chinese','comedy','0.0','','','','0.00','1403148264','1403148264','1','0','','Y','','','');
 INSERT INTO `yii_video` VALUES('4','窃听风云3','13','uploads/images/201406/a02a34ce432.jpg','','chinese','comedy','8.0','','','','0.00','1403148306','1403148306','5','0','{\"t\":1,\"s\":[0,0,0,1,0]}','Y','','','');
-INSERT INTO `yii_video` VALUES('5','终结者4','13','uploads/images/201406/0bb513c708b.jpg','','chinese','comedy','0.0','','','','0.00','1403148363','1403148363','1','0','','Y','','','');
-INSERT INTO `yii_video` VALUES('6','孤胆保镖','13','uploads/images/201406/566eb360159.jpg','','chinese','active','8.0','','','','0.00','1403148418','1403148418','13','0','{\"t\":2,\"s\":[0,0,1,0,1]}','Y','','','');
+INSERT INTO `yii_video` VALUES('5','终结者4','13','uploads/images/201406/0bb513c708b.jpg','','chinese','comedy','0.0','','','','0.00','1403148363','1403148363','2','0','','Y','','','');
+INSERT INTO `yii_video` VALUES('6','孤胆保镖','13','uploads/images/201406/566eb360159.jpg','','chinese','active','8.0','','','','0.00','1403148418','1403148418','14','0','{\"t\":2,\"s\":[0,0,1,0,1]}','Y','','','');
 

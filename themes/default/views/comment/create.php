@@ -36,6 +36,7 @@
 				  					'justifyright', 'insertorderedlist','insertunorderedlist', '|',
 				  					'emoticons', 'image', 'link'),
 							 'resizeType'=>0,
+							 'dialogAlignType'=>'',//弹窗按编辑器居中
 						)
 							  		
 					)						
@@ -172,9 +173,12 @@
             	$("#reply_box").show();
             	KindEditor.ready(function(K) {    
               	 __reply_content = K.create("#reply_content", {
-              	     'themeType':'simple' ,'width':'100%' ,'height':'200' ,'items':['fontname' ,'fontsize' ,'|' ,'undo' ,'redo' ,'|' ,'code' ,'forecolor' ,'hilitecolor' ,'bold' ,'italic' ,'underline' ,'removeformat' ,'|' ,'justifyleft' ,'justifycenter' ,'justifyright' ,'insertorderedlist' ,'insertunorderedlist' ,'|' ,'emoticons' ,'image' ,'link' ],'resizeType':'0'  ,afterBlur:function(){
+              	     'themeType':'simple' ,'width':'100%' ,'height':'200' ,'items':['fontname' ,'fontsize' ,'|' ,'undo' ,'redo' ,'|' ,'code' ,'forecolor' ,'hilitecolor' ,'bold' ,'italic' ,'underline' ,'removeformat' ,'|' ,'justifyleft' ,'justifycenter' ,'justifyright' ,'insertorderedlist' ,'insertunorderedlist' ,'|' ,'emoticons' ,'image' ,'link' ],
+              	     'resizeType':'0'  ,
+              	     afterBlur:function(){
                           this.sync();
-                      }           
+                      },
+                     'dialogAlignType':'',   //弹窗按编辑器居中        
               	});
               	__reply_content.sync();
               });
