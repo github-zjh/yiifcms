@@ -20,6 +20,7 @@
 .content_left .content_info { margin-bottom:20px; }
 .content_left .share_box { background-color:#ececec; padding:6px 12px;}
 .content_left .share_box strong { font-size:14px;}
+.content_left .share_box ul { list-style:none;}
 .content_left .share_box ul li { float:left; margin:0 10px; }
 
 /* 图集幻灯片 */
