@@ -9,13 +9,7 @@
 				<?php $post_tags = $post->tags?explode(',',$post->tags):array(); $tags_len = count($post_tags);?>	
 				<li class="list_box clear">
 					<div class="list_head">
-						<div class="date_time">
-							<p><?php echo date('Y',$post->last_update_time)?></p>
-							<strong>							
-								<?php echo date('m.d',$post->last_update_time)?>
-								<br/><?php echo date('H:i:s',$post->last_update_time)?>
-							</strong>	
-						</div>						
+						<a href="<?php echo $this->createUrl('post/index', array('catalog_id'=>$post->catalog->id));?>"><?php echo $post->catalog->catalog_name;?></a>									
 					</div>
 					<div class="list_body">
 						<h2><a href="<?php echo $this->createUrl('image/view', array('id'=>$post->id));?>"><?php echo $post->title;?></a></h2>

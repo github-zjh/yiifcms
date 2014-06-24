@@ -19,15 +19,6 @@
         <span info="Setting[site_domain]"></span></span></td>
     </tr>
     <tr>
-      <td class="tb_title">后台日志：</td>
-    </tr>
-    <tr >
-      <td ><select name="Setting[admin_logger]">
-          <option value="open" <?php echo $this->selected($setting['admin_logger'], 'open')?>>开启</option>
-          <option value="close" <?php echo $this->selected($setting['admin_logger'], 'close')?>>关闭</option>
-        </select></td>
-    </tr>
-    <tr>
       <td class="tb_title">站点开关/关闭说明：</td>
     </tr>
     <tr >

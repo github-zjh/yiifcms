@@ -72,6 +72,7 @@ return array (
 	'System Manager' => '系统管理员',
 	'Read More'=>'继续阅读',
 	'View Info' => '查看详情',
+	'Guide Read' => '导读',
 	
 	//注册
 	'Register' => '注册',
@@ -200,4 +201,9 @@ return array (
 	'Question Submit Success' => '已提交，谢谢您的反馈！',
 	'Mobile Number Is Wrong' => '手机号码格式不正确',
 	'QQ Number Is Wrong' => 'QQ号码格式不正确',
+	'Send To Us' => '发送给我们',
+	'Contact Links' => '联系方式',
+	'Address' => '地址',
+	'Tel' => '电话',
+	'Email' => '邮箱',
 );

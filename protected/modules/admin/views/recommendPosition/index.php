@@ -42,7 +42,7 @@ $(document).ready(function(){
       <td ><input type="checkbox" name="id[]" value="<?php echo $row->id?>">
         <?php echo $row->id?></td>      
       <td ><?php echo $row->recommend_name;?></td>   
-      <td ><?php echo Yii::t('admin','Type '.ucfirst($row->type));?></td>
+      <td ><?php $type = ModelType::model()->findByPk($row->type); echo $type->type_name;?></td>
       <td >
 	      <a href="<?php echo  $this->createUrl('Update',array('id'=>$row->id))?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
 	      <a href="<?php echo  $this->createUrl('batch',array('command'=>'Delete', 'id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->_baseUrl?>/static/admin/images/delete.png" align="absmiddle" /></a>&nbsp;&nbsp;

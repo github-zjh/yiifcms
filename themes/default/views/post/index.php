@@ -9,13 +9,7 @@
 				<?php $post_tags = $post->tags?explode(',',$post->tags):array(); $tags_len = count($post_tags);?>	
 				<li class="list_box clear">
 					<div class="list_head">
-						<div class="date_time">
-							<p><?php echo date('Y',$post->last_update_time)?></p>
-							<strong>							
-								<?php echo date('m.d',$post->last_update_time)?>
-								<br/><?php echo date('H:i:s',$post->last_update_time)?>
-							</strong>							
-						</div>						
+						<a href="<?php echo $this->createUrl('post/index', array('catalog_id'=>$post->catalog->id));?>"><?php echo $post->catalog->catalog_name;?></a>				
 					</div>
 					<div class="list_body">
 						<h2><a href="<?php echo $this->createUrl('post/view', array('id'=>$post->id));?>" style="<?php echo $this->formatStyle($post->title_style);?>"><?php echo $post->title;?></a></h2>
@@ -24,7 +18,7 @@
 							<?php if($tags_len > 0):?>
 							<span class="tags">
 								<?php $i = 1; foreach((array)$post_tags as $ptag):?>
-								<em><?php echo $ptag;?><?php if($i<$tags_len):?>,&nbsp;&nbsp;<?php endif;?></em>
+								<em><a href="<?php echo $this->createUrl('tag/index', array('tag'=>$ptag));?>"><?php echo $ptag;?></a></em>
 								<?php $i++;?>
 								<?php endforeach;?>								
 							</span>

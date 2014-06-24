@@ -4,36 +4,30 @@
 	
 	<div id="content" class="clear">
 		<div class="content_left">		
-			<div class="list_box clear">
-				<div class="list_head">
-					<div class="date_time">
-						<p><?php echo date('Y',$post->last_update_time)?></p>
-						<strong>							
-							<?php echo date('m.d',$post->last_update_time)?>
-							<br/><?php echo date('H:i:s',$post->last_update_time)?>
-						</strong>	
-					</div>						
-				</div>
-				<div class="list_body">	
-					<h2><a href="<?php echo $this->createUrl('post/view', array('id'=>$post->id));?>"  style="<?php echo $this->formatStyle($post->title_style);?>"><?php echo $post->title;?></a></h2>
-					<p class="view_info">
-						<span><?php echo Yii::t('common','Copy From')?>： <em><?php echo $post->copy_from?"<a href='".$post->copy_url."' target='_blank'>".$post->copy_from."</a>":Yii::t('common','System Manager');?></em></span>
-						<?php $post_tags = $post->tags?explode(',',$post->tags):array(); $tags_len = count($post_tags);?>
-						<?php if($tags_len > 0):?>
-						<span class="tags">
-							<?php $i = 1; foreach((array)$post_tags as $ptag):?>
-							<em><a href="<?php echo $this->createUrl('tag/index',array('tag'=>$ptag));?>"><?php echo $ptag;?></a><?php if($i<$tags_len):?>,&nbsp;&nbsp;<?php endif;?></em>
-							<?php $i++;?>
-							<?php endforeach;?>								
-						</span>
-						<?php endif;?>
-						<span class="views"><em><?php echo $post->view_count;?></em></span>
-					</p>
-					<div class="content_info">
-						<?php echo $post->content;?>
+			<div class="list_box clear">				
+				
+				<h2><a href="<?php echo $this->createUrl('post/view', array('id'=>$post->id));?>"  style="<?php echo $this->formatStyle($post->title_style);?>"><?php echo $post->title;?></a></h2>
+				<p class="view_info">
+					<span><?php echo Yii::t('common','Copy From')?>： <em><?php echo $post->copy_from?"<a href='".$post->copy_url."' target='_blank'>".$post->copy_from."</a>":Yii::t('common','System Manager');?></em></span>
+					<?php $post_tags = $post->tags?explode(',',$post->tags):array(); $tags_len = count($post_tags);?>
+					<?php if($tags_len > 0):?>
+					<span class="tags">
+						<?php $i = 1; foreach((array)$post_tags as $ptag):?>
+						<em><a href="<?php echo $this->createUrl('tag/index',array('tag'=>$ptag));?>"><?php echo $ptag;?></a><?php if($i<$tags_len):?>,&nbsp;&nbsp;<?php endif;?></em>
+						<?php $i++;?>
+						<?php endforeach;?>								
+					</span>
+					<?php endif;?>
+					<span class="views"><em><?php echo $post->view_count;?></em></span>
+				</p>
+				<div class="content_info">
+					<div class="description">
+						[<?php echo Yii::t('common','Guide Read')?>]：<?php echo $post->intro?$post->intro:'...';?>
 					</div>
-					
+					<?php echo $post->content;?>
 				</div>
+					
+				
 			</div>	
 			<!-- 分享按钮 -->
 			<?php $this->renderPartial('/layouts/shareJs');?>

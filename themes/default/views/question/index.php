@@ -6,11 +6,11 @@
 		<div class="contact_box clear">
 		<?php $form=$this->beginWidget('CActiveForm',array('id'=>'question_form','htmlOptions'=>array('name'=>'question_form','class'=>'question_form'))); ?>
 			<table>
-					<CAPTION>发送给我们:</CAPTION>
+					<CAPTION><?php echo Yii::t('common','Send To Us')?>:</CAPTION>
 					<tr>
 						<th><?php echo $form->labelEx($model,'realname');?>：</th>						
 						<td>
-							<?php if(Yii::app()->user->name):?>
+							<?php if(Yii::app()->user->id):?>
 							<?php echo $form->hiddenField($model,'user_id', array('value'=>Yii::app()->user->id));?>
 							<?php echo $form->hiddenField($model,'realname', array('value'=>Yii::app()->user->name));?>
 							<?php echo Yii::app()->user->name;?>
@@ -52,11 +52,11 @@
 				</table>				
 		<?php $this->endWidget();?>
 			<div class="contact_address">
-				<h3 class="address_title">Address</h3>
+				<h3 class="address_title"><?php echo Yii::t('common','Contact Links')?></h3>
 				<ul class="address_list">
-					<li>地址: <?php echo $this->_setting['_address'];?></li>
-					<li>电话: <?php echo $this->_setting['_telephone'];?></li>
-					<li>邮箱: <?php echo $this->_setting['admin_email'];?></li>
+					<li><?php echo Yii::t('common','Address')?>: <?php echo $this->_setting['_address'];?></li>
+					<li><?php echo Yii::t('common','Tel')?>: <?php echo $this->_setting['_telephone'];?></li>
+					<li><?php echo Yii::t('common','Email')?>: <?php echo $this->_setting['admin_email'];?></li>
 				</ul>				
 			</div>
 		</div>

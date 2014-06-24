@@ -5,7 +5,7 @@
 	<div id="content" class="clear">
 		<div class="content_left">		
 			<div class="list_box clear">				
-				<div class="list_body">	
+				<div>	
 					<h2><a href="<?php echo $this->createUrl('video/view', array('id'=>$video->id));?>"><?php echo $video->title;?></a></h2>
 					
 					<div class="content_info soft_info video_info">
