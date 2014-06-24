@@ -1,6 +1,6 @@
 # your database backup
-# version:5.5.27-log
-# time:2014-06-24 17:29:28
+# version:5.6.16
+# time:2014-06-24 21:08:41
 # --------------------------------------------------------
 
 
@@ -204,7 +204,7 @@ CREATE TABLE `yii_model_type` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='内容模型表';
 
-INSERT INTO `yii_model_type` VALUES('1','article','文章','post','Y');
+INSERT INTO `yii_model_type` VALUES('1','post','文章','post','Y');
 INSERT INTO `yii_model_type` VALUES('2','image','图集','post','Y');
 INSERT INTO `yii_model_type` VALUES('3','soft','软件','soft','Y');
 INSERT INTO `yii_model_type` VALUES('4','video','视频','video','Y');
@@ -540,8 +540,8 @@ shared repository.</span>
 	<li>
 		<span style=\"font-size:14px;\">Google Fiber</span> 
 	</li>
-</ul>','','','','程序员','576','Y','Y','uploads/201309/523a54f7d9591.jpg','uploads/201309/thumb_523a54f7d9591.jpg','1','2','Y','1403598760','4','N','5','Y','1379554552');
-INSERT INTO `yii_post` VALUES('22','1','图盟 每日囧图05.24','','','','','9','0','','a:4:{i:0;a:4:{s:6:\"fileId\";s:2:\"63\";s:4:\"file\";s:37:\"uploads/images/201406/d6bf42140c0.jpg\";s:4:\"desc\";s:2:\"01\";s:3:\"url\";s:3:\"011\";}i:1;a:4:{s:6:\"fileId\";s:2:\"64\";s:4:\"file\";s:37:\"uploads/images/201406/4ca469fcfbf.jpg\";s:4:\"desc\";s:2:\"02\";s:3:\"url\";s:3:\"022\";}i:2;a:4:{s:6:\"fileId\";s:2:\"65\";s:4:\"file\";s:37:\"uploads/images/201406/018817f4a8f.gif\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:3;a:4:{s:6:\"fileId\";s:2:\"66\";s:4:\"file\";s:37:\"uploads/images/201406/6042f7935d0.gif\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','','猫扑','http://dzh.mop.com/ttq/20140523/0/zF7lFlI2d0ef25F7.shtml','','囧图','430','N','N','uploads/images/201406/badc32cd99a.gif','uploads/thumbs/201406/small_badc32cd99a.gif','0','0','N','1401864736','0','Y','0','Y','1401864736');
+</ul>','','','','程序员','582','Y','Y','uploads/201309/523a54f7d9591.jpg','uploads/201309/thumb_523a54f7d9591.jpg','1','2','Y','1403598760','4','N','5','Y','1379554552');
+INSERT INTO `yii_post` VALUES('22','1','图盟 每日囧图05.24','','','','','9','0','','a:4:{i:0;a:4:{s:6:\"fileId\";s:2:\"63\";s:4:\"file\";s:37:\"uploads/images/201406/d6bf42140c0.jpg\";s:4:\"desc\";s:2:\"01\";s:3:\"url\";s:3:\"011\";}i:1;a:4:{s:6:\"fileId\";s:2:\"64\";s:4:\"file\";s:37:\"uploads/images/201406/4ca469fcfbf.jpg\";s:4:\"desc\";s:2:\"02\";s:3:\"url\";s:3:\"022\";}i:2;a:4:{s:6:\"fileId\";s:2:\"65\";s:4:\"file\";s:37:\"uploads/images/201406/018817f4a8f.gif\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:3;a:4:{s:6:\"fileId\";s:2:\"66\";s:4:\"file\";s:37:\"uploads/images/201406/6042f7935d0.gif\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','','猫扑','http://dzh.mop.com/ttq/20140523/0/zF7lFlI2d0ef25F7.shtml','','囧图','437','N','N','uploads/images/201406/badc32cd99a.gif','uploads/thumbs/201406/small_badc32cd99a.gif','0','0','N','1401864736','0','Y','0','Y','1401864736');
 INSERT INTO `yii_post` VALUES('23','1','Facebook POP，迈向大师操作之路','','','','','3','0','Facebook发布Paper后，不满足于将其作为一个概念性产品，反而更进一步开源了其背后的动画引擎POP。POP的开发者是Kimon Tsinteris，曾致力于创造出逼真的、充满物力效应的体验。POP也是在这个理念下催生出来的结果。 ','','','','','<p>
 	Facebook发布Paper之后，似乎还不满足于只是将其作为一个概念性产品，反而更进一步开源了其背后的动画引擎POP（https://github.com/facebook/pop），此举大有三年前发布的iOS&nbsp;UI框架Three20（https://github.com/facebookarchive/three20）的意味。而POP开源后不负Facebook的厚望，在GitHub上不足一个月的时间，就已拥有了6000多个Star，非常火爆。
 </p>
@@ -760,7 +760,7 @@ INSERT INTO `yii_post` VALUES('23','1','Facebook POP，迈向大师操作之路'
 </p>
 <p>
 	这里我们使用UIGraphicsBeginImageContext-WithOptions()去开启绘画上下文，动画结束后使用UIGraphicsEndImageContext()来清空绘画的上下文。这两个函数主要是影响画板的大小。
-</p>','csdn','http://www.csdn.net/article/2014-06-04/2820077-Facebook-POP-Practice','','Facebook,国际业务','37','N','N','uploads/images/201406/1053bfe806b.png','uploads/thumbs/201406/small_1053bfe806b.png','0','0','N','1403601502','0','Y','0','Y','1401955341');
+</p>','csdn','http://www.csdn.net/article/2014-06-04/2820077-Facebook-POP-Practice','','Facebook,国际业务','40','N','N','uploads/images/201406/1053bfe806b.png','uploads/thumbs/201406/small_1053bfe806b.png','0','0','N','1403601502','0','Y','0','Y','1401955341');
 
 DROP TABLE IF EXISTS `yii_post_tags`;
 CREATE TABLE `yii_post_tags` (
@@ -849,7 +849,7 @@ CREATE TABLE `yii_session` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='session表';
 
-INSERT INTO `yii_session` VALUES('m4pnr1vsqprraqcinv7lifhq50','1403605767','admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.33c9b0a4.admin/default.captcha|s:4:\"bbnb\";Yii.CCaptchaAction.33c9b0a4.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}Yii.CCaptchaAction.33c9b0a4.question.captcha|s:6:\"837qnb\";Yii.CCaptchaAction.33c9b0a4.question.captchacount|i:5;6cb602a7c53e8febaeafaaea1085c566__id|s:2:\"31\";6cb602a7c53e8febaeafaaea1085c566__name|s:8:\"testUser\";6cb602a7c53e8febaeafaaea1085c566status|s:1:\"1\";6cb602a7c53e8febaeafaaea1085c566groupid|s:1:\"1\";6cb602a7c53e8febaeafaaea1085c566groupname|s:12:\"普通用户\";6cb602a7c53e8febaeafaaea1085c566email|s:17:\"1441044277@qq.com\";6cb602a7c53e8febaeafaaea1085c566__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}Yii.CCaptchaAction.33c9b0a4.comment.captcha|s:4:\"3c6d\";Yii.CCaptchaAction.33c9b0a4.comment.captchacount|i:1;');
+INSERT INTO `yii_session` VALUES('vdj68vrbusb6cfuagtgp8nun14','1403618919','admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.af6bc074.admin/default.captcha|s:4:\"aeqn\";Yii.CCaptchaAction.af6bc074.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}Yii.CCaptchaAction.af6bc074.question.captcha|s:6:\"225c1a\";Yii.CCaptchaAction.af6bc074.question.captchacount|i:1;');
 
 DROP TABLE IF EXISTS `yii_setting`;
 CREATE TABLE `yii_setting` (
@@ -1060,7 +1060,7 @@ CREATE TABLE `yii_video` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='软件管理表';
 
-INSERT INTO `yii_video` VALUES('1','美国队长','12','uploads/images/201406/827a03cb8cb.jpg','','englise','science','8.5','','','美国队长','0.00','1403146013','1400834656','53','0','{\"t\":8,\"s\":[0,1,1,1,5]}','Y','','','');
+INSERT INTO `yii_video` VALUES('1','美国队长','12','uploads/images/201406/827a03cb8cb.jpg','','englise','science','8.6','','','美国队长','0.00','1403146013','1400834656','60','0','{\"t\":10,\"s\":[0,1,1,2,6]}','Y','','','');
 INSERT INTO `yii_video` VALUES('2','钢铁侠','13','uploads/images/201406/bf941705b16.jpg','','chinese','comedy','0.0','','','','0.00','1403148128','1403148128','0','0','','Y','','','');
 INSERT INTO `yii_video` VALUES('3','明日边缘','13','uploads/images/201406/4cc06a97d5a.jpg','','chinese','comedy','0.0','','','','0.00','1403148264','1403148264','1','0','','Y','','','');
 INSERT INTO `yii_video` VALUES('4','窃听风云3','13','uploads/images/201406/a02a34ce432.jpg','','chinese','comedy','8.0','','','','0.00','1403148306','1403148306','5','0','{\"t\":1,\"s\":[0,0,0,1,0]}','Y','','','');

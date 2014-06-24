@@ -52,7 +52,7 @@ class CommentController extends FrontBase
   	$post = false;
   	//评论类型
   	switch($topic_type){
-  		case 'article':
+  		case 'post':
   			$post = Post::model()->findByPk($topic_id);
   			break;
   		case 'image':
@@ -64,7 +64,7 @@ class CommentController extends FrontBase
   		case 'video':
   			$post = Video::model()->findByPk($topic_id);
   			break;
-  	}
+  	}  	
   	if(!$post){
   		throw new CHttpException(404, Yii::t('admin','Submit Error'));
   		break;

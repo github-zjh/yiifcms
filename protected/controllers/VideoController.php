@@ -153,7 +153,7 @@ class VideoController extends FrontBase
   		$arr_res['t'] = $arr_res['t']+1;
   		$arr_res['s'][$s-1] = $arr_res['s'][$s-1]+1;
   		//计算得分
-  		$avg = $arr_res['t']>0?round(($arr_res['s'][0]+2*$arr_res['s'][1]+3*$arr_res['s'][2]+4*$arr_res['s'][3]+5*$arr_res['s'][4])/$arr_res['t']*2):'0.0';	  		
+  		$avg = $arr_res['t']>0?round(($arr_res['s'][0]+2*$arr_res['s'][1]+3*$arr_res['s'][2]+4*$arr_res['s'][3]+5*$arr_res['s'][4])/$arr_res['t']*2,1):'0.0';	  		
   		$avg = substr($avg,0,3);  //取前三位
   		$avg = trim($avg,'.');    //去除多余的前后.
   		$data = CJSON::encode($arr_res);

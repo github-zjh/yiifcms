@@ -33,7 +33,7 @@
 			<?php $this->renderPartial('/layouts/shareJs');?>
 			
 			<!-- 评论区 -->
-			<iframe id="comment_iframe" scrolling="no"  marginheight="0" marginwidth="0" frameborder="0" src="<?php echo $this->createUrl('comment/create', array('view_url'=>$this->_request->getUrl(),'topic_id'=>$post->id,'topic_type'=>'article'));?>"></iframe>		
+			<iframe id="comment_iframe" scrolling="no"  marginheight="0" marginwidth="0" frameborder="0" src="<?php echo $this->createUrl('comment/create', array('view_url'=>$this->_request->getUrl(),'topic_id'=>$post->id,'topic_type'=>'post'));?>"></iframe>		
 		</div>
 		
 		<!-- 右侧内容开始 -->

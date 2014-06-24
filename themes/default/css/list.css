@@ -16,7 +16,7 @@
 .content_list .list_body .view_info span { margin-right:15px; }
 .content_list .list_body .view_info em { color:#999933; }
 .content_list .list_body .view_info .tags { padding-left:23px; background:url(../images/ico_tag.png) no-repeat left center; }
-.content_list .list_body .view_info .tags em a { padding:0 4px; background-color:#7f8c8c; border-radius:5px; color:#FFFFFF; }
+.content_list .list_body .view_info .tags em a { padding:3px 4px; background-color:#7f8c8c; border-radius:5px; color:#FFFFFF; text-decoration:none; }
 .content_list .list_body .view_info .tags em a:hover { background-color:#e2534b; }
 .content_list .list_body .view_info .views { padding-left:23px; background:url(../images/ico_view.png) no-repeat left center; }
 .content_list .list_body .view_info .downs { padding-left:23px; }

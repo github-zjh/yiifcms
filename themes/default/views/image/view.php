@@ -12,7 +12,7 @@
 						<?php if($tags_len > 0):?>
 						<span class="tags">
 							<?php $i = 1; foreach((array)$post_tags as $ptag):?>
-							<em><a href="<?php echo $this->createUrl('tag/index',array('tag'=>$ptag));?>"><?php echo $ptag;?></a><?php if($i<$tags_len):?>,&nbsp;&nbsp;<?php endif;?></em>
+							<em><a href="<?php echo $this->createUrl('tag/index',array('tag'=>$ptag));?>"><?php echo $ptag;?></a></em>
 							<?php $i++;?>
 							<?php endforeach;?>								
 						</span>
