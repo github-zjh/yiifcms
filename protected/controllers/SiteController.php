@@ -33,8 +33,9 @@ class SiteController extends FrontBase
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
 		
 		//友情链接
-		$links = Link::model()->findAll("logo !=''", array('order'=>'sortorder ASC, id DESC'));
-		$this->render('index',array('banner'=>$banner,'links'=>$links));
+		$link_logos = Link::model()->findAll("logo !=''", array('order'=>'sortorder ASC, id DESC'));
+		$link_texts = Link::model()->findAll("logo =''", array('order'=>'sortorder ASC, id DESC'));
+		$this->render('index',array('banner'=>$banner,'link_logos'=>$link_logos, 'link_texts' =>$link_texts));
 	}
 
 	/**

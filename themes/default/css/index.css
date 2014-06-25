@@ -83,10 +83,14 @@
 	box-shadow: 0 5px 0 #e2534b;
 	filter: progid:DXImageTransform.Microsoft.Shadow(color='#e2534b', Direction=-180, Strength=5);
 }
-#clients { position:relative; width:1170px; height:180px; overflow:hidden; }
-.client_body { margin-top:25px; width:600%; position:absolute; }
-.client_body li { float:left; margin-right:30px; position:relative; }
-.client_body li a { display:block; }
+#clients { width:1170px; padding:20px 0;}
+.client_body { margin-top:20px; }
+.client_body li,.client_foot li { float:left; margin-right:20px;}
+.client_body li { margin-bottom:20px;}
+.client_body li a { display:block; border:1px solid #DDDDDD;}
+.client_body li a:hover { border-color:#555555; }
+.client_foot li a { display:block; padding:6px 0; color:#555555; font-size:16px;}
+.client_foot li a:hover { background-color:#666666; color:#FFFFFF; }
 
 
 

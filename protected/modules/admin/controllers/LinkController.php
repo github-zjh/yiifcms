@@ -59,7 +59,7 @@ class LinkController extends Backend
         if (isset($_POST['Link'])) {
             $model->attributes = $_POST['Link'];
             $upload = new XUpload;
-            $upload->uploadFile($_FILES['attach']);
+            $upload->uploadFile($_FILES['logo']);
             if ($upload->_error) {
             	$this->message('error', Yii::t('admin',$upload->_error));
             	return;            	
@@ -67,7 +67,7 @@ class LinkController extends Backend
             }
             $model->logo = $upload->_file_name;
             if ($model->save()) {                
-                $this->redirect(array ('link' ));
+                $this->redirect(array ('index' ));
             }
         }
         

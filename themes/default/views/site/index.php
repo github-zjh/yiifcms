@@ -39,13 +39,21 @@
 	<div id="clients">
 		<ul class="client_head clear">
 			<li class="client_title">友情链接</li>
-			<li class="client_line"><img src="<?php echo $this->_stylePath;?>/images/grey_line_x.png" /></li>
-			<li class="client_btn"><input type="hidden" id="client_left" value="0" /><a href="javascript:;" class="clf_btn"><</a><a href="javascript:;" class="crt_btn">></a></li>
+			<li class="client_line"><img width="1050" src="<?php echo $this->_stylePath;?>/images/grey_line_x.png" /></li>			
 		</ul>
-		<?php if($links):?>
+		
+		<?php if($link_logos):?>
 		<ul class="client_body clear">
-			<?php foreach($links as $link):?>
-			<li><a href="<?php echo $link->attributes['link'];?>" title="<?php echo $link->attributes['title'];?>" target="_blank"><img width="170" height="90" src="<?php echo $link->attributes['logo'];?>" /></a></li>
+			<?php foreach($link_logos as $lg):?>
+			<li><a href="<?php echo $lg->link;?>" title="<?php echo $lg->title;?>" target="_blank"><img width="170" height="90" src="<?php echo $lg->logo;?>" /></a></li>
+			<?php endforeach;?>			
+		</ul>
+		<?php endif;?>
+		
+		<?php if($link_texts):?>
+		<ul class="client_foot clear">
+			<?php foreach($link_texts as $lt):?>
+			<li><a href="<?php echo $lt->attributes['link'];?>" title="<?php echo $lt->attributes['title'];?>" target="_blank"><?php echo $lt->title;?> </a></li>
 			<?php endforeach;?>			
 		</ul>
 		<?php endif;?>
