@@ -131,7 +131,7 @@ box-shadow: 0 5px 0 #e2534b;
 #back_top:hover { background-position:-35px 0;}
 
 /* 公共底部footer */
-#footer { background-color:#428BCA; color:#FFFFFF; }
+#footer { background-color:#666666; color:#FFFFFF; }
 #footer * { color:#FFFFFF; }
 #footer a { text-decoration:underline; }
 #footer .ft_header {  padding:15px 0; width:1170px; margin:0 auto;}
@@ -139,16 +139,23 @@ box-shadow: 0 5px 0 #e2534b;
 #footer .footer_left { width:370px;}
 #footer .footer_mid { width:160px;}
 #footer .footer_mid h2 { text-align:center; }
-#footer .footer_mid li { float:none; text-align:center; }
-#footer li h2 { margin-bottom:30px; font-size:20px; font-weight:bold;}
+#footer .footer_mid li { float:none; text-align:center; line-height:26px;}
+#footer li h2 { margin-bottom:20px; font-size:20px; font-weight:bold;}
 #footer .ft_header .footer_right { margin-left:40px;}
 #footer .footer_right h2 { font-size:20px; font-weight:normal; }
 #footer .footer_right label, .footer_right .text { float:left; }
 #footer .footer_right .text_box { margin-bottom:20px; }
-#footer .footer_right .text { padding-left:20px; width:300px; }
-#copyright { background-color:#3579A6; }
+#footer .footer_right .text { padding-left:20px; width:auto; }
+#footer .footer_right .text p { line-height:24px;}
+#footer .footer_right .text .sinawb_me,
+#footer .footer_right .text .qq_me,
+#footer .footer_right .text .email_me{ display:block; padding-left:25px; background:url(../images/ico_sinawb.jpg) no-repeat left center; text-decoration:none;}
+#footer .footer_right .text .email_me { background-image:url(../images/ico_163.jpg);}
+#footer .footer_right .text .qq_me { background-image:url(../images/ico_qq.jpg);}
+
+#copyright { background-color:#555555; }
 #copyright div { width:1170px; margin:0 auto;}
 #copyright span { float:left; line-height:50px; margin-right:20px;}
 #copyright .outer { float:right; padding-top:15px; }
 #copyright .outer a { display:block; }
-#copyright .outer li { float:left; width:22px; margin-left:20px; }
+#copyright .outer li { float:left; width:auto; margin-left:20px; }

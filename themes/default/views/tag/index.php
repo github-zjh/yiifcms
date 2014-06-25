@@ -30,7 +30,7 @@
 						</p>									
 						<div class="content_info clear">		
 							<?php if(file_exists($post->attach_thumb)):?>
-							<a class="content_cover" alt="<?php echo $post->title;?>" title="<?php echo $post->title;?>" href="<?php echo $this->createUrl('post/view', array('id'=>$post->id));?>"><img src="<?php echo $post->attach_thumb;?>" /></a>
+							<a class="content_cover" alt="<?php echo $post->title;?>" title="<?php echo $post->title;?>" href="<?php echo $this->createUrl($type->type_key.'/view', array('id'=>$post->id));?>"><img src="<?php echo $post->attach_thumb;?>" /></a>
 							<?php endif;?>												
 							<div><?php echo $post->intro?$post->intro:'...';?></div>
 						</div>

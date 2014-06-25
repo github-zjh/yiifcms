@@ -74,6 +74,7 @@
 	-moz-box-shadow: 0 5px 0 #7f8c8c;
 	box-shadow: 0 5px 0 #7f8c8c;
 	filter: progid:DXImageTransform.Microsoft.Shadow(color='#7f8c8c', Direction=-180, Strength=5);
+	text-align:center;
 }
 .client_head .client_btn a:hover { 
 	background-color:#e2534b;

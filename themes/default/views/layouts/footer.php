@@ -2,40 +2,32 @@
 <div id="footer">
 	<ul class="ft_header clear">
 		<li class="footer_left">
-			<h2>标题标题</h2>
-			<p>一段文字一段文字一段文字一段文字一段文字</p>
+			<h2><?php echo $this->_setting['site_name'];?></h2>
+			<p><?php echo $this->_setting['seo_description'];?></p>
 		</li>
 		<li class="footer_mid">
-			<h2>标题标题</h2>
+			<h2>新手指南</h2>
 			<ul>
-				<li>>&nbsp;&nbsp;<a href="javascript:;">About Us</a></li>
-				<li>>&nbsp;&nbsp;<a href="javascript:;">About Us</a></li>
-				<li>>&nbsp;&nbsp;<a href="javascript:;">About Us</a></li>
-				<li>>&nbsp;&nbsp;<a href="javascript:;">About Us</a></li>
-				<li>>&nbsp;&nbsp;<a href="javascript:;">About Us</a></li>
-				<li>>&nbsp;&nbsp;<a href="javascript:;">About Us</a></li>
-				<li>>&nbsp;&nbsp;<a href="javascript:;">About Us</a></li>
+				<li><a href="<?php echo $this->createUrl('page/login');?>">如何登录</a></li>
+				<li><a href="<?php echo $this->createUrl('page/register');?>">注册流程</a></li>		
+				<li><a href="<?php echo $this->createUrl('page/comment');?>">评论审核</a></li>		
 			</ul>
 		</li>
 		<li class="footer_mid">
-			<h2>标题标题</h2>
+			<h2>快捷通道</h2>
 			<ul>
-				<li>>&nbsp;&nbsp;<a href="javascript:;">About Us</a></li>
-				<li>>&nbsp;&nbsp;<a href="javascript:;">About Us</a></li>
-				<li>>&nbsp;&nbsp;<a href="javascript:;">About Us</a></li>
-				<li>>&nbsp;&nbsp;<a href="javascript:;">About Us</a></li>
-				<li>>&nbsp;&nbsp;<a href="javascript:;">About Us</a></li>
-				<li>>&nbsp;&nbsp;<a href="javascript:;">About Us</a></li>
-				<li>>&nbsp;&nbsp;<a href="javascript:;">About Us</a></li>
+				<li><a href="<?php echo $this->createUrl('page/about');?>">关于我们</a></li>
+				<li><a href="<?php echo $this->createUrl('questio/index');?>">留言反馈</a></li>	
 			</ul>
 		</li>
 		<li class="footer_right">
-			<h2>from the <strong>BOLG</strong></h2>			
+			<h2>Power By <strong>zhao jinhan(Beijing Of China)</strong></h2>			
 			<div class="clear">
-				<label><img src="<?php echo $this->_stylePath;?>/images/tmp/tmp_blog_icon.png" /></label>
+				<label><img width="70" src="<?php echo $this->_stylePath;?>/images/my_header.jpg" /></label>
 				<div class="text">
-					<p>asdfsdfasdfsdfasdfsdfasdfsdfasdfsdfasdfsdfasdfsdfasdfsdfasdfsdfasdfsdfasdfsdfasdfsdfasdfsdf</p>
-					<span>asdfsdf</span>
+					<p><a href="http://weibo.com/u/1503697997" class="sinawb_me" target="_blank">Ps冷眸_涵</a></p>
+					<p><a href="mailto:xb_zjh@126.com" class="email_me">xb_zjh@126.com</a></p>
+					<p><a href="tencent://message/?uin=326196998" class="qq_me">326196998</a></p>
 				</div>				
 			</div>
 		</li>
@@ -43,12 +35,9 @@
 	<div id="copyright">	
 		<div class="clear">
 			<span><?php echo $this->_setting['site_copyright'];?></span>	
-			<span><?php echo $this->_setting['site_icp'];?></span>
-			<span>E-mail：<?php echo $this->_setting['admin_email'];?></span>
+			<span><?php echo $this->_setting['site_icp'];?></span>			
 			<ul class="outer">
-				<li><a href="javascript:;"><img src="<?php echo $this->_stylePath;?>/images/tmp/tmp_g_icon.png" /></a></li>
-				<li><a href="javascript:;"><img src="<?php echo $this->_stylePath;?>/images/tmp/tmp_g_icon.png" /></a></li>
-				<li><a href="javascript:;"><img src="<?php echo $this->_stylePath;?>/images/tmp/tmp_g_icon.png" /></a></li>
+				<li><?php echo $this->_setting['site_stats'];?></li>			
 			</ul>
 		</div>		
 	</div>
