@@ -89,25 +89,31 @@ class RecommendPositionController extends Backend
      * @param unknown $id
      */    
 	public function actionView($id){
+		//推荐位
 		$recomPosition = RecommendPosition::model()->findByPk($id);
-		$model = new RecommendPost();
-		$criteria = new CDbCriteria();
+		//内容类型
+		$type = ModelType::model()->findByPk($recomPosition->type);
+		//模型表
+		$table = $type->type_table;				
+		$content = new Recommend();
+		$criteria = new CDbCriteria();		
 		$condition = '1 = 1';		
 		$id = $this->_request->getParam('id');
 		$title = $this->_request->getParam('title');
-		$id && $condition .= ' AND t.id =' . $id;
-		$title && $condition .= ' AND posts.title LIKE \'%' . $title . '%\'';
-		$criteria->condition = $condition;				
-		$criteria->with = array('posts');
-		$count = $model->count($criteria);		
+		$id && $condition .= ' AND t.id =' . $id;	
+		$title && $condition .= " AND {$table}.title like '%{$title}%'";
+		$criteria->condition = $condition;		
+				
+		$criteria->with = array($table);
+		$count = $content->count($criteria);		
 		$pages = new CPagination($count);
-		$pages->pageSize = 20;
+		$pages->pageSize = 20;		
 		$pageParams = $this->buildCondition($_GET, array ('id', 'title' ));
 		$pages->params = is_array($pageParams) ? $pageParams : array ();		
 		$criteria->limit = $pages->pageSize;
 		$criteria->offset = $pages->currentPage * $pages->pageSize;
-		$result = $model->findAll($criteria);	
-		$this->render('view', array ('datalist' => $result , 'recom_position'=>$recomPosition, 'pagebar' => $pages ));
+		$result = $content->findAll($criteria);	
+		$this->render('view', array ('datalist' => $result , 'table'=>$table, 'recom_position'=>$recomPosition, 'pagebar' => $pages ));
 	}
     /**
 	 * 批量操作
@@ -129,19 +135,44 @@ class RecommendPositionController extends Backend
         empty($ids) && $this->message('error', Yii::t('admin','No Select'));
         
         switch ($command) {
+        	case 'sortOrder':
+        		//排序
+        		$sortOrder = $_POST['sortOrder'];
+        		foreach((array)$ids as $id){
+        			$recModel = Recommend::model()->find('content_id=:id', array(':id'=>$id));
+        			if($recModel){
+        				$recModel->sort_order = $sortOrder[$id];
+        				$recModel->save();
+        			}
+        		}
+        	
+        		break;
+        		
             case 'Delete':
        			 foreach((array)$ids as $id){
             		$reModel = RecommendPosition::model()->findByPk($id);
             		if($reModel){            			
             			$reModel->delete();
             			//同时删除推荐的内容
-            			RecommendPost::model()->deleteAll('id='.$id);
+            			Recommend::model()->deleteAll('id='.$id);
             		}
             	}
-                break;    
+                break;
+           case 'unCommend':
+           		//取消推荐
+                $uncommend = $_POST['unCommend'];
+                foreach((array)$ids as $id){
+                	$recModel = Recommend::model()->find('content_id=:id', array(':id'=>$id));
+                	if($recModel){                			
+                			$recModel->delete();
+                	}
+                }
+                	 
+                break;
             default:
                 throw new CHttpException(404,  Yii::t('admin','Error Operation'));
                 break;
+                
         }
         
         $this->message('success', Yii::t('admin','Batch Operate Success'),$this->createUrl('index'));

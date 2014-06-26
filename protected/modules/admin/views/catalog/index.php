@@ -30,10 +30,10 @@
         <?php if($row['attach_file']):?>
         <img src="<?php echo $this->_baseUrl?>/static/admin/images/image.png" align="absmiddle" />
         <?php endif;?>
-        <?php if($row['status_is'] == 'N'):?>
+        <?php if($row['status'] == 'N'):?>
         <img src="<?php echo $this->_baseUrl?>/static/admin/images/error.png" align="absmiddle" />[<?php echo Yii::t('admin','Hidden');?>]
         <?php endif;?></td>     
-      <td ><?php echo Yii::t('admin','Type '.ucfirst($row['type']));?></td> 
+      <td ><?php echo Yii::t('admin','Type '.ucfirst(array_search($row['type'], $this->_type_ids)));?></td> 
       <td ><?php echo date('Y-m-d H:i',$row['create_time'])?></td>
       <td ><?php echo date('Y-m-d H:i',$row['update_time'])?></td>
       <td >

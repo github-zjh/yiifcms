@@ -1,6 +1,6 @@
 # your database backup
 # version:5.5.27-log
-# time:2014-06-25 17:02:12
+# time:2014-06-26 17:22:19
 # --------------------------------------------------------
 
 
@@ -50,14 +50,14 @@ CREATE TABLE `yii_catalog` (
   `attach_thumb` varchar(100) DEFAULT '' COMMENT '缩略图',
   `sort_order` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
   `data_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '数据量',
-  `status_is` enum('Y','N') NOT NULL DEFAULT 'Y' COMMENT '状态',
+  `status` enum('Y','N') NOT NULL DEFAULT 'Y' COMMENT '是否显示',
   `redirect_url` varchar(255) NOT NULL DEFAULT '' COMMENT '跳转地址',
-  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '录入时间',
+  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   `update_time` int(10) unsigned DEFAULT '0' COMMENT '修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='全局分类';
 
-INSERT INTO `yii_catalog` VALUES('1','1','0','新闻','新闻<br />','d','d','d','uploads/images/201403/8a4b5e11db6.png','uploads/thumbs/201403/small_8a4b5e11db6.png','0','0','Y','','1379545020','1394509418');
+INSERT INTO `yii_catalog` VALUES('1','1','0','新闻','新闻<br />','d','d','d','uploads/images/201403/8a4b5e11db6.png','uploads/thumbs/201403/small_8a4b5e11db6.png','0','0','Y','','1379545020','1403766555');
 INSERT INTO `yii_catalog` VALUES('2','1','1','公司动态','公司动态栏目介绍','','','','uploads/images/201402/98f97227c00.png','','2','0','Y','','1379545199','1394509418');
 INSERT INTO `yii_catalog` VALUES('3','1','1','行业新闻','行业新闻栏目介绍','','','','uploads/images/201403/b49f2b45b50.jpg','uploads/thumbs/201403/small_b49f2b45b50.jpg','1','0','Y','','1379545248','1394509418');
 INSERT INTO `yii_catalog` VALUES('4','5','0','产品','产品栏目介绍','','','','','','0','0','Y','','1379545330','1394517482');
@@ -239,7 +239,94 @@ CREATE TABLE `yii_page` (
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='单页';
 
 INSERT INTO `yii_page` VALUES('1','关于我们','','about','','','','yiicms','','','','','uploads/201309/logo.jpg','uploads/201309/logo.jpg','0','0','Y','1322999570');
-INSERT INTO `yii_page` VALUES('2','联系我们','','contact','','','','b','','','','','','','0','0','N','1322999588');
+INSERT INTO `yii_page` VALUES('2','产品特色','','feature','','','','<p style=\"text-indent:2em;\">
+	<br />
+</p>
+<p style=\"text-indent:2em;\">
+	<strong><span style=\"font-family:Microsoft YaHei;font-size:16px;\" id=\"free\">开源、免费</span></strong> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">yiifcms是基于yiiframework开发的内容管理系统，它开源、免费，用户可以自由下载、使用、修改、学习交流。</span>
+</p>
+<p style=\"text-indent:2em;\">
+	<br />
+</p>
+<p style=\"text-indent:2em;\">
+	<br />
+</p>
+<p style=\"text-indent:2em;\">
+	<br />
+</p>
+<hr />
+<p>
+	<br />
+</p>
+<p style=\"text-indent:2em;\">
+	<br />
+</p>
+<p style=\"text-indent:2em;\">
+	<strong><span style=\"font-family:Microsoft YaHei;font-size:16px;\" id=\"safe\">安全、高效</span></strong> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">yiiframework本身是一个很安全的高性能的开源框架，使用它您不用担心安全问题，它会使您的网站运行的很良好。</span>
+</p>
+<p style=\"text-indent:2em;\">
+	<br />
+</p>
+<p style=\"text-indent:2em;\">
+	<br />
+</p>
+<hr />
+<p>
+	<br />
+</p>
+<p style=\"text-indent:2em;\">
+	<br />
+</p>
+<p style=\"text-indent:2em;\">
+	<br />
+</p>
+<p style=\"text-indent:2em;\">
+	<strong><span style=\"font-size:16px;font-family:Microsoft YaHei;\" id=\"handy\">简洁、方便</span></strong> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">yiifcms有简洁、方便的后台管理，用户不需要了解复杂的逻辑关系，就可以很快速的发布内容，优化管理。</span>
+</p>
+<p style=\"text-indent:2em;\">
+	<br />
+</p>
+<p style=\"text-indent:2em;\">
+	<br />
+</p>
+<hr />
+<p>
+	<br />
+</p>
+<p style=\"text-indent:2em;\">
+	<br />
+</p>
+<p style=\"text-indent:2em;\">
+	<br />
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-family:Microsoft YaHei;font-size:16px;\" id=\"stable\">轻松、稳定</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<br />
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">yiifcms架构合理、布局优美，是您轻松建站和学习的不二之选。</span>
+</p>
+<p style=\"text-indent:2em;\">
+	<br />
+</p>
+<hr />
+<p>
+	<br />
+</p>
+<p style=\"text-indent:2em;\">
+	<br />
+</p>','','产品特色','产品特色','','','','0','0','Y','1322999588');
 INSERT INTO `yii_page` VALUES('3','企业文化','','cultural','','','企业文化是企业为解决生存和发展的问题的而树立形成的，被组织成员认为有效而共享，并共同遵循的基本信念和认知。 企业文化集中体现了一个企业经营管理的核心主张，以及由此产生的组织行为。','<div>	<div>		迪尔和肯尼迪把企业文化整个理论系统概述为5个要素，即企业环境、价值观、英雄人物、文化仪式和文化网络。	</div>	<div>		企业环境是指企业的性质、企业的经营方向、外部环境、企业的社会形象、与外界的联系等方面。它往往决定企业的行为。	</div>	<div>		价值观是指企业内成员对某个事件或某种行为好与坏、善与恶、正确与错误、是否值得仿效的一致认识。价值观是企业文化的核心，统一的价值观使企业内成员在判断自己行为时具有统一的标准，并以此来选择自己的行为。	</div>	<div>		英雄人物是指企业文化的核心人物或企业文化的人格化，其作用在于作为一种活的样板，给企业中其他员工提供可供仿效的榜样，对企业文化的形成和强化起着极为重要的作用。	</div>	<div>		文化仪式是指企业内的各种表彰、奖励活动、聚会以及文娱活动等，它可以把企业中发生的某些事情戏剧化和形象化，来生动的宣传和体现本企业的价值观，使人们通过这些生动活泼的活动来领会企业文化的内涵，使企业文化“寓教于乐”之中。	</div>	<div>		文化网络是指非正式的信息传递渠道，主要是传播文化信息。它是由某种非正式的组织和人群，以及某一特定场合所组成，它所传递出的信息往往能反映出职工的愿望和心态。	</div>	<h3>		产生	</h3>	<div>		企业领导者把文化的变化人的功能应用于企业，以解决现代企业管理中的问题，就有了企业文化。企业管理理论和企业文化管理理论都追求效益。但前者为追求效益而把人当作客体，后者为追求效益把文化概念自觉应用于企业，把具有丰富创造性的人作为管理理论的中心。这种指导思想反映到企业管理中去，就有了人们称之为企业文化的种种观念。	</div>	<h3>		认识	</h3>	<div>		从企业文化的现实出发，进行深入的调查研究，把握企业文化各种现象之间的本质联系。依据实践经验，从感认认识到理性认识，进行科学的概括、总结。	</div>	<h3>		意义	</h3>	<div>		一．企业文化能激发员工的使命感。不管是什么企业都有它的责任和使命，企业使命感是全体员工工作的目标和方向，是企业不断发展或前进的动力之源。	</div>	<div>		二．企业文化能凝聚员工的归属感。　企业文化的作用就是通过企业价值观的提炼和传播，让一群来自不同地方的人共同追求同一个梦想。	</div>	<div>		三．企业文化能加强员工的责任感。企业要通过大量的资料和文件宣传员工责任感的重要性，管理人员要给全体员工灌输责任意识，危机意识和团队意识，要让大家清楚地认识企业是全体员工共同的企业。	</div>	<div>		四．企业文化能赋予员工的荣誉感。每个人都要在自己的工作岗位，工作领域，多做贡献，多出成绩，多追求荣誉感。	</div>	<div>		五．企业文化能实现员工的成就感。一个企业的繁荣昌盛关系到每一个公司员工的生存，企业繁荣了，员工们就会引以为豪，会更积极努力的进取，荣耀越高，成就感就越大，越明显。	</div></div><div></div>','','','','','','','0','0','Y','1331877791');
 INSERT INTO `yii_page` VALUES('4','管理团队1','','team','','','团队是现代企业管理中战斗的核心，几乎没有一家企业不谈团队，好象团队就是企业做大做强的灵丹妙药，只要抓紧团队建设就能有锦锈前程了。团队是个好东西，但怎样的团队才算一个好团队，怎样才能运作好一个团队呢？却是许多企业管理者不甚了然的，于是在企业团队建设的过程中就出现了许多弊病，例如从理论著作中生搬硬套到团队运作里面，是很难产生好团队的。','<div>	<div>		团队是现代企业管理中战斗的核心，几乎没有一家企业不谈团队，好象团队就是企业做大做强的灵丹妙药，只要抓紧团队建设就能有锦锈前程了。团队是个好东西，但怎样的团队才算一个好团队，怎样才能运作好一个团队呢？却是许多企业管理者不甚了然的，于是在企业团队建设的过程中就出现了许多弊病，例如从理论著作中生搬硬套到团队运作里面，是很难产生好团队的。任何理念都不能执着，执着生僵化，就会蜕变为形式主义，后果很糟糕。在如今企业管理者热火朝天进行的团队建设中就存在这个问题，将团队作为企业文化建设的至上准则是不恰当的，是不符合多元化的现实状况的。	</div>	<div>		一个优秀的企业管理者，应该怎样管理员工?道理也很简单，那就是要给员工创造一个充分利用自己的个性将工作干得最好的条件。不一定什么都要团队化，太死板了。虽然现在的企业也都提倡创新，但如果管理者过分强调团队精神，则员工的创新精神必然受到压抑。压抑个性就是压抑创新，没有个性哪来的创新?说得极端一点，企业管理者要谨防团队建设法西斯化。团队是需要的，企业管理者在团队建设的同时要遵循一个原则，不能压抑员工的个性。在团队内部，企业管理者要给员工充分的自由，少说几句少数服从多数，要知道，聪明的人在世界上还就占少数。	</div>	<div>		企业管理者应该解放思想，要有多元化的思维。不同的企业，团队的性质也不一样。要量体裁衣建设符合企业内在要求的团队，要灵活变化，别搞一刀切。如果该企业是劳动密集型企业，那你可以建设一支高度纪律性组织性的团队。如果该企业是知识密集型企业，那就要以自由主义来管理员工了，建立一支人尽其才的团队是最重要的，严格说算不上是团队，也没必要强调团队，更注重的应该是员工的个人创造力，千万别让团队束缚住员工的头脑，当然应该有的纪律和合作也是不可少的。如果企业既有创造型员工也有操作型员工，那可将团队建设重点放到操作型员工身上。需要注意的一点是，越聪明的人越倾向个人主义，这个情况，企业管理者要注意有的放矢。	</div></div><div></div>','','','','','','','0','0','Y','1379392484');
 
@@ -276,7 +363,7 @@ CREATE TABLE `yii_post` (
   `reply_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '回复次数',
   `reply_allow` enum('Y','N') NOT NULL DEFAULT 'Y' COMMENT '允许评论',
   `sort_desc` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
-  `status_is` enum('Y','N') NOT NULL DEFAULT 'Y' COMMENT '是否显示',
+  `status` enum('Y','N') NOT NULL DEFAULT 'Y' COMMENT '是否显示',
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='内容管理';
@@ -312,7 +399,7 @@ INSERT INTO `yii_post` VALUES('15','1','Groupon收购本地体验初创公司Sid
 <pre class=\"prettyprint lang-js\">alert(\'哈哈\')</pre>
 <br />
 </span> 
-</p>','','','','Groupon','22','Y','Y','uploads/201309/523a54c220262.jpg','uploads/201309/thumb_523a54c220262.jpg','0','0','N','1403598795','0','Y','0','Y','1379554498');
+</p>','','','','Groupon','24','Y','Y','uploads/201309/523a54c220262.jpg','uploads/201309/thumb_523a54c220262.jpg','0','0','N','1403598795','0','Y','0','Y','1379554498');
 INSERT INTO `yii_post` VALUES('16','1','程序员必须知道的10大基础实用算法及其讲解','','a:3:{s:4:\"bold\";s:1:\"Y\";s:9:\"underline\";s:1:\"Y\";s:5:\"color\";s:6:\"FF2969\";}','','','2','1','在手机解锁上，美国消费者和运营商展开持久战，美国政府和白宫逐渐站在消费者一边。	近日美国电信和信息管理局（NTIA）正式向联邦通信委员会（FCC）发函，要求修改规定，未来移动运营商销售给用户的手机、平板...','a:2:{i:0;a:4:{s:6:\"fileId\";s:2:\"36\";s:4:\"file\";s:37:\"uploads/images/201405/21e1adee63a.png\";s:4:\"desc\";s:2:\"04\";s:3:\"url\";s:5:\"04url\";}i:1;a:4:{s:6:\"fileId\";s:2:\"37\";s:4:\"file\";s:37:\"uploads/images/201405/f23850e09dc.png\";s:4:\"desc\";s:2:\"05\";s:3:\"url\";s:5:\"05url\";}}','','','','<p>
 	<a href=\"http://geek.csdn.net/news/detail/12027\"><span style=\"font-size:14px;\">程序员必须知道的10大基础实用算法及其讲解</span></a><span style=\"font-size:14px;\">，包括：</span> 
 </p>
@@ -545,227 +632,227 @@ shared repository.</span>
 	<li>
 		<span style=\"font-size:14px;\">Google Fiber</span> 
 	</li>
-</ul>','','','','程序员','582','Y','Y','uploads/201309/523a54f7d9591.jpg','uploads/201309/thumb_523a54f7d9591.jpg','1','2','Y','1403598760','4','N','5','Y','1379554552');
-INSERT INTO `yii_post` VALUES('22','1','图盟 每日囧图05.24','','','','','9','0','','a:4:{i:0;a:4:{s:6:\"fileId\";s:2:\"63\";s:4:\"file\";s:37:\"uploads/images/201406/d6bf42140c0.jpg\";s:4:\"desc\";s:2:\"01\";s:3:\"url\";s:3:\"011\";}i:1;a:4:{s:6:\"fileId\";s:2:\"64\";s:4:\"file\";s:37:\"uploads/images/201406/4ca469fcfbf.jpg\";s:4:\"desc\";s:2:\"02\";s:3:\"url\";s:3:\"022\";}i:2;a:4:{s:6:\"fileId\";s:2:\"65\";s:4:\"file\";s:37:\"uploads/images/201406/018817f4a8f.gif\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:3;a:4:{s:6:\"fileId\";s:2:\"66\";s:4:\"file\";s:37:\"uploads/images/201406/6042f7935d0.gif\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','','猫扑','http://dzh.mop.com/ttq/20140523/0/zF7lFlI2d0ef25F7.shtml','','囧图','439','N','N','uploads/images/201406/badc32cd99a.gif','uploads/thumbs/201406/small_badc32cd99a.gif','0','0','N','1401864736','0','Y','0','Y','1401864736');
-INSERT INTO `yii_post` VALUES('23','1','Facebook POP，迈向大师操作之路','','','','','3','0','Facebook发布Paper后，不满足于将其作为一个概念性产品，反而更进一步开源了其背后的动画引擎POP。POP的开发者是Kimon Tsinteris，曾致力于创造出逼真的、充满物力效应的体验。POP也是在这个理念下催生出来的结果。 ','','','','','<p>
+</ul>','','','','程序员','583','Y','Y','uploads/201309/523a54f7d9591.jpg','uploads/201309/thumb_523a54f7d9591.jpg','1','2','Y','1403598760','4','N','5','Y','1379554552');
+INSERT INTO `yii_post` VALUES('22','1','图盟 每日囧图05.24','','','','','9','0','','a:4:{i:0;a:4:{s:6:\"fileId\";s:2:\"63\";s:4:\"file\";s:37:\"uploads/images/201406/d6bf42140c0.jpg\";s:4:\"desc\";s:2:\"01\";s:3:\"url\";s:3:\"011\";}i:1;a:4:{s:6:\"fileId\";s:2:\"64\";s:4:\"file\";s:37:\"uploads/images/201406/4ca469fcfbf.jpg\";s:4:\"desc\";s:2:\"02\";s:3:\"url\";s:3:\"022\";}i:2;a:4:{s:6:\"fileId\";s:2:\"65\";s:4:\"file\";s:37:\"uploads/images/201406/018817f4a8f.gif\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:3;a:4:{s:6:\"fileId\";s:2:\"66\";s:4:\"file\";s:37:\"uploads/images/201406/6042f7935d0.gif\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','','猫扑','http://dzh.mop.com/ttq/20140523/0/zF7lFlI2d0ef25F7.shtml','','囧图','441','N','N','uploads/images/201406/badc32cd99a.gif','uploads/thumbs/201406/small_badc32cd99a.gif','0','0','N','1401864736','0','Y','0','Y','1401864736');
+INSERT INTO `yii_post` VALUES('23','1','Facebook POP，迈向大师操作之路','','','','','3','0','Facebook发布Paper后，不满足于将其作为一个概念性产品，反而更进一步开源了其背后的动画引擎POP。POP的开发者是Kimon Tsinteris，曾致力于创造出逼真的、充满物力效应的体验。POP也是在这个理念下催生出来的结果。 ','','','','','<p style=\"text-indent:2em;\">
 	Facebook发布Paper之后，似乎还不满足于只是将其作为一个概念性产品，反而更进一步开源了其背后的动画引擎POP（https://github.com/facebook/pop），此举大有三年前发布的iOS&nbsp;UI框架Three20（https://github.com/facebookarchive/three20）的意味。而POP开源后不负Facebook的厚望，在GitHub上不足一个月的时间，就已拥有了6000多个Star，非常火爆。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	POP背后的开发者是Kimon&nbsp;Tsinteris，他是Push&nbsp;Pop&nbsp;Press的联合创始人，曾在苹果担任高级工程师，并参与了iPhone和iPad上的软件研发（iPhone的指南针及地图）。2011年，Facebook收购了他的公司，此后他便加入了Facebook负责Facebook&nbsp;iOS版本的开发。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	如果你打开Push&nbsp;Pop&nbsp;Press开发的《AI&nbsp;Gore》这款App，就会发现它的交互和动画与Paper几乎如出一辙，原因就在于，它们都是由Kimon&nbsp;Tsinteris开发的。由于不满足于苹果自身动画框架的单调，Push&nbsp;Pop&nbsp;Press致力于创造一个逼真的、充满物理效应的体验。POP就是在这个理念下催生出来的新一代成果。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	POP使用Objective-C++编写。Objective-C++是对C++的扩展，就像Objective-C是C的扩展一样。而至于为什么他们用Objective-C++而不是纯粹的Objective-C，原因在于他们更喜欢Objective-C++的语法特性所提供的便利。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	<b>POP的架构</b> 
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	POP目前由四个部分组成（如图1所示），即Animations、Engine、Utility、WebCore。
 </p>
 <p style=\"text-align:center;\">
 	<a href=\"http://cms.csdnimg.cn/article/201406/04/538edd54d9240.jpg\" target=\"_blank\"><img src=\"http://cms.csdnimg.cn/article/201406/04/538edd54d9240.jpg\" border=\"0\" /></a> 
 </p>
-<p style=\"text-align:center;\">
+<p style=\"text-align:center;text-indent:2em;\">
 	图1 &nbsp;POP架构图
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	POP动画极为流畅，其秘密就在于这个引擎中的POPAnimator。POP通过CADisplayLink让动画实现了60&nbsp;FPS的流畅效果，打造了一个游戏级的动画引擎。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	CADisplayLink是类似NSTimer的定时器，不同之处在于，NSTimer用于我们定义任务的执行周期及资料的更新周期，它的执行受CPU的阻塞所影响。而CADisplayLink则用于定义画面的重绘和动画的演变，它的执行是基于Frames的间隔。通过CADisplayLink，苹果允许开发者将App的重绘速度设定到与屏幕刷新频率一致。因此开发者可以获得非常流畅的交互动画，这项技术的应用在游戏中非常常见，著名的Cocos-2d引擎也用到了这个重要的技术。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	WebCore里包含了一些从苹果的开源的网页渲染引擎里拿到的源文件（http://opensource.apple.com/source/WebCore），它与Utility里的组件一并为POP的各项复杂计算提供了基本支持。因此，通过Engine、Utility、WebCore三个基石，打造了Animations。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	POPAnimation有着与CALayer非常相似的API。如果你知道CALayer的动画API，那么你对下面的接口一定非常熟悉。说到这里，想必你一定开始迫不及待地想试试POP了（因篇幅所限，下面的代码并不是完整代码，你可以到https://github.com/kevinzhow/pop-handapp获取示例App）。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	<b>基本类型</b> 
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	<b>·</b> Spring&nbsp;Animation
 </p>
 <p style=\"text-align:center;\">
 	<a href=\"http://cms.csdnimg.cn/article/201406/04/538edd87c1b25.jpg\" target=\"_blank\"><img src=\"http://cms.csdnimg.cn/article/201406/04/538edd87c1b25.jpg\" border=\"0\" /></a> 
 </p>
-<p style=\"text-align:center;\">
+<p style=\"text-align:center;text-indent:2em;\">
 	图2 &nbsp; 默认的两种动画模式以及他们的动画节奏
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	POP默认提供了两个非常特别的动画模式，第一个就是Spring&nbsp;Animation（如图2所示），另一个是Decay&nbsp;Animation。让我们先来看看Spring&nbsp;Animation，控制其动画效果的主要参数包括：
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	<span>&nbsp; &nbsp;&nbsp;<b>·</b>&nbsp;Bounciness反弹，影响动画作用的参数的变化幅度；</span> 
 </p>
-<p>
-	&nbsp; &nbsp;&nbsp;<b>·</b>&nbsp;Speed速度；
+<p style=\"text-indent:2em;\">
+	<b>·</b>&nbsp;Speed速度；
 </p>
-<p>
-	&nbsp; &nbsp;&nbsp;<b>·</b>&nbsp;Tension拉力，影响回弹力度及速度；
+<p style=\"text-indent:2em;\">
+	<b>·</b>&nbsp;Tension拉力，影响回弹力度及速度；
 </p>
-<p>
-	&nbsp; &nbsp;&nbsp;<b>·</b>&nbsp;Friction摩擦力，开启后，动画会不断重复，并且幅度逐渐削弱，直到停止；
+<p style=\"text-indent:2em;\">
+	<b>·</b>&nbsp;Friction摩擦力，开启后，动画会不断重复，并且幅度逐渐削弱，直到停止；
 </p>
-<p>
-	&nbsp; &nbsp;&nbsp;<b>·</b>&nbsp;Mass质量，细微地影响动画的回弹力度和速度。
+<p style=\"text-indent:2em;\">
+	<b>·</b>&nbsp;Mass质量，细微地影响动画的回弹力度和速度。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	实际上，Tension、Friction、Mass这三个参数的作用很微妙，需要在示例程序中仔细体会。使用&nbsp;Spring&nbsp;Animation的方式非常简单，如代码1所示。
 </p>
 <p style=\"text-align:center;\">
 	<a href=\"http://cms.csdnimg.cn/article/201406/04/538eddc2a11c8.jpg\" target=\"_blank\"><img src=\"http://cms.csdnimg.cn/article/201406/04/538eddc2a11c8.jpg\" border=\"0\" /></a> 
 </p>
-<p style=\"text-align:center;\">
+<p style=\"text-align:center;text-indent:2em;\">
 	代码1
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	通过[POPSpringAnimation&nbsp;animationWithPropertyNamed:kPOPLayerScaleXY]我们创建了一个在二维平面上分别沿着X轴和Y轴进行缩放的动画。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	下面我们介绍三个重要的参数。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	<b>&nbsp; &nbsp; ·</b>&nbsp;fromValue将告诉POP物体被动画操作的属性从什么数值开始运行。如果不提供fromValue，那么POP将默认使用当前数值。在这个例子中，就默认使用当前的比例。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	<b>&nbsp; &nbsp; ·</b>&nbsp;toValue是我们希望动画结束后，物体被动画操作的属性停留在什么值上，在这个例子中，toValue告诉了POP，我们希望沿着X轴和Y轴各缩放几倍。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	<b>&nbsp; &nbsp; ·</b>&nbsp;completionBlock提供了一个Callback，动画的执行过程会不断调用这个block，finished这个布尔变量可以用来做动画完成与否的判断。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	值得一提的是，这里toValue和fromValue的值应该和动画所作用的属性是一样的数据结构。例如，如果我们的操作对象是bounds，那么这里的toValue则应该是[NSValue&nbsp;valueWithCGRect:]&nbsp;。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	最后，我们使用pop_addAnimation来让动画开始生效，如果想删除动画的话，那么需要调用pop_removeAllAnimations。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	与iOS自带的动画不同，如果你在动画的执行过程中删除了物体的动画，那么物体会停在动画状态的最后一个瞬间，而不是闪回开始前的状态。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	<b>·</b>&nbsp;Decay&nbsp;Animation
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	Decay&nbsp;Animation可以实现衰减的动画效果。这个动画有一个重要的参数即velocity（速率），这个参数一般并不用于物体的自发动画，而是与用户的交互共生。这和iOS&nbsp;7引入的UIDynamic非常相似，如果你想实现一些物理效果，Decay&nbsp;Animation也是不错的选择。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	Decay的动画没有toValue只有fromValue，以fromValue作为原始值，按照velocity来做衰减操作。如果我们想做一个刹车效果，则可以像代码2这样操作：
 </p>
 <p style=\"text-align:center;\">
 	<a href=\"http://cms.csdnimg.cn/article/201406/04/538eddf5e19dd.jpg\" target=\"_blank\"><img src=\"http://cms.csdnimg.cn/article/201406/04/538eddf5e19dd.jpg\" border=\"0\" /></a> 
 </p>
-<p style=\"text-align:center;\">
+<p style=\"text-align:center;text-indent:2em;\">
 	代码2
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	这个动画会使得物体从X坐标的25.0开始做100点/秒的减速运动。如果velocity里的数字是负值，那么你的动画就会反方向执行动画效果。这里非常值得一提的是，velocity也是必须和你操作的属性有相同的数据结构，如果你操作的是bounds，想实现一个水滴滴到桌面的扩散效果，那么velocity则应该是[NSValue&nbsp;valueWithRect:CGRectMake(0,&nbsp;0,&nbsp;20,&nbsp;20)]。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	deceleration（负加速度）是一个很少用到的值，它影响动画被重力影响的效果。默认值就是我们地球的重力加速度0.998。如果你程序里的动画开发给火星人看，那么使用0.376这个值会更合适。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	<b>·</b>&nbsp;Property&nbsp;Animation和Basic&nbsp;Animation
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	POP号称可以对物体的任何属性进行动画，其背后就是这个Property&nbsp;Animation驱动。Spring&nbsp;Animation和Decay&nbsp;Animation都是继承自这个类，接下来我们通过一个Counting&nbsp;Label的例子来演示Property&nbsp;Animation的神奇能力。在这个动画中，我们也使用了Basic&nbsp;Animation，动画模式是经典的ease-in-out，不使用Spring&nbsp;Animation是因为我们并不需要计数器的数值进行回弹，如代码3所示。
 </p>
 <p style=\"text-align:center;\">
 	<a href=\"http://cms.csdnimg.cn/article/201406/04/538ede19813c2.jpg\" target=\"_blank\"><img src=\"http://cms.csdnimg.cn/article/201406/04/538ede19813c2.jpg\" border=\"0\" /></a> 
 </p>
-<p style=\"text-align:center;\">
+<p style=\"text-align:center;text-indent:2em;\">
 	代码3
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	通过POPBasicAnimation的timingFunction我们定义了动画的展现方式——渐入渐出。随后通过POPAnimatableProperty来定义POP如何操作Label上的数值。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	这里我们需要注意两个函数，readBlock和writeBlock。readBlock定义了动画如何获取要操作的属性数值，writeBlock定义了动画如何修改要操作的属性数值。在这两个函数中，obj就是我们的Label，values是动画所操作的属性数组，其值必须是CGFloat。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	你可能会问，什么是动画所操作的属性数组？回顾之前我们在Decay&nbsp;Animation中操作的bounds内容，可以看出values[0]、values[1]、values[2]、values[3]分别对应了CGRectMake（0,&nbsp;0,&nbsp;20.0,&nbsp;20.0）的0、0、20.0、20.0。这里我们需要操作Label上显示的文字，所以只需要一个values[0]属性即可。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	通过values[0]=[[obj&nbsp;description]&nbsp;floatValue]我们告诉POP如何获取这个值。相应地，我们通过[obj&nbsp;setText:[NSString&nbsp;stringWithFormat:@\"%.2f\",values[0]]]，告诉POP如何改变Label的属性。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	threshold定义了动画的变化阀值，如果这里使用1，那么我们就不会看到动画执行时小数点后面的数字变化。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	到这里，我们的Counting&nbsp;Label就完成了，是不是超简单？
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	<b>实战</b> 
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	<b>·</b>&nbsp;PopUp和Decay&nbsp;Move
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	这个实例中，我将介绍一下如何将Decay动画和用户的手势操作结合起来，实现一个推冰壶的效果。手势的处理方式如代码4所示。
 </p>
 <p style=\"text-align:center;\">
 	<a href=\"http://cms.csdnimg.cn/article/201406/04/538ede3db962b.jpg\" target=\"_blank\"><img src=\"http://cms.csdnimg.cn/article/201406/04/538ede3db962b.jpg\" border=\"0\" /></a> 
 </p>
-<p style=\"text-align:center;\">
+<p style=\"text-align:center;text-indent:2em;\">
 	代码4
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	当用户触摸这个冰壶时，所有动画会立刻停止，然后冰壶会跟随用户的手指移动。在用户松开冰壶时，通过[pan&nbsp;velocityInView:self.view]我们获取了用户手指移动的速率，在addDecayPositionAnimationWithVelocity中生成动画，如代码5所示。
 </p>
 <p style=\"text-align:center;\">
 	<a href=\"http://cms.csdnimg.cn/article/201406/04/538ede58dd45e.jpg\" target=\"_blank\"><img src=\"http://cms.csdnimg.cn/article/201406/04/538ede58dd45e.jpg\" border=\"0\" /></a> 
 </p>
-<p style=\"text-align:center;\">
+<p style=\"text-align:center;text-indent:2em;\">
 	代码5
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	动画生效后，冰壶就会在低摩擦的状态下前进并逐渐停止。如果想增大摩擦力，则可以将速率乘以摩擦系数。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	<b>·</b>&nbsp;Fly&nbsp;In
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	在这个实例中，我将介绍一下如何将两个动画相结合，实现一个像Path中卡片飞入的效果。如代码6所示。
 </p>
 <p style=\"text-align:center;\">
 	<a href=\"http://cms.csdnimg.cn/article/201406/04/538ede7de353c.jpg\" target=\"_blank\"><img src=\"http://cms.csdnimg.cn/article/201406/04/538ede7de353c.jpg\" border=\"0\" /></a> 
 </p>
-<p style=\"text-align:center;\">
+<p style=\"text-align:center;text-indent:2em;\">
 	代码6
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	第一个Spring&nbsp;Animation实现了卡片下落的效果，第二个Basic&nbsp;Animation实现了卡片的渐入效果，而最后的一个Basic&nbsp;Animation则实现了卡片倾斜的效果。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	这里需要注意的是，我们使用了duration来定义Basic&nbsp;Animation的执行时间，并用beginTime来定义动画的开始时间。beginTime接受的是一个以秒为单位的时间，所以我们使用了&nbsp;CACurrentMediaTime()来获取当前的时间，在此之上增加上了期望动画延迟的时间。
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	<b>·</b>&nbsp;Transform
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	这个实例真的酷极了，我们将实现一个用户点击后播放按钮转换为进度条容器的变形效果。首先创建一个进度条，通过lineCap&nbsp;lineWidth调整进度条的样式，然后使用UIBezierPath来定义进度条的走向，如代码7所示。
 </p>
 <p style=\"text-align:center;\">
 	<a href=\"http://cms.csdnimg.cn/article/201406/04/538edea238f76.jpg\" target=\"_blank\"><img src=\"http://cms.csdnimg.cn/article/201406/04/538edea238f76.jpg\" border=\"0\" /></a> 
 </p>
-<p style=\"text-align:center;\">
+<p style=\"text-align:center;text-indent:2em;\">
 	代码7
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	代码8就是实现变形的代码。从这段代码不难看出，scale和bounds的变化效果是一起进行的。这时，播放按钮将缩小，然后改变外形成为进度条的容器。在变形结束后，将触发进度条的动画。
 </p>
 <p style=\"text-align:center;\">
 	<a href=\"http://cms.csdnimg.cn/article/201406/04/538edebc1ae26.jpg\" target=\"_blank\"><img src=\"http://cms.csdnimg.cn/article/201406/04/538edebc1ae26.jpg\" border=\"0\" /></a> 
 </p>
-<p style=\"text-align:center;\">
+<p style=\"text-align:center;text-indent:2em;\">
 	代码8
 </p>
-<p>
+<p style=\"text-indent:2em;\">
 	这里我们使用UIGraphicsBeginImageContext-WithOptions()去开启绘画上下文，动画结束后使用UIGraphicsEndImageContext()来清空绘画的上下文。这两个函数主要是影响画板的大小。
-</p>','csdn','http://www.csdn.net/article/2014-06-04/2820077-Facebook-POP-Practice','','Facebook,国际业务','41','N','N','uploads/images/201406/1053bfe806b.png','uploads/thumbs/201406/small_1053bfe806b.png','0','0','N','1403601502','0','Y','0','Y','1401955341');
+</p>','csdn','http://www.csdn.net/article/2014-06-04/2820077-Facebook-POP-Practice','','Facebook,国际业务','43','N','N','uploads/images/201406/1053bfe806b.png','uploads/thumbs/201406/small_1053bfe806b.png','0','0','N','1403750533','0','Y','0','Y','1401955341');
 
 DROP TABLE IF EXISTS `yii_post_tags`;
 CREATE TABLE `yii_post_tags` (
@@ -801,28 +888,29 @@ CREATE TABLE `yii_question` (
 
 INSERT INTO `yii_question` VALUES('1','0','zjh','326196998@qq.com','','','yiiCms是一款基于php5+mysql5开发的多功能开源的网站内容管理系统。使用高性能的PHP5的web应用程序开发框架YII构建，具有操作简单、稳定、安全、高效、跨平台等特点。采用MVC设计模式，模板定制方便灵活，内置小挂工具，方便制作各类功能和效果，yiicms可用于企业建站、个人博客、资讯门户、图片站等各类型站点。','','1379546643');
 
+DROP TABLE IF EXISTS `yii_recommend`;
+CREATE TABLE `yii_recommend` (
+  `id` int(10) unsigned NOT NULL COMMENT '推荐位id',
+  `content_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '推荐内容id',
+  `sort_order` int(10) unsigned DEFAULT '0' COMMENT '排序',
+  PRIMARY KEY (`id`,`content_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='推荐内容表';
+
+INSERT INTO `yii_recommend` VALUES('1','15','0');
+INSERT INTO `yii_recommend` VALUES('1','16','1');
+
 DROP TABLE IF EXISTS `yii_recommend_position`;
 CREATE TABLE `yii_recommend_position` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '推荐位id',
   `recommend_name` varchar(100) DEFAULT NULL COMMENT '推荐位名称',
   `type` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '栏目类型',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='推荐位表';
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='推荐位表';
 
-INSERT INTO `yii_recommend_position` VALUES('1','首页文章推荐','1');
-INSERT INTO `yii_recommend_position` VALUES('3','图集推荐','2');
-INSERT INTO `yii_recommend_position` VALUES('4','图集推荐二','2');
-
-DROP TABLE IF EXISTS `yii_recommend_post`;
-CREATE TABLE `yii_recommend_post` (
-  `id` int(10) unsigned NOT NULL COMMENT '推荐位id',
-  `post_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '推荐内容id',
-  `sort_order` int(10) unsigned DEFAULT '255' COMMENT '排序',
-  PRIMARY KEY (`id`,`post_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='推荐内容表';
-
-INSERT INTO `yii_recommend_post` VALUES('1','15','255');
-INSERT INTO `yii_recommend_post` VALUES('1','16','255');
+INSERT INTO `yii_recommend_position` VALUES('1','首页资讯推荐','1');
+INSERT INTO `yii_recommend_position` VALUES('2','首页图集推荐','2');
+INSERT INTO `yii_recommend_position` VALUES('3','首页软件推荐','3');
+INSERT INTO `yii_recommend_position` VALUES('4','图集视频推荐','4');
 
 DROP TABLE IF EXISTS `yii_reply`;
 CREATE TABLE `yii_reply` (
@@ -854,7 +942,7 @@ CREATE TABLE `yii_session` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='session表';
 
-INSERT INTO `yii_session` VALUES('tb07ju3v0i6c8rgik0ata48n85','1403690531','Yii.CCaptchaAction.33c9b0a4.question.captcha|s:6:\"rapc4d\";Yii.CCaptchaAction.33c9b0a4.question.captchacount|i:1;admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.33c9b0a4.admin/default.captcha|s:4:\"rdld\";Yii.CCaptchaAction.33c9b0a4.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
+INSERT INTO `yii_session` VALUES('05nqe1h0tgbmulrm3m6ih3id21','1403778137','admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.33c9b0a4.admin/default.captcha|s:4:\"3d7b\";Yii.CCaptchaAction.33c9b0a4.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}Yii.CCaptchaAction.33c9b0a4.question.captcha|s:6:\"3cudaa\";Yii.CCaptchaAction.33c9b0a4.question.captchacount|i:1;');
 
 DROP TABLE IF EXISTS `yii_setting`;
 CREATE TABLE `yii_setting` (
@@ -940,7 +1028,7 @@ CREATE TABLE `yii_special` (
   `seo_keywords` varchar(255) NOT NULL DEFAULT '' COMMENT 'seo关键字',
   `seo_description` varchar(255) NOT NULL DEFAULT '' COMMENT 'seo描述',
   `template` varchar(50) NOT NULL DEFAULT '' COMMENT '模板',
-  `status_is` enum('Y','N') NOT NULL DEFAULT 'Y' COMMENT '状态',
+  `status` enum('Y','N') NOT NULL DEFAULT 'Y' COMMENT '状态',
   `sort_order` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
   `view_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '点击次数',
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '入库时间',
@@ -1070,5 +1158,5 @@ INSERT INTO `yii_video` VALUES('2','钢铁侠','13','uploads/images/201406/bf941
 INSERT INTO `yii_video` VALUES('3','明日边缘','13','uploads/images/201406/4cc06a97d5a.jpg','','chinese','comedy','0.0','','','','0.00','1403148264','1403148264','1','0','','Y','','','');
 INSERT INTO `yii_video` VALUES('4','窃听风云3','13','uploads/images/201406/a02a34ce432.jpg','','chinese','comedy','8.0','','','','0.00','1403148306','1403148306','5','0','{\"t\":1,\"s\":[0,0,0,1,0]}','Y','','','');
 INSERT INTO `yii_video` VALUES('5','终结者4','13','uploads/images/201406/0bb513c708b.jpg','','chinese','comedy','0.0','','','','0.00','1403148363','1403148363','3','0','','Y','','','');
-INSERT INTO `yii_video` VALUES('6','孤胆保镖','13','uploads/images/201406/566eb360159.jpg','','chinese','active','8.0','','','','0.00','1403148418','1403148418','14','0','{\"t\":2,\"s\":[0,0,1,0,1]}','Y','','','');
+INSERT INTO `yii_video` VALUES('6','孤胆保镖','13','uploads/images/201406/566eb360159.jpg','','chinese','active','8.0','','','','0.00','1403148418','1403148418','15','0','{\"t\":2,\"s\":[0,0,1,0,1]}','Y','','','');
 

@@ -1,21 +1,21 @@
 <?php
 
 /**
- * This is the model class for table "{{recommend_post}}".
+ * This is the model class for table "{{recommend}}".
  *
- * The followings are the available columns in table '{{recommend_post}}':
+ * The followings are the available columns in table '{{recommend}}':
  * @property string $id
- * @property string $post_id
+ * @property string $content_id
  * @property string $sort_order
  */
-class RecommendPost extends CActiveRecord
+class Recommend extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return '{{recommend_post}}';
+		return '{{recommend}}';
 	}
 
 	/**
@@ -27,10 +27,10 @@ class RecommendPost extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id', 'required'),
-			array('id, post_id, sort_order', 'length', 'max'=>10),
+			array('id, content_id, sort_order', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, post_id, sort_order', 'safe', 'on'=>'search'),
+			array('id, content_id, sort_order', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -42,7 +42,10 @@ class RecommendPost extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'posts'=>array(self::HAS_MANY, 'Post', '','on' => 't.post_id=posts.id','together'=>true)	
+			'post'=>array(self::HAS_ONE, 'Post', '','on' => 't.content_id=post.id','together'=>true),
+			'image'=>array(self::HAS_ONE, 'Post', '','on' => 't.content_id=image.id','together'=>true),
+			'soft'=>array(self::HAS_ONE, 'Soft', '','on' => 't.content_id=soft.id','together'=>true),
+			'video'=>array(self::HAS_ONE, 'Video', '','on' => 't.content_id=video.id','together'=>true),
 		);
 	}
 
@@ -53,7 +56,7 @@ class RecommendPost extends CActiveRecord
 	{
 		return array(
 			'id' => 'Id',
-			'post_id' => 'Post',
+			'content_id' => 'Content',
 			'sort_order' => 'Sort Order',
 		);
 	}
@@ -78,18 +81,18 @@ class RecommendPost extends CActiveRecord
 
 		$criteria->compare('id',$this->id,true);
 
-		$criteria->compare('post_id',$this->post_id,true);
+		$criteria->compare('content_id',$this->content_id,true);
 
 		$criteria->compare('sort_order',$this->sort_order,true);
 
-		return new CActiveDataProvider('RecommendPost', array(
+		return new CActiveDataProvider('Recommend', array(
 			'criteria'=>$criteria,
 		));
 	}
 
 	/**
 	 * Returns the static model of the specified AR class.
-	 * @return RecommendPost the static model class
+	 * @return Recommend the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

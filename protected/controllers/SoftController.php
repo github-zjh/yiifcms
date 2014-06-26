@@ -15,7 +15,7 @@ class SoftController extends FrontBase
 		//导航标示
 		$this->_menu_unique = 'soft';
 		//栏目		
-		$this->_catalog = Catalog::model()->findAll('status_is=:status AND type = :type',array(':status'=>'Y',':type'=>$this->_type_ids['soft']));
+		$this->_catalog = Catalog::model()->findAll('status=:status AND type = :type',array(':status'=>'Y',':type'=>$this->_type_ids['soft']));
 	}
 	  /**
 	   * 首页

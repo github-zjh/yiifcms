@@ -31,6 +31,9 @@ class SiteController extends FrontBase
 		//加载css,js
 		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/index.css");
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
+		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.easytabs.min.js");
+		
+		//推荐资讯
 		
 		//友情链接
 		$link_logos = Link::model()->findAll("logo !='' AND status_is='Y'", array('order'=>'sortorder ASC, id DESC'));

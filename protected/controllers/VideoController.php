@@ -14,7 +14,7 @@ class VideoController extends FrontBase
 	public function init(){
 		parent::init();
 		//栏目
-		$this->_catalog = Catalog::model()->findAll('status_is=:status AND type = :type',array(':status'=>'Y',':type'=>$this->_type_ids['video']));
+		$this->_catalog = Catalog::model()->findAll('status=:status AND type = :type',array(':status'=>'Y',':type'=>$this->_type_ids['video']));
 		$this->_video_type = array(
 				'comedy'=>'喜剧',
 				'active'=>'动作',

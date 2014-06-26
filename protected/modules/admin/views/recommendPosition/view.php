@@ -32,6 +32,7 @@ $(document).ready(function(){
     <thead>
       <tr class="tb_header">
         <th width="10%">ID</th>
+        <th width="8%"> <?php echo Yii::t('admin', 'Sort Order');?></th>
         <th><?php echo Yii::t('admin','Title');?></th>
         <th width="16%"><?php echo Yii::t('admin','Categorys');?></th>
         <th width="9%"><?php echo Yii::t('admin','Status');?></th>
@@ -40,18 +41,19 @@ $(document).ready(function(){
         <th width="8%"><?php echo Yii::t('admin','Operate');?></th>
       </tr>
     </thead>
-    <?php foreach ($datalist as $dk=>$dv):?>
-    <?php $row = $dv->getRelated('posts')[0];?>
-    <tr class="tb_list" <?php if($row->status_is=='N'):?>style=" background:#F0F7FC" <?php endif;?>>
-      <td ><input type="checkbox" name="id[]" value="<?php echo $row->id;?>">
-        <?php echo $row->id;?></td>
-      <td ><a href="<?php echo $this->createUrl('/post/show',array('id'=>$row->id)); ?>" target="_blank" style="<?php echo $this->formatStyle($row->title_style);?>"><?php echo $row->title;?></a><br />
-        <span class="alias"><?php echo $row->title_alias?></span></td>
-      <td ><?php echo $row->catalog->catalog_name?></td>
-      <td><?php if($row->status_is == 'Y'){echo Yii::t('admin','Show');}else{echo "<span class='red'>".Yii::t('admin','Hidden')."</span>";}?></td>
-      <td><span ><?php echo $row->view_count?></span></td>
-      <td ><?php echo date('Y-m-d H:i',$row->create_time)?></td>
-      <td ><a href="<?php echo  $this->createUrl('/post/show',array('id'=>$row->id))?>" target="_blank"><?php echo Yii::t('admin','View Content');?></a>&nbsp;&nbsp;</td>
+    <?php foreach ($datalist as $dk=>$row):?>    
+    <tr class="tb_list" <?php if($row->$table->status=='N'):?>style=" background:#F0F7FC" <?php endif;?>>
+      <td ><input type="checkbox" name="id[]" value="<?php echo $row->content_id;?>">
+        <?php echo $row->content_id;?></td>
+      <td ><input name="sortOrder[<?php echo $row->content_id?>]" type="text" id="sortOrder[]" value="<?php echo $row->sort_order;?>" size="5" /></td>
+      <td >
+      	<a href="<?php echo $this->createUrl('/'.$table.'/view',array('id'=>$row->content_id)); ?>" target="_blank" ><?php echo $row->$table->title;?></a><br />
+      </td>
+      <td ><?php echo $row->$table->catalog->catalog_name?></td>
+      <td><?php if($row->$table->status == 'Y'){echo Yii::t('admin','Show');}else{echo "<span class='red'>".Yii::t('admin','Hidden')."</span>";}?></td>
+      <td><span ><?php echo $row->$table->view_count?></span></td>
+      <td ><?php echo date('Y-m-d H:i',$row->$table->create_time)?></td>
+      <td ><a href="<?php echo  $this->createUrl('/'.$table.'/view',array('id'=>$row->content_id))?>" target="_blank"><?php echo Yii::t('admin','View Content');?></a>&nbsp;&nbsp;</td>
     </tr>
     <?php endforeach;?>
     <tr class="operate">
@@ -63,7 +65,8 @@ $(document).ready(function(){
           <input type="checkbox" name="chkall" id="chkall" onClick="checkAll(this.form, 'id')" />
           <label for="chkall"><?php echo Yii::t('admin','Check All');?></label>
           <select name="command">
-            <option><?php echo Yii::t('admin','Select Operate');?></option>            
+            <option><?php echo Yii::t('admin','Select Operate');?></option>         
+            <option value="sortOrder"><?php echo Yii::t('admin','Sort Order');?></option>   
             <option value="unCommend"><?php echo Yii::t('admin','Cancel Recommend');?></option>
           </select>
           <input id="submit_maskall" class="button confirmSubmit" type="submit" value="<?php echo Yii::t('common','Submit');?>" name="maskall" />

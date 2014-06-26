@@ -14,7 +14,7 @@ class PostController extends FrontBase
 	public function init(){
 		parent::init();
 		//栏目
-		$this->_catalog = Catalog::model()->findAll('status_is=:status AND type = :type',array(':status'=>'Y',':type'=>$this->_type_ids['post']));
+		$this->_catalog = Catalog::model()->findAll('status=:status AND type = :type',array(':status'=>'Y',':type'=>$this->_type_ids['post']));
 		
 		//导航标示
 		$this->_menu_unique = 'post';
@@ -51,7 +51,7 @@ class PostController extends FrontBase
     //查询条件
     $post = new Post();
     $criteria = new CDbCriteria();
-    $condition = "t.status_is = 'Y'";
+    $condition = "t.status = 'Y'";
     $keyword && $condition .= ' AND title LIKE \'%' . $keyword . '%\'';
     $condition .= ' AND catalog_id IN ('.$db_in_ids.')';
    

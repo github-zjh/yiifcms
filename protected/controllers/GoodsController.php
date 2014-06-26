@@ -12,7 +12,7 @@ class GoodsController extends FrontBase
 	public function init(){
 		parent::init();
 		//栏目
-		$this->_catalog = Catalog::model()->findAll('status_is=:status',array('status'=>'Y'));
+		$this->_catalog = Catalog::model()->findAll('status=:status',array('status'=>'Y'));
 	}
   /**
    * 首页

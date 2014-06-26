@@ -185,7 +185,7 @@ class CatalogController extends Backend
             	foreach((array)$ids as $id){
             		$catalogModel = Catalog::model()->findByPk($id);
             		if($catalogModel){
-            			$catalogModel->status_is = 'Y';
+            			$catalogModel->status = 'Y';
             			$catalogModel->save();
             		}
             	}
@@ -194,7 +194,7 @@ class CatalogController extends Backend
             	foreach((array)$ids as $id){
             		$catalogModel = Catalog::model()->findByPk($id);
             		if($catalogModel){
-            			$catalogModel->status_is = 'N';
+            			$catalogModel->status = 'N';
             			$catalogModel->save();
             		}
             	}

@@ -16,7 +16,7 @@ class SoftController extends Backend
 		//内容模型id
 		$this->_type = $this->_type_ids['soft'];
 		//栏目
-		$this->_catalog = Catalog::model()->findAll('status_is=:status_is AND type=:type',array(':status_is'=>'Y',':type'=>$this->_type));
+		$this->_catalog = Catalog::model()->findAll('status=:status AND type=:type',array(':status'=>'Y',':type'=>$this->_type));
 		
 	}
 	

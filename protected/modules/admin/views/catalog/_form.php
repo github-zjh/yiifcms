@@ -100,7 +100,7 @@ $(function(){
     <td class="tb_title"><?php echo Yii::t('common','Status');?>：</td>
   </tr>
   <tr >
-    <td ><?php echo $form->dropDownList($model,'status_is',array('Y'=>Yii::t('admin','Show'), 'N'=>Yii::t('admin','Hidden'))); ?><?php echo Yii::t('admin','Sort Order');?>:<?php echo $form->textField($model,'sort_order',array('size'=>6,'maxlength'=>128)); ?></td>
+    <td ><?php echo $form->dropDownList($model,'status',array('Y'=>Yii::t('admin','Show'), 'N'=>Yii::t('admin','Hidden'))); ?><?php echo Yii::t('admin','Sort Order');?>:<?php echo $form->textField($model,'sort_order',array('size'=>6,'maxlength'=>128)); ?></td>
   </tr>
   <tr class="submit">
     <td >

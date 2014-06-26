@@ -109,7 +109,7 @@ return array (
 	'Belong Special'=>'所属专题',
 	'Top Category' => '顶级分类',
 	'Catalog Type' => '栏目类型',
-	'Type Article' => '文章',
+	'Type Post' => '文章',
 	'Type Image' => '图集',
 	'Type Soft' => '软件',
 	'Type Video' => '视频',

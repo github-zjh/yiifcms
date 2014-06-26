@@ -17,7 +17,7 @@ class GoodsController extends Backend
 		//内容模型id
 		$this->_type = $this->_type_ids['goods'];
 		//栏目
-		$this->_catalog = Catalog::model()->findAll('status_is=:status AND type=:type',array(':status'=>'Y',':type'=>$this->_type));
+		$this->_catalog = Catalog::model()->findAll('status=:status AND type=:type',array(':status'=>'Y',':type'=>$this->_type));
 		
 	}
 	
@@ -207,7 +207,7 @@ class GoodsController extends Backend
         	foreach((array)$ids as $id){
         		$goodsModel = Goods::model()->findByPk($id);        		
         		if($goodsModel){
-        			$goodsModel->status_is = 'Y';
+        			$goodsModel->status = 'Y';
         			$goodsModel->save();
         		}
             }
@@ -217,7 +217,7 @@ class GoodsController extends Backend
         	foreach((array)$ids as $id){
         		$goodsModel = Goods::model()->findByPk($id);        		
         		if($goodsModel){
-        			$goodsModel->status_is = 'N';
+        			$goodsModel->status = 'N';
         			$goodsModel->save();
         		}
             }

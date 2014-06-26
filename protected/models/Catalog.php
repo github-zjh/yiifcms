@@ -15,7 +15,7 @@
  * @property string $attach_thumb
  * @property string $sort_order
  * @property string $data_count
- * @property string $status_is
+ * @property string $status
  * @property string $redirect_url
  * @property string $type
  * @property string $create_time
@@ -43,11 +43,11 @@ class Catalog extends CActiveRecord
 			array('parent_id, sort_order, data_count, create_time, update_time', 'length', 'max'=>10),
 			array('catalog_name, seo_title, attach_file, attach_thumb', 'length', 'max'=>100),
 			array('seo_keywords, redirect_url', 'length', 'max'=>255),
-			array('status_is', 'length', 'max'=>1),			
+			array('status', 'length', 'max'=>1),			
 			array('content, seo_description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, parent_id, type, catalog_name, content, seo_title, seo_keywords, seo_description, attach_file, attach_thumb, sort_order, data_count, status_is, redirect_url, type, create_time, update_time', 'safe', 'on'=>'search'),
+			array('id, parent_id, type, catalog_name, content, seo_title, seo_keywords, seo_description, attach_file, attach_thumb, sort_order, data_count, status, redirect_url, type, create_time, update_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -79,7 +79,7 @@ class Catalog extends CActiveRecord
 			'attach_thumb' => Yii::t('model','attach_thumb'),
 			'sort_order' => Yii::t('model','sort_order'),
 			'data_count' => Yii::t('model','data_count'),		
-			'status_is' => Yii::t('model','status_is'),
+			'status' => Yii::t('model','status_is'),
 			'redirect_url' => Yii::t('model','redirect_url'),
 			'type' => Yii::t('model','catalog_type'),			
 			'create_time' => Yii::t('model','create_time'),
@@ -127,7 +127,7 @@ class Catalog extends CActiveRecord
 
 		$criteria->compare('data_count',$this->data_count,true);
 
-		$criteria->compare('status_is',$this->status_is,true);
+		$criteria->compare('status',$this->status,true);
 
 		$criteria->compare('redirect_url',$this->redirect_url,true);
 

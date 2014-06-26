@@ -32,6 +32,8 @@ return array (
 	'Show Message' =>'提示信息',
 	'All' => '所有',
 	'UpdateTime' => '更新时间',
+	'DownLoad Now' => '立即下载',
+	'Read Details' => '了解详情',
 		
 	//登录
 	'Login' => '登录',

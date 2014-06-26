@@ -17,9 +17,9 @@ class ImageController extends Backend
 		//内容模型id
 		$this->_type = $this->_type_ids['image'];
 		//图集栏目
-		$this->_catalog = Catalog::model()->findAll('status_is=:status AND type=:type',array(':status'=>'Y',':type'=>$this->_type));
+		$this->_catalog = Catalog::model()->findAll('status=:status AND type=:type',array(':status'=>'Y',':type'=>$this->_type));
 		//专题
-		$this->_special = Special::model()->findAll('status_is=:status',array('status'=>'Y'));
+		$this->_special = Special::model()->findAll('status=:status',array('status'=>'Y'));
 	}
 	
 	/**
@@ -338,42 +338,13 @@ class ImageController extends Backend
         			$postModel->delete();
         		}
         	}
-            break;
-        case 'commentDelete':       
-        	//删除评论   
-            foreach((array)$ids as $id){
-        		$commentModel = PostComment::model()->findByPk($id);
-        		if($commentModel){
-        			$commentModel->delete();
-        		}
-            }
-            break;
-        case 'commentVerify':         
-        	//评论审核通过  
-         	foreach((array)$ids as $id){
-        		$commentModel = PostComment::model()->findByPk($id);        		
-        		if($commentModel){
-        			$commentModel->status_is = 'Y';
-        			$commentModel->save();
-        		}
-            }
-            break;
-        case 'commentUnVerify':    
-        	//评论取消审核
-        	foreach((array)$ids as $id){
-        		$commentModel = PostComment::model()->findByPk($id);        		
-        		if($commentModel){
-        			$commentModel->status_is = 'N';
-        			$commentModel->save();
-        		}
-            }
-            break;
+            break;      
         case 'show':     
         	//图集显示      
         	foreach((array)$ids as $id){
         		$postModel = Post::model()->findByPk($id);        		
         		if($postModel){
-        			$postModel->status_is = 'Y';
+        			$postModel->status = 'Y';
         			$postModel->save();
         		}
             }
@@ -383,7 +354,7 @@ class ImageController extends Backend
         	foreach((array)$ids as $id){
         		$postModel = Post::model()->findByPk($id);        		
         		if($postModel){
-        			$postModel->status_is = 'N';
+        			$postModel->status = 'N';
         			$postModel->save();
         		}
             }

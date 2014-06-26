@@ -132,7 +132,7 @@
     <td class="tb_title"><?php echo Yii::t('admin','Status');?>：</td>
   </tr>
   <tr >
-    <td  ><?php echo $form->dropDownList($model,'status_is',array('Y'=>Yii::t('admin','Show'), 'N'=>Yii::t('admin','Hidden'))); ?><?php echo $form->dropDownList($model,'commend',array('Y'=>'已推荐', 'N'=>'未推荐')); ?><?php echo $form->dropDownList($model,'top_line',array('Y'=>'头条', 'N'=>'非头条')); ?><?php echo $form->dropDownList($model,'reply_allow',array('Y'=>'允许回复', 'N'=>'不允许回复')); ?></td>
+    <td  ><?php echo $form->dropDownList($model,'status',array('Y'=>Yii::t('admin','Show'), 'N'=>Yii::t('admin','Hidden'))); ?><?php echo $form->dropDownList($model,'commend',array('Y'=>'已推荐', 'N'=>'未推荐')); ?><?php echo $form->dropDownList($model,'top_line',array('Y'=>'头条', 'N'=>'非头条')); ?><?php echo $form->dropDownList($model,'reply_allow',array('Y'=>'允许回复', 'N'=>'不允许回复')); ?></td>
   </tr>
   <tr>
     <td class="tb_title"><?php echo Yii::t('admin','SEO Title');?>：</td>

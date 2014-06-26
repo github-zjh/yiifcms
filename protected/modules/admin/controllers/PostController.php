@@ -17,9 +17,9 @@ class PostController extends Backend
 		//内容模型id
 		$this->_type = $this->_type_ids['post'];
 		//文章栏目
-		$this->_catalog = Catalog::model()->findAll('status_is=:status AND type=:type',array(':status'=>'Y',':type'=>$this->_type));
+		$this->_catalog = Catalog::model()->findAll('status=:status AND type=:type',array(':status'=>'Y',':type'=>$this->_type));
 		//专题
-		$this->_special = Special::model()->findAll('status_is=:status',array('status'=>'Y'));
+		$this->_special = Special::model()->findAll('status=:status',array('status'=>'Y'));
 	}
 	
 	/**
@@ -346,7 +346,7 @@ class PostController extends Backend
         	foreach((array)$ids as $id){
         		$postModel = Post::model()->findByPk($id);        		
         		if($postModel){
-        			$postModel->status_is = 'Y';
+        			$postModel->status = 'Y';
         			$postModel->save();
         		}
             }
@@ -356,7 +356,7 @@ class PostController extends Backend
         	foreach((array)$ids as $id){
         		$postModel = Post::model()->findByPk($id);        		
         		if($postModel){
-        			$postModel->status_is = 'N';
+        			$postModel->status = 'N';
         			$postModel->save();
         		}
             }
