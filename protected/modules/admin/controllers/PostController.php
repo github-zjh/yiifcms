@@ -154,11 +154,15 @@ class PostController extends Backend
 		    					$tagData->tag_id = $tag_id;
 		    					$tagData->content_id = $model->id;
 		    					$tagData->type = $this->_type_ids['post'];
+		    					$tagData->status = $model->status;
 		    					$tagData->save();
 		    				}		    			
 		    			}
     				}
     			}    			
+    			
+    			//更新关联的标签
+    			$tagData = TagData::model()->updateAll(array('status'=>$model->status),'content_id =:id AND type =:type', array(':id'=>$model->id, ':type'=>$this->_type_ids['post']));
     			
     			$this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
     		}
@@ -257,10 +261,14 @@ class PostController extends Backend
 		    				$tagData->tag_id = $tag_id;
 		    				$tagData->content_id = $model->id;
 		    				$tagData->type = $this->_type_ids['post'];
+		    				$tagData->status = $model->status;
 		    				$tagData->save();
 	    				}
     				}
     			}
+    			
+    			//更新关联的标签
+    			$tagData = TagData::model()->updateAll(array('status'=>$model->status),'content_id =:id AND type =:type', array(':id'=>$model->id, ':type'=>$this->_type_ids['post']));
     			 
     			$this->message('success',Yii::t('admin','Update Success'),$this->createUrl('index'));
     		}
@@ -315,6 +323,9 @@ class PostController extends Backend
         			XUpload::deleteFile($postModel->attach_thumb);
         			
         			$postModel->delete();
+        			
+        			//删除关联的标签
+        			TagData::model()->deleteAll('content_id =:id AND type =:type', array(':id'=>$id, ':type'=>$this->_type_ids['post']));
         		}
         	}
             break;       
@@ -325,6 +336,8 @@ class PostController extends Backend
         		if($postModel){
         			$postModel->status = 'Y';
         			$postModel->save();
+        			//更新关联的标签
+        			$tagData = TagData::model()->updateAll(array('status'=>'Y'),'content_id =:id AND type =:type', array(':id'=>$id, ':type'=>$this->_type_ids['post']));
         		}
             }
             break;
@@ -335,6 +348,8 @@ class PostController extends Backend
         		if($postModel){
         			$postModel->status = 'N';
         			$postModel->save();
+        			//更新关联的标签
+        			$tagData = TagData::model()->updateAll(array('status'=>'N'),'content_id =:id AND type =:type', array(':id'=>$id, ':type'=>$this->_type_ids['post']));
         		}
             }
             break;

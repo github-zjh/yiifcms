@@ -156,6 +156,9 @@ class ImageController extends Backend
 	    				}
     				}
     			}
+    			//更新关联的标签
+    			$tagData = TagData::model()->updateAll(array('status'=>$model->status),'content_id =:id AND type =:type', array(':id'=>$model->id, ':type'=>$this->_type_ids['image']));
+    			
     			$this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
     		}    		
     	}
@@ -253,6 +256,9 @@ class ImageController extends Backend
     				}
     			
     			}
+    			//更新关联的标签
+    			$tagData = TagData::model()->updateAll(array('status'=>$model->status),'content_id =:id AND type =:type', array(':id'=>$model->id, ':type'=>$this->_type_ids['image']));
+    			
     			$this->message('success',Yii::t('admin','Update Success'),$this->createUrl('index'));
     		}    		
     	}else{
@@ -267,73 +273,8 @@ class ImageController extends Backend
     	));    	
         
     }
-
-    /**
-     * 评论管理
-     *
-     */
-    public function actionComment() {
-        
-        $model = new PostComment();
-        $criteria = new CDbCriteria();
-        $condition = '1';
-        $postTitle = $this->_request->getParam( 'postTitle' );
-        $content = $this->_request->getParam( 'content' );
-        $postTitle && $condition .= ' AND post.title LIKE \'%' . $postTitle . '%\'';
-        $content && $condition .= ' AND t.content LIKE \'%' . $content . '%\'';
-        $criteria->condition = $condition;
-        $criteria->order = 't.id DESC';
-        $criteria->with = array ( 'post' );
-        $count = $model->count( $criteria );
-        $pages = new CPagination( $count );
-        $pages->pageSize = 13;
-        $pageParams = $this->buildCondition( $_GET, array ( 'postTitle' , 'content' ) );
-        $pages->params = is_array( $pageParams ) ? $pageParams : array ();
-        $criteria->limit = $pages->pageSize;
-        $criteria->offset = $pages->currentPage * $pages->pageSize;
-        $result = $model->findAll( $criteria );
-        $this->render( 'post_comment', array ( 'datalist' => $result , 'pagebar' => $pages ) );
-    }
-
-    /**
-     * 更新
-     *
-     * @param  $id
-     */
-    public function actionCommentUpdate( $id ) {        
-        $model = PostComment::model()->findByPk($id);
-        if ( isset( $_POST['PostComment'] ) ) {
-            $model->attributes = $_POST['PostComment'];
-            if ( $model->save() ) {               
-                $this->redirect( array ( 'comment' ) );
-            }
-        }
-        $this->render( 'post_comment_update', array ( 'model' => $model ) );
-    }
-
-    /**
-     * 标签管理
-     *
-     */
-    public function actionTags() {
-        $model = new PostTags();
-        $criteria = new CDbCriteria();
-        $condition = '1';
-        $tagName = $this->_request->getParam( 'tagName' );
-        $tagName && $condition .= ' AND tag_name LIKE \'%' . $tagName . '%\'';
-        $criteria->condition = $condition;
-        $criteria->order = 't.id DESC';        
-        $count = $model->count( $criteria );
-        $pages = new CPagination( $count );
-        $pages->pageSize = 13;
-        $pageParams = $this->buildCondition( $_GET, array ( 'tagName') );
-        $pages->params = is_array( $pageParams ) ? $pageParams : array ();
-        $criteria->limit = $pages->pageSize;
-        $criteria->offset = $pages->currentPage * $pages->pageSize;
-        $result = $model->findAll( $criteria );
-        $this->render( 'post_tags', array ( 'datalist' => $result , 'pagebar' => $pages ) );
-    }
-
+   
+   
     /**
      * 批量操作
      *
@@ -372,6 +313,9 @@ class ImageController extends Backend
         			XUpload::deleteFile($postModel->attach_thumb);
         			
         			$postModel->delete();
+        			
+        			//删除关联的标签
+        			TagData::model()->deleteAll('content_id =:id AND type =:type', array(':id'=>$id, ':type'=>$this->_type_ids['image']));
         		}
         	}
             break;      
@@ -382,6 +326,8 @@ class ImageController extends Backend
         		if($postModel){
         			$postModel->status = 'Y';
         			$postModel->save();
+        			//更新关联的标签
+        			$tagData = TagData::model()->updateAll(array('status'=>'Y'),'content_id =:id AND type =:type', array(':id'=>$id, ':type'=>$this->_type_ids['image']));
         		}
             }
             break;
@@ -392,6 +338,8 @@ class ImageController extends Backend
         		if($postModel){
         			$postModel->status = 'N';
         			$postModel->save();
+        			//更新关联的标签
+        			$tagData = TagData::model()->updateAll(array('status'=>'N'),'content_id =:id AND type =:type', array(':id'=>$id, ':type'=>$this->_type_ids['image']));
         		}
             }
             break;

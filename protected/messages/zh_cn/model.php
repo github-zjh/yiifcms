@@ -65,7 +65,7 @@ return array(
 		'MTid' => '内容模型id',
 		'MTtype_key' => '内容模型标示',
 		'MTtype_name' => '内容模型名称',
-		'MTtype_table' => '内容模型数据表(不含前缀)',
+		'MTmodel' => '内容模型',
 		
 		//Comment
 		'CommentId' => '评论id',

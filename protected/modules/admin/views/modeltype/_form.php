@@ -29,10 +29,10 @@
   </tr>
   
   <tr>
-    <td class="tb_title"><?php echo $form->labelEx($model,'type_table');?>：</td>
+    <td class="tb_title"><?php echo $form->labelEx($model,'model');?>：</td>
   </tr>
   <tr >
-    <td ><?php echo $form->textField($model,'type_table',array('size'=>40,'maxlength'=>128, 'class'=>'validate[required]')); ?></td>
+    <td ><?php echo $form->textField($model,'model',array('size'=>40,'maxlength'=>128, 'class'=>'validate[required]')); ?></td>
   </tr>
  
   <tr>

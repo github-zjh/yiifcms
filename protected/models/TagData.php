@@ -7,9 +7,11 @@
  * @property string $tag_id
  * @property string $content_id
  * @property integer $type
+ * @property string $status
  */
 class TagData extends CActiveRecord
-{
+{	
+	public $data;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -28,9 +30,10 @@ class TagData extends CActiveRecord
 		return array(
 			array('type', 'numerical', 'integerOnly'=>true),
 			array('tag_id, content_id', 'length', 'max'=>10),
+			array('status', 'length', 'max'=>1),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('tag_id, content_id, type', 'safe', 'on'=>'search'),
+			array('tag_id, content_id, type, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -41,7 +44,7 @@ class TagData extends CActiveRecord
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
-		return array(
+		return array(			
 		);
 	}
 
@@ -54,6 +57,7 @@ class TagData extends CActiveRecord
 			'tag_id' => 'Tag',
 			'content_id' => 'Content',
 			'type' => 'Type',
+			'status' => 'Status',
 		);
 	}
 
@@ -80,6 +84,8 @@ class TagData extends CActiveRecord
 		$criteria->compare('content_id',$this->content_id,true);
 
 		$criteria->compare('type',$this->type);
+		
+		$criteria->compare('status',$this->status,true);
 
 		return new CActiveDataProvider('TagData', array(
 			'criteria'=>$criteria,

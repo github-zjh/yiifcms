@@ -28,7 +28,7 @@ $(document).ready(function(){
       <th width="5%">ID</th>
       <th width="10%"><?php echo Yii::t('admin','Title Name');?></th>    
       <th width="10%"><?php echo Yii::t('model','MTtype_key');?></th> 
-      <th width="20%"><?php echo Yii::t('model','MTtype_table');?></th>  
+      <th width="20%"><?php echo Yii::t('model','MTmodel');?></th>  
       <th width="10%"><?php echo Yii::t('admin','Status');?></th>       
       <th><?php echo Yii::t('admin','Operate');?></th>
     </tr>
@@ -42,7 +42,7 @@ $(document).ready(function(){
         <?php endif;?></p>
       </td>   
       <td><?php echo $row->type_key?></td>  
-      <td ><?php echo $row->type_table?> 
+      <td ><?php echo $row->model?> 
       <td><?php if($row->status == 'Y'){echo Yii::t('admin','Show');}else{echo "<span class='red'>".Yii::t('admin','Hidden')."</span>";}?></td>    
       <td >
       	<a href="<?php echo  $this->createUrl('Update',array('id'=>$row->id))?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;      

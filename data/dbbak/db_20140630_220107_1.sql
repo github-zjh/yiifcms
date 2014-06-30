@@ -1,6 +1,6 @@
 # your database backup
-# version:5.5.27-log
-# time:2014-06-30 17:53:13
+# version:5.6.16
+# time:2014-06-30 22:01:07
 # --------------------------------------------------------
 
 
@@ -164,7 +164,7 @@ INSERT INTO `yii_image` VALUES('6','1','明星海景','','','','','14','0','',''
 INSERT INTO `yii_image` VALUES('7','1','靓丽女孩','','','','','14','0','','','','','','靓丽女孩','','','','美女','1','N','N','uploads/images/201406/15b9aedad1b.jpg','uploads/thumbs/201406/small_15b9aedad1b.jpg','0','0','N','1404121425','0','Y','0','Y','1404114395');
 INSERT INTO `yii_image` VALUES('8','1','漂亮女神','','','','','14','0','','','','','','漂亮女神','','','','美女','1','N','N','uploads/images/201406/bb6aa6ad2c7.jpg','uploads/thumbs/201406/small_bb6aa6ad2c7.jpg','0','0','N','1404121415','0','Y','0','Y','1404114458');
 INSERT INTO `yii_image` VALUES('9','1','气质美女','','','','','8','0','','','','','','气质美女','','','','美女','1','N','N','uploads/images/201406/ba6b6e35743.jpg','uploads/thumbs/201406/small_ba6b6e35743.jpg','0','0','N','1404121404','0','Y','0','Y','1404114497');
-INSERT INTO `yii_image` VALUES('10','1','淑女形象','','','','','8','0','','','','','','淑女形象','','','','美女','1','N','N','uploads/images/201406/5348209384d.jpg','uploads/thumbs/201406/small_5348209384d.jpg','0','0','N','1404121392','0','Y','0','Y','1404114535');
+INSERT INTO `yii_image` VALUES('10','1','淑女形象','','','','','8','0','','','','','','淑女形象','','','','美女','1','N','N','uploads/images/201406/5348209384d.jpg','uploads/thumbs/201406/small_5348209384d.jpg','0','0','N','1404136810','0','Y','0','Y','1404114535');
 
 DROP TABLE IF EXISTS `yii_link`;
 CREATE TABLE `yii_link` (
@@ -258,16 +258,16 @@ CREATE TABLE `yii_model_type` (
   `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT COMMENT '模型id',
   `type_key` varchar(20) NOT NULL COMMENT '类型标示(英文字母)',
   `type_name` varchar(50) NOT NULL COMMENT '模型名称',
-  `type_table` varchar(50) NOT NULL COMMENT '对应数据表(不含前缀)',
+  `model` varchar(50) NOT NULL DEFAULT '' COMMENT '内容模型',
   `status` enum('Y','N') DEFAULT 'Y',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='内容模型表';
 
-INSERT INTO `yii_model_type` VALUES('1','post','文章','post','Y');
-INSERT INTO `yii_model_type` VALUES('2','image','图集','image','Y');
-INSERT INTO `yii_model_type` VALUES('3','soft','软件','soft','Y');
-INSERT INTO `yii_model_type` VALUES('4','video','视频','video','Y');
-INSERT INTO `yii_model_type` VALUES('5','goods','商品','goods','Y');
+INSERT INTO `yii_model_type` VALUES('1','post','文章','Post','Y');
+INSERT INTO `yii_model_type` VALUES('2','image','图集','Image','Y');
+INSERT INTO `yii_model_type` VALUES('3','soft','软件','Soft','Y');
+INSERT INTO `yii_model_type` VALUES('4','video','视频','Video','Y');
+INSERT INTO `yii_model_type` VALUES('5','goods','商品','Goods','Y');
 
 DROP TABLE IF EXISTS `yii_page`;
 CREATE TABLE `yii_page` (
@@ -1058,7 +1058,7 @@ Bob的绿色标志T恤，以提醒自己不要忘记他们心中最最要紧的�
 </p>
 <p style=\"text-indent:2em;\">
 	<br />
-</p>','html5tricks','http://news.html5tricks.com/clean-code-vs-great-code.html','','代码','1','N','N','','','0','0','N','1404120831','0','Y','0','Y','1404110691');
+</p>','html5tricks','http://news.html5tricks.com/clean-code-vs-great-code.html','','代码,美女','1','N','N','','','0','0','N','1404136039','0','Y','0','Y','1404110691');
 INSERT INTO `yii_post` VALUES('26','1','微软偷了我的创意 狂赚几十亿美元','','','','','2','0','一位开发人员近日宣称，微软剽窃了自己的创意，并利用它在浏览器大战中取得胜利，现在，微软又用这项专利来从 Android 身上赚钱，每位 Android 用户都要被他们搜刮一下，这位开发人员呼吁大家共同谴责微软的行为。','','','','','<p style=\"text-indent:2em;\">
 	<span style=\"font-size:14px;\">一位开发人员近日宣称，微软剽窃了自己的创意，并利用它在浏览器大战中取得胜利，现在，微软又用这项专利来从 Android 身上赚钱，每位 Android 用户都要被他们搜刮一下，这位开发人员呼吁大家共同谴责微软的行为。</span> 
 </p>
@@ -1191,7 +1191,7 @@ CREATE TABLE `yii_session` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='session表';
 
-INSERT INTO `yii_session` VALUES('d8g6ad3tqa9o86pm6gs5ahnca3','1404125592','admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.33c9b0a4.admin/default.captcha|s:4:\"7akr\";Yii.CCaptchaAction.33c9b0a4.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
+INSERT INTO `yii_session` VALUES('be80nu5mgghdasm84k3u6rorm6','1404140464','admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.af6bc074.admin/default.captcha|s:4:\"4ecd\";Yii.CCaptchaAction.af6bc074.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
 
 DROP TABLE IF EXISTS `yii_setting`;
 CREATE TABLE `yii_setting` (
@@ -1344,30 +1344,32 @@ CREATE TABLE `yii_tag_data` (
   `tag_id` int(10) unsigned NOT NULL DEFAULT '0',
   `content_id` int(10) unsigned NOT NULL DEFAULT '0',
   `type` tinyint(3) unsigned DEFAULT '1' COMMENT '栏目类型',
+  `status` enum('Y','N') DEFAULT 'Y' COMMENT '是否显示',
   PRIMARY KEY (`tag_id`,`content_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='内容标签关联表';
 
-INSERT INTO `yii_tag_data` VALUES('50','27','1');
-INSERT INTO `yii_tag_data` VALUES('67','27','1');
-INSERT INTO `yii_tag_data` VALUES('62','27','1');
-INSERT INTO `yii_tag_data` VALUES('63','27','1');
-INSERT INTO `yii_tag_data` VALUES('46','26','1');
-INSERT INTO `yii_tag_data` VALUES('49','26','1');
-INSERT INTO `yii_tag_data` VALUES('48','25','1');
-INSERT INTO `yii_tag_data` VALUES('46','24','1');
-INSERT INTO `yii_tag_data` VALUES('47','24','1');
-INSERT INTO `yii_tag_data` VALUES('39','23','1');
-INSERT INTO `yii_tag_data` VALUES('23','23','1');
-INSERT INTO `yii_tag_data` VALUES('37','16','1');
-INSERT INTO `yii_tag_data` VALUES('41','15','1');
-INSERT INTO `yii_tag_data` VALUES('42','15','1');
-INSERT INTO `yii_tag_data` VALUES('43','15','1');
-INSERT INTO `yii_tag_data` VALUES('44','14','1');
-INSERT INTO `yii_tag_data` VALUES('45','14','1');
-INSERT INTO `yii_tag_data` VALUES('57','10','2');
-INSERT INTO `yii_tag_data` VALUES('57','9','2');
-INSERT INTO `yii_tag_data` VALUES('57','8','2');
-INSERT INTO `yii_tag_data` VALUES('57','7','2');
+INSERT INTO `yii_tag_data` VALUES('50','27','1','Y');
+INSERT INTO `yii_tag_data` VALUES('67','27','1','Y');
+INSERT INTO `yii_tag_data` VALUES('62','27','1','Y');
+INSERT INTO `yii_tag_data` VALUES('63','27','1','Y');
+INSERT INTO `yii_tag_data` VALUES('46','26','1','Y');
+INSERT INTO `yii_tag_data` VALUES('49','26','1','Y');
+INSERT INTO `yii_tag_data` VALUES('48','25','1','Y');
+INSERT INTO `yii_tag_data` VALUES('46','24','1','Y');
+INSERT INTO `yii_tag_data` VALUES('47','24','1','Y');
+INSERT INTO `yii_tag_data` VALUES('39','23','1','Y');
+INSERT INTO `yii_tag_data` VALUES('23','23','1','Y');
+INSERT INTO `yii_tag_data` VALUES('37','16','1','Y');
+INSERT INTO `yii_tag_data` VALUES('41','15','1','Y');
+INSERT INTO `yii_tag_data` VALUES('42','15','1','Y');
+INSERT INTO `yii_tag_data` VALUES('43','15','1','Y');
+INSERT INTO `yii_tag_data` VALUES('44','14','1','Y');
+INSERT INTO `yii_tag_data` VALUES('45','14','1','Y');
+INSERT INTO `yii_tag_data` VALUES('57','10','2','Y');
+INSERT INTO `yii_tag_data` VALUES('57','9','2','Y');
+INSERT INTO `yii_tag_data` VALUES('57','8','2','Y');
+INSERT INTO `yii_tag_data` VALUES('57','7','2','Y');
+INSERT INTO `yii_tag_data` VALUES('57','25','1','Y');
 
 DROP TABLE IF EXISTS `yii_upload`;
 CREATE TABLE `yii_upload` (

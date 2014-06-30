@@ -96,6 +96,7 @@ class Controller extends CController
 			}
 		}
 		if ( $echo ) {
+			header('content-type:text/html; charset=utf-8');
 			echo $output;
 			return null;
 		} else

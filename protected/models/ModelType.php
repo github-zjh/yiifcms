@@ -7,7 +7,7 @@
  * @property integer $id
  * @property string $type_key
  * @property string $type_name
- * @property string $type_table
+ * @property string $model
  * @property string $status
  */
 class ModelType extends CActiveRecord
@@ -28,14 +28,14 @@ class ModelType extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('type_key, type_name, type_table', 'required'),
+			array('type_key, type_name, model', 'required'),
 			array('type_key', 'length', 'max'=>20),
 			array('type_key, type_name','unique'),
-			array('type_name, type_table', 'length', 'max'=>50),
+			array('type_name, model', 'length', 'max'=>50),
 			array('status', 'length', 'max'=>1),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, type_key, type_name, type_table, status', 'safe', 'on'=>'search'),
+			array('id, type_key, type_name, model, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,7 +59,7 @@ class ModelType extends CActiveRecord
 			'id' => Yii::t('model','MTid'),
 			'type_key' => Yii::t('model','MTtype_key'),
 			'type_name' => Yii::t('model','MTtype_name'),
-			'type_table' => Yii::t('model','MTtype_table'),
+			'model' => Yii::t('model','MTmodel'),
 			'status' => Yii::t('model','Status'),
 		);
 	}
@@ -88,7 +88,7 @@ class ModelType extends CActiveRecord
 
 		$criteria->compare('type_name',$this->type_name,true);
 
-		$criteria->compare('type_table',$this->type_table,true);
+		$criteria->compare('model',$this->model,true);
 
 		$criteria->compare('status',$this->status,true);
 
