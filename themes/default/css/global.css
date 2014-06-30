@@ -40,6 +40,9 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
 .input_span { display:block;}
 .normal { font-size:12px;}
 .required { color:#E2534B; }
+.text_align_left { text-align:left; }
+.text_align_center { text-align:center; }
+.text_align_right { text-align:right; }
 
 /* 公共头部header */
 #header { position:fixed; top:0; z-index:999; width:100%; height:57px; line-height:57px; background-color:#428BCA; color:#FFFFFF; text-align:center; }

@@ -56,7 +56,7 @@ class CommentController extends FrontBase
   			$post = Post::model()->findByPk($topic_id);
   			break;
   		case 'image':
-  			$post = Post::model()->findByPk($topic_id);
+  			$post = Image::model()->findByPk($topic_id);
   			break;
   		case 'soft':
   			$post = Soft::model()->findByPk($topic_id);

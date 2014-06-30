@@ -33,19 +33,21 @@
 	</div>
 	
 	<!-- 首页中部banner -->
-	<a class="banner index_mid_banner" href="#"><img src="<?php echo $this->_stylePath;?>/images/tmp/tmp_banner.jpg" /></a>
+	<?php if($index_mid_banner):?>	
+	<a class="banner index_mid_banner" title="<?php echo $index_mid_banner->title;?>" href="<?php echo $index_mid_banner->link_url;?>" target="_blank">
+		<img alt="<?php echo $index_mid_banner->title;?>" src="<?php echo $index_mid_banner->image_url?$index_mid_banner->image_url:$index_mid_banner->attach_file;?>" />
+	</a>
+	<?php endif;?>
 	
-	<!-- 推荐内容区 -->
-	<div id="tab_container">
-		<ul class="etabs">
-			<li class="tab"><a href="#tab_post">资讯</a></li>
-			<li class="tab"><a href="#tab_image">图集</a></li>
-			<li class="tab"><a href="#tab_soft">软件</a></li>
-			<li class="tab"><a href="#tab_video">视频</a></li>
+	<!-- 推荐资讯区开始 -->
+	<div class="tab_container">
+		<ul class="etabs text_align_left">
+			<li class="tab"><a href="#tab_post1">最新资讯</a></li>
+			<li class="tab"><a href="#tab_post2">热门资讯</a></li>			
 		</ul>	
 		
 		<div class="panel_container">
-			<ul id="tab_post" class="clear">
+			<ul id="tab_post1" class="tab_post clear">
 				<li><a href="#">文字文章</a></li>
 				<li><a href="#">文字文章</a></li>
 				<li><a href="#">文字文字文章文章</a></li>
@@ -67,7 +69,42 @@
 				<li><a href="#">文字文章文字文章文字文章</a></li>
 				<li><a href="#">文字文章</a></li>
 			</ul>
-			<ul id="tab_image" class="clear">
+			
+			<ul id="tab_post2" class="tab_post clear">
+				<li><a href="#">文字文章</a></li>
+				<li><a href="#">文字文章</a></li>
+				<li><a href="#">文字文字文章文章</a></li>
+				<li><a href="#">文字文章文字文章文字文章</a></li>
+				<li><a href="#">文字文章</a></li>
+				<li><a href="#">文字文章</a></li>
+				<li><a href="#">文字文章</a></li>
+				<li><a href="#">文字文字文章文章</a></li>
+				<li><a href="#">文字文章文字文章文字文章</a></li>
+				<li><a href="#">文字文章</a></li>
+				<li><a href="#">文字文章</a></li>
+				<li><a href="#">文字文章</a></li>
+				<li><a href="#">文字文字文章文章</a></li>
+				<li><a href="#">文字文章文字文章文字文章</a></li>
+				<li><a href="#">文字文章</a></li>
+				<li><a href="#">文字文章</a></li>
+				<li><a href="#">文字文章</a></li>
+				<li><a href="#">文字文字文章文章</a></li>
+				<li><a href="#">文字文章文字文章文字文章</a></li>
+				<li><a href="#">文字文章</a></li>
+			</ul>			
+		</div>			
+	</div>
+	<!-- 推荐资讯区结束 -->
+	
+	<!-- 推荐图集区开始 -->
+	<div class="tab_container">
+		<ul class="etabs text_align_right">			
+			<li class="tab"><a href="#tab_image1">最新图集</a></li>
+			<li class="tab"><a href="#tab_image2">热门图集</a></li>	
+		</ul>	
+		
+		<div class="panel_container">			
+			<ul id="tab_image1" class="tab_image clear">
 				<li>
 					<a href="#">	
 						<img width="200" src="<?php echo $this->_stylePath;?>/images/tmp/tmp_girl.jpg" />
@@ -105,20 +142,461 @@
 					</a>					
 				</li>
 			</ul>
-			<ul id="tab_soft" class="clear">
-				<li><a href="#">3</a></li>
-			</ul>
-			<ul id="tab_video" class="clear">
-				<li><a href="#">4</a></li>
+			<ul id="tab_image2" class="tab_image clear">
+				<li>
+					<a href="#">	
+						<img width="200" src="<?php echo $this->_stylePath;?>/images/tmp/tmp_girl.jpg" />
+						<em class="black_bg"><span>清纯小美女</span></em>
+					</a>					
+				</li>
+				<li>
+					<a href="#">	
+						<img width="200" src="<?php echo $this->_stylePath;?>/images/tmp/tmp_girl.jpg" />
+						<em class="black_bg"><span>清纯小美女</span></em>
+					</a>					
+				</li>
+				<li>
+					<a href="#">	
+						<img width="200" src="<?php echo $this->_stylePath;?>/images/tmp/tmp_girl.jpg" />
+						<em class="black_bg"><span>清纯小美女</span></em>
+					</a>					
+				</li>
+				<li>
+					<a href="#">	
+						<img width="200" src="<?php echo $this->_stylePath;?>/images/tmp/tmp_girl.jpg" />
+						<em class="black_bg"><span>清纯小美女</span></em>
+					</a>					
+				</li>
+				<li>
+					<a href="#">	
+						<img width="200" src="<?php echo $this->_stylePath;?>/images/tmp/tmp_girl.jpg" />
+						<em class="black_bg"><span>清纯小美女</span></em>
+					</a>					
+				</li>
+				<li>
+					<a href="#">	
+						<img width="200" src="<?php echo $this->_stylePath;?>/images/tmp/tmp_girl.jpg" />
+						<em class="black_bg"><span>清纯小美女</span></em>
+					</a>					
+				</li>
 			</ul>
 		</div>	
-		
-		<script type="text/javascript">
-		    $(function() {
-		      $('#tab_container').easytabs();
-		    });
-  		</script>
 	</div>
+	<!-- 推荐图集区结束 -->
+	
+	<!-- 推荐软件区开始 -->
+	<div class="tab_container">
+		<ul class="etabs text_align_left">
+			<li class="tab"><a href="#tab_soft1">最新软件</a></li>
+			<li class="tab"><a href="#tab_soft2">热门软件</a></li>		
+		</ul>	
+		
+		<div class="panel_container">
+			<ul id="tab_soft1" class="tab_soft clear">
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+				
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+				
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+				
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+				
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+				
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+				
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+				
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+				
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+			</ul>	
+			
+			<ul id="tab_soft2" class="tab_soft clear">
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+				
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+				
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+				
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+				
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+				
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+				
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+				
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+				
+				<li>
+					<a href="#">
+						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					</a>		
+					<a href="#">阿里旺旺</a>
+					<a href="#" class="dl_btn" target="_blank">下载</a>			
+				</li>
+			</ul>		
+		</div>		
+	</div>
+	<!-- 推荐软件区开始 -->
+	
+	<!-- 推荐视频区开始 -->
+	<div class="tab_container">
+		<ul class="etabs text_align_right">
+			<li class="tab"><a href="#tab_video1">最新视频</a></li>
+			<li class="tab"><a href="#tab_video2">热门视频</a></li>		
+		</ul>	
+		
+		<div class="panel_container">
+			<ul id="tab_video2" class="tab_video clear">
+				<li>
+					<a href="#" class="video_a">
+						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
+						<span class="v_play_mask"></span>
+						<span class="v_play_icon"></span>
+					</a>
+					<span class="video_title">美国队长</span>
+				</li>
+				<li>
+					<a href="#" class="video_a">
+						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
+						<span class="v_play_mask"></span>
+						<span class="v_play_icon"></span>
+					</a>
+					<span class="video_title">美国队长</span>
+				</li>
+				<li>
+					<a href="#" class="video_a">
+						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
+						<span class="v_play_mask"></span>
+						<span class="v_play_icon"></span>
+					</a>
+					<span class="video_title">美国队长</span>
+				</li>
+				<li>
+					<a href="#" class="video_a">
+						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
+						<span class="v_play_mask"></span>
+						<span class="v_play_icon"></span>
+					</a>
+					<span class="video_title">美国队长</span>
+				</li>
+				<li>
+					<a href="#" class="video_a">
+						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
+						<span class="v_play_mask"></span>
+						<span class="v_play_icon"></span>
+					</a>
+					<span class="video_title">美国队长</span>
+				</li>
+				<li>
+					<a href="#" class="video_a">
+						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
+						<span class="v_play_mask"></span>
+						<span class="v_play_icon"></span>
+					</a>
+					<span class="video_title">美国队长</span>
+				</li>
+				<li>
+					<a href="#" class="video_a">
+						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
+						<span class="v_play_mask"></span>
+						<span class="v_play_icon"></span>
+					</a>
+					<span class="video_title">美国队长</span>
+				</li>
+				<li>
+					<a href="#" class="video_a">
+						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
+						<span class="v_play_mask"></span>
+						<span class="v_play_icon"></span>
+					</a>
+					<span class="video_title">美国队长</span>
+				</li>
+				<li>
+					<a href="#" class="video_a">
+						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
+						<span class="v_play_mask"></span>
+						<span class="v_play_icon"></span>
+					</a>
+					<span class="video_title">美国队长</span>
+				</li>
+				<li>
+					<a href="#" class="video_a">
+						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
+						<span class="v_play_mask"></span>
+						<span class="v_play_icon"></span>
+					</a>
+					<span class="video_title">美国队长</span>
+				</li>
+			</ul>	
+			
+			<ul id="tab_video1" class="tab_video clear">
+				<li>
+					<a href="#" class="video_a">
+						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
+						<span class="v_play_mask"></span>
+						<span class="v_play_icon"></span>
+					</a>
+					<span class="video_title">美国队长</span>
+				</li>
+				<li>
+					<a href="#" class="video_a">
+						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
+						<span class="v_play_mask"></span>
+						<span class="v_play_icon"></span>
+					</a>
+					<span class="video_title">美国队长</span>
+				</li>
+				<li>
+					<a href="#" class="video_a">
+						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
+						<span class="v_play_mask"></span>
+						<span class="v_play_icon"></span>
+					</a>
+					<span class="video_title">美国队长</span>
+				</li>
+				<li>
+					<a href="#" class="video_a">
+						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
+						<span class="v_play_mask"></span>
+						<span class="v_play_icon"></span>
+					</a>
+					<span class="video_title">美国队长</span>
+				</li>
+				<li>
+					<a href="#" class="video_a">
+						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
+						<span class="v_play_mask"></span>
+						<span class="v_play_icon"></span>
+					</a>
+					<span class="video_title">美国队长</span>
+				</li>
+				<li>
+					<a href="#" class="video_a">
+						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
+						<span class="v_play_mask"></span>
+						<span class="v_play_icon"></span>
+					</a>
+					<span class="video_title">美国队长</span>
+				</li>
+				<li>
+					<a href="#" class="video_a">
+						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
+						<span class="v_play_mask"></span>
+						<span class="v_play_icon"></span>
+					</a>
+					<span class="video_title">美国队长</span>
+				</li>
+				<li>
+					<a href="#" class="video_a">
+						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
+						<span class="v_play_mask"></span>
+						<span class="v_play_icon"></span>
+					</a>
+					<span class="video_title">美国队长</span>
+				</li>
+				<li>
+					<a href="#" class="video_a">
+						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
+						<span class="v_play_mask"></span>
+						<span class="v_play_icon"></span>
+					</a>
+					<span class="video_title">美国队长</span>
+				</li>
+				<li>
+					<a href="#" class="video_a">
+						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
+						<span class="v_play_mask"></span>
+						<span class="v_play_icon"></span>
+					</a>
+					<span class="video_title">美国队长</span>
+				</li>
+			</ul>		
+		</div>		
+	</div>
+	<!-- 推荐软件区开始 -->
+	
+	
+		
+	<script type="text/javascript">
+		$(function() {
+		    $('.tab_container').easytabs();
+		});
+  	</script>
 	
 	<div id="clients">
 		<ul class="client_head clear">

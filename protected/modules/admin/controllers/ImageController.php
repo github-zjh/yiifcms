@@ -42,7 +42,7 @@ class ImageController extends Backend
      */
 	
     public function actionIndex() {
-        $model = new Post();
+        $model = new Image();
         $criteria = new CDbCriteria();
         $condition = "type = ".$this->_type;
         $title = trim( $this->_request->getParam( 'title' ) );      
@@ -72,10 +72,10 @@ class ImageController extends Backend
      */
     public function actionCreate() {
         
-        $model = new Post();       
-    	if(isset($_POST['Post']))
+        $model = new Image();       
+    	if(isset($_POST['Image']))
     	{
-    		$model->attributes=$_POST['Post'];
+    		$model->attributes=$_POST['Image'];
     		//标题样式
     		$title_style = $this->_request->getPost('style');   
     		if($title_style['bold'] != 'Y'){
@@ -114,7 +114,7 @@ class ImageController extends Backend
     		$model->image_list = $imageListSerialize['dataSerialize'];
     		
     		//标签
-    		$tags = trim($_POST['Post']['tags']);
+    		$tags = trim($_POST['Image']['tags']);
     		$explodeTags = array_unique(explode(',', str_replace(array (' ' , '，' ), ',', $tags)));
     		$tagCount = 0;
     		foreach ((array) $explodeTags as $value) {
@@ -156,10 +156,10 @@ class ImageController extends Backend
      * @param  $id
      */
     public function actionUpdate( $id ) {
-    	$model = Post::model()->findByPk($id);    	
-    	if(isset($_POST['Post']))
+    	$model = Image::model()->findByPk($id);    	
+    	if(isset($_POST['Image']))
     	{
-    		$model->attributes=$_POST['Post'];
+    		$model->attributes=$_POST['Image'];
     		//标题样式
     		$title_style = $this->_request->getPost('style');   
     		if($title_style['bold'] != 'Y'){
@@ -199,7 +199,7 @@ class ImageController extends Backend
     		$model->image_list = $imageListSerialize['dataSerialize'];
     		
     		//标签    		
-    		$tags = trim($_POST['Post']['tags']);    		
+    		$tags = trim($_POST['Image']['tags']);    		
     		$explodeTags = array_unique(explode(',', str_replace(array (' ' , '，' ), ',', $tags)));
     		$tagCount = 0;
     		foreach ((array) $explodeTags as $value) {
@@ -318,7 +318,7 @@ class ImageController extends Backend
         case 'delete':      
         	//删除图集     
         	foreach((array)$ids as $id){
-        		$postModel = Post::model()->findByPk($id);
+        		$postModel = Image::model()->findByPk($id);
         		if($postModel){
         			$image_list = $postModel->image_list;
         			$image_list && $image_list = unserialize($image_list);
@@ -342,7 +342,7 @@ class ImageController extends Backend
         case 'show':     
         	//图集显示      
         	foreach((array)$ids as $id){
-        		$postModel = Post::model()->findByPk($id);        		
+        		$postModel = Image::model()->findByPk($id);        		
         		if($postModel){
         			$postModel->status = 'Y';
         			$postModel->save();
@@ -352,7 +352,7 @@ class ImageController extends Backend
         case 'hidden':     
         	//图集隐藏      
         	foreach((array)$ids as $id){
-        		$postModel = Post::model()->findByPk($id);        		
+        		$postModel = Image::model()->findByPk($id);        		
         		if($postModel){
         			$postModel->status = 'N';
         			$postModel->save();
@@ -364,7 +364,7 @@ class ImageController extends Backend
         	foreach((array)$ids as $id){        		
         		$recom_id = intval($_POST['recom_id']);
         		if($recom_id){
-        			$postModel = Post::model()->findByPk($id);
+        			$postModel = Image::model()->findByPk($id);
 	        		if($postModel){
 	        			$postModel->commend = 'Y';
 	        			$postModel->save();
@@ -381,7 +381,7 @@ class ImageController extends Backend
         case 'unCommend': 
         	//图集取消推荐
         	foreach((array)$ids as $id){
-        		$postModel = Post::model()->findByPk($id);
+        		$postModel = Image::model()->findByPk($id);
         		if($postModel){
         			$postModel->commend = 'N';
         			$postModel->save();

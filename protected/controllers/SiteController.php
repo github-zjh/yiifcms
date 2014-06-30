@@ -33,12 +33,24 @@ class SiteController extends FrontBase
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.easytabs.min.js");
 		
-		//推荐资讯
+		//中部banner
+		$index_mid_banner = Ad::model()->find('position_id = 3 ORDER BY id DESC');
+		
+		//最新资讯
+		
+		//热门资讯
 		
 		//友情链接
 		$link_logos = Link::model()->findAll("logo !='' AND status_is='Y'", array('order'=>'sortorder ASC, id DESC'));
 		$link_texts = Link::model()->findAll("logo ='' AND status_is='Y'", array('order'=>'sortorder ASC, id DESC'));
-		$this->render('index',array('banner'=>$banner,'link_logos'=>$link_logos, 'link_texts' =>$link_texts));
+		$this->render('index',compact(
+			array(
+					'index_mid_banner', 
+					'link_logos', 						
+					'link_texts'
+						
+			)
+		));
 	}
 
 	/**

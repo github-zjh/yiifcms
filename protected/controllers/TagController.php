@@ -25,7 +25,7 @@ class TagController extends FrontBase
     //查询条件
     $post = new Post();
     $criteria = new CDbCriteria();
-    $condition = "t.status_is = 'Y'";
+    $condition = "t.status = 'Y'";
     $tag && $condition .= " AND FIND_IN_SET('{$tag}', tags)";   
     $criteria->with = array('catalog');
     $criteria->condition = $condition;

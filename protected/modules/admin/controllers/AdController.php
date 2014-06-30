@@ -74,7 +74,8 @@ class AdController extends Backend
 	    			$this->message('error', Yii::t('admin',$upload->_error));
 	    			return;
 	    		}	    	
-	    		$model->attach_file = $upload->_file_name;	    		
+	    		$model->attach_file = $upload->_file_name;	   
+	    		$model->create_time = time(); 		
     		}            
             if ($model->save()) {
                 $this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
@@ -104,7 +105,8 @@ class AdController extends Backend
 	    		$upload->deleteFile($old_attach);	    		
 	    		$model->attach_file = $upload->_file_name;	    		
     		}
-            $model->attributes = $_POST['Ad'];            
+            $model->attributes = $_POST['Ad'];   
+            $model->create_time = time();
             if ($model->save()) {               
                 $this->message('success',Yii::t('admin','Update Success'),$this->createUrl('index'));
             }

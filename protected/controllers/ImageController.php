@@ -47,7 +47,7 @@ class ImageController extends FrontBase
 	    	$navs[] = array('url'=>$this->_request->getUrl(),'name'=>$this->_seoTitle); 
 	    }
 	    //查询条件
-	    $post = new Post();
+	    $post = new Image();
 	    $criteria = new CDbCriteria();
 	    $condition = "t.status = 'Y'";
 	    $keyword && $condition .= ' AND title LIKE \'%' . $keyword . '%\'';
@@ -72,7 +72,7 @@ class ImageController extends FrontBase
 	    $tags = PostTags::model()->findAll(array('order'=>'data_count DESC','limit'=>20));
 	    
 	    //最近的图集
-	    $last_images = Post::model()->findAll(array('condition'=>'catalog_id IN ('.$db_in_ids.')','order'=>'id DESC','limit'=>10,));
+	    $last_images = Image::model()->findAll(array('condition'=>'catalog_id IN ('.$db_in_ids.')','order'=>'id DESC','limit'=>10,));
 	    
 	    //加载css,js	
 	    Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/list.css");	    
@@ -85,7 +85,7 @@ class ImageController extends FrontBase
    * 浏览详细内容
    */
   public function actionView( $id ) {  	
-  	$post = Post::model()->findByPk( intval( $id ) );
+  	$post = Image::model()->findByPk( intval( $id ) );
     if ( false == $post )
         throw new CHttpException( 404, Yii::t('common','The requested page does not exist.') );
     //更新浏览次数
@@ -106,11 +106,11 @@ class ImageController extends FrontBase
 	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/kindeditor/code/prettify.js",CClientScript::POS_END);
 
 	//最近的图集
-	$last_images = Post::model()->findAll(array('condition'=>'catalog_id = '.$post->catalog_id,'order'=>'id DESC','limit'=>10,));
+	$last_images = Image::model()->findAll(array('condition'=>'catalog_id = '.$post->catalog_id,'order'=>'id DESC','limit'=>10,));
 	
 	//nav
 	$navs = array();
-	$navs[] = array('url'=>$this->createUrl('post/view',array('id'=>$id)), 'name'=>$post->title);
+	$navs[] = array('url'=>$this->createUrl('image/view',array('id'=>$id)), 'name'=>$post->title);
     $tplVar = array(
         'post'=>$post,     
         'navs'=>$navs,

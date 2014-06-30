@@ -35,7 +35,7 @@ class CommentController extends Backend
         $condition = '1';
         $title = $this->_request->getParam( 'postTitle' );
         $content = $this->_request->getParam( 'content' );
-        $type = $this->_request->getParam( 'type' )?$this->_request->getParam( 'type' ):$this->_type_ids['article'];
+        $type = $this->_request->getParam( 'type' )?$this->_request->getParam( 'type' ):$this->_type_ids['post'];
         $type && $condition .= " AND type={$type}";
         $table = array_search($type,$this->_type_ids);
         if($table == 'goods'){
