@@ -2,7 +2,7 @@
   <h3><?php echo Yii::t('admin','Tags Manage');?></h3>
   <div class="searchArea">
     <ul class="action left">
-      <li><a href="<?php echo $this->createUrl('post/resetTags')?>" class="actionBtn"><span><?php echo Yii::t('admin','Reset Tags');?></span></a></li>
+      <li><a href="<?php echo $this->createUrl('tag/reset')?>" class="actionBtn"><span><?php echo Yii::t('admin','Reset Tags');?></span></a></li>
     </ul>
     <div class="search right">
       <?php $form = $this->beginWidget('CActiveForm',array('id'=>'searchForm','method'=>'get','action'=>array('newsTags'),'htmlOptions'=>array('name'=>'xform'))); ?>
@@ -31,7 +31,6 @@ $(document).ready(function(){
       <th width="8%">ID</th>     
       <th width="20%">Tag</th>
       <th width="10%">数据总数</th>
-      <th width="15%">录入时间</th>
       <th width="8%">操作</th>
     </tr>
     <?php foreach ($datalist as $row):?>
@@ -40,7 +39,6 @@ $(document).ready(function(){
         <?php echo $row->id?></td>      
       <td ><?php echo $row->tag_name?></td>
       <td ><span ><?php echo $row->data_count?></span></td>
-      <td ><?php echo date('Y-m-d H:i',$row->create_time)?></td>
       <td ><a href="<?php echo  $this->createUrl('batch',array('command'=>'tagsDelete','id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->_baseUrl?>/static/admin/images/delete.png" align="absmiddle" /></a></td>
     </tr>
     <?php endforeach;?>

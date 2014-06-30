@@ -72,12 +72,12 @@
 .panel_container { border:1px solid #428bca; border-top:none; border-radius:0 0 5px 5px;}
 
 .tab_post { padding:20px 0 20px 20px;}
-.tab_post li { float:left; width:226px; line-height:30px;}
+.tab_post li { float:left; width:280px; line-height:30px;}
 .tab_post li a { display:block; color:#555555;}
 .tab_post li a:hover {  text-decoration:underline;}
 
 .tab_image { padding:20px 9px 10px 9px;}
-.tab_image li { float:left; border:1px solid #DDDDDD; text-align:center; padding:10px; margin-right:8px; margin-bottom:8px; overflow:hidden;}
+.tab_image li { float:left; border:1px solid #DDDDDD; text-align:center; padding:5px; margin-right:8px; margin-bottom:8px; overflow:hidden;}
 .tab_image li a { display:block; position:relative;}
 .tab_image li .black_bg { display:block; width:100%; position:absolute; bottom:0; visibility:hidden; height:30px; line-height:30px; background-color:#000000; opacity:0.5; filter:alpha(opacity=50); text-align:center;}
 .tab_image li .black_bg span { color:#FFFFFF; position:absoute; z-index:2;}

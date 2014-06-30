@@ -1,6 +1,6 @@
 # your database backup
 # version:5.5.27-log
-# time:2014-06-26 17:22:19
+# time:2014-06-30 17:53:13
 # --------------------------------------------------------
 
 
@@ -21,20 +21,22 @@ CREATE TABLE `yii_ad` (
   `status_is` enum('Y','N') NOT NULL DEFAULT 'Y' COMMENT '状态',
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '录入时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='广告';
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='广告';
 
 INSERT INTO `yii_ad` VALUES('2','1','首页banner1','index_banner','','','1440','500','','0','uploads/images/201404/113511a7cd1.png','1','Y','1379544139');
 INSERT INTO `yii_ad` VALUES('3','1','首页banner2','index_banner','','','1440','500','','0','uploads/images/201404/0b92e2274de.png','2','Y','1379544231');
+INSERT INTO `yii_ad` VALUES('4','3','美丽自然','index_mid_banner','http://www.baidu.com/','','1170','200','','0','uploads/images/201406/200d7c148cd.jpg','0','Y','1404100045');
 
 DROP TABLE IF EXISTS `yii_ad_position`;
 CREATE TABLE `yii_ad_position` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `position` varchar(100) NOT NULL DEFAULT '' COMMENT '广告位名称',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='广告位管理表 ';
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='广告位管理表 ';
 
 INSERT INTO `yii_ad_position` VALUES('1','首页banner幻灯片');
 INSERT INTO `yii_ad_position` VALUES('2','底部幻灯片');
+INSERT INTO `yii_ad_position` VALUES('3','首页中部banner');
 
 DROP TABLE IF EXISTS `yii_catalog`;
 CREATE TABLE `yii_catalog` (
@@ -55,11 +57,11 @@ CREATE TABLE `yii_catalog` (
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   `update_time` int(10) unsigned DEFAULT '0' COMMENT '修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='全局分类';
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='全局分类';
 
 INSERT INTO `yii_catalog` VALUES('1','1','0','新闻','新闻<br />','d','d','d','uploads/images/201403/8a4b5e11db6.png','uploads/thumbs/201403/small_8a4b5e11db6.png','0','0','Y','','1379545020','1403766555');
-INSERT INTO `yii_catalog` VALUES('2','1','1','公司动态','公司动态栏目介绍','','','','uploads/images/201402/98f97227c00.png','','2','0','Y','','1379545199','1394509418');
-INSERT INTO `yii_catalog` VALUES('3','1','1','行业新闻','行业新闻栏目介绍','','','','uploads/images/201403/b49f2b45b50.jpg','uploads/thumbs/201403/small_b49f2b45b50.jpg','1','0','Y','','1379545248','1394509418');
+INSERT INTO `yii_catalog` VALUES('2','1','1','业界讯息','公司动态栏目介绍','','','','uploads/images/201402/98f97227c00.png','','2','0','Y','','1379545199','1404109846');
+INSERT INTO `yii_catalog` VALUES('3','1','1','IT资讯','行业新闻栏目介绍','','','','uploads/images/201403/b49f2b45b50.jpg','uploads/thumbs/201403/small_b49f2b45b50.jpg','1','0','Y','','1379545248','1404109600');
 INSERT INTO `yii_catalog` VALUES('4','5','0','产品','产品栏目介绍','','','','','','0','0','Y','','1379545330','1394517482');
 INSERT INTO `yii_catalog` VALUES('5','5','4','新品上市','新品上市栏目介绍','','','','','','1','0','Y','','1379545388','1394517482');
 INSERT INTO `yii_catalog` VALUES('6','5','4','特价商品','特价商品栏目介绍','','','','','','0','0','N','','1379545435','1394517482');
@@ -69,6 +71,7 @@ INSERT INTO `yii_catalog` VALUES('10','3','0','热门软件','','热门软件','
 INSERT INTO `yii_catalog` VALUES('11','3','10','网站软件','网站软件','网站软件','网站软件','网站软件','','','0','0','Y','','1400489069','1400489069');
 INSERT INTO `yii_catalog` VALUES('12','4','0','最新视频','','','','','','','0','0','Y','','1400828336','1400828336');
 INSERT INTO `yii_catalog` VALUES('13','4','12','最新电影','','','','','','','0','0','Y','','1400828453','1400828453');
+INSERT INTO `yii_catalog` VALUES('14','2','8','网络美女','','','','','','','0','0','Y','','1404111907','1404111907');
 
 DROP TABLE IF EXISTS `yii_comment`;
 CREATE TABLE `yii_comment` (
@@ -83,7 +86,7 @@ CREATE TABLE `yii_comment` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COMMENT='评论表';
 
-INSERT INTO `yii_comment` VALUES('31','22','31','第三张亮了！<img src=\"/static/public/emoticons/images/13.gif\" alt=\"\" border=\"0\" />','Y','2','127.0.0.1','1402628120');
+INSERT INTO `yii_comment` VALUES('31','1','31','第三张亮了！<img src=\"/static/public/emoticons/images/13.gif\" alt=\"\" border=\"0\" />','Y','2','127.0.0.1','1402628120');
 INSERT INTO `yii_comment` VALUES('32','16','31','内容排版 不太好吧 <img src=\"/static/public/emoticons/images/10.gif\" alt=\"\" border=\"0\" /><br />','Y','1','127.0.0.1','1402882240');
 INSERT INTO `yii_comment` VALUES('33','16','31','再试一次','Y','1','127.0.0.1','1402889690');
 INSERT INTO `yii_comment` VALUES('34','4','31','旺旺还不错 <img src=\"/static/public/emoticons/images/65.gif\" alt=\"\" border=\"0\" /><br />','Y','3','127.0.0.1','1403055802');
@@ -111,6 +114,57 @@ CREATE TABLE `yii_goods` (
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='商品表';
 
 INSERT INTO `yii_goods` VALUES('1','小米手机','5','0.00','uploads/images/201405/3fdd860df5d.jpg','uploads/thumbs/201405/small_3fdd860df5d.jpg','a:1:{i:0;a:4:{s:6:\"fileId\";s:2:\"45\";s:4:\"file\";s:37:\"uploads/images/201405/6bf7dd586e7.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','0','0','1401076650','1401092539','Y','0','0');
+
+DROP TABLE IF EXISTS `yii_image`;
+CREATE TABLE `yii_image` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL DEFAULT '1' COMMENT '用户',
+  `title` varchar(255) NOT NULL COMMENT '标题',
+  `title_second` varchar(255) NOT NULL DEFAULT '' COMMENT '副标题',
+  `title_style` varchar(255) NOT NULL DEFAULT '' COMMENT '标题样式',
+  `html_path` varchar(100) NOT NULL DEFAULT '' COMMENT 'html路径',
+  `html_file` varchar(100) NOT NULL DEFAULT '' COMMENT 'html文件名',
+  `catalog_id` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '分类',
+  `special_id` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '专题编号',
+  `intro` text COMMENT '摘要',
+  `image_list` text COMMENT '组图',
+  `seo_title` varchar(255) NOT NULL DEFAULT '' COMMENT 'SEO标题',
+  `seo_description` text COMMENT 'SEO描述',
+  `seo_keywords` varchar(255) NOT NULL DEFAULT '' COMMENT 'SEO关键字',
+  `content` mediumtext NOT NULL COMMENT '内容',
+  `copy_from` varchar(100) NOT NULL DEFAULT '' COMMENT '来源',
+  `copy_url` varchar(255) NOT NULL DEFAULT '' COMMENT '来源url',
+  `redirect_url` varchar(255) NOT NULL DEFAULT '' COMMENT '跳转URL',
+  `tags` varchar(255) NOT NULL DEFAULT '' COMMENT 'tags',
+  `view_count` int(10) unsigned NOT NULL DEFAULT '1' COMMENT '查看次数',
+  `commend` enum('Y','N') NOT NULL DEFAULT 'N' COMMENT '推荐',
+  `attach_status` enum('Y','N') NOT NULL DEFAULT 'N' COMMENT '是否上传附件',
+  `attach_file` varchar(255) NOT NULL DEFAULT '' COMMENT '附件名称',
+  `attach_thumb` varchar(255) NOT NULL DEFAULT '' COMMENT '附件缩略图',
+  `favorite_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '收藏数量',
+  `attention_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '关注次数',
+  `top_line` enum('Y','N') NOT NULL DEFAULT 'N' COMMENT '头条',
+  `update_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '最后更新时间',
+  `reply_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '回复次数',
+  `reply_allow` enum('Y','N') NOT NULL DEFAULT 'Y' COMMENT '允许评论',
+  `sort_desc` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
+  `status` enum('Y','N') NOT NULL DEFAULT 'Y' COMMENT '是否显示',
+  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='内容管理';
+
+INSERT INTO `yii_image` VALUES('1','1','图盟 每日囧图05.24','','','','','9','0','','a:4:{i:0;a:4:{s:6:\"fileId\";s:2:\"63\";s:4:\"file\";s:37:\"uploads/images/201406/d6bf42140c0.jpg\";s:4:\"desc\";s:2:\"01\";s:3:\"url\";s:3:\"011\";}i:1;a:4:{s:6:\"fileId\";s:2:\"64\";s:4:\"file\";s:37:\"uploads/images/201406/4ca469fcfbf.jpg\";s:4:\"desc\";s:2:\"02\";s:3:\"url\";s:3:\"022\";}i:2;a:4:{s:6:\"fileId\";s:2:\"65\";s:4:\"file\";s:37:\"uploads/images/201406/018817f4a8f.gif\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:3;a:4:{s:6:\"fileId\";s:2:\"66\";s:4:\"file\";s:37:\"uploads/images/201406/6042f7935d0.gif\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','','猫扑','http://dzh.mop.com/ttq/20140523/0/zF7lFlI2d0ef25F7.shtml','','囧图','450','N','N','uploads/images/201406/badc32cd99a.gif','uploads/thumbs/201406/small_badc32cd99a.gif','0','0','N','1401864736','0','Y','0','Y','1401864736');
+INSERT INTO `yii_image` VALUES('2','1','图览2014巴西世界杯','图览2014巴西世界杯','','','','9','0','世界杯来啦，为了帮助大家更轻松更愉悦地观看世界杯，小编制作了《图览世界杯》，大家可及时围观赛况和花边消息，方便彼此切磋，迎来人生比翼齐飞的新高度，更有机会参与【百度图片竞猜世界杯】的活动哦！我们的奖品已经到位，猜对比分，并@百度图片@两位好友，就有机会赢取【高端手表】哦亲~动动手指，为世界杯加油！更多消息请密切关注【@百度图片】新浪微博官方账号吧。','a:2:{i:0;a:4:{s:6:\"fileId\";s:2:\"72\";s:4:\"file\";s:37:\"uploads/images/201406/b2147835d3a.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:1;a:4:{s:6:\"fileId\";s:2:\"73\";s:4:\"file\";s:37:\"uploads/images/201406/f937c90da76.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\"></span><span style=\"font-size:14px;\">世界杯来啦，为了帮助大家更轻松更愉悦地观看世界杯，小编制作了《图览世界杯》，大家可及时围观赛况和花边消息，方便彼此切磋，迎来人生比翼齐飞的新高度，更有机会参与【百度图片竞猜世界杯】的活动哦！我们的奖品已经到位，猜对比分，并@百度图片@两位好友，就有机会赢取【高端手表】哦亲~动动手指，为世界杯加油！更多消息请密切关注【@百度图片】新浪微博官方账号吧。</span> 
+</p>','百度图片','http://image.baidu.com/infopage/tpl?id=8&mode=viewer','','巴西,世界杯','4','N','N','uploads/images/201406/1f6228399a3.jpg','uploads/thumbs/201406/small_1f6228399a3.jpg','0','0','N','1404111213','0','Y','0','Y','1404111213');
+INSERT INTO `yii_image` VALUES('3','1','小清新','','','','','14','0','','','','','','小清新','','','','美女','3','N','N','uploads/images/201406/2980725e720.jpg','uploads/thumbs/201406/small_2980725e720.jpg','0','0','N','1404111946','0','Y','0','Y','1404111946');
+INSERT INTO `yii_image` VALUES('4','1','游戏唯美','','','','','14','0','','','','','','游戏唯美','','','','美女','1','N','N','uploads/images/201406/8b571b7725d.jpg','uploads/thumbs/201406/small_8b571b7725d.jpg','0','0','N','1404112171','0','Y','0','Y','1404112171');
+INSERT INTO `yii_image` VALUES('5','1','游戏唯美','','','','','14','0','','','','','','游戏唯美','','','','美女','1','N','N','uploads/images/201406/d7d79134e6d.jpg','uploads/thumbs/201406/small_d7d79134e6d.jpg','0','0','N','1404114260','0','Y','0','Y','1404114260');
+INSERT INTO `yii_image` VALUES('6','1','明星海景','','','','','14','0','','','','','','明星海景','','','','','1','N','N','uploads/images/201406/fe41fcc37ac.jpg','uploads/thumbs/201406/small_fe41fcc37ac.jpg','0','0','N','1404121549','0','Y','0','Y','1404114318');
+INSERT INTO `yii_image` VALUES('7','1','靓丽女孩','','','','','14','0','','','','','','靓丽女孩','','','','美女','1','N','N','uploads/images/201406/15b9aedad1b.jpg','uploads/thumbs/201406/small_15b9aedad1b.jpg','0','0','N','1404121425','0','Y','0','Y','1404114395');
+INSERT INTO `yii_image` VALUES('8','1','漂亮女神','','','','','14','0','','','','','','漂亮女神','','','','美女','1','N','N','uploads/images/201406/bb6aa6ad2c7.jpg','uploads/thumbs/201406/small_bb6aa6ad2c7.jpg','0','0','N','1404121415','0','Y','0','Y','1404114458');
+INSERT INTO `yii_image` VALUES('9','1','气质美女','','','','','8','0','','','','','','气质美女','','','','美女','1','N','N','uploads/images/201406/ba6b6e35743.jpg','uploads/thumbs/201406/small_ba6b6e35743.jpg','0','0','N','1404121404','0','Y','0','Y','1404114497');
+INSERT INTO `yii_image` VALUES('10','1','淑女形象','','','','','8','0','','','','','','淑女形象','','','','美女','1','N','N','uploads/images/201406/5348209384d.jpg','uploads/thumbs/201406/small_5348209384d.jpg','0','0','N','1404121392','0','Y','0','Y','1404114535');
 
 DROP TABLE IF EXISTS `yii_link`;
 CREATE TABLE `yii_link` (
@@ -210,7 +264,7 @@ CREATE TABLE `yii_model_type` (
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='内容模型表';
 
 INSERT INTO `yii_model_type` VALUES('1','post','文章','post','Y');
-INSERT INTO `yii_model_type` VALUES('2','image','图集','post','Y');
+INSERT INTO `yii_model_type` VALUES('2','image','图集','image','Y');
 INSERT INTO `yii_model_type` VALUES('3','soft','软件','soft','Y');
 INSERT INTO `yii_model_type` VALUES('4','video','视频','video','Y');
 INSERT INTO `yii_model_type` VALUES('5','goods','商品','goods','Y');
@@ -359,47 +413,105 @@ CREATE TABLE `yii_post` (
   `favorite_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '收藏数量',
   `attention_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '关注次数',
   `top_line` enum('Y','N') NOT NULL DEFAULT 'N' COMMENT '头条',
-  `last_update_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '最后更新时间',
+  `update_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '最后更新时间',
   `reply_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '回复次数',
   `reply_allow` enum('Y','N') NOT NULL DEFAULT 'Y' COMMENT '允许评论',
   `sort_desc` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
   `status` enum('Y','N') NOT NULL DEFAULT 'Y' COMMENT '是否显示',
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='内容管理';
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COMMENT='内容管理';
 
-INSERT INTO `yii_post` VALUES('14','1','App Annie获1500万美元投资 将持续扩展国际业务','','','','','2','1','（朱旭冬）9月18日晚间消息，移动智能市场数据平台App Annie 今日宣布完成一轮总金额为1500万美元的融资，由红杉资本的美国基金领投，现有投资者IDG资本、Greycroft 、e.Ventures 和 Infinity Venture 参与跟投。...','','','','','<p>	（朱旭冬）9月18日晚间消息，移动智能市场数据平台App Annie 今日宣布完成一轮总金额为1500万美元的融资，由红杉资本的美国基金领投，现有投资者IDG资本、Greycroft 、e.Ventures 和 Infinity Venture 参与跟投。</p><p>	红杉资本硅谷办事处合伙人 Tim Lee 与 uSamp 首席执行官 Alan Gould 将加入App Annie董事会。</p><p>	App Annie 表示，此轮融得的资金将用于加速 App Annie 的产品开发、增长其销售额并壮大其设在旧金山的营销总部，并扩大其遍布亚洲和欧洲的办事处。</p><p>	随着今年全球智能手机出货量将超过1 亿部的预期，应用软件和数字内容经济大幅增长。App Annie 在过去12个月内用户数扩大两倍，每月营收增长三倍。App Annie 首席执行官Bertrand Schmitt 表示，增长的用户群证明公司重塑企业分析和提取适合商业用途的有用洞察信息的方式是成功的。</p><p>	红杉资本硅谷办事处合伙人 Tim Lee 认为， App Annie 在新数字经济分析领域处于极为有利的地位。“App Annie 的产品对从事移动通信行业的每位从业者来说都是必备的。在红杉资本，我们多年来一直使用他们的产品帮助我们找到有突破力的创业公司。 App Annie 在新数字经济分析领域处于极为有利的地位，并将成为黄金标准。”他说。</p><p>	Bertrand Schmitt 则表示， “对我们来说，红杉资本不仅仅是投资者，同时也是合作伙伴和顾问，它将帮助我们加速我们扩大平台的计划，这样所有企业都可了解全球应用软件和数字内容生态系统。”</p><p>	App Annie 的商业智能平台由 Analytics、Store Stats 和 Intelligence 组成。现今，收益排名前 100 位的 iOS 应用发行商中超过 90% 在使用App Annie 的产品，这其中包含 Google、微软和腾讯。</p>','','','','App,Annie,美元投资,国际业务','15','N','Y','uploads/201309/523a549bd42fe.jpg','uploads/201309/thumb_523a549bd42fe.jpg','0','0','N','1401871554','0','Y','0','Y','1379554460');
-INSERT INTO `yii_post` VALUES('15','1','Groupon收购本地体验初创公司SideTour','','','','','2','1','据国外媒体报道，团购巨人Groupon今日宣布，公司已经收购了本地体验初创公司SideTour。后者是一个帮助人们发现、预订和参加本地活动的市场平台，Groupon没有透露这项收购交易的具体条款','','','','','<p>
-	<span style=\"font-size:14px;\">据国外媒体报道，团购巨人Groupon今日宣布，公司已经收购了本地体验初创公司SideTour。后者是一个帮助人们发现、预订和参加本地活动的市场平台，Groupon没有透露这项收购交易的具体条款。</span> 
+INSERT INTO `yii_post` VALUES('14','1','天河二号以每秒3.3亿亿次的速度再居世界超算榜首 上演帽子戏法','','','','','2','1','据外媒报道，23日在德国莱比锡市发布的第43届世界超级计算机500强排行榜上，中国超级计算机系统“天河二号”以每秒3.386亿亿次的浮点运算速度稳居榜首，获得世界超算“三连冠”。 ','','','','','<p style=\"text-indent:2em;\">
+	<img src=\"http://www.yii.local/uploads/images/201406/5e7d89999bb.jpg\" alt=\"\" height=\"418\" width=\"772\" /> 
 </p>
-<p>
-	<span style=\"font-size:14px;\">SideTour精选了一些独具特色且有人主持的聚会类活动，让客户们能够与相应领域的资深专家面对面地交流，从而更加了解自己所在的城市和他们关心的事。</span> 
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">北京时间6月24日消息，据美国科技网站</span><a href=\"http://www.cnet.com/news/top500-supercomputer-race-hits-a-slow-patch/\" target=\"_blank\"><span style=\"font-size:14px;\">CNET</span></a><span style=\"font-size:14px;\">报道，23日在德国莱比锡市发布的</span><a href=\"http://top500.org/blog/lists/2014/06/press-release/\" target=\"_blank\"><span style=\"font-size:14px;\">第43届世界超级计算机500强排行榜</span></a><span style=\"font-size:14px;\">上，中国超级计算机系统“天河二号”以每秒3.386亿亿次的浮点运算速度稳居榜首，获得世界超算“三连冠”。美国能源部下属橡树岭国家实验室的“泰坦”则连续3次屈居亚军，其浮点运算速度为每秒1.759亿亿次。</span> 
 </p>
-<p>
-	<span style=\"font-size:14px;\">GrouponLive业务总经理格雷格鲁丁（Greg Rudin）称：“SideTour精心策划的各种本地体验将进一步拓展Groupon的愿景，也就是将Groupon打造成消费者可以随时随地访问的平台。如果Groupon能够提供这些极具个性化的活动、旅游和值得铭记的聚会，我们就能够为我们的客户提供更多有趣的方法，帮助他们探索和发现最好的本地体验。”</span> 
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">2010年，由国防科技大学研制的天河一号在超算排行榜上首次夺冠，2013年，天河二号又两度位列榜首，昨天，天河二号第3次被评为全球最快的计算机，获得世界超算三连冠。</span> 
 </p>
-<p>
-	<span style=\"font-size:14px;\">那些活动大多为私人聚会，人数平均在12人左右，涵盖的行业包括视频、饮料、建筑、历史、艺术等等。SideTour目前提供的公开和私人聚会多达500多种，使用这个平台的聚会主持超过了400人。那些主持者包括厨师、艺术家、奥运金牌获得者、星探和品酒师等等。</span> 
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">据悉，国际TOP500组织是发布全球已安装的超级计算机系统排名的权威机构，每年发布两次，其目的是促进国际超级计算机领域的交流和合作，促进超级计算机的推广应用。</span> 
 </p>
-<p>
-	<span style=\"font-size:14px;\">SideTour的首席执行官韦平戈亚尔（Vipin Goyal）称：“我们很高兴有机会把我们独创的聚会服务提供给这么多热衷于本地体验的人。Groupon可以帮助我们发现更多的本地专家并为他们提供一个与更多客户沟通的平台。”</span> 
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">超级计算机是计算机中功能最强、运算速度最快、存储容量最大的一类计算机，多用于国家高科技领域和尖端技术研究。如：模拟核武器爆炸、模拟地球的气候、分析飞机的空气动力学和研究生物的大脑等。这些机器通常占用很大的橱柜和消耗大量的电力。</span> 
 </p>
-<p>
-	<span style=\"font-size:14px;\">SideTour将继续独立经营一段时间，Groupon将通过其电子邮件、网页和移动渠道向它的4300万活跃用户推广SideTour的聚会服务。</span> 
+<p style=\"text-align:center;\">
+	<img src=\"/uploads/attached/image/201406/f6cf41e3649.jpg\" alt=\"\" /> 
 </p>
-<p>
-	<span style=\"font-size:14px;\">SideTour创立于2011年，目前在芝加哥、纽约、费城和华盛顿特区设有办事机构。它计划在未来几个月里开辟更多的市场。</span>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">世界上最快的计算机的性能在过去的二十年中一直在稳步的提升，最新数据显示，这个增长趋势在放缓。从2013年11月至今，排行榜前500的所有超级计算机的性能总和从25亿亿次提高到了27.4亿亿次。相关分析人士认为这是一个明显的增长放缓。</span> 
 </p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">另外，在过去的五年内，排行榜最后一位的超级计算机以每年55%的速度提升，而1994年至2008年间，性能曾以每年90%的速度增长。</span> 
+</p>','csdn','http://www.csdn.net/article/2014-06-24/2820355','','超级计算机,中国','17','N','Y','uploads/images/201406/5e7d89999bb.jpg','uploads/thumbs/201406/small_5e7d89999bb.jpg','0','0','N','1404120867','0','Y','0','Y','1379554460');
+INSERT INTO `yii_post` VALUES('15','1','国产操作系统厂商中科红旗宣布拍卖旗下资产','','','','','2','1','6月27日，中科红旗发布公告，宣布拟以公开竞价方式转让公司全部注册商标、全部软件著作权等资产。至此，处于解散清算状态的国产操作系统厂商中科红旗正式开始启动资产出售进程。　　 ','','','','','<p align=\"center\">
+	<img src=\"/uploads/attached/image/201406/3078e9f0bff.jpg\" alt=\"\" /> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">北京时间6月30日消息，国产操作系统厂商中科红旗日前已经开始启动资产出售进程。中科红旗今年2月宣布解散清算。有消息称，中科红旗当时的债务总
+额约为2000多万元，其中绝大部分是员工的拖欠工资。6月27日，中科红旗发布公告称拟以公开竞价方式转让公司全部注册商标、全部软件著作权等资产。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">中科红旗为资产竞买人提出了四项条件，并要求有意向的竞买人在2014年7月8日前提交书面竞买意向书。而后续公开竞价转让安排则会另行通知竞买人。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">中科红旗表示竞买人需要满足四项条件，包括：</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<br />
+</p>
+<ul>
+	<li>
+		<span style=\"font-size:14px;\">有志于从事国产操作系统产品研发和应用推广的内资企业法人；</span> 
+	</li>
+	<li>
+		<span style=\"font-size:14px;\">具有能够研发完善本公司产品的技术团队和雄厚的经济实力；</span> 
+	</li>
+	<li>
+		<span style=\"font-size:14px;\">有意且有能力承接本公司所有承诺用户的产品后续运维和升级等服务；</span> 
+	</li>
+	<li>
+		<span style=\"font-size:14px;\">有意且有能力代为完成本公司所承担的核高基等政府项目的后续验收、跟踪等工作。</span> 
+	</li>
+</ul>
 <p>
 	<br />
-<span style=\"font-size:14px;\"></span>
 </p>
-<p>
-	<span style=\"font-size:14px;\">
-<pre class=\"prettyprint lang-js\">alert(\'哈哈\')</pre>
-<br />
-</span> 
-</p>','','','','Groupon','24','Y','Y','uploads/201309/523a54c220262.jpg','uploads/201309/thumb_523a54c220262.jpg','0','0','N','1403598795','0','Y','0','Y','1379554498');
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">同时，中科红旗表示，如果竞买人能够完全收购中科红旗公司，则可以优先收购上述资产。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">目前，除明确提出四项竞买人条件之外，中科红旗对于资产价格、竞价日期等细节信息未作披露。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">新浪科技引用了解此事的中科红旗前员工消息称，本次资产拍卖的底价可能约为1800万元。这位要求匿名的前员工表示，由于价格不高，有几家公司有意向展开竞购，其中呼声较高的包括中国电子科技集团公司、曙光公司等。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">在
+几家可能接盘的企业中，有中科红旗员工表示中国电子科技集团公司旗下的普华基础软件有限公司最有可能接盘中科红旗。其实早在本月初，普华基础软件已经宣布
+接盘中科红旗破产之后的客户技术服务工作。同时，该公司还接收了数十名中科红旗研发、技术支持和销售的核心员工。这些动作被外界和中科红旗的前员工们看作
+是，整体接盘中科红旗的前奏。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">员工们表述，就普华基础软件而言，接盘中科红旗确实有着很强的合理性。一方面，这家公司一直在从事Linux相关的业务；另外一方面，这家公司从公司总裁赵晓亮到员工有不少人曾就职中科红旗，也非常熟悉这家企业的业务及文化。其中，赵晓亮还曾担任过中科红旗的执行总裁。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">中科红旗工会主席贺唯佳告诉新浪科技，普华基础软件若收购中科红旗，将可以实现业务上的平滑过渡。不过，他也不确认，这家公司的母公司是否会正式发起竞购。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">据贺唯佳透露，此前与中科红旗有合作关系的部分硬件厂商也有意竞购中科红旗的资产。据悉，在解散清算之前，中科红旗开发的PC操作系统和服务器操作系统被一些PC厂商和服务器厂商使用，其中有些企业希望接盘，继续提供相关产品和服务。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">实际上，也有部分中科红旗的前员工指出，中科院软件所旗下的中科方德也可能是中科红旗的接盘方。中科方德和中科红旗同属中科院软件所旗下企业，两家企业曾联合申请过国家核高基项目，在业务上有很多重叠性。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">不过，由于很多员工认为，中科红旗进行解散清算正是因为“祸起”中科方德，部分股东可能会提出异议，阻碍中科方德接盘。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">此前，中科红旗的员工们指责中科院软件所设立中科方德公司与中科红旗展开竞争，同时通过派驻的管理层，要求中科红旗的员工为中科方德做项目，严重影响公司的正常运营。但中科院软件所否认这些指责。</span> 
+</p>','csdn','http://www.csdn.net/article/2014-06-30/2820440','','操作系统,国产,中科','29','Y','Y','uploads/201309/523a54c220262.jpg','uploads/201309/thumb_523a54c220262.jpg','0','0','N','1404120862','0','Y','0','Y','1379554498');
 INSERT INTO `yii_post` VALUES('16','1','程序员必须知道的10大基础实用算法及其讲解','','a:3:{s:4:\"bold\";s:1:\"Y\";s:9:\"underline\";s:1:\"Y\";s:5:\"color\";s:6:\"FF2969\";}','','','2','1','在手机解锁上，美国消费者和运营商展开持久战，美国政府和白宫逐渐站在消费者一边。	近日美国电信和信息管理局（NTIA）正式向联邦通信委员会（FCC）发函，要求修改规定，未来移动运营商销售给用户的手机、平板...','a:2:{i:0;a:4:{s:6:\"fileId\";s:2:\"36\";s:4:\"file\";s:37:\"uploads/images/201405/21e1adee63a.png\";s:4:\"desc\";s:2:\"04\";s:3:\"url\";s:5:\"04url\";}i:1;a:4:{s:6:\"fileId\";s:2:\"37\";s:4:\"file\";s:37:\"uploads/images/201405/f23850e09dc.png\";s:4:\"desc\";s:2:\"05\";s:3:\"url\";s:5:\"05url\";}}','','','','<p>
 	<a href=\"http://geek.csdn.net/news/detail/12027\"><span style=\"font-size:14px;\">程序员必须知道的10大基础实用算法及其讲解</span></a><span style=\"font-size:14px;\">，包括：</span> 
 </p>
@@ -632,8 +744,7 @@ shared repository.</span>
 	<li>
 		<span style=\"font-size:14px;\">Google Fiber</span> 
 	</li>
-</ul>','','','','程序员','583','Y','Y','uploads/201309/523a54f7d9591.jpg','uploads/201309/thumb_523a54f7d9591.jpg','1','2','Y','1403598760','4','N','5','Y','1379554552');
-INSERT INTO `yii_post` VALUES('22','1','图盟 每日囧图05.24','','','','','9','0','','a:4:{i:0;a:4:{s:6:\"fileId\";s:2:\"63\";s:4:\"file\";s:37:\"uploads/images/201406/d6bf42140c0.jpg\";s:4:\"desc\";s:2:\"01\";s:3:\"url\";s:3:\"011\";}i:1;a:4:{s:6:\"fileId\";s:2:\"64\";s:4:\"file\";s:37:\"uploads/images/201406/4ca469fcfbf.jpg\";s:4:\"desc\";s:2:\"02\";s:3:\"url\";s:3:\"022\";}i:2;a:4:{s:6:\"fileId\";s:2:\"65\";s:4:\"file\";s:37:\"uploads/images/201406/018817f4a8f.gif\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:3;a:4:{s:6:\"fileId\";s:2:\"66\";s:4:\"file\";s:37:\"uploads/images/201406/6042f7935d0.gif\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','','猫扑','http://dzh.mop.com/ttq/20140523/0/zF7lFlI2d0ef25F7.shtml','','囧图','441','N','N','uploads/images/201406/badc32cd99a.gif','uploads/thumbs/201406/small_badc32cd99a.gif','0','0','N','1401864736','0','Y','0','Y','1401864736');
+</ul>','','','','程序员','584','Y','Y','uploads/201309/523a54f7d9591.jpg','uploads/201309/thumb_523a54f7d9591.jpg','1','2','Y','1404120856','4','N','5','Y','1379554552');
 INSERT INTO `yii_post` VALUES('23','1','Facebook POP，迈向大师操作之路','','','','','3','0','Facebook发布Paper后，不满足于将其作为一个概念性产品，反而更进一步开源了其背后的动画引擎POP。POP的开发者是Kimon Tsinteris，曾致力于创造出逼真的、充满物力效应的体验。POP也是在这个理念下催生出来的结果。 ','','','','','<p style=\"text-indent:2em;\">
 	Facebook发布Paper之后，似乎还不满足于只是将其作为一个概念性产品，反而更进一步开源了其背后的动画引擎POP（https://github.com/facebook/pop），此举大有三年前发布的iOS&nbsp;UI框架Three20（https://github.com/facebookarchive/three20）的意味。而POP开源后不负Facebook的厚望，在GitHub上不足一个月的时间，就已拥有了6000多个Star，非常火爆。
 </p>
@@ -852,25 +963,163 @@ INSERT INTO `yii_post` VALUES('23','1','Facebook POP，迈向大师操作之路'
 </p>
 <p style=\"text-indent:2em;\">
 	这里我们使用UIGraphicsBeginImageContext-WithOptions()去开启绘画上下文，动画结束后使用UIGraphicsEndImageContext()来清空绘画的上下文。这两个函数主要是影响画板的大小。
-</p>','csdn','http://www.csdn.net/article/2014-06-04/2820077-Facebook-POP-Practice','','Facebook,国际业务','43','N','N','uploads/images/201406/1053bfe806b.png','uploads/thumbs/201406/small_1053bfe806b.png','0','0','N','1403750533','0','Y','0','Y','1401955341');
+</p>','csdn','http://www.csdn.net/article/2014-06-04/2820077-Facebook-POP-Practice','','Facebook,国际业务','45','N','N','uploads/images/201406/1053bfe806b.png','uploads/thumbs/201406/small_1053bfe806b.png','0','0','N','1404120848','0','Y','0','Y','1401955341');
+INSERT INTO `yii_post` VALUES('24','1','传闻微软计划用Lumia品牌取代Surface','','','','','2','0','传闻微软计划用诺基亚Lumia品牌取代Surface品牌，且让未来Windows Phone手机打上“微软旗下诺基亚”（Nokia by Microsoft）的品牌烙印，最终的目的是实现推广销售“Nokia by Microsoft”品牌。','','','','','<p align=\"center\">
+	<img src=\"/uploads/attached/image/201406/468a9574708.jpg\" alt=\"\" /> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">北京时间6月30日消息，据美国科技网站ZDNet报道，微软计划用诺基亚Lumia品牌取代Surface品牌，且让未来Windows 
+Phone手机打上“微软旗下诺基亚”（Nokia by Microsoft）的品牌烙印，最终的目的是实现推广销售“Nokia by 
+Microsoft”品牌。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">微软针对诺基亚移动业务部门的收购已经完成一段时间了，但是关于如何调整使用诺基亚旗下品牌的问题仍然处于悬而未决的状态。如今看来，马上就会有相关结果出来了。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">企业中途更换品牌相当困难，而且代价不菲，有时甚至是不明智的。但据爆料大神</span><a href=\"http://evleaks.at/2014/06/28/pretty-exciting-microsoft-reportedly-final-stages-licensing-nokia-brand-purpose-calling-handsets-nokia-microsoft-furthermore-say-goodbye-surface/\" target=\"_blank\"><span style=\"font-size:14px;\">@evleaks称</span></a><span style=\"font-size:14px;\">，微软可能会这样做：</span> 
+</p>
+<blockquote style=\"margin-left:3em ! important;font-style:normal ! important;color:#777777;text-indent:2em;\">
+	<p>
+		<span style=\"font-size:14px;\">This
+ is pretty exciting: Microsoft is reportedly in the final stages of 
+licensing the Nokia brand, for the purpose of calling the handsets 
+“Nokia by Microsoft.” Furthermore, say goodbye to Surface, and hello to 
+Lumia, as the tablet lineup faces brand streamlining.</span> 
+	</p>
+</blockquote>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">另外，@evleaks也在早前也透露了</span><a href=\"http://evleaks.at/2014/06/11/goodbye-pure-hello-segoe-near-term-post-transition-guidance-ex-nokians-regarding-branded-future/\" target=\"_blank\"><span style=\"font-size:14px;\">微软将在Lumia手机上取消诺基亚品牌名</span></a><span style=\"font-size:14px;\">：</span> 
+</p>
+<blockquote style=\"margin-left:3em ! important;font-style:normal ! important;color:#777777;text-indent:2em;\">
+	<p>
+		<span style=\"font-size:14px;\">Limua智能手机将继续使用诺基亚品牌18个月，Nokia X手机对诺基亚品牌的使用权将延续至2015年12月31日，而诺基亚功能手机Asha则可以继续使用10年诺基亚品牌。</span> 
+	</p>
+</blockquote>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">此外，@evleaks还表示，微软可能在与诺基亚谈判，延长Lumia品牌的使用时间，以便使其未来的手机和其他设备能继续使用这一品牌。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">尽管如此，还有一个令人惊讶的消息是，微软已经投资了太多的钱在Surface品牌上（在今年巴西世界杯期间，微软也在Surface Pro 3广告宣传方面投入了大量资金），而且最近也推出了受欢迎的Surface Pro 3平板电脑。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">不
+过，在谈到Windows 
+Phone手机时，人们常常想到的是Lumia或诺基亚，微软作为手机制造商的地位尚未得到认可。微软此举也在情理之中，当用户开始意识到微软与诺基亚品
+牌的关系后，微软的受信任度也会提升。其实，在美国之外的市场上，诺基亚和Lumia有更高的品牌知名度；而且微软Windows 
+Phone手机在海外市场的销售要好于美国。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">融合Surface和Lumia品牌符合微软</span><a href=\"http://www.zdnet.com/microsoft-3-0-a-meaner-leaner-devices-and-services-machine-7000017931/\" target=\"_blank\"><span style=\"font-size:14px;\">“一个微软”（One Microsoft）的营销策略</span></a><span style=\"font-size:14px;\">。据悉，微软在2015年春季将发布一个重要版本Windows Threshold，一个能同时支持手机和触控屏平板电脑的Windows版本。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">微软能从改变Surface品牌中受益，例如与</span><a href=\"http://www.zdnet.com/microsofts-900-million-surface-rt-write-down-how-did-this-happen-7000018275/\" target=\"_blank\"><span style=\"font-size:14px;\">Surface之前的历史</span></a><span style=\"font-size:14px;\">以及Surface销售不如预期的观念“划清界线”。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<br />
+</p>','csdn','http://www.csdn.net/article/2014-06-30/2820438-microsoft-rumored-to-be-planning-to-replace-surface-branding-with-lumia','','微软,计划','2','N','N','','','0','0','N','1404120838','0','Y','0','Y','1404110540');
+INSERT INTO `yii_post` VALUES('25','1','简洁的代码，强悍的代码，你的选择是…？','','','','','3','0','我最近常常和其他开发人员关于如何写代码展开一些有趣的讨论。不可否认，现在有很多程序员过于注重代码的整齐干净，先别曲解我的意思，我也是注重代
+码整洁的，并且关于强调这方面的重要性已经写过一箩筐帖子了。但是，我写代码的时候，整洁的代码只是我的第二目标，而且它从来没有取代过第一目标的地位：
+使程序正常运作。或者可以这么说，第一永远是强悍的代码。
 
-DROP TABLE IF EXISTS `yii_post_tags`;
-CREATE TABLE `yii_post_tags` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `tag_name` varchar(100) NOT NULL COMMENT 'tag名称',
-  `data_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '数据总数',
-  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '录入时间',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COMMENT='新闻标签';
 
-INSERT INTO `yii_post_tags` VALUES('23','国际业务','2','1379554460');
-INSERT INTO `yii_post_tags` VALUES('22','美元投资','1','1379554460');
-INSERT INTO `yii_post_tags` VALUES('21','Annie','1','1379554460');
-INSERT INTO `yii_post_tags` VALUES('20','App','1','1379554460');
-INSERT INTO `yii_post_tags` VALUES('40','囧图','1','1403601928');
-INSERT INTO `yii_post_tags` VALUES('39','Facebook','1','1403601502');
-INSERT INTO `yii_post_tags` VALUES('37','程序员','1','1403525041');
-INSERT INTO `yii_post_tags` VALUES('38','Groupon','1','1403576439');
+	
+
+
+	一旦涉及如何写整洁的代码，很多程序员就口若悬河...','','','','','<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">我最近常常和其他开发人员关于如何写代码展开一些有趣的讨论。不可否认，现在有很多程序员过于注重代码的整齐干净，先别曲解我的意思，我也是注重代
+码整洁的，并且关于强调这方面的重要性已经写过一箩筐帖子了。但是，我写代码的时候，整洁的代码只是我的第二目标，而且它从来没有取代过第一目标的地位：
+使程序正常运作。或者可以这么说，第一永远是强悍的代码。</span> 
+</p>
+<p>
+	<img class=\"alignnone size-full wp-image-397 aligncenter\" title=\"clean-code-vs-great-code\" src=\"http://news.html5tricks.com/wp-content/uploads/2014/06/clean-code-vs-great-code.jpg\" alt=\"\" height=\"628\" width=\"972\" /> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">一旦涉及如何写整洁的代码，很多程序员就口若悬河、滔滔不绝。他们不断强调他们对于这方面的努力有多么多么尽心竭力，精益求精。甚至在某些特殊情况
+下，还会在编程时穿上Uncle 
+Bob的绿色标志T恤，以提醒自己不要忘记他们心中最最要紧的一件事：代码一定要写得干净整洁。但是也因此，很多程序员竟然把代码的功用给抛之脑后，这真
+是拣了芝麻丢了西瓜。比如，他们更喜欢使用如Automapper这样的工具，可以将实体映射到DTO（数据传输对象），即使Automapper与简单
+的搜索映射数据相比，效率低下得多。他们并不在乎调用多个远程需要多大的花费，也不在乎通过网络需要发送多么庞大的数据。就因为如此，使得这些可怜的逗比
+不得不一遍又一遍的完善代码，否则数据库就会陷入死循环。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">整洁的代码不一定是强悍的代码，而强悍的代码也并非一定就是整洁的代码。强悍的代码意味着它能快速工作、有效运行、易于理解、便于修改。而在这四个
+功能中，易于理解的重要性不言而喻，特别是对于那些首次研读代码的，理解代码之后才能轻松安全地做出相应的改动。但是不管这些代码有多么地“一见就懂”，
+如果不能正常运行（包括不能覆盖所有条件），或者写这些代码的时间远远超过正常值，那么这就算不上好的代码了。或许这样的代码看上去整洁干净，但是没用，
+不是吗？</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">我也不建议过早的优化。除非你有和《骇客帝国》中的Neo一样的本领，否则你那些被过早优化的程序里至少肯定有四分之一是不正确的。这里有一些指导
+原则，有助于我们避免一些最常见的性能问题。大多数情况下不影响理解的代码可以选择忽略，除非这对于解决瓶颈问题大有裨益。对于要“打扫”的代码，首先得
+弄清楚这些代码是否真的对运作程序有用，或者值不值得我们去一行行“摆放”整洁。如果整洁的代码从正确性和性能角度出发更有意义，那么不用犹豫，立马开工
+吧。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">写出整洁的代码固然好，但是如果需要牺牲性能作用，那么请三思而后行。各位，你的选择呢？</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<br />
+</p>','html5tricks','http://news.html5tricks.com/clean-code-vs-great-code.html','','代码','1','N','N','','','0','0','N','1404120831','0','Y','0','Y','1404110691');
+INSERT INTO `yii_post` VALUES('26','1','微软偷了我的创意 狂赚几十亿美元','','','','','2','0','一位开发人员近日宣称，微软剽窃了自己的创意，并利用它在浏览器大战中取得胜利，现在，微软又用这项专利来从 Android 身上赚钱，每位 Android 用户都要被他们搜刮一下，这位开发人员呼吁大家共同谴责微软的行为。','','','','','<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">一位开发人员近日宣称，微软剽窃了自己的创意，并利用它在浏览器大战中取得胜利，现在，微软又用这项专利来从 Android 身上赚钱，每位 Android 用户都要被他们搜刮一下，这位开发人员呼吁大家共同谴责微软的行为。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">美国开发人员 Rob Morris 表示，自己曾经创建了软件开发公司V_Graph，并开发了一个浏览器组件，名为“web 
+widgets”，它允许开发人员将 Web 内容添加到自己的应用程序中。1996 年，V_Graph 曾接触微软，并打算将“web 
+widgets”卖给微软，但后来由于种种原因，双方未达成交易。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">但是，几个月后，微软发布了 IE3.0，在这款浏览器中使用了类似V_Graph 的技术。据 Morris 回忆，微软在 1997 年无耻地递交了这款浏览器组件的专利申请，并在 2000 年 8 月获得了美国专利6,101,510。</span> 
+</p>
+<p>
+	<img class=\"aligncenter\" src=\"http://news.html5tricks.com/wp-content/uploads/2014/06/8db0ec3b1d20bacba1226799e3a8bb4a.jpg\" alt=\"开发人员：微软偷了我的创意狂赚几十亿美元\" /> 
+</p>
+<p style=\"text-align:center;text-indent:2em;\">
+	<span style=\"font-size:14px;\">IE3</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">V_Graph 瞬间垮掉，不仅是V_Graph，Morris 表示，这个浏览器组件还让微软取得了与 AOL 的合作，打败了网景导航者（Netscape Navigator）。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">现在，同样的技术也被用在其它应用程序中，包括 Android，因为微软授权给 Google 使用该技术，并获取了数十亿美元的版权税。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">Morris 说：“我们认为这个坏专利目前影响每一个智能手机和平板机用户。微软将这项技术作为他们操作系统的一部分开卖时，我们虽然觉得十分可恶，但还只是伤害了我的公司。然而现如今，微软靠着专利授权获得了数十亿暴利，而这些都出自 Android 用户。”</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">Morris 在网上发起了请愿书，称之为“自由浏览器”(Free the 
+Browser)，希望公众能帮助他。“我们想为这个专利而战，虽然不能弥补过去，但最起码我们可以共同努力，阻止他们再对此收费。”根据请愿书中所
+说，Morris 并不是为了钱，只是想为 Android 用户讨回公道，不再被搜刮。</span> 
+</p>
+<p align=\"center\">
+	<img class=\"aligncenter\" src=\"http://news.html5tricks.com/wp-content/uploads/2014/06/228f6a15d932e0094cd996e86892fd8e.jpg\" alt=\"开发人员：微软偷了我的创意狂赚几十亿美元\" /> 
+</p>
+<p style=\"text-align:left;text-indent:2em;\" align=\"center\">
+	<span style=\"font-size:14px;\">来源：</span><a href=\"http://news.mydrivers.com/1/310/310144.htm\" target=\"_blank\"><span style=\"font-size:14px;\">驱动之家</span></a> 
+</p>
+<p style=\"text-indent:2em;\">
+	<br />
+</p>','html5tricks','http://news.html5tricks.com/microsoft-stole-my-idea.html','','微软,创意','1','N','N','','','0','0','N','1404120826','0','Y','0','Y','1404110844');
+INSERT INTO `yii_post` VALUES('27','1','谷歌I/O大会或发布新机顶盒 挑战苹果亚马逊','','','','','2','0','新浪科技  北京时间6月25日晚间消息，《华尔街日报》今日援引知情人士的消息称，在周三的谷歌(564.62, -0.33, -0.06%)I/O开发者大会上，谷歌将至少发布一款小型机顶盒设备，类似于Roku、亚马逊(324.16, -3.88, -1.19%)Fire TV和Apple TV等机顶盒产品。','','','','','<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">北京时间6月25日晚间消息，《华尔街日报》今日援引知情人士的消息称，在周三的谷歌(</span><span style=\"color:red;font-size:14px;\">564.62</span><span style=\"font-size:14px;\">,&nbsp;</span><span style=\"color:red;font-size:14px;\">-0.33</span><span style=\"font-size:14px;\">,&nbsp;</span><span style=\"color:red;font-size:14px;\">-0.06%</span><span style=\"font-size:14px;\">)I/O开发者大会上，谷歌将至少发布一款小型机顶盒设备，类似于Roku、亚马逊(</span><span style=\"color:red;font-size:14px;\">324.16</span><span style=\"font-size:14px;\">,&nbsp;</span><span style=\"color:red;font-size:14px;\">-3.88</span><span style=\"font-size:14px;\">,&nbsp;</span><span style=\"color:red;font-size:14px;\">-1.19%</span><span style=\"font-size:14px;\">)Fire TV和Apple TV等机顶盒产品。</span> 
+</p>
+<p>
+	<a href=\"http://news.html5tricks.com/wp-content/uploads/2014/06/google-io-new-machine.jpg\"><img class=\"alignnone size-full wp-image-306\" title=\"google-io-new-machine\" src=\"http://news.html5tricks.com/wp-content/uploads/2014/06/google-io-new-machine.jpg\" alt=\"\" height=\"142\" width=\"553\" /></a> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">该知情人士称，谷歌机顶盒将采用谷歌最新的Android TV软件，支持电影、游戏和其他内容。有趣的是，该机顶盒将采用其他公司品牌，而不是谷歌品牌。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">当前，微软(</span><span style=\"color:red;font-size:14px;\">41.74</span><span style=\"font-size:14px;\">,&nbsp;</span><span style=\"color:red;font-size:14px;\">-0.24</span><span style=\"font-size:14px;\">,&nbsp;</span><span style=\"color:red;font-size:14px;\">-0.58%</span><span style=\"font-size:14px;\">)、亚马逊和苹果(</span><span style=\"color:red;font-size:14px;\">90.28</span><span style=\"font-size:14px;\">,&nbsp;</span><span style=\"color:red;font-size:14px;\">-0.55</span><span style=\"font-size:14px;\">,&nbsp;</span><span style=\"color:red;font-size:14px;\">-0.61%</span><span style=\"font-size:14px;\">)等科技公司均推出了自己的机顶盒产品。其中亚马逊Fire TV售价99美元，支持视频和游戏等功能，希望长期推动自己的在线零售业务。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">去年12月，谷歌将自己的机顶盒制造部门Motorola Home以23.5亿美元出售给Arris Group。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">除了机顶盒，业界还预计谷歌在今年的I/O开发者大会上还可能展示基于Android Wear平台的可穿戴设备、发布新版Android系统，以及展示Android车载系统等。(李明)</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\"></span> 
+</p>','html5tricks','http://news.html5tricks.com/google-io-new-machine.html','','亚马逊,谷歌,机顶盒,苹果','2','N','N','','','0','0','N','1404121102','0','Y','0','Y','1404110940');
 
 DROP TABLE IF EXISTS `yii_question`;
 CREATE TABLE `yii_question` (
@@ -942,7 +1191,7 @@ CREATE TABLE `yii_session` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='session表';
 
-INSERT INTO `yii_session` VALUES('05nqe1h0tgbmulrm3m6ih3id21','1403778137','admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.33c9b0a4.admin/default.captcha|s:4:\"3d7b\";Yii.CCaptchaAction.33c9b0a4.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}Yii.CCaptchaAction.33c9b0a4.question.captcha|s:6:\"3cudaa\";Yii.CCaptchaAction.33c9b0a4.question.captchacount|i:1;');
+INSERT INTO `yii_session` VALUES('d8g6ad3tqa9o86pm6gs5ahnca3','1404125592','admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.33c9b0a4.admin/default.captcha|s:4:\"7akr\";Yii.CCaptchaAction.33c9b0a4.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
 
 DROP TABLE IF EXISTS `yii_setting`;
 CREATE TABLE `yii_setting` (
@@ -1013,7 +1262,33 @@ CREATE TABLE `yii_soft` (
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='软件管理表';
 
 INSERT INTO `yii_soft` VALUES('3',' 腾讯QQ2013 SP6 官方正式版','11','uploads/images/201406/496d7004961.png','uploads/images/201406/7627bbbf00e.jpg','','','zh_cn','domestic','Win2003,WinXP,Win8','5','','','<span>QQ产品团队经过数月的奋战，全新感觉的QQ2013 Beta1版本终于打造完成，QQ2013拥有全新登录界面，登录速度更快捷；安全模块的升级让你的QQ更安全，群视频秀让群聊更有氛围。本站提供qq2013最新版官方下载,腾讯qq2013官方下载正式版。</span>','0.00','1403068233','1400549982','0','Y','','','');
-INSERT INTO `yii_soft` VALUES('4','阿里旺旺 2014卖家版 V7.20.36T 正式版','11','uploads/images/201406/d01b61d3c6a.png','uploads/images/201405/6a30a96a755.jpg','68','','zh_cn','domestic','','4','','http://download.wangwang.taobao.com/AliIm_taobao.php?spm=0.0.0.0.EAlz7i','<p>	<br /></p><p>	【阿里旺旺 2014卖家版概括介绍】</p><p>	免费网商沟通软件。</p><p>	<br /></p><br />【阿里旺旺 2014卖家版基本介绍】<br /><p>	阿里旺旺，是阿里巴巴为商人度身定做的免费网上商务沟通软件。它能帮您轻松找客户，发布、管理商业信息；及时把握商机，随时洽谈做生意！</p><p>	<br /></p>&nbsp;&nbsp;&nbsp;<br />【阿里旺旺 2014卖家版软件特点】<br />1. 随时联系客户 <br />每一条信息都标记着您的在线状态 , 让商人随时联系您<br />2. 海量商机搜索 <br />不登录网站，快速搜索阿里巴巴大市场 600 万商机！ <br />3. 巧发','0.00','1403082391','1400550081','6','Y','','','');
+INSERT INTO `yii_soft` VALUES('4','阿里旺旺 2014卖家版 V7.20.36T 正式版','11','uploads/images/201406/d01b61d3c6a.png','uploads/images/201405/6a30a96a755.jpg','68','','zh_cn','domestic','','4','','http://download.wangwang.taobao.com/AliIm_taobao.php?spm=0.0.0.0.EAlz7i','<p>
+	<br />
+</p>
+<p>
+	【阿里旺旺 2014卖家版概括介绍】
+</p>
+<p>
+	免费网商沟通软件。
+</p>
+<p>
+	<br />
+</p>
+<br />
+【阿里旺旺 2014卖家版基本介绍】<br />
+<p>
+	阿里旺旺，是阿里巴巴为商人度身定做的免费网上商务沟通软件。它能帮您轻松找客户，发布、管理商业信息；及时把握商机，随时洽谈做生意！
+</p>
+<p>
+	<br />
+</p>
+&nbsp;&nbsp;&nbsp;<br />
+【阿里旺旺 2014卖家版软件特点】<br />
+1. 随时联系客户 <br />
+每一条信息都标记着您的在线状态 , 让商人随时联系您<br />
+2. 海量商机搜索 <br />
+不登录网站，快速搜索阿里巴巴大市场 600 万商机！ <br />
+3. 巧发','0.00','1404113926','1400550081','6','Y','','','');
 
 DROP TABLE IF EXISTS `yii_special`;
 CREATE TABLE `yii_special` (
@@ -1038,6 +1313,62 @@ CREATE TABLE `yii_special` (
 INSERT INTO `yii_special` VALUES('1','专题二','special2','美国特斯拉电动汽车公司（Tesla Motors）首席执行官艾伦•马斯克（Elon Musk）周二表示，该公司力争在未来三年里推出能够“自动驾驶”的汽车，从而正式加入到拥有谷歌(微博)和多家汽车厂商的无人驾驶汽车市场的争夺之中','<p style=\"font-size:16px;color:#333333;font-family:微软雅黑, Tahoma, Verdana, 宋体;background-color:#FFFFFF;text-indent:2em;\">	美国特斯拉电动汽车公司（Tesla Motors）首席执行官艾伦•马斯克（Elon Musk）周二表示，该公司力争在未来三年里推出能够“自动驾驶”的汽车，从而正式加入到拥有<a class=\"a-tips-Article-QQ\" href=\"http://stockhtm.finance.qq.com/astock/ggcx/GOOG.OQ.htm\" target=\"_blank\">谷歌</a>(<a href=\"http://t.qq.com/googlechina#pref=qqcom.keyword\" target=\"_blank\">微博</a>)和多家汽车厂商的无人驾驶汽车市场的争夺之中。</p><p style=\"font-size:16px;color:#333333;font-family:微软雅黑, Tahoma, Verdana, 宋体;background-color:#FFFFFF;text-indent:2em;\">	马斯克在接受英国《金融时报》的采访时表示，特斯拉自动驾驶汽车将会让司机把90%的驾驶权转交给汽车的电脑系统，而全自动无人驾驶汽车则需要更长的研发时间。</p><p style=\"font-size:16px;color:#333333;font-family:微软雅黑, Tahoma, Verdana, 宋体;background-color:#FFFFFF;text-indent:2em;\">	马斯克指出，特斯拉的自动驾驶汽车将由该公司采用自有技术进行内部研发，并不会外包给其他公司。这一点也得到了该公司一位新闻发言人的证实。</p><p style=\"font-size:16px;color:#333333;font-family:微软雅黑, Tahoma, Verdana, 宋体;background-color:#FFFFFF;text-indent:2em;\">	特斯拉官网近日发布了一个招聘“高级驾驶员辅助系统控制工程师”的启示，负责帮助“特斯拉成为自动驾驶汽车市场的领导者”。</p>','uploads/thumbs/201403/small_8e9e89a2e6a.png','uploads/images/201403/8e9e89a2e6a.png','','','','','Y','0','4','1379547110');
 INSERT INTO `yii_special` VALUES('2','专题一','special1','','<p style=\"font-size:16px;color:#333333;font-family:微软雅黑, Tahoma, Verdana, 宋体;background-color:#FFFFFF;text-indent:2em;\">	随着移动科技的不断发展，人们生活的方方面面都感受到了新科技所带来的巨大影响，餐饮领域自然也不例外。无论是在餐馆的餐桌上放置平板电脑、还是推出可互动的点菜、买单应用都是餐饮企业为进一步促进消费者来店消费所想出的妙招。其中，美国知名餐厅运营商Brinker International.Inc旗下Chili\'s Grill &amp; Bar最近做出的动作便是移动化大潮来袭下的一个最好示范。</p><p style=\"font-size:16px;color:#333333;font-family:微软雅黑, Tahoma, Verdana, 宋体;background-color:#FFFFFF;text-indent:2em;\">	<img src=\"/cms/uploads/201309/523a380d1d4c0.jpg\" alt=\"\" /> </p><p style=\"font-size:16px;color:#333333;font-family:微软雅黑, Tahoma, Verdana, 宋体;background-color:#FFFFFF;text-indent:2em;\">	目前，该公司已经在旗下部分餐厅中测试由Ziosk研发的桌面服务系统，该系统可以使消费者在无需服务员出现的情况完成点菜、买单等操作，甚至还可以利用该系统玩游戏。对此，Chili\'s Grill &amp; Bar品牌战略高级副总裁表示，“由于消费者更倾向于在配备了这类桌面系统的餐厅花费更多金钱，因此这一科技可以帮助公司有效提高销售额。”</p><p style=\"font-size:16px;color:#333333;font-family:微软雅黑, Tahoma, Verdana, 宋体;background-color:#FFFFFF;text-indent:2em;\">	事实上，由于桌面服务系统会时不时的显示一些甜品的图片，Chili\'s Grill &amp; Bar餐厅的甜品销量已经迎来了大约20%的提升。因此我们不难想象，如果Chili\'s Grill &amp; Bar未来将这一图片展示的范围扩大到酒精类饮品和其他拥有更大利润率的菜品时能够取得怎样的效果。</p><p style=\"font-size:16px;color:#333333;font-family:微软雅黑, Tahoma, Verdana, 宋体;background-color:#FFFFFF;text-indent:2em;\">	与此同时，桌面服务设备中自带的那些看似不起眼的小游戏也有望为餐厅带来额外收入。比如，Chili\'s Grill &amp; Bar会向每位需要使用游戏服务的消费者收取0.99美元的费用，其中Chili\'s Grill &amp; Bar将可以拿到50%的分成，而另一半则由Ziosk收取。考虑到Chili\'s Grill &amp; Bar目前仅仅是从Ziosk处以租赁的形式拿到这些设备的这一事实，这样的分成比例还算比较公平。</p>','uploads/thumbs/201403/small_9e6fac7a8c2.png','uploads/images/201403/9e6fac7a8c2.png','','','','','Y','0','24','1379547152');
 
+DROP TABLE IF EXISTS `yii_tag`;
+CREATE TABLE `yii_tag` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `tag_name` varchar(100) NOT NULL COMMENT 'tag名称',
+  `data_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '数据总数',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=68 DEFAULT CHARSET=utf8 COMMENT='新闻标签';
+
+INSERT INTO `yii_tag` VALUES('23','国际业务','1');
+INSERT INTO `yii_tag` VALUES('39','Facebook','1');
+INSERT INTO `yii_tag` VALUES('37','程序员','1');
+INSERT INTO `yii_tag` VALUES('41','操作系统','1');
+INSERT INTO `yii_tag` VALUES('42','国产','1');
+INSERT INTO `yii_tag` VALUES('43','中科','1');
+INSERT INTO `yii_tag` VALUES('44','超级计算机','1');
+INSERT INTO `yii_tag` VALUES('45','中国','1');
+INSERT INTO `yii_tag` VALUES('46','微软','2');
+INSERT INTO `yii_tag` VALUES('47','计划','1');
+INSERT INTO `yii_tag` VALUES('48','代码','1');
+INSERT INTO `yii_tag` VALUES('49','创意','1');
+INSERT INTO `yii_tag` VALUES('50','亚马逊','1');
+INSERT INTO `yii_tag` VALUES('57','美女','7');
+INSERT INTO `yii_tag` VALUES('62','机顶盒','1');
+INSERT INTO `yii_tag` VALUES('63','苹果','1');
+INSERT INTO `yii_tag` VALUES('67','谷歌','1');
+
+DROP TABLE IF EXISTS `yii_tag_data`;
+CREATE TABLE `yii_tag_data` (
+  `tag_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `content_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `type` tinyint(3) unsigned DEFAULT '1' COMMENT '栏目类型',
+  PRIMARY KEY (`tag_id`,`content_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='内容标签关联表';
+
+INSERT INTO `yii_tag_data` VALUES('50','27','1');
+INSERT INTO `yii_tag_data` VALUES('67','27','1');
+INSERT INTO `yii_tag_data` VALUES('62','27','1');
+INSERT INTO `yii_tag_data` VALUES('63','27','1');
+INSERT INTO `yii_tag_data` VALUES('46','26','1');
+INSERT INTO `yii_tag_data` VALUES('49','26','1');
+INSERT INTO `yii_tag_data` VALUES('48','25','1');
+INSERT INTO `yii_tag_data` VALUES('46','24','1');
+INSERT INTO `yii_tag_data` VALUES('47','24','1');
+INSERT INTO `yii_tag_data` VALUES('39','23','1');
+INSERT INTO `yii_tag_data` VALUES('23','23','1');
+INSERT INTO `yii_tag_data` VALUES('37','16','1');
+INSERT INTO `yii_tag_data` VALUES('41','15','1');
+INSERT INTO `yii_tag_data` VALUES('42','15','1');
+INSERT INTO `yii_tag_data` VALUES('43','15','1');
+INSERT INTO `yii_tag_data` VALUES('44','14','1');
+INSERT INTO `yii_tag_data` VALUES('45','14','1');
+INSERT INTO `yii_tag_data` VALUES('57','10','2');
+INSERT INTO `yii_tag_data` VALUES('57','9','2');
+INSERT INTO `yii_tag_data` VALUES('57','8','2');
+INSERT INTO `yii_tag_data` VALUES('57','7','2');
+
 DROP TABLE IF EXISTS `yii_upload`;
 CREATE TABLE `yii_upload` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -1051,7 +1382,7 @@ CREATE TABLE `yii_upload` (
   `down_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '下载次数',
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '上传时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=69 DEFAULT CHARSET=utf8 COMMENT='附件';
+) ENGINE=MyISAM AUTO_INCREMENT=74 DEFAULT CHARSET=utf8 COMMENT='附件';
 
 INSERT INTO `yii_upload` VALUES('20','1','5.png','uploads/images/201403/3b68894af12.png','','png','application/octet-stream','1724','0','1394775273');
 INSERT INTO `yii_upload` VALUES('19','1','4.png','uploads/images/201403/7b1f180d893.png','','png','application/octet-stream','624','0','1394766396');
@@ -1079,6 +1410,11 @@ INSERT INTO `yii_upload` VALUES('64','1','003.jpg','uploads/images/201406/4ca469
 INSERT INTO `yii_upload` VALUES('65','1','ashows.com-0418169981.gif','uploads/images/201406/018817f4a8f.gif','','gif','application/octet-stream','1986907','0','1402473194');
 INSERT INTO `yii_upload` VALUES('66','1','002.gif','uploads/images/201406/6042f7935d0.gif','','gif','application/octet-stream','505860','0','1402473624');
 INSERT INTO `yii_upload` VALUES('68','1','AliIM2014_taobao(8.00.34C).exe','uploads/files/201406/AliIM2014_taobao(8.00.34C).exe','','exe','application/octet-stream','41074080','0','1403082064');
+INSERT INTO `yii_upload` VALUES('69','1','111.jpg','uploads/attached/image/201406/3078e9f0bff.jpg','','jpg','image/jpeg','13633','0','1404109948');
+INSERT INTO `yii_upload` VALUES('70','1','223.jpg','uploads/attached/image/201406/f6cf41e3649.jpg','','jpg','image/jpeg','155671','0','1404110187');
+INSERT INTO `yii_upload` VALUES('71','1','111.jpg','uploads/attached/image/201406/468a9574708.jpg','','jpg','image/jpeg','22855','0','1404110527');
+INSERT INTO `yii_upload` VALUES('72','1','113.jpg','uploads/images/201406/b2147835d3a.jpg','','jpg','application/octet-stream','39486','0','1404111643');
+INSERT INTO `yii_upload` VALUES('73','1','114.jpg','uploads/images/201406/f937c90da76.jpg','','jpg','application/octet-stream','71454','0','1404111646');
 
 DROP TABLE IF EXISTS `yii_user`;
 CREATE TABLE `yii_user` (
@@ -1158,5 +1494,5 @@ INSERT INTO `yii_video` VALUES('2','钢铁侠','13','uploads/images/201406/bf941
 INSERT INTO `yii_video` VALUES('3','明日边缘','13','uploads/images/201406/4cc06a97d5a.jpg','','chinese','comedy','0.0','','','','0.00','1403148264','1403148264','1','0','','Y','','','');
 INSERT INTO `yii_video` VALUES('4','窃听风云3','13','uploads/images/201406/a02a34ce432.jpg','','chinese','comedy','8.0','','','','0.00','1403148306','1403148306','5','0','{\"t\":1,\"s\":[0,0,0,1,0]}','Y','','','');
 INSERT INTO `yii_video` VALUES('5','终结者4','13','uploads/images/201406/0bb513c708b.jpg','','chinese','comedy','0.0','','','','0.00','1403148363','1403148363','3','0','','Y','','','');
-INSERT INTO `yii_video` VALUES('6','孤胆保镖','13','uploads/images/201406/566eb360159.jpg','','chinese','active','8.0','','','','0.00','1403148418','1403148418','15','0','{\"t\":2,\"s\":[0,0,1,0,1]}','Y','','','');
+INSERT INTO `yii_video` VALUES('6','孤胆保镖','13','uploads/images/201406/566eb360159.jpg','','chinese','active','8.0','','','','0.00','1404114076','1403148418','15','0','{\"t\":2,\"s\":[0,0,1,0,1]}','Y','','','');
 

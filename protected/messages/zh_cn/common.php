@@ -159,7 +159,7 @@ return array (
 	//分页
 	'First Page' => '首页',
 	'Last Page' => '末页',
-	'Tags' => '标签',
+	'Tags' => '热门标签',
 	'Catagorys' => '分类',
 	'Last Articles'=>'最近的文章',
 	'Last Images' => '最近的图集',

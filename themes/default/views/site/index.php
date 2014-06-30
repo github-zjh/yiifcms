@@ -48,49 +48,15 @@
 		
 		<div class="panel_container">
 			<ul id="tab_post1" class="tab_post clear">
-				<li><a href="#">文字文章</a></li>
-				<li><a href="#">文字文章</a></li>
-				<li><a href="#">文字文字文章文章</a></li>
-				<li><a href="#">文字文章文字文章文字文章</a></li>
-				<li><a href="#">文字文章</a></li>
-				<li><a href="#">文字文章</a></li>
-				<li><a href="#">文字文章</a></li>
-				<li><a href="#">文字文字文章文章</a></li>
-				<li><a href="#">文字文章文字文章文字文章</a></li>
-				<li><a href="#">文字文章</a></li>
-				<li><a href="#">文字文章</a></li>
-				<li><a href="#">文字文章</a></li>
-				<li><a href="#">文字文字文章文章</a></li>
-				<li><a href="#">文字文章文字文章文字文章</a></li>
-				<li><a href="#">文字文章</a></li>
-				<li><a href="#">文字文章</a></li>
-				<li><a href="#">文字文章</a></li>
-				<li><a href="#">文字文字文章文章</a></li>
-				<li><a href="#">文字文章文字文章文字文章</a></li>
-				<li><a href="#">文字文章</a></li>
+				<?php foreach((array)$news_new as $nn):?>
+				<li><a href="<?php echo $this->createUrl('post/view', array('id'=>$nn->id));?>" title="<?php echo $nn->title;?>"><?php echo Helper::truncate_utf8_string($nn->title, 22);?></a></li>
+				<?php endforeach;?>				
 			</ul>
 			
 			<ul id="tab_post2" class="tab_post clear">
-				<li><a href="#">文字文章</a></li>
-				<li><a href="#">文字文章</a></li>
-				<li><a href="#">文字文字文章文章</a></li>
-				<li><a href="#">文字文章文字文章文字文章</a></li>
-				<li><a href="#">文字文章</a></li>
-				<li><a href="#">文字文章</a></li>
-				<li><a href="#">文字文章</a></li>
-				<li><a href="#">文字文字文章文章</a></li>
-				<li><a href="#">文字文章文字文章文字文章</a></li>
-				<li><a href="#">文字文章</a></li>
-				<li><a href="#">文字文章</a></li>
-				<li><a href="#">文字文章</a></li>
-				<li><a href="#">文字文字文章文章</a></li>
-				<li><a href="#">文字文章文字文章文字文章</a></li>
-				<li><a href="#">文字文章</a></li>
-				<li><a href="#">文字文章</a></li>
-				<li><a href="#">文字文章</a></li>
-				<li><a href="#">文字文字文章文章</a></li>
-				<li><a href="#">文字文章文字文章文字文章</a></li>
-				<li><a href="#">文字文章</a></li>
+				<?php foreach((array)$news_hot as $nh):?>
+				<li><a href="<?php echo $this->createUrl('post/view', array('id'=>$nh->id));?>" title="<?php echo $nh->title;?>"><?php echo Helper::truncate_utf8_string($nh->title, 22);?></a></li>
+				<?php endforeach;?>
 			</ul>			
 		</div>			
 	</div>
@@ -105,80 +71,24 @@
 		
 		<div class="panel_container">			
 			<ul id="tab_image1" class="tab_image clear">
+				<?php foreach((array)$image_new as $in):?>				
 				<li>
-					<a href="#">	
-						<img width="200" src="<?php echo $this->_stylePath;?>/images/tmp/tmp_girl.jpg" />
-						<em class="black_bg"><span>清纯小美女</span></em>
+					<a href="<?php echo $this->createUrl('image/view', array('id'=>$in->id));?>">	
+						<img width="200" src="<?php echo $in->attach_thumb;?>" alt="<?php echo $in->title;?>" />
+						<em class="black_bg"><span><?php echo Helper::truncate_utf8_string($in->title, 20);?></span></em>
 					</a>					
 				</li>
-				<li>
-					<a href="#">	
-						<img width="200" src="<?php echo $this->_stylePath;?>/images/tmp/tmp_girl.jpg" />
-						<em class="black_bg"><span>清纯小美女</span></em>
-					</a>					
-				</li>
-				<li>
-					<a href="#">	
-						<img width="200" src="<?php echo $this->_stylePath;?>/images/tmp/tmp_girl.jpg" />
-						<em class="black_bg"><span>清纯小美女</span></em>
-					</a>					
-				</li>
-				<li>
-					<a href="#">	
-						<img width="200" src="<?php echo $this->_stylePath;?>/images/tmp/tmp_girl.jpg" />
-						<em class="black_bg"><span>清纯小美女</span></em>
-					</a>					
-				</li>
-				<li>
-					<a href="#">	
-						<img width="200" src="<?php echo $this->_stylePath;?>/images/tmp/tmp_girl.jpg" />
-						<em class="black_bg"><span>清纯小美女</span></em>
-					</a>					
-				</li>
-				<li>
-					<a href="#">	
-						<img width="200" src="<?php echo $this->_stylePath;?>/images/tmp/tmp_girl.jpg" />
-						<em class="black_bg"><span>清纯小美女</span></em>
-					</a>					
-				</li>
+				<?php endforeach;?>				
 			</ul>
 			<ul id="tab_image2" class="tab_image clear">
+				<?php foreach((array)$image_hot as $ih):?>				
 				<li>
-					<a href="#">	
-						<img width="200" src="<?php echo $this->_stylePath;?>/images/tmp/tmp_girl.jpg" />
-						<em class="black_bg"><span>清纯小美女</span></em>
+					<a href="<?php echo $this->createUrl('image/view', array('id'=>$ih->id));?>">	
+						<img width="200" src="<?php echo $ih->attach_thumb;?>" alt="<?php echo $ih->title;?>" />
+						<em class="black_bg"><span><?php echo Helper::truncate_utf8_string($ih->title, 20);?></span></em>
 					</a>					
 				</li>
-				<li>
-					<a href="#">	
-						<img width="200" src="<?php echo $this->_stylePath;?>/images/tmp/tmp_girl.jpg" />
-						<em class="black_bg"><span>清纯小美女</span></em>
-					</a>					
-				</li>
-				<li>
-					<a href="#">	
-						<img width="200" src="<?php echo $this->_stylePath;?>/images/tmp/tmp_girl.jpg" />
-						<em class="black_bg"><span>清纯小美女</span></em>
-					</a>					
-				</li>
-				<li>
-					<a href="#">	
-						<img width="200" src="<?php echo $this->_stylePath;?>/images/tmp/tmp_girl.jpg" />
-						<em class="black_bg"><span>清纯小美女</span></em>
-					</a>					
-				</li>
-				<li>
-					<a href="#">	
-						<img width="200" src="<?php echo $this->_stylePath;?>/images/tmp/tmp_girl.jpg" />
-						<em class="black_bg"><span>清纯小美女</span></em>
-					</a>					
-				</li>
-				<li>
-					<a href="#">	
-						<img width="200" src="<?php echo $this->_stylePath;?>/images/tmp/tmp_girl.jpg" />
-						<em class="black_bg"><span>清纯小美女</span></em>
-					</a>					
-				</li>
+				<?php endforeach;?>			
 			</ul>
 		</div>	
 	</div>
@@ -193,221 +103,27 @@
 		
 		<div class="panel_container">
 			<ul id="tab_soft1" class="tab_soft clear">
+				<?php foreach((array)$soft_new as $sn):?>
 				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					<a href="<?php echo $this->createUrl('soft/view', array('id'=>$sn->id));?>" title="<?php echo $sn->title;?>">
+						<img class="dl_img" src="<?php echo $sn->soft_icon;?>" width="70" />											
 					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
+					<a href="<?php echo $this->createUrl('soft/view', array('id'=>$sn->id));?>"><?php echo Helper::truncate_utf8_string($sn->title, 4);?></a>
+					<a href="<?php echo $this->createUrl('soft/download', array('id'=>$sn->id));?>" class="dl_btn" target="_blank">下载</a>			
 				</li>
-				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
-					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
-				</li>
-				
-				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
-					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
-				</li>
-				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
-					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
-				</li>
-				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
-					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
-				</li>
-				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
-					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
-				</li>
-				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
-					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
-				</li>
-				
-				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
-					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
-				</li>
-				
-				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
-					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
-				</li>
-				
-				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
-					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
-				</li>
-				
-				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
-					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
-				</li>
-				
-				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
-					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
-				</li>
-				
-				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
-					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
-				</li>
-				
-				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
-					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
-				</li>
+				<?php endforeach;?>				
 			</ul>	
 			
 			<ul id="tab_soft2" class="tab_soft clear">
+				<?php foreach((array)$soft_hot as $sh):?>
 				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
+					<a href="<?php echo $this->createUrl('soft/view', array('id'=>$sh->id));?>" title="<?php echo $sh->title;?>">
+						<img class="dl_img" src="<?php echo $sh->soft_icon;?>" width="70" />											
 					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
+					<a href="<?php echo $this->createUrl('soft/view', array('id'=>$sh->id));?>"><?php echo Helper::truncate_utf8_string($sh->title, 4);?></a>
+					<a href="<?php echo $this->createUrl('soft/download', array('id'=>$sh->id));?>" class="dl_btn" target="_blank">下载</a>			
 				</li>
-				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
-					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
-				</li>
-				
-				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
-					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
-				</li>
-				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
-					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
-				</li>
-				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
-					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
-				</li>
-				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
-					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
-				</li>
-				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
-					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
-				</li>
-				
-				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
-					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
-				</li>
-				
-				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
-					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
-				</li>
-				
-				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
-					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
-				</li>
-				
-				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
-					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
-				</li>
-				
-				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
-					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
-				</li>
-				
-				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
-					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
-				</li>
-				
-				<li>
-					<a href="#">
-						<img class="dl_img" src="uploads/images/201406/d01b61d3c6a.png" width="70" />											
-					</a>		
-					<a href="#">阿里旺旺</a>
-					<a href="#" class="dl_btn" target="_blank">下载</a>			
-				</li>
+				<?php endforeach;?>	
 			</ul>		
 		</div>		
 	</div>
@@ -421,170 +137,30 @@
 		</ul>	
 		
 		<div class="panel_container">
-			<ul id="tab_video2" class="tab_video clear">
+			<ul id="tab_video1" class="tab_video clear">
+				<?php foreach((array)$video_new as $vn):?>
 				<li>
-					<a href="#" class="video_a">
-						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
+					<a href="<?php echo $this->createUrl('video/view', array('id'=>$vn->id));?>" class="video_a">
+						<img width="150" height="200" src="<?php echo $vn->cover_image;?>" />						
 						<span class="v_play_mask"></span>
 						<span class="v_play_icon"></span>
 					</a>
-					<span class="video_title">美国队长</span>
+					<span class="video_title"><?php echo Helper::truncate_utf8_string($vn->title, 8);?></span>
 				</li>
-				<li>
-					<a href="#" class="video_a">
-						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
-						<span class="v_play_mask"></span>
-						<span class="v_play_icon"></span>
-					</a>
-					<span class="video_title">美国队长</span>
-				</li>
-				<li>
-					<a href="#" class="video_a">
-						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
-						<span class="v_play_mask"></span>
-						<span class="v_play_icon"></span>
-					</a>
-					<span class="video_title">美国队长</span>
-				</li>
-				<li>
-					<a href="#" class="video_a">
-						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
-						<span class="v_play_mask"></span>
-						<span class="v_play_icon"></span>
-					</a>
-					<span class="video_title">美国队长</span>
-				</li>
-				<li>
-					<a href="#" class="video_a">
-						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
-						<span class="v_play_mask"></span>
-						<span class="v_play_icon"></span>
-					</a>
-					<span class="video_title">美国队长</span>
-				</li>
-				<li>
-					<a href="#" class="video_a">
-						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
-						<span class="v_play_mask"></span>
-						<span class="v_play_icon"></span>
-					</a>
-					<span class="video_title">美国队长</span>
-				</li>
-				<li>
-					<a href="#" class="video_a">
-						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
-						<span class="v_play_mask"></span>
-						<span class="v_play_icon"></span>
-					</a>
-					<span class="video_title">美国队长</span>
-				</li>
-				<li>
-					<a href="#" class="video_a">
-						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
-						<span class="v_play_mask"></span>
-						<span class="v_play_icon"></span>
-					</a>
-					<span class="video_title">美国队长</span>
-				</li>
-				<li>
-					<a href="#" class="video_a">
-						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
-						<span class="v_play_mask"></span>
-						<span class="v_play_icon"></span>
-					</a>
-					<span class="video_title">美国队长</span>
-				</li>
-				<li>
-					<a href="#" class="video_a">
-						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
-						<span class="v_play_mask"></span>
-						<span class="v_play_icon"></span>
-					</a>
-					<span class="video_title">美国队长</span>
-				</li>
+				<?php endforeach;?>			
 			</ul>	
 			
-			<ul id="tab_video1" class="tab_video clear">
+			<ul id="tab_video2" class="tab_video clear">
+				<?php foreach((array)$video_hot as $vh):?>
 				<li>
-					<a href="#" class="video_a">
-						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
+					<a href="<?php echo $this->createUrl('video/view', array('id'=>$vh->id));?>" class="video_a">
+						<img width="150" height="200" src="<?php echo $vh->cover_image;?>" />						
 						<span class="v_play_mask"></span>
 						<span class="v_play_icon"></span>
 					</a>
-					<span class="video_title">美国队长</span>
+					<span class="video_title"><?php echo Helper::truncate_utf8_string($vh->title, 8);?></span>
 				</li>
-				<li>
-					<a href="#" class="video_a">
-						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
-						<span class="v_play_mask"></span>
-						<span class="v_play_icon"></span>
-					</a>
-					<span class="video_title">美国队长</span>
-				</li>
-				<li>
-					<a href="#" class="video_a">
-						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
-						<span class="v_play_mask"></span>
-						<span class="v_play_icon"></span>
-					</a>
-					<span class="video_title">美国队长</span>
-				</li>
-				<li>
-					<a href="#" class="video_a">
-						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
-						<span class="v_play_mask"></span>
-						<span class="v_play_icon"></span>
-					</a>
-					<span class="video_title">美国队长</span>
-				</li>
-				<li>
-					<a href="#" class="video_a">
-						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
-						<span class="v_play_mask"></span>
-						<span class="v_play_icon"></span>
-					</a>
-					<span class="video_title">美国队长</span>
-				</li>
-				<li>
-					<a href="#" class="video_a">
-						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
-						<span class="v_play_mask"></span>
-						<span class="v_play_icon"></span>
-					</a>
-					<span class="video_title">美国队长</span>
-				</li>
-				<li>
-					<a href="#" class="video_a">
-						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
-						<span class="v_play_mask"></span>
-						<span class="v_play_icon"></span>
-					</a>
-					<span class="video_title">美国队长</span>
-				</li>
-				<li>
-					<a href="#" class="video_a">
-						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
-						<span class="v_play_mask"></span>
-						<span class="v_play_icon"></span>
-					</a>
-					<span class="video_title">美国队长</span>
-				</li>
-				<li>
-					<a href="#" class="video_a">
-						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
-						<span class="v_play_mask"></span>
-						<span class="v_play_icon"></span>
-					</a>
-					<span class="video_title">美国队长</span>
-				</li>
-				<li>
-					<a href="#" class="video_a">
-						<img width="150" height="200" src="uploads/images/201406/827a03cb8cb.jpg" />						
-						<span class="v_play_mask"></span>
-						<span class="v_play_icon"></span>
-					</a>
-					<span class="video_title">美国队长</span>
-				</li>
+				<?php endforeach;?>			
 			</ul>		
 		</div>		
 	</div>

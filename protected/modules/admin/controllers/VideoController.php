@@ -95,7 +95,11 @@ class VideoController extends Backend
 	    			return;
 	    		}    		
 	    		$model->cover_image = $upload->_file_name;	    		
-    		}  
+    		}else{
+    			//未改变前的封面图片
+    			$model->cover_image = $_POST['old_cover'];    			
+    		}
+    		  
     		$model->create_time = time();
     		$model->update_time = $model->create_time;
     		if($model->save())
@@ -136,6 +140,9 @@ class VideoController extends Backend
 	    			return;
 	    		}    		
 	    		$model->cover_image = $upload->_file_name;	    		
+    		}else{
+    			//未改变前的封面图片
+    			$model->cover_image = $_POST['old_cover'];    			
     		}
     		$model->update_time = time();
     		if($model->save())

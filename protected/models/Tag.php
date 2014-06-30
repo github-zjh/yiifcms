@@ -1,22 +1,21 @@
 <?php
 
 /**
- * This is the model class for table "{{post_tags}}".
+ * This is the model class for table "{{tag}}".
  *
- * The followings are the available columns in table '{{post_tags}}':
+ * The followings are the available columns in table '{{tag}}':
  * @property integer $id
  * @property string $tag_name
  * @property string $data_count
- * @property string $create_time
  */
-class PostTags extends CActiveRecord
+class Tag extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return '{{post_tags}}';
+		return '{{tag}}';
 	}
 
 	/**
@@ -28,11 +27,11 @@ class PostTags extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('tag_name', 'required'),
-			array('tag_name', 'length', 'max'=>30),
-			array('data_count, create_time', 'length', 'max'=>10),
+			array('tag_name', 'length', 'max'=>100),
+			array('data_count', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, tag_name, data_count, create_time', 'safe', 'on'=>'search'),
+			array('id, tag_name, data_count', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,7 +55,6 @@ class PostTags extends CActiveRecord
 			'id' => 'Id',
 			'tag_name' => 'Tag Name',
 			'data_count' => 'Data Count',
-			'create_time' => 'Create Time',
 		);
 	}
 
@@ -84,16 +82,14 @@ class PostTags extends CActiveRecord
 
 		$criteria->compare('data_count',$this->data_count,true);
 
-		$criteria->compare('create_time',$this->create_time,true);
-
-		return new CActiveDataProvider('PostTags', array(
+		return new CActiveDataProvider('Tag', array(
 			'criteria'=>$criteria,
 		));
 	}
 
 	/**
 	 * Returns the static model of the specified AR class.
-	 * @return PostTags the static model class
+	 * @return Tag the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

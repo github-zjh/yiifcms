@@ -31,12 +31,12 @@
     <td class="tb_title"><?php echo Yii::t('admin','Belong Category');?>/<?php echo Yii::t('admin','Belong Special');?>：</td>
   </tr>
   <tr >
-    <td ><select name="Post[catalog_id]" id="Post_catalog_id">
+    <td ><select name="Image[catalog_id]" id="Image_catalog_id">
         <?php foreach((array)Catalog::get(0, $this->_catalog) as $catalog):?>
         <option value="<?php echo $catalog['id']?>" <?php $this->selected($catalog['id'], $model->catalog_id);?>><?php echo $catalog['str_repeat']?><?php echo $catalog['catalog_name']?></option>
         <?php endforeach;?>
       </select>
-      <select name="Post[special_id]">
+      <select name="Image[special_id]">
         <option value="0">==<?php echo Yii::t('admin','Belong Special');?>==</option>
         <?php foreach((array)$this->_special as $speical):?>
         <option value="<?php echo $speical['id']?>" <?php $this->selected($speical['id'], $model->special_id);?>><?php echo $speical['title']?></option>
@@ -75,7 +75,7 @@
     <td ><?php echo $form->textArea($model,'content', array('class'=>'validate[required]')); ?>
       <?php $this->widget('application.widget.kindeditor.KindEditor',array(
 	  'target'=>array(
-	  	'#Post_content'=>array(
+	  	'#Image_content'=>array(
 		'uploadJson'=>$this->createUrl('/admin/uploadify/basicexecute', array('from'=>'editor')),
 		'fileManagerJson'=>$this->createUrl('/admin/kindeditor/'),		
 		'allowFileManager'=>true,	
@@ -150,8 +150,9 @@
     <td ><?php echo CHtml::activeTextArea($model,'seo_description',array('rows'=>5, 'cols'=>80)); ?></td>
   </tr>  
   <tr class="submit">
-    <td colspan="2" ><input name="oAttach" type="hidden" value="<?php echo $model->attach_file ?>" />
-      <input name="oThumb" type="hidden" value="<?php echo $model->attach_thumb ?>" />
+    <td colspan="2" >
+      <input name="old_file" type="hidden" value="<?php echo $model->attach_file ?>" />
+      <input name="old_thumb" type="hidden" value="<?php echo $model->attach_thumb ?>" />
       <input type="submit" name="editsubmit" value="<?php echo Yii::t('common','Submit');?>" class="button" tabindex="3" /></td>
   </tr>
 </table>

@@ -18,7 +18,7 @@ class ImageController extends FrontBase
 		//导航标示
 		$this->_menu_unique = 'image';
 		//标签
-		$this->_tags = PostTags::model()->findAll(array('order'=>'data_count DESC','limit'=>20));
+		$this->_tags = Tag::model()->findAll(array('order'=>'data_count DESC','limit'=>20));
 	}	
 	
 	  /**
@@ -56,7 +56,7 @@ class ImageController extends FrontBase
 	    $criteria->condition = $condition;
 	    $criteria->order = 'view_count DESC, t.id DESC';
 	    $criteria->with = array ( 'catalog' );
-	    $criteria->select = "title, id, t.attach_thumb, t.copy_from, t.copy_url, t.image_list, t.last_update_time,t.intro, t.tags, t.view_count";
+	    $criteria->select = "title, id, t.attach_thumb, t.copy_from, t.copy_url, t.image_list, t.update_time,t.intro, t.tags, t.view_count";
 	   
 	    //分页
 	    $count = $post->count( $criteria );    
@@ -69,7 +69,7 @@ class ImageController extends FrontBase
 	    $datalist = $post->findAll($criteria);
 	   
 	    //标签
-	    $tags = PostTags::model()->findAll(array('order'=>'data_count DESC','limit'=>20));
+	    $tags = Tag::model()->findAll(array('order'=>'data_count DESC','limit'=>20));
 	    
 	    //最近的图集
 	    $last_images = Image::model()->findAll(array('condition'=>'catalog_id IN ('.$db_in_ids.')','order'=>'id DESC','limit'=>10,));

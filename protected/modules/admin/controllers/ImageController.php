@@ -91,11 +91,11 @@ class ImageController extends Backend
     			$model->title_style = serialize($title_style);
     		}else{
     			$model->title_style = '';
-    		}
-    		
+    		}    		
+    			
     		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
-	    		//封面图片
-	    		$upload = new XUpload;
+	    		//新上传的封面图片	    	
+    			$upload = new XUpload;
 	    		$upload->_thumb_width = 300;
 	    		$upload->_thumb_height = 300;
 	    		$upload->uploadFile($_FILES['attach'], true);
@@ -107,38 +107,57 @@ class ImageController extends Backend
 	    		}    		
 	    		$model->attach_file = $upload->_file_name;
 	    		$model->attach_thumb = $upload->_thumb_name;
+    		}else{
+    			//未改变前的封面图片
+    			$model->attach_file = $_POST['old_file'];
+    			$model->attach_thumb = $_POST['old_thumb'];
     		}
     		//组图
     		$imageList = $this->_request->getPost( 'imageList' );
     		$imageListSerialize = $this->imageListSerialize($imageList);
     		$model->image_list = $imageListSerialize['dataSerialize'];
     		
-    		//标签
+    		//标签(只要前10个标签)
     		$tags = trim($_POST['Image']['tags']);
     		$explodeTags = array_unique(explode(',', str_replace(array (' ' , '，' ), ',', $tags)));
-    		$tagCount = 0;
-    		foreach ((array) $explodeTags as $value) {
-    			$tagCount ++;
-    			if ($tagCount >= 10) {
-    				unset($explodeTags);
-    				break;
-    			}
-    			$model_tag = new PostTags();
-    			$get_tags = $model_tag->find('tag_name=:tagname', array(':tagname'=>$value));
-    			if($get_tags){
-    				$get_tags->data_count = $get_tags->data_count+1;
-    				$get_tags->save();
-    			}else{
-    				$model_tag->data_count = 1;
-    				$model_tag->tag_name = $value;
-    				$model_tag->create_time = time();
-    				$model_tag->save();
-    			}
-    		}
+    		$explodeTags = array_slice($explodeTags, 0, 10);  
+    		
     		$model->create_time = time();
-    		$model->last_update_time = $model->create_time;
-    		if($model->save())
+    		$model->update_time = $model->create_time;
+    		$model->tags = implode(',',$explodeTags);
+    		
+    		if($model->save()){
+    			//更新标签数据
+    			foreach ((array) $explodeTags as $value) {
+    				if($value){
+	    				$model_tag = new Tag();
+	    				$get_tags = $model_tag->find('tag_name=:tagname', array(':tagname'=>$value));
+	    				if($get_tags){
+	    					//标签+1
+	    					$get_tags->data_count = $get_tags->data_count+1;
+	    					$get_tags->save();
+	    					$tag_id = $get_tags->id;
+	    				}else{
+	    					$model_tag->data_count = 1;
+	    					$model_tag->tag_name = $value;
+	    					$model_tag->save();
+	    					$tag_id = $model_tag->id;
+	    				}
+	    				if($tag_id){
+	    					//添加关联表数据
+	    					$tagData = TagData::model()->findByPk(array('tag_id'=>$tag_id, 'content_id'=>$model->id));
+	    					if(!$tagData){
+	    						$tagData = new TagData();
+	    						$tagData->tag_id = $tag_id;
+	    						$tagData->content_id = $model->id;
+	    						$tagData->type = $this->_type_ids['image'];
+	    						$tagData->save();
+	    					}
+	    				}
+    				}
+    			}
     			$this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
+    		}    		
     	}
     	//判断有无图集栏目
     	$image_cat = Catalog::model()->find('type=:type', array(':type'=>$this->_type));
@@ -175,12 +194,11 @@ class ImageController extends Backend
     			$model->title_style = serialize($title_style);
     		}else{
     			$model->title_style = '';
-    		}
-    		
+    		}    		
     		
     		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
-	    		//封面图片
-	    		$upload = new XUpload;
+	    		//新上传的封面图片	    		
+    			$upload = new XUpload;
 	    		$upload->_thumb_width = 300;
 	    		$upload->_thumb_height = 300;    		
 	    		$upload->uploadFile($_FILES['attach'], true);
@@ -192,33 +210,51 @@ class ImageController extends Backend
 	    		}    		
 	    		$model->attach_file = $upload->_file_name;
 	    		$model->attach_thumb = $upload->_thumb_name;
+    		}else{
+    			//未改变前的封面图片
+    			$model->attach_file = $_POST['old_file'];
+    			$model->attach_thumb = $_POST['old_thumb'];
     		}
     		//组图
     		$imageList = $this->_request->getPost( 'imageList' );
     		$imageListSerialize = $this->imageListSerialize($imageList);
     		$model->image_list = $imageListSerialize['dataSerialize'];
     		
-    		//标签    		
+    		//标签  (前10个标签有效) 	   		
     		$tags = trim($_POST['Image']['tags']);    		
-    		$explodeTags = array_unique(explode(',', str_replace(array (' ' , '，' ), ',', $tags)));
-    		$tagCount = 0;
-    		foreach ((array) $explodeTags as $value) {
-    			$tagCount ++;
-    			if ($tagCount >= 10) {
-    				unset($explodeTags);
-    				break;
-    			}    			
-    			$model_tag = new PostTags();
-    			$get_tags = $model_tag->find('tag_name=:tagname', array(':tagname'=>$value));    			
-    			if(!$get_tags){    				    				
-    				$model_tag->data_count = 1;
-    				$model_tag->tag_name = $value;
-    				$model_tag->create_time = time();
-    				$model_tag->save();
+    		$explodeTags = array_unique(explode(',', str_replace(array (' ' , '，' ), array('',','), $tags)));
+    		$explodeTags = array_slice($explodeTags, 0, 10); 
+    		
+    		$model->tags = implode(',',$explodeTags);
+    		$model->update_time = time();
+    		if($model->save()){
+    			//更新标签数据
+    			foreach ((array) $explodeTags as $value) {
+    				if($value){
+	    				$model_tag = new Tag();
+	    				$get_tags = $model_tag->find('tag_name=:tagname', array(':tagname'=>$value));
+	    				if($get_tags){
+	    					$tag_id = $get_tags->id;
+	    				}else{
+	    					$model_tag->data_count = 1;
+	    					$model_tag->tag_name = $value;
+	    					$model_tag->save();
+	    					$tag_id = $model_tag->id;
+	    				}
+	    				//添加关联表数据
+	    				$tagData = TagData::model()->findByPk(array('tag_id'=>$tag_id, 'content_id'=>$model->id));
+	    				if(!$tagData){
+	    					$tagData = new TagData();
+	    					$tagData->tag_id = $tag_id;
+	    					$tagData->content_id = $model->id;
+	    					$tagData->type = $this->_type_ids['image'];
+	    					$tagData->save();
+	    				}
+    				}
+    			
     			}
-    		}    		
-    		if($model->save())
     			$this->message('success',Yii::t('admin','Update Success'),$this->createUrl('index'));
+    		}    		
     	}else{
     		$imageList = unserialize($model->image_list);
     		$style = unserialize($model->title_style);

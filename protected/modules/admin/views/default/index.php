@@ -96,7 +96,7 @@
            		<li index="1"><a href="<?php echo $this->createUrl('attach/index');?>" target="win"><?php echo Yii::t('admin','Attach Manage');?></a></li> 				
                 <li index="2"><a href="<?php echo $this->createUrl('link/index');?>" target="win"><?php echo Yii::t('admin','Link Manage');?></a></li>  
                 <li index="5"><a href="<?php echo $this->createUrl('comment/index');?>" target="win"><?php echo Yii::t('admin','Comment Manage');?></a></li>
-                <li index="6"><a href="<?php echo $this->createUrl('post/tags');?>" target="win"><?php echo Yii::t('admin','Tags Manage');?></a></li>                             
+                <li index="6"><a href="<?php echo $this->createUrl('tag/index');?>" target="win"><?php echo Yii::t('admin','Tags Manage');?></a></li>                             
               </ul>
               
              <ul index="7" class="left_menu">

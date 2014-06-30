@@ -107,44 +107,61 @@ class PostController extends Backend
 	    		}    		
 	    		$model->attach_file = $upload->_file_name;
 	    		$model->attach_thumb = $upload->_thumb_name;
+    		}else{
+    			//未改变前的封面图片
+    			$model->attach_file = $_POST['old_file'];
+    			$model->attach_thumb = $_POST['old_thumb'];
     		}
     		//组图
     		$imageList = $this->_request->getPost( 'imageList' );
     		$imageListSerialize = $this->imageListSerialize($imageList);
     		$model->image_list = $imageListSerialize['dataSerialize'];
     		
-    		//标签
+    		//标签(只要前10个标签)
     		$tags = trim($_POST['Post']['tags']);    		
-    		$explodeTags = array_unique(explode(',', str_replace(array (' ' , '，',',' ), ',', $tags)));
-    		$tagCount = 0;
-    		$final_tags = array();
-    		foreach ((array) $explodeTags as $value) {
-    			$value = trim($value,' ，,');
-    			if($value){
-	    			$final_tags[] = $value;
-	    			$tagCount ++;
-	    			if ($tagCount >= 10) {
-	    				unset($explodeTags);
-	    				break;
-	    			}    			
-	    			$model_tag = new PostTags();
-	    			$get_tags = $model_tag->find('tag_name=:tagname', array(':tagname'=>$value));    			
-	    			if(!$get_tags){    				    				
-	    				$model_tag->data_count = 1;
-	    				$model_tag->tag_name = $value;
-	    				$model_tag->create_time = time();
-	    				$model_tag->save();
-	    			}
-    			}
-    		} 
+    		$explodeTags = array_unique(explode(',', str_replace(array (' ' , '，' ), array('',','), $tags)));    		
+    		
+    		$explodeTags = array_slice($explodeTags, 0, 10);  
+    		$model->tags = implode(',',$explodeTags);
+    		
     		//摘要
     		$model->intro = trim($_POST['Post']['intro'])?$_POST['Post']['intro']:Helper::truncate_utf8_string($_POST['Post']['content'], 200);
     		
-    		$model->tags = implode(',',$final_tags);
     		$model->create_time = time();
-    		$model->last_update_time = $model->create_time;
-    		if($model->save())
+    		$model->update_time = $model->create_time;
+    		if($model->save()){
+    			//更新标签数据
+    			foreach ((array) $explodeTags as $value) {
+    				if($value){
+		    			$model_tag = new Tag();
+		    			$get_tags = $model_tag->find('tag_name=:tagname', array(':tagname'=>$value));
+		    			if($get_tags){
+		    				//标签+1
+		    				$get_tags->data_count = $get_tags->data_count+1;
+		    				$get_tags->save();
+		    				$tag_id = $get_tags->id;
+		    			}else{
+		    				$model_tag->data_count = 1;
+		    				$model_tag->tag_name = $value;
+		    				$model_tag->save();
+		    				$tag_id = $model_tag->id;
+		    			}
+		    			if($tag_id){
+		    				//添加关联表数据
+		    				$tagData = TagData::model()->findByPk(array('tag_id'=>$tag_id, 'content_id'=>$model->id));
+		    				if(!$tagData){
+		    					$tagData = new TagData();
+		    					$tagData->tag_id = $tag_id;
+		    					$tagData->content_id = $model->id;
+		    					$tagData->type = $this->_type_ids['post'];
+		    					$tagData->save();
+		    				}		    			
+		    			}
+    				}
+    			}    			
+    			
     			$this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
+    		}
     	}
     	//判断有无文章栏目
     	$article_cat = Catalog::model()->find('type=:type', array(':type'=>$this->_type));
@@ -198,44 +215,55 @@ class PostController extends Backend
 	    		}    		
 	    		$model->attach_file = $upload->_file_name;
 	    		$model->attach_thumb = $upload->_thumb_name;
+    		}else{
+    			//未改变前的封面图片
+    			$model->attach_file = $_POST['old_file'];
+    			$model->attach_thumb = $_POST['old_thumb'];
     		}
     		//组图
     		$imageList = $this->_request->getPost( 'imageList' );
     		$imageListSerialize = $this->imageListSerialize($imageList);
     		$model->image_list = $imageListSerialize['dataSerialize'];
     		
-    		//标签    		
+    		//标签   (前10个标签有效) 		
     		$tags = trim($_POST['Post']['tags']);    		
-    		$explodeTags = array_unique(explode(',', str_replace(array (' ' , '，',',' ), ',', $tags)));
-    		$tagCount = 0;
-    		$final_tags = array();
-    		foreach ((array) $explodeTags as $value) {
-    			$value = trim($value,' ，,');
-    			if($value){
-	    			$final_tags[] = $value;
-	    			$tagCount ++;
-	    			if ($tagCount >= 10) {
-	    				unset($explodeTags);
-	    				break;
-	    			}    			
-	    			$model_tag = new PostTags();
-	    			$get_tags = $model_tag->find('tag_name=:tagname', array(':tagname'=>$value));    			
-	    			if(!$get_tags){    				    				
-	    				$model_tag->data_count = 1;
-	    				$model_tag->tag_name = $value;
-	    				$model_tag->create_time = time();
-	    				$model_tag->save();
-	    			}
-    			}
-    		} 
+    		$explodeTags = array_unique(explode(',', str_replace(array (' ' , '，' ), array('',','), $tags)));    		
+    		$explodeTags = array_slice($explodeTags, 0, 10);  
+    		    		  	
     		//摘要
     		$model->intro = trim($_POST['Post']['intro'])?$_POST['Post']['intro']:Helper::truncate_utf8_string($_POST['Post']['content'], 200);
     		
-    		$model->tags = implode(',',$final_tags);
-    		$model->last_update_time = time();
+    		$model->tags = implode(',',$explodeTags);
+    		$model->update_time = time();
     		
-    		if($model->save())
+    		if($model->save()){
+    			//更新标签数据
+    			foreach ((array) $explodeTags as $value) {    	
+    				if($value){		
+	    				$model_tag = new Tag();
+	    				$get_tags = $model_tag->find('tag_name=:tagname', array(':tagname'=>$value));
+	    				if($get_tags){    					
+	    					$tag_id = $get_tags->id;
+	    				}else{
+	    					$model_tag->data_count = 1;
+	    					$model_tag->tag_name = $value;
+	    					$model_tag->save();
+	    					$tag_id = $model_tag->id;    				
+	    				}
+	    				//添加关联表数据
+	    				$tagData = TagData::model()->findByPk(array('tag_id'=>$tag_id, 'content_id'=>$model->id));
+	    				if(!$tagData){
+		    				$tagData = new TagData();
+		    				$tagData->tag_id = $tag_id;
+		    				$tagData->content_id = $model->id;
+		    				$tagData->type = $this->_type_ids['post'];
+		    				$tagData->save();
+	    				}
+    				}
+    			}
+    			 
     			$this->message('success',Yii::t('admin','Update Success'),$this->createUrl('index'));
+    		}
     	}else{
     		$imageList = unserialize($model->image_list);
     		$style = unserialize($model->title_style);
@@ -247,50 +275,8 @@ class PostController extends Backend
     			'style' => $style,
     	));    	
         
-    }
+    }   
    
-    /**
-     * 标签管理
-     *
-     */
-    public function actionTags() {
-        $model = new PostTags();
-        $criteria = new CDbCriteria();
-        $condition = '1';
-        $tagName = $this->_request->getParam( 'tagName' );
-        $tagName && $condition .= ' AND tag_name LIKE \'%' . $tagName . '%\'';
-        $criteria->condition = $condition;
-        $criteria->order = 't.id DESC';        
-        $count = $model->count( $criteria );
-        $pages = new CPagination( $count );
-        $pages->pageSize = 13;
-        $pageParams = $this->buildCondition( $_GET, array ( 'tagName') );
-        $pages->params = is_array( $pageParams ) ? $pageParams : array ();
-        $criteria->limit = $pages->pageSize;
-        $criteria->offset = $pages->currentPage * $pages->pageSize;
-        $result = $model->findAll( $criteria );
-        $this->render( 'post_tags', array ( 'datalist' => $result , 'pagebar' => $pages ) );
-    }
-    
-    /**
-     * 
-     * 重新统计标签，删除不匹配的标签
-     * 
-     */
-    public function actionResetTags(){
-    	$tags = PostTags::model()->findAll();
-    	foreach((array) $tags as $tag){    		
-    		$post = Post::model()->findAll("FIND_IN_SET(:tag, tags)", array(':tag'=>$tag->tag_name));    		
-    		if(!$post){
-    			$tag->delete();
-    		}else{
-    			$tag->data_count = count($post);
-    			$tag->save();
-    		}
-    	}
-    	$this->message('success',Yii::t('admin','Reset Tags Success'),$this->createUrl('post/tags'));
-    }
-
     /**
      * 批量操作
      *
@@ -331,16 +317,7 @@ class PostController extends Backend
         			$postModel->delete();
         		}
         	}
-            break;  
-       case 'tagsDelete':
-				// 删除标签
-				foreach ( ( array ) $ids as $id ) {
-					$tagModel = PostTags::model ()->findByPk ( $id );
-					if ($tagModel) {
-						$tagModel->delete ();
-					}
-				}
-				break;
+            break;       
         case 'show':     
         	//文章显示      
         	foreach((array)$ids as $id){

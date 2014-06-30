@@ -8,5 +8,5 @@
     <div class="search right"> </div>
   </div>
 </div>
-<?php $this->renderPartial('_post_form',array('model'=>$model, 'imageList'=>$imageList, 'style'=>$style))?>
+<?php $this->renderPartial('_form',array('model'=>$model, 'imageList'=>$imageList, 'style'=>$style))?>
 

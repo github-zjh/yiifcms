@@ -20,7 +20,7 @@ class PostController extends FrontBase
 		$this->_menu_unique = 'post';
 
 		//标签
-		$this->_tags = PostTags::model()->findAll(array('order'=>'data_count DESC','limit'=>20));
+		$this->_tags = Tag::model()->findAll(array('order'=>'data_count DESC','limit'=>20));
 	}
 	
   /**
@@ -58,7 +58,7 @@ class PostController extends FrontBase
     $criteria->condition = $condition;
     $criteria->order = 'view_count DESC, t.id DESC';
     $criteria->with = array ( 'catalog' );
-    $criteria->select = "title, id,t.title_style, t.attach_thumb, t.image_list, t.copy_from, t.copy_url, t.last_update_time,t.intro, t.tags, t.view_count";
+    $criteria->select = "title, id,t.title_style, t.attach_thumb, t.image_list, t.copy_from, t.copy_url, t.update_time,t.intro, t.tags, t.view_count";
    
     //分页
     $count = $post->count( $criteria );    

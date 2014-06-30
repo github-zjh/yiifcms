@@ -137,7 +137,7 @@
   
   <tr class="submit">
   	<td colspan="2" >
-    	<input name="oAttach" type="hidden" value="<?php echo $model->cover_image; ?>" />      	
+    	<input name="old_cover" type="hidden" value="<?php echo $model->cover_image; ?>" />      	
       	<input type="submit" name="editsubmit" value="<?php echo Yii::t('common','Submit');?>" class="button" tabindex="3" />
      </td>
   </tr>

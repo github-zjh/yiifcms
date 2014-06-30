@@ -24,14 +24,14 @@ class Post extends CActiveRecord
 		return array(
 			array('title, catalog_id', 'required'),
 			array('catalog_id, special_id', 'numerical', 'integerOnly'=>true),
-			array('user_id, view_count, favorite_count, attention_count, last_update_time, reply_count, sort_desc, create_time', 'length', 'max'=>10),
+			array('user_id, view_count, favorite_count, attention_count, update_time, reply_count, sort_desc, create_time', 'length', 'max'=>10),
 			array('html_path, html_file, copy_from', 'length', 'max'=>100),
 			array('title, title_second, title_style, seo_title, seo_keywords, copy_url, redirect_url, tags, attach_file, attach_thumb', 'length', 'max'=>255),
 			array('commend, attach_status, top_line, reply_allow, status', 'length', 'max'=>1),
 			array('content, intro, image_list, seo_description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, user_id, title, title_second, title_style, html_path, html_file, catalog_id, special_id, intro, image_list, seo_title, seo_description, seo_keywords, content, copy_from, copy_url, redirect_url, tags, view_count, commend, attach_status, attach_file, attach_thumb, favorite_count, attention_count, top_line, last_update_time, reply_count, reply_allow, sort_desc, status, create_time', 'safe', 'on'=>'search'),
+			array('id, user_id, title, title_second, title_style, html_path, html_file, catalog_id, special_id, intro, image_list, seo_title, seo_description, seo_keywords, content, copy_from, copy_url, redirect_url, tags, view_count, commend, attach_status, attach_file, attach_thumb, favorite_count, attention_count, top_line, update_time, reply_count, reply_allow, sort_desc, status, create_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -80,7 +80,7 @@ class Post extends CActiveRecord
 			'favorite_count' => '收藏数量',
 			'attention_count' => '关注次数',
 			'top_line' => '头条',
-			'last_update_time' => '最后更新时间',
+			'update_time' => '最后更新时间',
 			'reply_count' => '回复次数',
 			'reply_allow' => '允许评论',
 			'sort_desc' => '排序',			
@@ -100,15 +100,5 @@ class Post extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-
-	/**
-	 * 入库前自动处理
-	 */
-	public function beforeSave ()
-    {
-       	parent::beforeSave();
-        $this->tags && $this->tags = str_replace(array ('，' , ', ' , ' ,',' ' ), ',', $this->tags);        
-        return true;
-    }
 	
 }
