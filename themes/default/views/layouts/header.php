@@ -31,15 +31,16 @@
 				</li>
 				<?php endforeach;?>			
 			</ul>
-			<form id="search" action="<?php echo $this->createUrl('tag/index');?>" method="get">
+			<form id="search"  tabindex="0" action="<?php echo $this->createUrl('tag/index');?>" method="get">
 				<input type="submit" class="search_btn" value="<?php echo Yii::t('common','Search');?>" />
 				<input type="hidden" id="oldkeyword" value="" />
 				<input type="text" name="tag" id="keyword" value="" autocomplete="off" placeholder="<?php echo Yii::t('common','Search Desc');?>"/>
 				<script type="text/javascript">
 					//ajax搜索
-					$(function(){												
+					$(function(){						
+						$("#oldkeyword").val('');						
 						$("#keyword").on('keyup', function(){																				
-							var tag = $(this).val();		
+							var tag = $(this).val().replace(/(^\s*)|(\s*$)/g, "");		
 							var oldtag = $("#oldkeyword").val();
 							if(tag && oldtag != tag){					
 								$.getJSON("<?php echo $this->createUrl('tag/ajax');?>", {"tag":tag,"ajax":1}, function(data){
@@ -57,9 +58,14 @@
 							$("#search_result").show();
 							$("#oldkeyword").val(tag);
 						});
-						$("#keyword").on("blur",function(){
+						$("#search").on("mouseleave",function(){													
 							$("#search_result").hide();
 						});
+						
+						$("#search").on("mouseover",function(){													
+							$("#search_result").show();
+						});
+						
 						$("#keyword").on("focus",function(){
 							$("#search_result").show();
 						});

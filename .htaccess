@@ -1,12 +1,15 @@
 <IfModule mod_rewrite.c>  
   Options +FollowSymLinks  
   IndexIgnore */*  
+  # 开启rewrite模块
   RewriteEngine on  
   # if a directory or a file exists, use it directly  
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  # otherwise forward it to index.php  
+  
+  # 定向到index.php  
   RewriteRule . index.php  
+
   # 设置不能执行php权限的目录
   RewriteRule assets/(.*).(php)$ – [F]  
   RewriteRule data/(.*).(php)$ – [F] 
@@ -19,5 +22,6 @@
   # 设置环境限制
   php_value upload_max_filesize 50M
   php_value post_max_size 60M
-  php_value max_execution_time 2000
+  php_value max_execution_time 2000  
+  
 </IfModule>  
