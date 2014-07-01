@@ -89,7 +89,7 @@ class SiteController extends FrontBase
 				//加载css,js
 				Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/error.css");	
 				Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
-				
+				$this->_seoTitle = Yii::t('common','Notice Message').' - '.$this->_setting['site_name'];
 				$this->render('error', $error);
 			}
 		}

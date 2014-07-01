@@ -22,15 +22,57 @@ return array(
 		'catalog|batch' => '批量操作',
 		
 		//Post
-		'post' => '内容管理',
-		'post|index' => '内容列表',
-		'post|create' => '内容添加',
-		'post|update' => '内容更新',
-		'post|delete' => '内容删除',
-		'post|comment' => '评论管理',
-		'post|commentUpdate' => '评论更新',
-		'post|tags' => '标签管理',
-		'post|batch' => '批量操作',	
+		'post' => '文章管理',
+		'post|index' => '文章列表',
+		'post|create' => '文章添加',
+		'post|update' => '文章更新',
+		'post|delete' => '文章删除',
+		'post|batch' => '批量操作',		
+		
+		//Image
+		'image' => '图集管理',
+		'image|index' => '图集列表',
+		'image|create' => '图集添加',
+		'image|update' => '图集更新',
+		'image|delete' => '图集删除',
+		'image|batch' => '批量操作',
+		
+		//Soft
+		'soft' => '软件管理',
+		'soft|index' => '软件列表',
+		'soft|create' => '软件添加',
+		'soft|update' => '软件更新',
+		'soft|delete' => '软件删除',
+		'soft|batch' => '批量操作',
+		
+		//Video
+		'video' => '视频管理',
+		'video|index' => '视频列表',
+		'video|create' => '视频添加',
+		'video|update' => '视频更新',
+		'video|delete' => '视频删除',
+		'video|batch' => '批量操作',
+		
+		//Goods
+		'goods' => '商品管理',
+		'goods|index' => '商品列表',
+		'goods|create' => '商品添加',
+		'goods|update' => '商品更新',
+		'goods|delete' => '商品删除',
+		'goods|batch' => '批量操作',
+		
+		//Page
+		'page' => '单页管理',
+		'page|index' => '单页列表',
+		'page|create' => '单页添加',
+		'page|update' => '单页更新',
+		'page|delete' => '单页删除',
+		'page|batch' => '批量操作',
+		
+		//Tag
+		'tag'=> '标签管理',
+		'tag|index' => '标签列表',
+		'tag|batch' => '批量操作',	
 		
 		//RecommendPost
 		'recommendPosition' => '推荐位管理',
@@ -95,6 +137,20 @@ return array(
 		'attach' => '附件管理',
 		'attach|index' => '附件列表',
 		'attach|batch' => '批量操作',
+		
+		//Comment
+		'comment' => '评论管理',
+		'comment|index' => '评论列表',
+		'comment|update' => '评论更新',
+		'comment|delete' => '评论删除',
+		'comment|batch' => '批量操作',
+		
+		//Modeltype
+		'modeltype' => '内容模型管理',
+		'modeltype|index' => '内容模型列表',
+		'modeltype|create' => '内容模型添加',
+		'modeltype|update' => '内容模型更新',		
+		'modeltype|batch' => '批量操作',
 		
 		//Database
 		'database' => '数据库管理',

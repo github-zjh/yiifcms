@@ -34,6 +34,8 @@ return array (
 	'UpdateTime' => '更新时间',
 	'DownLoad Now' => '立即下载',
 	'Read Details' => '了解详情',
+	'Nothing Is Found' => '未找到任何结果',
+	'Notice Message' => '信息提示',
 		
 	//登录
 	'Login' => '登录',

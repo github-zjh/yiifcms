@@ -31,9 +31,41 @@
 				</li>
 				<?php endforeach;?>			
 			</ul>
-			<form id="search">
-				<a class="search_btn" href="javascript:;"><?php echo Yii::t('common','Search');?></a>
-				<input type="text" name="keyword" value="" placeholder="<?php echo Yii::t('common','Search Desc');?>"/>
+			<form id="search" action="<?php echo $this->createUrl('tag/index');?>" method="get">
+				<input type="submit" class="search_btn" value="<?php echo Yii::t('common','Search');?>" />
+				<input type="hidden" id="oldkeyword" value="" />
+				<input type="text" name="tag" id="keyword" value="" autocomplete="off" placeholder="<?php echo Yii::t('common','Search Desc');?>"/>
+				<script type="text/javascript">
+					//ajax搜索
+					$(function(){												
+						$("#keyword").on('keyup', function(){																				
+							var tag = $(this).val();		
+							var oldtag = $("#oldkeyword").val();
+							if(tag && oldtag != tag){					
+								$.getJSON("<?php echo $this->createUrl('tag/ajax');?>", {"tag":tag,"ajax":1}, function(data){
+									var result = '';
+									if(data && data.length > 0){
+										$.each(data,function(i, item){
+											result += '<li><a href="<?php echo $this->_request->hostinfo;?>/'+item.type+'/'+item.id+'" target="_blank" title="'+item.title+'">'+item.title+'</a></li>';
+										});			
+									}else{
+										result = '<li><a href="javascript:;" class="red"><?php echo Yii::t('common','Nothing Is Found')?></a></li>';
+									}
+									$("#search_result").html(result);	
+								});
+							}
+							$("#search_result").show();
+							$("#oldkeyword").val(tag);
+						});
+						$("#keyword").on("blur",function(){
+							$("#search_result").hide();
+						});
+						$("#keyword").on("focus",function(){
+							$("#search_result").show();
+						});
+					});
+				</script>
+				<ul id="search_result"></ul>
 			</form>				
 		</div>	
 		<?php if(Yii::app()->user->getIsGuest()):?>	

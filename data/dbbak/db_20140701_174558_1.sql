@@ -1,6 +1,6 @@
 # your database backup
 # version:5.5.27-log
-# time:2014-07-01 11:06:42
+# time:2014-07-01 17:45:58
 # --------------------------------------------------------
 
 
@@ -155,15 +155,15 @@ CREATE TABLE `yii_image` (
 
 INSERT INTO `yii_image` VALUES('2','1','图览2014巴西世界杯','图览2014巴西世界杯','','','','9','0','世界杯来啦，为了帮助大家更轻松更愉悦地观看世界杯，小编制作了《图览世界杯》，大家可及时围观赛况和花边消息，方便彼此切磋，迎来人生比翼齐飞的新高度，更有机会参与【百度图片竞猜世界杯】的活动哦！我们的奖品已经到位，猜对比分，并@百度图片@两位好友，就有机会赢取【高端手表】哦亲~动动手指，为世界杯加油！更多消息请密切关注【@百度图片】新浪微博官方账号吧。','a:3:{i:0;a:5:{s:6:\"fileId\";s:2:\"77\";s:4:\"file\";s:37:\"uploads/images/201407/2d8af2a52c9.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_2d8af2a52c9.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:1;a:5:{s:6:\"fileId\";s:2:\"78\";s:4:\"file\";s:37:\"uploads/images/201407/830c15efce6.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_830c15efce6.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:2;a:5:{s:6:\"fileId\";s:2:\"79\";s:4:\"file\";s:37:\"uploads/images/201407/8068f3a90b7.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_8068f3a90b7.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','<p style=\"text-indent:2em;\">
 	<span style=\"font-size:14px;\"></span><span style=\"font-size:14px;\">世界杯来啦，为了帮助大家更轻松更愉悦地观看世界杯，小编制作了《图览世界杯》，大家可及时围观赛况和花边消息，方便彼此切磋，迎来人生比翼齐飞的新高度，更有机会参与【百度图片竞猜世界杯】的活动哦！我们的奖品已经到位，猜对比分，并@百度图片@两位好友，就有机会赢取【高端手表】哦亲~动动手指，为世界杯加油！更多消息请密切关注【@百度图片】新浪微博官方账号吧。</span> 
-</p>','百度图片','http://image.baidu.com/infopage/tpl?id=8&mode=viewer','','巴西,世界杯,美女','25','N','N','uploads/images/201406/1f6228399a3.jpg','uploads/thumbs/201406/small_1f6228399a3.jpg','0','0','N','1404182636','0','Y','0','Y','1404111213');
+</p>','百度图片','http://image.baidu.com/infopage/tpl?id=8&mode=viewer','','巴西,世界杯,美女','26','N','N','uploads/images/201406/1f6228399a3.jpg','uploads/thumbs/201406/small_1f6228399a3.jpg','0','0','N','1404182636','0','Y','0','Y','1404111213');
 INSERT INTO `yii_image` VALUES('3','1','小清新','','','','','14','0','','','','','','小清新','','','','美女','3','N','N','uploads/images/201406/2980725e720.jpg','uploads/thumbs/201406/small_2980725e720.jpg','0','0','N','1404111946','0','Y','0','Y','1404111946');
 INSERT INTO `yii_image` VALUES('4','1','游戏唯美','','','','','14','0','','','','','','游戏唯美','','','','美女','1','N','N','uploads/images/201406/8b571b7725d.jpg','uploads/thumbs/201406/small_8b571b7725d.jpg','0','0','N','1404112171','0','Y','0','Y','1404112171');
-INSERT INTO `yii_image` VALUES('5','1','游戏唯美','','','','','14','0','','','','','','游戏唯美','','','','美女','1','N','N','uploads/images/201406/d7d79134e6d.jpg','uploads/thumbs/201406/small_d7d79134e6d.jpg','0','0','N','1404114260','0','Y','0','Y','1404114260');
-INSERT INTO `yii_image` VALUES('6','1','明星海景','','','','','14','0','','','','','','明星海景','','','','','2','N','N','uploads/images/201406/fe41fcc37ac.jpg','uploads/thumbs/201406/small_fe41fcc37ac.jpg','0','0','N','1404121549','0','Y','0','Y','1404114318');
-INSERT INTO `yii_image` VALUES('7','1','靓丽女孩','','','','','14','0','','','','','','靓丽女孩','','','','美女','1','N','N','uploads/images/201406/15b9aedad1b.jpg','uploads/thumbs/201406/small_15b9aedad1b.jpg','0','0','N','1404121425','0','Y','0','Y','1404114395');
-INSERT INTO `yii_image` VALUES('8','1','漂亮女神','','','','','14','0','','','','','','漂亮女神','','','','美女','1','N','N','uploads/images/201406/bb6aa6ad2c7.jpg','uploads/thumbs/201406/small_bb6aa6ad2c7.jpg','0','0','N','1404121415','0','Y','0','Y','1404114458');
-INSERT INTO `yii_image` VALUES('9','1','气质美女','','','','','8','0','','','','','','气质美女','','','','美女','2','N','N','uploads/images/201406/ba6b6e35743.jpg','uploads/thumbs/201406/small_ba6b6e35743.jpg','0','0','N','1404121404','0','Y','0','Y','1404114497');
-INSERT INTO `yii_image` VALUES('10','1','淑女形象','','','','','8','0','','','','','','淑女形象','','','','美女','1','N','N','uploads/images/201406/5348209384d.jpg','uploads/thumbs/201406/small_5348209384d.jpg','0','0','N','1404136810','0','Y','0','Y','1404114535');
+INSERT INTO `yii_image` VALUES('5','1','游戏唯美','','','','','14','0','','a:3:{i:0;a:5:{s:6:\"fileId\";s:2:\"89\";s:4:\"file\";s:37:\"uploads/images/201407/2e13e0a3ed9.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_2e13e0a3ed9.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:1;a:5:{s:6:\"fileId\";s:2:\"90\";s:4:\"file\";s:37:\"uploads/images/201407/2a2d8e16cb0.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_2a2d8e16cb0.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:2;a:5:{s:6:\"fileId\";s:2:\"91\";s:4:\"file\";s:37:\"uploads/images/201407/825a8ac9d80.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_825a8ac9d80.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','游戏唯美','','','','美女','4','N','N','uploads/images/201406/d7d79134e6d.jpg','uploads/thumbs/201406/small_d7d79134e6d.jpg','0','0','N','1404184873','0','Y','0','Y','1404114260');
+INSERT INTO `yii_image` VALUES('6','1','明星海景','','','','','14','0','','a:1:{i:0;a:5:{s:6:\"fileId\";s:2:\"88\";s:4:\"file\";s:37:\"uploads/images/201407/b0d4552362e.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_b0d4552362e.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','明星海景','','','','美女','2','N','N','uploads/images/201406/fe41fcc37ac.jpg','uploads/thumbs/201406/small_fe41fcc37ac.jpg','0','0','N','1404184847','0','Y','0','Y','1404114318');
+INSERT INTO `yii_image` VALUES('7','1','靓丽女孩','','','','','14','0','','a:2:{i:0;a:5:{s:6:\"fileId\";s:2:\"86\";s:4:\"file\";s:37:\"uploads/images/201407/4efea9bddd1.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_4efea9bddd1.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:1;a:5:{s:6:\"fileId\";s:2:\"87\";s:4:\"file\";s:37:\"uploads/images/201407/9706bae28d1.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_9706bae28d1.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','靓丽女孩','','','','美女','2','N','N','uploads/images/201406/15b9aedad1b.jpg','uploads/thumbs/201406/small_15b9aedad1b.jpg','0','0','N','1404184809','0','Y','0','Y','1404114395');
+INSERT INTO `yii_image` VALUES('8','1','漂亮女神','','','','','14','0','','a:3:{i:0;a:5:{s:6:\"fileId\";s:2:\"83\";s:4:\"file\";s:37:\"uploads/images/201407/cef6cf4f134.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_cef6cf4f134.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:1;a:5:{s:6:\"fileId\";s:2:\"84\";s:4:\"file\";s:37:\"uploads/images/201407/8a0a9d8cb7b.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_8a0a9d8cb7b.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:2;a:5:{s:6:\"fileId\";s:2:\"85\";s:4:\"file\";s:37:\"uploads/images/201407/4464b4046d1.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_4464b4046d1.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','漂亮女神','','','','美女','1','N','N','uploads/images/201406/bb6aa6ad2c7.jpg','uploads/thumbs/201406/small_bb6aa6ad2c7.jpg','0','0','N','1404184778','0','Y','0','Y','1404114458');
+INSERT INTO `yii_image` VALUES('9','1','气质美女','','','','','8','0','','a:2:{i:0;a:5:{s:6:\"fileId\";s:2:\"81\";s:4:\"file\";s:37:\"uploads/images/201407/ed5693e7e2d.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_ed5693e7e2d.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:1;a:5:{s:6:\"fileId\";s:2:\"82\";s:4:\"file\";s:37:\"uploads/images/201407/f60eb1cfb67.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_f60eb1cfb67.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','气质美女','','','','美女','3','N','N','uploads/images/201406/ba6b6e35743.jpg','uploads/thumbs/201406/small_ba6b6e35743.jpg','0','0','N','1404184756','0','Y','0','Y','1404114497');
+INSERT INTO `yii_image` VALUES('10','1','淑女形象','','','','','8','0','','a:1:{i:0;a:5:{s:6:\"fileId\";s:2:\"80\";s:4:\"file\";s:37:\"uploads/images/201407/4be229705ba.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_4be229705ba.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','淑女形象','','','','美女','1','N','N','uploads/images/201406/5348209384d.jpg','uploads/thumbs/201406/small_5348209384d.jpg','0','0','N','1404184732','0','Y','0','Y','1404114535');
 
 DROP TABLE IF EXISTS `yii_link`;
 CREATE TABLE `yii_link` (
@@ -245,12 +245,12 @@ CREATE TABLE `yii_menu` (
 ) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='导航菜单表';
 
 INSERT INTO `yii_menu` VALUES('1','首页','/','index','Y','0','0','N');
-INSERT INTO `yii_menu` VALUES('2','资讯','/post/index.htm','post','Y','0','0','N');
-INSERT INTO `yii_menu` VALUES('3','图集','/image/index.htm','image','Y','0','0','N');
-INSERT INTO `yii_menu` VALUES('4','软件','/soft/index.htm','soft','Y','0','0','N');
+INSERT INTO `yii_menu` VALUES('2','资讯','/post/index','post','Y','0','0','N');
+INSERT INTO `yii_menu` VALUES('3','图集','/image/index','image','Y','0','0','N');
+INSERT INTO `yii_menu` VALUES('4','软件','/soft/index','soft','Y','0','0','N');
 INSERT INTO `yii_menu` VALUES('5','视频','video/index','video','Y','0','0','N');
-INSERT INTO `yii_menu` VALUES('6','关于我们','page/about.htm','about','Y','0','0','N');
-INSERT INTO `yii_menu` VALUES('7','留言反馈','question/index.htm','question','Y','0','0','N');
+INSERT INTO `yii_menu` VALUES('6','关于我们','page/about','about','Y','0','0','N');
+INSERT INTO `yii_menu` VALUES('7','留言反馈','question/index','question','Y','0','0','N');
 
 DROP TABLE IF EXISTS `yii_model_type`;
 CREATE TABLE `yii_model_type` (
@@ -481,7 +481,8 @@ CREATE TABLE `yii_post` (
   `sort_desc` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
   `status` enum('Y','N') NOT NULL DEFAULT 'Y' COMMENT '是否显示',
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `tags_index` (`tags`) USING BTREE
 ) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='内容管理';
 
 INSERT INTO `yii_post` VALUES('14','1','天河二号以每秒3.3亿亿次的速度再居世界超算榜首 上演帽子戏法','','','','','2','1','据外媒报道，23日在德国莱比锡市发布的第43届世界超级计算机500强排行榜上，中国超级计算机系统“天河二号”以每秒3.386亿亿次的浮点运算速度稳居榜首，获得世界超算“三连冠”。 ','','','','','<p style=\"text-indent:2em;\">
@@ -507,7 +508,7 @@ INSERT INTO `yii_post` VALUES('14','1','天河二号以每秒3.3亿亿次的速�
 </p>
 <p style=\"text-indent:2em;\">
 	<span style=\"font-size:14px;\">另外，在过去的五年内，排行榜最后一位的超级计算机以每年55%的速度提升，而1994年至2008年间，性能曾以每年90%的速度增长。</span> 
-</p>','csdn','http://www.csdn.net/article/2014-06-24/2820355','','超级计算机,中国','17','N','Y','uploads/images/201406/5e7d89999bb.jpg','uploads/thumbs/201406/small_5e7d89999bb.jpg','0','0','N','1404120867','0','Y','0','Y','1379554460');
+</p>','csdn','http://www.csdn.net/article/2014-06-24/2820355','','超级计算机,中国','24','N','Y','uploads/images/201406/5e7d89999bb.jpg','uploads/thumbs/201406/small_5e7d89999bb.jpg','0','0','N','1404120867','0','Y','0','Y','1379554460');
 INSERT INTO `yii_post` VALUES('15','1','国产操作系统厂商中科红旗宣布拍卖旗下资产','','','','','2','1','6月27日，中科红旗发布公告，宣布拟以公开竞价方式转让公司全部注册商标、全部软件著作权等资产。至此，处于解散清算状态的国产操作系统厂商中科红旗正式开始启动资产出售进程。　　 ','','','','','<p align=\"center\">
 	<img src=\"/uploads/attached/image/201406/3078e9f0bff.jpg\" alt=\"\" /> 
 </p>
@@ -1303,7 +1304,7 @@ CREATE TABLE `yii_session` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='session表';
 
-INSERT INTO `yii_session` VALUES('78a6t7h3v0ft4ie63foe7amai0','1404187601','admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.33c9b0a4.admin/default.captcha|s:4:\"kbjd\";Yii.CCaptchaAction.33c9b0a4.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}Yii.CCaptchaAction.33c9b0a4.question.captcha|s:6:\"4c9c8b\";Yii.CCaptchaAction.33c9b0a4.question.captchacount|i:1;Yii.CCaptchaAction.33c9b0a4.user.captcha|s:6:\"2d7ega\";Yii.CCaptchaAction.33c9b0a4.user.captchacount|i:1;Yii.CCaptchaAction.33c9b0a4.comment.captcha|s:5:\"fdfbk\";Yii.CCaptchaAction.33c9b0a4.comment.captchacount|i:1;');
+INSERT INTO `yii_session` VALUES('qcvpep21d01qmc68n3glp5m3v0','1404211556','Yii.CCaptchaAction.33c9b0a4.user.captcha|s:6:\"mc9149\";Yii.CCaptchaAction.33c9b0a4.user.captchacount|i:2;admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.33c9b0a4.admin/default.captcha|s:4:\"qbcd\";Yii.CCaptchaAction.33c9b0a4.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
 
 DROP TABLE IF EXISTS `yii_setting`;
 CREATE TABLE `yii_setting` (
@@ -1487,6 +1488,8 @@ INSERT INTO `yii_tag_data` VALUES('57','7','2','Y');
 INSERT INTO `yii_tag_data` VALUES('57','25','1','Y');
 INSERT INTO `yii_tag_data` VALUES('68','2','2','Y');
 INSERT INTO `yii_tag_data` VALUES('69','2','2','Y');
+INSERT INTO `yii_tag_data` VALUES('57','5','2','Y');
+INSERT INTO `yii_tag_data` VALUES('57','6','2','Y');
 INSERT INTO `yii_tag_data` VALUES('57','2','2','Y');
 
 DROP TABLE IF EXISTS `yii_upload`;
@@ -1502,7 +1505,7 @@ CREATE TABLE `yii_upload` (
   `down_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '下载次数',
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '上传时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=80 DEFAULT CHARSET=utf8 COMMENT='附件';
+) ENGINE=MyISAM AUTO_INCREMENT=92 DEFAULT CHARSET=utf8 COMMENT='附件';
 
 INSERT INTO `yii_upload` VALUES('20','1','5.png','uploads/images/201403/3b68894af12.png','','png','application/octet-stream','1724','0','1394775273');
 INSERT INTO `yii_upload` VALUES('19','1','4.png','uploads/images/201403/7b1f180d893.png','','png','application/octet-stream','624','0','1394766396');
@@ -1536,6 +1539,18 @@ INSERT INTO `yii_upload` VALUES('71','1','111.jpg','uploads/attached/image/20140
 INSERT INTO `yii_upload` VALUES('77','1','121.jpg','uploads/images/201407/2d8af2a52c9.jpg','uploads/thumbs/201407/small_2d8af2a52c9.jpg','jpg','application/octet-stream','71454','0','1404181897');
 INSERT INTO `yii_upload` VALUES('78','1','122.jpg','uploads/images/201407/830c15efce6.jpg','uploads/thumbs/201407/small_830c15efce6.jpg','jpg','application/octet-stream','39486','0','1404182170');
 INSERT INTO `yii_upload` VALUES('79','1','123.jpg','uploads/images/201407/8068f3a90b7.jpg','uploads/thumbs/201407/small_8068f3a90b7.jpg','jpg','application/octet-stream','193075','0','1404182633');
+INSERT INTO `yii_upload` VALUES('80','1','121.jpg','uploads/images/201407/4be229705ba.jpg','uploads/thumbs/201407/small_4be229705ba.jpg','jpg','application/octet-stream','124344','0','1404184718');
+INSERT INTO `yii_upload` VALUES('81','1','122.jpg','uploads/images/201407/ed5693e7e2d.jpg','uploads/thumbs/201407/small_ed5693e7e2d.jpg','jpg','application/octet-stream','67515','0','1404184749');
+INSERT INTO `yii_upload` VALUES('82','1','121.jpg','uploads/images/201407/f60eb1cfb67.jpg','uploads/thumbs/201407/small_f60eb1cfb67.jpg','jpg','application/octet-stream','124344','0','1404184753');
+INSERT INTO `yii_upload` VALUES('83','1','123.jpg','uploads/images/201407/cef6cf4f134.jpg','uploads/thumbs/201407/small_cef6cf4f134.jpg','jpg','application/octet-stream','127531','0','1404184775');
+INSERT INTO `yii_upload` VALUES('84','1','121.jpg','uploads/images/201407/8a0a9d8cb7b.jpg','uploads/thumbs/201407/small_8a0a9d8cb7b.jpg','jpg','application/octet-stream','124344','0','1404184775');
+INSERT INTO `yii_upload` VALUES('85','1','122.jpg','uploads/images/201407/4464b4046d1.jpg','uploads/thumbs/201407/small_4464b4046d1.jpg','jpg','application/octet-stream','67515','0','1404184775');
+INSERT INTO `yii_upload` VALUES('86','1','124.jpg','uploads/images/201407/4efea9bddd1.jpg','uploads/thumbs/201407/small_4efea9bddd1.jpg','jpg','application/octet-stream','84725','0','1404184803');
+INSERT INTO `yii_upload` VALUES('87','1','123.jpg','uploads/images/201407/9706bae28d1.jpg','uploads/thumbs/201407/small_9706bae28d1.jpg','jpg','application/octet-stream','127531','0','1404184806');
+INSERT INTO `yii_upload` VALUES('88','1','125.jpg','uploads/images/201407/b0d4552362e.jpg','uploads/thumbs/201407/small_b0d4552362e.jpg','jpg','application/octet-stream','279084','0','1404184834');
+INSERT INTO `yii_upload` VALUES('89','1','126.jpg','uploads/images/201407/2e13e0a3ed9.jpg','uploads/thumbs/201407/small_2e13e0a3ed9.jpg','jpg','application/octet-stream','75536','0','1404184865');
+INSERT INTO `yii_upload` VALUES('90','1','122.jpg','uploads/images/201407/2a2d8e16cb0.jpg','uploads/thumbs/201407/small_2a2d8e16cb0.jpg','jpg','application/octet-stream','67515','0','1404184869');
+INSERT INTO `yii_upload` VALUES('91','1','125.jpg','uploads/images/201407/825a8ac9d80.jpg','uploads/thumbs/201407/small_825a8ac9d80.jpg','jpg','application/octet-stream','279084','0','1404184870');
 
 DROP TABLE IF EXISTS `yii_user`;
 CREATE TABLE `yii_user` (
