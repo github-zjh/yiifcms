@@ -47,4 +47,8 @@
 			
 		</div>
 		
+		<!-- 右侧内容开始 -->
+		<?php $this->renderPartial('right',array('tags'=>$tags));?>	
+		<!-- 右侧内容结束 -->
+		
 	</div>	

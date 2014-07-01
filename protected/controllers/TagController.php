@@ -32,7 +32,7 @@ class TagController extends FrontBase
     	//分页
     	$count = $td->count( $criteria );
     	$pages = new CPagination( $count );
-    	$pages->pageSize = 15;    	  	
+    	$pages->pageSize = 10;    	  	
     	
     	$criteria->limit = $pages->pageSize;
     	$criteria->offset = $pages->currentPage * $pages->pageSize;
