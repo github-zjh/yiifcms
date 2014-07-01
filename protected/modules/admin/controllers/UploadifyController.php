@@ -43,7 +43,7 @@ class UploadifyController extends Backend
             	exit( CJSON::encode( array ( 'state' => 'error' , 'message' => Yii::t('admin','Please select a file.') ) ) );
             }    
             foreach($files as $simplefile){
-            	$file->uploadFile($simplefile);
+            	$file->uploadFile($simplefile,true);
             	if($file->_error){
             		exit( CJSON::encode( array ( 'error' => 1 , 'message' => Yii::t('admin',$file->_error) ) ) );
             	}else{
@@ -60,7 +60,7 @@ class UploadifyController extends Backend
             			if($outside == 'Y'){
             				exit(CJSON::encode(array ('error' => 0 , 'url' => Yii::app()->baseUrl . '/' . $file->_file_name )));
             			}else{            				
-            				exit( CJSON::encode( array ( 'state' => 'success' , 'fileId'=>$model->id, 'realFile'=>$model->real_name, 'message' => Yii::t('admin','Upload Success') , 'file' =>  $model->file_name ) ) );
+            				exit( CJSON::encode( array ( 'state' => 'success' , 'fileId'=>$model->id, 'realFile'=>$model->real_name, 'message' => Yii::t('admin','Upload Success') , 'file' =>  $model->file_name,  'thumb' =>  $model->thumb_name ) ) );
             			}
             		} else {
             			$file->deleteFile($file->_file_name);

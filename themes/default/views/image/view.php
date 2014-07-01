@@ -24,7 +24,7 @@
 						<?php $pics = unserialize($post->image_list);?>												
 						<div id="show_pics">
 							<a href="javascript:;" title="上一个" id="move_prev" class="prev_btn"></a>
-							<ul>								
+							<ul class="clear">								
 								<?php foreach((array)$pics as $pic):?>
 								<li><img  id="<?php echo "aimg_".$pic['fileId'];?>" aid="<?php echo $pic['fileId'];?>"  onclick="zoom(this, this.src, 0, 0, 0)" zoomfile="<?php echo $pic['file'];?>" alt="<?php echo $pic['desc'];?>" title="<?php echo $pic['desc'];?>" file="<?php echo $pic['file'];?>" src="<?php echo $pic['file'];?>" /></li>
 								<?php endforeach;?>										
@@ -32,6 +32,11 @@
 							<a href="javascript:;" title="下一个" id="move_next"  class="prev_btn next_btn"></a>					
 						</div>
 						<div id="append_parent"></div><div id="ajaxwaitid"></div>
+						<ul class="small_pics clear">								
+							<?php foreach((array)$pics as $spic):?>
+							<li><img width="100" height="100" alt="<?php echo $spic['desc'];?>" title="<?php echo $spic['desc'];?>" src="<?php echo $spic['thumb'];?>" /></li>
+							<?php endforeach;?>										
+						</ul>	
 						<?php endif;?>
 						<?php echo $post->content;?>
 					</div>
@@ -68,27 +73,31 @@
 				$("html,body").animate({scrollTop:"0px"},200);
 			});
 			
-			//图集左右滑动
-			var min_left = 0;			
-			var li_width = $("#show_pics li").width();
-			var li_len = $("#show_pics li").length;			
-			var max_left = (li_len-3) * li_width;
-			
+			//图集左右滑动()			
+			$("#show_pics li:first").show();
+			var pics_num = $("#show_pics li").length;
 			$("#move_prev").click(function(){
-				var cur_left = $("#show_pics ul").position().left;				
-				var move_len = cur_left + li_width;
-				if(cur_left < min_left){
-					$("#show_pics ul").animate({left: move_len+'px'},200);
-				}		
+				var index = $("#show_pics li:visible").index();
+				if(index > 0){
+					var next = index -1;
+					$("#show_pics li:eq('"+index+"')").hide();
+					$("#show_pics li:eq('"+next+"')").fadeIn();
+				}
 			});
 			$("#move_next").click(function(){
-				var cur_left = $("#show_pics ul").position().left;				
-				var move_len = cur_left - li_width;
-				if(Math.abs(cur_left) < max_left){
-					$("#show_pics ul").animate({left: move_len+'px'},200);
-				}						
+				var index = $("#show_pics li:visible").index();
+				if(index < pics_num -1){
+					var next = index + 1;
+					$("#show_pics li:eq('"+index+"')").hide();
+					$("#show_pics li:eq('"+next+"')").fadeIn();
+				}					
 			});
-				
+
+			$(".small_pics li").click(function(){
+				var index = $(this).index();	
+				$("#show_pics li").hide();
+				$("#show_pics li:eq('"+index+"')").fadeIn();
+			});				
 			
 		});
 	</script>

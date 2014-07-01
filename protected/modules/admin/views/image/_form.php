@@ -102,6 +102,7 @@
             <a href='javascript:uploadifyRemove("<?php echo $row['fileId']?>", "image_")'><?php echo Yii::t('admin','Delete');?></a>
             <input name="imageList[fileId][]" type="hidden" value="<?php echo $row['fileId']?>">
             <input name="imageList[file][]" type="hidden" value="<?php echo $row['file']?>">
+            <input name="imageList[thumb][]" type="hidden" value="<?php echo $row['thumb']?>">
           </li>
           <?php endif?>
           <?php endforeach?>

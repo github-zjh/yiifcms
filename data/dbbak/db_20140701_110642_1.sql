@@ -1,6 +1,6 @@
 # your database backup
-# version:5.6.16
-# time:2014-06-30 22:01:07
+# version:5.5.27-log
+# time:2014-07-01 11:06:42
 # --------------------------------------------------------
 
 
@@ -153,17 +153,16 @@ CREATE TABLE `yii_image` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='内容管理';
 
-INSERT INTO `yii_image` VALUES('1','1','图盟 每日囧图05.24','','','','','9','0','','a:4:{i:0;a:4:{s:6:\"fileId\";s:2:\"63\";s:4:\"file\";s:37:\"uploads/images/201406/d6bf42140c0.jpg\";s:4:\"desc\";s:2:\"01\";s:3:\"url\";s:3:\"011\";}i:1;a:4:{s:6:\"fileId\";s:2:\"64\";s:4:\"file\";s:37:\"uploads/images/201406/4ca469fcfbf.jpg\";s:4:\"desc\";s:2:\"02\";s:3:\"url\";s:3:\"022\";}i:2;a:4:{s:6:\"fileId\";s:2:\"65\";s:4:\"file\";s:37:\"uploads/images/201406/018817f4a8f.gif\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:3;a:4:{s:6:\"fileId\";s:2:\"66\";s:4:\"file\";s:37:\"uploads/images/201406/6042f7935d0.gif\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','','猫扑','http://dzh.mop.com/ttq/20140523/0/zF7lFlI2d0ef25F7.shtml','','囧图','450','N','N','uploads/images/201406/badc32cd99a.gif','uploads/thumbs/201406/small_badc32cd99a.gif','0','0','N','1401864736','0','Y','0','Y','1401864736');
-INSERT INTO `yii_image` VALUES('2','1','图览2014巴西世界杯','图览2014巴西世界杯','','','','9','0','世界杯来啦，为了帮助大家更轻松更愉悦地观看世界杯，小编制作了《图览世界杯》，大家可及时围观赛况和花边消息，方便彼此切磋，迎来人生比翼齐飞的新高度，更有机会参与【百度图片竞猜世界杯】的活动哦！我们的奖品已经到位，猜对比分，并@百度图片@两位好友，就有机会赢取【高端手表】哦亲~动动手指，为世界杯加油！更多消息请密切关注【@百度图片】新浪微博官方账号吧。','a:2:{i:0;a:4:{s:6:\"fileId\";s:2:\"72\";s:4:\"file\";s:37:\"uploads/images/201406/b2147835d3a.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:1;a:4:{s:6:\"fileId\";s:2:\"73\";s:4:\"file\";s:37:\"uploads/images/201406/f937c90da76.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','<p style=\"text-indent:2em;\">
+INSERT INTO `yii_image` VALUES('2','1','图览2014巴西世界杯','图览2014巴西世界杯','','','','9','0','世界杯来啦，为了帮助大家更轻松更愉悦地观看世界杯，小编制作了《图览世界杯》，大家可及时围观赛况和花边消息，方便彼此切磋，迎来人生比翼齐飞的新高度，更有机会参与【百度图片竞猜世界杯】的活动哦！我们的奖品已经到位，猜对比分，并@百度图片@两位好友，就有机会赢取【高端手表】哦亲~动动手指，为世界杯加油！更多消息请密切关注【@百度图片】新浪微博官方账号吧。','a:3:{i:0;a:5:{s:6:\"fileId\";s:2:\"77\";s:4:\"file\";s:37:\"uploads/images/201407/2d8af2a52c9.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_2d8af2a52c9.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:1;a:5:{s:6:\"fileId\";s:2:\"78\";s:4:\"file\";s:37:\"uploads/images/201407/830c15efce6.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_830c15efce6.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:2;a:5:{s:6:\"fileId\";s:2:\"79\";s:4:\"file\";s:37:\"uploads/images/201407/8068f3a90b7.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_8068f3a90b7.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','<p style=\"text-indent:2em;\">
 	<span style=\"font-size:14px;\"></span><span style=\"font-size:14px;\">世界杯来啦，为了帮助大家更轻松更愉悦地观看世界杯，小编制作了《图览世界杯》，大家可及时围观赛况和花边消息，方便彼此切磋，迎来人生比翼齐飞的新高度，更有机会参与【百度图片竞猜世界杯】的活动哦！我们的奖品已经到位，猜对比分，并@百度图片@两位好友，就有机会赢取【高端手表】哦亲~动动手指，为世界杯加油！更多消息请密切关注【@百度图片】新浪微博官方账号吧。</span> 
-</p>','百度图片','http://image.baidu.com/infopage/tpl?id=8&mode=viewer','','巴西,世界杯','4','N','N','uploads/images/201406/1f6228399a3.jpg','uploads/thumbs/201406/small_1f6228399a3.jpg','0','0','N','1404111213','0','Y','0','Y','1404111213');
+</p>','百度图片','http://image.baidu.com/infopage/tpl?id=8&mode=viewer','','巴西,世界杯,美女','25','N','N','uploads/images/201406/1f6228399a3.jpg','uploads/thumbs/201406/small_1f6228399a3.jpg','0','0','N','1404182636','0','Y','0','Y','1404111213');
 INSERT INTO `yii_image` VALUES('3','1','小清新','','','','','14','0','','','','','','小清新','','','','美女','3','N','N','uploads/images/201406/2980725e720.jpg','uploads/thumbs/201406/small_2980725e720.jpg','0','0','N','1404111946','0','Y','0','Y','1404111946');
 INSERT INTO `yii_image` VALUES('4','1','游戏唯美','','','','','14','0','','','','','','游戏唯美','','','','美女','1','N','N','uploads/images/201406/8b571b7725d.jpg','uploads/thumbs/201406/small_8b571b7725d.jpg','0','0','N','1404112171','0','Y','0','Y','1404112171');
 INSERT INTO `yii_image` VALUES('5','1','游戏唯美','','','','','14','0','','','','','','游戏唯美','','','','美女','1','N','N','uploads/images/201406/d7d79134e6d.jpg','uploads/thumbs/201406/small_d7d79134e6d.jpg','0','0','N','1404114260','0','Y','0','Y','1404114260');
-INSERT INTO `yii_image` VALUES('6','1','明星海景','','','','','14','0','','','','','','明星海景','','','','','1','N','N','uploads/images/201406/fe41fcc37ac.jpg','uploads/thumbs/201406/small_fe41fcc37ac.jpg','0','0','N','1404121549','0','Y','0','Y','1404114318');
+INSERT INTO `yii_image` VALUES('6','1','明星海景','','','','','14','0','','','','','','明星海景','','','','','2','N','N','uploads/images/201406/fe41fcc37ac.jpg','uploads/thumbs/201406/small_fe41fcc37ac.jpg','0','0','N','1404121549','0','Y','0','Y','1404114318');
 INSERT INTO `yii_image` VALUES('7','1','靓丽女孩','','','','','14','0','','','','','','靓丽女孩','','','','美女','1','N','N','uploads/images/201406/15b9aedad1b.jpg','uploads/thumbs/201406/small_15b9aedad1b.jpg','0','0','N','1404121425','0','Y','0','Y','1404114395');
 INSERT INTO `yii_image` VALUES('8','1','漂亮女神','','','','','14','0','','','','','','漂亮女神','','','','美女','1','N','N','uploads/images/201406/bb6aa6ad2c7.jpg','uploads/thumbs/201406/small_bb6aa6ad2c7.jpg','0','0','N','1404121415','0','Y','0','Y','1404114458');
-INSERT INTO `yii_image` VALUES('9','1','气质美女','','','','','8','0','','','','','','气质美女','','','','美女','1','N','N','uploads/images/201406/ba6b6e35743.jpg','uploads/thumbs/201406/small_ba6b6e35743.jpg','0','0','N','1404121404','0','Y','0','Y','1404114497');
+INSERT INTO `yii_image` VALUES('9','1','气质美女','','','','','8','0','','','','','','气质美女','','','','美女','2','N','N','uploads/images/201406/ba6b6e35743.jpg','uploads/thumbs/201406/small_ba6b6e35743.jpg','0','0','N','1404121404','0','Y','0','Y','1404114497');
 INSERT INTO `yii_image` VALUES('10','1','淑女形象','','','','','8','0','','','','','','淑女形象','','','','美女','1','N','N','uploads/images/201406/5348209384d.jpg','uploads/thumbs/201406/small_5348209384d.jpg','0','0','N','1404136810','0','Y','0','Y','1404114535');
 
 DROP TABLE IF EXISTS `yii_link`;
@@ -381,8 +380,71 @@ INSERT INTO `yii_page` VALUES('2','产品特色','','feature','','','','<p style
 <p style=\"text-indent:2em;\">
 	<br />
 </p>','','产品特色','产品特色','','','','0','0','Y','1322999588');
-INSERT INTO `yii_page` VALUES('3','企业文化','','cultural','','','企业文化是企业为解决生存和发展的问题的而树立形成的，被组织成员认为有效而共享，并共同遵循的基本信念和认知。 企业文化集中体现了一个企业经营管理的核心主张，以及由此产生的组织行为。','<div>	<div>		迪尔和肯尼迪把企业文化整个理论系统概述为5个要素，即企业环境、价值观、英雄人物、文化仪式和文化网络。	</div>	<div>		企业环境是指企业的性质、企业的经营方向、外部环境、企业的社会形象、与外界的联系等方面。它往往决定企业的行为。	</div>	<div>		价值观是指企业内成员对某个事件或某种行为好与坏、善与恶、正确与错误、是否值得仿效的一致认识。价值观是企业文化的核心，统一的价值观使企业内成员在判断自己行为时具有统一的标准，并以此来选择自己的行为。	</div>	<div>		英雄人物是指企业文化的核心人物或企业文化的人格化，其作用在于作为一种活的样板，给企业中其他员工提供可供仿效的榜样，对企业文化的形成和强化起着极为重要的作用。	</div>	<div>		文化仪式是指企业内的各种表彰、奖励活动、聚会以及文娱活动等，它可以把企业中发生的某些事情戏剧化和形象化，来生动的宣传和体现本企业的价值观，使人们通过这些生动活泼的活动来领会企业文化的内涵，使企业文化“寓教于乐”之中。	</div>	<div>		文化网络是指非正式的信息传递渠道，主要是传播文化信息。它是由某种非正式的组织和人群，以及某一特定场合所组成，它所传递出的信息往往能反映出职工的愿望和心态。	</div>	<h3>		产生	</h3>	<div>		企业领导者把文化的变化人的功能应用于企业，以解决现代企业管理中的问题，就有了企业文化。企业管理理论和企业文化管理理论都追求效益。但前者为追求效益而把人当作客体，后者为追求效益把文化概念自觉应用于企业，把具有丰富创造性的人作为管理理论的中心。这种指导思想反映到企业管理中去，就有了人们称之为企业文化的种种观念。	</div>	<h3>		认识	</h3>	<div>		从企业文化的现实出发，进行深入的调查研究，把握企业文化各种现象之间的本质联系。依据实践经验，从感认认识到理性认识，进行科学的概括、总结。	</div>	<h3>		意义	</h3>	<div>		一．企业文化能激发员工的使命感。不管是什么企业都有它的责任和使命，企业使命感是全体员工工作的目标和方向，是企业不断发展或前进的动力之源。	</div>	<div>		二．企业文化能凝聚员工的归属感。　企业文化的作用就是通过企业价值观的提炼和传播，让一群来自不同地方的人共同追求同一个梦想。	</div>	<div>		三．企业文化能加强员工的责任感。企业要通过大量的资料和文件宣传员工责任感的重要性，管理人员要给全体员工灌输责任意识，危机意识和团队意识，要让大家清楚地认识企业是全体员工共同的企业。	</div>	<div>		四．企业文化能赋予员工的荣誉感。每个人都要在自己的工作岗位，工作领域，多做贡献，多出成绩，多追求荣誉感。	</div>	<div>		五．企业文化能实现员工的成就感。一个企业的繁荣昌盛关系到每一个公司员工的生存，企业繁荣了，员工们就会引以为豪，会更积极努力的进取，荣耀越高，成就感就越大，越明显。	</div></div><div></div>','','','','','','','0','0','Y','1331877791');
-INSERT INTO `yii_page` VALUES('4','管理团队1','','team','','','团队是现代企业管理中战斗的核心，几乎没有一家企业不谈团队，好象团队就是企业做大做强的灵丹妙药，只要抓紧团队建设就能有锦锈前程了。团队是个好东西，但怎样的团队才算一个好团队，怎样才能运作好一个团队呢？却是许多企业管理者不甚了然的，于是在企业团队建设的过程中就出现了许多弊病，例如从理论著作中生搬硬套到团队运作里面，是很难产生好团队的。','<div>	<div>		团队是现代企业管理中战斗的核心，几乎没有一家企业不谈团队，好象团队就是企业做大做强的灵丹妙药，只要抓紧团队建设就能有锦锈前程了。团队是个好东西，但怎样的团队才算一个好团队，怎样才能运作好一个团队呢？却是许多企业管理者不甚了然的，于是在企业团队建设的过程中就出现了许多弊病，例如从理论著作中生搬硬套到团队运作里面，是很难产生好团队的。任何理念都不能执着，执着生僵化，就会蜕变为形式主义，后果很糟糕。在如今企业管理者热火朝天进行的团队建设中就存在这个问题，将团队作为企业文化建设的至上准则是不恰当的，是不符合多元化的现实状况的。	</div>	<div>		一个优秀的企业管理者，应该怎样管理员工?道理也很简单，那就是要给员工创造一个充分利用自己的个性将工作干得最好的条件。不一定什么都要团队化，太死板了。虽然现在的企业也都提倡创新，但如果管理者过分强调团队精神，则员工的创新精神必然受到压抑。压抑个性就是压抑创新，没有个性哪来的创新?说得极端一点，企业管理者要谨防团队建设法西斯化。团队是需要的，企业管理者在团队建设的同时要遵循一个原则，不能压抑员工的个性。在团队内部，企业管理者要给员工充分的自由，少说几句少数服从多数，要知道，聪明的人在世界上还就占少数。	</div>	<div>		企业管理者应该解放思想，要有多元化的思维。不同的企业，团队的性质也不一样。要量体裁衣建设符合企业内在要求的团队，要灵活变化，别搞一刀切。如果该企业是劳动密集型企业，那你可以建设一支高度纪律性组织性的团队。如果该企业是知识密集型企业，那就要以自由主义来管理员工了，建立一支人尽其才的团队是最重要的，严格说算不上是团队，也没必要强调团队，更注重的应该是员工的个人创造力，千万别让团队束缚住员工的头脑，当然应该有的纪律和合作也是不可少的。如果企业既有创造型员工也有操作型员工，那可将团队建设重点放到操作型员工身上。需要注意的一点是，越聪明的人越倾向个人主义，这个情况，企业管理者要注意有的放矢。	</div></div><div></div>','','','','','','','0','0','Y','1379392484');
+INSERT INTO `yii_page` VALUES('3','注册流程','','register','','','企业文化是企业为解决生存和发展的问题的而树立形成的，被组织成员认为有效而共享，并共同遵循的基本信念和认知。 企业文化集中体现了一个企业经营管理的核心主张，以及由此产生的组织行为。','<div>
+	<div>
+		迪尔和肯尼迪把企业文化整个理论系统概述为5个要素，即企业环境、价值观、英雄人物、文化仪式和文化网络。
+	</div>
+	<div>
+		企业环境是指企业的性质、企业的经营方向、外部环境、企业的社会形象、与外界的联系等方面。它往往决定企业的行为。
+	</div>
+	<div>
+		价值观是指企业内成员对某个事件或某种行为好与坏、善与恶、正确与错误、是否值得仿效的一致认识。价值观是企业文化的核心，统一的价值观使企业内成员在判断自己行为时具有统一的标准，并以此来选择自己的行为。
+	</div>
+	<div>
+		英雄人物是指企业文化的核心人物或企业文化的人格化，其作用在于作为一种活的样板，给企业中其他员工提供可供仿效的榜样，对企业文化的形成和强化起着极为重要的作用。
+	</div>
+	<div>
+		文化仪式是指企业内的各种表彰、奖励活动、聚会以及文娱活动等，它可以把企业中发生的某些事情戏剧化和形象化，来生动的宣传和体现本企业的价值观，使人们通过这些生动活泼的活动来领会企业文化的内涵，使企业文化“寓教于乐”之中。
+	</div>
+	<div>
+		文化网络是指非正式的信息传递渠道，主要是传播文化信息。它是由某种非正式的组织和人群，以及某一特定场合所组成，它所传递出的信息往往能反映出职工的愿望和心态。
+	</div>
+	<h3>
+		产生
+	</h3>
+	<div>
+		企业领导者把文化的变化人的功能应用于企业，以解决现代企业管理中的问题，就有了企业文化。企业管理理论和企业文化管理理论都追求效益。但前者为追求效益而把人当作客体，后者为追求效益把文化概念自觉应用于企业，把具有丰富创造性的人作为管理理论的中心。这种指导思想反映到企业管理中去，就有了人们称之为企业文化的种种观念。
+	</div>
+	<h3>
+		认识
+	</h3>
+	<div>
+		从企业文化的现实出发，进行深入的调查研究，把握企业文化各种现象之间的本质联系。依据实践经验，从感认认识到理性认识，进行科学的概括、总结。
+	</div>
+	<h3>
+		意义
+	</h3>
+	<div>
+		一．企业文化能激发员工的使命感。不管是什么企业都有它的责任和使命，企业使命感是全体员工工作的目标和方向，是企业不断发展或前进的动力之源。
+	</div>
+	<div>
+		二．企业文化能凝聚员工的归属感。　企业文化的作用就是通过企业价值观的提炼和传播，让一群来自不同地方的人共同追求同一个梦想。
+	</div>
+	<div>
+		三．企业文化能加强员工的责任感。企业要通过大量的资料和文件宣传员工责任感的重要性，管理人员要给全体员工灌输责任意识，危机意识和团队意识，要让大家清楚地认识企业是全体员工共同的企业。
+	</div>
+	<div>
+		四．企业文化能赋予员工的荣誉感。每个人都要在自己的工作岗位，工作领域，多做贡献，多出成绩，多追求荣誉感。
+	</div>
+	<div>
+		五．企业文化能实现员工的成就感。一个企业的繁荣昌盛关系到每一个公司员工的生存，企业繁荣了，员工们就会引以为豪，会更积极努力的进取，荣耀越高，成就感就越大，越明显。
+	</div>
+</div>
+<div>
+</div>','','','','','','','0','0','Y','1331877791');
+INSERT INTO `yii_page` VALUES('4','新手指南','','guide','','','团队是现代企业管理中战斗的核心，几乎没有一家企业不谈团队，好象团队就是企业做大做强的灵丹妙药，只要抓紧团队建设就能有锦锈前程了。团队是个好东西，但怎样的团队才算一个好团队，怎样才能运作好一个团队呢？却是许多企业管理者不甚了然的，于是在企业团队建设的过程中就出现了许多弊病，例如从理论著作中生搬硬套到团队运作里面，是很难产生好团队的。','<div>
+	<div>
+		团队是现代企业管理中战斗的核心，几乎没有一家企业不谈团队，好象团队就是企业做大做强的灵丹妙药，只要抓紧团队建设就能有锦锈前程了。团队是个好东西，但怎样的团队才算一个好团队，怎样才能运作好一个团队呢？却是许多企业管理者不甚了然的，于是在企业团队建设的过程中就出现了许多弊病，例如从理论著作中生搬硬套到团队运作里面，是很难产生好团队的。任何理念都不能执着，执着生僵化，就会蜕变为形式主义，后果很糟糕。在如今企业管理者热火朝天进行的团队建设中就存在这个问题，将团队作为企业文化建设的至上准则是不恰当的，是不符合多元化的现实状况的。
+	</div>
+	<div>
+		一个优秀的企业管理者，应该怎样管理员工?道理也很简单，那就是要给员工创造一个充分利用自己的个性将工作干得最好的条件。不一定什么都要团队化，太死板了。虽然现在的企业也都提倡创新，但如果管理者过分强调团队精神，则员工的创新精神必然受到压抑。压抑个性就是压抑创新，没有个性哪来的创新?说得极端一点，企业管理者要谨防团队建设法西斯化。团队是需要的，企业管理者在团队建设的同时要遵循一个原则，不能压抑员工的个性。在团队内部，企业管理者要给员工充分的自由，少说几句少数服从多数，要知道，聪明的人在世界上还就占少数。
+	</div>
+	<div>
+		企业管理者应该解放思想，要有多元化的思维。不同的企业，团队的性质也不一样。要量体裁衣建设符合企业内在要求的团队，要灵活变化，别搞一刀切。如果该企业是劳动密集型企业，那你可以建设一支高度纪律性组织性的团队。如果该企业是知识密集型企业，那就要以自由主义来管理员工了，建立一支人尽其才的团队是最重要的，严格说算不上是团队，也没必要强调团队，更注重的应该是员工的个人创造力，千万别让团队束缚住员工的头脑，当然应该有的纪律和合作也是不可少的。如果企业既有创造型员工也有操作型员工，那可将团队建设重点放到操作型员工身上。需要注意的一点是，越聪明的人越倾向个人主义，这个情况，企业管理者要注意有的放矢。
+	</div>
+</div>
+<div>
+</div>','','','','','','','0','0','Y','1379392484');
 
 DROP TABLE IF EXISTS `yii_post`;
 CREATE TABLE `yii_post` (
@@ -420,7 +482,7 @@ CREATE TABLE `yii_post` (
   `status` enum('Y','N') NOT NULL DEFAULT 'Y' COMMENT '是否显示',
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COMMENT='内容管理';
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='内容管理';
 
 INSERT INTO `yii_post` VALUES('14','1','天河二号以每秒3.3亿亿次的速度再居世界超算榜首 上演帽子戏法','','','','','2','1','据外媒报道，23日在德国莱比锡市发布的第43届世界超级计算机500强排行榜上，中国超级计算机系统“天河二号”以每秒3.386亿亿次的浮点运算速度稳居榜首，获得世界超算“三连冠”。 ','','','','','<p style=\"text-indent:2em;\">
 	<img src=\"http://www.yii.local/uploads/images/201406/5e7d89999bb.jpg\" alt=\"\" height=\"418\" width=\"772\" /> 
@@ -1120,6 +1182,56 @@ INSERT INTO `yii_post` VALUES('27','1','谷歌I/O大会或发布新机顶盒 挑
 <p style=\"text-indent:2em;\">
 	<span style=\"font-size:14px;\"></span> 
 </p>','html5tricks','http://news.html5tricks.com/google-io-new-machine.html','','亚马逊,谷歌,机顶盒,苹果','2','N','N','','','0','0','N','1404121102','0','Y','0','Y','1404110940');
+INSERT INTO `yii_post` VALUES('28','1','告别公用云，Instagram已将服务迁至Facebook数据中心','','','','','3','0','据悉，Instagram已基本完成AWS到Facebook数据中心的迁移。整个过程中，任务的难点在于服务可用性的保持，从而解决Facebook内部数据中心与EC2上的IP冲突成为关键，最小化基础设施级改变避免操作复杂性同样至关重要。 ','','','','','<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">据 </span><a href=\"http://instagram-engineering.tumblr.com/post/89992572022/migrating-aws-fb\" target=\"_blank\"><span style=\"font-size:14px;\">Instagram</span></a><span style=\"font-size:14px;\">消
+息，该公司已基本完成AWS到Facebook基础设施的迁移。听到这个消息，笔者并不惊讶。首先，社交巨头拥有自己的大规模数据中心；其次，作为风头正
+劲的互联网公司之一，社交巨头拥有着大量的服务，其技术堆栈及API可以轻易满足Instagram的架构需求；再次，在Facebook规模，不管是从
+成本，还是从性能及可用性上看，迁移都是上上之选。最后，避免平台的约束和锁定，Instagram将有更大的发展空间。</span><b><span style=\"font-size:14px;\">言归正传，下面我们看一些博文摘译：</span></b>
+</p>
+<blockquote style=\"margin-left:3em ! important;font-style:normal ! important;color:#777777;text-indent:2em;\">
+	<p>
+		<span style=\"font-size:14px;\">在2012年加入Facebook之后，我们就发现了多个与Facebook基础设施的集成点，这将允许我们更加快速的开发产品，同时还能提高社区的安全性。开始时，我们使用的是ad-hoc端点接入，但是随后就发现这限制了我们的敏捷性及Facebook服务的利用率。</span>
+	</p>
+	<p>
+		<span style=\"font-size:14px;\">在2013年4月后，我们开始大规模的迁移到Facebook数据中心，其中的重点是服务可用性的平稳过渡，以及最小化基础设施级改变来避免其中的操作复杂性。开始时非常简单，在EC2和Facebook的一个数据中心之间建立连接，然后一块一块的迁移。</span>
+	</p>
+	<p>
+		<span style=\"font-size:14px;\">但是随后就发现事情并非那么容易，主要的问题就是Facebook私有IP空间和EC2的冲突。我们的方法是，首先使用Amazon的
+Virtual&nbsp;Private&nbsp;Cloud（VPC），随后使用Amazon&nbsp;Direct&nbsp;Connect将之与Facebook连接。</span>
+	</p>
+	<p>
+		<span style=\"font-size:14px;\">鉴于每天都会开启新的EC2实例，这个任务看起来非常艰巨。为了最小化服务停机时间以及操作复杂性，EC2和VPC实例是否在同一个网络至关重要。AWS并没有提供安全组或者私有EC2与VPC网络的共享方式，公共地址空间成为两个私有网络的唯一通信渠道。</span>
+	</p>
+	<p>
+		<span style=\"font-size:14px;\">因此，我们发明了Neti，一个动态的iptables操作守护进程，使用Python编写，通过ZooKeeper支撑。Neti不仅提
+供了缺少的安全组功能，还为每个实例都提供了单独的地址，不管是EC2还是VPC。Neti管理了数千个NAT以及实例上的过滤规则，从而保证了独立的、
+flat&nbsp;“overlay”安全通信。NAT规则会为实例选择一个最有效的通信途径，跨越VPC和EC2边界时会选择公共网络，内部通信则会选择私有网
+络。这些对我们的应用和后端系统都是透明的，因为Neti会提供一个恰当的iptables规则。</span>
+	</p>
+	<p>
+		<span style=\"font-size:14px;\">从EC2到VPC花费了大约3周时间，随后所有实例就运行在一个兼容的地址空间，下一个阶段无疑就是迁移到Facebook数据中心。</span>
+	</p>
+	<p>
+		<span style=\"font-size:14px;\">多来以来，Instagram围绕EC2建立了一整套生产系统管理工具，其中包括配置管理脚本，用于服务开通的Chef，以及服务于运营任务的Fabric，从应用到数据库，这些针对EC2环境的工具都将不适用于数据中心环境。</span>
+	</p>
+	<p>
+		<span style=\"font-size:14px;\">为了给这些工具提供可移植性，我们使用了LXC。配置工具用于建立基础系统，Chef则运行在container中，用以安装和配置
+Instagram特定软件。为了支撑横跨EC2及Facebook数据中心的基础设施，当下的Chef加入了新的逻辑用以支撑Facebook内部使用
+的CentOS，之前在EC2上使用的是Ubuntu。同时，用于基础任务的EC2命令行工具也被一个全新的工具代替，它被设计成了一个抽象层，提供了类
+似EC2工作流中的环境，为技术和人们使用方式做过渡。在这些都完成后，VPC到数据中心的迁移只花费了两周。</span>
+	</p>
+</blockquote>
+<p style=\"text-indent:2em;\">
+	<b><span style=\"font-size:14px;\">写在最后</span></b>
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">对于Instagram来说，迁移可以带来显而易见的好处，同时，我们也相信会有更多这个类型的应用被收购后会做出类似的举措，比如未来我们可能会
+看到WhatsApp迁离SoftLayer。然而对于云服务提供商来说，这绝对不是件想看到的事情，Instagram之类的到还好说，如果是
+Netflix这样的合作伙伴，撇开直接收入，生态圈受到的影响显然更加深远。</span>
+</p>
+<p style=\"text-indent:2em;\">
+	<br />
+</p>','','','','','3','N','N','','','0','0','N','1404183197','0','Y','0','Y','1404183197');
 
 DROP TABLE IF EXISTS `yii_question`;
 CREATE TABLE `yii_question` (
@@ -1191,7 +1303,7 @@ CREATE TABLE `yii_session` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='session表';
 
-INSERT INTO `yii_session` VALUES('be80nu5mgghdasm84k3u6rorm6','1404140464','admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.af6bc074.admin/default.captcha|s:4:\"4ecd\";Yii.CCaptchaAction.af6bc074.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
+INSERT INTO `yii_session` VALUES('78a6t7h3v0ft4ie63foe7amai0','1404187601','admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.33c9b0a4.admin/default.captcha|s:4:\"kbjd\";Yii.CCaptchaAction.33c9b0a4.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}Yii.CCaptchaAction.33c9b0a4.question.captcha|s:6:\"4c9c8b\";Yii.CCaptchaAction.33c9b0a4.question.captchacount|i:1;Yii.CCaptchaAction.33c9b0a4.user.captcha|s:6:\"2d7ega\";Yii.CCaptchaAction.33c9b0a4.user.captchacount|i:1;Yii.CCaptchaAction.33c9b0a4.comment.captcha|s:5:\"fdfbk\";Yii.CCaptchaAction.33c9b0a4.comment.captchacount|i:1;');
 
 DROP TABLE IF EXISTS `yii_setting`;
 CREATE TABLE `yii_setting` (
@@ -1319,7 +1431,7 @@ CREATE TABLE `yii_tag` (
   `tag_name` varchar(100) NOT NULL COMMENT 'tag名称',
   `data_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '数据总数',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=68 DEFAULT CHARSET=utf8 COMMENT='新闻标签';
+) ENGINE=MyISAM AUTO_INCREMENT=71 DEFAULT CHARSET=utf8 COMMENT='新闻标签';
 
 INSERT INTO `yii_tag` VALUES('23','国际业务','1');
 INSERT INTO `yii_tag` VALUES('39','Facebook','1');
@@ -1338,6 +1450,9 @@ INSERT INTO `yii_tag` VALUES('57','美女','7');
 INSERT INTO `yii_tag` VALUES('62','机顶盒','1');
 INSERT INTO `yii_tag` VALUES('63','苹果','1');
 INSERT INTO `yii_tag` VALUES('67','谷歌','1');
+INSERT INTO `yii_tag` VALUES('68','巴西','1');
+INSERT INTO `yii_tag` VALUES('69','世界杯','1');
+INSERT INTO `yii_tag` VALUES('70','囧图','1');
 
 DROP TABLE IF EXISTS `yii_tag_data`;
 CREATE TABLE `yii_tag_data` (
@@ -1370,6 +1485,9 @@ INSERT INTO `yii_tag_data` VALUES('57','9','2','Y');
 INSERT INTO `yii_tag_data` VALUES('57','8','2','Y');
 INSERT INTO `yii_tag_data` VALUES('57','7','2','Y');
 INSERT INTO `yii_tag_data` VALUES('57','25','1','Y');
+INSERT INTO `yii_tag_data` VALUES('68','2','2','Y');
+INSERT INTO `yii_tag_data` VALUES('69','2','2','Y');
+INSERT INTO `yii_tag_data` VALUES('57','2','2','Y');
 
 DROP TABLE IF EXISTS `yii_upload`;
 CREATE TABLE `yii_upload` (
@@ -1384,7 +1502,7 @@ CREATE TABLE `yii_upload` (
   `down_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '下载次数',
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '上传时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=74 DEFAULT CHARSET=utf8 COMMENT='附件';
+) ENGINE=MyISAM AUTO_INCREMENT=80 DEFAULT CHARSET=utf8 COMMENT='附件';
 
 INSERT INTO `yii_upload` VALUES('20','1','5.png','uploads/images/201403/3b68894af12.png','','png','application/octet-stream','1724','0','1394775273');
 INSERT INTO `yii_upload` VALUES('19','1','4.png','uploads/images/201403/7b1f180d893.png','','png','application/octet-stream','624','0','1394766396');
@@ -1415,8 +1533,9 @@ INSERT INTO `yii_upload` VALUES('68','1','AliIM2014_taobao(8.00.34C).exe','uploa
 INSERT INTO `yii_upload` VALUES('69','1','111.jpg','uploads/attached/image/201406/3078e9f0bff.jpg','','jpg','image/jpeg','13633','0','1404109948');
 INSERT INTO `yii_upload` VALUES('70','1','223.jpg','uploads/attached/image/201406/f6cf41e3649.jpg','','jpg','image/jpeg','155671','0','1404110187');
 INSERT INTO `yii_upload` VALUES('71','1','111.jpg','uploads/attached/image/201406/468a9574708.jpg','','jpg','image/jpeg','22855','0','1404110527');
-INSERT INTO `yii_upload` VALUES('72','1','113.jpg','uploads/images/201406/b2147835d3a.jpg','','jpg','application/octet-stream','39486','0','1404111643');
-INSERT INTO `yii_upload` VALUES('73','1','114.jpg','uploads/images/201406/f937c90da76.jpg','','jpg','application/octet-stream','71454','0','1404111646');
+INSERT INTO `yii_upload` VALUES('77','1','121.jpg','uploads/images/201407/2d8af2a52c9.jpg','uploads/thumbs/201407/small_2d8af2a52c9.jpg','jpg','application/octet-stream','71454','0','1404181897');
+INSERT INTO `yii_upload` VALUES('78','1','122.jpg','uploads/images/201407/830c15efce6.jpg','uploads/thumbs/201407/small_830c15efce6.jpg','jpg','application/octet-stream','39486','0','1404182170');
+INSERT INTO `yii_upload` VALUES('79','1','123.jpg','uploads/images/201407/8068f3a90b7.jpg','uploads/thumbs/201407/small_8068f3a90b7.jpg','jpg','application/octet-stream','193075','0','1404182633');
 
 DROP TABLE IF EXISTS `yii_user`;
 CREATE TABLE `yii_user` (
@@ -1442,7 +1561,7 @@ CREATE TABLE `yii_user` (
 INSERT INTO `yii_user` VALUES('1','zjh_admin','$2a$08$O9zKWgiL8YBa5Lzss2G5PO08tAj1HmI6R.2J3hLXPC9lPcLPPx5GS','xb_zjh@126.com','10','1','1379001600','','','','','NULL','','','0');
 INSERT INTO `yii_user` VALUES('2','没那么简单','$2a$13$5HFLakgTxQyyfzcZFQElWOk5W.OHhPnfwKXLAYwokPNVsZSyW4Tqy','376685457@qq.com','9','1','1379091600','','','','','','','','0');
 INSERT INTO `yii_user` VALUES('7','微博评论','$2a$13$TEpIe58TLJIUmLuoE7pYD.KK74cRlLXSaNoXf0bnxbcLFFmmW1E5u','xweibo_user85589@sina.com','1','1','1379101600','','','','','','','','0');
-INSERT INTO `yii_user` VALUES('31','testUser','$2a$08$QuvI8Ory.KMdKvmaCV/g9O8AoVTQMMvDrS.wvkOnEWBIBJwm3kLsq','1441044277@qq.com','1','1','1399346040','uploads/avatar/201405/small_31_c696db73478.jpg','nicename','这个家伙很懒，什么都不写','http://www.baidu.com','','','127.0.0.1','35');
+INSERT INTO `yii_user` VALUES('31','testUser','$2a$08$QuvI8Ory.KMdKvmaCV/g9O8AoVTQMMvDrS.wvkOnEWBIBJwm3kLsq','1441044277@qq.com','1','1','1399346040','uploads/avatar/201405/small_31_c696db73478.jpg','nicename','这个家伙很懒，什么都不写','http://www.baidu.com','','','127.0.0.1','36');
 INSERT INTO `yii_user` VALUES('32','test123','$2a$08$IrFpdJZKlMTUoiLS/D79kOiFfy9MInvsRQuoNc5hiCSL9qSISQxIm','test123@qq.com','1','1','1399346280','','','','','','','','0');
 INSERT INTO `yii_user` VALUES('33','test001','$2a$08$mmxLn6zpboN/Q2BnDfk4MesW4qbcIRD0ONmiuJ/gwv1X1kuinCTge','326196998@qq.com','1','1','1400462626','uploads/avatar/201405/small_33_0681827b824.png','','','','','','127.0.0.1','8');
 
@@ -1496,5 +1615,5 @@ INSERT INTO `yii_video` VALUES('2','钢铁侠','13','uploads/images/201406/bf941
 INSERT INTO `yii_video` VALUES('3','明日边缘','13','uploads/images/201406/4cc06a97d5a.jpg','','chinese','comedy','0.0','','','','0.00','1403148264','1403148264','1','0','','Y','','','');
 INSERT INTO `yii_video` VALUES('4','窃听风云3','13','uploads/images/201406/a02a34ce432.jpg','','chinese','comedy','8.0','','','','0.00','1403148306','1403148306','5','0','{\"t\":1,\"s\":[0,0,0,1,0]}','Y','','','');
 INSERT INTO `yii_video` VALUES('5','终结者4','13','uploads/images/201406/0bb513c708b.jpg','','chinese','comedy','0.0','','','','0.00','1403148363','1403148363','3','0','','Y','','','');
-INSERT INTO `yii_video` VALUES('6','孤胆保镖','13','uploads/images/201406/566eb360159.jpg','','chinese','active','8.0','','','','0.00','1404114076','1403148418','15','0','{\"t\":2,\"s\":[0,0,1,0,1]}','Y','','','');
+INSERT INTO `yii_video` VALUES('6','孤胆保镖','13','uploads/images/201406/566eb360159.jpg','','chinese','active','8.0','','','','0.00','1404114076','1403148418','17','0','{\"t\":2,\"s\":[0,0,1,0,1]}','Y','','','');
 

@@ -15,6 +15,9 @@
 .content_left .view_info span { margin-right:15px; }
 .content_left .view_info em { color:#e2534b; }
 .content_left .view_info .tags { padding-left:23px; background:url(../images/ico_tag.png) no-repeat left center; }
+.content_left .view_info .tags em a { padding:3px 4px; background-color:#7f8c8c; border-radius:5px; color:#FFFFFF; text-decoration:none; }
+.content_left .view_info .tags em a:hover { background-color:#e2534b; }
+
 .content_left .view_info .views { padding-left:23px; background:url(../images/ico_view.png) no-repeat left center; }
 .content_left .view_info .downs { padding-left:23px; background:url(../images/ico_down.png) no-repeat left center; }
 .content_left .content_info { margin-bottom:20px; }
@@ -24,13 +27,14 @@
 .content_left .share_box ul li { float:left; margin:0 10px; }
 
 /* 图集幻灯片 */
-#show_pics { width:850px; overflow:hidden;  border:1px solid #CCCCCC; position:relative;}
-#show_pics ul { width:600%; position:relative;}
-#show_pics li { width:250px; height:278px; display:table-cell; text-align:center; vertical-align:middle;}
-#show_pics .prev_btn { width:32px; height:50px; background:url(../images/foc_btn.png) no-repeat left 0; position:absolute; left:0; top:110px; z-index:99;}
+#show_pics { width:auto; overflow:hidden; position:relative;}
+#show_pics li {  display:none; width:850px; float:left; overflow:hidden;  text-align:center; list-style:none;}
+#show_pics .prev_btn { width:32px; height:50px; background:url(../images/foc_btn.png) no-repeat left 0; position:absolute; left:0; top:45%; z-index:99;}
 #show_pics .next_btn { left:auto; right:0; background-position:right 0;}
-#show_pics li:hover { background-color:#CCCCCC;}
-#show_pics li img {max-width:250px; max-height:250px; cursor:pointer;}
+#show_pics li img { cursor:pointer;}
+.small_pics {  border:1px solid #CCCCCC; overflow-x:auto; overflow-y:hidden;}
+.small_pics li { float:left; width:100px; height:100px; margin-right:10px; list-style:none;}
+.small_pics li img { cursor:pointer;}
 
 .content_right .category { margin-bottom:30px; }
 .content_right .category dt { background-color: #cccccc; border-left: 4px solid #996600;  font-size: 16px;

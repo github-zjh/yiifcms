@@ -39,14 +39,14 @@
 #intro ul li .ico_two { background-image:url(../images/ico_key.png);}
 #intro ul li .ico_three { background-image:url(../images/ico_flag.png);}
 #intro ul li .ico_four { background-image:url(../images/ico_glass.png);}
-#intro ul li p { height:57px; margin-top:15px; text-align:left; padding:0 35px; font-size:14px; line-height:28px;}
+#intro ul li p { height:112px; margin-top:15px; text-align:left; padding:0 35px; font-size:14px; line-height:28px;}
 #intro ul li a {
 	display:inline-block;	
 	width:200px;
 	height:54px;
 	line-height:54px;
 	position:relative;
-	bottom:-86px;
+	bottom:-24px;
 	border-radius:5px; 
 	background-color:#428BCA;	
 	text-decoration:none;
@@ -74,7 +74,7 @@
 .tab_post { padding:20px 0 20px 20px;}
 .tab_post li { float:left; width:280px; line-height:30px;}
 .tab_post li a { display:block; color:#555555;}
-.tab_post li a:hover {  text-decoration:underline;}
+.tab_post li a:hover {  text-decoration:underline; color:#111111;}
 
 .tab_image { padding:20px 9px 10px 9px;}
 .tab_image li { float:left; border:1px solid #DDDDDD; text-align:center; padding:5px; margin-right:8px; margin-bottom:8px; overflow:hidden;}

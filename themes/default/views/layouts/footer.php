@@ -8,7 +8,7 @@
 		<li class="footer_mid">
 			<h2>新手指南</h2>
 			<ul>
-				<li><a href="<?php echo $this->createUrl('page/login');?>">如何登录</a></li>
+				<li><a href="<?php echo $this->createUrl('page/guide');?>">新手指南</a></li>
 				<li><a href="<?php echo $this->createUrl('page/register');?>">注册流程</a></li>		
 				<li><a href="<?php echo $this->createUrl('page/comment');?>">评论审核</a></li>		
 			</ul>
@@ -17,7 +17,7 @@
 			<h2>快捷通道</h2>
 			<ul>
 				<li><a href="<?php echo $this->createUrl('page/about');?>">关于我们</a></li>
-				<li><a href="<?php echo $this->createUrl('questio/index');?>">留言反馈</a></li>	
+				<li><a href="<?php echo $this->createUrl('question/index');?>">留言反馈</a></li>	
 			</ul>
 		</li>
 		<li class="footer_right">

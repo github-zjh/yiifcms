@@ -40,7 +40,8 @@ $(function() {
                 $imgHtml += '<label>网址：</label><input name="imageList[url][]" type="text" value="" /><br/>';
                 $imgHtml += '<a href="javascript:uploadifyRemove(&quot;' + json.fileId + '&quot;,&quot;image_&quot;)">删除</a>';
                 $imgHtml += '<input name="imageList[fileId][]" type="hidden" value="'+json.fileId+'" />';
-                $imgHtml += '<input name="imageList[file][]" type="hidden" value="'+json.file+'"/></li>';
+                $imgHtml += '<input name="imageList[file][]" type="hidden" value="'+json.file+'"/>';
+                $imgHtml += '<input name="imageList[thumb][]" type="hidden" value="'+json.thumb+'"/></li>';
                 $("#fileListWarp").append($imgHtml);
             } else {
                 alert(json.message);

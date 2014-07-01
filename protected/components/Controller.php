@@ -138,7 +138,8 @@ class Controller extends CController
 		foreach ( (array)$data['file'] as $key => $row ) {
 			if ( $row ) {
 				$var[$key]['fileId'] = $data['fileId'][$key];
-				$var[$key]['file'] = $row;
+				$var[$key]['file'] = $data['file'][$key];
+				$var[$key]['thumb'] = $data['thumb'][$key];
 				$var[$key]['desc'] = $data['desc'][$key];
 				$var[$key]['url'] = $data['url'][$key];
 			}

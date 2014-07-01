@@ -16,7 +16,7 @@
 html { margin: 0; width: 100%; height: 100%; }
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { margin: 0; padding: 0; }
 body { width:100%; background: #FFFFFF; overflow: auto; }
-body, td, input, textarea, select, button { color: #555; font: 12px "Microsoft Yahei", Verdana, Lucida, Helvetica, Arial, sans-serif; }
+body, td, input, textarea, select, button { color: #555; font: 12px/24px "Microsoft Yahei", Verdana, Lucida, Helvetica, Arial, sans-serif; }
 input , img, textarea{ border:none;}
 ul, ol { list-style: none; }
 h1, h2, h3, h4, h5, h6 { font-weight: normal; font-size: 100%;  }
@@ -72,9 +72,9 @@ box-shadow: 0 5px 0 #e2534b;
 
 /* 头部搜索  */
 #search { float:right; padding:12px 0;}
-#search .search_btn { float:right;line-height:33px; height:33px; width:50px; border-radius:0 3px 3px 0; background-color:#EAEAEA; color:#555555; }
+#search .search_btn { float:right;line-height:34px; height:34px; width:50px; border-radius:0 3px 3px 0; background-color:#EAEAEA; color:#555555; }
 #search .search_btn:hover { background-color:#CCCCCC; }
-#search input { float:left; padding:8px 4px; border-radius:3px 0 0 3px; width:200px; }
+#search input { float:left; padding:5px 4px; border-radius:3px 0 0 3px; width:200px; }
 
 #login { float:right; width:auto; }
 #login a { 

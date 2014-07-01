@@ -49,13 +49,13 @@
 		<div class="panel_container">
 			<ul id="tab_post1" class="tab_post clear">
 				<?php foreach((array)$news_new as $nn):?>
-				<li><a href="<?php echo $this->createUrl('post/view', array('id'=>$nn->id));?>" title="<?php echo $nn->title;?>"><?php echo Helper::truncate_utf8_string($nn->title, 22);?></a></li>
+				<li><a href="<?php echo $this->createUrl('post/view', array('id'=>$nn->id));?>" title="<?php echo $nn->title;?>"><?php echo Helper::truncate_utf8_string($nn->title, 20);?></a></li>
 				<?php endforeach;?>				
 			</ul>
 			
 			<ul id="tab_post2" class="tab_post clear">
 				<?php foreach((array)$news_hot as $nh):?>
-				<li><a href="<?php echo $this->createUrl('post/view', array('id'=>$nh->id));?>" title="<?php echo $nh->title;?>"><?php echo Helper::truncate_utf8_string($nh->title, 22);?></a></li>
+				<li><a href="<?php echo $this->createUrl('post/view', array('id'=>$nh->id));?>" title="<?php echo $nh->title;?>"><?php echo Helper::truncate_utf8_string($nh->title, 20);?></a></li>
 				<?php endforeach;?>
 			</ul>			
 		</div>			
