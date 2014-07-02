@@ -35,7 +35,7 @@ $(document).ready(function(){
     <tr class="tb_list" >
       <td ><input type="checkbox" name="id[]" value="<?php echo $row->id?>">
         <?php echo $row->id?></td>          
-      <td ><?php echo $row->content ?></td>
+      <td> <div style="max-height:110px; overflow:auto;"><?php echo $row->content ?></div></td>
       <td ><?php echo $row->status=='Y'?"<span style='color:green'>".Yii::t('admin','Pass Checking')."</span>":"<span style='color:red'>".Yii::t('admin','Wait Checking')."</span>"; ?></td>
       <td ><?php echo date('Y-m-d H:i',$row->create_time)?></td>
       <td >
