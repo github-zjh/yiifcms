@@ -18,7 +18,7 @@ class DatabaseController extends Backend
         parent::init();
         parent::auth();
         $this->_db = Yii::app()->db;
-        $this->_bakupPath = WWWPATH.'/data/dbbak/'; 
+        $this->_bakupPath = WWWPATH.'/protected/data/dbbak/'; 
     }
     
     /**

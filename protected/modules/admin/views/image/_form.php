@@ -5,7 +5,7 @@
   </tr>
 </table>
 <?php endif?>
-<script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/public/js/jscolor/jscolor.js"></script>
+<script type="text/javascript" src="<?php echo $this->_static_public?>/js/jscolor/jscolor.js"></script>
 <?php $form=$this->beginWidget('CActiveForm',array('id'=>'xform','htmlOptions'=>array('name'=>'xform','enctype'=>'multipart/form-data'))); ?>
 <table class="form_table">
   <tr>
@@ -92,7 +92,7 @@
   </tr>
   <tr >
     <td><div>
-        <p><a href="javascript:uploadifyAction('fileListWarp')" ><img src="<?php echo $this->_baseUrl?>/static/admin/images/create.gif" align="absmiddle">添加图片</a></p>
+        <p><a href="javascript:uploadifyAction('fileListWarp')" ><img src="<?php echo $this->module->assetsUrl;?>/images/create.gif" align="absmiddle">添加图片</a></p>
         <ul id="fileListWarp">
           <?php foreach((array)$imageList as $key=>$row):?>
           <?php if($row):?>

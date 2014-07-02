@@ -73,7 +73,7 @@ class Helper extends CController
 					$cur_path = $dir . '/' . $file;
 					if (is_dir ( $cur_path )) {
 						$ret['dirs'][] =$cur_path;
-						$all && self::scanfDir( $cur_path);
+						$all && self::scanfDir( $cur_path, $all);
 					} else {
 						$ret ['files'] [] = $cur_path;
 					}

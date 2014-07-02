@@ -10,7 +10,7 @@
 </table>
 <?php endif?>
 <script type="text/javascript"
-	src="<?php echo $this->_baseUrl?>/static/public/js/jscolor/jscolor.js"></script>
+	src="<?php echo $this->_static_public?>/js/jscolor/jscolor.js"></script>
 <?php $form=$this->beginWidget('CActiveForm',array('id'=>'xform','htmlOptions'=>array('name'=>'xform','enctype'=>'multipart/form-data'))); ?>
 <table class="form_table">
 	<tr>
@@ -121,7 +121,7 @@
 				<p>
 					<a href="javascript:uploadifyAction('fileListWarp')">
 						<img
-							src="<?php echo $this->_baseUrl?>/static/admin/images/create.gif"
+							src="<?php echo $this->module->assetsUrl;?>/images/create.gif"
 							align="absmiddle">
 						添加图片
 					</a>

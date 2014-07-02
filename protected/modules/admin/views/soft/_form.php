@@ -5,7 +5,7 @@
   </tr>
 </table>
 <?php endif?>
-<script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/public/js/jscolor/jscolor.js"></script>
+<script type="text/javascript" src="<?php echo $this->_static_public?>/js/jscolor/jscolor.js"></script>
 <?php $form=$this->beginWidget('CActiveForm',array('id'=>'xform','htmlOptions'=>array('name'=>'xform','enctype'=>'multipart/form-data'))); ?>
 <table class="form_table">
   <tr>
@@ -162,13 +162,13 @@ $(function(){
 			'queueID': 'fileQueue',	
 	        'fileSizeLimit' : '50MB',
 	        'fileTypeExts': '*.pdf;*.doc;*.docx;*.xls;*.ppt;*.exe;*.zip;*.tar;*.gz;*.msi;*.7z;',
-	        'buttonImage': '<?php echo $this->_baseUrl?>/static/public/js/uploadify/select.png',
+	        'buttonImage': '<?php echo $this->_static_public?>/js/uploadify/select.png',
 	        'formData': {
 	            'sessionId'   : '<?php echo Yii::app()->session->sessionID; ?>',
 				'timestamp'   : '<?php echo time();?>',
 				'token'       : '<?php echo md5('unique_salt'.time()); ?>'
 	        },
-	        'swf': '<?php echo $this->_baseUrl;?>/static/public/js/uploadify/uploadify.swf',
+	        'swf': '<?php echo $this->_static_public?>/js/uploadify/uploadify.swf',
 	        'uploader': '<?php echo $this->createUrl('uploadify/file')?>',	                
 	       	'onSelectError':function(file, errorCode, errorMsg){
 		       	var msg = '';
@@ -206,5 +206,5 @@ $(function(){
 </script>
 <?php $form=$this->endWidget(); ?>
 
-<script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/public/js/uploadify/jquery.uploadify.min.js"></script>
-<link rel="stylesheet" type="text/css" href="<?php echo $this->_baseUrl?>/static/public/js/uploadify/uploadify.css">
+<script type="text/javascript" src="<?php echo $this->_static_public?>/js/uploadify/jquery.uploadify.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo $this->_static_public?>/js/uploadify/uploadify.css">

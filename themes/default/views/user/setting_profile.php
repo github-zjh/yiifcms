@@ -60,7 +60,7 @@
 										'timestamp'   : '<?php echo time();?>',
 										'token'       : '<?php echo md5('unique_salt'.time()); ?>'
 							        },
-							        'swf': '<?php echo $this->_baseUrl;?>/static/public/js/uploadify/uploadify.swf',
+							        'swf': '<?php echo $this->_static_public?>/js/uploadify/uploadify.swf',
 							        'uploader': '<?php echo $this->createUrl('uploadify/avatar');?>',	                
 							       	'onSelectError':function(file, errorCode, errorMsg){
 								       	var msg = '';
@@ -171,8 +171,8 @@
 		<?php $this->endWidget();?>
 	</div>
 	
-	<script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/public/js/uploadify/jquery.uploadify.min.js"></script>
-	<script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/public/js/jquery/jquery.Jcrop.min.js"></script>	
-	<script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/public/js/zebra_dialog/zebra_dialog.js"></script>
-	<link rel="stylesheet" href="<?php echo $this->_baseUrl?>/static/public/js/zebra_dialog/css/zebra_dialog.css" type="text/css">
+	<script type="text/javascript" src="<?php echo $this->_static_public?>/js/uploadify/jquery.uploadify.min.js"></script>
+	<script type="text/javascript" src="<?php echo $this->_static_public?>/js/jquery/jquery.Jcrop.min.js"></script>	
+	<script type="text/javascript" src="<?php echo $this->_static_public?>/js/zebra_dialog/zebra_dialog.js"></script>
+	<link rel="stylesheet" href="<?php echo $this->_static_public?>/js/zebra_dialog/css/zebra_dialog.css" type="text/css">
 	

@@ -31,7 +31,7 @@
         <td><?php echo $info['filesize']?> M</td>
         <td><?php echo $info['maketime']?></td>
         <td><?php echo $info['number']?></td>
-        <td><a href="<?php echo $this->createUrl('database/import',array('pre'=>$info['pre'], 'dosubmit'=>'1'))?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/refresh.png" align="absmiddle" /></a>&nbsp;&nbsp;&nbsp; <a href="<?php echo $this->createUrl('database/operate',array('command'=>'downloadFile','sqlfile'=>$info['filename']))?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/download.png" align="absmiddle" /></a></td>
+        <td><a href="<?php echo $this->createUrl('database/import',array('pre'=>$info['pre'], 'dosubmit'=>'1'))?>"><img src="<?php echo $this->module->assetsUrl;?>/images/refresh.png" align="absmiddle" /></a>&nbsp;&nbsp;&nbsp; <a href="<?php echo $this->createUrl('database/operate',array('command'=>'downloadFile','sqlfile'=>$info['filename']))?>"><img src="<?php echo $this->module->assetsUrl;?>/images/download.png" align="absmiddle" /></a></td>
       </tr>
       <?php endforeach?>
       <?php endif?>

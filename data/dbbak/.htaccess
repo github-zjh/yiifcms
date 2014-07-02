@@ -1,3 +1,0 @@
-# 禁止访问该目录
-Order All, Deny
-Deny from All

@@ -49,13 +49,15 @@ $(document).ready(function(){
       <?php echo $row->email?></td>      
       <td><?php $group = UserGroup::model()->findByPk($row->groupid); echo $group->group_name;?> </td>
       <td ><?php if($row->status == 0):?>
-        <span class="red"><img src="<?php echo $this->_baseUrl?>/static/admin/images/error.png" align="absmiddle" />锁定</span>
+        <span class="red"><img src="<?php echo $this->module->assetsUrl;?>/images/error.png" align="absmiddle" />锁定</span>
         <?php else:?>
         正常
         <?php endif;?>
       </td>
       <td ><?php echo date('Y-m-d H:i',$row->addtime)?></td>
-      <td ><a href="<?php echo  $this->createUrl('update',array('id'=>$row->uid))?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;<a href="<?php echo  $this->createUrl('batch',array('command'=>'delete', 'id'=>$row->uid))?>" class="confirmSubmit"><img src="<?php echo $this->_baseUrl?>/static/admin/images/delete.png" align="absmiddle" /></a></td>
+      <td >
+      <a href="<?php echo  $this->createUrl('update',array('id'=>$row->uid))?>"><img src="<?php echo $this->module->assetsUrl;?>/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
+      <a href="<?php echo  $this->createUrl('batch',array('command'=>'delete', 'id'=>$row->uid))?>" class="confirmSubmit"><img src="<?php echo $this->module->assetsUrl;?>/images/delete.png" align="absmiddle" /></a></td>
     </tr>
     <?php endforeach;?>
     <tr>

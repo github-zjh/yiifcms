@@ -35,15 +35,15 @@ $(document).ready(function(){
         <?php echo $row->id?></td>
       <td ><?php echo $row->title?>
         <?php if($row->logo):?>
-        <img src="<?php echo $this->_baseUrl?>/static/admin/images/image.png" align="absmiddle" />
+        <img src="<?php echo $this->module->assetsUrl;?>/images/image.png" align="absmiddle" />
         <?php endif;?>
         <?php if($row->status_is == 'N'):?>
-        <img src="<?php echo $this->_baseUrl?>/static/admin/images/error.png" align="absmiddle" />
+        <img src="<?php echo $this->module->assetsUrl;?>/images/error.png" align="absmiddle" />
         <?php endif;?></td>
       <td >
-      	<a href="<?php echo  $this->createUrl('update',array('id'=>$row->id))?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
-      	<a href="<?php echo  $this->createUrl('batch',array('command'=>'linkDelete', 'id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->_baseUrl?>/static/admin/images/delete.png" align="absmiddle" /></a>&nbsp;&nbsp;
-      	<a href="<?php echo  $row->link;?>" target="_blank"><img src="<?php echo $this->_baseUrl?>/static/admin/images/view.png" align="absmiddle" /></a>&nbsp;&nbsp;
+      	<a href="<?php echo  $this->createUrl('update',array('id'=>$row->id))?>"><img src="<?php echo $this->module->assetsUrl;?>/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
+      	<a href="<?php echo  $this->createUrl('batch',array('command'=>'linkDelete', 'id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->module->assetsUrl;?>/images/delete.png" align="absmiddle" /></a>&nbsp;&nbsp;
+      	<a href="<?php echo  $row->link;?>" target="_blank"><img src="<?php echo $this->module->assetsUrl;?>/images/view.png" align="absmiddle" /></a>&nbsp;&nbsp;
       </td>
     </tr>
     <?php endforeach;?>

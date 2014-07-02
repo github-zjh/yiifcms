@@ -25,7 +25,7 @@ class DefaultController extends BackendBase
 						'class'=>'MyCaptchaAction',
 						'backColor'=>0xf4f4f4,  //背景色		
 						'foreColor'=> 0x3C5880,	//前景色			
-						'fontFile' => $this->_webRoot.'/static/public/fonts/maturasc.ttf', //自定义字体
+						'fontFile' => $this->_fonts.'/fonts/maturasc.ttf', //自定义字体
 						'padding'=>0,
 						'width' => 90,
 						'height'=>30,

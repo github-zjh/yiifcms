@@ -34,6 +34,33 @@ class CacheController extends Backend{
 	 * 缓存更新
 	 */
 	public function actionCacheUpdate() {
-		
+		$cache = $this->_request->getPost('cache');
+		foreach((array)$cache as $value){
+			if($value == 'style'){
+				//更新样式缓存
+				$assets = $this->_webRoot.'/assets';				
+				if(is_dir($assets)){
+					$dirs = Helper::scanfDir($assets,true);
+															
+					//先删除文件
+					foreach((array)$dirs['files'] as $file){
+						$pathinfo = pathinfo($file);
+						if($pathinfo['basename'] != 'README.md'){
+							@unlink($file);							
+						}
+					}
+									
+					// 再删除目录 
+					rsort($dirs['dirs']);  //降序
+					foreach((array)$dirs['dirs'] as $dir){						
+						@rmdir($dir);
+					}
+				}	
+			}
+			if($value == 'content'){
+				//更新内容缓存
+			}
+		}
+		$this->message('success',Yii::t('admin','Update Cache Success'), $this->createUrl('index'));
 	}
 }

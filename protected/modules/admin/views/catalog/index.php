@@ -23,23 +23,23 @@
       <td ><input type="checkbox" name="id[]" value="<?php echo $row['id']?>">
         <?php echo $row['id']?></td>
       <td ><input name="sortOrder[<?php echo $row['id']?>]" type="text" id="sortOrder[]" value="<?php echo $row['sort_order']?>" size="5" /></td>
-      <td ><?php echo $row['str_repeat'] ?><a href="<?php echo $this->createUrl('create',array('id'=>$row['id']))?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/insert.png" align="absmiddle" /></a> <a href="<?php echo  $this->createUrl('update',array('id'=>$row['id']))?>"><?php echo $row['catalog_name'] ?></a>
+      <td ><?php echo $row['str_repeat'] ?><a href="<?php echo $this->createUrl('create',array('id'=>$row['id']))?>"><img src="<?php echo $this->module->assetsUrl;?>/images/insert.png" align="absmiddle" /></a> <a href="<?php echo  $this->createUrl('update',array('id'=>$row['id']))?>"><?php echo $row['catalog_name'] ?></a>
         <?php if ($row['catalog_name_alias']):?>
         [<?php echo $row['catalog_name_alias'] ?>]
         <?php endif;?>
         <?php if($row['attach_file']):?>
-        <img src="<?php echo $this->_baseUrl?>/static/admin/images/image.png" align="absmiddle" />
+        <img src="<?php echo $this->module->assetsUrl;?>/images/image.png" align="absmiddle" />
         <?php endif;?>
         <?php if($row['status'] == 'N'):?>
-        <img src="<?php echo $this->_baseUrl?>/static/admin/images/error.png" align="absmiddle" />[<?php echo Yii::t('admin','Hidden');?>]
+        <img src="<?php echo $this->module->assetsUrl;?>/images/error.png" align="absmiddle" />[<?php echo Yii::t('admin','Hidden');?>]
         <?php endif;?></td>     
       <td ><?php echo Yii::t('admin','Type '.ucfirst(array_search($row['type'], $this->_type_ids)));?></td> 
       <td ><?php echo date('Y-m-d H:i',$row['create_time'])?></td>
       <td ><?php echo date('Y-m-d H:i',$row['update_time'])?></td>
       <td >
-      	<a href="<?php echo  $this->createUrl('update',array('id'=>$row['id']))?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
-      	<a href="<?php echo  $this->createUrl('batch',array('command'=>'delete', 'id'=>$row['id']))?>" class="confirmSubmit"><img src="<?php echo $this->_baseUrl?>/static/admin/images/delete.png" align="absmiddle" /></a>&nbsp;&nbsp;
-      	<a href="<?php echo  $this->createUrl('/catelog/index',array('id'=>$row['id']))?>" target="_blank"><img src="<?php echo $this->_baseUrl?>/static/admin/images/view.png" align="absmiddle" /></a>
+      	<a href="<?php echo  $this->createUrl('update',array('id'=>$row['id']))?>"><img src="<?php echo $this->module->assetsUrl;?>/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
+      	<a href="<?php echo  $this->createUrl('batch',array('command'=>'delete', 'id'=>$row['id']))?>" class="confirmSubmit"><img src="<?php echo $this->module->assetsUrl;?>/images/delete.png" align="absmiddle" /></a>&nbsp;&nbsp;
+      	<a href="<?php echo  $this->createUrl('/catelog/index',array('id'=>$row['id']))?>" target="_blank"><img src="<?php echo $this->module->assetsUrl;?>/images/view.png" align="absmiddle" /></a>
       </td>
     </tr>
     <?php endforeach;?>

@@ -264,4 +264,7 @@ return array (
 		
 	/* 模型管理 */
     'Modeltype Manage' => '内容模型管理',
+    
+    /* 缓存管理 */
+	'Update Cache Success' => '更新缓存成功',
 );

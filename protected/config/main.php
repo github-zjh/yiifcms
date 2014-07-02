@@ -117,9 +117,8 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		//自定义配置
-		'static'=>array(
-			'admin' => '/static/admin',
-			'public' => '/static/public',
+		'static'=>array(			
+			'public' => '/public',
 		),
 		//邮件配置
 		'mailer'=>array(

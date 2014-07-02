@@ -36,6 +36,7 @@ class Controller extends CController
 	protected  $_baseUrl = '';
 	protected  $_basePath = ''; //应用程序目录
 	protected  $_webRoot = '';  //网站根目录
+	protected  $_fonts = '';    //字体目录
 	protected  $_static_public = ''; //公共资源目录	
 	protected  $_adminGroupID = 10; //系统管理员用户组ID
 	protected  $_type_ids = array(); //内容模型id
@@ -48,6 +49,7 @@ class Controller extends CController
 		$this->_baseUrl = Yii::app()->baseUrl;
 		$this->_basePath = Yii::app()->basePath;		
 		$this->_webRoot = Yii::getPathOfAlias('webroot');
+		$this->_fonts = $this->_webRoot.'/public';
 		$this->_static_public = Yii::app()->params['static']['public'];		
 		$settings = Setting::model()->findAll();
 		foreach ($settings as $key => $row) {
@@ -185,7 +187,7 @@ class Controller extends CController
 	/**
 	 * 提示信息
 	 */
-	static public function message( $action = 'success', $content = '', $redirect = 'javascript:history.back(-1);', $timeout = 4 , $stop=false) {
+	public function message( $action = 'success', $content = '', $redirect = 'javascript:history.back(-1);', $timeout = 4 , $stop=false) {
 	
 		switch ( $action ) {
 			case 'success':
@@ -258,7 +260,7 @@ html,body,div,p,a,h3{margin:0;padding:0;}
     </script><div class="tips_wrap">
     <div class="tips_inner">
         <div class="tips_img">
-            <img src="' . Yii::app()->baseUrl . '/static/public/images/' . $images . '"/>
+            <img src="' . $this->_static_public.'/images/' . $images . '"/>
         </div>
         <div class="tips_info">
 	
@@ -273,7 +275,7 @@ html,body,div,p,a,h3{margin:0;padding:0;}
 	    $body2 = '<div class="tips_wrap">
     <div class="tips_inner">
         <div class="tips_img">
-            <img src="' . Yii::app()->baseUrl . '/static/public/images/' . $images . '"/>
+            <img src="' . $this->_static_public.'/images/' . $images . '"/>
         </div>
         <div class="tips_info">
 	

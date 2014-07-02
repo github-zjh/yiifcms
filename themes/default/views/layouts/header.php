@@ -82,7 +82,8 @@
 		<?php else:?>
 		<div id="logout">		
 			<a href="<?php echo $this->createUrl('user/index');?>" class="show_drop">
-				<img src="<?php echo $this->_stylePath.'/images/avatar-small-img.png';?>" width="24" height="24" />
+				<?php $profile= User::model()->findByPk(Yii::app()->user->id);?>
+				<img src="<?php echo file_exists($profile->avatar)?$profile->avatar:$this->_stylePath.'/images/avatar-max-img.png';?>" width="24" height="24" />
 				<label><?php echo Yii::app()->user->name;?></label>
 			</a>
 			<dl id="drop_down_user">				

@@ -34,7 +34,9 @@ $(document).ready(function(){
       <td ><input type="checkbox" name="id[]" value="<?php echo $row->id?>">
         <?php echo $row->id?></td>
       <td ><?php echo $row->position;?></td>   
-      <td ><a href="<?php echo  $this->createUrl('Update',array('id'=>$row->id))?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;<a href="<?php echo  $this->createUrl('batch',array('command'=>'adDelete', 'id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->_baseUrl?>/static/admin/images/delete.png" align="absmiddle" /></a></td>
+      <td >
+      <a href="<?php echo  $this->createUrl('Update',array('id'=>$row->id))?>"><img src="<?php echo $this->module->assetsUrl;?>/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
+      <a href="<?php echo  $this->createUrl('batch',array('command'=>'adDelete', 'id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->module->assetsUrl;?>/images/delete.png" align="absmiddle" /></a></td>
     </tr>
     <?php endforeach;?>
     <tr class="submit">

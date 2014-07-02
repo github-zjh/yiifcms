@@ -41,7 +41,9 @@ $(document).ready(function(){
       <td ><?php echo $row->title?><br />
         <?php echo $row->title_alias?></td>
       <td ><?php echo date('Y-m-d H:i',$row->create_time)?></td>
-      <td ><a href="<?php echo  $this->createUrl('update',array('id'=>$row->id))?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;<a href="<?php echo  $this->createUrl('batch',array('command'=>'specialDelete', 'id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->_baseUrl?>/static/admin/images/delete.png" align="absmiddle" /></a></td>
+      <td >
+      <a href="<?php echo  $this->createUrl('update',array('id'=>$row->id))?>"><img src="<?php echo $this->module->assetsUrl;?>/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
+      <a href="<?php echo  $this->createUrl('batch',array('command'=>'specialDelete', 'id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->module->assetsUrl;?>/images/delete.png" align="absmiddle" /></a></td>
     </tr>
     <?php endforeach;?>
     <tr>

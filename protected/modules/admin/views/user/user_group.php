@@ -18,10 +18,10 @@
     <tr class="tb_list">
       <td ><?php echo $row->id?></td>
       <td ><?php echo $row->group_name?></td>     
-      <td ><a href="<?php echo  $this->createUrl('groupUpdate',array('id'=>$row->id))?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
+      <td ><a href="<?php echo  $this->createUrl('groupUpdate',array('id'=>$row->id))?>"><img src="<?php echo $this->module->assetsUrl;?>/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
       	<?php if(1==2):  //暂时屏蔽删除功能?>
       	<?php //if($row->id != $this->_adminGroupID):?>
-      	<a href="<?php echo  $this->createUrl('batch',array('command'=>'groupDelete', 'id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->_baseUrl?>/static/admin/images/delete.png" align="absmiddle" /></a>
+      	<a href="<?php echo  $this->createUrl('batch',array('command'=>'groupDelete', 'id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->module->assetsUrl;?>/images/delete.png" align="absmiddle" /></a>
         <?php endif;?>
       </td>
     </tr>

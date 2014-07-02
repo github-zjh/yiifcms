@@ -38,14 +38,14 @@ $(document).ready(function(){
         <?php echo $row->id?></td>
       <td ><?php echo $row->type_name?>
         <?php if($row->status == 'N'):?>
-        <img src="<?php echo $this->_baseUrl?>/static/admin/images/error.png" align="absmiddle" />[<?php echo Yii::t('admin','Hidden');?>]
+        <img src="<?php echo $this->module->assetsUrl;?>/images/error.png" align="absmiddle" />[<?php echo Yii::t('admin','Hidden');?>]
         <?php endif;?></p>
       </td>   
       <td><?php echo $row->type_key?></td>  
       <td ><?php echo $row->model?> 
       <td><?php if($row->status == 'Y'){echo Yii::t('admin','Show');}else{echo "<span class='red'>".Yii::t('admin','Hidden')."</span>";}?></td>    
       <td >
-      	<a href="<?php echo  $this->createUrl('Update',array('id'=>$row->id))?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;      
+      	<a href="<?php echo  $this->createUrl('Update',array('id'=>$row->id))?>"><img src="<?php echo $this->module->assetsUrl;?>/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;      
       </td>
     </tr>
     <?php endforeach;?>

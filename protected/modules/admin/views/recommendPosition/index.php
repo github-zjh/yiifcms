@@ -44,9 +44,9 @@ $(document).ready(function(){
       <td ><?php echo $row->recommend_name;?></td>   
       <td ><?php $type = ModelType::model()->findByPk($row->type); echo $type->type_name;?></td>
       <td >
-	      <a href="<?php echo  $this->createUrl('Update',array('id'=>$row->id))?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
-	      <a href="<?php echo  $this->createUrl('batch',array('command'=>'Delete', 'id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->_baseUrl?>/static/admin/images/delete.png" align="absmiddle" /></a>&nbsp;&nbsp;
-	      <a href="<?php echo $this->createUrl('view',array('id'=>$row->id));?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/view.png" align="absmiddle" /></a>
+	      <a href="<?php echo  $this->createUrl('Update',array('id'=>$row->id))?>"><img src="<?php echo $this->module->assetsUrl;?>/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
+	      <a href="<?php echo  $this->createUrl('batch',array('command'=>'Delete', 'id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->module->assetsUrl;?>/images/delete.png" align="absmiddle" /></a>&nbsp;&nbsp;
+	      <a href="<?php echo $this->createUrl('view',array('id'=>$row->id));?>"><img src="<?php echo $this->module->assetsUrl;?>/images/view.png" align="absmiddle" /></a>
       </td>
     </tr>
     <?php endforeach;?>

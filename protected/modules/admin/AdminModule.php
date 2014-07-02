@@ -3,6 +3,7 @@
 class AdminModule extends CWebModule
 {
 	public $defaultController = 'default';
+	public $assetsUrl;  //样式目录
 	public function init()
 	{		
 		// this method is called when the module is being created
@@ -29,6 +30,9 @@ class AdminModule extends CWebModule
 		);
 		//设定跳转url
 		Yii::app()->user->setReturnUrl(Yii::app()->createUrl('/admin'));
+		
+		//发布样式资源
+		$this->assetsUrl = Yii::app()->getAssetManager()->publish(Yii::getPathOfAlias('application.modules.admin.assets'));
 	}
 
 	public function beforeControllerAction($controller, $action)

@@ -39,7 +39,7 @@ $(document).ready(function(){
         <?php echo $row->id?></td>      
       <td ><?php echo $row->tag_name?></td>
       <td ><span ><?php echo $row->data_count?></span></td>
-      <td ><a href="<?php echo  $this->createUrl('batch',array('command'=>'tagsDelete','id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->_baseUrl?>/static/admin/images/delete.png" align="absmiddle" /></a></td>
+      <td ><a href="<?php echo  $this->createUrl('batch',array('command'=>'tagsDelete','id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->module->assetsUrl;?>/images/delete.png" align="absmiddle" /></a></td>
     </tr>
     <?php endforeach;?>
     <tr>

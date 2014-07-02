@@ -32,14 +32,14 @@
 #show_pics .prev_btn { width:32px; height:50px; background:url(../images/foc_btn.png) no-repeat left 0; position:absolute; left:0; top:45%; z-index:99;}
 #show_pics .next_btn { left:auto; right:0; background-position:right 0;}
 #show_pics li img { cursor:pointer;}
-.small_pics {  border:1px solid #CCCCCC; overflow-x:auto; overflow-y:hidden;}
+.small_pics {  border:1px solid #CCCCCC; margin-bottom:20px; overflow-x:auto; overflow-y:hidden;}
 .small_pics li { float:left; width:100px; height:100px; margin-right:10px; list-style:none;}
 .small_pics li img { cursor:pointer;}
 
 .content_right .category { margin-bottom:30px; }
 .content_right .category dt { background-color: #cccccc; border-left: 4px solid #996600;  font-size: 16px;
     font-weight: bold; height: 34px; line-height: 34px; margin-bottom: 30px; text-align: center; width: 150px; color:#555555; }
-.content_right .category dd { padding-left:16px; margin-bottom:16px; background:url(../images/ico_list_blue.png) no-repeat left center;}
+.content_right .category dd { padding-left:16px; margin-bottom:10px; background:url(../images/ico_list_blue.png) no-repeat left center;}
 .content_right .recent_post dd { background-image:url(../images/ico_list_grey.png);}
 
 .content_right .tag dd { float:left; background:none; padding:0; margin-right:9px; margin-bottom:10px; }

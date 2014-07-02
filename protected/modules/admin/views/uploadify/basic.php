@@ -1,5 +1,5 @@
-<script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/public/js/uploadify/jquery.uploadify.min.js"></script>
-<link rel="stylesheet" type="text/css" href="<?php echo $this->_baseUrl?>/static/public/js/uploadify/uploadify.css">
+<script type="text/javascript" src="<?php echo $this->_static_public?>/js/uploadify/jquery.uploadify.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo $this->_static_public?>/js/uploadify/uploadify.css">
 <style>
 body { background: #E7EDEF }
 </style>
@@ -21,13 +21,13 @@ $(function() {
 		'queueID': 'fileQueue',
         /*'uploadLimit': 2,*/
         'fileTypeExts': '*.gif;*.png;*.jpg;*.bmp;',
-        'buttonImage': '<?php echo $this->_baseUrl?>/static/public/js/uploadify/select.png',
+        'buttonImage': '<?php echo $this->_static_public?>/js/uploadify/select.png',
         'formData': {
             'sessionId'   : '<?php echo Yii::app()->session->sessionID; ?>',
 			'timestamp'   : '<?php echo time();?>',
 			'token'       : '<?php echo md5('unique_salt'.time()); ?>'
         },
-        'swf': '<?php echo $this->_baseUrl;?>/static/public/js/uploadify/uploadify.swf',
+        'swf': '<?php echo $this->_static_public;?>/js/uploadify/uploadify.swf',
         'uploader': '<?php echo $this->createUrl('uploadify/basicExecute')?>',  
         'onUploadSuccess': function(file, data, response) { 
             var json = $.parseJSON(data);            

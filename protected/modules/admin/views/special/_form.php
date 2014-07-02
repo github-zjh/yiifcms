@@ -49,7 +49,7 @@
   </tr>
   <tr >
     <td class=" rowform">
-    <?php echo Yii::t('admin','Status');?>：<?php echo $form->dropDownList($model,'status_is',array('Y'=>Yii::t('admin','Show'), 'N'=>Yii::t('admin','Hidden'))); ?>
+    <?php echo Yii::t('admin','Status');?>：<?php echo $form->dropDownList($model,'status',array('Y'=>Yii::t('admin','Show'), 'N'=>Yii::t('admin','Hidden'))); ?>
     <?php echo Yii::t('admin','Sort Order');?>：<?php echo $form->textField($model,'view_count',array('size'=>8,'maxlength'=>8)); ?>
     </td>
   </tr>

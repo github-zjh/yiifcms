@@ -42,15 +42,15 @@ $(document).ready(function(){
         <?php echo $row->id?></td>
       <td ><?php echo $row->title?>
         <?php if($row->status_is == 'N'):?>
-        <img src="<?php echo $this->_baseUrl?>/static/admin/images/error.png" align="absmiddle" />[<?php echo Yii::t('admin','Hidden');?>]
+        <img src="<?php echo $this->module->assetsUrl;?>/images/error.png" align="absmiddle" />[<?php echo Yii::t('admin','Hidden');?>]
         <?php endif;?></p>
       </td>   
       <td><?php echo $row->title_alias?></td>   
       <td ><?php echo date('Y-m-d H:i',$row->create_time)?></td>
       <td >
-      	<a href="<?php echo  $this->createUrl('adUpdate',array('id'=>$row->id))?>"><img src="<?php echo $this->_baseUrl?>/static/admin/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
-      	<a href="<?php echo  $this->createUrl('batch',array('command'=>'adDelete', 'id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->_baseUrl?>/static/admin/images/delete.png" align="absmiddle" /></a>&nbsp;&nbsp;
-      	<a href="<?php echo  $row->link_url;?>" target="_blank"><img src="<?php echo $this->_baseUrl?>/static/admin/images/view.png" align="absmiddle" /></a>
+      	<a href="<?php echo  $this->createUrl('adUpdate',array('id'=>$row->id))?>"><img src="<?php echo $this->module->assetsUrl;?>/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
+      	<a href="<?php echo  $this->createUrl('batch',array('command'=>'adDelete', 'id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->module->assetsUrl;?>/images/delete.png" align="absmiddle" /></a>&nbsp;&nbsp;
+      	<a href="<?php echo  $row->link_url;?>" target="_blank"><img src="<?php echo $this->module->assetsUrl;?>/images/view.png" align="absmiddle" /></a>
       </td>
     </tr>
     <?php endforeach;?>

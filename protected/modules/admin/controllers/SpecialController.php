@@ -14,9 +14,9 @@ class SpecialController extends Backend
 	public function init(){
 		parent::init();
 		//栏目
-		$this->_catalog = Catalog::model()->findAll('status_is=:status',array('status'=>'Y'));
+		$this->_catalog = Catalog::model()->findAll('status=:status',array('status'=>'Y'));
 		//专题
-		$this->_special = Special::model()->findAll('status_is=:status',array('status'=>'Y'));
+		$this->_special = Special::model()->findAll('status=:status',array('status'=>'Y'));
 	}
 	
 	/**
