@@ -95,8 +95,48 @@ class SettingController extends Backend
 	 *
 	 */
 	private function _updateData ($data, $scope = 'base')
-	{
+	{		
 		if ($this->method() == 'POST') {
+			if($scope == 'upload'){
+				$size = ini_get('upload_max_filesize');
+				$len = strlen($size);
+				$byte = $size[$len-1];
+				$num = substr($size, 0, $len-1);
+				switch(strtoupper($byte)){
+					case 'M':
+						$fsize = $num*1024*1024;
+						break;
+					case 'K':
+						$fsize = $num*1024;
+						break;
+					default:
+						$fsize = $num;
+						break;
+				}
+				$setting_upload_max_size = $data['upload_max_size']*1024;
+				$setting_upload_alpha = $data['upload_water_alpha'];
+				//校验输入的大小
+				if($setting_upload_max_size > $fsize){
+					$this->message('error',Yii::t('admin','More Than Env Limit', array('{size}'=>$size)));
+				}
+				//校验透明度
+				if(!is_numeric($setting_upload_alpha) || $setting_upload_alpha <0 || $setting_upload_alpha>100){
+					$this->message('error',Yii::t('admin','WaterMark Alpha Should Between 1 AND 100'));
+				}
+				//格式化附件类型
+				$data['upload_allow_ext'] = trim(str_replace(array('，',' '), array(',',''), $data['upload_allow_ext']),', ');
+				$explode_ext = explode(',',$data['upload_allow_ext']);
+				$new_explode = array();
+				foreach((array)$explode_ext as $ext){
+					$tmp_ext = trim($ext,', ');
+					if($tmp_ext){
+						$new_explode[] = $tmp_ext;
+					}
+				}
+				$str_exts = array_unique($new_explode);
+				$data['upload_allow_ext'] = implode(',', $str_exts);
+				
+			}
 			foreach ((array) $data as $key => $row) {
 				$row = $this->addslashes($row);
 				$connection = Yii::app()->db->createCommand("REPLACE INTO {{setting}}(`scope`, `variable`, `value`) VALUES('$scope','$key', '$row') ")->execute();

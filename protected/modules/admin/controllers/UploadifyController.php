@@ -24,7 +24,7 @@ class UploadifyController extends Backend
     public function actionBasicExecute() {     
         if ( $this->method() == 'POST' ) {
             $adminiUserId = Yii::app()->user->id;  
-            $file = new XUpload;
+            $file = new Uploader;
             if($this->_request->getParam('from') == 'editor'){
             	//从外部编辑器上传的图片
             	$outside = 'Y';
@@ -84,7 +84,7 @@ class UploadifyController extends Backend
     public function actionFile() {     	
     	if ( $this->method() == 'POST' ) {
     		$adminiUserId = Yii::app()->user->id;
-    		$file = new XUpload;    
+    		$file = new Uploader;    
     		$file->_allow_exts = 'pdf,doc,docx,xls,ppt,exe,zip,tar,gz,msi,7z';  //普通文件类型限制
     		$file->_allow_exts .= ',mp3,mp4,wma';   //音频文件
     		$file->_allow_exts .= ',swf,mv,avi,mp4,flv,rmvb,mov,asf,wmv,3GP,ra,rm';   //视频文件
@@ -140,8 +140,8 @@ class UploadifyController extends Backend
             $imageModel = Upload::model()->findByPk( $imageId );
             if ( $imageModel ==false )
                 throw new Exception( "附件已经被删除" );
-            XUpload::deleteFile($imageModel->file_name);
-            XUpload::deleteFile($imageModel->thumb_name);           
+            Uploader::deleteFile($imageModel->file_name);
+            Uploader::deleteFile($imageModel->thumb_name);           
             if ( !$imageModel->delete() )
                 throw new Exception( "数据删除失败" );
             $var['state'] = 'success';

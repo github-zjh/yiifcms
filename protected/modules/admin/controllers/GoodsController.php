@@ -78,7 +78,7 @@ class GoodsController extends Backend
     		    		
     		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
 	    		//封面图片
-	    		$upload = new XUpload;
+	    		$upload = new Uploader;
 	    		$upload->_thumb_width = 300;
 	    		$upload->_thumb_height = 300;
 	    		$upload->uploadFile($_FILES['attach'], true);
@@ -125,7 +125,7 @@ class GoodsController extends Backend
     		    		
     		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
 	    		//封面图片
-	    		$upload = new XUpload;
+	    		$upload = new Uploader;
 	    		$upload->_thumb_width = 300;
 	    		$upload->_thumb_height = 300;
 	    		$upload->uploadFile($_FILES['attach'], true);
@@ -186,7 +186,7 @@ class GoodsController extends Backend
         			$image_list && $image_list = unserialize($image_list);
         			if($image_list){
         				foreach($image_list as $image){
-        					XUpload::deleteFile($image['file']);
+        					Uploader::deleteFile($image['file']);
         					$file = Upload::model()->findByPk($image['fileId']);
         					if($file){
         						$file->delete();
@@ -194,8 +194,8 @@ class GoodsController extends Backend
         				}
         			}
         			
-        			XUpload::deleteFile($goodsModel->default_image);
-        			XUpload::deleteFile($goodsModel->default_thumb);
+        			Uploader::deleteFile($goodsModel->default_image);
+        			Uploader::deleteFile($goodsModel->default_thumb);
         			
         			$goodsModel->delete();
         		}

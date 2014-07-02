@@ -58,7 +58,7 @@ class LinkController extends Backend
         $model = new Link();
         if (isset($_POST['Link'])) {
             $model->attributes = $_POST['Link'];
-            $upload = new XUpload;
+            $upload = new Uploader;
             $upload->uploadFile($_FILES['logo']);
             if ($upload->_error) {
             	$this->message('error', Yii::t('admin',$upload->_error));
@@ -91,7 +91,7 @@ class LinkController extends Backend
             $remove = $this->_request->getParam('remove');
             $model->attributes = $_POST['Link'];
             if($_FILES['logo']['error'] == UPLOAD_ERR_OK){
-    			$upload = new XUpload;    			
+    			$upload = new Uploader;    			
 	    		$upload->uploadFile($_FILES['logo']);
 	    		if($upload->_error){
 	    			$this->message('error', Yii::t('admin',$upload->_error));
@@ -132,7 +132,7 @@ class LinkController extends Backend
        			 foreach((array)$ids as $id){
             		$linkModel = Link::model()->findByPk($id);
             		if($linkModel){
-            			XUpload::deleteFile($linkModel->logo);
+            			Uploader::deleteFile($linkModel->logo);
             			$linkModel->delete();
             		}
             	}

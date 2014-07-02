@@ -95,7 +95,7 @@ class ImageController extends Backend
     			
     		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
 	    		//新上传的封面图片	    	
-    			$upload = new XUpload;
+    			$upload = new Uploader;
 	    		$upload->_thumb_width = 300;
 	    		$upload->_thumb_height = 300;
 	    		$upload->uploadFile($_FILES['attach'], true);
@@ -201,7 +201,7 @@ class ImageController extends Backend
     		
     		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
 	    		//新上传的封面图片	    		
-    			$upload = new XUpload;
+    			$upload = new Uploader;
 	    		$upload->_thumb_width = 300;
 	    		$upload->_thumb_height = 300;    		
 	    		$upload->uploadFile($_FILES['attach'], true);
@@ -301,7 +301,7 @@ class ImageController extends Backend
         			$image_list && $image_list = unserialize($image_list);
         			if($image_list){
         				foreach($image_list as $image){
-        					XUpload::deleteFile($image['file']);
+        					Uploader::deleteFile($image['file']);
         					$file = Upload::model()->findByPk($image['fileId']);
         					if($file){
         						$file->delete();
@@ -309,8 +309,8 @@ class ImageController extends Backend
         				}
         			}
         			
-        			XUpload::deleteFile($postModel->attach_file);
-        			XUpload::deleteFile($postModel->attach_thumb);
+        			Uploader::deleteFile($postModel->attach_file);
+        			Uploader::deleteFile($postModel->attach_thumb);
         			
         			$postModel->delete();
         			

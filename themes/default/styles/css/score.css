@@ -9,7 +9,7 @@ a,img{border:0;}
 .score_avg span{position:relative;font-size:42px;font-weight:bold;font-family:Georgia,"Times New Roman",Times, serif;font-style:italic;color:#FFF;letter-spacing:-4px;}
 .score_avg span em{position:absolute;top:0;left:10px;color:#FFF;z-index:10; font-size:44px; font-weight:bold; font-style:italic;}
 .score_avg span i{position:absolute;top:2px;left:12px;color:#069;z-index:8;}
-.score_avg{height:64px;width:80px;display:block;background:url(../images/_score_bg.gif) 0 0 no-repeat;position:absolute;top:-10px;left:-20px;padding-top:16px;}
+.score_avg{height:64px;width:80px;display:block;background:url(../images/_score_bg.gif) 0 0 no-repeat;position:absolute;top:-10px;left:-20px;padding-top:27px;}
 .score_total{color:#666;line-height:1.4em;height:50px;padding-left:54px;padding-top:20px;}
 .score_total span{color:#F00;font-weight:bold;}
 .score_list li{line-height:23px;color:#666;}

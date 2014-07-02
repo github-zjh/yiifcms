@@ -2,14 +2,14 @@
   <h3>上传设置</h3>
   
 </div>
-<form action="" method="post"  enctype="multipart/form-data" name="xform" id="xform">
+<form action="" method="post"  name="xform" id="xform">
   <table class="content_list">
     <tr>
       <td class="tb_title">允许上传大小：</td>
     </tr>
     <tr >
       <td ><input name="Setting[upload_max_size]" type="text" class=" validate[required]" value="<?php echo $setting['upload_max_size']?>" size="10" />
-        KB</td>
+        KB (不能超过环境设置的<?php echo ini_get('upload_max_filesize');?>)</td>
     </tr>
     <tr>
       <td class="tb_title">允许附件类型：</td>
@@ -30,47 +30,15 @@
       <td class="tb_title">水印文件：</td>
     </tr>
     <tr >
-      <td ><input type="text" class="txt" name="Setting[upload_water_file]" value="<?php echo $setting['upload_water_file']?>"/>
+      <td ><input type="text" class="txt" name="Setting[upload_water_pic]" value="<?php echo $setting['upload_water_pic']?>"/>
         <br />
-        默认位置：static/water.gif</td>
-    </tr>
-    <!--<tr>
-        <td class="tb_title">图片范围 upload_water_scope：</td>
-      </tr>
-      <tr >
-        <td ><input type="text" class="txt w100" name="Config[upload_water_scope]" value="<?php echo $setting['upload_water_scope']?>" datatype="Require" msg="必须填写"/><span info="Config[upload_water_scope]"></span><br />
-	 大于此尺寸的图片才会被打上水印</td>
-      </tr>
-      
-      
-      <tr>
-      <td class="tb_title">水印位置 upload_water_position：</td>
-    </tr>
-    <tr >
-      <td ><select name="Config[upload_water_position]"> 
-      <option value="5" <?php echo $this->selected($setting['upload_water_position'], '5')?>>随机</option>
-	    <option value="0" <?php echo $this->selected($setting['upload_water_position'], '0')?>>右下</option>
-	    <option value="3" <?php echo $this->selected($setting['upload_water_position'], '3')?>>右上</option>
-	    <option value="1" <?php echo $this->selected($setting['upload_water_position'], '1')?>>左上</option>
-	    <option value="2" <?php echo $this->selected($setting['upload_water_position'], '2')?>>左下</option>
-	    <option value="4" <?php echo $this->selected($setting['upload_water_position'], '4')?>>中间</option>
-      </select>
-     
-     
-        </td>
-    </tr>
-      <tr>
-        <td class="tb_title">水印边距 upload_water_padding / upload_water_padding：</td>
-      </tr>
-      <tr >
-        <td ><input type="text" class="txt w100" name="Config[upload_water_padding]" value="<?php echo $setting['upload_water_padding']?>" datatype="Require" msg="必须填写"/>像素(px)<span info="Config[upload_water_padding]"></span></td>
-      </tr>-->
-    
+        默认位置：public/watermark.png</td>
+    </tr>    
     <tr>
       <td class="tb_title">水印透明度：</td>
     </tr>
     <tr >
-      <td ><input type="text" class="txt w100" name="Setting[upload_water_trans]" value="<?php echo $setting['upload_water_trans']?>" datatype="Require" msg="必须填写"/>
+      <td ><input type="text" class="txt w100" name="Setting[upload_water_alpha]" value="<?php echo $setting['upload_water_alpha']?>" datatype="Require" msg="必须填写"/>
         <br />
         1－100的整数,越大透明度越低</td>
     </tr>

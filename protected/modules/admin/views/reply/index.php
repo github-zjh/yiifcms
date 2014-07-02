@@ -1,36 +1,21 @@
 <div id="contentHeader">
-  <h3><?php echo Yii::t('admin','Comment Manage');?></h3>
+  <h3><?php echo Yii::t('admin','Reply Manage');?></h3>
   <div class="searchArea">    
     <div class="search right">
       <?php $form = $this->beginWidget('CActiveForm',array('id'=>'searchForm','method'=>'get','htmlOptions'=>array('name'=>'xform'))); ?>
-      <select id="type" name="type">
-      	  <?php foreach($this->_model_type as $tv):?>
-      	  <option value="<?php echo $tv->id;?>"><?php echo $tv->type_name;?></option>
-      	  <?php endforeach;?>
-      </select>
-      
       <select id="status" name="status">     
        		<option value=""><?php echo Yii::t('common','All');?></option> 	  
        		<option value="Y"><?php echo Yii::t('admin','Pass Checking');?></option>
        		<option value="N"><?php echo Yii::t('admin','Wait Checking');?></option>
       </select>
-      
-  <?php echo Yii::t('admin','Comment Title');?>
-      <input id="postTitle" type="text" name="postTitle" value="" class="txt" size="15"/>
-  <?php echo Yii::t('admin','Comment Content');?>
-      <input id="content" type="text" name="content" value="" class="txt" size="15"/>
       <input name="searchsubmit" type="submit" value="<?php echo Yii::t('admin','Query');?>" class="button"/>
+<?php $form=$this->endWidget(); ?>
 <script type="text/javascript">
 $(function(){
 	$("#xform").validationEngine();	
 });
-</script>
-      <?php $form=$this->endWidget(); ?>
-      <script type="text/javascript">
-$(document).ready(function(){
-	$("#postTitle").val('<?php echo $this->_request->getParam('postTitle')?>');
-	$("#content").val('<?php echo $this->_request->getParam('content')?>');
-	$("#type").val('<?php echo $this->_request->getParam('type')?>');
+
+$(document).ready(function(){	
 	$("#status").val('<?php echo $this->_request->getParam('status')?>');
 });
 </script> 
@@ -41,23 +26,21 @@ $(document).ready(function(){
 <table class="content_list">
     <tr class="tb_header">
       <th width="8%">ID</th>    
-      <th width="20%"><?php echo Yii::t('admin','Comment Title');?></th>
-      <th ><?php echo Yii::t('admin','Comment Content');?></th>
-      <th width="10%"><?php echo Yii::t('admin','Comment Status');?></th>
-      <th width="15%"><?php echo Yii::t('admin','Comment Time');?></th>
+      <th width="30%"><?php echo Yii::t('admin','Reply Content');?></th>
+      <th width="10%"><?php echo Yii::t('admin','Status');?></th>  
+      <th width="15%"><?php echo Yii::t('admin','Reply Time');?></th>   
       <th width="8%"><?php echo Yii::t('admin','Operate');?></th>
     </tr>
     <?php foreach ($datalist as $row):?>   
     <tr class="tb_list" >
       <td ><input type="checkbox" name="id[]" value="<?php echo $row->id?>">
-        <?php echo $row->id?></td>      
-      <td ><?php echo $row->$table->title ?></td>
-      <td ><?php echo nl2br(htmlspecialchars($row->content)) ?></td>
+        <?php echo $row->id?></td>          
+      <td ><?php echo $row->content ?></td>
       <td ><?php echo $row->status=='Y'?"<span style='color:green'>".Yii::t('admin','Pass Checking')."</span>":"<span style='color:red'>".Yii::t('admin','Wait Checking')."</span>"; ?></td>
       <td ><?php echo date('Y-m-d H:i',$row->create_time)?></td>
       <td >
       <a href="<?php echo  $this->createUrl('update',array('id'=>$row->id))?>"><img src="<?php echo $this->module->assetsUrl;?>/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
-      <a href="<?php echo  $this->createUrl('batch',array('command'=>'commentDelete','id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->module->assetsUrl;?>/images/delete.png" align="absmiddle" /></a></td>
+      <a href="<?php echo  $this->createUrl('batch',array('command'=>'delete','id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->module->assetsUrl;?>/images/delete.png" align="absmiddle" /></a></td>
     </tr>
     <?php endforeach;?>
     <tr class="submit">
@@ -69,9 +52,9 @@ $(document).ready(function(){
           <label for="chkall"><?php echo Yii::t('admin','Check All');?></label>
           <select name="command">
             <option><?php echo Yii::t('admin','Select Operate');?></option>
-            <option value="commentDelete"><?php echo Yii::t('admin','Delete');?></option>
-            <option value="commentVerify"><?php echo Yii::t('admin','Verify Pass');?></option>
-            <option value="commentUnVerify"><?php echo Yii::t('admin','Cancel Verify');?></option>
+            <option value="delete"><?php echo Yii::t('admin','Delete');?></option>
+            <option value="verify"><?php echo Yii::t('admin','Verify Pass');?></option>
+            <option value="unVerify"><?php echo Yii::t('admin','Cancel Verify');?></option>
           </select>
           <input id="submit_maskall" class="button confirmSubmit" type="submit" value="<?php echo Yii::t('common','Submit');?>" name="maskall" />
         </div></td>

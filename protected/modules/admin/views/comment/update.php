@@ -2,8 +2,7 @@
   <h3><?php echo Yii::t('admin','Content Comment');?></h3>
   <div class="searchArea">
     <ul class="action left" >
-      <li ><a href="<?php echo $this->createUrl('index')?>" class="actionBtn"><span><?php echo Yii::t('admin','Content Manage');?></span></a></li>
-      <li ><a href="<?php echo $this->createUrl('create')?>" class="actionBtn"><span><?php echo Yii::t('admin','Content Add');?></span></a></li>
+      <li ><a href="<?php echo $this->createUrl('index')?>" class="actionBtn"><span><?php echo Yii::t('admin','Content Manage');?></span></a></li>     
     </ul>
     <div class="search right"> </div>
   </div>

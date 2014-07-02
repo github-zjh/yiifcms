@@ -71,7 +71,7 @@ class SpecialController extends Backend
             $model->attributes = $_POST['Special'];
             
 	        if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
-	            $upload = new XUpload();
+	            $upload = new Uploader();
 	            $upload->_thumb_width = '500';
 	            $upload->_thumb_height = '400';
 	            $upload->uploadFile( $_FILES['attach'], true);
@@ -103,7 +103,7 @@ class SpecialController extends Backend
         if ( isset( $_POST['Special'] ) ) {
             $model->attributes = $_POST['Special'];
         	if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
-	            $upload = new XUpload();
+	            $upload = new Uploader();
 	            $upload->_thumb_width = '500';
 	            $upload->_thumb_height = '400';
 	            $upload->uploadFile( $_FILES['attach'], true);
@@ -146,8 +146,8 @@ class SpecialController extends Backend
         	foreach((array)$ids as $id){
         		$specialModel = Special::model()->findByPk($id);
         		if($specialModel){
-        			XUpload::deleteFile($specialModel->attach_file);
-        			XUpload::deleteFile($specialModel->attach_thumb);
+        			Uploader::deleteFile($specialModel->attach_file);
+        			Uploader::deleteFile($specialModel->attach_thumb);
         			$specialModel->delete();
         		}
         	}

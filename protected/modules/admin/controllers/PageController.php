@@ -41,7 +41,7 @@ class PageController extends Backend
         if (isset($_POST['Page'])) {
             $model->attributes = $_POST['Page'];
             if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
-            	$upload = new XUpload();
+            	$upload = new Uploader();
             	$upload->_thumb_width = '200';
             	$upload->_thumb_height = '180';
             	$upload->uploadFile( $_FILES['attach'], true);
@@ -75,7 +75,7 @@ class PageController extends Backend
             $model->attributes = $_POST['Page'];
         	if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
         		
-            	$upload = new XUpload();
+            	$upload = new Uploader();
             	$upload->_thumb_width = '200';
             	$upload->_thumb_height = '180';
             	$upload->uploadFile( $_FILES['attach'], true);
@@ -119,8 +119,8 @@ class PageController extends Backend
         		foreach((array)$ids as $id){
             		$pageModel = Page::model()->findByPk($id);
             		if($pageModel){
-            			XUpload::deleteFile($pageModel->attach_file);
-            			XUpload::deleteFile($pageModel->attach_thumb);
+            			Uploader::deleteFile($pageModel->attach_file);
+            			Uploader::deleteFile($pageModel->attach_thumb);
             			$pageModel->delete();
             		}
             	}

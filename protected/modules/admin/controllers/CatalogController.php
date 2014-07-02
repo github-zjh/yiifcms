@@ -54,7 +54,7 @@ class CatalogController extends Backend
     	{    		
     		$model->attributes=$_POST['Catalog']; 
     		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
-    			$upload = new XUpload;    			
+    			$upload = new Uploader;    			
 	    		$upload->uploadFile($_FILES['attach'], 'image', true);
 	    		if($upload->_error){
 	    			$upload->deleteFile($upload->_file_name);
@@ -95,7 +95,7 @@ class CatalogController extends Backend
         {
         	$model->attributes=$_POST['Catalog'];           		
        		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
-    			$upload = new XUpload;    			
+    			$upload = new Uploader;    			
 	    		$upload->uploadFile($_FILES['attach'], 'image', true);
 	    		if($upload->_error){
 	    			$upload->deleteFile($upload->_file_name);

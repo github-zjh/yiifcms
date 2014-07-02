@@ -1,6 +1,6 @@
 # your database backup
 # version:5.5.27-log
-# time:2014-07-02 12:59:21
+# time:2014-07-02 16:35:37
 # --------------------------------------------------------
 
 
@@ -151,7 +151,7 @@ CREATE TABLE `yii_image` (
   `status` enum('Y','N') NOT NULL DEFAULT 'Y' COMMENT '是否显示',
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='内容管理';
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='内容管理';
 
 INSERT INTO `yii_image` VALUES('2','1','图览2014巴西世界杯','图览2014巴西世界杯','','','','9','0','世界杯来啦，为了帮助大家更轻松更愉悦地观看世界杯，小编制作了《图览世界杯》，大家可及时围观赛况和花边消息，方便彼此切磋，迎来人生比翼齐飞的新高度，更有机会参与【百度图片竞猜世界杯】的活动哦！我们的奖品已经到位，猜对比分，并@百度图片@两位好友，就有机会赢取【高端手表】哦亲~动动手指，为世界杯加油！更多消息请密切关注【@百度图片】新浪微博官方账号吧。','a:3:{i:0;a:5:{s:6:\"fileId\";s:2:\"77\";s:4:\"file\";s:37:\"uploads/images/201407/2d8af2a52c9.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_2d8af2a52c9.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:1;a:5:{s:6:\"fileId\";s:2:\"78\";s:4:\"file\";s:37:\"uploads/images/201407/830c15efce6.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_830c15efce6.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:2;a:5:{s:6:\"fileId\";s:2:\"79\";s:4:\"file\";s:37:\"uploads/images/201407/8068f3a90b7.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_8068f3a90b7.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','<p style=\"text-indent:2em;\">
 	<span style=\"font-size:14px;\"></span><span style=\"font-size:14px;\">世界杯来啦，为了帮助大家更轻松更愉悦地观看世界杯，小编制作了《图览世界杯》，大家可及时围观赛况和花边消息，方便彼此切磋，迎来人生比翼齐飞的新高度，更有机会参与【百度图片竞猜世界杯】的活动哦！我们的奖品已经到位，猜对比分，并@百度图片@两位好友，就有机会赢取【高端手表】哦亲~动动手指，为世界杯加油！更多消息请密切关注【@百度图片】新浪微博官方账号吧。</span> 
@@ -164,6 +164,7 @@ INSERT INTO `yii_image` VALUES('7','1','靓丽女孩','','','','','14','0','','a
 INSERT INTO `yii_image` VALUES('8','1','漂亮女神','','','','','14','0','','a:3:{i:0;a:5:{s:6:\"fileId\";s:2:\"83\";s:4:\"file\";s:37:\"uploads/images/201407/cef6cf4f134.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_cef6cf4f134.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:1;a:5:{s:6:\"fileId\";s:2:\"84\";s:4:\"file\";s:37:\"uploads/images/201407/8a0a9d8cb7b.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_8a0a9d8cb7b.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:2;a:5:{s:6:\"fileId\";s:2:\"85\";s:4:\"file\";s:37:\"uploads/images/201407/4464b4046d1.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_4464b4046d1.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','漂亮女神','','','','美女','2','N','N','uploads/images/201406/bb6aa6ad2c7.jpg','uploads/thumbs/201406/small_bb6aa6ad2c7.jpg','0','0','N','1404184778','0','Y','0','Y','1404114458');
 INSERT INTO `yii_image` VALUES('9','1','气质美女','','','','','8','0','','a:2:{i:0;a:5:{s:6:\"fileId\";s:2:\"81\";s:4:\"file\";s:37:\"uploads/images/201407/ed5693e7e2d.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_ed5693e7e2d.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:1;a:5:{s:6:\"fileId\";s:2:\"82\";s:4:\"file\";s:37:\"uploads/images/201407/f60eb1cfb67.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_f60eb1cfb67.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','气质美女','','','','美女','5','N','N','uploads/images/201406/ba6b6e35743.jpg','uploads/thumbs/201406/small_ba6b6e35743.jpg','0','0','N','1404184756','0','Y','0','Y','1404114497');
 INSERT INTO `yii_image` VALUES('10','1','淑女形象','','','','','8','0','','a:1:{i:0;a:5:{s:6:\"fileId\";s:2:\"80\";s:4:\"file\";s:37:\"uploads/images/201407/4be229705ba.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_4be229705ba.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','淑女形象','','','','美女','2','N','N','uploads/images/201406/5348209384d.jpg','uploads/thumbs/201406/small_5348209384d.jpg','0','0','N','1404184732','0','Y','0','Y','1404114535');
+INSERT INTO `yii_image` VALUES('11','1','足球宝贝','','','','','14','0','','a:1:{i:0;a:5:{s:6:\"fileId\";s:2:\"92\";s:4:\"file\";s:37:\"uploads/images/201407/e62833cd62c.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_e62833cd62c.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','足球宝贝','','','','美女,世界杯','3','N','N','uploads/images/201407/20d46ac94c7.jpg','uploads/thumbs/201407/small_20d46ac94c7.jpg','0','0','N','1404287913','0','Y','0','Y','1404287913');
 
 DROP TABLE IF EXISTS `yii_link`;
 CREATE TABLE `yii_link` (
@@ -807,7 +808,7 @@ shared repository.</span>
 	<li>
 		<span style=\"font-size:14px;\">Google Fiber</span> 
 	</li>
-</ul>','','','','程序员','584','Y','Y','uploads/201309/523a54f7d9591.jpg','uploads/201309/thumb_523a54f7d9591.jpg','1','2','Y','1404120856','4','N','5','Y','1379554552');
+</ul>','','','','程序员','586','Y','Y','uploads/201309/523a54f7d9591.jpg','uploads/201309/thumb_523a54f7d9591.jpg','1','2','Y','1404120856','4','N','5','Y','1379554552');
 INSERT INTO `yii_post` VALUES('23','1','Facebook POP，迈向大师操作之路','','','','','3','0','Facebook发布Paper后，不满足于将其作为一个概念性产品，反而更进一步开源了其背后的动画引擎POP。POP的开发者是Kimon Tsinteris，曾致力于创造出逼真的、充满物力效应的体验。POP也是在这个理念下催生出来的结果。 ','','','','','<p style=\"text-indent:2em;\">
 	Facebook发布Paper之后，似乎还不满足于只是将其作为一个概念性产品，反而更进一步开源了其背后的动画引擎POP（https://github.com/facebook/pop），此举大有三年前发布的iOS&nbsp;UI框架Three20（https://github.com/facebookarchive/three20）的意味。而POP开源后不负Facebook的厚望，在GitHub上不足一个月的时间，就已拥有了6000多个Star，非常火爆。
 </p>
@@ -1304,7 +1305,8 @@ CREATE TABLE `yii_session` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='session表';
 
-INSERT INTO `yii_session` VALUES('a5hlma3pgc513oltcourk8g861','1404280760','Yii.CCaptchaAction.33c9b0a4.comment.captcha|s:6:\"mf7apk\";Yii.CCaptchaAction.33c9b0a4.comment.captchacount|i:1;Yii.CCaptchaAction.33c9b0a4.admin/default.captcha|s:4:\"16rc\";Yii.CCaptchaAction.33c9b0a4.admin/default.captchacount|i:13;Yii.CCaptchaAction.33c9b0a4.question.captcha|s:6:\"pc6ana\";Yii.CCaptchaAction.33c9b0a4.question.captchacount|i:1;Yii.CCaptchaAction.33c9b0a4.user.captcha|s:6:\"fkua3e\";Yii.CCaptchaAction.33c9b0a4.user.captchacount|i:1;admin__returnUrl|s:10:\"/admin.htm\";admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}6cb602a7c53e8febaeafaaea1085c566__id|s:2:\"31\";6cb602a7c53e8febaeafaaea1085c566__name|s:8:\"testUser\";6cb602a7c53e8febaeafaaea1085c566status|s:1:\"1\";6cb602a7c53e8febaeafaaea1085c566groupid|s:1:\"1\";6cb602a7c53e8febaeafaaea1085c566groupname|s:12:\"普通用户\";6cb602a7c53e8febaeafaaea1085c566email|s:17:\"1441044277@qq.com\";6cb602a7c53e8febaeafaaea1085c566__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
+INSERT INTO `yii_session` VALUES('sqnomj60rjj3fms3ho6pqr0bo6','1404290142','admin__returnUrl|s:10:\"/admin.htm\";');
+INSERT INTO `yii_session` VALUES('a5hlma3pgc513oltcourk8g861','1404293736','Yii.CCaptchaAction.33c9b0a4.comment.captcha|s:6:\"gklc4b\";Yii.CCaptchaAction.33c9b0a4.comment.captchacount|i:1;Yii.CCaptchaAction.33c9b0a4.admin/default.captcha|s:4:\"16rc\";Yii.CCaptchaAction.33c9b0a4.admin/default.captchacount|i:13;Yii.CCaptchaAction.33c9b0a4.question.captcha|s:6:\"pc6ana\";Yii.CCaptchaAction.33c9b0a4.question.captchacount|i:2;Yii.CCaptchaAction.33c9b0a4.user.captcha|s:6:\"fkua3e\";Yii.CCaptchaAction.33c9b0a4.user.captchacount|i:1;admin__returnUrl|s:10:\"/admin.htm\";admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}6cb602a7c53e8febaeafaaea1085c566__id|s:2:\"31\";6cb602a7c53e8febaeafaaea1085c566__name|s:8:\"testUser\";6cb602a7c53e8febaeafaaea1085c566status|s:1:\"1\";6cb602a7c53e8febaeafaaea1085c566groupid|s:1:\"1\";6cb602a7c53e8febaeafaaea1085c566groupname|s:12:\"普通用户\";6cb602a7c53e8febaeafaaea1085c566email|s:17:\"1441044277@qq.com\";6cb602a7c53e8febaeafaaea1085c566__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
 
 DROP TABLE IF EXISTS `yii_setting`;
 CREATE TABLE `yii_setting` (
@@ -1332,14 +1334,12 @@ INSERT INTO `yii_setting` VALUES('base','user_status','open','');
 INSERT INTO `yii_setting` VALUES('base','user_mail_verify','open','');
 INSERT INTO `yii_setting` VALUES('base','site_copyright','Copyright @ 2014-2015','');
 INSERT INTO `yii_setting` VALUES('upload','upload_water_size','100x100','');
-INSERT INTO `yii_setting` VALUES('upload','upload_water_file','static/public/watermark.png','');
+INSERT INTO `yii_setting` VALUES('upload','upload_water_pic','public/watermark.png','');
 INSERT INTO `yii_setting` VALUES('upload','upload_water_status','open','');
 INSERT INTO `yii_setting` VALUES('upload','upload_allow_ext','jpg,gif,bmp,jpeg,png,doc,zip,rar,7z,txt,sql,pdf','');
-INSERT INTO `yii_setting` VALUES('upload','upload_max_size','20000','');
+INSERT INTO `yii_setting` VALUES('upload','upload_max_size','51200','');
 INSERT INTO `yii_setting` VALUES('upload','upload_water_scope','100x100','');
-INSERT INTO `yii_setting` VALUES('upload','upload_water_position','5','');
-INSERT INTO `yii_setting` VALUES('upload','upload_water_padding','5','');
-INSERT INTO `yii_setting` VALUES('upload','upload_water_trans','30','');
+INSERT INTO `yii_setting` VALUES('upload','upload_water_alpha','50','');
 INSERT INTO `yii_setting` VALUES('custom','_address','北京市朝阳区','');
 INSERT INTO `yii_setting` VALUES('custom','_telephone','(+86 10) 5992 8888','');
 INSERT INTO `yii_setting` VALUES('custom','_fax','传真:(+86 10) 5992 0000','');
@@ -1447,12 +1447,12 @@ INSERT INTO `yii_tag` VALUES('47','计划','1');
 INSERT INTO `yii_tag` VALUES('48','代码','1');
 INSERT INTO `yii_tag` VALUES('49','创意','1');
 INSERT INTO `yii_tag` VALUES('50','亚马逊','1');
-INSERT INTO `yii_tag` VALUES('57','美女','10');
+INSERT INTO `yii_tag` VALUES('57','美女','11');
 INSERT INTO `yii_tag` VALUES('62','机顶盒','1');
 INSERT INTO `yii_tag` VALUES('63','苹果','1');
 INSERT INTO `yii_tag` VALUES('67','谷歌','1');
 INSERT INTO `yii_tag` VALUES('68','巴西','1');
-INSERT INTO `yii_tag` VALUES('69','世界杯','1');
+INSERT INTO `yii_tag` VALUES('69','世界杯','2');
 
 DROP TABLE IF EXISTS `yii_tag_data`;
 CREATE TABLE `yii_tag_data` (
@@ -1490,6 +1490,8 @@ INSERT INTO `yii_tag_data` VALUES('69','2','2','Y');
 INSERT INTO `yii_tag_data` VALUES('57','5','2','Y');
 INSERT INTO `yii_tag_data` VALUES('57','6','2','Y');
 INSERT INTO `yii_tag_data` VALUES('57','2','2','Y');
+INSERT INTO `yii_tag_data` VALUES('57','11','2','Y');
+INSERT INTO `yii_tag_data` VALUES('69','11','2','Y');
 
 DROP TABLE IF EXISTS `yii_upload`;
 CREATE TABLE `yii_upload` (
@@ -1504,7 +1506,7 @@ CREATE TABLE `yii_upload` (
   `down_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '下载次数',
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '上传时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=92 DEFAULT CHARSET=utf8 COMMENT='附件';
+) ENGINE=MyISAM AUTO_INCREMENT=93 DEFAULT CHARSET=utf8 COMMENT='附件';
 
 INSERT INTO `yii_upload` VALUES('20','1','5.png','uploads/images/201403/3b68894af12.png','','png','application/octet-stream','1724','0','1394775273');
 INSERT INTO `yii_upload` VALUES('19','1','4.png','uploads/images/201403/7b1f180d893.png','','png','application/octet-stream','624','0','1394766396');
@@ -1550,6 +1552,7 @@ INSERT INTO `yii_upload` VALUES('88','1','125.jpg','uploads/images/201407/b0d455
 INSERT INTO `yii_upload` VALUES('89','1','126.jpg','uploads/images/201407/2e13e0a3ed9.jpg','uploads/thumbs/201407/small_2e13e0a3ed9.jpg','jpg','application/octet-stream','75536','0','1404184865');
 INSERT INTO `yii_upload` VALUES('90','1','122.jpg','uploads/images/201407/2a2d8e16cb0.jpg','uploads/thumbs/201407/small_2a2d8e16cb0.jpg','jpg','application/octet-stream','67515','0','1404184869');
 INSERT INTO `yii_upload` VALUES('91','1','125.jpg','uploads/images/201407/825a8ac9d80.jpg','uploads/thumbs/201407/small_825a8ac9d80.jpg','jpg','application/octet-stream','279084','0','1404184870');
+INSERT INTO `yii_upload` VALUES('92','1','112.jpg','uploads/images/201407/e62833cd62c.jpg','uploads/thumbs/201407/small_e62833cd62c.jpg','jpg','application/octet-stream','25932','0','1404287877');
 
 DROP TABLE IF EXISTS `yii_user`;
 CREATE TABLE `yii_user` (
@@ -1627,7 +1630,7 @@ CREATE TABLE `yii_video` (
 INSERT INTO `yii_video` VALUES('1','美国队长','12','uploads/images/201406/827a03cb8cb.jpg','','englise','science','8.6','','','美国队长','0.00','1403146013','1400834656','61','0','{\"t\":10,\"s\":[0,1,1,2,6]}','Y','','','');
 INSERT INTO `yii_video` VALUES('2','钢铁侠','13','uploads/images/201406/bf941705b16.jpg','','chinese','comedy','0.0','','','','0.00','1403148128','1403148128','2','0','','Y','','','');
 INSERT INTO `yii_video` VALUES('3','明日边缘','13','uploads/images/201406/4cc06a97d5a.jpg','','chinese','comedy','0.0','','','','0.00','1403148264','1403148264','1','0','','Y','','','');
-INSERT INTO `yii_video` VALUES('4','窃听风云3','13','uploads/images/201406/a02a34ce432.jpg','','chinese','comedy','8.0','','','','0.00','1403148306','1403148306','7','0','{\"t\":1,\"s\":[0,0,0,1,0]}','Y','','','');
+INSERT INTO `yii_video` VALUES('4','窃听风云3','13','uploads/images/201406/a02a34ce432.jpg','','chinese','comedy','9.0','','','','0.00','1403148306','1403148306','10','0','{\"t\":2,\"s\":[0,0,0,1,1]}','Y','','','');
 INSERT INTO `yii_video` VALUES('5','终结者4','13','uploads/images/201406/0bb513c708b.jpg','','chinese','comedy','0.0','','','','0.00','1403148363','1403148363','3','0','','Y','','','');
-INSERT INTO `yii_video` VALUES('6','孤胆保镖','13','uploads/images/201406/566eb360159.jpg','','chinese','active','8.0','','','','0.00','1404114076','1403148418','17','0','{\"t\":2,\"s\":[0,0,1,0,1]}','Y','','','');
+INSERT INTO `yii_video` VALUES('6','孤胆保镖','13','uploads/images/201406/566eb360159.jpg','','chinese','active','8.0','','','','0.00','1404114076','1403148418','18','0','{\"t\":2,\"s\":[0,0,1,0,1]}','Y','','','');
 

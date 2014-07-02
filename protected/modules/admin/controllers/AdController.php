@@ -68,7 +68,7 @@ class AdController extends Backend
         if (isset($_POST['Ad'])) {
             $model->attributes = $_POST['Ad'];
         	if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
-    			$upload = new XUpload;    			
+    			$upload = new Uploader();    			
 	    		$upload->uploadFile($_FILES['attach']);
 	    		if($upload->_error){
 	    			$this->message('error', Yii::t('admin',$upload->_error));
@@ -95,7 +95,7 @@ class AdController extends Backend
         
         if (isset($_POST['Ad'])) {
         	if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
-    			$upload = new XUpload;    			
+    			$upload = new Uploader();    			
 	    		$upload->uploadFile($_FILES['attach']);
 	    		if($upload->_error){
 	    			$this->message('error', Yii::t('admin',$upload->_error));
@@ -139,7 +139,7 @@ class AdController extends Backend
        			 foreach((array)$ids as $id){
             		$adModel = Ad::model()->findByPk($id);
             		if($adModel){
-            			XUpload::deleteFile($adModel->attach_file);
+            			Uploader::deleteFile($adModel->attach_file);
             			$adModel->delete();
             		}
             	}

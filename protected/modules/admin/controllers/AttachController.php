@@ -67,7 +67,7 @@ class AttachController extends Backend
 				foreach((array)$ids as $id){
             		$uploadModel = Upload::model()->findByPk($id);
             		if($uploadModel){
-            			XUpload::deleteFile($uploadModel->file_name);
+            			Uploader::deleteFile($uploadModel->file_name);
             			$uploadModel->delete();
             		}
             	}

@@ -87,7 +87,7 @@ class VideoController extends Backend
     		$model->fileid = $fileids;
     		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
 	    		//封面图片
-	    		$upload = new XUpload;	    		
+	    		$upload = new Uploader;	    		
 	    		$upload->uploadFile($_FILES['attach']);
 	    		if($upload->_error){
 	    			$upload->deleteFile($upload->_file_name);	    		
@@ -130,7 +130,7 @@ class VideoController extends Backend
     		$model->fileid = $fileids;
     		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
 	    		//封面图片
-	    		$upload = new XUpload;
+	    		$upload = new Uploader;
 	    		$upload->_thumb_width = 100;
 	    		$upload->_thumb_height = 100;    		
 	    		$upload->uploadFile($_FILES['attach'], true);
@@ -175,7 +175,7 @@ class VideoController extends Backend
         	foreach((array)$ids as $id){
         		$postModel = Video::model()->findByPk($id);
         		if($postModel){        			
-        			XUpload::deleteFile($postModel->cover_image);
+        			Uploader::deleteFile($postModel->cover_image);
         			$postModel->delete();
         		}
         	}

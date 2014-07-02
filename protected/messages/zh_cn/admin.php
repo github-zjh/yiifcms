@@ -29,11 +29,16 @@ return array (
 	'admin manage' => '后台管理',
 	'Manage' => '管理',
 	'System Home' => '系统首页',
+	
+	/* 设置 */
 	'Web Set' => '站点设置',
 	'SEO Set' => 'SEO设置',
 	'Upload Set' => '上传设置',
 	'Template Set' => '模板设置',
 	'Custom Set' => '自定义设置',
+	'More Than Env Limit' => '超过系统限制{size}',
+	'WaterMark Alpha Should Between 1 AND 100' => '水印透明度应该介于1~100的数字',
+	/* 栏目 */
 	'Catalog Manage' => '栏目管理',
 	'Attach Manage' => '附件管理',
 	'Link Manage' => '链接管理',
@@ -55,6 +60,7 @@ return array (
 	'Video Manage' => '视频管理',
 	'Goods Manage' => '商品管理',
 	'Comment Manage' => '评论管理',
+	'Reply Manage' => '回复管理',
 	'Special Manage' => '专题管理',
 	'Page Manage' => '单页管理',
 	'All Content'  => '全部内容',
@@ -145,6 +151,8 @@ return array (
 	'Password Is Required' => '密码不能为空',
 	'Group Is Required' => '用户组不能为空',
 	'UserName Is Exist' => '用户名已经存在',
+	
+	/* 评论 */
 	'Content Comment' => '内容评论',
 	'Content Add' => '内容添加',
 	'IP Address' => 'IP地址',
@@ -156,8 +164,10 @@ return array (
 	'Comment Title' => '评论标题',
 	'Comment Content' => '评论内容',
 	'Comment Time' => '评论时间',
+	'Reply Time' => '回复时间',
 	'Verify Pass' => '审核通过',
 	'Cancel Verify' => '取消审核',
+	'Update Reply' => '更新回复',
 	'Blod' => '加粗',
 	'Underline' => '下划线',
 	'Come From' => '来源',

@@ -1,14 +1,13 @@
 <?php
 /**
- * 评论管理
+ * 回复管理
  * 
  * @author        zhao jinhan <326196998@qq.com>
  * @copyright     Copyright (c) 2014-2015. All rights reserved.
  * 
  */
-class CommentController extends Backend
-{
-	protected $_model_type;
+class ReplyController extends Backend
+{	
 	/**
 	 * !CodeTemplates.overridecomment.nonjd!
 	 * @see CController::beforeAction()
@@ -25,39 +24,30 @@ class CommentController extends Backend
 	
 	
  	/**
-     * 评论管理
+     * 回复管理
      *
      */
-    public function actionIndex() {
-    	$this->_model_type = ModelType::model()->findAll();
-        $model = new Comment();
+    public function actionIndex() {    	
+        $model = new Reply();
         $criteria = new CDbCriteria();
         $condition = '1';
-        $status = $this->_request->getParam( 'status' );
-        $title = $this->_request->getParam( 'postTitle' );
-        $content = $this->_request->getParam( 'content' );
-        $type = $this->_request->getParam( 'type' )?$this->_request->getParam( 'type' ):$this->_type_ids['post'];
-        $type && $condition .= " AND type={$type}";
-        $status && $condition .= " AND t.status='{$status}'";
-        $table = array_search($type,$this->_type_ids);
-        if($table == 'goods'){
-        	$title && $condition .= " AND {$table}.goods_name LIKE '%$title %'";
-        }else{
-        	$title && $condition .= " AND {$table}.title LIKE '%$title %'";
-        }        
-        $content && $condition .= ' AND t.content LIKE \'%' . $content . '%\'';
+        $status = $this->_request->getParam( 'status' );       
+        $status && $condition .= " AND t.status='{$status}'";       
         $criteria->condition = $condition;
-        $criteria->order = 't.id DESC';
-        $criteria->with = array ( $table );
+        $criteria->order = 't.id DESC';        
         $count = $model->count( $criteria );
         $pages = new CPagination( $count );
-        $pages->pageSize = 13;
-        $pageParams = $this->buildCondition( $_GET, array ( 'postTitle' ,'status', 'content','type' ) );
+        $pages->pageSize = 15;
+        $pageParams = $this->buildCondition( $_GET, array ('status') );
         $pages->params = is_array( $pageParams ) ? $pageParams : array ();
         $criteria->limit = $pages->pageSize;
         $criteria->offset = $pages->currentPage * $pages->pageSize;
         $result = $model->findAll( $criteria );
-        $this->render( 'index', array ( 'datalist' => $result , 'pagebar' => $pages, 'table'=>$table ) );
+        
+        Yii::app()->clientScript->registerCssFile($this->_static_public . "/js/kindeditor/code/prettify.css");       
+        Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/kindeditor/code/prettify.js",CClientScript::POS_END);
+        
+        $this->render( 'index', array ( 'datalist' => $result , 'pagebar' => $pages ) );
     }
 
     /**
@@ -66,9 +56,9 @@ class CommentController extends Backend
      * @param  $id
      */
     public function actionUpdate( $id ) {        
-        $model = Comment::model()->findByPk($id);
-        if ( isset( $_POST['Comment'] ) ) {
-            $model->attributes = $_POST['Comment'];
+        $model = Reply::model()->findByPk($id);
+        if ( isset( $_POST['Reply'] ) ) {
+            $model->attributes = $_POST['Reply'];
             if ( $model->save() ) {               
                 $this->message('success',Yii::t('admin','Update Success'),$this->createUrl('index'));
             }
@@ -96,32 +86,32 @@ class CommentController extends Backend
         empty($ids) && $this->message('error', Yii::t('admin','No Select'));
         
         switch ($command) {
-	        case 'commentDelete':       
-	        	//删除评论   
+	        case 'delete':       
+	        	//删除回复
 	            foreach((array)$ids as $id){
-	        		$commentModel = Comment::model()->findByPk($id);
-	        		if($commentModel){
-	        			$commentModel->delete();
+	        		$replyModel = Reply::model()->findByPk($id);
+	        		if($replyModel){
+	        			$replyModel->delete();
 	        		}
 	            }
             	break;
-	        case 'commentVerify':         
-	        	//评论审核通过  
+	        case 'verify':         
+	        	//回复审核通过  
 	         	foreach((array)$ids as $id){
-	        		$commentModel = Comment::model()->findByPk($id);        		
-	        		if($commentModel){
-	        			$commentModel->status = 'Y';
-	        			$commentModel->save();
+	        		$replyModel = Reply::model()->findByPk($id);        		
+	        		if($replyModel){
+	        			$replyModel->status = 'Y';
+	        			$replyModel->save();
 	        		}
 	            }
 	            break;
-	        case 'commentUnVerify':    
-	        	//评论取消审核
+	        case 'unVerify':    
+	        	//回复取消审核
 	        	foreach((array)$ids as $id){
-	        		$commentModel = Comment::model()->findByPk($id);        		
-	        		if($commentModel){
-	        			$commentModel->status = 'N';
-	        			$commentModel->save();
+	        		$replyModel = Reply::model()->findByPk($id);        		
+	        		if($replyModel){
+	        			$replyModel->status = 'N';
+	        			$replyModel->save();
 	        		}
 	            }
 	            break;

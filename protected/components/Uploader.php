@@ -7,16 +7,14 @@
 * 
 */
 
-//定义缩略图的宽高
-define('THUMB_WIDTH',300);
-define('THUMB_HEIGHT',300);
-
-class XUpload {
+class Uploader{
 	public $_max_upload_filesize = '';
 	public $_image_path = 'uploads/images/';        			//默认图片上传路径
 	public $_thumb_path = 'uploads/thumbs/';        			//默认缩略图上传路径
 	public $_file_path = 'uploads/files/';          			//默认文件上传路径
-	public $_watermark = 'static/watermark.png';     			//默认水印图片完整路径 
+	public $_watermark_status = 'close';     			        //默认不开启水印 
+	public $_watermark_pic = 'public/watermark.png';     		//默认水印图片完整路径
+	public $_watermark_alpha = '';     							//默认水印透明度
 	public $_real_name = '';									//原始文件名
 	public $_tmp_name = '';										//临时文件
 	public $_file_name = '';									//生成的文件完整路径
@@ -30,25 +28,27 @@ class XUpload {
 	public $_is_image = false;									//是不是图片
 	public $_rand_name = true;								    //是否生成随机文件名
 	public $_thumb_prefix = 'small_';			    			//缩略图前缀
-	public $_error = '';										//错误信息
+	public $_error = '';		
 	
 	public function __construct(){		
-		//获取环境限制
-		$size = ini_get('upload_max_filesize');
-		$len = strlen($size);		
-		$byte = $size[$len-1];		
-		$num = substr($size, 0, $len-1);		
-		switch(strtoupper($byte)){
-			case 'M':
-				$this->_max_upload_filesize = $num*1024*1024;
-				break;
-			case 'K':
-				$this->_max_upload_filesize = $num*1024;
-				break;
-			default:
-				$this->_max_upload_filesize = $num;
-				break;
-		}
+		
+		$settings = Setting::model()->findAll();		
+		foreach ($settings as $key => $row) {
+			$setting[$row['variable']] = $row['value'];
+		}				
+		//获取上传限制		
+		$size = $setting['upload_max_size'];
+		$this->_max_upload_filesize = $size*1024;
+				
+		//允许的类型
+		$this->_allow_exts = $setting['upload_allow_ext']?$setting['upload_allow_ext']:$this->_allow_exts;
+		//是否开启水印
+		$this->_watermark_status = $setting['upload_water_status'];
+		//水印图片
+		$this->_watermark_pic = $setting['upload_water_pic'];
+		//水印透明度
+		$this->_watermark_alpha = $setting['upload_water_alpha'];
+		
 	}	
 	
 	/**
@@ -219,11 +219,11 @@ class XUpload {
 	 * @param number $alpha      水印的透明度
 	 * @return boolean
 	 */
-	public function waterMark($tmpname = '', $savename = '', $alpha = 80){
+	public function waterMark($tmpname = '', $savename = '', $alpha = ''){
 		if(file_exists($tmpname)){
-			if(file_exists($this->_watermark)){
+			if(file_exists($this->_watermark_pic) && $this->_watermark_status == 'open'){
 				$imageinfo = $this->getImageInfo($tmpname);
-				$waterinfo = $this->getImageInfo($this->_watermark);
+				$waterinfo = $this->getImageInfo($this->_watermark_pic);
 				if(($imageinfo['width'] < $waterinfo['width']) || ($imageinfo['height'] < $waterinfo['height'])){
 					//图片过小，不添加水印
 					move_uploaded_file($tmpname, $savename);
@@ -231,26 +231,27 @@ class XUpload {
 					$imgFun = 'imagecreatefrom'.$imageinfo['type'];
 					$waterFun = 'imagecreatefrom'.$waterinfo['type'];
 					$sImg = $imgFun($tmpname);
-					$wImg = $waterFun($this->_watermark);					
+					$wImg = $waterFun($this->_watermark_pic);					
 					//默认水印为右下角右对齐
 					$posY = $imageinfo["height"] - $waterinfo["height"];
 					$posX = $imageinfo["width"] - $waterinfo["width"];
 					//不缩放水印图片
+					$alpha = intval($alpha)>0?intval($alpha):$this->_watermark_alpha;
 					imagecopymerge($sImg, $wImg, $posX, $posY, 0, 0, $waterinfo["width"], $waterinfo["height"], $alpha);
 					$saveFun = 'image'.$imageinfo['type'];
 					$saveFun($sImg, $savename);
-					imagedestroy($sImg);
-					return true;
+					imagedestroy($sImg);					
 				}
 			}else{
-				$this->_error = 'Watermark image is not found';
-				return false;
+				//$this->_error = 'Watermark image is not found';
+				//return false;
 			}
-			return true;
+			//return true;
 		}else{
-			$this->_error = 'Add watermark failed';
-			return false;
+			//$this->_error = 'Add watermark failed';
+			//return false;
 		}
+		return true;
 	}
 	
 	/**

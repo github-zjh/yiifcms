@@ -81,7 +81,7 @@ class SoftController extends Backend
     		
     		if($_FILES['softicon']['error'] == UPLOAD_ERR_OK){
     			//软件图标
-    			$upload = new XUpload;
+    			$upload = new Uploader;
     			$upload->uploadFile($_FILES['softicon']);
     			if($upload->_error){
     				$upload->deleteFile($upload->_file_name);
@@ -96,7 +96,7 @@ class SoftController extends Backend
     		
     		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
 	    		//封面图片
-	    		$upload = new XUpload;	    		
+	    		$upload = new Uploader;	    		
 	    		$upload->uploadFile($_FILES['attach']);
 	    		if($upload->_error){
 	    			$upload->deleteFile($upload->_file_name);	    		
@@ -144,7 +144,7 @@ class SoftController extends Backend
     		
     		if($_FILES['softicon']['error'] == UPLOAD_ERR_OK){
     			//软件图标
-    			$upload = new XUpload;    			
+    			$upload = new Uploader;    			
     			$upload->uploadFile($_FILES['softicon']);
     			if($upload->_error){
     				$upload->deleteFile($upload->_file_name);
@@ -159,7 +159,7 @@ class SoftController extends Backend
     		
     		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
 	    		//封面图片
-	    		$upload = new XUpload;	    		 		
+	    		$upload = new Uploader;	    		 		
 	    		$upload->uploadFile($_FILES['attach']);
 	    		if($upload->_error){
 	    			$upload->deleteFile($upload->_file_name);	    			
@@ -205,7 +205,7 @@ class SoftController extends Backend
         	foreach((array)$ids as $id){
         		$postModel = Soft::model()->findByPk($id);
         		if($postModel){        			
-        			XUpload::deleteFile($postModel->cover_image);        			       			
+        			Uploader::deleteFile($postModel->cover_image);        			       			
         			$postModel->delete();
         		}
         	}
