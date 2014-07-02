@@ -1,6 +1,6 @@
 # your database backup
 # version:5.5.27-log
-# time:2014-07-02 16:35:37
+# time:2014-07-02 16:42:07
 # --------------------------------------------------------
 
 
@@ -1305,8 +1305,7 @@ CREATE TABLE `yii_session` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='session表';
 
-INSERT INTO `yii_session` VALUES('sqnomj60rjj3fms3ho6pqr0bo6','1404290142','admin__returnUrl|s:10:\"/admin.htm\";');
-INSERT INTO `yii_session` VALUES('a5hlma3pgc513oltcourk8g861','1404293736','Yii.CCaptchaAction.33c9b0a4.comment.captcha|s:6:\"gklc4b\";Yii.CCaptchaAction.33c9b0a4.comment.captchacount|i:1;Yii.CCaptchaAction.33c9b0a4.admin/default.captcha|s:4:\"16rc\";Yii.CCaptchaAction.33c9b0a4.admin/default.captchacount|i:13;Yii.CCaptchaAction.33c9b0a4.question.captcha|s:6:\"pc6ana\";Yii.CCaptchaAction.33c9b0a4.question.captchacount|i:2;Yii.CCaptchaAction.33c9b0a4.user.captcha|s:6:\"fkua3e\";Yii.CCaptchaAction.33c9b0a4.user.captchacount|i:1;admin__returnUrl|s:10:\"/admin.htm\";admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}6cb602a7c53e8febaeafaaea1085c566__id|s:2:\"31\";6cb602a7c53e8febaeafaaea1085c566__name|s:8:\"testUser\";6cb602a7c53e8febaeafaaea1085c566status|s:1:\"1\";6cb602a7c53e8febaeafaaea1085c566groupid|s:1:\"1\";6cb602a7c53e8febaeafaaea1085c566groupname|s:12:\"普通用户\";6cb602a7c53e8febaeafaaea1085c566email|s:17:\"1441044277@qq.com\";6cb602a7c53e8febaeafaaea1085c566__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
+INSERT INTO `yii_session` VALUES('a5hlma3pgc513oltcourk8g861','1404294126','Yii.CCaptchaAction.33c9b0a4.comment.captcha|s:6:\"gklc4b\";Yii.CCaptchaAction.33c9b0a4.comment.captchacount|i:1;Yii.CCaptchaAction.33c9b0a4.admin/default.captcha|s:4:\"16rc\";Yii.CCaptchaAction.33c9b0a4.admin/default.captchacount|i:13;Yii.CCaptchaAction.33c9b0a4.question.captcha|s:6:\"pc6ana\";Yii.CCaptchaAction.33c9b0a4.question.captchacount|i:2;Yii.CCaptchaAction.33c9b0a4.user.captcha|s:6:\"fkua3e\";Yii.CCaptchaAction.33c9b0a4.user.captchacount|i:1;admin__returnUrl|s:10:\"/admin.htm\";admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}6cb602a7c53e8febaeafaaea1085c566__id|s:2:\"31\";6cb602a7c53e8febaeafaaea1085c566__name|s:8:\"testUser\";6cb602a7c53e8febaeafaaea1085c566status|s:1:\"1\";6cb602a7c53e8febaeafaaea1085c566groupid|s:1:\"1\";6cb602a7c53e8febaeafaaea1085c566groupname|s:12:\"普通用户\";6cb602a7c53e8febaeafaaea1085c566email|s:17:\"1441044277@qq.com\";6cb602a7c53e8febaeafaaea1085c566__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
 
 DROP TABLE IF EXISTS `yii_setting`;
 CREATE TABLE `yii_setting` (
@@ -1508,31 +1507,7 @@ CREATE TABLE `yii_upload` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=93 DEFAULT CHARSET=utf8 COMMENT='附件';
 
-INSERT INTO `yii_upload` VALUES('20','1','5.png','uploads/images/201403/3b68894af12.png','','png','application/octet-stream','1724','0','1394775273');
-INSERT INTO `yii_upload` VALUES('19','1','4.png','uploads/images/201403/7b1f180d893.png','','png','application/octet-stream','624','0','1394766396');
-INSERT INTO `yii_upload` VALUES('18','1','3.png','uploads/images/201403/618ffae8688.png','','png','image/png','1158','0','1394765930');
-INSERT INTO `yii_upload` VALUES('11','1','4.png','uploads/images/201403/3191fae4146.png','','png','application/octet-stream','624','0','1394518529');
-INSERT INTO `yii_upload` VALUES('12','1','3.png','uploads/images/201403/99416091f65.png','','png','application/octet-stream','1158','0','1394518529');
-INSERT INTO `yii_upload` VALUES('15','1','gallery_848120_420_420.jpg','uploads/images/201403/0630a657021.jpg','','jpg','application/octet-stream','27151','0','1394520368');
-INSERT INTO `yii_upload` VALUES('21','1','4.png','uploads/images/201403/3db31e78ed6.png','','png','application/octet-stream','624','0','1394776929');
-INSERT INTO `yii_upload` VALUES('22','1','5.png','uploads/images/201403/8d263a71832.png','','png','application/octet-stream','1724','0','1394777029');
-INSERT INTO `yii_upload` VALUES('23','1','dui.png','uploads/images/201403/d31cf787453.png','','png','image/png','307','0','1394777079');
-INSERT INTO `yii_upload` VALUES('24','1','5.png','uploads/images/201403/aa13e88c5b4.png','','png','application/octet-stream','1724','0','1394781140');
-INSERT INTO `yii_upload` VALUES('25','1','2013052136594429.GIF','uploads/images/201403/502591bcd60.gif','','gif','application/octet-stream','136474','0','1394781772');
-INSERT INTO `yii_upload` VALUES('26','1','1270881934.jpg','uploads/images/201403/45dc43ecaae.jpg','','jpg','application/octet-stream','88396','0','1394781772');
-INSERT INTO `yii_upload` VALUES('27','1','6.png','uploads/attached/image/201403/85f1fd7ad55.png','','png','image/png','1665','0','1394781813');
-INSERT INTO `yii_upload` VALUES('28','1','email_hui.gif','uploads/attached/image/201403/e54c3f369b1.gif','','gif','application/octet-stream','1694','0','1394781834');
-INSERT INTO `yii_upload` VALUES('35','1','4.png','uploads/images/201405/e591eae944b.png','','png','application/octet-stream','624','0','1400139041');
-INSERT INTO `yii_upload` VALUES('36','1','4.png','uploads/images/201405/21e1adee63a.png','','png','application/octet-stream','624','0','1400139407');
-INSERT INTO `yii_upload` VALUES('37','1','5.png','uploads/images/201405/f23850e09dc.png','','png','application/octet-stream','1724','0','1400139621');
-INSERT INTO `yii_upload` VALUES('41','1','4.png','uploads/images/201405/157922e4cf3.png','','png','application/octet-stream','624','0','1400141603');
-INSERT INTO `yii_upload` VALUES('43','1','3.png','uploads/images/201405/c5fa21d533b.png','','png','application/octet-stream','1158','0','1400205224');
-INSERT INTO `yii_upload` VALUES('44','1','5.png','uploads/images/201405/12d4aa28af4.png','','png','application/octet-stream','1724','0','1400205363');
 INSERT INTO `yii_upload` VALUES('45','1','xiaomi_note.jpg','uploads/images/201405/6bf7dd586e7.jpg','','jpg','application/octet-stream','245509','0','1401092533');
-INSERT INTO `yii_upload` VALUES('63','1','002.jpg','uploads/images/201406/d6bf42140c0.jpg','','jpg','application/octet-stream','24918','0','1401864670');
-INSERT INTO `yii_upload` VALUES('64','1','003.jpg','uploads/images/201406/4ca469fcfbf.jpg','','jpg','application/octet-stream','21220','0','1401864674');
-INSERT INTO `yii_upload` VALUES('65','1','ashows.com-0418169981.gif','uploads/images/201406/018817f4a8f.gif','','gif','application/octet-stream','1986907','0','1402473194');
-INSERT INTO `yii_upload` VALUES('66','1','002.gif','uploads/images/201406/6042f7935d0.gif','','gif','application/octet-stream','505860','0','1402473624');
 INSERT INTO `yii_upload` VALUES('68','1','AliIM2014_taobao(8.00.34C).exe','uploads/files/201406/AliIM2014_taobao(8.00.34C).exe','','exe','application/octet-stream','41074080','0','1403082064');
 INSERT INTO `yii_upload` VALUES('69','1','111.jpg','uploads/attached/image/201406/3078e9f0bff.jpg','','jpg','image/jpeg','13633','0','1404109948');
 INSERT INTO `yii_upload` VALUES('70','1','223.jpg','uploads/attached/image/201406/f6cf41e3649.jpg','','jpg','image/jpeg','155671','0','1404110187');
