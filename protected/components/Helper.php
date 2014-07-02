@@ -69,7 +69,7 @@ class Helper extends CController
 		static $ret = array();
 		if ( false !== ($handle = opendir ( $dir ))) {
 			while ( false !== ($file = readdir ( $handle )) ) {
-				if ($file != '.' && $file !== '..' && $file !== '.git') {
+				if ($file != '.' && $file !== '..' && $file !== '.git' && $file !== '.svn' && $file !== '.htaccess') {
 					$cur_path = $dir . '/' . $file;
 					if (is_dir ( $cur_path )) {
 						$ret['dirs'][] =$cur_path;
