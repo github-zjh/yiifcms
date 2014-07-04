@@ -6,13 +6,13 @@
 		<div class="content_left">		
 			<div class="list_box clear">				
 				<div>	
-					<h2><a href="<?php echo $this->createUrl('video/view', array('id'=>$video->id));?>"><?php echo $video->title;?></a></h2>
+					<h2><a href="<?php echo $this->createUrl('video/view', array('id'=>$video->id));?>"><?php echo CHtml::encode($video->title);?></a></h2>
 					
 					<div class="content_info soft_info video_info">
 						<div class="info_head clear">
 							<div class="info_left">		
 								<?php if($video->cover_image && file_exists($video->cover_image)):?>					
-								<img src="<?php echo $video->cover_image;?>" alt="<?php echo $video->title;?>" />
+								<img src="<?php echo $video->cover_image;?>" alt="<?php echo CHtml::encode($video->title);?>" />
 								<?php else:?>
 								<div class="no_cover"><?php echo Yii::t('common','No Cover');?></div>
 								<?php endif;?>

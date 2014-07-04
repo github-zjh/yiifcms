@@ -12,7 +12,7 @@
 						<a href="<?php echo $this->createUrl('post/index', array('catalog_id'=>$post->catalog->id));?>"><?php echo $post->catalog->catalog_name;?></a>				
 					</div>
 					<div class="list_body">
-						<h2><a href="<?php echo $this->createUrl('post/view', array('id'=>$post->id));?>" style="<?php echo $this->formatStyle($post->title_style);?>"><?php echo $post->title;?></a></h2>
+						<h2><a href="<?php echo $this->createUrl('post/view', array('id'=>$post->id));?>" style="<?php echo $this->formatStyle($post->title_style);?>"><?php echo CHtml::encode($post->title);?></a></h2>
 						<p class="view_info">
 							<span><?php echo Yii::t('common','Copy From')?>：  <em><?php echo $post->copy_from?"<a href='".$post->copy_url."' target='_blank'>".$post->copy_from."</a>":Yii::t('common','System Manager');?></em></span>
 							<?php if($tags_len > 0):?>
@@ -27,9 +27,9 @@
 						</p>									
 						<div class="content_info clear">		
 							<?php if(file_exists($post->attach_thumb)):?>
-							<a class="content_cover" alt="<?php echo $post->title;?>" title="<?php echo $post->title;?>" href="<?php echo $this->createUrl('post/view', array('id'=>$post->id));?>"><img src="<?php echo $post->attach_thumb;?>" /></a>
+							<a class="content_cover" alt="<?php echo $post->title;?>" title="<?php echo CHtml::encode($post->title);?>" href="<?php echo $this->createUrl('post/view', array('id'=>$post->id));?>"><img src="<?php echo $post->attach_thumb;?>" /></a>
 							<?php endif;?>												
-							<div><?php echo $post->intro?$post->intro:'...';?></div>
+							<div><?php echo $post->intro?CHtml::encode($post->intro):'...';?></div>
 						</div>
 						
 						<a href="<?php echo $this->createUrl('post/view', array('id'=>$post->id));?>" class="continue_read"><?php echo Yii::t('common','Read More');?></a>

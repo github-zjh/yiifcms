@@ -10,7 +10,7 @@
 			<dl class="category recent_post">
 				<dt><?php echo Yii::t('common','Last Videos');?></dt>
 				<?php foreach((array)$last_videos as $ls):?>
-				<dd><a title="<?php echo $ls->title;?>" href="<?php echo $this->createUrl('video/view', array('id'=>$ls->id));?>"><?php echo Helper::truncate_utf8_string($ls->title,18);?></a></dd>		
+				<dd><a title="<?php echo CHtml::encode($ls->title);?>" href="<?php echo $this->createUrl('video/view', array('id'=>$ls->id));?>"><?php echo Helper::truncate_utf8_string($ls->title,18);?></a></dd>		
 				<?php endforeach;?>					
 			</dl>		
 		</div>

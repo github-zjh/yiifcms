@@ -14,7 +14,7 @@
 							<span class="v_play_mask"></span>
 							<span class="v_play_icon"></span>
 						</a>
-						<h2><a class="video_title" href="<?php echo $this->createUrl('video/view', array('id'=>$video->id));?>"  title="<?php echo $video->title;?>"><?php echo $video->title;?></a></h2>
+						<h2><a class="video_title" href="<?php echo $this->createUrl('video/view', array('id'=>$video->id));?>"  title="<?php echo CHtml::encode($video->title);?>"><?php echo CHtml::encode($video->title);?></a></h2>
 					</div>
 				</li>			
 				<?php endforeach;?>

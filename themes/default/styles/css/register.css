@@ -13,6 +13,7 @@ body { background-color:#FFFFFF; }
 #register-form .fa_email:before { font-size:18px; content: "\f003"; color:#FFFFFF;}
 #register-form input.form-control {
 	float:left;
+	height:24px;
 	padding-left:10px; 
 	border-color: #CCCCCC;
     border-image: none;

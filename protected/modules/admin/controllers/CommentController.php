@@ -57,6 +57,10 @@ class CommentController extends Backend
         $criteria->limit = $pages->pageSize;
         $criteria->offset = $pages->currentPage * $pages->pageSize;
         $result = $model->findAll( $criteria );
+        
+        Yii::app()->clientScript->registerCssFile($this->_static_public . "/js/kindeditor/code/prettify.css");
+        Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/kindeditor/code/prettify.js",CClientScript::POS_END);
+        
         $this->render( 'index', array ( 'datalist' => $result , 'pagebar' => $pages, 'table'=>$table ) );
     }
 

@@ -51,6 +51,7 @@
 }
 #login-form input.form-control {
 	float:left;
+	height:24px;
 	padding-left:10px; 
 	border-color: #CCCCCC;
     border-image: none;

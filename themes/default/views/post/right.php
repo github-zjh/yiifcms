@@ -18,7 +18,7 @@
 			<dl class="category recent_post">
 				<dt><?php echo Yii::t('common','Last Articles');?></dt>
 				<?php foreach((array)$last_posts as $lp):?>
-				<dd><a title="<?php echo $lp->title;?>" href="<?php echo $this->createUrl('post/view', array('id'=>$lp->id));?>"><?php echo Helper::truncate_utf8_string($lp->title,18);?></a></dd>		
+				<dd><a title="<?php echo CHtml::encode($lp->title);?>" href="<?php echo $this->createUrl('post/view', array('id'=>$lp->id));?>"><?php echo Helper::truncate_utf8_string($lp->title,18);?></a></dd>		
 				<?php endforeach;?>					
 			</dl>		
 		</div>

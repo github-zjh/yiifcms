@@ -1,6 +1,5 @@
 <div id="contentHeader">
-  <h3><?php echo Yii::t('admin','Template Set');?></h3>
-  <span class="red">注意：输入内容(统计代码除外)时，不允许带有(&amp;,&gt;,&lt;)，否则在严格的环境下会提交不上。</span>
+  <h3><?php echo Yii::t('admin','Template Set');?></h3>  
 </div>
 <?php $form = $this->beginWidget('CActiveForm', array('id'=>'xform','htmlOptions'=>array('name'=>'xform','method'=>'post')));?>
 

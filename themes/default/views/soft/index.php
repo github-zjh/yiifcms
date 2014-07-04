@@ -8,17 +8,17 @@
 			<?php foreach((array)$softs as $soft):?>					
 				<li class="list_box clear">
 					<div class="list_head soft_list_head">
-						<a href="<?php echo $this->createUrl('soft/view', array('id'=>$soft->id));?>" title="<?php echo $soft->title;?>">
+						<a href="<?php echo $this->createUrl('soft/view', array('id'=>$soft->id));?>" title="<?php echo CHtml::encode($soft->title);?>">
 							<?php if($soft->soft_icon && file_exists($soft->soft_icon)):?>
-							<img src="<?php echo $soft->soft_icon;?>" width="60" height="60" alt="<?php echo $soft->title;?>"/>
+							<img src="<?php echo $soft->soft_icon;?>" width="60" height="60" alt="<?php echo CHtml::encode($soft->title);?>"/>
 							<?php else:?>
-							<img src="<?php echo $this->_stylePath;?>/images/ico_none.jpg" width="60" height="60" alt="<?php echo $soft->title;?>"/>
+							<img src="<?php echo $this->_stylePath;?>/images/ico_none.jpg" width="60" height="60" alt="<?php echo CHtml::encode($soft->title);?>"/>
 							<?php endif;?>	
 						</a>
 									
 					</div>
 					<div class="list_body">
-						<h2><a href="<?php echo $this->createUrl('soft/view', array('id'=>$soft->id));?>"  title="<?php echo $soft->title;?>"><?php echo $soft->title;?></a></h2>
+						<h2><a href="<?php echo $this->createUrl('soft/view', array('id'=>$soft->id));?>"  title="<?php echo CHtml::encode($soft->title);?>"><?php echo CHtml::encode($soft->title);?></a></h2>
 						<p class="view_info">
 							<span><?php echo Yii::t('common','UpdateTime')?>：<?php echo date('Y-m-d H:i',$soft->update_time)?></span>
 							<span class="downs"><?php echo Yii::t('model','DownCount')?>：<em><?php echo $soft->down_count;?></em></span>							
