@@ -41,7 +41,7 @@
   <tr >
     <td ><?php echo $form->textArea($model,'content'); ?>
       <?php $this->widget('application.widget.kindeditor.KindEditor',array('target'=>array(
-'#Page_content'=>array('uploadJson'=> $this->createUrl('upload')))));?></td>
+'#Page_content'=>array('uploadJson'=>$this->createUrl('/admin/uploadify/basicexecute', array('from'=>'editor'))))));?></td>
   </tr>
   <tr>
     <td class="tb_title"><?php echo Yii::t('admin','Introduce');?>：</td>
