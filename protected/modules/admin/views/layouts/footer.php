@@ -66,6 +66,14 @@ function uploadifyRemove(fileId,attrName, otherid=''){
 		},'json');
 	}
 }
+//js转换字符<>&
+function _escape(val) {
+	return val.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+//js反转换字符<>&
+function _unescape(val) {
+	return val.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&amp;/g, '&');
+}
 
 </script>
 </div><!-- end container -->

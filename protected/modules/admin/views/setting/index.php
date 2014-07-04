@@ -1,6 +1,6 @@
 <div id="contentHeader">
   <h3>站点设置</h3>
-  
+  <span class="red">注意：输入内容(统计代码除外)时，不允许带有(&amp;,&gt;,&lt;)，否则在严格的环境下会提交不上。</span>
 </div>
 <form action="" method="post" enctype="multipart/form-data" name="xform" id="xform">
   <table class="content_list">
@@ -65,5 +65,10 @@
 <script type="text/javascript">
 $(function(){
 	$("#xform").validationEngine();	
+	//转换统计的js代码
+	$("#site_stats").on("blur",function(){
+		var stats = _escape($("#site_stats").val());
+		$("#site_stats").val(stats);
+	});	
 });
 </script> 

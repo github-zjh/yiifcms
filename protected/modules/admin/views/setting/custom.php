@@ -1,6 +1,7 @@
 
 <div id="contentHeader">
   <h3>自定义属性</h3>
+  <span class="red">注意：输入内容(统计代码除外)时，不允许带有(&amp;,&gt;,&lt;)，否则在严格的环境下会提交不上。</span>
 </div>
 
 <?php if($setting):?>
