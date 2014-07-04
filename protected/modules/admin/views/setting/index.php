@@ -64,11 +64,6 @@
 </form>
 <script type="text/javascript">
 $(function(){
-	$("#xform").validationEngine();	
-	//转换统计的js代码
-	$("#site_stats").on("blur",function(){
-		var stats = _escape($("#site_stats").val());
-		$("#site_stats").val(stats);
-	});	
+	$("#xform").validationEngine();		
 });
 </script> 

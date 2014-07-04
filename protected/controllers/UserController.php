@@ -308,7 +308,7 @@ class UserController extends FrontBase
 		}
 		/* 防止登陆成功后跳转到登陆、退出的页面 */
 		$ret_url = strtolower($ret_url);
-		if (str_replace(array('user/login', 'user/logout', 'user/register'), '', $ret_url) != $ret_url)
+		if (str_replace(array('user/login', 'user/logout', 'user/register', 'user/authEmail'), '', $ret_url) != $ret_url)
 		{
 			$ret_url = Yii::app()->user->returnUrl;
 		}
@@ -390,9 +390,9 @@ class UserController extends FrontBase
 			// validate user input and redirect to the previous page if valid
 			if($userModel->save()){				
 				$this->activeAccount(array('id'=>$userModel->uid, 'email'=>$userModel->email, 'username'=>$userModel->username));
-				$this->message('success', Yii::t('Register Success'), $this->createUrl('login'), 5);
+				$this->message('success', Yii::t('common','Register Success'), $this->createUrl('login'), 5);
 			}else{
-				$this->message('error',Yii::t('Register Failed'), $this->createUrl('register'));
+				$this->message('error',Yii::t('common','Register Failed'), $this->createUrl('register'));
 			}
 		}
 		//set seo
@@ -436,6 +436,9 @@ class UserController extends FrontBase
 		$user = User::model()->findByPk($id);
 		if(!$user){
 			$this->message('error',Yii::t('common','Auth Account Do Not Exist'), $this->createUrl('site/index'),0, true);
+		}
+		if($user->status == 1){
+			$this->message('success',Yii::t('common','Auth Is Ok'), $this->createUrl('login'));
 		}
 		if((time()-$user->addtime)/3600 > 2){
 			//超过2小时视为过期

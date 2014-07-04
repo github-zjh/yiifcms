@@ -1,13 +1,12 @@
 <?php
 
 /**
- * This is the model class for table "{{Setting}}".
+ * This is the model class for table "{{setting}}".
  *
- * The followings are the available columns in table '{{Setting}}':
+ * The followings are the available columns in table '{{setting}}':
  * @property string $scope
  * @property string $variable
  * @property string $value
- * @property string $description
  */
 class Setting extends CActiveRecord
 {
@@ -28,13 +27,12 @@ class Setting extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('variable', 'required'),
-			array('scope', 'length', 'max'=>20),
+			array('scope', 'length', 'max'=>30),
 			array('variable', 'length', 'max'=>50),
-			array('description', 'length', 'max'=>255),
 			array('value', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('scope, variable, value, description', 'safe', 'on'=>'search'),
+			array('scope, variable, value', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,7 +56,6 @@ class Setting extends CActiveRecord
 			'scope' => 'Scope',
 			'variable' => 'Variable',
 			'value' => 'Value',
-			'description' => 'Description',
 		);
 	}
 
@@ -85,8 +82,6 @@ class Setting extends CActiveRecord
 		$criteria->compare('variable',$this->variable,true);
 
 		$criteria->compare('value',$this->value,true);
-
-		$criteria->compare('description',$this->description,true);
 
 		return new CActiveDataProvider('Setting', array(
 			'criteria'=>$criteria,

@@ -1,26 +1,41 @@
-<IfModule mod_rewrite.c>  
-  Options +FollowSymLinks  
-  IndexIgnore */*  
-  # 开启rewrite模块
-  RewriteEngine on  
-  # if a directory or a file exists, use it directly  
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
+  <IfModule mod_rewrite.c>    
+	  Options +FollowSymLinks  
+	  IndexIgnore */*  
+	  # 开启rewrite模块
+	  RewriteEngine on  
+	  # if a directory or a file exists, use it directly  
+	  RewriteCond %{REQUEST_FILENAME} !-f
+	  RewriteCond %{REQUEST_FILENAME} !-d
+	  
+	  # 定向到index.php  
+	  RewriteRule . index.php  
+	
+	  # 设置不能执行php权限的目录
+	  RewriteRule assets/(.*).(php)$ – [F]  
+	  RewriteRule framework/(.*).(php)$ – [F]
+	  #RewriteRule requirements/(.*).(php)$ – [F]
+	  RewriteRule public/(.*).(php)$ – [F] 
+	  RewriteRule themes/(.*).(php)$ – [F]
+	  RewriteRule uploads/(.*).(php)$ – [F] 
+	  
+	  # 设置环境限制
+	  #php_value upload_max_filesize 50M
+	  #php_value post_max_size 60M
+	  #php_value max_execution_time 2000  
+	  
+  </IfModule> 
   
-  # 定向到index.php  
-  RewriteRule . index.php  
-
-  # 设置不能执行php权限的目录
-  RewriteRule assets/(.*).(php)$ – [F]  
-  RewriteRule framework/(.*).(php)$ – [F]
-  RewriteRule requirements/(.*).(php)$ – [F]
-  RewriteRule public/(.*).(php)$ – [F] 
-  RewriteRule themes/(.*).(php)$ – [F]
-  RewriteRule uploads/(.*).(php)$ – [F] 
-  
-  # 设置环境限制
-  php_value upload_max_filesize 50M
-  php_value post_max_size 60M
-  php_value max_execution_time 2000  
-  
-</IfModule>  
+  <IfModule mod_expires.c>
+	# Activate mod_expires for this directory
+	ExpiresActive on
+	
+	# locally cache common image types for 7 days
+	ExpiresByType image/jpg "access plus 7 days"
+	ExpiresByType image/jpeg "access plus 7 days"
+	ExpiresByType image/gif "access plus 7 days"
+	ExpiresByType image/png "access plus 7 days"
+	
+	# cache CSS files for 24 hours
+	ExpiresByType text/css "access plus 24 hours"
+</IfModule> 
+ 

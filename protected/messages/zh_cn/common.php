@@ -91,6 +91,7 @@ return array (
 	'Register Failed'=>'注册失败',
 	'Auth Account Do Not Exist'=>'验证用户不存在',
 	'The link is invalid'=>'链接已失效！',
+	'Auth Is Ok' => '您的账号已经激活，请勿重复提交。',
 	'Auth Success'=>'验证通过，您的账号已激活。',
 	'Auth Failed'=>'验证失败，请重新发送邮件。',	
 	'Incorrect username or password.'=>'用户名或密码错误',
