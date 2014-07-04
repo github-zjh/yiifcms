@@ -18,7 +18,7 @@ class Link extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{Link}}';
+		return '{{link}}';
 	}
 
 	/**

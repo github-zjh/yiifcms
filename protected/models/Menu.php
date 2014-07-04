@@ -20,7 +20,7 @@ class Menu extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{Menu}}';
+		return '{{menu}}';
 	}
 
 	/**

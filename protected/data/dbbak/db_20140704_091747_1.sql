@@ -1,6 +1,6 @@
 # your database backup
-# version:5.6.16
-# time:2014-07-02 20:54:42
+# version:5.5.27-log
+# time:2014-07-04 09:17:47
 # --------------------------------------------------------
 
 
@@ -87,7 +87,7 @@ CREATE TABLE `yii_comment` (
 ) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COMMENT='评论表';
 
 INSERT INTO `yii_comment` VALUES('31','1','31','第三张亮了！<img src=\"/static/public/emoticons/images/13.gif\" alt=\"\" border=\"0\" />','Y','2','127.0.0.1','1402628120');
-INSERT INTO `yii_comment` VALUES('32','16','31','内容排版 不太好吧 <img src=\"/static/public/emoticons/images/10.gif\" alt=\"\" border=\"0\" /><br />','Y','1','127.0.0.1','1402882240');
+INSERT INTO `yii_comment` VALUES('32','16','31','内容排版 不太好吧 <img src=\"/public/emoticons/images/1.gif\" alt=\"\" border=\"0\" /><br />','Y','1','127.0.0.1','1402882240');
 INSERT INTO `yii_comment` VALUES('33','16','31','再试一次','Y','1','127.0.0.1','1402889690');
 INSERT INTO `yii_comment` VALUES('34','4','31','旺旺还不错 <img src=\"/static/public/emoticons/images/65.gif\" alt=\"\" border=\"0\" /><br />','Y','3','127.0.0.1','1403055802');
 INSERT INTO `yii_comment` VALUES('35','23','31','这篇文章很不错','Y','1','127.0.0.1','1403515888');
@@ -1305,8 +1305,7 @@ CREATE TABLE `yii_session` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='session表';
 
-INSERT INTO `yii_session` VALUES('tg0ne78pe6uo9rb80scp739bl5','1404308525','admin__returnUrl|s:10:\"/admin.htm\";');
-INSERT INTO `yii_session` VALUES('ij0po34arfrmbmm13h1ln11nf7','1404309281','admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.af6bc074.admin/default.captcha|s:4:\"jh5b\";Yii.CCaptchaAction.af6bc074.admin/default.captchacount|i:3;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
+INSERT INTO `yii_session` VALUES('gj767stds78f825qmmgqtsp5d0','1404440265','admin__returnUrl|s:10:\"/admin.htm\";Yii.CCaptchaAction.33c9b0a4.admin/default.captcha|s:4:\"qe2a\";Yii.CCaptchaAction.33c9b0a4.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:9:\"zjh_admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
 
 DROP TABLE IF EXISTS `yii_setting`;
 CREATE TABLE `yii_setting` (
@@ -1553,7 +1552,7 @@ CREATE TABLE `yii_user` (
   UNIQUE KEY `username` (`username`)
 ) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 DELAY_KEY_WRITE=1 COMMENT='用户表';
 
-INSERT INTO `yii_user` VALUES('1','zjh_admin','$2a$08$O9zKWgiL8YBa5Lzss2G5PO08tAj1HmI6R.2J3hLXPC9lPcLPPx5GS','xb_zjh@126.com','10','1','1379001600','','','','','NULL','','','0');
+INSERT INTO `yii_user` VALUES('1','zjh_admin','$2a$08$y1W4MCCLHhMgA7jmdvppF.5UO5sjASEpypxckvz6MV4Qw0AlkDTgS','xb_zjh@126.com','10','1','1379001600','','','','','','','127.0.0.1','1');
 INSERT INTO `yii_user` VALUES('2','没那么简单','$2a$13$5HFLakgTxQyyfzcZFQElWOk5W.OHhPnfwKXLAYwokPNVsZSyW4Tqy','376685457@qq.com','9','1','1379091600','','','','','','','','0');
 INSERT INTO `yii_user` VALUES('7','微博评论','$2a$13$TEpIe58TLJIUmLuoE7pYD.KK74cRlLXSaNoXf0bnxbcLFFmmW1E5u','xweibo_user85589@sina.com','1','1','1379101600','','','','','','','','0');
 INSERT INTO `yii_user` VALUES('31','testUser','$2a$08$QuvI8Ory.KMdKvmaCV/g9O8AoVTQMMvDrS.wvkOnEWBIBJwm3kLsq','1441044277@qq.com','1','1','1399346040','uploads/avatar/201405/small_31_c696db73478.jpg','nicename','这个家伙很懒，什么都不写','http://www.baidu.com','','','127.0.0.1','38');
@@ -1605,7 +1604,7 @@ CREATE TABLE `yii_video` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='软件管理表';
 
-INSERT INTO `yii_video` VALUES('1','美国队长','12','uploads/images/201406/827a03cb8cb.jpg','','englise','science','8.6','','','美国队长','0.00','1403146013','1400834656','61','0','{\"t\":10,\"s\":[0,1,1,2,6]}','Y','','','');
+INSERT INTO `yii_video` VALUES('1','美国队长','12','uploads/images/201406/827a03cb8cb.jpg','','englise','science','8.6','','','美国队长','0.00','1403146013','1400834656','63','0','{\"t\":10,\"s\":[0,1,1,2,6]}','Y','','','');
 INSERT INTO `yii_video` VALUES('2','钢铁侠','13','uploads/images/201406/bf941705b16.jpg','','chinese','comedy','0.0','','','','0.00','1403148128','1403148128','2','0','','Y','','','');
 INSERT INTO `yii_video` VALUES('3','明日边缘','13','uploads/images/201406/4cc06a97d5a.jpg','','chinese','comedy','0.0','','','','0.00','1403148264','1403148264','1','0','','Y','','','');
 INSERT INTO `yii_video` VALUES('4','窃听风云3','13','uploads/images/201406/a02a34ce432.jpg','','chinese','comedy','9.0','','','','0.00','1403148306','1403148306','10','0','{\"t\":2,\"s\":[0,0,0,1,1]}','Y','','','');

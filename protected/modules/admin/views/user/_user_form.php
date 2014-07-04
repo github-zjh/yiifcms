@@ -36,6 +36,19 @@
   <tr >
     <td ><?php echo $form->textField($model,'email',array('size'=>30, 'maxlength'=>50)); ?></td>
   </tr>
+  <tr>
+    <td class="tb_title"><?php echo $form->labelEx($model,'qq');?>：</td>
+  </tr>
+  <tr >
+    <td ><?php echo $form->textField($model,'qq',array('size'=>30, 'maxlength'=>50)); ?></td>
+  </tr>
+  <tr>
+    <td class="tb_title"><?php echo $form->labelEx($model,'mobile');?>：</td>
+  </tr>
+  <tr >
+    <td ><?php echo $form->textField($model,'mobile',array('size'=>30, 'maxlength'=>50)); ?></td>
+  </tr>
+  
   
    <tr>
     <td class="tb_title"><?php echo Yii::t('admin','User Group');?>：</td>

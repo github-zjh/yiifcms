@@ -88,7 +88,7 @@ class VideoController extends FrontBase
    * 浏览详细内容
    */
   public function actionView( $id ) {
-  		$video = video::model ()->findByPk ( intval ( $id ) );
+  		$video = Video::model ()->findByPk ( intval ( $id ) );
 		if (false == $video)
 			throw new CHttpException ( 404, Yii::t ( 'common', 'The requested page does not exist.' ) );
 			// seo信息

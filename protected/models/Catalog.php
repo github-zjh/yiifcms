@@ -28,7 +28,7 @@ class Catalog extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{Catalog}}';
+		return '{{catalog}}';
 	}
 
 	/**

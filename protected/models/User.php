@@ -46,7 +46,7 @@ class User extends CActiveRecord
 			array('web','checkWeb', 'on'=>'update'),
 			array('qq','length', 'min'=>6, 'on'=>'update'),
 			array('mobile, qq', 'length', 'max'=>11, 'on'=>'update'),
-			array('mobile, qq, status, addtime', 'numerical', 'integerOnly'=>true),
+			array('qq, status, addtime', 'numerical', 'integerOnly'=>true),
 			array('mobile','checkMobile', 'on'=>'update'),
 			array('last_login_ip', 'length', 'max'=>15),
 			// The following rule is used by search().

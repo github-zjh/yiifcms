@@ -16,7 +16,7 @@ class Setting extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{Setting}}';
+		return '{{setting}}';
 	}
 
 	/**

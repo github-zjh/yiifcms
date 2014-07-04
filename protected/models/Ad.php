@@ -26,7 +26,7 @@ class Ad extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{Ad}}';
+		return '{{ad}}';
 	}
 
 	/**
