@@ -50,15 +50,15 @@
     padding: 0 40px;    
 }
 #login-form input.form-control {
-	float:left;
-	height:24px;
+	float:left;	
+	height:40px;
 	padding-left:10px; 
 	border-color: #CCCCCC;
     border-image: none;
     border-radius: 0 5px 5px 0;
     border-style: solid solid solid none;
     border-width: 1px 1px 1px medium;
-    padding:8px 0 8px 10px;
+    padding-left:10px;
     margin: 0;
     width: 198px;
 }

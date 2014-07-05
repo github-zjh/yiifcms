@@ -7,7 +7,7 @@
 .question_form caption { margin-bottom:10px; font-size:20px; font-weight:bold; text-align:left; }
 .question_form tr { line-height:60px; }
 .question_form th { padding-right:20px; font-weight:bold; font-size:14px;}
-.question_form input[type="text"] { width:260px; height:24px; padding:10px; border-left:1px solid #666666; border-top:1px solid #666666; border-radius:3px; background-color:#e5e6e6; }
+.question_form input[type="text"] { width:260px; height:44px; padding:0 10px; border-left:1px solid #666666; border-top:1px solid #666666; border-radius:3px; background-color:#e5e6e6; }
 .question_form textarea { border-left:1px solid #666666; border-top:1px solid #666666; min-width:500px; max-width:500px; min-height:240px; max-height:240px; padding:10px; background-color:#e5e6e6;}
 .question_form #Question_verifyCode { width:120px;}
 .question_form .submit {
