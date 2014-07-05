@@ -9,25 +9,25 @@
 				<div class="ico_one"></div>
 				<h2>开源、免费</h2>
 				<p>yiifcms是基于yiiframework开发的内容管理系统，它开源、免费，用户可以自由下载、使用、修改、学习交流。</p>
-				<a href="<?php echo $this->createUrl('page/feature')?>" target="_blank"><?php echo Yii::t('common','Read Details')?></a>
+				<a href="<?php echo $this->createUrl('page/index', array('title_alias'=>'feature'))?>" target="_blank"><?php echo Yii::t('common','Read Details')?></a>
 			</li>
 			<li>
 				<div class="ico_one ico_two"></div>
 				<h2>安全、高效</h2>
 				<p>yiiframework本身是一个很安全的高性能的开源框架，使用它您不用担心安全问题，它会使您的网站运行的很良好。</p>
-				<a href="<?php echo $this->createUrl('page/feature')?>" target="_blank"><?php echo Yii::t('common','Read Details')?></a>
+				<a href="<?php echo $this->createUrl('page/index', array('title_alias'=>'feature'))?>" target="_blank"><?php echo Yii::t('common','Read Details')?></a>
 			</li>
 			<li>
 				<div class="ico_one ico_three"></div>
 				<h2>简洁、方便</h2>
 				<p>yiifcms有简洁、方便的后台管理，用户不需要了解复杂的逻辑关系，就可以很快速的发布内容，优化管理。</p>
-				<a href="<?php echo $this->createUrl('page/feature')?>" target="_blank"><?php echo Yii::t('common','Read Details')?></a>
+				<a href="<?php echo $this->createUrl('page/index', array('title_alias'=>'feature'))?>" target="_blank"><?php echo Yii::t('common','Read Details')?></a>
 			</li>
 			<li class="last">
 				<div class="ico_one ico_four"></div>
 				<h2>轻松、稳定</h2>
 				<p>yiifcms架构合理、布局优美，是您轻松建站和学习的不二之选。</p>
-				<a href="<?php echo $this->createUrl('page/feature')?>" target="_blank"><?php echo Yii::t('common','Read Details')?></a>
+				<a href="<?php echo $this->createUrl('page/index', array('title_alias'=>'feature'))?>" target="_blank"><?php echo Yii::t('common','Read Details')?></a>
 			</li>
 		</ul>
 	</div>
