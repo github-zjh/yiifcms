@@ -42,7 +42,7 @@ class Controller extends CController
 	protected  $_type_ids = array(); //内容模型id
 	
 	public function init ()
-	{		
+	{						
 		$this->_yii = Yii::app();
 		$this->_request = Yii::app()->request;		
 		$this->_theme = Yii::app()->theme;
@@ -51,6 +51,11 @@ class Controller extends CController
 		$this->_webRoot = Yii::getPathOfAlias('webroot');
 		$this->_fonts = $this->_webRoot.'/public';
 		$this->_static_public = Yii::app()->params['static']['public'];		
+		
+		//检测系统是否已经安装
+		if(!is_file(WWWPATH.DIRECTORY_SEPARATOR.'/protected/data'.DIRECTORY_SEPARATOR.'install.lock'))
+			$this->redirect($this->createUrl('install/index'));
+		
 		$settings = Setting::model()->findAll();
 		foreach ($settings as $key => $row) {
 			$this->_setting[$row['variable']] = $row['value'];

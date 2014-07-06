@@ -1,0 +1,93 @@
+@charset "utf-8";
+/*全局控制*/
+body { margin: 0; padding: 0; font-size: 12px; font-family: 'microsoft yahei', Verdana, "宋体"; background: url(../install_images/bg_body.png) repeat-x; overflow-y: scroll; *overflow-y:hidden;
+}
+html, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td, p { margin: 0; padding: 0; }
+input, select { font-size: 14px; font-family:'microsoft yahei', Arial; }
+img { border: 0; }
+ul, li { list-style-type: none; }
+a { color: #000; text-decoration: none; }
+a:hover { color: #000; text-decoration: underline; }
+a:focus { outline: none; }
+.hr_8, .hr_10 { font-size: 1px; line-height: 1px; clear: both; _overflow: hidden; }
+.hr_8 { height: 8px; }
+.hr_10 { height: 10px; }
+/*头部区域*/
+.header, .mainbody, .footer { width: 800px; margin: 0 auto; }
+.header { height: 110px; background: url(../install_images/logo.png) no-repeat 0 24px; }
+.header .step_area {height: 17px; float: right; margin: 58px 10px 0 0; text-align: right; font-size: 25px}
+.tb { width: 100%; border-collapse: collapse; }
+.tb td, .tb th { border: 1px solid #CCC; height: 30px; padding-left: 10px; text-align: left }
+td.passed { background-color: #60BF60; border: 1px solid silver; padding: 2px; color: #FFF; text-align: center}
+td.warning { background-color: #FFFFBF; border: 1px solid silver; padding: 2px; }
+td.failed { background-color: #FF8080; border: 1px solid silver; padding: 2px; color: #FFF; text-align: center}
+.button { border: 1px solid #3079ED; background: #4D90FE; color: white; font: bold 14px arial, sans-serif; padding: 0.15em 5em; text-transform: uppercase; height: 37px; line-height: 29px; margin: 0; overflow: visible; width: auto; cursor: pointer; }
+.disable{background: #f2f2f2; color:#333; border:none;}
+.tips { padding: 5px 10px; background: #FFFFBF; margin-bottom: 10px; font-size: 14px }
+.error{background: #FF8080; color: #FFF}
+.env_success{padding: 5px 10px; background:#60BF60 ;margin-bottom: 10px;  font-size: 14px ; color: #FFF}
+.progress{height:204px;line-height:24px;overflow:auto; font-size: 14px}
+.step_sgin{height: 5px;  border: 1px solid #4D90FE}
+.step_sgin .step{display: inline-block; height: 5px; background:#4D90FE; }
+.step_sgin .step_1{width: 33.3%; }
+.step_sgin .step_2{width: 66.6%; }
+.step_sgin .step_3{width: 100%;}
+
+/*内容区域*/
+.agreement_area { height: 390px; padding-top: 30px; background: url(../install_images/content_bg.gif) no-repeat; }
+.agreement { width: 720px; height: 330px; padding: 10px; margin: 0 auto; overflow: auto; border: 1px solid #eee; background: #fff; line-height: 22px; }
+.agreement { color: #333; }
+.agreement h3 { font-size: 14px; text-align: center; margin-bottom: 5px; color: #333; }
+.agreement h4 { font-size: 12px; margin: 10px 0 5px 0; color: #333; }
+.mainbody h2.install_title { padding: 20px 0 8px 0; font-size: 16px; color: #666; }
+.mainbody .install_sub_title { color: #6ca1b4; font-size: 14px }
+.class_input { width: 240px; height: 25px; line-height: 18px; background: url(../install_images/input_class_bg.jpg) repeat-x; border: 1px solid #7cc2ed; text-indent: 2px; margin-left: 5px; }
+.cnote { margin-left: 20px; color: #999; }
+.inst_btn_area { margin-top: 30px; text-align: center; }
+.inst_btn_area a { display: inline-block; width: 78px; height: 25px; line-height: 25px; background: url(../install_images/inst_btn.gif); text-align: center; font-family: "宋体"; font-size: 14px; overflow: hidden; cursor: pointer; }
+.inst_btn_area a:hover { text-decoration: none; }
+.complete { width: 600px; margin: 50px auto 0 auto; }
+.complete .title{padding:40px 0; font-size:25pt; color:#81BA19}
+.complete_txt { padding: 0 0 0 45px; line-height: 22px; font-size: 14px}
+.complete_txt span { color: #999; padding: 0 5px; }
+.complete_note { margin-top: 20px; color: #6ca1b4; }
+.complete .help{font-size: 14px;  padding: 10px 0}
+.complete .help a{text-decoration: none;color:#6ca1b4}
+.complete .red{color: #F00}
+.red{color: #F00}
+.action{display:inline-block; padding:3px 10px; background:#00A3CF; color:#FFF}
+a.action:hover{color:#FFF}
+/*页脚区域*/
+.footer { padding: 30px 0 30px 0; color: #ccc; text-align: center; font-family: Verdana; }
+/* jquery 验证  */
+.formError { z-index: 990; }
+.formError .formErrorContent { z-index: 991; }
+.formError .formErrorArrow { z-index: 996; }
+.ui-dialog .formError { z-index: 5000; }
+.ui-dialog .formError .formErrorContent { z-index: 5001; }
+.ui-dialog .formError .formErrorArrow { z-index: 5006; }
+.inputContainer { position: relative; float: left; }
+.formError { position: absolute; top: 300px; left: 300px; display: block; cursor: pointer; text-align: left; }
+.formError.inline { position: relative; top: 0; left: 0; display: inline-block; }
+.ajaxSubmit { padding: 20px; background: #55ea55; border: 1px solid #999; display: none; }
+.formError .formErrorContent { width: 100%; background: #ee0101; position: relative; color: #fff; min-width: 120px; font-size: 11px; border: 2px solid #ddd; box-shadow: 0 0 6px #000; -moz-box-shadow: 0 0 6px #000; -webkit-box-shadow: 0 0 6px #000; -o-box-shadow: 0 0 6px #000; padding: 4px 10px 4px 10px; border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px; -o-border-radius: 6px; }
+.formError.inline .formErrorContent { box-shadow: none; -moz-box-shadow: none; -webkit-box-shadow: none; -o-box-shadow: none; border: none; border-radius: 0; -moz-border-radius: 0; -webkit-border-radius: 0; -o-border-radius: 0; }
+.greenPopup .formErrorContent { background: #33be40; }
+.blackPopup .formErrorContent { background: #393939; color: #FFF; }
+.formError .formErrorArrow { width: 15px; margin: -2px 0 0 13px; position: relative; }
+body[dir='rtl'] .formError .formErrorArrow, body.rtl .formError .formErrorArrow { margin: -2px 13px 0 0; }
+.formError .formErrorArrowBottom { box-shadow: none; -moz-box-shadow: none; -webkit-box-shadow: none; -o-box-shadow: none; margin: 0px 0 0 12px; top: 2px; }
+.formError .formErrorArrow div { border-left: 2px solid #ddd; border-right: 2px solid #ddd; box-shadow: 0 2px 3px #444; -moz-box-shadow: 0 2px 3px #444; -webkit-box-shadow: 0 2px 3px #444; -o-box-shadow: 0 2px 3px #444; font-size: 0px; height: 1px; background: #ee0101; margin: 0 auto; line-height: 0; font-size: 0; display: block; }
+.formError .formErrorArrowBottom div { box-shadow: none; -moz-box-shadow: none; -webkit-box-shadow: none; -o-box-shadow: none; }
+.greenPopup .formErrorArrow div { background: #33be40; }
+.blackPopup .formErrorArrow div { background: #393939; color: #FFF; }
+.formError .formErrorArrow .line10 { width: 15px; border: none; }
+.formError .formErrorArrow .line9 { width: 13px; border: none; }
+.formError .formErrorArrow .line8 { width: 11px; }
+.formError .formErrorArrow .line7 { width: 9px; }
+.formError .formErrorArrow .line6 { width: 7px; }
+.formError .formErrorArrow .line5 { width: 5px; }
+.formError .formErrorArrow .line4 { width: 3px; }
+.formError .formErrorArrow .line3 { width: 1px; border-left: 2px solid #ddd; border-right: 2px solid #ddd; border-bottom: 0 solid #ddd; }
+.formError .formErrorArrow .line2 { width: 3px; border: none; background: #ddd; }
+.formError .formErrorArrow .line1 { width: 1px; border: none; background: #ddd; }

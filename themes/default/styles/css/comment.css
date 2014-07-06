@@ -19,7 +19,7 @@
 #comment_form input[type="text"]:focus{ box-shadow:none;}
 #comment_form textarea {  border-left:1px solid #666666; border-top:1px solid #666666; min-width:560px; max-width:560px; min-height:140px; max-height:140px; padding:10px; background-color:#e5e6e6;}
 
-#Comment_verifyCode { width:100px; border:1px solid #555555; padding:5px 0;}
+#Comment_verifyCode { width:100px; border:1px solid #555555;}
 #comment_form .submit {
 	display:block;
 	width:60px; 
