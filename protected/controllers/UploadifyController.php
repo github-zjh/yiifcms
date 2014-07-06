@@ -16,7 +16,7 @@ class UploadifyController extends FrontBase
     public function actionIndex() {     
         if (Yii::app()->request->isPostRequest) {
             $adminiUserId = Yii::app()->user->id;  
-            $file = new XUpload;
+            $file = new Uploader;
             $thumb = false;
             if($this->_request->getParam('from') == 'editor'){
             	//从外部编辑器上传的图片
@@ -89,7 +89,7 @@ class UploadifyController extends FrontBase
      */
     public function actionAvatar() {
     	if (Yii::app()->request->isPostRequest) {    		
-    		$file = new XUpload;    		
+    		$file = new Uploader;    		
     		$dir = 'avatar';
 			$file->_image_path = 'uploads/' . $dir . '/';	
 			$file->_thumb_path = 'uploads/' . $dir . '/';
@@ -122,7 +122,7 @@ class UploadifyController extends FrontBase
     		//接收缩略图
 	    	$filename = $_POST['file'];  
 	    	//MIME TYPE  	
-	    	$image_info = XUpload::getImageInfo($filename);
+	    	$image_info = Uploader::getImageInfo($filename);
 	    	$pathinfo = pathinfo($filename);
 	    	//带扩展名的文件名称
 	    	$basename = $pathinfo['basename'];
@@ -169,7 +169,7 @@ class UploadifyController extends FrontBase
     public function actionFile() {     	
     	if ( $this->method() == 'POST' ) {
     		$adminiUserId = Yii::app()->user->id;
-    		$file = new XUpload;    
+    		$file = new Uploader;    
     		$file->_allow_exts = 'pdf,doc,docx,xls,ppt,exe,zip,tar,gz,msi,7z';  //普通文件类型限制
     		$file->_allow_exts .= ',mp3,mp4,wma';   //音频文件
     		$file->_allow_exts .= ',swf,mv,avi,mp4,flv,rmvb,mov,asf,wmv,3GP,ra,rm';   //视频文件

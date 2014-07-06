@@ -85,7 +85,7 @@ class UserController extends FrontBase
 	    	$model->avatar = $new_avatar;    		    	
 	    	if($model->save()){	    	
 	    		if($old_avatar != $model->avatar){
-	    			XUpload::deleteFile($old_avatar);	    		   			
+	    			Uploader::deleteFile($old_avatar);	    		   			
 	    		}	
 	    		//删除游离的图片
 	    		$avatar_path =  'uploads/avatar';
@@ -95,7 +95,7 @@ class UserController extends FrontBase
     				if (! strstr ( $path_parts ['basename'], $model->uid.'_old_' )) {
     					continue;
     				}
-    				XUpload::deleteFile($old);	    			
+    				Uploader::deleteFile($old);	    			
 	    		}	   		  
 	    		$this->redirect($this->createUrl('index'));
 	    	}
