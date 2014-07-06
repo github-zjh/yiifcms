@@ -11,7 +11,7 @@ $(function(){
 */
 function keywordGet(keywordId,keywordIdSet){
 	var keyword = $("#"+keywordId).val();
-	$.post('/admin/default/keyword',{string:keyword},function(res){
+	$.post('<?php echo $this->createUrl('default/keyword')?>',{string:keyword},function(res){
 		if(res.state =='error'){
 			alert('获取失败，请手动填写');
 		}else{
@@ -24,7 +24,7 @@ function uploadifyAction(fileField,frameId) {
     $.Zebra_Dialog('', {
         source: {
             'iframe': {           
-            	'src': '/admin/uploadify/basic',     
+            	'src': '<?php echo $this->createUrl('uploadify/basic')?>',     
                 'height': 300,
                 'name': 'yii_upload',
                 'id': 'yii_upload_id'
@@ -58,7 +58,7 @@ function uploadifyAction(fileField,frameId) {
 //删除文件
 function uploadifyRemove(fileId,attrName, otherid=''){	
 	if(confirm('本操作不可恢复，确定继续？')){
-		$.post("/admin/uploadify/remove",{imageId:fileId},function(res){
+		$.post("<?php echo $this->createUrl('uploadify/remove')?>",{imageId:fileId},function(res){
 			$("#"+attrName+fileId).remove();
 			if(otherid){
 				$("#"+otherid).val(0);
