@@ -47,7 +47,7 @@
 									var result = '';
 									if(data && data.length > 0){
 										$.each(data,function(i, item){
-											result += '<li><a href="<?php echo $this->_request->hostinfo;?>/'+item.type+'/'+item.id+'" target="_blank" title="'+item.title+'">'+item.title+'</a></li>';
+											result += '<li><a href="'+item.url+'" target="_blank" title="'+item.title+'">'+item.title+'</a></li>';
 										});			
 									}else{
 										result = '<li><a href="javascript:;" class="red"><?php echo Yii::t('common','Nothing Is Found')?></a></li>';

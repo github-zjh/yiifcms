@@ -53,9 +53,9 @@ class PageController extends Backend
             		return;
             	}
             	$model->attach_file = $upload->_file_name;
-            	$model->attach_thumb = $upload->_thumb_name;
+            	$model->attach_thumb = $upload->_thumb_name;				
             }
-            
+            $model->create_time = time();
             if ($model->save()) {               
                 $this->redirect(array ('index' ));
             }
@@ -89,7 +89,7 @@ class PageController extends Backend
             	$model->attach_file = $upload->_file_name;
             	$model->attach_thumb = $upload->_thumb_name;
             }
-            
+            $model->create_time = $model->create_time?$model->create_time:time();
             if ($model->save()) {                
                 $this->redirect(array ('index' ));
             }

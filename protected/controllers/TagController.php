@@ -95,8 +95,7 @@ class TagController extends FrontBase
 	  		$data[] = $value;
   		}  		
   		foreach($data as $key=>$new){
-  			$searchData[$key]['type'] = $new->type;
-  			$searchData[$key]['id'] = $new->data->id;
+  			$searchData[$key]['url'] = $this->createUrl("{$new->type}/view", array('id'=>$new->data->id));			
   			$searchData[$key]['title'] = $new->data->title;
   		}
   	}
