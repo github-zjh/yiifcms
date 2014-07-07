@@ -122,7 +122,7 @@ class SoftController extends FrontBase
 	 * 
 	 * 软件下载
 	 */
-	public function actionDownload($id){		
+	public function actionDownload($id){			
 		$soft = Soft::model()->findByPk($id);		
 		if($soft){
 			$file = Upload::model()->findByPk($soft->fileid);
@@ -131,7 +131,7 @@ class SoftController extends FrontBase
 				$soft->updateCounters(array ('down_count' => 1 ), 'id=:id', array ('id' => $id ));
 				
 				//开始下载
-				Yii::app()->request->sendFile($soft->title.'.'.$file->file_ext, file_get_contents($file->file_name));
+				Yii::app()->request->sendFile($soft->title.'.'.$file->file_ext, file_get_contents($file->file_name), $file->file_mime);
 				exit;
 			}else{
 				throw new CHttpException(404, Yii::t('common','Source Is Not Found'));	
