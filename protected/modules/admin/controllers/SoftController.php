@@ -74,6 +74,7 @@ class SoftController extends Backend
     	if(isset($_POST['Soft']))
     	{    		
     		$model->attributes=$_POST['Soft'];  
+    		if($model->os && is_array($model->os))
     		$model->os = implode(',',$model->os);
     		//软件文件
     		$fileids = is_array($_POST['fileid'])?implode(',',$_POST['fileid']):'';
