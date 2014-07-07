@@ -7,17 +7,19 @@
  * 
  */
 
-class InstallController extends CController
+class InstallController extends Controller
 {
-    public $tplPath ;
-    public $data ;
+    public $tplPath ;    
     public $configPath ;
+    public $_data = '';
     public $lockfile = 'install.lock';
-    public $titler;
-    public function init(){ 
-    	parent::init();       
-        $this->data = WWWPATH.'/protected/data/';
-        $this->tplPath = $this->data.'temp/';
+    public $titler;   
+    public $layout = false;
+    public function init(){     	    
+    	$this->_theme = Yii::app()->theme;   
+    	$this->_request = Yii::app()->request;
+    	$this->_data = WWWPATH.'/protected/data/';
+        $this->tplPath = $this->_data.'temp/';
         $this->configPath = Yii::app()->basePath.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR;
     }
 
@@ -25,7 +27,7 @@ class InstallController extends CController
      * 检测是否已经安装
      */
     private function _checkInstall(){
-        if(file_exists($this->data.$this->lockfile))
+        if(file_exists($this->_data.$this->lockfile))
            $this->redirect(array('stop'));
     }
 
@@ -75,35 +77,42 @@ class InstallController extends CController
             array(
                 '私有临时文件(protected/runtime)',
                 true,
-                self::_isWritable(Yii::app()->runtimePath),
+                Helper::is_writeable(Yii::app()->runtimePath),
                 '系统核心',
                 '必须可读写',
             ),
+       		array(
+       			'非模块化的静态文件(public)',
+       			false,       			
+       			Helper::is_readable(WWWPATH.DS.'public'),
+       			'公共静态文件',
+       			'必须可读'
+       		),
             array(
                 '附件上传目录(uploads)',
                 false,
-                self::_isWritable(WWWPATH.DS.'uploads'),
+                Helper::is_writeable(WWWPATH.DS.'uploads'),
                 '附件上传',
                 '若无附件上传可不用写权限'
             ),
             array(
                 '数据目录(data)',
                 false,
-                self::_isWritable(WWWPATH.DS.'data'),
+                Helper::is_writeable(WWWPATH.DS.'data'),
                 '数据库备份',
                 '若不备份数据库可不用写权限'
             ),
             array(
                 '配置文件目录(protected/config)',
                 false,
-                self::_isWritable(WWWPATH.DS.'protected'.DS.'config'),
+                Helper::is_writeable(WWWPATH.DS.'protected'.DS.'config'),
                 '安装程序',
                 '若手动安装系统写可不用写权限'
             ),
             array(
                 '公共资源文件(assets)',
                 true,
-                self::_isWritable(WWWPATH.DS.'assets'),
+                Helper::is_writeable(WWWPATH.DS.'assets'),
                 '系统核心',
                 '必须可读写'
             ),
@@ -220,7 +229,7 @@ class InstallController extends CController
      * 数据库信息设置
      */
     public function actionDb ()
-    {
+    {    
        self::_checkInstall();
        $this->titler = '填写数据库信息';
        $this->render('db', $data);
@@ -247,64 +256,48 @@ class InstallController extends CController
     public function actionProgress()
     {
         self::_checkInstall();
-        $dbHost = $this->_gets->getParam('dbHost');
-        $dbName = $this->_gets->getParam('dbName');
-        $dbUsername = $this->_gets->getParam('dbUsername');
-        $dbPassword = $this->_gets->getParam('dbPassword');
-        $tbPre = $this->_gets->getParam('tbPre');
-        $username = $this->_gets->getParam('username');
-        $password = $this->_gets->getParam('password');
-        $email = $this->_gets->getParam('email');
-        $testData = $this->_gets->getParam('testData');
+        $dbHost = $this->_request->getParam('dbHost');
+        $dbPort = $this->_request->getParam('dbPort');        
+        $dbName = $this->_request->getParam('dbName');
+        $dbUsername = $this->_request->getParam('dbUsername');
+        $dbPassword = $this->_request->getParam('dbPassword');
+        $tbPre = $this->_request->getParam('tbPre');
+        $username = $this->_request->getParam('username');
+        $password = $this->_request->getParam('password');
+        $email = $this->_request->getParam('email');
+        $testData = $this->_request->getParam('testData');
         $this->titler = '安装数据表';
         $this->render('progress', $data);
         try {
-            $dbObj = new CDbConnection('mysql:host='.$dbHost.';',$dbUsername,$dbPassword);
+            $dbObj = new CDbConnection('mysql:host='.$dbHost.';port='.$dbPort.';',$dbUsername,$dbPassword);
             //$dbObj = new CDbConnection('mysql:host='.$dbHost,$dbUsername,$dbPassword);
             $dbObj->active = true;
             $dbObj->createCommand("USE {$dbName}")->execute();
             self::_appendLog('数据库信息检测通过');
-            $configTpl = @file_get_contents($this->tplPath.'/config.tpl.php');
-            $configIni = str_replace(array('~dbHost~','~dbName~', '~dbUsername~', '~dbPassword~', '~dbPre~'), array($dbHost, $dbName, $dbUsername, $dbPassword, $tbPre), $configTpl);
+            $configTpl = file_get_contents($this->tplPath.'/config.main.php');
+            $configIni = str_replace(array('~dbHost~','~dbPort~', '~dbName~', '~dbUsername~', '~dbPassword~', '~dbPre~'), array($dbHost, $dbPort, $dbName, $dbUsername, $dbPassword, $tbPre), $configTpl);
             //写入数据库配置信息
             file_put_contents($this->configPath.'main.php', $configIni);
             self::_appendLog('配置文件写入成功');
 
             //创建数据表
-            $tableSql = @file_get_contents($this->tplPath.'db.sql');
+            $tableSql = file_get_contents($this->tplPath.'db.sql');            
             $dbObj->createCommand("SET NAMES 'utf8',character_set_client=binary,sql_mode=''")->execute();
-            $sqls = self::_splitsql($tableSql);
-            if (is_array($sqls)) {
-                foreach ($sqls as $sql) {
-                    if (trim($sql) != '')
-                        $dbObj->createCommand(str_replace('#@__', $tbPre, $sql))->execute();
-                }
-            } else {
-                $dbObj->createCommand($sql)->execute();
-            }
+           
+            $dbObj->createCommand(str_replace('#@__', $tbPre, $tableSql))->execute();            
             self::_appendLog('数据库创建完成');
 
             //写入默认信息
-            $dbObj->createCommand("INSERT INTO `".$tbPre."admin`(`username`, `password`,`group_id`, `email`,`create_time`) VALUES('".$username."','".md5($password)."','1','".$email."', ".time().");")->execute();
+            $dbObj->createCommand("INSERT INTO `".$tbPre."user`(`uid`, `username`, `password`,`groupid`, `email`,`addtime`) VALUES('1','".$username."','".CPasswordHelper::hashPassword($password, 8)."','10','".$email."', ".time().");")->execute();
 
             //安装测试数据
             if($testData == 'Y'){
-                $testData = @file_get_contents($this->tplPath.'test_data.sql');
-                $testDataSqls = self::_splitsql($testData);
-
-
-                if (is_array($testDataSqls)) {
-                    foreach ($testDataSqls as $sql) {
-                        if (trim($sql) != '') 
-                            $command = $dbObj->createCommand(str_replace('#@__', $tbPre, $sql))->execute();
-                    }
-                } else {
-                    $command = $dbObj->createCommand(str_replace('#@__', $tbPre, $sql))->execute();
-                }
+                $testData = file_get_contents($this->tplPath.'test_data.sql');                
+				$command = $dbObj->createCommand(str_replace('#@__', $tbPre, $testData))->execute();                
                 self::_appendLog('测试数据导入完成');
             }
             //写入锁定文件
-            @touch($this->data.$this->lockfile);
+            @touch($this->_data.$this->lockfile);
             echo '<script>window.location="'.$this->createUrl('complete').'"</script>';
         } catch (Exception $e) {
             $error = self::_dbError($e->getMessage(), array('dbHost'=>$dbHost, 'dbName'=>$dbName));
@@ -343,14 +336,15 @@ class InstallController extends CController
      * 数据库信息检测
      */
     public function actionDbCheck(){
-        $dbHost = $this->_gets->getParam('dbHost');
-        $dbName = $this->_gets->getParam('dbName');
-        $dbUsername = $this->_gets->getParam('dbUsername');
-        $dbPassword = $this->_gets->getParam('dbPassword');
+        $dbHost = $this->_request->getParam('dbHost');
+        $dbPort = $this->_request->getParam('dbPort');
+        $dbName = $this->_request->getParam('dbName');
+        $dbUsername = $this->_request->getParam('dbUsername');
+        $dbPassword = $this->_request->getParam('dbPassword');
         try {
-            if(empty($dbHost) || empty($dbName) || empty($dbUsername) || empty($dbPassword))
+            if(empty($dbHost) || empty($dbPort) || empty($dbName) || empty($dbUsername) || empty($dbPassword))
                 throw new Exception('数据库信息必须填写完整');
-            $dbObj = new CDbConnection('mysql:host='.$dbHost,$dbUsername,$dbPassword);
+            $dbObj = new CDbConnection('mysql:host='.$dbHost.';port='.$dbPort.';',$dbUsername,$dbPassword);
             $dbObj->active = true;
             $dbObj->createCommand("USE {$dbName}")->execute();
             $var['state'] = 'success';
@@ -365,33 +359,7 @@ class InstallController extends CController
         }
         exit(CJSON::encode($var));
     }
-
-    /**
-     * 拆分sql
-     *
-     * @param $sql
-     */
-    protected function _splitsql( $sql ) {
-        $sql = preg_replace("/TYPE=(InnoDB|MyISAM|MEMORY)( DEFAULT CHARSET=[^; ]+)?/", "ENGINE=\\1 DEFAULT CHARSET=UTF8", $sql);
-        $sql = str_replace("\r", "\n", $sql);
-        $ret = array ();
-        $num = 0;
-        $queriesarray = explode(";\n", trim($sql));
-        unset($sql);
-        foreach ($queriesarray as $query) {
-            $ret[$num] = '';
-            $queries = explode("\n", trim($query));
-            $queries = array_filter($queries);
-            foreach ($queries as $query) {
-                $str1 = substr($query, 0, 1);
-                if ($str1 != '#' && $str1 != '-')
-                    $ret[$num] .= $query;
-                    //$ret[$num] .= XUtils::autoCharset($query,'gbk','utf-8');
-            }
-            $num ++;
-        }
-        return ($ret);
-    }
+    
 }
 
 /**

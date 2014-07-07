@@ -69,12 +69,12 @@ return array(
 		
 		'db'=>array(
 				'class'=>'system.db.CDbConnection',				
-				'connectionString'=>'mysql:host=localhost;port=3306;dbname=yiifcms',
-				'username'=>'root',
-				'password'=>'123456',
+				'connectionString'=>'mysql:host=~dbHost~;port=~dbPort~;dbname=~dbName~',
+				'username'=>'~dbUsername~',
+				'password'=>'~dbPassword~',
 				'emulatePrepare'=>true,  // needed by some MySQL installations
 				'charset'=>'utf8',
-				'tablePrefix' => 'yiif_',
+				'tablePrefix' => '~dbPre~',
 		),
 		
 		//Configure SESSION 

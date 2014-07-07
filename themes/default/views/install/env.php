@@ -99,11 +99,11 @@
   </table>
   <div class="inst_btn_area">
     <?php if($requireResult >0 && $writeableResult >0): ?>
-    <p class="env_success">恭喜！您的服务器配置完全符合BageCMS的安装要求。 </p>
+    <p class="env_success">恭喜！您的服务器配置完全符合yiifcms的安装要求。 </p>
     <?php elseif(($requireResult < 0 || $writeableResult <0) ): ?>
-    <p class="tips">您的服务器配置符合BageCMS的最低要求。如果您需要使用特定的功能，请关注以上警告部分。 </p>
+    <p class="tips">您的服务器配置符合yiifcms的最低要求。如果您需要使用特定的功能，请关注以上警告部分。 </p>
     <?php else: ?>
-    <p class="tips error"> 您的服务器配置未能满足BageCMS的安装要求。 </p>
+    <p class="tips error"> 您的服务器配置未能满足yiifcms的安装要求。 </p>
     <?php endif; ?>
     <form name="form" method="post" action="<?php echo $this->createUrl('db')?>" >
       <?php if($requireResult == 0 || $writeableResult == 0):?>

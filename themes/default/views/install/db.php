@@ -1,7 +1,4 @@
 <?php $this->renderPartial('_header')?>
-<script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/js/jquery/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/js/validationEngine/jquery.validationEngine.min.js"></script>
-
 <div class="header">
   <div class="step_area">第二步：配置数据库</div>
 </div>
@@ -12,13 +9,14 @@
     <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
       <tr>
         <th width="25%" height="30" align="right">数据库服务器：</th>
-        <td><input value="127.0.0.1" type="text" name="dbHost" id="dbHost" class="class_input validate[required]" />
-          <span class="cnote">数据库服务器地址, 一般为 本地:127.0.0.1</span></td>
+        <td><input value="localhost" type="text" name="dbHost" id="dbHost" class="class_input validate[required]" />
+          <span class="cnote">数据库服务器地址, 一般为 本地:localhost</span></td>
       </tr>
       <tr>
-        <th height="30" align="right">数据库名称：</th>
-        <td><input value="bagecms" type="text" name="dbName" id="dbName" class="class_input validate[required]" /> <span class="cnote">请先创建数据库</span></td>
-      </tr>
+        <th height="30" align="right">数据库服务器端口：</th>
+        <td><input name="dbPort" type="text" class="class_input validate[required]" id="dbPort" value="3306" />
+          <span class="cnote">默认端口号为3306</span></td>
+      </tr>     
       <tr>
         <th height="30" align="right">数据库用户：</th>
         <td><input value="" type="text" name="dbUsername" id="dbUsername" class="class_input validate[required]" /></td>
@@ -27,10 +25,14 @@
         <th height="30" align="right">数据库密码：</th>
         <td><input name="dbPassword" type="password" class="class_input validate[required]" id="dbPassword" onblur="checkDb()" value="" />
           <span id="dbCheck" class="cnote"></span></td>
+      </tr>      
+       <tr>
+        <th height="30" align="right">数据库名称：</th>
+        <td><input value="yiifcms" type="text" name="dbName" id="dbName" class="class_input validate[required]" /> <span class="cnote">请先创建数据库</span></td>
       </tr>
       <tr>
         <th height="30" align="right">数据表前缀：</th>
-        <td><input value="bage_" type="text" name="tbPre" id="tbPre" class="class_input" />
+        <td><input value="yiif_" type="text" name="tbPre" id="tbPre" class="class_input" />
           <span class="cnote">同一数据库运行多个程序时，请修改前缀</span></td>
       </tr>
     </table>
@@ -77,10 +79,11 @@ $(function(){
 function checkDb()
 {
 	var dHost = $("#dbHost").val();
+	var dPort = $("#dbPort").val();
 	var dName = $("#dbName").val();
 	var dUsername = $("#dbUsername").val();
 	var dPassword = $("#dbPassword").val();
-	$.post("<?php echo $this->createUrl('dbCheck')?>",{dbHost:dHost,dbName:dName,dbUsername:dUsername,dbPassword:dPassword},function(res){
+	$.post("<?php echo $this->createUrl('dbCheck')?>",{dbHost:dHost,dbPort:dPort,dbName:dName,dbUsername:dUsername,dbPassword:dPassword},function(res){
 		if(res.state == 'success'){
 			$("#dbCheck").html(res.message);
 		}else{

@@ -1,3 +1,3 @@
-<div class="footer">© 2010-2013 <a href="http://www.bagecms.com" target="_blank">bagecms.com</a></div>
+<div class="footer">© 2014-2015 <a href="http://yiifcms.duapp.com" target="_blank">yiifcms.duapp.com</a></div>
 </body>
 </html>
