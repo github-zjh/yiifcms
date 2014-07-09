@@ -1,3 +1,3 @@
-<div class="footer">© 2014-2015 <a href="http://yiifcms.duapp.com" target="_blank">yiifcms.duapp.com</a></div>
+<div class="footer">© 2014-2015 <a href="<?php echo $this->org_url;?>" target="_blank"><?php echo $this->org_url;?></a></div>
 </body>
 </html>

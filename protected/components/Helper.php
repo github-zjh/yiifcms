@@ -238,33 +238,6 @@ class Helper extends CController
 		return $ret;
 	}
 	
-	/**
-	 * 判断 文件/目录 是否可读（取代系统自带的 is_readable 函数）
-	 *
-	 * @param string $file 文件/目录
-	 * @return boolean
-	 */
-	public static function is_readable($file) {
-		if (is_dir($file)){
-			$dir = $file;
-			if ($fp = @fopen("$dir/test.txt", 'r')) {
-				@fclose($fp);
-				@unlink("$dir/test.txt");
-				$readable = 1;
-			} else {
-				$readable = 0;
-			}
-		} else {
-			if ($fp = @fopen($file, 'a+')) {
-				@fclose($fp);
-				$readable = 1;
-			} else {
-				$readable = 0;
-			}
-		}
-	
-		return $readable;
-	}
 	
 	/**
 	 * 判断 文件/目录 是否可写（取代系统自带的 is_writeable 函数）

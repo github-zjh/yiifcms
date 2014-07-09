@@ -14,6 +14,8 @@ class InstallController extends Controller
     public $_data = '';
     public $lockfile = 'install.lock';
     public $titler;   
+    public $org_url='http://www.yiifcms.com/';  //官方网址
+    public $org_help_url = 'http://www.yiifcms.com/help'; //官方帮助中心网址
     public $layout = false;
     public function init(){     	    
     	$this->_theme = Yii::app()->theme;   
@@ -57,16 +59,6 @@ class InstallController extends Controller
     }
 
     /**
-     * 检测目录能否读写
-     */
-    protected function _isWritable($file){
-        if(is_writable($file))
-            return true;
-        else
-            return false;
-    }
-
-    /**
      * 环境检测
      */
     public function actionEnv ()
@@ -84,7 +76,7 @@ class InstallController extends Controller
        		array(
        			'非模块化的静态文件(public)',
        			false,       			
-       			Helper::is_readable(WWWPATH.DS.'public'),
+       			is_readable(WWWPATH.DS.'public'),
        			'公共静态文件',
        			'必须可读'
        		),
@@ -95,13 +87,13 @@ class InstallController extends Controller
                 '附件上传',
                 '若无附件上传可不用写权限'
             ),
-            array(
-                '数据目录(data)',
-                false,
-                Helper::is_writeable(WWWPATH.DS.'data'),
-                '数据库备份',
-                '若不备份数据库可不用写权限'
-            ),
+       		array(
+       				'数据目录(data)',
+       				false,
+       				Helper::is_writeable(WWWPATH.DS.'protected'.DS.'data'),
+       				'数据库备份',
+       				'若不备份数据库可不用写权限'
+       		),
             array(
                 '配置文件目录(protected/config)',
                 false,
@@ -125,13 +117,7 @@ class InstallController extends Controller
                  true,
                  version_compare(PHP_VERSION,"5.1.0",">="),
                 '系统核心',
-                'PHP 5.1.0 或更高版本是必须的.'),
-            array(
-                '$_SERVER 服务器变量',
-                true,
-                '' === $message=checkServerVar(),
-                '系统核心',
-                $message),
+                'PHP 5.1.0 或更高版本是必须的.'),            
             array(
                 'Reflection 扩展模块',
                 true,
