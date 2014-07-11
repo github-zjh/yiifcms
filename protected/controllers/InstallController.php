@@ -117,7 +117,14 @@ class InstallController extends Controller
                  true,
                  version_compare(PHP_VERSION,"5.1.0",">="),
                 '系统核心',
-                'PHP 5.1.0 或更高版本是必须的.'),            
+                'PHP 5.1.0 或更高版本是必须的.'),    
+        	array (
+				'$_SERVER 服务器变量',
+				true,
+				'' === $message = checkServerVar (),
+				'系统核心',
+				$message 
+				),
             array(
                 'Reflection 扩展模块',
                 true,
@@ -361,7 +368,7 @@ function checkServerVar()
             $missing[]=$var;
     }
     if(!empty($missing))
-        return '$_SERVER缺少{vars}。';
+        return '$_SERVER缺少'.implode(',',$missing);
    /* if(realpath($_SERVER["SCRIPT_FILENAME"]) !== realpath(__FILE__))
         return '$_SERVER["SCRIPT_FILENAME"]必须与入口文件路径一致。';*/
 
