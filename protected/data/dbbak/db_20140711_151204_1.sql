@@ -1,6 +1,6 @@
 # your database backup
 # version:5.5.27-log
-# time:2014-07-11 12:45:33
+# time:2014-07-11 15:12:04
 # --------------------------------------------------------
 
 
@@ -215,16 +215,29 @@ CREATE TABLE `yiif_mail_log` (
   `times` tinyint(2) unsigned DEFAULT '0' COMMENT '发送次数',
   `error` varchar(100) DEFAULT NULL COMMENT '错误信息',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='发送邮件日志';
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='发送邮件日志';
 
-INSERT INTO `yiif_mail_log` VALUES('1','1','测试邮件标题','测试邮件内容','1405052688','failed','3','1','必须提供至少一个收件人地址。');
-INSERT INTO `yiif_mail_log` VALUES('2','1','测试邮件标题','测试邮件内容','','waiting','3','0','');
-INSERT INTO `yiif_mail_log` VALUES('3','1','测试邮件标题','测试邮件内容','1405052772','failed','3','1','必须提供至少一个收件人地址。');
-INSERT INTO `yiif_mail_log` VALUES('4','1','测试邮件标题','测试邮件内容','','waiting','3','0','');
-INSERT INTO `yiif_mail_log` VALUES('5','1','测试邮件标题','测试邮件内容','1405053419','failed','3','1','必须提供至少一个收件人地址。');
-INSERT INTO `yiif_mail_log` VALUES('6','1','测试邮件标题','测试邮件内容','1405053508','failed','3','1','必须提供至少一个收件人地址。');
 INSERT INTO `yiif_mail_log` VALUES('7','326196998@qq.com','测试邮件标题','测试邮件内容','1405053583','failed','3','1','SMTP 错误：无法连接到 SMTP 主机。');
 INSERT INTO `yiif_mail_log` VALUES('8','326196998@qq.com','测试邮件标题','测试邮件内容','1405053614','success','3','1','');
+INSERT INTO `yiif_mail_log` VALUES('9','326196998@qq.com','测试邮件标题','测试邮件内容','1405057618','success','3','1','');
+INSERT INTO `yiif_mail_log` VALUES('10','326196998@qq.com','测试邮件标题','测试邮件内容','1405057700','failed','3','1','发送地址错误：YiifCMS官方<p>SMTP server error: Invalid User
+</p>
+');
+INSERT INTO `yiif_mail_log` VALUES('11','326196998@qq.com','测试邮件标题','测试邮件内容','1405057900','failed','3','1','发送地址错误：YiifCMS官方<p>SMTP server error: Invalid User
+</p>
+');
+INSERT INTO `yiif_mail_log` VALUES('12','326196998@qq.com','测试邮件标题','测试邮件内容','1405057974','failed','3','1','发送地址错误：ROOT<p>SMTP server error: Invalid User
+</p>
+');
+INSERT INTO `yiif_mail_log` VALUES('13','326196998@qq.com','测试邮件标题','测试邮件内容','1405058020','failed','3','1','发送地址错误：YiifCMS官方<xb_zjh@126.com><p>SMTP server error: Invalid User
+</p>
+');
+INSERT INTO `yiif_mail_log` VALUES('14','326196998@qq.com','测试邮件标题','测试邮件内容','1405058040','success','3','1','');
+INSERT INTO `yiif_mail_log` VALUES('15','326196998@qq.com','测试邮件标题','测试邮件内容','1405058061','success','3','1','');
+INSERT INTO `yiif_mail_log` VALUES('16','326196998@qq.com','测试邮件标题','测试邮件内容','1405058408','success','3','1','');
+INSERT INTO `yiif_mail_log` VALUES('17','326196998@qq.com','测试邮件标题','测试邮件内容','1405058655','success','3','1','');
+INSERT INTO `yiif_mail_log` VALUES('18','xb_zjh@126.com','测试邮件标题','测试邮件内容','1405059546','success','3','1','');
+INSERT INTO `yiif_mail_log` VALUES('19','xb_zjh@126.com','测试邮件标题','测试邮件内容','1405059586','success','3','1','');
 
 DROP TABLE IF EXISTS `yiif_menu`;
 CREATE TABLE `yiif_menu` (
@@ -1299,7 +1312,7 @@ CREATE TABLE `yiif_session` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='session表';
 
-INSERT INTO `yiif_session` VALUES('0iheu38iqsna3qbgr57bj4nnv7','1405057530','admin__returnUrl|s:9:\"/?r=admin\";Yii.CCaptchaAction.c5a2395c.admin/default.captcha|s:4:\"3b9a\";Yii.CCaptchaAction.c5a2395c.admin/default.captchacount|i:6;Yii.CCaptchaAction.c5a2395c.user.captcha|s:6:\"rdna5d\";Yii.CCaptchaAction.c5a2395c.user.captchacount|i:1;2d379a19da1e2385e5621dae4ece1971__id|s:1:\"1\";2d379a19da1e2385e5621dae4ece1971__name|s:5:\"admin\";2d379a19da1e2385e5621dae4ece1971status|s:1:\"1\";2d379a19da1e2385e5621dae4ece1971groupid|s:2:\"10\";2d379a19da1e2385e5621dae4ece1971groupname|s:15:\"系统管理员\";2d379a19da1e2385e5621dae4ece1971email|s:14:\"xb_zjh@126.com\";2d379a19da1e2385e5621dae4ece1971__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}Yii.CCaptchaAction.c5a2395c.comment.captcha|s:5:\"fdlbu\";Yii.CCaptchaAction.c5a2395c.comment.captchacount|i:1;admin__id|s:1:\"1\";admin__name|s:5:\"admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
+INSERT INTO `yiif_session` VALUES('0iheu38iqsna3qbgr57bj4nnv7','1405066264','admin__returnUrl|s:9:\"/?r=admin\";Yii.CCaptchaAction.c5a2395c.admin/default.captcha|s:4:\"3b9a\";Yii.CCaptchaAction.c5a2395c.admin/default.captchacount|i:6;Yii.CCaptchaAction.c5a2395c.user.captcha|s:6:\"rdna5d\";Yii.CCaptchaAction.c5a2395c.user.captchacount|i:1;2d379a19da1e2385e5621dae4ece1971__id|s:1:\"1\";2d379a19da1e2385e5621dae4ece1971__name|s:5:\"admin\";2d379a19da1e2385e5621dae4ece1971status|s:1:\"1\";2d379a19da1e2385e5621dae4ece1971groupid|s:2:\"10\";2d379a19da1e2385e5621dae4ece1971groupname|s:15:\"系统管理员\";2d379a19da1e2385e5621dae4ece1971email|s:14:\"xb_zjh@126.com\";2d379a19da1e2385e5621dae4ece1971__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}Yii.CCaptchaAction.c5a2395c.comment.captcha|s:5:\"fdlbu\";Yii.CCaptchaAction.c5a2395c.comment.captchacount|i:1;admin__id|s:1:\"1\";admin__name|s:5:\"admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
 
 DROP TABLE IF EXISTS `yiif_setting`;
 CREATE TABLE `yiif_setting` (
@@ -1342,9 +1355,9 @@ INSERT INTO `yiif_setting` VALUES('email','email_host','smtp.126.com');
 INSERT INTO `yiif_setting` VALUES('email','email_port','25');
 INSERT INTO `yiif_setting` VALUES('email','email_username','xb_zjh@126.com');
 INSERT INTO `yiif_setting` VALUES('email','email_password','zjh376685457');
-INSERT INTO `yiif_setting` VALUES('email','email_fromname','zjh');
+INSERT INTO `yiif_setting` VALUES('email','email_fromname','YiifCMS官网');
 INSERT INTO `yiif_setting` VALUES('email','email_timeout','2');
-INSERT INTO `yiif_setting` VALUES('email','email_totest','326196998@qq.com');
+INSERT INTO `yiif_setting` VALUES('email','email_totest','xb_zjh@126.com');
 INSERT INTO `yiif_setting` VALUES('base','safe_str','!(*&%$$');
 
 DROP TABLE IF EXISTS `yiif_soft`;

@@ -104,5 +104,14 @@ return array(
 		
 		//Special
 		
-		//UserGroup
+		//MailLog
+		'MailId'=>'邮件id',
+		'MailAccept'=>'收件人',
+		'MailSubject'=>'邮件主题',
+		'MailMessage'=>'邮件内容',
+		'MailSendtime' => '发送时间',
+		'MailStatus' => '发送状态',
+		'MailLevel' => '邮件优先级',
+		'MailTimes' => '发送次数',
+		'MailError' => '发送失败原因',
 );

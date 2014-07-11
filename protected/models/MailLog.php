@@ -62,15 +62,15 @@ class MailLog extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
-			'accept' => 'Accept',
-			'subject' => 'Subject',
-			'message' => 'Message',
-			'sendtime' => 'Sendtime',
-			'status' => 'Status',
-			'level' => 'Level',
-			'times' => 'Times',
-			'error' => 'Error',
+			'id' => Yii::t('model','MailId'),
+			'accept' => Yii::t('model','MailAccept'),
+			'subject' => Yii::t('model','MailSubject'),
+			'message' => Yii::t('model','MailMessage'),
+			'sendtime' => Yii::t('model','MailSendtime'),
+			'status' => Yii::t('model','MailStatus'),
+			'level' => Yii::t('model','MailLevel'),
+			'times' => Yii::t('model','MailTimes'),
+			'error' => Yii::t('model','MailError'),
 		);
 	}
 

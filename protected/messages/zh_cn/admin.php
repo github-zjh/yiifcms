@@ -29,6 +29,8 @@ return array (
 	'admin manage' => '后台管理',
 	'Manage' => '管理',
 	'System Home' => '系统首页',
+	'Success' => '成功',
+	'Failed' =>'失败',
 	
 	/* 设置 */
 	'Web Set' => '站点设置',
@@ -202,6 +204,8 @@ return array (
 	'Other Contact Method' => '其他联系方式',
 	'Question Content' => '留言内容',
 	'Question Reply' => '留言回复',
+	
+	/* 广告 */
 	'Ad Manage' => '广告管理',
 	'Ad Title' => '广告名称',
 	'Link Url' => '链接地址',
@@ -226,6 +230,8 @@ return array (
 	'AdPosition' => '广告位',
 	'Adposition Manage' => '广告位管理',
 	'AdPosition Name' => '广告位名称',
+	
+	/* 附件 */
 	'RecommendPosition Manage' => '推荐位管理',
 	'RecommendPosition Name' => '推荐位名称',
 	'RecommendPosition Type' => '推荐位类型',
@@ -239,6 +245,7 @@ return array (
 	'View Recommend Content' => '查看推荐的内容',
 	'View'=> '查看',
 	'No Catalog' => '没有相关栏目, 请先添加栏目。',
+	/* 软件管理 */
 	'Soft Link' => '软件外部链接',
 	'Down Count' => '下载次数',
 	'Soft Language' => '软件语言',
@@ -280,6 +287,11 @@ return array (
 	/* 模型管理 */
     'Modeltype Manage' => '内容模型管理',
     
+    /* 邮件日志 */
+	'Mail Accept' => '收件人',
+	'Mail Subject' =>'主题',
+	'Mail SendTime' => '发送时间',
+	'Mail EndTime' => '发送结束时间',
     /* 缓存管理 */
 	'Update Cache Success' => '更新缓存成功',
 );

@@ -75,6 +75,12 @@ function _unescape(val) {
 	return val.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&amp;/g, '&');
 }
 
+
+//日期控件
+$("input[datePicker='true']").click(function(){
+	WdatePicker({dateFmt:'yyyy-MM-dd H:m:s'});
+});
+
 </script>
 </div><!-- end container -->
 </body>

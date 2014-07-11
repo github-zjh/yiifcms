@@ -107,9 +107,9 @@ class Helper extends Controller
 		$mailer->SMTPAuth = true;
 		$mailer->Username = $setting['email_username'];
 		$mailer->Password = $setting['email_password'];
-		$mailer->IsSMTP ();
+		$mailer->IsSMTP ();		
 		$mailer->From = $mailer->Username; // 发件人邮箱
-		$mailer->FromName = $setting['email_fromname']; // 发件人姓名
+		$mailer->FromName = $setting['email_fromname']; // 发件人姓名		
 		$mailer->AddReplyTo ( $mailer->Username );
 		$mailer->CharSet = 'UTF-8';
 		
