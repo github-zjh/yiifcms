@@ -193,13 +193,6 @@ INSERT INTO `#@__reply` (`id`, `user_id`, `cid`, `reply_id`, `content`, `status`
 (5, 31, 33, 2, '<pre class="prettyprint lang-html">&lt;link type="text/css" rel="stylesheet" href="./kindeditor/plugins/code/prettify.css"/&gt;</pre>', 'Y', 1402998870),
 (6, 1, 33, 5, '<pre class="prettyprint lang-php">echo "&lt;pre&gt;";\r\n\r\necho "谁说代码不能换行！！";\r\n\r\n</pre>', 'Y', 1403184353);
 
---
--- 转存表中的数据 `#@__session`
---
-
-INSERT INTO `#@__session` (`id`, `expire`, `data`) VALUES
-('nhjqqljb0900q0q1ivcjrqq5p4', 1404706540, '');
-
 
 --
 -- 转存表中的数据 `#@__soft`

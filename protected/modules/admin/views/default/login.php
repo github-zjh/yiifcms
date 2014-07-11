@@ -5,6 +5,14 @@
 	<meta name="language" content="<?php echo $this->_yii->language;?>" />	
     <link rel="stylesheet" type="text/css" href="<?php echo $this->module->assetsUrl;?>/css/login-style.css" />
 	<title><?php echo $this->pageTitle;?></title>
+	<script type="text/javascript">
+		$(function(){
+			//刷新验证码
+			$("#yw0").ready(function(){
+		        $('#yw0').trigger('click');
+		    });
+		});		
+	</script>
 </head>
 
 <body>

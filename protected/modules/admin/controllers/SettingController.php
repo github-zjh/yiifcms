@@ -91,6 +91,30 @@ class SettingController extends Backend
 	}
 	
 	/**
+	 * 邮件设置
+	 */
+	public function actionEmail(){
+		self::_updateData($_POST['Setting'], 'email');
+		$this->render('email', array ('setting' => self::loadData('scope=:scope',array('scope'=>'email')) ));
+	}
+	
+	/**
+	 * 测试发送邮件
+	 */
+	public function actionTestEmail(){
+		if($this->_request->isPostRequest && $_POST['ajax'] == 1){
+			$toemail = $_POST['toemail'];
+			if(Helper::sendMail('',$toemail,Yii::t('admin','Test Email Subject'),Yii::t('admin','Test Email Content'))){
+				exit(CJSON::encode(array('state'=>'success')));
+			}else{
+				exit(CJSON::encode(array('state'=>'failed')));
+			}
+		}else{
+			exit(CJSON::encode(array('state'=>'failed')));
+		}
+	}
+	
+	/**
 	 * 更新数据
 	 *
 	 */

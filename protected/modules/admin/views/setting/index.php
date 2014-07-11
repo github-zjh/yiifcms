@@ -56,9 +56,16 @@
       <td ><textarea  rows="6" name="Setting[site_stats]" id="site_stats" cols="50" class="tarea "><?php echo $setting['site_stats']?></textarea>
         请填写第三方统计的 js 代码</td>
     </tr>
+     <tr>
+      <td class="tb_title">网站安全字符串(用于分割要加密的信息)：</td>
+    </tr>
+    <tr >
+      <td ><input type="text" class="txt" name="Setting[safe_str]" value="<?php echo $setting['safe_str']?>" /></td>
+    </tr>
     <tr class="submit">
       <td ><input type="submit" name="editsubmit" value="提交" class="button" tabindex="3" />&nbsp;&nbsp;<a href="<?php echo $this->createUrl('custom')?>" class="actionLink"><span>自定义配置</span></a></td>
     </tr>
+   
   </table>
 </form>
 <script type="text/javascript">

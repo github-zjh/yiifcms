@@ -66,7 +66,8 @@
                 <li index="1"><a href="<?php echo $this->createUrl('setting/seo');?>" target="win"><?php echo Yii::t('admin','SEO Set');?></a></li>
                 <li index="2"><a href="<?php echo $this->createUrl('setting/upload');?>" target="win"><?php echo Yii::t('admin','Upload Set');?></a></li>
                 <li index="3"><a href="<?php echo $this->createUrl('setting/template');?>" target="win"><?php echo Yii::t('admin','Template Set');?></a></li>
-                <li index="4"><a href="<?php echo $this->createUrl('setting/custom');?>" target="win"><?php echo Yii::t('admin','Custom Set');?></a></li>
+                <li index="4"><a href="<?php echo $this->createUrl('setting/email');?>" target="win"><?php echo Yii::t('admin','Email Set');?></a></li>
+                <li index="5"><a href="<?php echo $this->createUrl('setting/custom');?>" target="win"><?php echo Yii::t('admin','Custom Set');?></a></li>
               </ul>
             <ul index="2" class="left_menu">
             	<li index="0"><a href="<?php echo $this->createUrl('catalog/index');?>" target="win"><?php echo Yii::t('admin','Catalog Manage');?></a></li>
@@ -107,7 +108,7 @@
             <ul index="8" class="left_menu">
                 <li index="0"><a href="<?php echo $this->createUrl('database/index');?>" target="win"><?php echo Yii::t('admin','Database Manage');?></a></li>
                 <li index="1"><a href="<?php echo $this->createUrl('cache/index');?>" target="win"><?php echo Yii::t('admin','Cache Manage');?></a></li>
-                <li index="2"><a href="<?php echo $this->createUrl('auth/index');?>" target="win"><?php echo Yii::t('admin','Auth Manage');?></a></li>
+                <li index="2"><a href="<?php echo $this->createUrl('maillog/index');?>" target="win"><?php echo Yii::t('admin','Maillog Manage');?></a></li>
               </ul>
           </div>
   </div>

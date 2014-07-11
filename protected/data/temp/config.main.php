@@ -81,10 +81,10 @@ return array(
 		'session'=>array(
 				'class'=>'CDbHttpSession',
 				'connectionID' => 'db',
-				'sessionTableName' => 'yii_session',
+				'sessionTableName' => '~dbPre~_session',
 				'timeout'=>3600,    //default 1440 seconds
 				'autoStart'=>true,								
-				'sessionName'=>'YIIFCMS',	
+				'sessionName'=>'YIIFCMS'.time(),	
 		),
 		
 		//Configure Authorization Manager
@@ -113,20 +113,5 @@ return array(
 			),
 		),
 	),
-
-	// application-level parameters that can be accessed
-	// using Yii::app()->params['paramName']
-	'params'=>array(		
-		//邮件配置
-		'mailer'=>array(
-			'Host' => 'smtp.126.com', //邮件服务器
-			'Port' => '25', 		  //邮件服务器端口
-			'Timeout' => '2',		  //发送请求超时
-			'ContentType' => 'text/html', //发送文档类型
-			'Username' => 'admin@126.com',  //发件人邮箱
-			'Password' => 'emailpassword',    //发件人邮箱密码
-			'FromName' => 'Yiifcms',       //发送人名称			
-		),
-		'safestr'=> substr(md5(uniqid()),2,6), //生成随机安全分隔符		
-	),
+	
 );

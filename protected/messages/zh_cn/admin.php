@@ -35,9 +35,12 @@ return array (
 	'SEO Set' => 'SEO设置',
 	'Upload Set' => '上传设置',
 	'Template Set' => '模板设置',
+	'Email Set' => '邮件设置',
 	'Custom Set' => '自定义设置',
 	'More Than Env Limit' => '超过系统限制{size}',
 	'WaterMark Alpha Should Between 1 AND 100' => '水印透明度应该介于1~100的数字',
+	'Test Email Subject'=>'测试邮件标题',
+	'Test Email Content' => '测试邮件内容',
 	/* 栏目 */
 	'Catalog Manage' => '栏目管理',
 	'Attach Manage' => '附件管理',
@@ -63,6 +66,8 @@ return array (
 	'Reply Manage' => '回复管理',
 	'Special Manage' => '专题管理',
 	'Page Manage' => '单页管理',
+	'Maillog Manage'=>'邮件日志管理',
+	
 	'All Content'  => '全部内容',
 	'Title'	=> '标题',
 	'Link' => '链接',

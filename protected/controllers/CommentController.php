@@ -19,7 +19,7 @@ class CommentController extends FrontBase
 						'class'=>'MyCaptchaAction',
 						'backColor'=>0xFFFFFF,  //背景色
 						'foreColor'=> 0x3C5880,	//前景色
-						//'fontFile' =>  $this->_fonts.'/fonts/maturasc.ttf', //自定义字体
+						'fontFile' =>  $this->_fonts.'/fonts/BRITANIC.TTF', //自定义字体
 						'padding'=>0,
 						'width' => 100,
 						'height'=>30,

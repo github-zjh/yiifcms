@@ -90,6 +90,11 @@
 		$("#logout").mouseout(function(){
 			$("#drop_down_user").hide();
 		});
+		
+		//刷新验证码
+		$("#yw0").ready(function(){
+		     $('#yw0').trigger('click');
+		});		
 	});
 </script>
 <!-- Js script结束 -->

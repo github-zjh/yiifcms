@@ -6,8 +6,8 @@
  * @author Administrator
  *
  */
-class Helper extends CController
-{
+class Helper extends Controller
+{	
 	/**
 	 * 判断当前服务器系统
 	 * @return string
@@ -91,19 +91,25 @@ class Helper extends CController
 	 * @param string $message
 	 * @return boolean
 	 */
-	public static function sendMail($id = 0, $toemail = '', $subject = '', $message = '') {
-		
+	public static function sendMail($id = 0, $toemail = '', $subject = '', $message = '') {		
 		$mailer = Yii::createComponent ( 'application.extensions.mailer.EMailer' );
-		$mailer->Host = Yii::app ()->params ['mailer'] ['Host'];
-		$mailer->Port = Yii::app ()->params ['mailer'] ['Port'];
-		$mailer->Timeout = Yii::app ()->params ['mailer'] ['Timeout'];
-		$mailer->ContentType = Yii::app ()->params ['mailer'] ['ContentType'];
+		
+		//查询邮件配置
+		$settings = Setting::model()->findAll();
+		foreach ($settings as $key => $row) {
+			$setting[$row['variable']] = $row['value'];
+		}
+		$mailer->SetLanguage('zh_cn');		
+		$mailer->Host = $setting['email_host'];
+		$mailer->Port = $setting['email_port'];
+		$mailer->Timeout = $setting['email_timeout'];
+		$mailer->ContentType = 'text/html';
 		$mailer->SMTPAuth = true;
-		$mailer->Username = Yii::app ()->params ['mailer'] ['Username'];
-		$mailer->Password = Yii::app ()->params ['mailer'] ['Password'];
+		$mailer->Username = $setting['email_username'];
+		$mailer->Password = $setting['email_password'];
 		$mailer->IsSMTP ();
 		$mailer->From = $mailer->Username; // 发件人邮箱
-		$mailer->FromName = Yii::app ()->params ['mailer'] ['FromName']; // 发件人姓名
+		$mailer->FromName = $setting['email_fromname']; // 发件人姓名
 		$mailer->AddReplyTo ( $mailer->Username );
 		$mailer->CharSet = 'UTF-8';
 		
@@ -132,7 +138,6 @@ class Helper extends CController
 			$mailer->Subject = $log->subject;
 			$mailer->Body = $log->message;
 		}
-				
 		if ($mailer->Send () === true) {
 			$log->times = $log->times + 1;
 			$log->sendtime = time ();
@@ -147,7 +152,7 @@ class Helper extends CController
 			$log->error = $error;
 			$log->save ();
 			return false;
-		}
+		} 
 	}
 	/**
 	 * 判断字符串是utf-8 还是gb2312

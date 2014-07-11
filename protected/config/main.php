@@ -81,7 +81,7 @@ return array(
 		'session'=>array(
 				'class'=>'CDbHttpSession',
 				'connectionID' => 'db',
-				'sessionTableName' => 'yii_session',
+				'sessionTableName' => 'yiif_session',
 				'timeout'=>3600,    //default 1440 seconds
 				'autoStart'=>true,								
 				'sessionName'=>'YIIFCMS',	

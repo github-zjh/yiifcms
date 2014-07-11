@@ -438,20 +438,6 @@ CREATE TABLE `#@__reply` (
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='评论回复表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `#@__session`
---
-
-DROP TABLE IF EXISTS `#@__session`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `#@__session` (
-  `id` char(32) NOT NULL,
-  `expire` int(11) DEFAULT NULL,
-  `data` longblob,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='session表';
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `#@__setting`
