@@ -415,7 +415,7 @@ class UserController extends FrontBase
 		if(!$params['id'] || !$params['username'] || !$params['email']){
 			return false;
 		}
-		$safestr = Yii::app ()->params ['safestr'];  //安全分隔符
+		$safestr = $this->_setting['safe_str'];  //安全分隔符
 		$salt = base64_encode(mt_rand(0,time()));  //随机盐
 		$authcode = crypt($params['id'].$safestr.$params['email'], $salt);
 		$authurl = $this->_request->hostInfo.$this->createUrl('authEmail', array('id'=>$params['id'], 'authcode'=>$authcode));
@@ -444,7 +444,7 @@ class UserController extends FrontBase
 			//超过2小时视为过期
 			$this->message('error',Yii::t('common','The link is invalid'), $this->createUrl('site/index'),0, true);
 		}
-		$safestr = Yii::app ()->params ['safestr'];  //安全分隔符
+		$safestr = $this->_setting['safe_str'];  //安全分隔符
 		$email = $user->email;
 		$authcode = $this->_request->getParam('authcode');
 		if(crypt($id.$safestr.$email, $authcode) == $authcode){

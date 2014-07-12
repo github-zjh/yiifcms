@@ -7,7 +7,7 @@
     <p class="title red">安装停止!</p>
 
     <strong>现在您可以：</strong>
-      <a href="<?php echo Yii::app()->homeUrl?>">访问网站首页</a><span>或</span><a href="<?php echo $this->createUrl('/?r=admin')?>">登陆后台</a>
+      <a href="<?php echo Yii::app()->homeUrl?>">访问网站首页</a><span>或</span><a href="<?php echo $this->createUrl('/admin')?>">登陆后台</a>
       <div class="complete_note ">
     <p class="red">  如重新安装，请删除 data/install.lock 文件</p>
        

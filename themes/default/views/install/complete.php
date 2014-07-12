@@ -6,7 +6,7 @@
     <div class="complete_txt">
       <p class="title">恭喜您安装成功!</p>
       <strong>现在您可以：</strong> <a href="<?php echo Yii::app()->homeUrl?>" class="action" target="_blank">访问网站首页</a><span>或</span><a href="<?php echo $this->createUrl(
-            '/?r=admin')?>"  class="action" target="_blank">登陆后台</a>
+            '/admin')?>"  class="action" target="_blank">登陆后台</a>
       <div class="complete_note"> 
 
       <p >如需重新安装，请先删除 data/install.lock 文件</p>

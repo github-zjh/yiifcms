@@ -3,10 +3,9 @@
  * 助手类
  * @author zhao jinhan
  * @version v1.0.0
- * @author Administrator
  *
  */
-class Helper extends Controller
+class Helper
 {	
 	/**
 	 * 判断当前服务器系统

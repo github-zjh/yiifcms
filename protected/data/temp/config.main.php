@@ -84,7 +84,7 @@ return array(
 				'sessionTableName' => '~dbPre~_session',
 				'timeout'=>3600,    //default 1440 seconds
 				'autoStart'=>true,								
-				'sessionName'=>'YIIFCMS'.time(),	
+				'sessionName'=>'YIIFCMS',	
 		),
 		
 		//Configure Authorization Manager
@@ -112,6 +112,10 @@ return array(
 				*/
 			),
 		),
+	),
+	// application-level parameters that can be accessed
+	// using Yii::app()->params['paramName']
+	'params'=>array(
 	),
 	
 );
