@@ -9,9 +9,10 @@ $(function(){
 /*
 关键词整获取
 */
-function keywordGet(keywordId,keywordIdSet){
-	var keyword = $("#"+keywordId).val();
-	$.post('<?php echo $this->createUrl('default/keyword')?>',{string:keyword},function(res){
+function keywordGet(titleId, contentId, keywordIdSet){
+	var title = $("#"+titleId).val();
+	var content = $("#"+contentId).val();
+	$.post('<?php echo $this->createUrl('default/keyword')?>',{'title':title,'content':content},function(res){
 		if(res.state =='error'){
 			alert('获取失败，请手动填写');
 		}else{

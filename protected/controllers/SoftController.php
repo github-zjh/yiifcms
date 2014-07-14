@@ -51,7 +51,7 @@ class SoftController extends FrontBase
 	    $criteria->condition = $condition;
 	    $criteria->order = 'down_count DESC, t.id DESC';
 	    $criteria->with = array ( 'catalog' );
-	    $criteria->select = "title, id, t.soft_icon, t.update_time,t.introduce, t.down_count";
+	    $criteria->select = "title, id, t.soft_icon, t.update_time,t.introduce, t.view_count, t.down_count";
 	   
 	    //分页
 	    $count = $post->count( $criteria );    
@@ -89,6 +89,9 @@ class SoftController extends FrontBase
 		$this->_seoKeywords = empty ( $soft->seo_keywords ) ? $this->_seoKeywords : $post->seo_keywords;
 		$this->_seoDescription = empty ( $soft->seo_description ) ? $this->_seoDescription : $soft->seo_description;
 		$catalogArr = Catalog::model ()->findByPk ( $soft->catalog_id );
+		
+		//更新浏览次数
+		$soft->updateCounters(array ('view_count' => 1 ), 'id=:id', array ('id' => $id ));
 		
 		// 加载css,js
 		Yii::app ()->clientScript->registerCssFile ( $this->_stylePath . "/css/view.css" );

@@ -1,3 +1,6 @@
+	<script type="text/javascript">
+		var score_url = "<?php echo $this->createUrl('score');?>";
+	</script>
 	<!-- 导航面包屑开始 -->
 	<?php $this->renderPartial('/layouts/nav',array('navs'=>$navs));?>
 	<!-- 导航面包屑结束 -->
@@ -56,6 +59,7 @@
 									<li><?php echo Yii::t('model','VideoLanguage');?>：<?php echo Yii::t('admin','Lan_'.$video->language);?></li>
 									<li><?php echo Yii::t('model','VideoScore');?>：<?php echo $video->video_score;?></li>
 									<li><?php echo Yii::t('common','UpdateTime');?>：<?php echo date('Y年m月d日',$video->update_time);?></li>
+									<li><?php echo Yii::t('model','ViewCount');?>：<?php echo $video->view_count;?></li>
 									<li><?php echo Yii::t('model','DownCount');?>：<?php echo $video->down_count;?></li>
 								</ul>
 								

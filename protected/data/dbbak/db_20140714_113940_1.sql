@@ -1,6 +1,6 @@
 # your database backup
-# version:5.6.16
-# time:2014-07-12 10:19:09
+# version:5.5.27-log
+# time:2014-07-14 11:39:40
 # --------------------------------------------------------
 
 
@@ -117,7 +117,7 @@ CREATE TABLE `yiif_goods` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='商品表';
 
-INSERT INTO `yiif_goods` VALUES('1','小米手机','5','0.00','uploads/images/201405/3fdd860df5d.jpg','uploads/thumbs/201405/small_3fdd860df5d.jpg','a:1:{i:0;a:4:{s:6:\"fileId\";s:2:\"45\";s:4:\"file\";s:37:\"uploads/images/201405/6bf7dd586e7.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','0','0','1401076650','1401092539','Y','0','0');
+INSERT INTO `yiif_goods` VALUES('1','小米手机','5','799.00','uploads/images/201405/3fdd860df5d.jpg','uploads/thumbs/201405/small_3fdd860df5d.jpg','a:1:{i:0;a:5:{s:6:\"fileId\";s:2:\"45\";s:4:\"file\";s:37:\"uploads/images/201405/6bf7dd586e7.jpg\";s:5:\"thumb\";N;s:4:\"desc\";N;s:3:\"url\";N;}}','','0','0','1401076650','1405307616','Y','0','0');
 
 DROP TABLE IF EXISTS `yiif_image`;
 CREATE TABLE `yiif_image` (
@@ -159,7 +159,7 @@ CREATE TABLE `yiif_image` (
 
 INSERT INTO `yiif_image` VALUES('2','1','图览2014巴西世界杯','图览2014巴西世界杯','','','','9','0','世界杯来啦，为了帮助大家更轻松更愉悦地观看世界杯，小编制作了《图览世界杯》，大家可及时围观赛况和花边消息，方便彼此切磋，迎来人生比翼齐飞的新高度，更有机会参与【百度图片竞猜世界杯】的活动哦！我们的奖品已经到位，猜对比分，并@百度图片@两位好友，就有机会赢取【高端手表】哦亲~动动手指，为世界杯加油！更多消息请密切关注【@百度图片】新浪微博官方账号吧。','a:3:{i:0;a:5:{s:6:\"fileId\";s:2:\"77\";s:4:\"file\";s:37:\"uploads/images/201407/2d8af2a52c9.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_2d8af2a52c9.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:1;a:5:{s:6:\"fileId\";s:2:\"78\";s:4:\"file\";s:37:\"uploads/images/201407/830c15efce6.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_830c15efce6.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:2;a:5:{s:6:\"fileId\";s:2:\"79\";s:4:\"file\";s:37:\"uploads/images/201407/8068f3a90b7.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_8068f3a90b7.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','<p style=\"text-indent:2em;\">
 	<span style=\"font-size:14px;\"></span><span style=\"font-size:14px;\">世界杯来啦，为了帮助大家更轻松更愉悦地观看世界杯，小编制作了《图览世界杯》，大家可及时围观赛况和花边消息，方便彼此切磋，迎来人生比翼齐飞的新高度，更有机会参与【百度图片竞猜世界杯】的活动哦！我们的奖品已经到位，猜对比分，并@百度图片@两位好友，就有机会赢取【高端手表】哦亲~动动手指，为世界杯加油！更多消息请密切关注【@百度图片】新浪微博官方账号吧。</span> 
-</p>','百度图片','http://image.baidu.com/infopage/tpl?id=8&mode=viewer','','巴西,世界杯,美女','28','N','N','uploads/images/201406/1f6228399a3.jpg','uploads/thumbs/201406/small_1f6228399a3.jpg','0','0','N','1404182636','0','Y','0','Y','1404111213');
+</p>','百度图片','http://image.baidu.com/infopage/tpl?id=8&mode=viewer','','巴西,世界杯,美女','29','N','N','uploads/images/201406/1f6228399a3.jpg','uploads/thumbs/201406/small_1f6228399a3.jpg','0','0','N','1404182636','0','Y','0','Y','1404111213');
 INSERT INTO `yiif_image` VALUES('3','1','小清新','','','','','14','0','','','','','','小清新','','','','美女','3','N','N','uploads/images/201406/2980725e720.jpg','uploads/thumbs/201406/small_2980725e720.jpg','0','0','N','1404111946','0','Y','0','Y','1404111946');
 INSERT INTO `yiif_image` VALUES('4','1','游戏唯美','','','','','14','0','','a:1:{i:0;a:5:{s:6:\"fileId\";s:2:\"93\";s:4:\"file\";s:37:\"uploads/images/201407/2c48ccb19e2.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_2c48ccb19e2.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','游戏唯美','','','','美女','2','N','N','uploads/images/201406/8b571b7725d.jpg','uploads/thumbs/201406/small_8b571b7725d.jpg','0','0','N','1404304930','0','Y','0','Y','1404112171');
 INSERT INTO `yiif_image` VALUES('5','1','游戏唯美','','','','','14','0','','a:3:{i:0;a:5:{s:6:\"fileId\";s:2:\"89\";s:4:\"file\";s:37:\"uploads/images/201407/2e13e0a3ed9.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_2e13e0a3ed9.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:1;a:5:{s:6:\"fileId\";s:2:\"90\";s:4:\"file\";s:37:\"uploads/images/201407/2a2d8e16cb0.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_2a2d8e16cb0.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:2;a:5:{s:6:\"fileId\";s:2:\"91\";s:4:\"file\";s:37:\"uploads/images/201407/825a8ac9d80.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_825a8ac9d80.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','游戏唯美','','','','美女','8','N','N','uploads/images/201406/d7d79134e6d.jpg','uploads/thumbs/201406/small_d7d79134e6d.jpg','0','0','N','1404184873','0','Y','0','Y','1404114260');
@@ -168,7 +168,7 @@ INSERT INTO `yiif_image` VALUES('7','1','靓丽女孩','','','','','14','0','','
 INSERT INTO `yiif_image` VALUES('8','1','漂亮女神','','','','','14','0','','a:3:{i:0;a:5:{s:6:\"fileId\";s:2:\"83\";s:4:\"file\";s:37:\"uploads/images/201407/cef6cf4f134.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_cef6cf4f134.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:1;a:5:{s:6:\"fileId\";s:2:\"84\";s:4:\"file\";s:37:\"uploads/images/201407/8a0a9d8cb7b.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_8a0a9d8cb7b.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:2;a:5:{s:6:\"fileId\";s:2:\"85\";s:4:\"file\";s:37:\"uploads/images/201407/4464b4046d1.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_4464b4046d1.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','漂亮女神','','','','美女','2','N','N','uploads/images/201406/bb6aa6ad2c7.jpg','uploads/thumbs/201406/small_bb6aa6ad2c7.jpg','0','0','N','1404184778','0','Y','0','Y','1404114458');
 INSERT INTO `yiif_image` VALUES('9','1','气质美女','','','','','8','0','','a:2:{i:0;a:5:{s:6:\"fileId\";s:2:\"81\";s:4:\"file\";s:37:\"uploads/images/201407/ed5693e7e2d.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_ed5693e7e2d.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:1;a:5:{s:6:\"fileId\";s:2:\"82\";s:4:\"file\";s:37:\"uploads/images/201407/f60eb1cfb67.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_f60eb1cfb67.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','气质美女','','','','美女','8','N','N','uploads/images/201406/ba6b6e35743.jpg','uploads/thumbs/201406/small_ba6b6e35743.jpg','0','0','N','1404184756','0','Y','0','Y','1404114497');
 INSERT INTO `yiif_image` VALUES('10','1','淑女形象','','','','','8','0','','a:1:{i:0;a:5:{s:6:\"fileId\";s:2:\"80\";s:4:\"file\";s:37:\"uploads/images/201407/4be229705ba.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_4be229705ba.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','淑女形象','','','','美女','4','N','N','uploads/images/201406/5348209384d.jpg','uploads/thumbs/201406/small_5348209384d.jpg','0','0','N','1404184732','0','Y','0','Y','1404114535');
-INSERT INTO `yiif_image` VALUES('11','1','足球宝贝','','','','','14','0','','a:1:{i:0;a:5:{s:6:\"fileId\";s:2:\"92\";s:4:\"file\";s:37:\"uploads/images/201407/e62833cd62c.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_e62833cd62c.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','足球宝贝','','','','美女,世界杯','3','N','N','uploads/images/201407/20d46ac94c7.jpg','uploads/thumbs/201407/small_20d46ac94c7.jpg','0','0','N','1404287913','0','Y','0','Y','1404287913');
+INSERT INTO `yiif_image` VALUES('11','1','足球宝贝','','','','','14','0','','a:1:{i:0;a:5:{s:6:\"fileId\";s:2:\"92\";s:4:\"file\";s:37:\"uploads/images/201407/e62833cd62c.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_e62833cd62c.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','世界杯足球宝贝是个大美女','','','','美女,世界杯','3','N','N','uploads/images/201407/20d46ac94c7.jpg','uploads/thumbs/201407/small_20d46ac94c7.jpg','0','0','N','1405306203','0','Y','0','Y','1404287913');
 
 DROP TABLE IF EXISTS `yiif_link`;
 CREATE TABLE `yiif_link` (
@@ -1192,56 +1192,56 @@ INSERT INTO `yiif_post` VALUES('27','1','谷歌I/O大会或发布新机顶盒 �
 <p style=\"text-indent:2em;\">
 	<span style=\"font-size:14px;\"></span> 
 </p>','html5tricks','http://news.html5tricks.com/google-io-new-machine.html','','亚马逊,谷歌,机顶盒,苹果','2','N','N','','','0','0','N','1404121102','0','Y','0','Y','1404110940');
-INSERT INTO `yiif_post` VALUES('28','1','告别公用云，Instagram已将服务迁至Facebook数据中心<script>','','','','','3','0','据悉，Instagram已基本完成AWS到Facebook数据中心的迁移。整个过程中，任务的难点在于服务可用性的保持，从而解决Facebook内部数据中心与EC2上的IP冲突成为关键，最小化基础设施级改变避免操作复杂性同样至关重要。 ','','','','','<p style=\"text-indent:2em;\">
-	<span style=\"font-size:14px;\">据 </span><a href=\"http://instagram-engineering.tumblr.com/post/89992572022/migrating-aws-fb\" target=\"_blank\"><span style=\"font-size:14px;\">Instagram</span></a><span style=\"font-size:14px;\">消
-息，该公司已基本完成AWS到Facebook基础设施的迁移。听到这个消息，笔者并不惊讶。首先，社交巨头拥有自己的大规模数据中心；其次，作为风头正
-劲的互联网公司之一，社交巨头拥有着大量的服务，其技术堆栈及API可以轻易满足Instagram的架构需求；再次，在Facebook规模，不管是从
-成本，还是从性能及可用性上看，迁移都是上上之选。最后，避免平台的约束和锁定，Instagram将有更大的发展空间。</span><b><span style=\"font-size:14px;\">言归正传，下面我们看一些博文摘译：</span></b> 
-</p>
-<blockquote style=\"margin-left:3em ! important;font-style:normal ! important;color:#777777;text-indent:2em;\">
-	<p>
-		<span style=\"font-size:14px;\">在2012年加入Facebook之后，我们就发现了多个与Facebook基础设施的集成点，这将允许我们更加快速的开发产品，同时还能提高社区的安全性。开始时，我们使用的是ad-hoc端点接入，但是随后就发现这限制了我们的敏捷性及Facebook服务的利用率。</span> 
-	</p>
-	<p>
-		<span style=\"font-size:14px;\">在2013年4月后，我们开始大规模的迁移到Facebook数据中心，其中的重点是服务可用性的平稳过渡，以及最小化基础设施级改变来避免其中的操作复杂性。开始时非常简单，在EC2和Facebook的一个数据中心之间建立连接，然后一块一块的迁移。</span> 
-	</p>
-	<p>
-		<span style=\"font-size:14px;\">但是随后就发现事情并非那么容易，主要的问题就是Facebook私有IP空间和EC2的冲突。我们的方法是，首先使用Amazon的
-Virtual&nbsp;Private&nbsp;Cloud（VPC），随后使用Amazon&nbsp;Direct&nbsp;Connect将之与Facebook连接。</span> 
-	</p>
-	<p>
-		<span style=\"font-size:14px;\">鉴于每天都会开启新的EC2实例，这个任务看起来非常艰巨。为了最小化服务停机时间以及操作复杂性，EC2和VPC实例是否在同一个网络至关重要。AWS并没有提供安全组或者私有EC2与VPC网络的共享方式，公共地址空间成为两个私有网络的唯一通信渠道。</span> 
-	</p>
-	<p>
-		<span style=\"font-size:14px;\">因此，我们发明了Neti，一个动态的iptables操作守护进程，使用Python编写，通过ZooKeeper支撑。Neti不仅提
-供了缺少的安全组功能，还为每个实例都提供了单独的地址，不管是EC2还是VPC。Neti管理了数千个NAT以及实例上的过滤规则，从而保证了独立的、
-flat&nbsp;“overlay”安全通信。NAT规则会为实例选择一个最有效的通信途径，跨越VPC和EC2边界时会选择公共网络，内部通信则会选择私有网
-络。这些对我们的应用和后端系统都是透明的，因为Neti会提供一个恰当的iptables规则。</span> 
-	</p>
-	<p>
-		<span style=\"font-size:14px;\">从EC2到VPC花费了大约3周时间，随后所有实例就运行在一个兼容的地址空间，下一个阶段无疑就是迁移到Facebook数据中心。</span> 
-	</p>
-	<p>
-		<span style=\"font-size:14px;\">多来以来，Instagram围绕EC2建立了一整套生产系统管理工具，其中包括配置管理脚本，用于服务开通的Chef，以及服务于运营任务的Fabric，从应用到数据库，这些针对EC2环境的工具都将不适用于数据中心环境。</span> 
-	</p>
-	<p>
-		<span style=\"font-size:14px;\">为了给这些工具提供可移植性，我们使用了LXC。配置工具用于建立基础系统，Chef则运行在container中，用以安装和配置
-Instagram特定软件。为了支撑横跨EC2及Facebook数据中心的基础设施，当下的Chef加入了新的逻辑用以支撑Facebook内部使用
-的CentOS，之前在EC2上使用的是Ubuntu。同时，用于基础任务的EC2命令行工具也被一个全新的工具代替，它被设计成了一个抽象层，提供了类
-似EC2工作流中的环境，为技术和人们使用方式做过渡。在这些都完成后，VPC到数据中心的迁移只花费了两周。</span> 
-	</p>
-</blockquote>
-<p style=\"text-indent:2em;\">
-	<b><span style=\"font-size:14px;\">写在最后</span></b> 
-</p>
-<p style=\"text-indent:2em;\">
-	<span style=\"font-size:14px;\">对于Instagram来说，迁移可以带来显而易见的好处，同时，我们也相信会有更多这个类型的应用被收购后会做出类似的举措，比如未来我们可能会
-看到WhatsApp迁离SoftLayer。然而对于云服务提供商来说，这绝对不是件想看到的事情，Instagram之类的到还好说，如果是
-Netflix这样的合作伙伴，撇开直接收入，生态圈受到的影响显然更加深远。</span> 
-</p>
-<p style=\"text-indent:2em;\">
-	<br />
-</p>','','','','','3','N','N','','','0','0','N','1404455845','0','Y','0','Y','1404183197');
+INSERT INTO `yiif_post` VALUES('28','1','告别公用云，Instagram已将服务迁至Facebook数据中心','','','','','3','0','据悉，Instagram已基本完成AWS到Facebook数据中心的迁移。整个过程中，任务的难点在于服务可用性的保持，从而解决Facebook内部数据中心与EC2上的IP冲突成为关键，最小化基础设施级改变避免操作复杂性同样至关重要。 ','','','','','<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">据 </span><a href=\"http://instagram-engineering.tumblr.com/post/89992572022/migrating-aws-fb\" target=\"_blank\"><span style=\"font-size:14px;\">Instagram</span></a><span style=\"font-size:14px;\">消
+息，该公司已基本完成AWS到Facebook基础设施的迁移。听到这个消息，笔者并不惊讶。首先，社交巨头拥有自己的大规模数据中心；其次，作为风头正
+劲的互联网公司之一，社交巨头拥有着大量的服务，其技术堆栈及API可以轻易满足Instagram的架构需求；再次，在Facebook规模，不管是从
+成本，还是从性能及可用性上看，迁移都是上上之选。最后，避免平台的约束和锁定，Instagram将有更大的发展空间。</span><b><span style=\"font-size:14px;\">言归正传，下面我们看一些博文摘译：</span></b> 
+</p>
+<blockquote style=\"margin-left:3em ! important;font-style:normal ! important;color:#777777;text-indent:2em;\">
+	<p>
+		<span style=\"font-size:14px;\">在2012年加入Facebook之后，我们就发现了多个与Facebook基础设施的集成点，这将允许我们更加快速的开发产品，同时还能提高社区的安全性。开始时，我们使用的是ad-hoc端点接入，但是随后就发现这限制了我们的敏捷性及Facebook服务的利用率。</span> 
+	</p>
+	<p>
+		<span style=\"font-size:14px;\">在2013年4月后，我们开始大规模的迁移到Facebook数据中心，其中的重点是服务可用性的平稳过渡，以及最小化基础设施级改变来避免其中的操作复杂性。开始时非常简单，在EC2和Facebook的一个数据中心之间建立连接，然后一块一块的迁移。</span> 
+	</p>
+	<p>
+		<span style=\"font-size:14px;\">但是随后就发现事情并非那么容易，主要的问题就是Facebook私有IP空间和EC2的冲突。我们的方法是，首先使用Amazon的
+Virtual&nbsp;Private&nbsp;Cloud（VPC），随后使用Amazon&nbsp;Direct&nbsp;Connect将之与Facebook连接。</span> 
+	</p>
+	<p>
+		<span style=\"font-size:14px;\">鉴于每天都会开启新的EC2实例，这个任务看起来非常艰巨。为了最小化服务停机时间以及操作复杂性，EC2和VPC实例是否在同一个网络至关重要。AWS并没有提供安全组或者私有EC2与VPC网络的共享方式，公共地址空间成为两个私有网络的唯一通信渠道。</span> 
+	</p>
+	<p>
+		<span style=\"font-size:14px;\">因此，我们发明了Neti，一个动态的iptables操作守护进程，使用Python编写，通过ZooKeeper支撑。Neti不仅提
+供了缺少的安全组功能，还为每个实例都提供了单独的地址，不管是EC2还是VPC。Neti管理了数千个NAT以及实例上的过滤规则，从而保证了独立的、
+flat&nbsp;“overlay”安全通信。NAT规则会为实例选择一个最有效的通信途径，跨越VPC和EC2边界时会选择公共网络，内部通信则会选择私有网
+络。这些对我们的应用和后端系统都是透明的，因为Neti会提供一个恰当的iptables规则。</span> 
+	</p>
+	<p>
+		<span style=\"font-size:14px;\">从EC2到VPC花费了大约3周时间，随后所有实例就运行在一个兼容的地址空间，下一个阶段无疑就是迁移到Facebook数据中心。</span> 
+	</p>
+	<p>
+		<span style=\"font-size:14px;\">多来以来，Instagram围绕EC2建立了一整套生产系统管理工具，其中包括配置管理脚本，用于服务开通的Chef，以及服务于运营任务的Fabric，从应用到数据库，这些针对EC2环境的工具都将不适用于数据中心环境。</span> 
+	</p>
+	<p>
+		<span style=\"font-size:14px;\">为了给这些工具提供可移植性，我们使用了LXC。配置工具用于建立基础系统，Chef则运行在container中，用以安装和配置
+Instagram特定软件。为了支撑横跨EC2及Facebook数据中心的基础设施，当下的Chef加入了新的逻辑用以支撑Facebook内部使用
+的CentOS，之前在EC2上使用的是Ubuntu。同时，用于基础任务的EC2命令行工具也被一个全新的工具代替，它被设计成了一个抽象层，提供了类
+似EC2工作流中的环境，为技术和人们使用方式做过渡。在这些都完成后，VPC到数据中心的迁移只花费了两周。</span> 
+	</p>
+</blockquote>
+<p style=\"text-indent:2em;\">
+	<b><span style=\"font-size:14px;\">写在最后</span></b> 
+</p>
+<p style=\"text-indent:2em;\">
+	<span style=\"font-size:14px;\">对于Instagram来说，迁移可以带来显而易见的好处，同时，我们也相信会有更多这个类型的应用被收购后会做出类似的举措，比如未来我们可能会
+看到WhatsApp迁离SoftLayer。然而对于云服务提供商来说，这绝对不是件想看到的事情，Instagram之类的到还好说，如果是
+Netflix这样的合作伙伴，撇开直接收入，生态圈受到的影响显然更加深远。</span> 
+</p>
+<p style=\"text-indent:2em;\">
+	<br />
+</p>','','','','facebook','4','N','N','','','0','0','N','1405306037','0','Y','0','Y','1404183197');
 
 DROP TABLE IF EXISTS `yiif_question`;
 CREATE TABLE `yiif_question` (
@@ -1276,12 +1276,13 @@ CREATE TABLE `yiif_recommend_position` (
   `recommend_name` varchar(100) DEFAULT NULL COMMENT '推荐位名称',
   `type` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '栏目类型',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='推荐位表';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='推荐位表';
 
 INSERT INTO `yiif_recommend_position` VALUES('1','首页资讯推荐','1');
 INSERT INTO `yiif_recommend_position` VALUES('2','首页图集推荐','2');
 INSERT INTO `yiif_recommend_position` VALUES('3','首页软件推荐','3');
 INSERT INTO `yiif_recommend_position` VALUES('4','图集视频推荐','4');
+INSERT INTO `yiif_recommend_position` VALUES('5','首页商品推荐','5');
 
 DROP TABLE IF EXISTS `yiif_reply`;
 CREATE TABLE `yiif_reply` (
@@ -1313,61 +1314,7 @@ CREATE TABLE `yiif_session` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='session表';
 
-INSERT INTO `yiif_session` VALUES('1322qovcesqao8e93tuseonfg5','1405135147','admin__returnUrl|s:9:\"/?r=admin\";Yii.CCaptchaAction.8a21b490.admin/default.captcha|s:4:\"pepe\";Yii.CCaptchaAction.8a21b490.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:5:\"admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}Yii.CCaptchaAction.8a21b490.user.captcha|s:6:\"7lmc9c\";Yii.CCaptchaAction.8a21b490.user.captchacount|i:1;');
-INSERT INTO `yiif_session` VALUES('1bmsnpqcur90ndnj5ien4mupb3','1405132168','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('1qti214bjohrhf6kupp5pta6o2','1405134747','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('24mrj9i9kh5rt71s4d45aoggg2','1405131873','');
-INSERT INTO `yiif_session` VALUES('32qd9op924snnkdhqv6qfb8j55','1405134554','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('35sop0ejngacb21p4f6s9s06h7','1405134749','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('39mmr5o50rut2unbe72nukm5i3','1405132105','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('3kqkik3n7mmgkng1ssinmhks64','1405131629','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('430ib7oif779v5jn3b1mbeg292','1405132660','Yii.CCaptchaAction.8a21b490.user.captcha|s:6:\"ubfcdc\";Yii.CCaptchaAction.8a21b490.user.captchacount|i:1;');
-INSERT INTO `yiif_session` VALUES('4h04v65d3sui3rbl0h25i26so5','1405132254','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('5f9nt0qqrd4sel231cobdk9qu1','1405132102','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('6epb8mnk7sgf49242aao2lr7q6','1405134755','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('6pgicpilgn25bbg9h8hi4igl40','1405132036','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('72e95kt89ctfcggnetgc710tk4','1405132169','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('77rd9mfkf91u4vl32t5t44vr06','1405131627','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('7mcvfh74dme08is2374up434q6','1405134602','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('7n9a6lpd1ktrnq96451pmskba6','1405132456','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('8eqgfqs01qjhdj2jadlg272g81','1405131650','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('8rgu1dveds9hidr1gs9pim16t2','1405134146','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('9m6v9lf2fi8eurvf1sqe5qkcp1','1405134751','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('afj8brlp94scua27vefnp6ou21','1405134848','');
-INSERT INTO `yiif_session` VALUES('ajmt902g7n7fcb6o516f4sh3t1','1405133703','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('aqtomuao7937gg3lmjlnk8ce41','1405131864','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('c6n866jai0bo3frocoi4jcjti3','1405134745','');
-INSERT INTO `yiif_session` VALUES('d69isc3bpc082uagbqgrorjl15','1405134756','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('e7jbv8skaq0vueup0bu6mag2v1','1405132687','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('emr6lej637teadvp9o3bvp4m93','1405134555','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('f0b0q07smhcug534qlpkpmij10','1405132101','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('g47gub6r48dks4cdu7kj4m5rj1','1405132024','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('g7qoud3rnfu4ilj7fjpjnao9q0','1405132163','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('gvg8rtfd1v6og2a6rj2hmgbvr0','1405132096','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('ie58jkqa56qqqvt5cffi9jgqg2','1405132316','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('iilv0k1a2r8tm4ss8beo7bb5b1','1405131630','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('ilehn91qbr7euf2nb83vp9ii80','1405134752','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('ium7sgatjt7ojcpds158p0qrb3','1405134804','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('jc2aol7mbsafpjnmu7ji99p6i4','1405132104','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('jssslfhp04ljhr7i67lahjd5g2','1405135147','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('mdsusrdv9npnvflje3clgcomo2','1405134598','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('nfua6erb9suunqeopcle0avcn2','1405135143','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('o1piasgbobicsjbg35oslirub1','1405134557','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('o78p71g62da02io4dvd7c58dc5','1405132097','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('od52tm2sitpggkf6e60k6nqpj0','1405134743','');
-INSERT INTO `yiif_session` VALUES('oer5hovktbieuoabgidu8j9ft1','1405132416','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('onc567vdufcbsfsuma5bv2uga5','1405132100','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('ops351h8cneoen07lf5k3i1e63','1405132455','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('oujqns524o3cadodimpoothom5','1405134608','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('ovjhntn4i325jja7it5s1df2c4','1405131648','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('qkftm4hkd0e9v5an4e32o29q83','1405133897','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('rgcjle2422egkaesdgc7cpqom3','1405134605','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('rldq6b4fcic9ic3tv8ebpccg56','1405134611','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('s1r14np80dk3784eehvagfm6v1','1405132165','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('s5np7h5r73hqebeuk8sf3crv31','1405132320','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('s6g9r4af1h85oavufbvm1gpor5','1405132097','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('u8slnmmkuis5pdkdj7ibjm3pq4','1405132098','admin__returnUrl|s:9:\"/?r=admin\";');
-INSERT INTO `yiif_session` VALUES('vfglate4u6d11pjv9t72vgdas6','1405134750','admin__returnUrl|s:9:\"/?r=admin\";');
+INSERT INTO `yiif_session` VALUES('5hcji7ta0n22o7ftkn7vfhvs37','1405312779','admin__returnUrl|s:9:\"/?r=admin\";Yii.CCaptchaAction.c5a2395c.admin/default.captcha|s:4:\"jbp2\";Yii.CCaptchaAction.c5a2395c.admin/default.captchacount|i:8;admin__id|s:1:\"1\";admin__name|s:5:\"admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
 
 DROP TABLE IF EXISTS `yiif_setting`;
 CREATE TABLE `yiif_setting` (
@@ -1434,6 +1381,7 @@ CREATE TABLE `yiif_soft` (
   `pay` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '支付费用',
   `update_time` int(10) unsigned DEFAULT NULL COMMENT '最近更新时间',
   `create_time` int(10) unsigned DEFAULT NULL COMMENT '发布时间',
+  `view_count` int(10) unsigned DEFAULT '0' COMMENT '浏览次数',
   `down_count` smallint(8) unsigned DEFAULT '0' COMMENT '下载次数',
   `status` enum('Y','N') DEFAULT 'Y' COMMENT '是否显示',
   `seo_title` varchar(255) NOT NULL DEFAULT '' COMMENT 'SEO标题',
@@ -1442,7 +1390,7 @@ CREATE TABLE `yiif_soft` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='软件管理表';
 
-INSERT INTO `yiif_soft` VALUES('3',' 腾讯QQ2013 SP6 官方正式版','11','uploads/images/201406/496d7004961.png','uploads/images/201406/7627bbbf00e.jpg','','','zh_cn','domestic','Win2003,WinXP,Win8','5','','','<span>QQ产品团队经过数月的奋战，全新感觉的QQ2013 Beta1版本终于打造完成，QQ2013拥有全新登录界面，登录速度更快捷；安全模块的升级让你的QQ更安全，群视频秀让群聊更有氛围。本站提供qq2013最新版官方下载,腾讯qq2013官方下载正式版。</span>','0.00','1403068233','1400549982','0','Y','','','');
+INSERT INTO `yiif_soft` VALUES('3',' 腾讯QQ2013 SP6 官方正式版','11','uploads/images/201406/496d7004961.png','uploads/images/201406/7627bbbf00e.jpg','','','zh_cn','domestic','Win2003,WinXP,Win8','5','','','<span>QQ产品团队经过数月的奋战，全新感觉的QQ2013 Beta1版本终于打造完成，QQ2013拥有全新登录界面，登录速度更快捷；安全模块的升级让你的QQ更安全，群视频秀让群聊更有氛围。本站提供qq2013最新版官方下载,腾讯qq2013官方下载正式版。</span>','0.00','1403068233','1400549982','0','0','Y','','','');
 INSERT INTO `yiif_soft` VALUES('4','阿里旺旺 2014卖家版 V7.20.36T 正式版','11','uploads/images/201406/d01b61d3c6a.png','uploads/images/201405/6a30a96a755.jpg','68','','zh_cn','domestic','','4','','http://download.wangwang.taobao.com/AliIm_taobao.php?spm=0.0.0.0.EAlz7i','<p>
 	<br />
 </p>
@@ -1469,8 +1417,8 @@ INSERT INTO `yiif_soft` VALUES('4','阿里旺旺 2014卖家版 V7.20.36T 正式�
 每一条信息都标记着您的在线状态 , 让商人随时联系您<br />
 2. 海量商机搜索 <br />
 不登录网站，快速搜索阿里巴巴大市场 600 万商机！ <br />
-3. 巧发','0.00','1404450722','1400550081','6','Y','','','');
-INSERT INTO `yiif_soft` VALUES('5','YiifCMS1.0版本安装包','11','','','95','','zh_cn','domestic','','5','','','','0.00','1404715423','1404715423','0','Y','','','');
+3. 巧发','0.00','1404450722','1400550081','4','6','Y','','','');
+INSERT INTO `yiif_soft` VALUES('5','YiifCMS1.0版本安装包','11','','','95','','zh_cn','domestic','','5','','','','0.00','1405306567','1404715423','0','0','Y','','','yii,cms');
 
 DROP TABLE IF EXISTS `yiif_special`;
 CREATE TABLE `yiif_special` (
@@ -1501,7 +1449,7 @@ CREATE TABLE `yiif_tag` (
   `tag_name` varchar(100) NOT NULL COMMENT 'tag名称',
   `data_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '数据总数',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8 COMMENT='新闻标签';
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8 COMMENT='新闻标签';
 
 INSERT INTO `yiif_tag` VALUES('23','国际业务','1');
 INSERT INTO `yiif_tag` VALUES('37','程序员','1');
@@ -1522,6 +1470,13 @@ INSERT INTO `yiif_tag` VALUES('63','苹果','1');
 INSERT INTO `yiif_tag` VALUES('67','谷歌','1');
 INSERT INTO `yiif_tag` VALUES('68','巴西','1');
 INSERT INTO `yiif_tag` VALUES('69','世界杯','2');
+INSERT INTO `yiif_tag` VALUES('70','php','1');
+INSERT INTO `yiif_tag` VALUES('71','mysql','1');
+INSERT INTO `yiif_tag` VALUES('72','web','1');
+INSERT INTO `yiif_tag` VALUES('73','html','1');
+INSERT INTO `yiif_tag` VALUES('74','sql','1');
+INSERT INTO `yiif_tag` VALUES('75','apache','1');
+INSERT INTO `yiif_tag` VALUES('76','nginx','1');
 
 DROP TABLE IF EXISTS `yiif_tag_data`;
 CREATE TABLE `yiif_tag_data` (
@@ -1535,6 +1490,7 @@ CREATE TABLE `yiif_tag_data` (
 INSERT INTO `yiif_tag_data` VALUES('23','23','1','Y');
 INSERT INTO `yiif_tag_data` VALUES('37','16','1','Y');
 INSERT INTO `yiif_tag_data` VALUES('39','23','1','Y');
+INSERT INTO `yiif_tag_data` VALUES('39','28','1','Y');
 INSERT INTO `yiif_tag_data` VALUES('41','15','1','Y');
 INSERT INTO `yiif_tag_data` VALUES('42','15','1','Y');
 INSERT INTO `yiif_tag_data` VALUES('43','15','1','Y');
@@ -1562,6 +1518,13 @@ INSERT INTO `yiif_tag_data` VALUES('67','27','1','Y');
 INSERT INTO `yiif_tag_data` VALUES('68','2','2','Y');
 INSERT INTO `yiif_tag_data` VALUES('69','2','2','Y');
 INSERT INTO `yiif_tag_data` VALUES('69','11','2','Y');
+INSERT INTO `yiif_tag_data` VALUES('70','28','1','Y');
+INSERT INTO `yiif_tag_data` VALUES('71','28','1','Y');
+INSERT INTO `yiif_tag_data` VALUES('72','28','1','Y');
+INSERT INTO `yiif_tag_data` VALUES('73','28','1','Y');
+INSERT INTO `yiif_tag_data` VALUES('74','28','1','Y');
+INSERT INTO `yiif_tag_data` VALUES('75','28','1','Y');
+INSERT INTO `yiif_tag_data` VALUES('76','28','1','Y');
 
 DROP TABLE IF EXISTS `yiif_upload`;
 CREATE TABLE `yiif_upload` (
@@ -1677,10 +1640,10 @@ CREATE TABLE `yiif_video` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='软件管理表';
 
-INSERT INTO `yiif_video` VALUES('1','美国队长','12','uploads/images/201406/827a03cb8cb.jpg','','englise','science','8.6','','','美国队长','0.00','1403146013','1400834656','63','0','{\"t\":10,\"s\":[0,1,1,2,6]}','Y','','','');
-INSERT INTO `yiif_video` VALUES('2','钢铁侠','13','uploads/images/201406/bf941705b16.jpg','','chinese','comedy','0.0','','','','0.00','1403148128','1403148128','3','0','','Y','','','');
+INSERT INTO `yiif_video` VALUES('1','美国队长','12','uploads/images/201406/827a03cb8cb.jpg','','englise','science','8.6','','','美国队长','0.00','1403146013','1400834656','77','0','{\"t\":10,\"s\":[0,1,1,2,6]}','Y','','','');
+INSERT INTO `yiif_video` VALUES('2','钢铁侠','13','uploads/images/201406/bf941705b16.jpg','','chinese','comedy','0.0','','','','0.00','1403148128','1403148128','4','0','','Y','','','');
 INSERT INTO `yiif_video` VALUES('3','明日边缘','13','uploads/images/201406/4cc06a97d5a.jpg','','chinese','comedy','0.0','','','','0.00','1403148264','1403148264','1','0','','Y','','','');
 INSERT INTO `yiif_video` VALUES('4','窃听风云3','13','uploads/images/201406/a02a34ce432.jpg','','chinese','comedy','9.0','','','','0.00','1403148306','1403148306','12','0','{\"t\":2,\"s\":[0,0,0,1,1]}','Y','','','');
 INSERT INTO `yiif_video` VALUES('5','终结者4','13','uploads/images/201406/0bb513c708b.jpg','','chinese','comedy','0.0','','','','0.00','1403148363','1403148363','4','0','','Y','','','');
-INSERT INTO `yiif_video` VALUES('6','孤胆保镖','13','uploads/images/201406/566eb360159.jpg','','chinese','active','8.0','','','','0.00','1404114076','1403148418','21','0','{\"t\":2,\"s\":[0,0,1,0,1]}','Y','','','');
+INSERT INTO `yiif_video` VALUES('6','孤胆保镖','13','uploads/images/201406/566eb360159.jpg','','chinese','active','8.0','','','电影','0.00','1405306691','1403148418','24','0','{\"t\":2,\"s\":[0,0,1,0,1]}','Y','','','电影');
 

@@ -92,7 +92,7 @@ class ImageController extends FrontBase
     $post->updateCounters(array ('view_count' => 1 ), 'id=:id', array ('id' => $id ));
     //seo信息
     $this->_seoTitle = empty( $post->seo_title ) ? $post->title  .' - '. $this->_setting['site_name'] : $post->seo_title;
-    $this->_seoKeywords = empty( $post->seo_keywords ) ? $this->_seoKeywords  : $post->seo_keywords;
+    $this->_seoKeywords = empty( $post->seo_keywords ) ? $post->tags  : $post->seo_keywords;
     $this->_seoDescription = empty( $post->seo_description ) ? $this->_seoDescription: $post->seo_description;
     $catalogArr = Catalog::model()->findByPk($post->catalog_id);
     

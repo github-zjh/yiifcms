@@ -2,10 +2,10 @@
 
 /**
  * 分词
- * @author shuguang <5565907@qq.com>
+ * @author zhao jinhan <326196998@qq.com>
  *
  */
-class XAutoKeyword
+class AutoKeyword
 {
 
     /**
@@ -43,6 +43,34 @@ class XAutoKeyword
             return $return;
         }
     
+    }
+    /**
+     * 简易自定义获取关键词
+     * @param string $title
+     * @param string $content
+     * @return JSON
+     */
+    public static function simple($title = '', $content=''){
+    	$words = include_once dirname(__FILE__).DIRECTORY_SEPARATOR.'words.php';
+    	$data = array();
+    	$max = 10; //最多匹配10个
+    	if($words){
+    		foreach((array)$words as $word){
+    			if(count($data) > $max){
+    				break;
+    			}else{
+	    			if($title && preg_match('/'.$word.'/is', $title)){
+	    				array_push($data, $word);
+	    			}
+	    			if($content && preg_match('/'.$word.'/is', $content)){
+	    				if(!in_array($word, $data)){
+	    					array_push($data, $word);
+	    				}	    					
+	    			}
+    			}
+    		}
+    	}
+    	return array_unique($data);
     }
 
 

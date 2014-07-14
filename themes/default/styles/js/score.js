@@ -7,10 +7,10 @@ star.score = {
 	texts:['超酷','好看','一般','无聊','差劲'],
 	data:{},
 	get:function(){
-		$.getJSON("video/score.htm?d="+new Date(), {g:1,id:star.vid,s:0}, function(ret){star.score.data=ret;star.score.format();});
+		$.getJSON(score_url+"&d="+new Date(), {g:1,id:star.vid,s:0}, function(ret){star.score.data=ret;star.score.format();});
 	},
 	send:function(s){
-		$.get("video/score.htm?d="+new Date(),{g:0,id:star.vid,s:s},function(msg){if(msg==1){setCookie1("voted",star.vid,24);alert('评分已提交，非常感谢您的参与！');}else{alert('非常抱歉，评分失败,请稍候重试！');}});
+		$.get(score_url+"&d="+new Date(),{g:0,id:star.vid,s:s},function(msg){if(msg==1){setCookie1("voted",star.vid,24);alert('评分已提交，非常感谢您的参与！');}else{alert('非常抱歉，评分失败,请稍候重试！');}});
 	},
 	hasSend:function(){
 		var voted = $.cookie('voted');

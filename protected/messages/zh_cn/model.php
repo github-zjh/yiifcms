@@ -79,18 +79,39 @@ return array(
 		'verifyCode'=> '验证码',
 		
 		//Soft
+		'SoftId' =>'软件id',
+		'SoftCatalogId' => '软件分类id',
+		'SoftTitle' => '软件名称',
+		'SoftCoverImage' => '软件封面图片',
+		'SoftFiledId' => '软件包id',
+		'SoftFileType' => '软件包文件类型',
+		'SoftSize' => '软件大小',
+		'SoftLink' => '软件外部下载链接',
+		'SoftIntroduce' => '软件简介',
+		'SoftPay' => '软件收费',
+		'SoftUpdateTime' =>'软件更新时间',
+		'SoftCreateTime' => '软件添加时间',
 		'SoftIcon' => '软件图标',
 		'SoftRank' => '软件等级',
 		'SoftLanguage' => '软件语言',
 		'SoftType' => '软件类型',
 		'SoftOS' => '软件系统',
+		'ViewCount' => '浏览次数',
 		'DownCount' => '下载次数',
+		'SoftStatus' => '软件状态',
+		'SoftSeoTitle' => '软件seo标题',
+		'SoftSeoDescription' => '软件seo描述',
+		'SoftSeoKeywords' => '软件seo关键字',
 		
 		//video
 		'VideoScore' => '视频评分',
 		'VideoType' => '视频类型',
 		'VideoLanguage' => '视频字幕',	
 		'DownCount' => '下载次数',
+		
+		//Goods
+		'GoodsSales' => '销量',
+		'GoodsPrice' => '商品价格',
 		
 		//Question
 		'QuestionId' => '留言ID',

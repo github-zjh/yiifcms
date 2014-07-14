@@ -164,7 +164,7 @@
 	</tr>
 	<tr>
 		<td><?php echo $form->textField($model,'tags',array('size'=>50,'maxlength'=>255)); ?>
-      		<input type="button" value="自动提取"	onclick="keywordGet('Post_title', 'Post_tags')" />
+      		<input type="button" value="自动提取"	onclick="keywordGet('Post_title', 'Post_content', 'Post_tags')" />
 		</td>
 	</tr>
 	<tr>

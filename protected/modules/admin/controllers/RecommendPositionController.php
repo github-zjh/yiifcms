@@ -94,7 +94,7 @@ class RecommendPositionController extends Backend
 		//内容类型
 		$type = ModelType::model()->findByPk($recomPosition->type);
 		//模型表
-		$table = $type->type_table;				
+		$table = $type->model;				
 		$content = new Recommend();
 		$criteria = new CDbCriteria();		
 		$condition = '1 = 1';		

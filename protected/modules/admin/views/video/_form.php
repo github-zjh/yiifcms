@@ -119,7 +119,9 @@
     <td  class="tb_title"><?php echo Yii::t('admin','SEO Keywords');?>：</td>
   </tr>
   <tr >
-    <td ><?php echo $form->textField($model,'seo_keywords',array('size'=>50,'maxlength'=>80)); ?></td>
+    <td ><?php echo $form->textField($model,'seo_keywords',array('size'=>50,'maxlength'=>80)); ?>
+    <input type="button" value="自动提取"	onclick="keywordGet('Video_title', 'Video_introduce', 'Video_seo_keywords')" />
+    </td>
   </tr>
   <tr>
     <td class="tb_title"><?php echo Yii::t('admin','SEO Description');?>：</td>

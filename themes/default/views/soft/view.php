@@ -34,6 +34,7 @@
 									<li><?php echo Yii::t('model','SoftOS');?>：<?php echo $soft->os?$soft->os:Yii::t('common','All');?></li>								
 									<li><?php echo Yii::t('model','SoftRank');?>：<span class="star_empty"><em class="star_full" style="width:<?php echo 100*($soft->softrank/5);?>px"> </em></span></li>
 									<li><?php echo Yii::t('common','UpdateTime');?>：<?php echo date('Y年m月d日',$soft->update_time);?></li>
+									<li><?php echo Yii::t('model','ViewCount');?>：<?php echo $soft->view_count;?></li>
 									<li><?php echo Yii::t('model','DownCount');?>：<?php echo $soft->down_count;?></li>
 								</ul>
 								

@@ -18,7 +18,7 @@
   </tr> 
  
   <tr>
-    <td class="tb_title"><?php echo Yii::t('admin','Belong Category');?>/<?php echo Yii::t('admin','Belong Special');?>：</td>
+    <td class="tb_title"><?php echo Yii::t('admin','Belong Category');?>：</td>
   </tr>
   <tr >
     <td ><select name="Goods[catalog_id]" id="Goods_catalog_id" onchange="changeCatalog(this)">
@@ -42,6 +42,16 @@
       <?php endif?>   
   	</td>
   </tr>
+  
+  <tr>
+    <td class="tb_title" ><?php echo Yii::t('model','GoodsPrice');?>：</td>
+  </tr>
+  <tr >
+    <td >
+    	￥<?php echo $form->textField($model,'price',array('size'=>5,'maxlength'=>10, 'class'=>'validate[required]')); ?>     
+      </td>
+  </tr> 
+  
   <tr>
     <td class="tb_title"><?php echo Yii::t('admin','Description');?>：</td>
   </tr>
@@ -77,8 +87,9 @@
   
   <tr>
     <td >   
-    <?php echo Yii::t('admin','View Count');?>：<?php echo $form->textField($model,'views',array('size'=>5,'maxlength'=>10)); ?>   
-    <?php echo Yii::t('admin','Sort Order');?> <?php echo $form->textField($model,'sort_order',array('size'=>5,'maxlength'=>10)); ?>
+    <?php echo Yii::t('model','ViewCount');?>：<?php echo $form->textField($model,'views',array('size'=>5,'maxlength'=>10)); ?>   
+    <?php echo Yii::t('model','GoodsSales');?>：<?php echo $form->textField($model,'sales',array('size'=>5,'maxlength'=>10)); ?>   
+    <?php echo Yii::t('model','sort_order');?> <?php echo $form->textField($model,'sort_order',array('size'=>5,'maxlength'=>10)); ?>
     </td>
   </tr>
   <tr >

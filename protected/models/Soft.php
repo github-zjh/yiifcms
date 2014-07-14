@@ -21,6 +21,7 @@
  * @property integer $pay
  * @property string $update_time
  * @property string $create_time
+ * @property integer $view_count
  * @property integer $down_count
  * @property string $status
  * @property string $seo_title
@@ -45,7 +46,7 @@ class Soft extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('catalog_id, down_count', 'numerical', 'integerOnly'=>true),
+			array('catalog_id, view_count, down_count', 'numerical', 'integerOnly'=>true),
 			array('pay', 'numerical'),
 			array('title, cover_image, soft_icon, os, softlink', 'length', 'max'=>100),
 			array('fileid, seo_title, seo_keywords', 'length', 'max'=>255),
@@ -54,7 +55,7 @@ class Soft extends CActiveRecord
 			array('introduce, seo_description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, catalog_id, cover_image, fileid, filetype, language, softtype, soft_icon, os, softrank, softsize, softlink, introduce, pay, update_time, create_time, down_count, status, seo_title, seo_description, seo_keywords', 'safe', 'on'=>'search'),
+			array('id, title, catalog_id, cover_image, fileid, filetype, language, softtype, soft_icon, os, softrank, softsize, softlink, introduce, pay, update_time, create_time, view_count, down_count, status, seo_title, seo_description, seo_keywords', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -76,28 +77,29 @@ class Soft extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
-			'title' => 'Title',
-			'catalog_id' => 'Catalog',
-			'soft_icon' => 'Soft Icon',
-			'cover_image' => 'Cover Image',
-			'fileid' => 'Fileid',
-			'filetype' => 'Filetype',
-			'language' => 'Language',
-			'softtype' => 'Softtype',
-			'os' => 'Os',
-			'softrank' => 'Softrank',
-			'softsize' => 'Softsize',
-			'softlink' => 'Softlink',
-			'introduce' => 'Introduce',
-			'pay' => 'Pay',
-			'update_time' => 'Update Time',
-			'create_time' => 'Create Time',
-			'down_count' => 'Down Count',
-			'status' => 'Status',
-			'seo_title' => 'Seo Title',
-			'seo_description' => 'Seo Description',
-			'seo_keywords' => 'Seo Keywords',
+			'id' => Yii::t('model','SoftId'),
+			'title' => Yii::t('model','SoftTitle'),
+			'catalog_id' => Yii::t('model','SoftCatalogId'),
+			'soft_icon' => Yii::t('model','SoftIcon'),
+			'cover_image' => Yii::t('model','SoftCoverImage'),
+			'fileid' => Yii::t('model','SoftFiledId'),
+			'filetype' => Yii::t('model','SoftFileType'),
+			'language' => Yii::t('model','SoftLanguage'),
+			'softtype' => Yii::t('model','SoftType'),
+			'os' => Yii::t('model','SoftOS'),
+			'softrank' => Yii::t('model','SoftRank'),
+			'softsize' => Yii::t('model','SoftSize'),
+			'softlink' => Yii::t('model','SoftLink'),
+			'introduce' => Yii::t('model','SoftIntroduce'),
+			'pay' => Yii::t('model','SoftPay'),
+			'update_time' => Yii::t('model','SoftUpdateTime'),
+			'create_time' => Yii::t('model','SoftCreateTime'),
+			'view_count' => Yii::t('model','ViewCount'),
+			'down_count' => Yii::t('model','DownCount'),
+			'status' => Yii::t('model','SoftStatus'),
+			'seo_title' => Yii::t('model','SoftSeoTitle'),
+			'seo_description' => Yii::t('model','SoftSeoDescription'),
+			'seo_keywords' => Yii::t('model','SoftSeoKeywords'),
 		);
 	}
 
@@ -152,6 +154,8 @@ class Soft extends CActiveRecord
 		$criteria->compare('update_time',$this->update_time,true);
 
 		$criteria->compare('create_time',$this->create_time,true);
+		
+		$criteria->compare('view_count',$this->view_count);
 
 		$criteria->compare('down_count',$this->down_count);
 

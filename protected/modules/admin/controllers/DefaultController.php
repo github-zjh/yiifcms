@@ -130,8 +130,11 @@ class DefaultController extends BackendBase
 	public function actionKeyword()
 	{
 		parent::auth();
-		$string = trim($this->_request->getParam('string'));
-		$return  = XAutoKeyword::discuz($string);
+		$mailer = Yii::createComponent ( 'application.extensions.autokeyword.Autokeyword' );
+		$title = trim($this->_request->getParam('title'));
+		$content = trim($this->_request->getParam('content'));
+		//$return  = XAutoKeyword::discuz($string);		
+		$return = AutoKeyword::simple($title,$content);
 		if($return  == 'empty'){
 			$data['state'] = 'error';
 			$data['message'] = Yii::t('admin','Failed Get');

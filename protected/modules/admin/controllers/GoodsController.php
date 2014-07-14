@@ -61,7 +61,7 @@ class GoodsController extends Backend
         $criteria->offset = $pages->currentPage * $pages->pageSize;
         $result = $model->findAll( $criteria );    
         //推荐位
-        $recom_list = RecommendPosition::model()->findAll('type=:type', array(':type'=>'goods'));
+        $recom_list = RecommendPosition::model()->findAll('type=:type', array(':type'=>$this->_type), array('order'=>'id'));
         $this->render( 'index', array ( 'datalist' => $result , 'pagebar' => $pages ,'recom_list'=>$recom_list) );
     }
 

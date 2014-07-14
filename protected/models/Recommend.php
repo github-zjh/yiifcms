@@ -42,10 +42,11 @@ class Recommend extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'post'=>array(self::HAS_ONE, 'Post', '','on' => 't.content_id=post.id','together'=>true),
-			'image'=>array(self::HAS_ONE, 'Post', '','on' => 't.content_id=image.id','together'=>true),
-			'soft'=>array(self::HAS_ONE, 'Soft', '','on' => 't.content_id=soft.id','together'=>true),
-			'video'=>array(self::HAS_ONE, 'Video', '','on' => 't.content_id=video.id','together'=>true),
+			'Post'=>array(self::HAS_ONE, 'Post', '','on' => 't.content_id=post.id','together'=>true),
+			'Image'=>array(self::HAS_ONE, 'Post', '','on' => 't.content_id=image.id','together'=>true),
+			'Soft'=>array(self::HAS_ONE, 'Soft', '','on' => 't.content_id=soft.id','together'=>true),
+			'Video'=>array(self::HAS_ONE, 'Video', '','on' => 't.content_id=video.id','together'=>true),
+			'Goods'=>array(self::HAS_ONE, 'Goods', '','on' => 't.content_id=video.id','together'=>true),
 		);
 	}
 
