@@ -11,6 +11,7 @@ return array(
 		'setting|seo' => 'SEO设置',
 		'setting|upload' => '上传设置',
 		'setting|template' => '模板设置',
+		'setting|email' => '邮件设置',
 		'setting|custom' => '自定义设置',
 		
 		//Catalog
@@ -141,9 +142,14 @@ return array(
 		//Comment
 		'comment' => '评论管理',
 		'comment|index' => '评论列表',
-		'comment|update' => '评论更新',
-		'comment|delete' => '评论删除',
+		'comment|update' => '评论更新',		
 		'comment|batch' => '批量操作',
+		
+		//Reply
+		'reply' => '回复管理',
+		'reply|index' => '回复列表',
+		'reply|update' => '回复更新',		
+		'reply|batch' => '批量操作',
 		
 		//Modeltype
 		'modeltype' => '内容模型管理',

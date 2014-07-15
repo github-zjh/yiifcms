@@ -2,7 +2,7 @@
 #wrapper { position:relative; padding-top:100px; }
 .form { width: 700px; margin:0 auto; height:500px;}
 .wrapper_bg { height:800px; width:100%;  background:url(../images/login_02.jpg) no-repeat; position:absolute; top:0; z-index:-2; }
-#login-form { float:right; width: 324px;}
+#login-form { float:left; width: 324px;}
 #login-form .mod_head {	
 	background: none repeat scroll 0 0 #428BCA;
     border-radius: 10px 10px 0 0;
@@ -100,8 +100,18 @@
     width: 700px;	  
 	z-index:-1; 
 }
+.login_auth { width:376px; float:right; color:#FFFFFF;}
+.login_auth .title { height:76px; line-height:76px;font-weight:bold; font-size:16px; text-align:center;}
+.login_auth .login_list { padding:20px; background-color:#FFFFFF; }
+.login_list li { float:left; width:85px; margin-right:10px; border:1px solid #DDDDDD; text-align:center;}
+.login_list li a{ display:block; color:#FFFFFF; padding-top:10px;}
+.login_list li a:hover { background-color:#F5F5F5; }
+.login_list li a span { display:block; background-color:#428bca; }
+
 .mod_footer a { font-size:14px; color: #428BCA; }
 .copyright { margin-top:30px; text-align:center;}
 .copyright p { line-height:30px; }
+
+
 
 

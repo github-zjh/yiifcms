@@ -63,10 +63,10 @@
 					
 			});					
 		</script>
-		<div class="copyright">
-			<p>Copyright © 2014 - 2015, All Rights Reserved</p>
-			<p>Powered By Yii FrameWork  当前时区: GMT +8   RSS Feed</p>
-		</div>
+		<?php 
+			//引用公共底部mini模板	 
+			$this->renderPartial('/layouts/footer_mini');
+		?>
 	</div>	
 </body>
 </html>

@@ -114,7 +114,7 @@ box-shadow: 0 5px 0 #e2534b;
 #drop_down_user .fa_poweroff:before { content: "\f011";}
 
 /* 错误信息 */
-.error_message { width:260px; border:1px dotted #DDDDDD; background-color:yellow;}
+.error_message { border:1px dotted #DDDDDD; background-color:yellow;}
 .error_message .errorSummary { margin:10px;}
 
 /* 公共内容main */
@@ -167,3 +167,5 @@ box-shadow: 0 5px 0 #e2534b;
 #copyright .outer { float:right; padding-top:15px; }
 #copyright .outer a { display:block; }
 #copyright .outer li { float:left; width:auto; margin-left:20px; }
+
+a.org_url { color:#428bca; font-weight:bold;}

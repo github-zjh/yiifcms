@@ -24,7 +24,7 @@ class Backend extends BackendBase
 	public function acl(){
 		$acl = array(
 			'default' => 'login',       									//后台登录
-			'setting' => array('seo','upload','template','custom'), 		//网站设置
+			'setting' => array('seo','upload','template','email', 'custom'), 		//网站设置
 			'catalog' => array('index','create','update','delete','batch'), //栏目管理
 			'post' => array('index','create','update','delete','batch'),    //文章管理	
 			'image' => array('index','create','update','delete','batch'),    //图集管理
@@ -32,7 +32,8 @@ class Backend extends BackendBase
 			'video' => array('index','create','update','delete','batch'),    //视频管理
 			'goods' => array('index','create','update','delete','batch'),    //商品管理
 			'page' => array('index','create','update','delete','batch'),    //单页管理
-			'comment' => array('index','update','batch'),   //评论管理
+			'comment' => array('index','update','batch'),   				//评论管理
+			'reply' => array('index','update','batch'),   					//回复管理
 			'recommendPosition' => array('index','create','update','delete', 'view','batch'), //推荐位管理
 			'special' => array('index','create','update','delete','batch'), //专题管理
 			'user' => array('index','create','update','delete','batch', 'group', 'groupCreate','groupUpdate'), 	//用户管理

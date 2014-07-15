@@ -49,15 +49,33 @@
 					<a class="fr" href="<?php echo $this->_request->hostinfo;?>">返回首页&nbsp;&nbsp;>></a>					
 				</div>				
 		    <?php $this->endWidget(); ?>
+		    
+		    <div class="login_auth">
+		    	<p class="title">第三方授权登录</p>
+		    	<ul class="login_list clear">
+		    		<li>
+		    			<a href="#">
+		    				<img src="<?php echo $this->_stylePath?>/images/qq_login.png" width="60" height="60" />
+		    				<span>QQ账号登录</span>
+		    			</a>		    			
+		    		</li>
+		    		<li>
+		    			<a href="#">
+		    				<img src="<?php echo $this->_stylePath?>/images/sina_weibo_login.png" width="60"  height="60"/>
+		    				<span>新浪微博登录</span>
+		    			</a>		    			
+		    		</li>
+		    	</ul>		    	
+		    </div>
 			<div class="login_bg"></div>
 		</div><!-- form -->		
 		
 		<div class="wrapper_bg"></div>
 		
-		<div class="copyright">
-			<p>Copyright © 2014 - 2015, All Rights Reserved</p>
-			<p>Powered By Yii FrameWork  当前时区: GMT +8   RSS Feed</p>
-		</div>
+		<?php 
+			//引用公共底部mini模板	 
+			$this->renderPartial('/layouts/footer_mini');
+		?>
 	</div>	
 </body>
 </html>
