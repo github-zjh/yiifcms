@@ -52,20 +52,35 @@
 		    
 		    <div class="login_auth">
 		    	<p class="title">第三方授权登录</p>
-		    	<ul class="login_list clear">
-		    		<li>
-		    			<a href="#">
-		    				<img src="<?php echo $this->_stylePath?>/images/qq_login.png" width="60" height="60" />
-		    				<span>QQ账号登录</span>
-		    			</a>		    			
-		    		</li>
-		    		<li>
-		    			<a href="#">
-		    				<img src="<?php echo $this->_stylePath?>/images/sina_weibo_login.png" width="60"  height="60"/>
-		    				<span>新浪微博登录</span>
-		    			</a>		    			
-		    		</li>
-		    	</ul>		    	
+		    	<div class="auth_box">
+		    		<ul class="login_list clear">
+			    		<li>
+			    			<a href="#">
+			    				<img src="<?php echo $this->_stylePath?>/images/qq_login.png" width="60" height="60" />
+			    				<span>QQ账号登录</span>
+			    			</a>		    			
+			    		</li>
+			    		<li>
+			    			<a href="#">
+			    				<img src="<?php echo $this->_stylePath?>/images/sina_weibo_login.png" width="60"  height="60"/>
+			    				<span>新浪微博登录</span>
+			    			</a>		    			
+			    		</li>
+			    		<li>
+			    			<a href="#">
+			    				<img src="<?php echo $this->_stylePath?>/images/qq_login.png" width="60" height="60" />
+			    				<span>QQ账号登录</span>
+			    			</a>		    			
+			    		</li>
+			    		<li class="last">
+			    			<a href="#">
+			    				<img src="<?php echo $this->_stylePath?>/images/sina_weibo_login.png" width="60"  height="60"/>
+			    				<span>新浪微博登录</span>
+			    			</a>		    			
+			    		</li>
+			    	</ul>	
+		    		<p class="auth_desc">用合作伙伴登录，更快捷！</p>	
+		    	</div>		    	    	
 		    </div>
 			<div class="login_bg"></div>
 		</div><!-- form -->		

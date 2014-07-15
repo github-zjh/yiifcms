@@ -102,11 +102,13 @@
 }
 .login_auth { width:376px; float:right; color:#FFFFFF;}
 .login_auth .title { height:76px; line-height:76px;font-weight:bold; font-size:16px; text-align:center;}
-.login_auth .login_list { padding:20px; background-color:#FFFFFF; }
-.login_list li { float:left; width:85px; margin-right:10px; border:1px solid #DDDDDD; text-align:center;}
-.login_list li a{ display:block; color:#FFFFFF; padding-top:10px;}
-.login_list li a:hover { background-color:#F5F5F5; }
-.login_list li a span { display:block; background-color:#428bca; }
+.login_auth .auth_box { padding:60px 10px; background-color:#F5F5F5; border-radius:0 5px 5px 0;}
+.login_list li { float:left; width:79px; margin-right:10px; border:1px solid #DDDDDD;  text-align:center;}
+.login_list li.last { margin-right:0;}
+.login_list li a{ display:block; color:#e6e6e6; padding-top:10px;}
+.login_list li a:hover { background-color:#FFFFFF; color:#FFFFFF;}
+.login_list li a span { display:block; width:80px; background-color:#428bca; }
+.auth_desc { color:#555555; text-indent:2em; margin-top:14px;}
 
 .mod_footer a { font-size:14px; color: #428BCA; }
 .copyright { margin-top:30px; text-align:center;}
