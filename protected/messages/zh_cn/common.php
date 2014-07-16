@@ -209,7 +209,7 @@ return array (
 	'Source Is Not Found' => '该资源不存在，或者已经删除',
 	
 	/* 单页 */
-	'Page Menu' => '栏目导航',
+	'Page Read' => '网站导读',
 	
 	/* 留言反馈 */	
 	'Question Title' => '留言反馈',

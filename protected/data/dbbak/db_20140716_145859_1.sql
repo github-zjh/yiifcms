@@ -1,6 +1,6 @@
 # your database backup
 # version:5.5.27-log
-# time:2014-07-16 12:03:24
+# time:2014-07-16 14:58:59
 # --------------------------------------------------------
 
 
@@ -288,7 +288,7 @@ INSERT INTO `yiif_menu` VALUES('2','资讯','/?r=post/index','post','Y','0','0',
 INSERT INTO `yiif_menu` VALUES('3','图集','/?r=image/index','image','Y','0','0','N');
 INSERT INTO `yiif_menu` VALUES('4','软件','/?r=soft/index','soft','Y','0','0','N');
 INSERT INTO `yiif_menu` VALUES('5','视频','/?r=video/index','video','Y','0','0','N');
-INSERT INTO `yiif_menu` VALUES('6','关于我们','/?r=page&title_alias=about','about','Y','0','0','N');
+INSERT INTO `yiif_menu` VALUES('6','关于我们','/?r=page&id=about','about','Y','0','0','N');
 INSERT INTO `yiif_menu` VALUES('7','留言反馈','/?r=question/index','question','Y','0','0','N');
 
 DROP TABLE IF EXISTS `yiif_model_type`;
@@ -309,36 +309,34 @@ INSERT INTO `yiif_model_type` VALUES('5','goods','商品','Goods','Y');
 
 DROP TABLE IF EXISTS `yiif_page`;
 CREATE TABLE `yiif_page` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` varchar(50) NOT NULL,
   `title` varchar(100) NOT NULL COMMENT '标题',
-  `title_second` varchar(100) NOT NULL DEFAULT '' COMMENT '副标题',
-  `title_alias` char(40) NOT NULL COMMENT '标签',
-  `html_path` varchar(100) NOT NULL DEFAULT '' COMMENT 'html路径',
-  `html_file` varchar(100) NOT NULL DEFAULT '' COMMENT 'html文件',
   `intro` text COMMENT '简单描述',
   `content` mediumtext NOT NULL COMMENT '内容',
   `seo_title` varchar(255) NOT NULL DEFAULT '' COMMENT 'SEO标题',
   `seo_keywords` varchar(255) NOT NULL DEFAULT '' COMMENT 'SEO KEYWORDS',
   `seo_description` text COMMENT 'SEO DESCRIPTION',
   `template` varchar(30) NOT NULL DEFAULT '' COMMENT '模板',
+  `link` varchar(100) DEFAULT NULL COMMENT '外部链接',
   `attach_file` varchar(60) NOT NULL DEFAULT '' COMMENT '附件',
   `attach_thumb` varchar(60) NOT NULL DEFAULT '' COMMENT '附件小图',
   `sort_order` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
   `view_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '查看次数',
   `status` enum('Y','N') NOT NULL DEFAULT 'Y' COMMENT '是否显示',
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '时间',
+  `update_time` int(10) unsigned DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='单页';
 
-INSERT INTO `yiif_page` VALUES('1','关于我们','','about','','','','yiicms','','','','','uploads/201309/logo.jpg','uploads/201309/logo.jpg','0','0','Y','1322999570');
-INSERT INTO `yiif_page` VALUES('2','产品特色','','feature','','','','<p style=\"text-indent:2em;\">
+INSERT INTO `yiif_page` VALUES('about','关于我们','','yiicms','','','','','','','','0','2','Y','1322999570','');
+INSERT INTO `yiif_page` VALUES('goods','产品特色','','<p style=\"text-indent:2em;\">
 	<br />
 </p>
 <p style=\"text-indent:2em;\">
 	<strong><span style=\"font-family:Microsoft YaHei;font-size:16px;\" id=\"free\">开源、免费</span></strong> 
 </p>
 <p style=\"text-indent:2em;\">
-	<span style=\"font-size:14px;\">yiifcms是基于yiiframework开发的内容管理系统，它开源、免费，用户可以自由下载、使用、修改、学习交流。</span>
+	<span style=\"font-size:14px;\">yiifcms是基于yiiframework开发的内容管理系统，它开源、免费，用户可以自由下载、使用、修改、学习交流。</span> 
 </p>
 <p style=\"text-indent:2em;\">
 	<br />
@@ -360,7 +358,7 @@ INSERT INTO `yiif_page` VALUES('2','产品特色','','feature','','','','<p styl
 	<strong><span style=\"font-family:Microsoft YaHei;font-size:16px;\" id=\"safe\">安全、高效</span></strong> 
 </p>
 <p style=\"text-indent:2em;\">
-	<span style=\"font-size:14px;\">yiiframework本身是一个很安全的高性能的开源框架，使用它您不用担心安全问题，它会使您的网站运行的很良好。</span>
+	<span style=\"font-size:14px;\">yiiframework本身是一个很安全的高性能的开源框架，使用它您不用担心安全问题，它会使您的网站运行的很良好。</span> 
 </p>
 <p style=\"text-indent:2em;\">
 	<br />
@@ -382,7 +380,7 @@ INSERT INTO `yiif_page` VALUES('2','产品特色','','feature','','','','<p styl
 	<strong><span style=\"font-size:16px;font-family:Microsoft YaHei;\" id=\"handy\">简洁、方便</span></strong> 
 </p>
 <p style=\"text-indent:2em;\">
-	<span style=\"font-size:14px;\">yiifcms有简洁、方便的后台管理，用户不需要了解复杂的逻辑关系，就可以很快速的发布内容，优化管理。</span>
+	<span style=\"font-size:14px;\">yiifcms有简洁、方便的后台管理，用户不需要了解复杂的逻辑关系，就可以很快速的发布内容，优化管理。</span> 
 </p>
 <p style=\"text-indent:2em;\">
 	<br />
@@ -407,7 +405,7 @@ INSERT INTO `yiif_page` VALUES('2','产品特色','','feature','','','','<p styl
 	<br />
 </p>
 <p style=\"text-indent:2em;\">
-	<span style=\"font-size:14px;\">yiifcms架构合理、布局优美，是您轻松建站和学习的不二之选。</span>
+	<span style=\"font-size:14px;\">yiifcms架构合理、布局优美，是您轻松建站和学习的不二之选。</span> 
 </p>
 <p style=\"text-indent:2em;\">
 	<br />
@@ -418,8 +416,8 @@ INSERT INTO `yiif_page` VALUES('2','产品特色','','feature','','','','<p styl
 </p>
 <p style=\"text-indent:2em;\">
 	<br />
-</p>','','产品特色','产品特色','','','','0','0','Y','1322999588');
-INSERT INTO `yiif_page` VALUES('3','注册流程','','register','','','企业文化是企业为解决生存和发展的问题的而树立形成的，被组织成员认为有效而共享，并共同遵循的基本信念和认知。 企业文化集中体现了一个企业经营管理的核心主张，以及由此产生的组织行为。','<div>
+</p>','','产品特色','产品特色','','','','','0','1','Y','1322999588','');
+INSERT INTO `yiif_page` VALUES('register','注册流程','企业文化是企业为解决生存和发展的问题的而树立形成的，被组织成员认为有效而共享，并共同遵循的基本信念和认知。 企业文化集中体现了一个企业经营管理的核心主张，以及由此产生的组织行为。','<div>
 	<div>
 		迪尔和肯尼迪把企业文化整个理论系统概述为5个要素，即企业环境、价值观、英雄人物、文化仪式和文化网络。
 	</div>
@@ -470,8 +468,8 @@ INSERT INTO `yiif_page` VALUES('3','注册流程','','register','','','企业文
 	</div>
 </div>
 <div>
-</div>','','','','','','','0','0','Y','1331877791');
-INSERT INTO `yiif_page` VALUES('4','新手指南','','guide','','','团队是现代企业管理中战斗的核心，几乎没有一家企业不谈团队，好象团队就是企业做大做强的灵丹妙药，只要抓紧团队建设就能有锦锈前程了。团队是个好东西，但怎样的团队才算一个好团队，怎样才能运作好一个团队呢？却是许多企业管理者不甚了然的，于是在企业团队建设的过程中就出现了许多弊病，例如从理论著作中生搬硬套到团队运作里面，是很难产生好团队的。','<div>
+</div>','','','','','','','','0','2','Y','1331877791','1405493863');
+INSERT INTO `yiif_page` VALUES('guide','新手指南','团队是现代企业管理中战斗的核心，几乎没有一家企业不谈团队，好象团队就是企业做大做强的灵丹妙药，只要抓紧团队建设就能有锦锈前程了。团队是个好东西，但怎样的团队才算一个好团队，怎样才能运作好一个团队呢？却是许多企业管理者不甚了然的，于是在企业团队建设的过程中就出现了许多弊病，例如从理论著作中生搬硬套到团队运作里面，是很难产生好团队的。','<div>
 	<div>
 		团队是现代企业管理中战斗的核心，几乎没有一家企业不谈团队，好象团队就是企业做大做强的灵丹妙药，只要抓紧团队建设就能有锦锈前程了。团队是个好东西，但怎样的团队才算一个好团队，怎样才能运作好一个团队呢？却是许多企业管理者不甚了然的，于是在企业团队建设的过程中就出现了许多弊病，例如从理论著作中生搬硬套到团队运作里面，是很难产生好团队的。任何理念都不能执着，执着生僵化，就会蜕变为形式主义，后果很糟糕。在如今企业管理者热火朝天进行的团队建设中就存在这个问题，将团队作为企业文化建设的至上准则是不恰当的，是不符合多元化的现实状况的。
 	</div>
@@ -483,7 +481,7 @@ INSERT INTO `yiif_page` VALUES('4','新手指南','','guide','','','团队是现
 	</div>
 </div>
 <div>
-</div>','','','','','','','0','0','Y','1379392484');
+</div>','','','','','','','','0','3','Y','1379392484','');
 
 DROP TABLE IF EXISTS `yiif_post`;
 CREATE TABLE `yiif_post` (
@@ -1344,7 +1342,7 @@ CREATE TABLE `yiif_session` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='session表';
 
-INSERT INTO `yiif_session` VALUES('vvv3ks5hsl3bia1qqqvacil734','1405487002','Yii.CCaptchaAction.c5a2395c.question.captcha|s:6:\"l9ppmc\";Yii.CCaptchaAction.c5a2395c.question.captchacount|i:1;admin__returnUrl|s:9:\"/?r=admin\";Yii.CCaptchaAction.c5a2395c.admin/default.captcha|s:4:\"ca4b\";Yii.CCaptchaAction.c5a2395c.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:5:\"admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}Yii.CCaptchaAction.c5a2395c.user.captcha|s:6:\"ln5a3b\";Yii.CCaptchaAction.c5a2395c.user.captchacount|i:1;1_forgetpwd|a:2:{s:5:\"email\";s:14:\"xb_zjh@126.com\";s:4:\"time\";i:1405481944;}');
+INSERT INTO `yiif_session` VALUES('pp3qrr67s9l4eb0c4kld3ccfb3','1405497537','admin__returnUrl|s:9:\"/?r=admin\";Yii.CCaptchaAction.c5a2395c.admin/default.captcha|s:4:\"7epc\";Yii.CCaptchaAction.c5a2395c.admin/default.captchacount|i:5;admin__id|s:1:\"1\";admin__name|s:5:\"admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}Yii.CCaptchaAction.c5a2395c.question.captcha|s:6:\"ra9ala\";Yii.CCaptchaAction.c5a2395c.question.captchacount|i:1;');
 
 DROP TABLE IF EXISTS `yiif_setting`;
 CREATE TABLE `yiif_setting` (
@@ -1448,7 +1446,7 @@ INSERT INTO `yiif_soft` VALUES('4','阿里旺旺 2014卖家版 V7.20.36T 正式�
 2. 海量商机搜索 <br />
 不登录网站，快速搜索阿里巴巴大市场 600 万商机！ <br />
 3. 巧发','0.00','1404450722','1400550081','4','6','Y','','','');
-INSERT INTO `yiif_soft` VALUES('5','YiifCMS1.0版本安装包','11','','','95','','zh_cn','domestic','','5','','','','0.00','1405306567','1404715423','0','0','Y','','','yii,cms');
+INSERT INTO `yiif_soft` VALUES('5','YiifCMS1.0版本安装包','11','uploads/images/201407/252fd6459ae.jpg','','95','','zh_cn','domestic','','5','','','','0.00','1405493591','1404715423','2','0','Y','','','yii,cms');
 
 DROP TABLE IF EXISTS `yiif_special`;
 CREATE TABLE `yiif_special` (

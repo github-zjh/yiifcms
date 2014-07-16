@@ -7,9 +7,7 @@
     <div class="search right">
       <?php $form = $this->beginWidget('CActiveForm',array('id'=>'searchForm','method'=>'get','action'=>array('page'),'htmlOptions'=>array('name'=>'xform'))); ?>
       <?php echo Yii::t('admin','Title');?>
-      <input id="title" type="text" name="title" value="" class="txt" size="15"/>
-      <?php echo Yii::t('admin','Alias');?>
-      <input id="titleAlias" type="text" name="titleAlias" value="" class="txt" size="15"/>
+      <input id="title" type="text" name="title" value="" class="txt" size="15"/>     
       <input name="searchsubmit" type="submit" value="<?php echo Yii::t('admin','Query');?>" class="button"/>
       <script type="text/javascript">
 $(function(){
@@ -18,8 +16,7 @@ $(function(){
 </script>
       <?php $form=$this->endWidget(); ?>
       <script type="text/javascript">
-$(document).ready(function(){
-	$("#titleAlias").val('<?php echo Yii::app()->request->getParam('titleAlias')?>');
+$(document).ready(function(){	
 	$("#title").val('<?php echo Yii::app()->request->getParam('title')?>');
 });
 </script> </div>
@@ -38,14 +35,13 @@ $(document).ready(function(){
     <tr class="tb_list">
       <td ><input type="checkbox" name="id[]" value="<?php echo $row->id?>">
         <?php echo $row->id?></td>
-      <td ><?php echo $row->title?><br />
-        <?php echo $row->title_alias?></td>
+      <td ><?php echo $row->title?></td>
       <td ><?php echo date('Y-m-d H:i',$row->create_time)?></td>
       <td><?php if($row->status == 'Y'){echo Yii::t('admin','Show');}else{echo "<span class='red'>".Yii::t('admin','Hidden')."</span>";}?></td>
       <td >
       <a href="<?php echo  $this->createUrl('update',array('id'=>$row->id))?>"><img src="<?php echo $this->module->assetsUrl;?>/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
       <a href="<?php echo  $this->createUrl('batch',array('command'=>'delete', 'id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->module->assetsUrl;?>/images/delete.png" align="absmiddle" /></a>
-      <a href="<?php echo  $this->createUrl('/page/index',array('title_alias'=>$row['title_alias']))?>" target="_blank"><img src="<?php echo $this->module->assetsUrl;?>/images/view.png" align="absmiddle" /></a>
+      <a href="<?php echo  $this->createUrl('/page/index',array('id'=>$row['id']))?>" target="_blank"><img src="<?php echo $this->module->assetsUrl;?>/images/view.png" align="absmiddle" /></a>
       </td>
       
     </tr>

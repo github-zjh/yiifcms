@@ -12,8 +12,8 @@ class PageController extends FrontBase
  /**
   *  详情
   */
-  public function actionIndex($title_alias='') {   	
-  	  $page = Page::model()->find('title_alias=:title_alias AND status=:status' , array(':title_alias'=>$title_alias, ':status'=>'Y'));
+  public function actionIndex($id) {   	
+  	  $page = Page::model()->find('id=:id AND status=:status' , array(':id'=>$id, ':status'=>'Y'));
       if(!$page){      	
       	throw new CHttpException(404, Yii::t('common','The requested page does not exist.'));
       }
@@ -26,9 +26,12 @@ class PageController extends FrontBase
       $this->_seoKeywords = $page->seo_keywords;
       $this->_seoDescription = $page->seo_description;
       
+      //更新浏览次数
+      $page->updateCounters(array ('view_count' => 1 ), 'id=:id', array ('id' => $id ));
+      
       //所有单页
       $pagelists = Page::model()->findAll('status=:status ORDER BY sort_order, id' , array(':status'=>'Y'));
-      $this->_menu_unique = $title_alias;
+      $this->_menu_unique = $id;
       
       //导航
       $navs[] = array('url'=>$this->_request->getUrl(),'name'=>$page->title);

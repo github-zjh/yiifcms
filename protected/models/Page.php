@@ -6,22 +6,20 @@
  * The followings are the available columns in table '{{page}}':
  * @property string $id
  * @property string $title
- * @property string $title_second
- * @property string $title_alias
- * @property string $html_path
- * @property string $html_file
  * @property string $intro
  * @property string $content
  * @property string $seo_title
  * @property string $seo_keywords
  * @property string $seo_description
  * @property string $template
+ * @property string $link
  * @property string $attach_file
  * @property string $attach_thumb
  * @property integer $sort_order
  * @property string $view_count
  * @property string $status
  * @property string $create_time
+ * @property string $update_time
  */
 class Page extends CActiveRecord
 {
@@ -41,19 +39,20 @@ class Page extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, title_alias, content', 'required'),
+			array('id','unique'),
+			array('id, title, content', 'required'),
 			array('sort_order', 'numerical', 'integerOnly'=>true),
-			array('title, title_second, html_path, html_file', 'length', 'max'=>100),
-			array('title_alias', 'length', 'max'=>40),
+			array('id', 'length', 'max'=>50),
+			array('title, link', 'length', 'max'=>100),
 			array('seo_title, seo_keywords', 'length', 'max'=>255),
 			array('template', 'length', 'max'=>30),
 			array('attach_file, attach_thumb', 'length', 'max'=>60),
-			array('view_count, create_time', 'length', 'max'=>10),
+			array('view_count, create_time, update_time', 'length', 'max'=>10),
 			array('status', 'length', 'max'=>1),
 			array('intro, seo_description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, title_second, title_alias, html_path, html_file, intro, content, seo_title, seo_keywords, seo_description, template, attach_file, attach_thumb, sort_order, view_count, status, create_time', 'safe', 'on'=>'search'),
+			array('id, title, intro, content, seo_title, seo_keywords, seo_description, template, link, attach_file, attach_thumb, sort_order, view_count, status, create_time, update_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -76,22 +75,20 @@ class Page extends CActiveRecord
 		return array(
 			'id' => 'Id',
 			'title' => 'Title',
-			'title_second' => 'Title Second',
-			'title_alias' => 'Title Alias',
-			'html_path' => 'Html Path',
-			'html_file' => 'Html File',
 			'intro' => 'Intro',
 			'content' => 'Content',
 			'seo_title' => 'Seo Title',
 			'seo_keywords' => 'Seo Keywords',
 			'seo_description' => 'Seo Description',
 			'template' => 'Template',
+			'link' => 'Link',
 			'attach_file' => 'Attach File',
 			'attach_thumb' => 'Attach Thumb',
 			'sort_order' => 'Sort Order',
 			'view_count' => 'View Count',
 			'status' => 'Status',
 			'create_time' => 'Create Time',
+			'update_time' => 'Update Time',
 		);
 	}
 
@@ -117,14 +114,6 @@ class Page extends CActiveRecord
 
 		$criteria->compare('title',$this->title,true);
 
-		$criteria->compare('title_second',$this->title_second,true);
-
-		$criteria->compare('title_alias',$this->title_alias,true);
-
-		$criteria->compare('html_path',$this->html_path,true);
-
-		$criteria->compare('html_file',$this->html_file,true);
-
 		$criteria->compare('intro',$this->intro,true);
 
 		$criteria->compare('content',$this->content,true);
@@ -137,6 +126,8 @@ class Page extends CActiveRecord
 
 		$criteria->compare('template',$this->template,true);
 
+		$criteria->compare('link',$this->link,true);
+
 		$criteria->compare('attach_file',$this->attach_file,true);
 
 		$criteria->compare('attach_thumb',$this->attach_thumb,true);
@@ -148,6 +139,8 @@ class Page extends CActiveRecord
 		$criteria->compare('status',$this->status,true);
 
 		$criteria->compare('create_time',$this->create_time,true);
+
+		$criteria->compare('update_time',$this->update_time,true);
 
 		return new CActiveDataProvider('Page', array(
 			'criteria'=>$criteria,

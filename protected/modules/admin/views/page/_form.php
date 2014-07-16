@@ -8,24 +8,28 @@
 <?php endif?>
 <?php $form = $this->beginWidget('CActiveForm',array('id'=>'xform','htmlOptions'=>array('name'=>'xform','enctype'=>'multipart/form-data'))); ?>
 <table class="form_table">
+  
+  <tr>
+    <td class="tb_title"><?php echo Yii::t('admin','ID');?>：</td>
+  </tr>
+  <tr >
+    <td ><?php echo $form->textField($model,'id',array('size'=>20,'maxlength'=>128)); ?></td>
+  </tr>
+ 
   <tr>
     <td class="tb_title"><?php echo Yii::t('admin','Title');?>：</td>
   </tr>
   <tr >
     <td ><?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>128, 'class'=>'validate[required]')); ?></td>
   </tr>
+  
   <tr>
-    <td class="tb_title"><?php echo Yii::t('admin','Title Second');?>：</td>
+    <td class="tb_title"><?php echo Yii::t('admin','Link');?>：</td>
   </tr>
   <tr >
-    <td ><?php echo $form->textField($model,'title_second',array('size'=>60,'maxlength'=>128)); ?></td>
+    <td ><?php echo $form->textField($model,'link',array('size'=>60,'maxlength'=>128)); ?></td>
   </tr>
-  <tr>
-    <td class="tb_title"><?php echo Yii::t('admin','Alias Name (Combination of letters or Numbers)');?>：</td>
-  </tr>
-  <tr >
-    <td ><?php echo $form->textField($model,'title_alias',array('size'=>30,'maxlength'=>128, 'class'=>'validate[required]')); ?></td>
-  </tr>
+ 
   <tr>
     <td class="tb_title"><?php echo Yii::t('admin','Cover Image');?>：</td>
   </tr>

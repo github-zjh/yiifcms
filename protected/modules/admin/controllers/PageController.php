@@ -33,7 +33,7 @@ class PageController extends Backend
     }
 
     /**
-	 * 单页更新
+	 * 单页添加
 	 */
     public function actionCreate ()
     {        
@@ -90,9 +90,12 @@ class PageController extends Backend
             	$model->attach_thumb = $upload->_thumb_name;
             }
             $model->create_time = $model->create_time?$model->create_time:time();
+            $model->update_time = time();
+            
             if ($model->save()) {                
                 $this->redirect(array ('index' ));
             }
+           
         }
         $this->render('update', array ('model' => $model ));
     
