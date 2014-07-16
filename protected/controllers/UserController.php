@@ -488,15 +488,20 @@ class UserController extends FrontBase
 		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/user.css");
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
 		$model = $this->loadModel();
-		if($this->_request->isPostRequest){
-			if($_POST['ajax'] == 'ajax_active_form'){
-				$this->activeAccount(array('id'=>$model->uid, 'username'=>$model->username,'email'=>$model->email));
-				exit(CJSON::encode(array('message'=>Yii::t('common','Send Success'))));
-			}else{
-				exit(CJSON::encode(array('message'=>Yii::t('common','Send Failed'))));
+		
+		if($model->status == 1){
+			$this->redirect($this->createUrl('index'));
+		}else{
+			if($this->_request->isPostRequest){
+				if($_POST['ajax'] == 'ajax_active_form'){
+					$this->activeAccount(array('id'=>$model->uid, 'username'=>$model->username,'email'=>$model->email));
+					exit(CJSON::encode(array('message'=>Yii::t('common','Send Success'))));
+				}else{
+					exit(CJSON::encode(array('message'=>Yii::t('common','Send Failed'))));
+				}
 			}
+			$this->render('active_email', array('model'=>$model));
 		}
-		$this->render('active_email', array('model'=>$model));
 	}
 	
 	/**

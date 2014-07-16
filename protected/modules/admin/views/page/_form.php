@@ -13,7 +13,7 @@
     <td class="tb_title"><?php echo Yii::t('admin','ID');?>：</td>
   </tr>
   <tr >
-    <td ><?php echo $form->textField($model,'id',array('size'=>20,'maxlength'=>128)); ?></td>
+    <td ><?php echo $form->textField($model,'id',array('size'=>20,'maxlength'=>128, 'class'=>'validate[required]')); ?></td>
   </tr>
  
   <tr>
