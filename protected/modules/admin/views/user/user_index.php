@@ -50,8 +50,10 @@ $(document).ready(function(){
       <td><?php $group = UserGroup::model()->findByPk($row->groupid); echo $group->group_name;?> </td>
       <td ><?php if($row->status == 0):?>
         <span class="red"><img src="<?php echo $this->module->assetsUrl;?>/images/error.png" align="absmiddle" />锁定</span>
-        <?php else:?>
+        <?php elseif($row->status == 1):?>
         正常
+        <?php else:?>
+        <span class="red"><img src="<?php echo $this->module->assetsUrl;?>/images/error.png" align="absmiddle" />待审核</span>
         <?php endif;?>
       </td>
       <td ><?php echo date('Y-m-d H:i',$row->addtime)?></td>
@@ -71,6 +73,7 @@ $(document).ready(function(){
             <option>选择操作</option>
             <option value="userLock">锁定</option>
             <option value="userunLock">解锁</option>
+            <option value="userUnpass">待审核</option>
             <option value="userDelete">删除</option>
           </select>
           <input id="submit_maskall" class="button confirmSubmit" type="submit" value="提交" name="maskall" />

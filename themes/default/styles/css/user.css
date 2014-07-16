@@ -74,3 +74,8 @@
 .base_table .send_btn { margin-left:20px; border:1px solid #000000; cursor:pointer; color:#F0F0F0; background-color:#666666; }
 #send_msg { color:#F00; }
 .error_message { width:260px; }
+
+/* 重新激活账号 */
+.user_edit .base_active { width:100%; padding:20px;}
+.active_msg { float:left; background-color:#cccccc; line-height:34px; color:555555;}
+.active_btn { float:left;}

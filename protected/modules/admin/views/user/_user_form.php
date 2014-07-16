@@ -68,7 +68,7 @@
     <td class="tb_title"><?php echo Yii::t('common','Status');?>：</td>
   </tr>
   <tr >
-    <td ><?php echo $form->dropDownList($model,'status',array('1'=>Yii::t('common','Normal'), '0'=>Yii::t('common','Locked'))); ?></td>
+    <td ><?php echo $form->dropDownList($model,'status',array('1'=>Yii::t('common','Normal'), '0'=>Yii::t('common','Locked'), '-1'=>Yii::t('common','Unpass'))); ?></td>
   </tr>
   <tr class="submit">
     <td ><input type="submit" name="editsubmit" value="<?php echo Yii::t('common','Submit');?>" class="button" tabindex="3" /></td>

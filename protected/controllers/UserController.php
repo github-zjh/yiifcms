@@ -74,7 +74,12 @@ class UserController extends FrontBase
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
 		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/jquery.Jcrop.min.css");		
 		
-	    $model = $this->loadModel();	    
+	    $model = $this->loadModel();	   
+	    //判断账号是否已激活
+	    if($model->status == -1){
+	    	$this->redirect($this->createUrl('activeEmail'));
+	    }
+	     
 	    $old_avatar = $model->avatar;	   
 	  	    
 	    if(isset($_POST['User'])){
@@ -113,8 +118,12 @@ class UserController extends FrontBase
 		//加载css,js
 		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/user.css");
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
-		$model = $this->loadModel();	
+		$model = $this->loadModel();
 		
+		//判断账号是否已激活	
+		if($model->status == -1){
+			$this->redirect($this->createUrl('activeEmail'));
+		}
 		if($this->_request->isPostRequest){	
 			//发送验证码		
 			$reg = '/^[a-zA-Z0-9_]+@(qq|126|163|sina|hotmail|yahoo|gmail|sohu|live)(\.com|\.com\.cn)$/';
@@ -137,7 +146,7 @@ class UserController extends FrontBase
 							$acceptCaptcha = Yii::app()->session[$email.'_captcha'] = substr(mt_rand(0,time()),2,6);
 							$subject = Yii::t('common','Reset Email Subject');
 							$message = Yii::t('common','Reset Email Content', array('{username}'=>$model->username, '{email_captcha}'=>$acceptCaptcha,'{admin_email}'=>$this->_setting['admin_email']));
-							Helper::sendMail(0, $email, $subject, $message);			
+							Helper::sendMail($model->uid, $email, $subject, $message);			
 							exit( CJSON::encode( array ( 'status' => 'success' , 'message' => Yii::t('common','Send Success') ) ) );
 						}else{
 							exit( CJSON::encode( array ( 'status' => 'error' , 'field'=>'newEmail', 'message' => Yii::t('common','Existing Email') ) ) );
@@ -191,6 +200,11 @@ class UserController extends FrontBase
 		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/user.css");
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
 		$user = $this->loadModel();
+		
+		//判断账号是否已激活
+		if($user->status == -1){
+			$this->redirect($this->createUrl('activeEmail'));
+		}
 		
 		$model = new SetPwdForm();
 		$model->id = $user->uid;	
@@ -417,6 +431,9 @@ class UserController extends FrontBase
 		}
 		$safestr = $this->_setting['safe_str'];  //安全分隔符
 		$salt = base64_encode(mt_rand(0,time()));  //随机盐
+		//加入时间session
+		Yii::app()->session[$params['id'].'_activeAccount'] = time();
+		
 		$authcode = crypt($params['id'].$safestr.$params['email'], $salt);
 		$authurl = $this->_request->hostInfo.$this->createUrl('authEmail', array('id'=>$params['id'], 'authcode'=>$authcode));
 		$subject = Yii::t('common','Account Active');
@@ -440,7 +457,8 @@ class UserController extends FrontBase
 		if($user->status == 1){
 			$this->message('success',Yii::t('common','Auth Is Ok'), $this->createUrl('login'));
 		}
-		if((time()-$user->addtime)/3600 > 2){
+		$sendTime = Yii::app()->session[$id.'_activeAccount'];
+		if((time()-$sendTime)/3600 > 2){
 			//超过2小时视为过期
 			$this->message('error',Yii::t('common','The link is invalid'), $this->createUrl('site/index'),0, true);
 		}
@@ -451,10 +469,34 @@ class UserController extends FrontBase
 			//验证通过
 			$user->status = 1;
 			$user->save();
+			
+			//清除 session
+			unset(Yii::app()->session[$id.'_activeAccount']);
 			$this->message('success',Yii::t('common','Auth Success'), $this->createUrl('login'));
 		}else{
 			$this->message('error',Yii::t('common','Auth Failed'), $this->createUrl('register'));
 		}
+	}
+	
+	/**
+	 * 重发验证邮件，进行账号激活
+	 * 
+	 */
+	public function actionActiveEmail(){
+		$this->_seoTitle = Yii::t('common','Account Active').' - '.$this->_setting['site_name'];
+		//加载css,js
+		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/user.css");
+		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
+		$model = $this->loadModel();
+		if($this->_request->isPostRequest){
+			if($_POST['ajax'] == 'ajax_active_form'){
+				$this->activeAccount(array('id'=>$model->uid, 'username'=>$model->username,'email'=>$model->email));
+				exit(CJSON::encode(array('message'=>Yii::t('common','Send Success'))));
+			}else{
+				exit(CJSON::encode(array('message'=>Yii::t('common','Send Failed'))));
+			}
+		}
+		$this->render('active_email', array('model'=>$model));
 	}
 	
 	/**
@@ -524,7 +566,7 @@ class UserController extends FrontBase
 		
 		
 		$safestr = $this->_setting['safe_str'];  //安全分隔符
-		if(!crypt($id.$safestr.$sessionEmail, $authcode) == $authcode){
+		if(crypt($user->username.$safestr.$sessionEmail, $authcode) != $authcode){
 			//验证不通过
 			$this->message('error',Yii::t('common','Auth Failed'), $this->createUrl('forgetPwd'));
 		}

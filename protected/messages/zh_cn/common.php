@@ -36,6 +36,7 @@ return array (
 	'Read Details' => '了解详情',
 	'Nothing Is Found' => '未找到任何结果',
 	'Notice Message' => '信息提示',
+	'Unpass' => '待审核',
 		
 	//登录
 	'Login' => '登录',
@@ -87,6 +88,7 @@ return array (
 	'Existing Email' => '邮箱已被使用',
 	'Register New User' => '注册新用户',
 	'Account Active' => '账号激活',
+	'Active Account Msg' => '！系统检测到您的账号尚未激活，为了您的账号安全，请及时激活。 ',
 	'Register Success' => '注册成功, 请登录您的邮箱进行账号激活！',
 	'Register Failed'=>'注册失败',
 	'Auth Account Do Not Exist'=>'验证用户不存在',
@@ -169,6 +171,7 @@ return array (
 						==================<br/><br/>如果不是您本人操作，请尽快联系本网站的管理员：<a href="mailto:{admin_email}">{admin_email}</a>。</p>',
 	'Sending..' => '发送中...',
 	'Send Success' => '发送成功',	
+	'Send Failed' => '发送失败',
 	'Reset Email Success' => '重设邮箱成功',
 	
 	//分页

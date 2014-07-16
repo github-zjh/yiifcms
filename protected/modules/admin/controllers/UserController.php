@@ -233,6 +233,15 @@ class UserController extends Backend
         			}
         		}
         		break;
+        	case 'userUnpass':
+        		foreach((array)$ids as $id){
+        			$userModel = User::model()->findByPk($id);
+        			if($userModel){
+        				$userModel->status = -1;
+        				$userModel->save();
+        			}
+        		}
+        		break;
             
             case 'userDelete':               
         		foreach((array)$ids as $id){

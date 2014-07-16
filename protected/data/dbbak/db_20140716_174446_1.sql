@@ -1,6 +1,6 @@
 # your database backup
 # version:5.5.27-log
-# time:2014-07-16 14:58:59
+# time:2014-07-16 17:44:46
 # --------------------------------------------------------
 
 
@@ -215,7 +215,7 @@ CREATE TABLE `yiif_mail_log` (
   `times` tinyint(2) unsigned DEFAULT '0' COMMENT '发送次数',
   `error` varchar(100) DEFAULT NULL COMMENT '错误信息',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COMMENT='发送邮件日志';
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COMMENT='发送邮件日志';
 
 INSERT INTO `yiif_mail_log` VALUES('7','326196998@qq.com','测试邮件标题','测试邮件内容','1405053583','failed','3','1','SMTP 错误：无法连接到 SMTP 主机。');
 INSERT INTO `yiif_mail_log` VALUES('8','326196998@qq.com','测试邮件标题','测试邮件内容','1405053614','success','3','1','');
@@ -269,6 +269,22 @@ INSERT INTO `yiif_mail_log` VALUES('25','xb_zjh@126.com','重置密码','
 			==================<br/><br/>请确保是本人操作，如果有其他疑问，
 			请联系本网站的管理员：<a href=\"mailto:\"></a>。</p>
 	','1405481945','success','3','1','');
+INSERT INTO `yiif_mail_log` VALUES('26','xb_zjh@126.com','重置密码','
+			<p>尊敬的用户：admin 您好，您已经申请找回密码服务，请点击下面链接进行密码重置：<br/><br/>
+			<a href=\"http://www.yii.local/?r=user/resetPwd&id=1&authcode=OTD0.f9bMDAL.\">http://www.yii.local/?r=user/resetPwd&id=1&authcode=OTD0.f9bMDAL.</a><br/><br/>(如果上面链接不能点击，请复制到浏览器地址栏中进行访问。)<br/><br/>
+			==================<br/><br/>请确保是本人操作，如果有其他疑问，
+			请联系本网站的管理员：<a href=\"mailto:xb_zjh@126.com\">xb_zjh@126.com</a>。</p>
+	','1405495294','success','3','1','');
+INSERT INTO `yiif_mail_log` VALUES('27','xb_zjh@126.com','测试邮件标题','测试邮件内容','1405495713','success','3','1','');
+INSERT INTO `yiif_mail_log` VALUES('28','xb_zjh@126.com','测试邮件标题','测试邮件内容','1405495877','success','3','1','');
+INSERT INTO `yiif_mail_log` VALUES('29','376685457@qq.com','账号激活','<p>尊敬的新用户：没那么简单 您好，欢迎注册YiifCMS官网，为了更好的为您服务，请尽快点击下面链接进行账号激活：<br/><br/>
+						<a href=\"http://www.yii.local/?r=user/authEmail&id=2&authcode=MjQoTWN0lj0JE\">http://www.yii.local/?r=user/authEmail&id=2&authcode=MjQoTWN0lj0JE</a><br/><br/>(如果上面链接不能点击，请复制到浏览器地址栏中进行访问。)<br/><br/>
+						==================<br/><br/>再次感谢您的光顾，如果有其他疑问，
+						请联系本网站的管理员：<a href=\"mailto:xb_zjh@126.com\">xb_zjh@126.com</a>。</p>','1405503421','success','3','1','');
+INSERT INTO `yiif_mail_log` VALUES('30','376685457@qq.com','账号激活','<p>尊敬的新用户：没那么简单 您好，欢迎注册YiifCMS官网，为了更好的为您服务，请尽快点击下面链接进行账号激活：<br/><br/>
+						<a href=\"http://www.yii.local/?r=user/authEmail&id=2&authcode=NT3iantGg.og.\">http://www.yii.local/?r=user/authEmail&id=2&authcode=NT3iantGg.og.</a><br/><br/>(如果上面链接不能点击，请复制到浏览器地址栏中进行访问。)<br/><br/>
+						==================<br/><br/>再次感谢您的光顾，如果有其他疑问，
+						请联系本网站的管理员：<a href=\"mailto:xb_zjh@126.com\">xb_zjh@126.com</a>。</p>','1405503820','success','3','1','');
 
 DROP TABLE IF EXISTS `yiif_menu`;
 CREATE TABLE `yiif_menu` (
@@ -328,7 +344,7 @@ CREATE TABLE `yiif_page` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='单页';
 
-INSERT INTO `yiif_page` VALUES('about','关于我们','','yiicms','','','','','','','','0','2','Y','1322999570','');
+INSERT INTO `yiif_page` VALUES('about','关于我们','','yiicms','','','','','','','','0','3','Y','1322999570','');
 INSERT INTO `yiif_page` VALUES('goods','产品特色','','<p style=\"text-indent:2em;\">
 	<br />
 </p>
@@ -1342,7 +1358,7 @@ CREATE TABLE `yiif_session` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='session表';
 
-INSERT INTO `yiif_session` VALUES('pp3qrr67s9l4eb0c4kld3ccfb3','1405497537','admin__returnUrl|s:9:\"/?r=admin\";Yii.CCaptchaAction.c5a2395c.admin/default.captcha|s:4:\"7epc\";Yii.CCaptchaAction.c5a2395c.admin/default.captchacount|i:5;admin__id|s:1:\"1\";admin__name|s:5:\"admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}Yii.CCaptchaAction.c5a2395c.question.captcha|s:6:\"ra9ala\";Yii.CCaptchaAction.c5a2395c.question.captchacount|i:1;');
+INSERT INTO `yiif_session` VALUES('sfeg7od67bb10pd75iv8d2c6v4','1405507485','admin__returnUrl|s:9:\"/?r=admin\";Yii.CCaptchaAction.c5a2395c.admin/default.captcha|s:4:\"7epc\";Yii.CCaptchaAction.c5a2395c.admin/default.captchacount|i:5;admin__id|s:1:\"1\";admin__name|s:5:\"admin\";adminstatus|s:1:\"1\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}Yii.CCaptchaAction.c5a2395c.question.captcha|s:6:\"ra9ala\";Yii.CCaptchaAction.c5a2395c.question.captchacount|i:1;1_forgetpwd|a:2:{s:5:\"email\";s:14:\"xb_zjh@126.com\";s:4:\"time\";i:1405495292;}2d379a19da1e2385e5621dae4ece1971__id|s:1:\"2\";2d379a19da1e2385e5621dae4ece1971__name|s:15:\"没那么简单\";2d379a19da1e2385e5621dae4ece1971status|s:2:\"-1\";2d379a19da1e2385e5621dae4ece1971groupid|s:1:\"9\";2d379a19da1e2385e5621dae4ece1971groupname|s:12:\"网站编辑\";2d379a19da1e2385e5621dae4ece1971email|s:16:\"376685457@qq.com\";2d379a19da1e2385e5621dae4ece1971__states|a:4:{s:6:\"status\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
 
 DROP TABLE IF EXISTS `yiif_setting`;
 CREATE TABLE `yiif_setting` (
@@ -1356,12 +1372,12 @@ INSERT INTO `yiif_setting` VALUES('base','admin_email','xb_zjh@126.com');
 INSERT INTO `yiif_setting` VALUES('base','admin_logger','open');
 INSERT INTO `yiif_setting` VALUES('base','admin_telephone','180000000');
 INSERT INTO `yiif_setting` VALUES('email','email_fromname','YiifCMS官网');
-INSERT INTO `yiif_setting` VALUES('email','email_host','smtp.126.com');
-INSERT INTO `yiif_setting` VALUES('email','email_password','zjh376685457');
+INSERT INTO `yiif_setting` VALUES('email','email_host','smtp.mxhichina.com');
+INSERT INTO `yiif_setting` VALUES('email','email_password','mima2007');
 INSERT INTO `yiif_setting` VALUES('email','email_port','25');
 INSERT INTO `yiif_setting` VALUES('email','email_timeout','2');
 INSERT INTO `yiif_setting` VALUES('email','email_totest','xb_zjh@126.com');
-INSERT INTO `yiif_setting` VALUES('email','email_username','xb_zjh@126.com');
+INSERT INTO `yiif_setting` VALUES('email','email_username','postmaster@yiifcms.com');
 INSERT INTO `yiif_setting` VALUES('base','safe_str','!(*&%$$');
 INSERT INTO `yiif_setting` VALUES('seo','seo_description','yiifcms是个人开发的内容管理系统，方便学习yii，了解MVC架构, 也可以当做交流的平台。');
 INSERT INTO `yiif_setting` VALUES('seo','seo_keywords','yii,php,html,web');
@@ -1445,7 +1461,7 @@ INSERT INTO `yiif_soft` VALUES('4','阿里旺旺 2014卖家版 V7.20.36T 正式�
 每一条信息都标记着您的在线状态 , 让商人随时联系您<br />
 2. 海量商机搜索 <br />
 不登录网站，快速搜索阿里巴巴大市场 600 万商机！ <br />
-3. 巧发','0.00','1404450722','1400550081','4','6','Y','','','');
+3. 巧发','0.00','1404450722','1400550081','5','6','Y','','','');
 INSERT INTO `yiif_soft` VALUES('5','YiifCMS1.0版本安装包','11','uploads/images/201407/252fd6459ae.jpg','','95','','zh_cn','domestic','','5','','','','0.00','1405493591','1404715423','2','0','Y','','','yii,cms');
 
 DROP TABLE IF EXISTS `yiif_special`;
@@ -1608,7 +1624,7 @@ CREATE TABLE `yiif_user` (
 ) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 DELAY_KEY_WRITE=1 COMMENT='用户表';
 
 INSERT INTO `yiif_user` VALUES('1','admin','$2a$08$prWSKt8Hkfd.NNXMbdyYxuWEWkRdUiykiSKPnJ6TjWEA8A7dBlROy','xb_zjh@126.com','10','1','1404712097','','','','','','','127.0.0.1','2');
-INSERT INTO `yiif_user` VALUES('2','没那么简单','$2a$13$5HFLakgTxQyyfzcZFQElWOk5W.OHhPnfwKXLAYwokPNVsZSyW4Tqy','376685457@qq.com','9','1','1379091600','','','','','','','','0');
+INSERT INTO `yiif_user` VALUES('2','没那么简单','$2a$13$5HFLakgTxQyyfzcZFQElWOk5W.OHhPnfwKXLAYwokPNVsZSyW4Tqy','376685457@qq.com','9','1','1379091600','','','','','','','127.0.0.1','2');
 INSERT INTO `yiif_user` VALUES('7','微博评论','$2a$13$TEpIe58TLJIUmLuoE7pYD.KK74cRlLXSaNoXf0bnxbcLFFmmW1E5u','xweibo_user85589@sina.com','1','1','1379101600','','','','','','','','0');
 INSERT INTO `yiif_user` VALUES('31','testUser','$2a$08$QuvI8Ory.KMdKvmaCV/g9O8AoVTQMMvDrS.wvkOnEWBIBJwm3kLsq','1441044277@qq.com','1','1','1399346040','uploads/avatar/201405/small_31_c696db73478.jpg','nicename','这个家伙很懒，什么都不写','http://www.baidu.com','','','101.36.77.42','40');
 INSERT INTO `yiif_user` VALUES('32','test123','$2a$08$IrFpdJZKlMTUoiLS/D79kOiFfy9MInvsRQuoNc5hiCSL9qSISQxIm','test123@qq.com','1','1','1399346280','','','','','','','','0');
