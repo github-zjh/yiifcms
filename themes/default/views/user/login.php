@@ -41,7 +41,7 @@
 							<input type="submit" id="login_submit" name="submit" value="登录" />
 							<input type="checkbox" name="FloginForm[rememberMe]" value="1" id="FloginForm[rememberMe]" class="login-radio">
 							<label for="login-radio">记住我</label>
-							<a href="<?php echo $this->createUrl('forgetpw')?>" class="forgetpw">忘记密码</a>
+							<a href="<?php echo $this->createUrl('forgetpwd')?>" class="forgetpw">忘记密码？</a>
 						</li>
 					</ul>					
 				</div>
@@ -51,7 +51,7 @@
 		    <?php $this->endWidget(); ?>
 		    
 		    <div class="login_auth">
-		    	<p class="title">第三方授权登录</p>
+		    	<p class="title">合作伙伴</p>
 		    	<div class="auth_box">
 		    		<ul class="login_list clear">
 			    		<li>
@@ -68,14 +68,14 @@
 			    		</li>
 			    		<li>
 			    			<a href="#">
-			    				<img src="<?php echo $this->_stylePath?>/images/qq_login.png" width="60" height="60" />
-			    				<span>QQ账号登录</span>
+			    				<img src="<?php echo $this->_stylePath?>/images/weixin_login.png" width="60" height="60" />
+			    				<span>微信平台登录</span>
 			    			</a>		    			
 			    		</li>
 			    		<li class="last">
 			    			<a href="#">
-			    				<img src="<?php echo $this->_stylePath?>/images/sina_weibo_login.png" width="60"  height="60"/>
-			    				<span>新浪微博登录</span>
+			    				<img src="<?php echo $this->_stylePath?>/images/renren_login.png" width="60"  height="60"/>
+			    				<span>人人网登录</span>
 			    			</a>		    			
 			    		</li>
 			    	</ul>	

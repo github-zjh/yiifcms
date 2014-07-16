@@ -34,7 +34,7 @@
     </tr>
     <tr >
       <td ><input type="text" class="txt" name="Setting[admin_email]" value="<?php echo $setting['admin_email']?>" datatype="Email" msg="请填写管理Email"/>
-        作为邮件发送的邮箱</td>
+</td>
     </tr>
     <tr>
       <td class="tb_title">网站备案号：</td>

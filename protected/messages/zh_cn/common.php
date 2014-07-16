@@ -111,6 +111,18 @@ return array (
 						<a href="{authurl}">{authurl}</a><br/><br/>(如果上面链接不能点击，请复制到浏览器地址栏中进行访问。)<br/><br/>
 						==================<br/><br/>再次感谢您的光顾，如果有其他疑问，
 						请联系本网站的管理员：<a href="mailto:{admin_email}">{admin_email}</a>。</p>',
+	'Find Pwd' => '找回密码',
+	'Reset Pwd' => '重置密码',
+	'ResetPwd Email' =>'
+			<p>尊敬的用户：{username} 您好，您已经申请找回密码服务，请点击下面链接进行密码重置：<br/><br/>
+			<a href="{authurl}">{authurl}</a><br/><br/>(如果上面链接不能点击，请复制到浏览器地址栏中进行访问。)<br/><br/>
+			==================<br/><br/>请确保是本人操作，如果有其他疑问，
+			请联系本网站的管理员：<a href="mailto:{admin_email}">{admin_email}</a>。</p>
+	',
+	'Send ResetPwd Email Success' => '发送重置密码邮件成功，请注意查收',
+	'The two passwords do not match'=> '两次密码输入不一致',
+	'ResetPwd Success' => '重置密码成功',
+	
 	//个人中心 用户设置
 	'Setting' =>'设置',
 	'User Setting' => '用户设置',

@@ -114,8 +114,10 @@ box-shadow: 0 5px 0 #e2534b;
 #drop_down_user .fa_poweroff:before { content: "\f011";}
 
 /* 错误信息 */
-.error_message { border:1px dotted #DDDDDD; background-color:yellow;}
-.error_message .errorSummary { margin:10px;}
+.error_message { background-color:#F2DEDE;  border-radius:5px; border: 1px solid #EED3D7; text-align:center;}
+.fa_error:before { content: "\f00d"; margin-right:10px;}
+.error_message em { display:block; color:#B94A48; }
+
 
 /* 公共内容main */
 #main { margin-top:56px; }

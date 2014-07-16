@@ -419,7 +419,7 @@ class UserController extends FrontBase
 		$salt = base64_encode(mt_rand(0,time()));  //随机盐
 		$authcode = crypt($params['id'].$safestr.$params['email'], $salt);
 		$authurl = $this->_request->hostInfo.$this->createUrl('authEmail', array('id'=>$params['id'], 'authcode'=>$authcode));
-		$subject = $this->_setting['site_name'].' '.Yii::t('common','Account Active');
+		$subject = Yii::t('common','Account Active');
 		$message = Yii::t('common','Register Email',
 				array('{username}'=>$params['username'],
 						'{sitename}'=>$this->_setting['site_name'],
@@ -455,6 +455,101 @@ class UserController extends FrontBase
 		}else{
 			$this->message('error',Yii::t('common','Auth Failed'), $this->createUrl('register'));
 		}
+	}
+	
+	/**
+	 * 找回密码
+	 * 
+	 */
+	public function actionForgetpwd(){		
+		
+		$model = new ForgetPwdForm();
+		if(isset($_POST['ForgetPwdForm'])){
+			$model->attributes = $_POST['ForgetPwdForm'];
+			if($model->validate()){				
+				$safestr = $this->_setting['safe_str'];  //安全分隔符
+				$salt = base64_encode(mt_rand(0,time()));  //随机盐
+				$authcode = crypt($model->username.$safestr.$model->email, $salt);
+				//SESSION保存重要信息
+				Yii::app()->session[$model->id.'_forgetpwd'] = array('email'=>$model->email, 'time'=>time());
+								
+				$authurl = $this->_request->hostInfo.$this->createUrl('resetPwd', array('id'=>$model->id, 'authcode'=>$authcode));
+				$subject = Yii::t('common','Reset Pwd');
+				$message = Yii::t('common','ResetPwd Email',
+						array('{username}'=>$model->username,
+								'{sitename}'=>$this->_setting['site_name'],
+								'{authurl}'=>$authurl,
+								'{admin_email}'=>$this->_setting['admin_email']));
+				Helper::sendMail($model->id, $model->email, $subject, $message);
+				$this->message('success', Yii::t('common','Send ResetPwd Email Success'), $this->createUrl('forgetpwd'), 5);
+			}
+		}		
+		
+		//set seo
+		$this->_seoTitle = Yii::t('common','Find Pwd').' - '.$this->_setting['site_name'];
+		$this->_seoKeywords = Yii::t('common','Find Pwd');
+		$this->_seoDescription = Yii::t('common','Find Pwd');
+		//加载css,js
+		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/user.css");
+		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
+					
+		$this->render('forgetpwd', array('model'=>$model));
+	}
+	/**
+	 * 
+	 * 重置密码
+	 * 
+	 */	
+	public function actionResetPwd(){		
+		
+		$id = $this->_request->getParam('id');
+		$user = User::model()->findByPk($id);	
+		$authcode = $this->_request->getParam('authcode');
+		
+		if(!$id || !$user || !$authcode){
+			$this->message('error',Yii::t('common','The link is invalid'), $this->createUrl('forgetPwd'));
+		}
+		
+		//校验session
+		$sessionEmail = Yii::app()->session[$id.'_forgetpwd']['email'];
+		$sessionTime = Yii::app()->session[$id.'_forgetpwd']['time'];		
+		if(!$sessionEmail || ($sessionEmail != $user->email)){
+			$this->message('error',Yii::t('common','The link is invalid'), $this->createUrl('forgetPwd'));
+		}
+		
+		//超过一小时视为过期
+		if(!$sessionTime || ($sessionTime + 3600) < time()){
+			$this->message('error',Yii::t('common','The link is invalid'), $this->createUrl('forgetPwd'));
+		}		
+		
+		
+		$safestr = $this->_setting['safe_str'];  //安全分隔符
+		if(!crypt($id.$safestr.$sessionEmail, $authcode) == $authcode){
+			//验证不通过
+			$this->message('error',Yii::t('common','Auth Failed'), $this->createUrl('forgetPwd'));
+		}
+		$model = new ResetPwdForm();
+		if(isset($_POST['ResetPwdForm'])){
+			$model->attributes = $_POST['ResetPwdForm'];
+			if($model->validate()){				
+				$user->password = User::createPassword($model->newpassword);
+				$user->save();	
+				//清除session
+				unset(Yii::app()->session[$id.'_forgetpwd']);
+				
+				$this->message('success', Yii::t('common','ResetPwd Success'), $this->createUrl('login'), 5);
+			}
+			
+		}
+		//set seo
+		$this->_seoTitle = Yii::t('common','Reset Pwd').' - '.$this->_setting['site_name'];
+		$this->_seoKeywords = Yii::t('common','Reset Pwd');
+		$this->_seoDescription = Yii::t('common','Reset Pwd');
+		//加载css,js
+		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/user.css");
+		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
+			
+		$this->render('resetpwd', array('model'=>$model));
 	}
 
 

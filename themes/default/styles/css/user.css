@@ -73,3 +73,4 @@
 .base_table .send_btn, .base_table .send_txt{ width:100px; }
 .base_table .send_btn { margin-left:20px; border:1px solid #000000; cursor:pointer; color:#F0F0F0; background-color:#666666; }
 #send_msg { color:#F00; }
+.error_message { width:260px; }
