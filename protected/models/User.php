@@ -42,6 +42,7 @@ class User extends CActiveRecord
 			array('username, password, email, avatar, sign, web', 'length', 'max'=>100),
 			array('groupid, logins', 'length', 'max'=>10),				
 			array('nickname', 'length', 'max'=>50),
+			array('username, email','unique'),
 			array('nickname', 'unique', 'on'=>'update'),
 			array('web','checkWeb', 'on'=>'update'),
 			array('qq','length', 'min'=>6, 'on'=>'update'),

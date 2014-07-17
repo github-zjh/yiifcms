@@ -47,7 +47,7 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
 /* 公共头部header */
 #header { position:fixed; top:0; z-index:999; width:100%; height:57px; line-height:57px; background-color:#428BCA; color:#FFFFFF; text-align:center; }
 #header a { color:#FFFFFF; }
-#header .header_main { width:1170px; margin:0 auto; }
+/*#header .header_main { width:1170px; margin:0 auto; }*/
 #msbox { float:left; width:890px; }
 #logo { float:left;}
 #logo .logo_a { display:block; width:150px;}
@@ -81,7 +81,7 @@ box-shadow: 0 5px 0 #e2534b;
 #search_result a:hover { background-color:#DDDDDD; }
 #search_result a.red { color:#F00;}
 
-#login { float:right; width:auto; }
+#login { float:right; width:auto; margin-right:50px; }
 #login a { 
 	display:inline-block;
 	width:55px;
@@ -101,13 +101,14 @@ box-shadow: 0 5px 0 #e2534b;
 	filter: progid:DXImageTransform.Microsoft.Shadow(color='#e2534b', Direction=-180, Strength=5);
 }
 
-#logout { float:right; width:auto; position:relative;}
-#logout .show_drop { display:inline-block; }
-#logout .show_drop img { border-radius:3px; vertical-align:middle; }
+#logout { float:right; width:160px; position:relative; top:15px; border-radius:5px 5px 0 0; height:42px; margin-right:50px; background-color:#ececec;}
+#logout a { text-decoration:none; color:#666666;}
+#logout .show_drop { display:block;  height:42px; line-height:42px; }
+#logout .show_drop img { border-radius:3px; vertical-align:middle; margin-right:10px;}
 #logout .show_drop label { line-height:32px; height:32px;}
-#drop_down_user { display:none; position:absolute; left:-25%; width:150%;}
-#drop_down_user a{ display:block; background-color:#3579A6; border-top:1px solid #FFFFFF; padding-left:20px; line-height:32px; height:32px; text-align:left; }
-#drop_down_user a:hover { background-color:#428BCA;}
+#drop_down_user { display:none; background-color:#ececec; position:absolute; left:-40px; width:200; border-radius:0 0 5px 5px;}
+#drop_down_user a{ display:block; padding-left:20px; line-height:40px; height:40px; text-align:left;}
+#drop_down_user a:hover { background-color:#CCCCCC; color:#000000; }
 #drop_down_user .fa { margin-right:10px; }
 #drop_down_user .fa_userinfo:before { content: "\f007";}
 #drop_down_user .fa_setting:before { content: "\f013";}
@@ -122,7 +123,7 @@ box-shadow: 0 5px 0 #e2534b;
 /* 公共内容main */
 #main { margin-top:56px; }
 #bread_crumbs { margin-bottom:20px;}
-.crumb_box { width:1170px; margin:0 auto; background-color:#ececec; }
+.crumb_box { width:1170px; margin:0 auto;}
 #bread_crumbs .crumb_menu { float:left; margin-left:20px; height:50px; line-height:50px; font-size:16px;}
 #bread_crumbs .crumb_menu li { float:left; }
 #bread_crumbs .crumb_menu li span { padding:0 10px;}

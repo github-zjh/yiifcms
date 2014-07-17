@@ -1,6 +1,6 @@
 	<div id="intro">		
 		<div class="intro_title">
-			<a href="#" class="view_more"><?php echo Yii::t('common','DownLoad Now');?></a>
+			<a href="<?php echo $this->createUrl('soft/view', array('id'=>5));?>" class="view_more"><?php echo Yii::t('common','DownLoad Now');?></a>
 			<h1>YiiFCMS</h1>
 			<p><?php echo $this->_setting['seo_description'];?></p>
 		</div>	

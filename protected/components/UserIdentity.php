@@ -19,7 +19,7 @@ class UserIdentity extends CUserIdentity
 	 */
 	public function authenticate()
 	{		
-		$user=User::model()->find('LOWER(username)=?',array(strtolower($this->username)));
+		$user=User::model()->find('username=:username OR email=:email',array(':username'=>$this->username,':email'=>$this->username));
 		if($user===null)
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
 		else if(!$user->validatePassword($this->password) || $user->status == 0)
@@ -29,7 +29,8 @@ class UserIdentity extends CUserIdentity
 			//把用户信息存入SESSION
 			$group = UserGroup::model()->findByPk($user->groupid);
 			$this->setState('status', $user->status);
-			$this->setState('groupid', $user->groupid);
+			$this->setState('nickname', $user->nickname?$user->nickname:$user->username);
+			$this->setState('groupid', $user->groupid);			
 			$this->setState('groupname', $group->group_name);
 			$this->setState('email', $user->email);
 			
