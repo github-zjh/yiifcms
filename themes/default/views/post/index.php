@@ -23,7 +23,7 @@
 								<?php endforeach;?>								
 							</span>
 							<?php endif;?>
-							<span class="views"><em><?php echo $post->view_count;?></em></span>
+							<span class="views fa">&nbsp;&nbsp;<em><?php echo $post->view_count;?></em></span>
 						</p>									
 						<div class="content_info clear">		
 							<?php if(file_exists($post->attach_thumb)):?>

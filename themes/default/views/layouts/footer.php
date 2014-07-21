@@ -100,5 +100,8 @@
 	});
 </script>
 <!-- Js script结束 -->
+<?php if($this->_dialogMessage):?>
+<div><?php echo $this->_dialogMessage;?></div>
+<?php endif;?>
 </body>
 </html>

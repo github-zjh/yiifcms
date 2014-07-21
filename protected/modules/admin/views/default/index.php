@@ -41,6 +41,9 @@
       <li index="8">
         <div><a href="<?php echo $this->createUrl('database/index');?>" target="win" hidefocus>工具</a></div>
       </li>
+      <li index="9">
+        <div><a href="<?php echo $this->createUrl('oauth/index');?>" target="win" hidefocus>第三方登录</a></div>
+      </li>
           </ul>
   </div>  
   <div class="logininfo">
@@ -109,6 +112,10 @@
                 <li index="0"><a href="<?php echo $this->createUrl('database/index');?>" target="win"><?php echo Yii::t('admin','Database Manage');?></a></li>
                 <li index="1"><a href="<?php echo $this->createUrl('cache/index');?>" target="win"><?php echo Yii::t('admin','Cache Manage');?></a></li>
                 <li index="2"><a href="<?php echo $this->createUrl('maillog/index');?>" target="win"><?php echo Yii::t('admin','Maillog Manage');?></a></li>
+              </ul>
+              
+              <ul index="9" class="left_menu">
+                <li index="0"><a href="<?php echo $this->createUrl('oauth/index');?>" target="win"><?php echo Yii::t('admin','OAuth Manage');?></a></li>             
               </ul>
           </div>
   </div>

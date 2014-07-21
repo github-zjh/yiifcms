@@ -31,6 +31,7 @@ return array (
 	'System Home' => '系统首页',
 	'Success' => '成功',
 	'Failed' =>'失败',
+	'ApiData' => '接口数据(appkey)',
 	
 	/* 设置 */
 	'Web Set' => '站点设置',
@@ -294,4 +295,11 @@ return array (
 	'Mail EndTime' => '发送结束时间',
     /* 缓存管理 */
 	'Update Cache Success' => '更新缓存成功',
+	
+	/* 第三方登录 */
+	'OAuth Manage' => '第三方登录管理',
+	'OAuth QQ' => 'QQ登录', 
+	'OAuth SinaWb' => '新浪微博登录',
+	'OAuth WeiXin' => '微信登录',
+	'OAuth RenRen' => '人人网登录',
 );

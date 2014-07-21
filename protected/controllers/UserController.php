@@ -57,7 +57,7 @@ class UserController extends FrontBase
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
 		//基本资料
 		$uid = Yii::app()->user->id;
-		$profile = User::model()->findByPk($uid);		
+		$profile = User::model()->findByPk($uid);	
 		$this->render('index', array('profile'=>$profile));
 	}
 	
@@ -278,7 +278,7 @@ class UserController extends FrontBase
 				$user->last_login_ip = $this->getClientIP();
 				$user->save();
 				
-				$this->message('success',Yii::t('common','Login Success'),$_POST['ret_url']);
+				$this->_dialogMessage = $this->dialogMessage('success',Yii::t('common','Login Success'),$_POST['ret_url']);
 				//$this->redirect($ret_url);
 			}
 		}

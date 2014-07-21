@@ -82,7 +82,7 @@ box-shadow: 0 5px 0 #e2534b;
 #search_result a:hover { background-color:#DDDDDD; }
 #search_result a.red { color:#F00;}
 
-#login { float:right; width:auto; margin-right:50px; }
+#login { float:right; width:auto; }
 #login a { 
 	display:inline-block;
 	width:55px;

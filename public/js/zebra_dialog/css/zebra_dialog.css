@@ -181,3 +181,9 @@
     height: 32px;
     background: url('preloader.gif') no-repeat center center;
 }
+
+
+/* 自定义样式 */
+.ZebraDialog p.return{font-size:12px; color:#999;}
+.ZebraDialog .time{color:#f00; font-size:14px; font-weight:bold}
+.ZebraDialog p a{color:#1A90C1;text-decoration:none;}
