@@ -85,9 +85,11 @@
 		});
 		//登录状态
 		$("#logout").mouseover(function(){
+			$(".show_drop").addClass("show_drop_hover");
 			$("#drop_down_user").show();
 		});
 		$("#logout").mouseout(function(){
+			$(".show_drop").removeClass("show_drop_hover");
 			$("#drop_down_user").hide();
 		});
 		

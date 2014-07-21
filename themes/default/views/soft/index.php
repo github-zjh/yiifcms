@@ -20,9 +20,9 @@
 					<div class="list_body">
 						<h2><a href="<?php echo $this->createUrl('soft/view', array('id'=>$soft->id));?>"  title="<?php echo CHtml::encode($soft->title);?>"><?php echo CHtml::encode($soft->title);?></a></h2>
 						<p class="view_info">
-							<span><?php echo Yii::t('common','UpdateTime')?>：<?php echo date('Y-m-d H:i',$soft->update_time)?></span>
-							<span class="views"><?php echo Yii::t('model','ViewCount')?>：<em><?php echo $soft->view_count;?></em></span>
-							<span class="downs"><?php echo Yii::t('model','DownCount')?>：<em><?php echo $soft->down_count;?></em></span>							
+							<span class="times fa">&nbsp;&nbsp;<?php echo Yii::t('common','UpdateTime')?>：<?php echo date('Y-m-d H:i',$soft->update_time)?></span>
+							<span class="views fa">&nbsp;&nbsp;<?php echo Yii::t('model','ViewCount')?>：<em><?php echo $soft->view_count;?></em></span>
+							<span class="downs fa">&nbsp;&nbsp;<?php echo Yii::t('model','DownCount')?>：<em><?php echo $soft->down_count;?></em></span>							
 						</p>						
 						<a href="<?php echo $this->createUrl('soft/view', array('id'=>$soft->id));?>" class="continue_read">[<?php echo Yii::t('common','View Info');?>]</a>
 					</div>

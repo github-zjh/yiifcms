@@ -84,13 +84,22 @@
 			<a href="<?php echo $this->createUrl('user/index');?>" class="show_drop">
 				<?php $profile= User::model()->findByPk(Yii::app()->user->id);?>
 				<img src="<?php echo file_exists($profile->avatar)?$profile->avatar:$this->_stylePath.'/images/avatar-max-img.png';?>" width="24" height="24" />
-				<label><?php echo Yii::app()->user->name;?></label>
+				<label><?php echo Yii::t('common','My Account');?><i class="fa fa-sort-desc"></i></label>
 			</a>
-			<dl id="drop_down_user">				
-				<dd><a href="<?php echo $this->createUrl('user/index');?>"><i class="fa fa_userinfo"></i><?php echo Yii::t('common','User Center');?></a></dd>
-				<dd><a href="<?php echo $this->createUrl('user/setting');?>"><i class="fa fa_setting"></i><?php echo Yii::t('common','Setting');?></a></dd>
-				<dd><a href="<?php echo $this->createUrl('user/logout');?>"><i class="fa fa_poweroff"></i><?php echo Yii::t('common','Logout');?></a></dd>
-			</dl>						
+			<div id="drop_down_user">
+				<a class="fl" href="<?php echo $this->createUrl('user/index');?>"><img src="<?php echo file_exists($profile->avatar)?$profile->avatar:$this->_stylePath.'/images/avatar-max-img.png';?>" width="80"/></a>
+				<div class="fl user_simple">
+					<p><label>账号：</label><a href="<?php echo $this->createUrl('user/index');?>"><?php echo Yii::app()->user->name;?></a></p>
+					<p><label>昵称：</label><a href="<?php echo $this->createUrl('user/index');?>"><?php echo Yii::app()->user->nickname;?></a></p>
+				</div>
+				<div class="clear"></div>
+				<dl class="user_menu">				
+					<dd><a href="<?php echo $this->createUrl('user/index');?>"><i class="fa fa_userinfo"></i><?php echo Yii::t('common','User Center');?></a></dd>
+					<dd><a href="<?php echo $this->createUrl('user/setting');?>"><i class="fa fa_setting"></i><?php echo Yii::t('common','Setting');?></a></dd>
+					<dd><a href="<?php echo $this->createUrl('user/logout');?>"><i class="fa fa_poweroff"></i><?php echo Yii::t('common','Logout');?></a></dd>
+				</dl>	
+			</div>
+								
 		</div>
 		<?php endif;?>
 	</div>	

@@ -15,7 +15,7 @@
 
 #intro, #section, #clients { width:1170px; margin:0 auto; }
 #intro h1 { font-size:30px; color:#7f8c8c; }
-#intro .intro_title { padding:24px 35px 24px 27px;  background-color:#ececec; text-align:left;}
+#intro .intro_title { padding:24px 35px 24px 27px; text-align:left;}
 #intro .view_more { 
 	float:right;
 	width:200px;
