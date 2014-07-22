@@ -27,7 +27,8 @@ $(document).ready(function(){
     <tr class="tb_header">
       <th width="10%">ID</th>
       <th  width="15%"><?php echo Yii::t('admin','Title Name');?></th>
-      <th  width="30%"><?php echo Yii::t('admin','ApiData');?></th>
+      <th  width="30%"><?php echo Yii::t('admin','ApiKey');?></th>
+      <th  width="10%"><?php echo Yii::t('admin','Status');?></th>
       <th><?php echo Yii::t('admin','Operate');?></th>
     </tr>
     <?php foreach ($datalist as $row):?>
@@ -35,6 +36,7 @@ $(document).ready(function(){
       <td ><input type="checkbox" name="id[]" value="<?php echo $row->id?>"><?php echo $row->id?></td>
       <td ><?php echo $row->apiname;?></td>
       <td ><?php echo $row->apikey; ?></td>
+      <td><?php if($row->status == 'Y'){echo Yii::t('admin','Show');}else{echo "<span class='red'>".Yii::t('admin','Hidden')."</span>";}?></td>
       <td >
       	<a href="<?php echo  $this->createUrl('update',array('id'=>$row->id))?>"><img src="<?php echo $this->module->assetsUrl;?>/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
 	  </td>

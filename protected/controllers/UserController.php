@@ -288,9 +288,12 @@ class UserController extends FrontBase
 		$this->_seoDescription = Yii::t('common','Login');
 		//加载样式表
 		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/login.css");
+		
+		//第三方登录授权
+		$oauth = OAuth::model()->findAll('status=:status', array(':status'=>'Y'));
 	
 		// display the login form
-		$this->render('login',array('model'=>$model,'ret_url'=>$ret_url));
+		$this->render('login',array('model'=>$model,'ret_url'=>$ret_url, 'oauth'=>$oauth));
 	}
 	
 	

@@ -29,7 +29,7 @@
     <td ><?php echo $form->textField($model,'apiname',array('size'=>20,'maxlength'=>50, 'class'=>'validate[required]')); ?></td>
   </tr>
   <tr>
-    <td class="tb_title"><?php echo Yii::t('admin','ApiData');?>(appkey/apikey/微信公共账号)：	 
+    <td class="tb_title"><?php echo Yii::t('admin','ApiKey');?>(appkey/apikey/微信公共账号)：	 
     </td>
   </tr>
   <tr >

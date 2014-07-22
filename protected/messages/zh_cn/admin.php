@@ -31,7 +31,7 @@ return array (
 	'System Home' => '系统首页',
 	'Success' => '成功',
 	'Failed' =>'失败',
-	'ApiData' => '接口数据(appkey)',
+	'ApiKey' => '接口Key',
 	
 	/* 设置 */
 	'Web Set' => '站点设置',

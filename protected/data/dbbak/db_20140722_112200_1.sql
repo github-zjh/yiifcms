@@ -1,6 +1,6 @@
 # your database backup
 # version:5.5.27-log
-# time:2014-07-21 17:51:24
+# time:2014-07-22 11:22:00
 # --------------------------------------------------------
 
 
@@ -331,10 +331,10 @@ CREATE TABLE `yiif_oauth` (
   `apikey` varchar(100) DEFAULT NULL COMMENT '接口key',
   `status` enum('Y','N') DEFAULT 'Y' COMMENT '是否启用',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='第三方登录授权表';
 
 INSERT INTO `yiif_oauth` VALUES('qq','QQ','2821796254','Y');
-INSERT INTO `yiif_oauth` VALUES('sina','新浪微博','2821796254','Y');
+INSERT INTO `yiif_oauth` VALUES('sinawb','新浪微博','2821796254','Y');
 INSERT INTO `yiif_oauth` VALUES('weixin','微信','2821796254','Y');
 INSERT INTO `yiif_oauth` VALUES('renren','人人网','2821796254','Y');
 
@@ -1417,8 +1417,7 @@ CREATE TABLE `yiif_session` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='session表';
 
-INSERT INTO `yiif_session` VALUES('hqqh154b8f7tfr0beea5ccp2f7','1405939796','');
-INSERT INTO `yiif_session` VALUES('hqrhd3ic1ptrip2bdp80p9i7i4','1405939883','Yii.CCaptchaAction.c5a2395c.user.captcha|s:6:\"gcbe7d\";Yii.CCaptchaAction.c5a2395c.user.captchacount|i:1;Yii.CCaptchaAction.c5a2395c.comment.captcha|s:6:\"jerd9k\";Yii.CCaptchaAction.c5a2395c.comment.captchacount|i:1;2d379a19da1e2385e5621dae4ece1971__id|s:2:\"31\";2d379a19da1e2385e5621dae4ece1971__name|s:8:\"testUser\";2d379a19da1e2385e5621dae4ece1971status|s:1:\"1\";2d379a19da1e2385e5621dae4ece1971nickname|s:8:\"nicename\";2d379a19da1e2385e5621dae4ece1971groupid|s:1:\"1\";2d379a19da1e2385e5621dae4ece1971groupname|s:12:\"普通用户\";2d379a19da1e2385e5621dae4ece1971email|s:17:\"1441044277@qq.com\";2d379a19da1e2385e5621dae4ece1971__states|a:5:{s:6:\"status\";b:1;s:8:\"nickname\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}admin__returnUrl|s:9:\"/?r=admin\";Yii.CCaptchaAction.c5a2395c.admin/default.captcha|s:4:\"3d9c\";Yii.CCaptchaAction.c5a2395c.admin/default.captchacount|i:3;admin__id|s:1:\"1\";admin__name|s:5:\"admin\";adminstatus|s:1:\"1\";adminnickname|s:5:\"admin\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:5:{s:6:\"status\";b:1;s:8:\"nickname\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
+INSERT INTO `yiif_session` VALUES('u4pjrhg9iprb00ck47m5cdr2q6','1406002918','admin__returnUrl|s:9:\"/?r=admin\";Yii.CCaptchaAction.c5a2395c.admin/default.captcha|s:4:\"3cjc\";Yii.CCaptchaAction.c5a2395c.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:5:\"admin\";adminstatus|s:1:\"1\";adminnickname|s:5:\"admin\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:5:{s:6:\"status\";b:1;s:8:\"nickname\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}Yii.CCaptchaAction.c5a2395c.user.captcha|s:6:\"kblbhd\";Yii.CCaptchaAction.c5a2395c.user.captchacount|i:1;');
 
 DROP TABLE IF EXISTS `yiif_setting`;
 CREATE TABLE `yiif_setting` (

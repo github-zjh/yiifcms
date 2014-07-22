@@ -54,30 +54,37 @@
 		    	<p class="title">合作伙伴</p>
 		    	<div class="auth_box">
 		    		<ul class="login_list clear">
+		    		<?php foreach((array)$oauth as $oa):?>
+		    		<?php if($oa->id == 'qq'):?>
 			    		<li>
 			    			<a href="#">
 			    				<img src="<?php echo $this->_stylePath?>/images/qq_login.png" width="60" height="60" />
 			    				<span>QQ账号登录</span>
 			    			</a>		    			
 			    		</li>
+			    	<?php elseif($oa->id == 'sinawb'):?>
 			    		<li>
 			    			<a href="#">
 			    				<img src="<?php echo $this->_stylePath?>/images/sina_weibo_login.png" width="60"  height="60"/>
 			    				<span>新浪微博登录</span>
 			    			</a>		    			
 			    		</li>
+			    	<?php elseif($oa->id == 'weixin'):?>
 			    		<li>
 			    			<a href="#">
 			    				<img src="<?php echo $this->_stylePath?>/images/weixin_login.png" width="60" height="60" />
 			    				<span>微信平台登录</span>
 			    			</a>		    			
 			    		</li>
+			    	<?php elseif($oa->id == 'renren'):?>
 			    		<li class="last">
 			    			<a href="#">
 			    				<img src="<?php echo $this->_stylePath?>/images/renren_login.png" width="60"  height="60"/>
 			    				<span>人人网登录</span>
 			    			</a>		    			
 			    		</li>
+			    	<?php endif;?>
+			    	<?php endforeach;?>
 			    	</ul>	
 		    		<p class="auth_desc">用合作伙伴登录，更快捷！</p>	
 		    	</div>		    	    	

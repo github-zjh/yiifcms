@@ -103,19 +103,19 @@ class OAuthController extends Backend
         switch ($command) {              
             case 'Show':
         		foreach((array)$ids as $id){
-            		$linkModel = OAuth::model()->findByPk($id);
-            		if($linkModel){
-            			$linkModel->status_is = 'Y';
-            			$linkModel->save();
+            		$oauthModel = OAuth::model()->findByPk($id);
+            		if($oauthModel){
+            			$oauthModel->status = 'Y';
+            			$oauthModel->save();
             		}
             	}
                 break;
             case 'Hidden':
         		foreach((array)$ids as $id){
-            		$linkModel = OAuth::model()->findByPk($id);
-            		if($linkModel){
-            			$linkModel->status_is = 'N';
-            			$linkModel->save();
+            		$oauthModel = OAuth::model()->findByPk($id);
+            		if($oauthModel){
+            			$oauthModel->status = 'N';
+            			$oauthModel->save();
             		}
             	}
                 break;          
