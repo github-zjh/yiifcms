@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title><?php echo CHtml::encode($this->_seoTitle);?></title>
-	<base href="<?php echo $this->_request->hostinfo;?>" />
+	<base href="<?php echo $this->_request->hostinfo.Yii::app()->homeUrl;?>" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="<?php echo $this->_yii->language;?>" />
 	<meta name="keywords" content="<?php echo $this->_seoKeywords;?>" />

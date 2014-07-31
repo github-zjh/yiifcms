@@ -226,8 +226,6 @@ class Controller extends CController
 		$static .= '<script type="text/javascript" src="'.$this->_static_public.'/js/zebra_dialog/zebra_dialog.js"></script>';
 		$static .= '<link rel="stylesheet" href="'.$this->_static_public.'/js/zebra_dialog/css/zebra_dialog.css" type="text/css">';
 		
-		Yii::app()->clientScript->registerCssFile($this->_static_public."/js/zebra_dialog/css/zebra_dialog.css");
-		Yii::app()->clientScript->registerScriptFile($this->_static_public."/js/zebra_dialog/zebra_dialog.js");
 		$notice = '<p class="return">系统自动跳转在  <span class="time" id="time">' . $timeout . ' </span>  秒后，如果不想等待，<a href="' . $redirect . '">点击这里跳转</a></p>';
 		$message = $content.$notice;
 		$auto_close = $stop?false:$timeout*1000;

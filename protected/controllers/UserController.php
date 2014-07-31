@@ -278,8 +278,8 @@ class UserController extends FrontBase
 				$user->last_login_ip = $this->getClientIP();
 				$user->save();
 				
-				$this->_dialogMessage = $this->dialogMessage('success',Yii::t('common','Login Success'),$_POST['ret_url']);
-				//$this->redirect($ret_url);
+				//$this->_dialogMessage = $this->dialogMessage('success',Yii::t('common','Login Success'),$ret_url);
+				$this->redirect($ret_url);
 			}
 		}
 		//set seo
