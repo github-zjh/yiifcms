@@ -68,8 +68,8 @@ class SettingController extends Backend
 	 */
 	public function actionTemplate(){
 		self::_updateData($_POST['Setting'], 'template');
-		//主题列表
-		$themes_path = dirname($this->_basePath).DIRECTORY_SEPARATOR.dirname($this->_theme->baseUrl);
+		//主题列表		
+		$themes_path = dirname($this->_theme->basePath);		
 		if(is_dir($themes_path) && $handle = opendir($themes_path)){
 			while(false !== ($file = readdir ( $handle ))){
 				if($file != "." && $file != ".."&&!strpos($file,".")){

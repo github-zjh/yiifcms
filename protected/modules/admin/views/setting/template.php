@@ -11,7 +11,7 @@
 	     <td >
 		     <select name="Setting[theme]">
 		        <option value="0">==<?php echo Yii::t('admin','Select Themes');?>==</option>
-		        <?php foreach($themes as $key=>$theme):?>
+		        <?php foreach((array)$themes as $key=>$theme):?>
 		        <option value="<?php echo $theme;?>" <?php $this->selected($setting['theme'], $theme);?>><?php echo Yii::t('admin',ucfirst($theme)).'('.$theme.')';?></option>
 		        <?php endforeach;?>
 		      </select>

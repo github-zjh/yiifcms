@@ -71,7 +71,7 @@ class DefaultController extends BackendBase
 	public function actionLogout()
 	{
 		Yii::app()->user->logout(false);
-		$this->redirect('login');
+		$this->redirect($this->createUrl('login'));
 	}
 	
 	public function actionIndex()
