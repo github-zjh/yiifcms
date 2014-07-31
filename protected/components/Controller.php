@@ -37,7 +37,7 @@ class Controller extends CController
 	protected  $_basePath = ''; //应用程序目录
 	protected  $_webRoot = '';  //网站根目录
 	protected  $_fonts = '';    //字体目录	
-	public     $_static_public = '/public'; //公共资源目录	
+	public     $_static_public = 'public'; //公共资源目录	
 	public     $_data = '';
 	protected  $_adminGroupID = 10; //系统管理员用户组ID
 	protected  $_type_ids = array(); //内容模型id

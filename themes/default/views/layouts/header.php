@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->_yii->language;?>" lang="<?php echo $this->_yii->language;?>">
 <head>	
 	<title><?php echo CHtml::encode($this->_seoTitle); ?></title>
-	<base href="<?php echo $this->_request->hostinfo;?>" />	
+	<base href="<?php echo $this->_request->hostinfo.Yii::app()->homeUrl;?>" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="<?php echo $this->_yii->language;?>" />
 	<meta name="keywords" content="<?php echo $this->_seoKeywords;?>" />
@@ -16,7 +16,7 @@
 			<ul id="menu">			
 				<?php foreach((array)$this->_public_menu as $menu):?>				
 				<li <?php if(isset($this->_menu_unique) && $this->_menu_unique == $menu['value']['unique']):?> class="selected"<?php endif;?>>
-					<a href="<?php echo $menu['value']['menu_link'];?>" <?php if($menu['value']['target']== 'Y'):?> target="_blank" <?php endif;?>><?php echo $menu['value']['menu_name'];?></a>
+					<a href="<?php echo $this->_request->hostinfo.Yii::app()->homeUrl.$menu['value']['menu_link'];?>" <?php if($menu['value']['target']== 'Y'):?> target="_blank" <?php endif;?>><?php echo $menu['value']['menu_name'];?></a>
 					<?php if($menu['children']):?>
 					<div class="child_box">											
 						<ul class="child_menu">

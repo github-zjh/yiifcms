@@ -50,7 +50,7 @@
 	  <span class="welcome"><img src="<?php echo $this->module->assetsUrl;?>/images/user_edit.png" align="absmiddle"> 欢迎【<?php echo Yii::app()->user->groupname;?>】, <em><?php echo Yii::app()->user->name;?></em> </span> 
 	  <a href="<?php echo $this->createUrl('user/update', array('id'=>Yii::app()->user->id));?>" target="win">修改密码</a> 
 	  <a href="<?php echo $this->createUrl('default/logout');?>" target="_top">退出登录</a> 
-	  <a href="/" target="_blank">前台首页</a><br/>
+	  <a href="<?php echo $this->_request->hostinfo.Yii::app()->homeUrl;?>" target="_blank">前台首页</a><br/>
 	  <a href="javascript:;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前服务器时间：<?php echo date('Y年m月d日 H:i:s',time());?></a>
   </div>
   

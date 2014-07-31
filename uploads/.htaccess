@@ -7,5 +7,5 @@
   RewriteCond %{HTTP_REFERER} !baidu.com [NC]
   RewriteCond %{HTTP_REFERER} !yii.localhost [NC]
   RewriteCond %{HTTP_REFERER} !yii.local [NC]
-  RewriteRule .*\.(gif|jpg|png|jpeg|swf|exe|rar|pdf|doc|docx|xls|ppt)$ - [F]
+  # RewriteRule .*\.(gif|jpg|png|jpeg|swf|exe|rar|pdf|doc|docx|xls|ppt)$ - [F]
 </IfModule>  
