@@ -21,14 +21,22 @@ class TagController extends FrontBase
    * 标签首页
    */
   public function actionIndex() {     
-    $tag = trim( $this->_request->getParam( 'tag' ) );       
-    $tag_id = Tag::model()->find('tag_name=:tn', array(':tn'=>$tag));
-    $data = array();
-    if($tag_id){
+  	
+   	$tags = trim( $this->_request->getParam( 'tag' ) );
+  	$tags = preg_replace('/(\s)+/', ',', trim($tags));
+  	$arr_tag = explode(',',$tags);    
+  	foreach((array)$arr_tag as $tag){	
+  		$t = Tag::model()->find('tag_name = :tn', array(':tn'=>$tag));
+  		$t && $tag_ids[] = $t->id;
+  	}  	
+  	
+  	$data = array();
+    if($tag_ids){
     	$td = new TagData();
-    	$condition = "tag_id = {$tag_id->id} AND status = 'Y'";    	
+    	$condition = "status = 'Y'";    	
     	$criteria = new CDbCriteria();    	    	
     	$criteria->condition = $condition;
+    	$criteria->addInCondition('tag_id', $tag_ids);
     	//分页
     	$count = $td->count( $criteria );
     	$pages = new CPagination( $count );
@@ -67,16 +75,23 @@ class TagController extends FrontBase
    * ajax搜索
    */
   public function actionAjax() {
-  	$tag = trim( $this->_request->getParam( 'tag' ) );
-  	$tag_id = Tag::model()->find('tag_name=:tn', array(':tn'=>$tag));
+  	$tags = trim( $this->_request->getParam( 'tag' ) );
+  	$tags = preg_replace('/(\s)+/', ',', trim($tags));
+  	$arr_tag = explode(',',$tags);    
+  	foreach((array)$arr_tag as $tag){	
+  		$t = Tag::model()->find('tag_name = :tn', array(':tn'=>$tag));
+  		$t && $tag_ids[] = $t->id;
+  	}
+  	
   	$ajax = $this->_request->getParam( 'ajax' );
   	$data = array();
   	$searchData = array();
-  	if($tag_id && $ajax == 1){
-  		$td = new TagData();
-  		$condition = "tag_id = {$tag_id->id} AND status = 'Y'";
+  	if($tag_ids && $ajax == 1){
+  		$td = new TagData();  		
+  		$condition = "status = 'Y'";
   		$criteria = new CDbCriteria();
   		$criteria->condition = $condition;
+  		$criteria->addInCondition('tag_id', $tag_ids);
   		//分页
   		$count = $td->count( $criteria );
   		$pages = new CPagination( $count );
