@@ -8,7 +8,7 @@
  */
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',	
-	'name' =>'Yiifcms',
+	'name' =>'demo_yiifcms',
 	'language'=>'zh_cn',
 	'theme'=>'default',
 	'timeZone'=>'Asia/Shanghai',
@@ -81,7 +81,7 @@ return array(
 		'session'=>array(
 				'class'=>'CDbHttpSession',
 				'connectionID' => 'db',
-				'sessionTableName' => '~dbPre~_session',
+				'sessionTableName' => '~dbPre~session',
 				'timeout'=>3600,    //default 1440 seconds
 				'autoStart'=>true,								
 				'sessionName'=>'YIIFCMS',	

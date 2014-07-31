@@ -1,6 +1,6 @@
 # your database backup
 # version:5.5.27-log
-# time:2014-07-22 11:22:00
+# time:2014-07-31 14:58:48
 # --------------------------------------------------------
 
 
@@ -161,7 +161,7 @@ INSERT INTO `yiif_image` VALUES('2','1','图览2014巴西世界杯','图览2014�
 	<span style=\"font-size:14px;\"></span><span style=\"font-size:14px;\">世界杯来啦，为了帮助大家更轻松更愉悦地观看世界杯，小编制作了《图览世界杯》，大家可及时围观赛况和花边消息，方便彼此切磋，迎来人生比翼齐飞的新高度，更有机会参与【百度图片竞猜世界杯】的活动哦！我们的奖品已经到位，猜对比分，并@百度图片@两位好友，就有机会赢取【高端手表】哦亲~动动手指，为世界杯加油！更多消息请密切关注【@百度图片】新浪微博官方账号吧。</span> 
 </p>','百度图片','http://image.baidu.com/infopage/tpl?id=8&mode=viewer','','巴西,世界杯,美女','31','N','N','uploads/images/201406/1f6228399a3.jpg','uploads/thumbs/201406/small_1f6228399a3.jpg','0','0','N','1404182636','0','Y','0','Y','1404111213');
 INSERT INTO `yiif_image` VALUES('3','1','小清新','','','','','14','0','','','','','','小清新','','','','美女','3','N','N','uploads/images/201406/2980725e720.jpg','uploads/thumbs/201406/small_2980725e720.jpg','0','0','N','1404111946','0','Y','0','Y','1404111946');
-INSERT INTO `yiif_image` VALUES('4','1','游戏唯美','','','','','14','0','','a:1:{i:0;a:5:{s:6:\"fileId\";s:2:\"93\";s:4:\"file\";s:37:\"uploads/images/201407/2c48ccb19e2.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_2c48ccb19e2.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','游戏唯美','','','','美女','2','N','N','uploads/images/201406/8b571b7725d.jpg','uploads/thumbs/201406/small_8b571b7725d.jpg','0','0','N','1404304930','0','Y','0','Y','1404112171');
+INSERT INTO `yiif_image` VALUES('4','1','游戏唯美','','','','','14','0','','a:1:{i:0;a:5:{s:6:\"fileId\";s:2:\"93\";s:4:\"file\";s:37:\"uploads/images/201407/2c48ccb19e2.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_2c48ccb19e2.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','游戏唯美','','','','美女','3','N','N','uploads/images/201406/8b571b7725d.jpg','uploads/thumbs/201406/small_8b571b7725d.jpg','0','0','N','1404304930','0','Y','0','Y','1404112171');
 INSERT INTO `yiif_image` VALUES('5','1','游戏唯美','','','','','14','0','','a:3:{i:0;a:5:{s:6:\"fileId\";s:2:\"89\";s:4:\"file\";s:37:\"uploads/images/201407/2e13e0a3ed9.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_2e13e0a3ed9.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:1;a:5:{s:6:\"fileId\";s:2:\"90\";s:4:\"file\";s:37:\"uploads/images/201407/2a2d8e16cb0.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_2a2d8e16cb0.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:2;a:5:{s:6:\"fileId\";s:2:\"91\";s:4:\"file\";s:37:\"uploads/images/201407/825a8ac9d80.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_825a8ac9d80.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','游戏唯美','','','','美女','8','N','N','uploads/images/201406/d7d79134e6d.jpg','uploads/thumbs/201406/small_d7d79134e6d.jpg','0','0','N','1404184873','0','Y','0','Y','1404114260');
 INSERT INTO `yiif_image` VALUES('6','1','明星海景','','','','','14','0','','a:1:{i:0;a:5:{s:6:\"fileId\";s:2:\"88\";s:4:\"file\";s:37:\"uploads/images/201407/b0d4552362e.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_b0d4552362e.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','明星海景','','','','美女','2','N','N','uploads/images/201406/fe41fcc37ac.jpg','uploads/thumbs/201406/small_fe41fcc37ac.jpg','0','0','N','1404184847','0','Y','0','Y','1404114318');
 INSERT INTO `yiif_image` VALUES('7','1','靓丽女孩','','','','','14','0','','a:2:{i:0;a:5:{s:6:\"fileId\";s:2:\"86\";s:4:\"file\";s:37:\"uploads/images/201407/4efea9bddd1.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_4efea9bddd1.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:1;a:5:{s:6:\"fileId\";s:2:\"87\";s:4:\"file\";s:37:\"uploads/images/201407/9706bae28d1.jpg\";s:5:\"thumb\";s:43:\"uploads/thumbs/201407/small_9706bae28d1.jpg\";s:4:\"desc\";s:0:\"\";s:3:\"url\";s:0:\"\";}}','','','','靓丽女孩','','','','美女','4','N','N','uploads/images/201406/15b9aedad1b.jpg','uploads/thumbs/201406/small_15b9aedad1b.jpg','0','0','N','1404184809','0','Y','0','Y','1404114395');
@@ -303,10 +303,10 @@ CREATE TABLE `yiif_menu` (
 INSERT INTO `yiif_menu` VALUES('1','首页','/','index','Y','0','0','N');
 INSERT INTO `yiif_menu` VALUES('2','资讯','/?r=post/index','post','Y','0','0','N');
 INSERT INTO `yiif_menu` VALUES('3','图集','/?r=image/index','image','Y','0','0','N');
-INSERT INTO `yiif_menu` VALUES('4','软件','/?r=soft/index','soft','Y','0','0','N');
-INSERT INTO `yiif_menu` VALUES('5','视频','/?r=video/index','video','Y','0','0','N');
-INSERT INTO `yiif_menu` VALUES('6','关于我们','/?r=page&id=about','about','Y','0','0','N');
-INSERT INTO `yiif_menu` VALUES('7','留言反馈','/?r=question/index','question','Y','0','0','N');
+INSERT INTO `yiif_menu` VALUES('4','软件','/?r=soft/index','soft','N','0','0','N');
+INSERT INTO `yiif_menu` VALUES('5','视频','/?r=video/index','video','N','0','0','N');
+INSERT INTO `yiif_menu` VALUES('6','关于我','/?r=page&id=about','about','Y','0','0','N');
+INSERT INTO `yiif_menu` VALUES('7','反馈','/?r=question/index','question','Y','0','0','N');
 
 DROP TABLE IF EXISTS `yiif_model_type`;
 CREATE TABLE `yiif_model_type` (
@@ -403,7 +403,7 @@ CREATE TABLE `yiif_page` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='单页';
 
-INSERT INTO `yiif_page` VALUES('about','关于我们','','yiicms','','','','','','','','0','6','Y','1322999570','');
+INSERT INTO `yiif_page` VALUES('about','关于我们','','yiicms','','','','','','','','0','10','Y','1322999570','0');
 INSERT INTO `yiif_page` VALUES('goods','产品特色','','<p style=\"text-indent:2em;\">
 	<br />
 </p>
@@ -491,7 +491,7 @@ INSERT INTO `yiif_page` VALUES('goods','产品特色','','<p style=\"text-indent
 </p>
 <p style=\"text-indent:2em;\">
 	<br />
-</p>','','产品特色','产品特色','','','','','0','3','Y','1322999588','');
+</p>','','产品特色','产品特色','','','','','0','7','Y','1322999588','0');
 INSERT INTO `yiif_page` VALUES('register','注册流程','企业文化是企业为解决生存和发展的问题的而树立形成的，被组织成员认为有效而共享，并共同遵循的基本信念和认知。 企业文化集中体现了一个企业经营管理的核心主张，以及由此产生的组织行为。','<div>
 	<div>
 		迪尔和肯尼迪把企业文化整个理论系统概述为5个要素，即企业环境、价值观、英雄人物、文化仪式和文化网络。
@@ -543,7 +543,7 @@ INSERT INTO `yiif_page` VALUES('register','注册流程','企业文化是企业�
 	</div>
 </div>
 <div>
-</div>','','','','','','','','0','3','Y','1331877791','1405493863');
+</div>','','','','','','','','0','5','Y','1331877791','1405493863');
 INSERT INTO `yiif_page` VALUES('guide','新手指南','团队是现代企业管理中战斗的核心，几乎没有一家企业不谈团队，好象团队就是企业做大做强的灵丹妙药，只要抓紧团队建设就能有锦锈前程了。团队是个好东西，但怎样的团队才算一个好团队，怎样才能运作好一个团队呢？却是许多企业管理者不甚了然的，于是在企业团队建设的过程中就出现了许多弊病，例如从理论著作中生搬硬套到团队运作里面，是很难产生好团队的。','<div>
 	<div>
 		团队是现代企业管理中战斗的核心，几乎没有一家企业不谈团队，好象团队就是企业做大做强的灵丹妙药，只要抓紧团队建设就能有锦锈前程了。团队是个好东西，但怎样的团队才算一个好团队，怎样才能运作好一个团队呢？却是许多企业管理者不甚了然的，于是在企业团队建设的过程中就出现了许多弊病，例如从理论著作中生搬硬套到团队运作里面，是很难产生好团队的。任何理念都不能执着，执着生僵化，就会蜕变为形式主义，后果很糟糕。在如今企业管理者热火朝天进行的团队建设中就存在这个问题，将团队作为企业文化建设的至上准则是不恰当的，是不符合多元化的现实状况的。
@@ -556,7 +556,7 @@ INSERT INTO `yiif_page` VALUES('guide','新手指南','团队是现代企业管�
 	</div>
 </div>
 <div>
-</div>','','','','','','','','0','4','Y','1379392484','');
+</div>','','','','','','','','0','6','Y','1379392484','0');
 
 DROP TABLE IF EXISTS `yiif_post`;
 CREATE TABLE `yiif_post` (
@@ -1233,7 +1233,7 @@ Bob的绿色标志T恤，以提醒自己不要忘记他们心中最最要紧的�
 </p>
 <p style=\"text-indent:2em;\">
 	<br />
-</p>','html5tricks','http://news.html5tricks.com/clean-code-vs-great-code.html','','代码,美女','3','N','N','','','0','0','N','1404136039','0','Y','0','Y','1404110691');
+</p>','html5tricks','http://news.html5tricks.com/clean-code-vs-great-code.html','','代码,美女','4','N','N','','','0','0','N','1404136039','0','Y','0','Y','1404110691');
 INSERT INTO `yiif_post` VALUES('26','1','微软偷了我的创意 狂赚几十亿美元','','','','','2','0','一位开发人员近日宣称，微软剽窃了自己的创意，并利用它在浏览器大战中取得胜利，现在，微软又用这项专利来从 Android 身上赚钱，每位 Android 用户都要被他们搜刮一下，这位开发人员呼吁大家共同谴责微软的行为。','','','','','<p style=\"text-indent:2em;\">
 	<span style=\"font-size:14px;\">一位开发人员近日宣称，微软剽窃了自己的创意，并利用它在浏览器大战中取得胜利，现在，微软又用这项专利来从 Android 身上赚钱，每位 Android 用户都要被他们搜刮一下，这位开发人员呼吁大家共同谴责微软的行为。</span> 
 </p>
@@ -1417,7 +1417,7 @@ CREATE TABLE `yiif_session` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='session表';
 
-INSERT INTO `yiif_session` VALUES('u4pjrhg9iprb00ck47m5cdr2q6','1406002918','admin__returnUrl|s:9:\"/?r=admin\";Yii.CCaptchaAction.c5a2395c.admin/default.captcha|s:4:\"3cjc\";Yii.CCaptchaAction.c5a2395c.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:5:\"admin\";adminstatus|s:1:\"1\";adminnickname|s:5:\"admin\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:5:{s:6:\"status\";b:1;s:8:\"nickname\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}Yii.CCaptchaAction.c5a2395c.user.captcha|s:6:\"kblbhd\";Yii.CCaptchaAction.c5a2395c.user.captchacount|i:1;');
+INSERT INTO `yiif_session` VALUES('8jofe7tklk9q0qfkh2534gu4i7','1406793524','admin__returnUrl|s:9:\"/?r=admin\";Yii.CCaptchaAction.c5a2395c.admin/default.captcha|s:4:\"rdpl\";Yii.CCaptchaAction.c5a2395c.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:5:\"admin\";adminstatus|s:1:\"1\";adminnickname|s:5:\"admin\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:5:{s:6:\"status\";b:1;s:8:\"nickname\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}');
 
 DROP TABLE IF EXISTS `yiif_setting`;
 CREATE TABLE `yiif_setting` (
@@ -1445,10 +1445,10 @@ INSERT INTO `yiif_setting` VALUES('base','site_closed_summary','系统维护中�
 INSERT INTO `yiif_setting` VALUES('base','site_copyright','Copyright @ 2014-2015');
 INSERT INTO `yiif_setting` VALUES('base','site_domain','/');
 INSERT INTO `yiif_setting` VALUES('base','site_icp','暂无');
-INSERT INTO `yiif_setting` VALUES('base','site_name','YiifCMS官网');
+INSERT INTO `yiif_setting` VALUES('base','site_name','yiif内容管理系统');
 INSERT INTO `yiif_setting` VALUES('base','site_stats','');
 INSERT INTO `yiif_setting` VALUES('base','site_status','open');
-INSERT INTO `yiif_setting` VALUES('base','site_status_intro','网站正在维护，对您带来的不便我们深表歉意，请稍后再来访问...');
+INSERT INTO `yiif_setting` VALUES('base','site_status_intro','网站目前正在备案，请稍后访问，谢谢....');
 INSERT INTO `yiif_setting` VALUES('template','template','default');
 INSERT INTO `yiif_setting` VALUES('template','theme','default');
 INSERT INTO `yiif_setting` VALUES('upload','upload_allow_ext','jpg,gif,bmp,jpeg,png,doc,zip,rar,7z,txt,sql,pdf');
@@ -1521,7 +1521,7 @@ INSERT INTO `yiif_soft` VALUES('4','阿里旺旺 2014卖家版 V7.20.36T 正式�
 2. 海量商机搜索 <br />
 不登录网站，快速搜索阿里巴巴大市场 600 万商机！ <br />
 3. 巧发','0.00','1404450722','1400550081','5','6','Y','','','');
-INSERT INTO `yiif_soft` VALUES('5','YiifCMS1.0版本安装包','11','uploads/images/201407/252fd6459ae.jpg','','95','','zh_cn','domestic','','5','','','','0.00','1405493591','1404715423','6','0','Y','','','yii,cms');
+INSERT INTO `yiif_soft` VALUES('5','YiifCMS1.0版本安装包','11','uploads/images/201407/252fd6459ae.jpg','','95','','zh_cn','domestic','','5','','','','0.00','1405493591','1404715423','7','0','Y','','','yii,cms');
 
 DROP TABLE IF EXISTS `yiif_special`;
 CREATE TABLE `yiif_special` (

@@ -23,12 +23,15 @@
       </tr>
       <tr>
         <th height="30" align="right">数据库密码：</th>
-        <td><input name="dbPassword" type="password" class="class_input validate[required]" id="dbPassword" onblur="checkDb()" value="" />
-          <span id="dbCheck" class="cnote"></span></td>
+        <td><input name="dbPassword" type="password" class="class_input validate[required]" id="dbPassword" value="" />
+          <span class="cnote">请填写你的数据库密码</span></td>
       </tr>      
        <tr>
         <th height="30" align="right">数据库名称：</th>
-        <td><input value="yiifcms" type="text" name="dbName" id="dbName" class="class_input validate[required]" /> <span class="cnote">请先创建数据库</span></td>
+        <td>
+	        <input value="yiifcms" type="text" name="dbName" id="dbName" class="class_input validate[required]"  onblur="checkDb()"/> 
+	        <span id="dbCheck" class="cnote">请先创建数据库</span>
+        </td>
       </tr>
       <tr>
         <th height="30" align="right">数据表前缀：</th>

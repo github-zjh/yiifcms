@@ -50,9 +50,9 @@ td.failed { background-color: #FF8080; border: 1px solid silver; padding: 2px; c
 .complete .title{padding:40px 0; font-size:25pt; color:#81BA19}
 .complete_txt { padding: 0 0 0 45px; line-height: 22px; font-size: 14px}
 .complete_txt span { color: #999; padding: 0 5px; }
-.complete_note { margin-top: 20px; color: #6ca1b4; }
+.complete_note { margin-top: 20px; color: #555555; }
 .complete .help{font-size: 14px;  padding: 10px 0}
-.complete .help a{text-decoration: none;color:#6ca1b4}
+.complete .help a{text-decoration: none;color:#555555}
 .complete .red{color: #F00}
 .red{color: #F00}
 .action{display:inline-block; padding:3px 10px; background:#996600; color:#FFF}

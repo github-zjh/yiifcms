@@ -46,7 +46,7 @@ class Recommend extends CActiveRecord
 			'Image'=>array(self::HAS_ONE, 'Post', '','on' => 't.content_id=image.id','together'=>true),
 			'Soft'=>array(self::HAS_ONE, 'Soft', '','on' => 't.content_id=soft.id','together'=>true),
 			'Video'=>array(self::HAS_ONE, 'Video', '','on' => 't.content_id=video.id','together'=>true),
-			'Goods'=>array(self::HAS_ONE, 'Goods', '','on' => 't.content_id=video.id','together'=>true),
+			'Goods'=>array(self::HAS_ONE, 'Goods', '','on' => 't.content_id=goods.id','together'=>true),
 		);
 	}
 
