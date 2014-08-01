@@ -42,7 +42,7 @@
         <div><a href="<?php echo $this->createUrl('database/index');?>" target="win" hidefocus>工具</a></div>
       </li>
       <li index="9">
-        <div><a href="<?php echo $this->createUrl('oauth/index');?>" target="win" hidefocus>第三方登录</a></div>
+        <div><a href="<?php echo $this->createUrl('oAuth/index');?>" target="win" hidefocus>第三方登录</a></div>
       </li>
           </ul>
   </div>  
@@ -115,7 +115,7 @@
               </ul>
               
               <ul index="9" class="left_menu">
-                <li index="0"><a href="<?php echo $this->createUrl('oauth/index');?>" target="win"><?php echo Yii::t('admin','OAuth Manage');?></a></li>             
+                <li index="0"><a href="<?php echo $this->createUrl('oAuth/index');?>" target="win"><?php echo Yii::t('admin','OAuth Manage');?></a></li>             
               </ul>
           </div>
   </div>
