@@ -8,9 +8,9 @@
 		<li class="footer_mid">
 			<h2>新手指南</h2>
 			<ul>
-				<li><a href="<?php echo $this->createUrl('page/index', array('title_alias'=>'guide'));?>">新手指南</a></li>
-				<li><a href="<?php echo $this->createUrl('page/index', array('title_alias'=>'register'));?>">注册流程</a></li>		
-				<li><a href="<?php echo $this->createUrl('page/index', array('title_alias'=>'comment'));?>">评论审核</a></li>		
+				<li><a href="<?php echo $this->createUrl('page/index', array('id'=>'guide'));?>">新手指南</a></li>
+				<li><a href="<?php echo $this->createUrl('page/index', array('id'=>'register'));?>">注册流程</a></li>		
+				<li><a href="<?php echo $this->createUrl('page/index', array('id'=>'comment'));?>">评论审核</a></li>		
 			</ul>
 		</li>
 		<li class="footer_mid">
