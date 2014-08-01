@@ -29,6 +29,9 @@ class SoftController extends FrontBase
 	    $children_ids = Helper::array_key_values($catalog_ids, 'id');     
 	    $catalog_id?$all_ids = array_merge($children_ids, (array)$catalog_id):$all_ids = $children_ids;   
 	    $db_in_ids = implode(',',$all_ids);   
+	    if(!$db_in_ids){
+		throw new CHttpException(404,Yii::t('common','The requested page does not exist.'));
+	    }
 	    //SEO
 	    if($catalog){
 	    	$this->_seoTitle = $catalog->seo_title?$catalog->seo_title:$catalog->catalog_name.' - '.$this->_setting['site_name'];

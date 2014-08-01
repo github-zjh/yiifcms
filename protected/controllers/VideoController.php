@@ -38,7 +38,10 @@ class VideoController extends FrontBase
 	    $catalog_ids = Catalog::get($catalog?$catalog_id:0, $this->_catalog);  
 	    $children_ids = Helper::array_key_values($catalog_ids, 'id');     
 	    $catalog_id?$all_ids = array_merge($children_ids, (array)$catalog_id):$all_ids = $children_ids;   
-	    $db_in_ids = implode(',',$all_ids);   
+	    $db_in_ids = implode(',',$all_ids);  
+	    if(!$db_in_ids){
+		throw new CHttpException(404,Yii::t('common','The requested page does not exist.'));
+	    }
 	    //SEO
 	    $navs = array();
 	    if($catalog){
@@ -57,7 +60,7 @@ class VideoController extends FrontBase
 	    $criteria = new CDbCriteria();
 	    $condition = "t.status = 'Y'";
 	    $keyword && $condition .= ' AND title LIKE \'%' . $keyword . '%\'';
-	    $condition .= ' AND catalog_id IN ('.$db_in_ids.')';
+	    $db_in_ids && $condition .= ' AND catalog_id IN ('.$db_in_ids.')';
 	   
 	    $criteria->condition = $condition;
 	    $criteria->order = 'video_score DESC, view_count DESC, t.id DESC';
