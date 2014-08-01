@@ -1,6 +1,6 @@
 # your database backup
-# version:5.5.37-log
-# time:2014-08-01 11:41:04
+# version:5.5.27-log
+# time:2014-08-01 12:01:35
 # --------------------------------------------------------
 
 
@@ -117,7 +117,7 @@ CREATE TABLE `yiif_goods` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='商品表';
 
-INSERT INTO `yiif_goods` VALUES('1','小米手机','5','799.00','uploads/images/201405/3fdd860df5d.jpg','uploads/thumbs/201405/small_3fdd860df5d.jpg','a:1:{i:0;a:5:{s:6:\"fileId\";s:2:\"45\";s:4:\"file\";s:37:\"uploads/images/201405/6bf7dd586e7.jpg\";s:5:\"thumb\";N;s:4:\"desc\";N;s:3:\"url\";N;}}','','0','0','1401076650','1405307616','Y','0','0');
+INSERT INTO `yiif_goods` VALUES('1','小米手机','5','799.00','uploads/images/201405/3fdd860df5d.jpg','uploads/thumbs/201405/small_3fdd860df5d.jpg','a:1:{i:0;a:5:{s:6:\"fileId\";s:2:\"45\";s:4:\"file\";s:37:\"uploads/images/201405/6bf7dd586e7.jpg\";s:5:\"thumb\";N;s:4:\"desc\";N;s:3:\"url\";N;}}','','9','0','1401076650','1405307616','Y','0','0');
 
 DROP TABLE IF EXISTS `yiif_image`;
 CREATE TABLE `yiif_image` (
@@ -403,7 +403,7 @@ CREATE TABLE `yiif_page` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='单页';
 
-INSERT INTO `yiif_page` VALUES('about','关于我们','','yiicms','','','','','','','','0','10','Y','1322999570','');
+INSERT INTO `yiif_page` VALUES('about','关于我们','','yiicms','','','','','','','','0','11','Y','1322999570','0');
 INSERT INTO `yiif_page` VALUES('goods','产品特色','','<p style=\"text-indent:2em;\">
 	<br />
 </p>
@@ -491,7 +491,7 @@ INSERT INTO `yiif_page` VALUES('goods','产品特色','','<p style=\"text-indent
 </p>
 <p style=\"text-indent:2em;\">
 	<br />
-</p>','','产品特色','产品特色','','','','','0','3','Y','1322999588','');
+</p>','','产品特色','产品特色','','','','','0','3','Y','1322999588','0');
 INSERT INTO `yiif_page` VALUES('register','注册流程','企业文化是企业为解决生存和发展的问题的而树立形成的，被组织成员认为有效而共享，并共同遵循的基本信念和认知。 企业文化集中体现了一个企业经营管理的核心主张，以及由此产生的组织行为。','<div>
 	<div>
 		迪尔和肯尼迪把企业文化整个理论系统概述为5个要素，即企业环境、价值观、英雄人物、文化仪式和文化网络。
@@ -556,7 +556,7 @@ INSERT INTO `yiif_page` VALUES('guide','新手指南','团队是现代企业管�
 	</div>
 </div>
 <div>
-</div>','','','','','','','','0','4','Y','1379392484','');
+</div>','','','','','','','','0','4','Y','1379392484','0');
 
 DROP TABLE IF EXISTS `yiif_post`;
 CREATE TABLE `yiif_post` (
@@ -1417,7 +1417,6 @@ CREATE TABLE `yiif_session` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='session表';
 
-INSERT INTO `yiif_session` VALUES('9mb3koc7m98mhh3kj3gfn0kh46','1406865685','');
 INSERT INTO `yiif_session` VALUES('b1865enpcdkm781gsan8brbhg2','1406865739','');
 INSERT INTO `yiif_session` VALUES('1k8ut275a67fba8qee0jlbv3k3','1406865811','');
 INSERT INTO `yiif_session` VALUES('hldvfg6sbr7tp98tcn25fp4k94','1406866043','');
@@ -1439,6 +1438,7 @@ INSERT INTO `yiif_session` VALUES('o8b84onti3027vff6jolanfum0','1406867605','');
 INSERT INTO `yiif_session` VALUES('ruhiabor1b22ao9ofvsshk5fn5','1406867837','');
 INSERT INTO `yiif_session` VALUES('dr6d0bm8v8cshfsgi8sg6n17c4','1406867891','');
 INSERT INTO `yiif_session` VALUES('gjco401idmfegdsst9gs2ev3l3','1406867963','');
+INSERT INTO `yiif_session` VALUES('t2vdkcigi82felebu2qo1pnge5','1406869294','admin__returnUrl|s:9:\"/?r=admin\";Yii.CCaptchaAction.c5a2395c.admin/default.captcha|s:4:\"kd3a\";Yii.CCaptchaAction.c5a2395c.admin/default.captchacount|i:4;admin__id|s:1:\"1\";admin__name|s:5:\"admin\";adminstatus|s:1:\"1\";adminnickname|s:5:\"admin\";admingroupid|s:2:\"10\";admingroupname|s:15:\"系统管理员\";adminemail|s:14:\"xb_zjh@126.com\";admin__states|a:5:{s:6:\"status\";b:1;s:8:\"nickname\";b:1;s:7:\"groupid\";b:1;s:9:\"groupname\";b:1;s:5:\"email\";b:1;}Yii.CCaptchaAction.c5a2395c.question.captcha|s:6:\"fujegb\";Yii.CCaptchaAction.c5a2395c.question.captchacount|i:1;');
 
 DROP TABLE IF EXISTS `yiif_setting`;
 CREATE TABLE `yiif_setting` (
@@ -1461,12 +1461,12 @@ INSERT INTO `yiif_setting` VALUES('email','email_username','postmaster@yiifcms.c
 INSERT INTO `yiif_setting` VALUES('base','safe_str','!(*&%$$');
 INSERT INTO `yiif_setting` VALUES('seo','seo_description','yiifcms是个人开发的内容管理系统，方便学习yii，了解MVC架构, 也可以当做交流的平台。');
 INSERT INTO `yiif_setting` VALUES('seo','seo_keywords','yii,php,html,web');
-INSERT INTO `yiif_setting` VALUES('seo','seo_title','yiif框架学习');
+INSERT INTO `yiif_setting` VALUES('seo','seo_title','yii好学好用');
 INSERT INTO `yiif_setting` VALUES('base','site_closed_summary','系统维护中，请稍候......');
 INSERT INTO `yiif_setting` VALUES('base','site_copyright','Copyright @ 2014-2015');
 INSERT INTO `yiif_setting` VALUES('base','site_domain','/');
 INSERT INTO `yiif_setting` VALUES('base','site_icp','暂无');
-INSERT INTO `yiif_setting` VALUES('base','site_name','yiif框架学习');
+INSERT INTO `yiif_setting` VALUES('base','site_name','yii好学好用');
 INSERT INTO `yiif_setting` VALUES('base','site_stats','');
 INSERT INTO `yiif_setting` VALUES('base','site_status','open');
 INSERT INTO `yiif_setting` VALUES('base','site_status_intro','网站目前正在备案，请稍后访问，谢谢....');
@@ -1703,7 +1703,7 @@ CREATE TABLE `yiif_user` (
   UNIQUE KEY `username` (`username`)
 ) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 DELAY_KEY_WRITE=1 COMMENT='用户表';
 
-INSERT INTO `yiif_user` VALUES('1','admin','$2a$08$prWSKt8Hkfd.NNXMbdyYxuWEWkRdUiykiSKPnJ6TjWEA8A7dBlROy','xb_zjh@126.com','10','1','1404712097','','','','','','','127.0.0.1','8');
+INSERT INTO `yiif_user` VALUES('1','admin','$2a$08$prWSKt8Hkfd.NNXMbdyYxuWEWkRdUiykiSKPnJ6TjWEA8A7dBlROy','xb_zjh@126.com','10','1','1404712097','','','','','','','127.0.0.1','9');
 INSERT INTO `yiif_user` VALUES('2','没那么简单','$2a$13$5HFLakgTxQyyfzcZFQElWOk5W.OHhPnfwKXLAYwokPNVsZSyW4Tqy','376685457@qq.com','9','1','1379091600','uploads/avatar/201407/small_2_cc2e86cc790.jpg','','','','','','127.0.0.1','4');
 INSERT INTO `yiif_user` VALUES('7','微博评论','$2a$13$TEpIe58TLJIUmLuoE7pYD.KK74cRlLXSaNoXf0bnxbcLFFmmW1E5u','xweibo_user85589@sina.com','1','1','1379101600','','','','','','','','0');
 INSERT INTO `yiif_user` VALUES('31','testUser','$2a$08$QuvI8Ory.KMdKvmaCV/g9O8AoVTQMMvDrS.wvkOnEWBIBJwm3kLsq','1441044277@qq.com','1','1','1399346040','uploads/avatar/201405/small_31_c696db73478.jpg','nicename','这个家伙很懒，什么都不写','http://www.baidu.com','','','127.0.0.1','45');

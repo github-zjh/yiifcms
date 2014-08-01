@@ -184,6 +184,7 @@ return array (
 	'Last Images' => '最近的图集',
 	'Last Softs' => '最近的软件',	
 	'Last Videos' => '最近的视频',
+	'Last Goods' => '最新的商品',
 	
 	//评论
 	'User'=>'用户',
