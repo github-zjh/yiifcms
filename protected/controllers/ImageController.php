@@ -89,7 +89,7 @@ class ImageController extends FrontBase
    */
   public function actionView( $id ) {  	
   	$post = Image::model()->findByPk( intval( $id ) );
-    if ( false == $post )
+    if ( false == $post || $post->status == 'N')
         throw new CHttpException( 404, Yii::t('common','The requested page does not exist.') );
     //更新浏览次数
     $post->updateCounters(array ('view_count' => 1 ), 'id=:id', array ('id' => $id ));

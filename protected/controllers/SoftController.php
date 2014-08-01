@@ -85,7 +85,7 @@ class SoftController extends FrontBase
   public function actionView( $id ) {
   	
   		$soft = Soft::model ()->findByPk ( intval ( $id ) );
-		if (false == $soft)
+		if (false == $soft || $soft->status == 'N')
 			throw new CHttpException ( 404, Yii::t ( 'common', 'The requested page does not exist.' ) );
 			// seo信息
 		$this->_seoTitle = empty ( $soft->seo_title ) ? $soft->title . ' - ' . $this->_setting ['site_name'] : $soft->seo_title;

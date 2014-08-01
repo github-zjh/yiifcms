@@ -28,8 +28,8 @@ class GoodsController extends FrontBase
    * 浏览详细内容
    */
   public function actionView( $id ) {
-  	$post = Post::model()->findByPk( intval( $id ) );
-  	if ( false == $post )
+  	$post = Goods::model()->findByPk( intval( $id ) );
+  	if ( false == $post || $post->status == 'N')
   		throw new CHttpException( 404, '内容不存在' );
   	//更新浏览次数
   	$post->updateCounters(array ('view_count' => 1 ), 'id=:id', array ('id' => $id ));

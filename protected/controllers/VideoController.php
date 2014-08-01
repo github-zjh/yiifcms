@@ -92,7 +92,7 @@ class VideoController extends FrontBase
    */
   public function actionView( $id ) {
   		$video = Video::model ()->findByPk ( intval ( $id ) );
-		if (false == $video)
+		if (false == $video || $video->status == 'N')
 			throw new CHttpException ( 404, Yii::t ( 'common', 'The requested page does not exist.' ) );
 			// seo信息
 		$this->_seoTitle = empty ( $video->seo_title ) ? $video->title . ' - ' . $this->_setting ['site_name'] : $video->seo_title;
