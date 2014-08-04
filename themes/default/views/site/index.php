@@ -3,7 +3,15 @@
 			<a href="<?php echo $this->createUrl('soft/index', array('catalog_id'=>11));?>" class="view_more" target="_blank"><?php echo Yii::t('common','DownLoad Now');?></a>
 			<h1>YiiFCMS</h1>
 			<p><?php echo $this->_setting['seo_description'];?></p>
-		</div>	
+		</div>
+		<!-- 首页头部banner开始 -->
+		<?php if($index_top_banner):?>	
+		<a class="banner index_mid_banner" title="<?php echo $index_top_banner->title;?>" href="<?php echo $index_top_banner->link_url;?>" target="_blank">
+		<img alt="<?php echo $index_top_banner->title;?>" width="<?php echo $index_top_banner->width; ?>" height="<?php echo $index_top_banner->height;?>" src="<?php echo $index_top_banner->image_url?$index_top_banner->image_url:$index_top_banner->attach_file;?>" />
+		</a>
+		<?php endif;?>
+		<!-- 首页头部banner结束 -->	
+	
 		<ul class="intro_box clear">
 			<li>
 				<div class="ico_one"></div>
@@ -35,7 +43,7 @@
 	<!-- 首页中部banner -->
 	<?php if($index_mid_banner):?>	
 	<a class="banner index_mid_banner" title="<?php echo $index_mid_banner->title;?>" href="<?php echo $index_mid_banner->link_url;?>" target="_blank">
-		<img alt="<?php echo $index_mid_banner->title;?>" src="<?php echo $index_mid_banner->image_url?$index_mid_banner->image_url:$index_mid_banner->attach_file;?>" />
+		<img alt="<?php echo $index_mid_banner->title;?>" width="<?php echo $index_mid_banner->width; ?>" height="<?php echo $index_mid_banner->height;?>" src="<?php echo $index_mid_banner->image_url?$index_mid_banner->image_url:$index_mid_banner->attach_file;?>" />
 	</a>
 	<?php endif;?>
 	
@@ -106,7 +114,7 @@
 				<?php foreach((array)$soft_new as $sn):?>
 				<li>
 					<a href="<?php echo $this->createUrl('soft/view', array('id'=>$sn->id));?>" title="<?php echo $sn->title;?>">
-						<img class="dl_img" src="<?php echo $sn->soft_icon;?>" width="70" />											
+						<img class="dl_img" src="<?php echo $sn->soft_icon;?>" width="70" height="70"/>											
 					</a>		
 					<a href="<?php echo $this->createUrl('soft/view', array('id'=>$sn->id));?>"><?php echo Helper::truncate_utf8_string($sn->title, 4);?></a>
 					<a href="<?php echo $this->createUrl('soft/download', array('id'=>$sn->id));?>" class="dl_btn" target="_blank">下载</a>			
@@ -118,7 +126,7 @@
 				<?php foreach((array)$soft_hot as $sh):?>
 				<li>
 					<a href="<?php echo $this->createUrl('soft/view', array('id'=>$sh->id));?>" title="<?php echo $sh->title;?>">
-						<img class="dl_img" src="<?php echo $sh->soft_icon;?>" width="70" />											
+						<img class="dl_img" src="<?php echo $sh->soft_icon;?>" width="70" height="70"/>											
 					</a>		
 					<a href="<?php echo $this->createUrl('soft/view', array('id'=>$sh->id));?>"><?php echo Helper::truncate_utf8_string($sh->title, 4);?></a>
 					<a href="<?php echo $this->createUrl('soft/download', array('id'=>$sh->id));?>" class="dl_btn" target="_blank">下载</a>			
@@ -130,6 +138,7 @@
 	<!-- 推荐下载区开始 -->
 	
 	<!-- 推荐教程区开始 -->
+	<?php if($video_new):?>
 	<div class="tab_container">
 		<ul class="etabs text_align_right">
 			<li class="tab"><a href="#tab_video1">最新教程</a></li>
@@ -164,7 +173,8 @@
 			</ul>		
 		</div>		
 	</div>
-	<!-- 推荐下载区开始 -->
+        <?php endif;?>
+	<!-- 推荐教程区结束 -->
 	
 	
 		
@@ -174,6 +184,15 @@
 		});
   	</script>
 	
+	<!-- 首页底部banner开始 -->
+	<?php if($index_bottom_banner):?>	
+	<a class="banner index_mid_banner" title="<?php echo $index_bottom_banner->title;?>" href="<?php echo $index_bottom_banner->link_url;?>" target="_blank">
+	<img alt="<?php echo $index_bottom_banner->title;?>" width="<?php echo $index_bottom_banner->width; ?>" height="<?php echo $index_bottom_banner->height;?>" src="<?php echo $index_bottom_banner->image_url?$index_bottom_banner->image_url:$index_bottom_banner->attach_file;?>" />
+	</a>
+	<?php endif;?>
+	<!-- 首页底部banner结束 -->	
+
+
 	<div id="clients">
 		<ul class="client_head clear">
 			<li class="client_title">友情链接</li>

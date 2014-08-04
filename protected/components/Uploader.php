@@ -89,18 +89,8 @@ class Uploader{
 				$this->waterMark($this->_tmp_name, $save_path);
 			}else{						
 				if(Helper::getOS()=='Linux'){
-					//解决linux下中文文件名乱码的问题
-					$save_path_new = Helper::safeEncoding($save_path,'GB2312');
-					if(!$save_path_new){
-						//转换失败
-						$this->_error = 'File Names Contains doesnt recognize Chinese';
-						return false;
-					}										
-					$mv = move_uploaded_file($this->_tmp_name, $save_path_new);
-					$save_path_ch = @iconv("GBK", "UTF-8", $save_path);											
 					
-					// 重命名一下文件
-					rename($save_path, $save_path_ch?$save_path_ch:$save_path);   
+					$mv = move_uploaded_file($this->_tmp_name, $save_path);
 				}else{
 					//解决windows下中文文件名乱码的问题					
 					$save_path = Helper::safeEncoding($save_path,'GB2312');

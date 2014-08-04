@@ -130,7 +130,7 @@ class DefaultController extends BackendBase
 	public function actionKeyword()
 	{
 		parent::auth();
-		$mailer = Yii::createComponent ( 'application.extensions.autokeyword.Autokeyword' );
+		$mailer = Yii::createComponent ( 'application.extensions.autokeyword.AutoKeyword' );
 		$title = trim($this->_request->getParam('title'));
 		$content = trim($this->_request->getParam('content'));
 		//$return  = XAutoKeyword::discuz($string);		

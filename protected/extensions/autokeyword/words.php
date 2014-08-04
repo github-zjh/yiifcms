@@ -7,6 +7,8 @@ return array(
 	'mysql',
 	'web',
 	'html',
+	'js',
+	'jquery',
 	'sql',
 	'apache',
 	'nginx',

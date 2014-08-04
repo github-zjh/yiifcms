@@ -33,8 +33,13 @@ class SiteController extends FrontBase
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.easytabs.min.js");
 		
+		//头部banner
+		$index_top_banner = Ad::model()->find('position_id = 4 ORDER BY id DESC');
 		//中部banner
 		$index_mid_banner = Ad::model()->find('position_id = 3 ORDER BY id DESC');
+		//底部banner
+		$index_bottom_banner = Ad::model()->find('position_id = 5 ORDER BY id DESC');
+
 		
 		//最新资讯
 		$news_new = Post::model()->findAll("status=:status ORDER BY id DESC Limit 20", array(':status'=>'Y'));
@@ -52,16 +57,18 @@ class SiteController extends FrontBase
 		$soft_hot = Soft::model()->findAll("status=:status ORDER BY down_count DESC, id DESC Limit 20", array(':status'=>'Y'));
 		
 		//最新视频
-		$video_new = Video::model()->findAll("status=:status ORDER BY id DESC Limit 20", array(':status'=>'Y'));
+		$video_new = Video::model()->findAll("status=:status AND catalog_id = 13 ORDER BY id DESC Limit 20", array(':status'=>'Y'));
 		//热门视频
-		$video_hot = Video::model()->findAll("status=:status ORDER BY view_count DESC, video_score DESC, id DESC Limit 20", array(':status'=>'Y'));
+		$video_hot = Video::model()->findAll("status=:status AND catalog_id = 13 ORDER BY view_count DESC, video_score DESC, id DESC Limit 20", array(':status'=>'Y'));
 		
 		//友情链接
 		$link_logos = Link::model()->findAll("logo !='' AND status_is='Y'", array('order'=>'sortorder ASC, id DESC'));
 		$link_texts = Link::model()->findAll("logo ='' AND status_is='Y'", array('order'=>'sortorder ASC, id DESC'));
 		$this->render('index',compact(
 			array(
+					'index_top_banner', 
 					'index_mid_banner', 
+					'index_bottom_banner', 
 					'link_logos', 						
 					'link_texts',
 					'news_new',
