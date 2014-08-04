@@ -52,6 +52,9 @@
 a { color:#555555;}
 a:hover { text-decoration:underline; }
 
+.content_info a { color:#428bca;}
+.content_info ul, .content_info ol { list-style:inherit;}
+
 /* 文章详情 */
 .content_info ul { list-style:inside disc none;}
 .content_info ol { list-style:inside decimal none;}

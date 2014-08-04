@@ -35,7 +35,7 @@ class PostController extends FrontBase
     $children_ids = Helper::array_key_values($catalog_ids, 'id');     
     $catalog_id?$all_ids = array_merge($children_ids, (array)$catalog_id):$all_ids = $children_ids;   
     $db_in_ids = implode(',',$all_ids);   
-    if(!$db_in_ids){
+    if(!$db_in_ids || ($catalog_id && $catalog->type != $this->_type_ids['post'])){
 	    throw new CHttpException(404,Yii::t('common','The requested page does not exist.'));
     }
     //SEO

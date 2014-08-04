@@ -30,4 +30,5 @@ a { color:#555555; }
 .page_left dd:hover { background-color:#666666; }
 .page_left dd:hover a { color:#FFFFFF; }
 .page_content { padding:20px;}
-
+.page_content a { color:#428bca;}
+.page_content ul, .page_content ol { list-style:inherit;}

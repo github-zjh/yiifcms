@@ -75,9 +75,9 @@ box-shadow: 0 5px 0 #e2534b;
 #search { float:right; position:relative;  padding:12px 0;}
 #search .search_btn { float:right; height:34px; width:50px; border-radius:0 3px 3px 0; background-color:#EAEAEA; color:#555555; cursor:pointer;}
 #search .search_btn:hover { background-color:#CCCCCC; }
-#search input { float:left; height:34px; padding:0 4px; border-radius:3px 0 0 3px; width:200px; }
+#search input { float:left; height:34px; padding:0 4px; border-radius:3px 0 0 3px; width:160px; }
 #search_result { position:absolute; top:44px; border:1px solid #DDDDDD; border-radius:0 0 5px 5px; background-color:#FFFFFF; }
-#search_result li { width:248px; height:26px; overflow:hidden; line-height:26px; text-align:left;}
+#search_result li { width:208px; height:26px; overflow:hidden; line-height:26px; text-align:left;}
 #search_result a { padding-left:10px; color:#555555; display:block;}
 #search_result a:hover { background-color:#DDDDDD; }
 #search_result a.red { color:#F00;}

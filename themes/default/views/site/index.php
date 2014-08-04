@@ -1,6 +1,6 @@
 	<div id="intro">		
 		<div class="intro_title">
-			<a href="<?php echo $this->createUrl('soft/view', array('id'=>5));?>" class="view_more"><?php echo Yii::t('common','DownLoad Now');?></a>
+			<a href="<?php echo $this->createUrl('soft/index', array('catalog_id'=>11));?>" class="view_more" target="_blank"><?php echo Yii::t('common','DownLoad Now');?></a>
 			<h1>YiiFCMS</h1>
 			<p><?php echo $this->_setting['seo_description'];?></p>
 		</div>	
@@ -9,25 +9,25 @@
 				<div class="ico_one"></div>
 				<h2>开源、免费</h2>
 				<p>yiifcms是基于yiiframework开发的内容管理系统，它开源、免费，用户可以自由下载、使用、修改、学习交流。</p>
-				<a href="<?php echo $this->createUrl('page/index', array('title_alias'=>'feature'))?>" target="_blank"><?php echo Yii::t('common','Read Details')?></a>
+				<a href="<?php echo $this->createUrl('page/index', array('id'=>'feature'))?>" target="_blank"><?php echo Yii::t('common','Read Details')?></a>
 			</li>
 			<li>
 				<div class="ico_one ico_two"></div>
 				<h2>安全、高效</h2>
 				<p>yiiframework本身是一个很安全的高性能的开源框架，使用它您不用担心安全问题，它会使您的网站运行的很良好。</p>
-				<a href="<?php echo $this->createUrl('page/index', array('title_alias'=>'feature'))?>" target="_blank"><?php echo Yii::t('common','Read Details')?></a>
+				<a href="<?php echo $this->createUrl('page/index', array('id'=>'feature'))?>" target="_blank"><?php echo Yii::t('common','Read Details')?></a>
 			</li>
 			<li>
 				<div class="ico_one ico_three"></div>
 				<h2>简洁、方便</h2>
 				<p>yiifcms有简洁、方便的后台管理，用户不需要了解复杂的逻辑关系，就可以很快速的发布内容，优化管理。</p>
-				<a href="<?php echo $this->createUrl('page/index', array('title_alias'=>'feature'))?>" target="_blank"><?php echo Yii::t('common','Read Details')?></a>
+				<a href="<?php echo $this->createUrl('page/index', array('id'=>'feature'))?>" target="_blank"><?php echo Yii::t('common','Read Details')?></a>
 			</li>
 			<li class="last">
 				<div class="ico_one ico_four"></div>
 				<h2>轻松、稳定</h2>
 				<p>yiifcms架构合理、布局优美，是您轻松建站和学习的不二之选。</p>
-				<a href="<?php echo $this->createUrl('page/index', array('title_alias'=>'feature'))?>" target="_blank"><?php echo Yii::t('common','Read Details')?></a>
+				<a href="<?php echo $this->createUrl('page/index', array('id'=>'feature'))?>" target="_blank"><?php echo Yii::t('common','Read Details')?></a>
 			</li>
 		</ul>
 	</div>
@@ -39,11 +39,11 @@
 	</a>
 	<?php endif;?>
 	
-	<!-- 推荐资讯区开始 -->
+	<!-- 推荐阅读区开始 -->
 	<div class="tab_container">
 		<ul class="etabs text_align_left">
-			<li class="tab"><a href="#tab_post1">最新资讯</a></li>
-			<li class="tab"><a href="#tab_post2">热门资讯</a></li>			
+			<li class="tab"><a href="#tab_post1">最新阅读</a></li>
+			<li class="tab"><a href="#tab_post2">热门阅读</a></li>			
 		</ul>	
 		
 		<div class="panel_container">
@@ -60,7 +60,7 @@
 			</ul>			
 		</div>			
 	</div>
-	<!-- 推荐资讯区结束 -->
+	<!-- 推荐阅读区结束 -->
 	
 	<!-- 推荐图集区开始 -->
 	<div class="tab_container">
@@ -94,11 +94,11 @@
 	</div>
 	<!-- 推荐图集区结束 -->
 	
-	<!-- 推荐软件区开始 -->
+	<!-- 推荐下载区开始 -->
 	<div class="tab_container">
 		<ul class="etabs text_align_left">
-			<li class="tab"><a href="#tab_soft1">最新软件</a></li>
-			<li class="tab"><a href="#tab_soft2">热门软件</a></li>		
+			<li class="tab"><a href="#tab_soft1">最新下载</a></li>
+			<li class="tab"><a href="#tab_soft2">热门下载</a></li>		
 		</ul>	
 		
 		<div class="panel_container">
@@ -127,13 +127,13 @@
 			</ul>		
 		</div>		
 	</div>
-	<!-- 推荐软件区开始 -->
+	<!-- 推荐下载区开始 -->
 	
-	<!-- 推荐视频区开始 -->
+	<!-- 推荐教程区开始 -->
 	<div class="tab_container">
 		<ul class="etabs text_align_right">
-			<li class="tab"><a href="#tab_video1">最新视频</a></li>
-			<li class="tab"><a href="#tab_video2">热门视频</a></li>		
+			<li class="tab"><a href="#tab_video1">最新教程</a></li>
+			<li class="tab"><a href="#tab_video2">热门教程</a></li>		
 		</ul>	
 		
 		<div class="panel_container">
@@ -164,7 +164,7 @@
 			</ul>		
 		</div>		
 	</div>
-	<!-- 推荐软件区开始 -->
+	<!-- 推荐下载区开始 -->
 	
 	
 		
