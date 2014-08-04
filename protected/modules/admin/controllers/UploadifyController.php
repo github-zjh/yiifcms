@@ -79,15 +79,15 @@ class UploadifyController extends Backend
     }        
     
     /**
-     * 上传文件(单个不能超过50M)
+     * 上传文件(单个不能超过设置的值)
      */
     public function actionFile() {     	
     	if ( $this->method() == 'POST' ) {
     		$adminiUserId = Yii::app()->user->id;
     		$file = new Uploader;    
-    		$file->_allow_exts = 'pdf,doc,docx,xls,ppt,exe,zip,tar,gz,msi,7z';  //普通文件类型限制
-    		$file->_allow_exts .= ',mp3,mp4,wma';   //音频文件
-    		$file->_allow_exts .= ',swf,mv,avi,mp4,flv,rmvb,mov,asf,wmv,3GP,ra,rm';   //视频文件
+    		//$file->_allow_exts = 'pdf,doc,docx,xls,ppt,exe,zip,tar,gz,msi,7z';  //普通文件类型限制
+    		//$file->_allow_exts .= ',mp3,mp4,wma';   //音频文件
+    		//$file->_allow_exts .= ',swf,mv,avi,mp4,flv,rmvb,mov,asf,wmv,3GP,ra,rm';   //视频文件
     		$file->_rand_name = false;                   //用原来的名称
     		
     		if(is_array($_FILES['file']) && !empty($_FILES['file'])){
