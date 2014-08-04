@@ -150,6 +150,20 @@ class Catalog extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	/**
+	 * 父级分类不能和本分类相同
+	 * !CodeTemplates.overridecomment.nonjd!
+	 * @see CActiveRecord::beforeSave()
+	 */
+	public function beforeSave(){
+		if(!$this->isNewRecord){
+			if($this->id == $this->parent_id){
+				$this->addError('parent_id', Yii::t('admin','Parent ID can not eque itself ID'));
+				return false;
+			}
+		}
+		return true;
+	}
 	
 	/**
 	 * 所有栏目分类

@@ -32,6 +32,7 @@ return array (
 	'Success' => '成功',
 	'Failed' =>'失败',
 	'ApiKey' => '接口Key',
+	'Parent ID can not eque itself ID' =>'上级分类不能和本分类相同',
 	
 	/* 设置 */
 	'Web Set' => '站点设置',
