@@ -55,9 +55,9 @@ class Controller extends CController
 		$this->_data = WWWPATH.'/protected/data/';
 		
 		//检测系统是否已经安装
-		if(!file_exists($this->_data.'/install.lock')){
+		/*if(!file_exists($this->_data.'/install.lock')){
 			$this->redirect($this->createUrl('/install/index'));
-		}
+		}*/
 		
 		$settings = Setting::model()->findAll();
 		foreach ($settings as $key => $row) {

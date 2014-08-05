@@ -5,8 +5,8 @@
     </tr>
   </thead> 
   <tr>
-    <td >产品支持</td>
-    <td ><a href="<?php echo Yii::app()->request->hostInfo;?>" target="_blank"><?php echo Yii::app()->request->hostInfo;?></a></td>
+    <td >官方网址</td>
+    <td ><a href="http://www.yiifcms.com" target="_blank">http://www.yiifcms.com</a></td>
   </tr>
   <tr>
     <td >操作系统软件</td>

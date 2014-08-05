@@ -27,7 +27,6 @@ class UserGroup extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('group_name', 'length', 'max'=>30),
-			array('acl', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, group_name, acl', 'safe', 'on'=>'search'),

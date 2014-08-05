@@ -182,7 +182,7 @@ return array (
 	'Catagorys' => '分类',
 	'Last Articles'=>'最近的文章',
 	'Last Images' => '最近的图集',
-	'Last Softs' => '最近的软件',	
+	'Last Softs' => '最近的下载',	
 	'Last Videos' => '最近的视频',
 	'Last Goods' => '最新的商品',
 	

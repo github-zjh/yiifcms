@@ -26,6 +26,8 @@ class Backend extends BackendBase
 			'default' => 'login',       									//后台登录
 			'setting' => array('seo','upload','template','email', 'custom'), 		//网站设置
 			'catalog' => array('index','create','update','delete','batch'), //栏目管理
+			'menu' => array('index','create','update','delete','batch'),   //导航管理
+			'special' => array('index','create','update','delete','batch'), //专题管理
 			'post' => array('index','create','update','delete','batch'),    //文章管理	
 			'image' => array('index','create','update','delete','batch'),    //图集管理
 			'soft' => array('index','create','update','delete','batch'),    //软件管理
@@ -34,8 +36,8 @@ class Backend extends BackendBase
 			'page' => array('index','create','update','delete','batch'),    //单页管理
 			'comment' => array('index','update','batch'),   				//评论管理
 			'reply' => array('index','update','batch'),   					//回复管理
+			'tag' => array('index','reset'),   					//标签管理
 			'recommendPosition' => array('index','create','update','delete', 'view','batch'), //推荐位管理
-			'special' => array('index','create','update','delete','batch'), //专题管理
 			'user' => array('index','create','update','delete','batch', 'group', 'groupCreate','groupUpdate'), 	//用户管理
 			'question' => array('index','update','batch'), 					//留言管理
 			'link' => array('index','create','update','delete','batch'), 	//链接管理
@@ -44,6 +46,9 @@ class Backend extends BackendBase
 			'attach' => array('index','batch'), 							//附件管理		
 			'modeltype' => array('index','create','update','batch'),       //内容模型管理
 			'database' => array('index','query','doQuery','execute','export', 'database','operate'), 		//数据库管理
+			'cache' => array('index','cacheUpdate'),       //缓存管理
+			'maillog' => array('index','batch'),           //邮件日志管理
+			'oAuth' => array('index','create','update','batch'),       //第三方登录管理
 		
 		);
 		return $acl;

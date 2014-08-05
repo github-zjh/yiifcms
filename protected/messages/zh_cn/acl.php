@@ -22,6 +22,14 @@ return array(
 		'catalog|delete' => '栏目删除',
 		'catalog|batch' => '批量操作',
 		
+		//Menu
+		'menu' => '导航管理',
+		'menu|index' => '栏目列表',
+		'menu|create' => '栏目添加',
+		'menu|update' => '栏目更新',
+		'menu|delete' => '栏目删除',
+		'menu|batch' => '批量操作',
+		
 		//Post
 		'post' => '文章管理',
 		'post|index' => '文章列表',
@@ -68,12 +76,7 @@ return array(
 		'page|create' => '单页添加',
 		'page|update' => '单页更新',
 		'page|delete' => '单页删除',
-		'page|batch' => '批量操作',
-		
-		//Tag
-		'tag'=> '标签管理',
-		'tag|index' => '标签列表',
-		'tag|batch' => '批量操作',	
+		'page|batch' => '批量操作',		
 		
 		//RecommendPost
 		'recommendPosition' => '推荐位管理',
@@ -150,6 +153,21 @@ return array(
 		'reply|index' => '回复列表',
 		'reply|update' => '回复更新',		
 		'reply|batch' => '批量操作',
+
+		//Tag
+		'tag'=> '标签管理',
+		'tag|index' => '标签列表',
+		'tag|reset' => '重新统计标签',
+		'tag|batch' => '批量操作',	
+		
+		//Cache
+		'cache'=> '缓存管理',
+		'cache|cacheUpdate' => '缓存更新',
+		
+		//Maillog
+		'maillog'=> '邮件日志管理',
+		'maillog|index' => '邮件日志列表',
+		'maillog|batch' => '批量操作',
 		
 		//Modeltype
 		'modeltype' => '内容模型管理',
@@ -168,5 +186,11 @@ return array(
 		'database|database' => '备份',
 		'database|operate' => '批处理',
 		
+		//第三方登录
+		'oAuth' => '第三方登录管理',
+		'oAuth|index' => '第三方列表',
+		'oAuth|create' => '第三方添加添加',
+		'oAuth|update' => '第三方更新更新',		
+		'oAuth|batch' => '批量操作',
 		
 );
