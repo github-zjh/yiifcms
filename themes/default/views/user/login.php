@@ -46,7 +46,7 @@
 					</ul>					
 				</div>
 				<div class="mod_footer">
-					<a class="fr" href="<?php echo $this->_request->hostinfo;?>">返回首页&nbsp;&nbsp;>></a>					
+					<a class="fr" href="<?php echo Yii::app()->homeUrl;?>">返回首页&nbsp;&nbsp;>></a>					
 				</div>				
 		    <?php $this->endWidget(); ?>
 		    
