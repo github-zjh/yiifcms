@@ -69,9 +69,9 @@ a:hover { text-decoration:underline; }
 /* 软件详情 */
 .soft_info { margin-top:20px; border-top:1px dashed #CCCCCC; }
 .info_head { margin:20px 0;  border-bottom:1px dashed #CCCCCC;}
-.info_left { float:left; width:400px; height:300px; overflow:hidden;}
+.info_left { float:left; width:400px; height:350px; overflow:hidden;}
 .info_left .no_cover { background-color:#F0F2F3; text-align:center; line-height:200px;}
-.info_right { float:right; width:300px; height:300px; font-size:14px;}
+.info_right { float:right; width:300px; height:400px; font-size:14px;}
 .info_right .soft_attr li { line-height:30px; list-style:inside circle;}
 .info_right .share_box { margin:10px 0; padding-left:0;}
 .info_desc h1 { font-weight:bold; font-size:16px; padding:8px 0; color:#666666; }

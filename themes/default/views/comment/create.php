@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->_yii->language;?>" lang="<?php echo $this->_yii->language;?>">
 <head>	
 	<title>添加评论</title>
-	<base href="<?php echo $this->_request->hostinfo;?>" />
+	<base href="<?php echo $this->_request->hostinfo.Yii::app()->homeUrl;?>" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="<?php echo $this->_yii->language;?>" />
 	<meta name="keywords" content="<?php echo $this->_seoKeywords;?>" />
@@ -134,8 +134,8 @@
 	//iframe去除滚动条
 	function removeScroll(iframeId){		
 		if(window.parent != window){
-    	    parent.document.getElementById(iframeId).style.height = (window.document.body.scrollHeight)+"px";
-     	}
+			parent.document.getElementById(iframeId).style.height = (window.document.body.scrollHeight)+"px";
+		}
 	}
 	$(function(){
 		
@@ -144,7 +144,7 @@
 		
 		//刷新验证码
 		$("#yw0").ready(function(){
-            $('#yw0').trigger('click');
+                $('#yw0').trigger('click');
         });	
         //@回复
         $("a[data-type='reply']").click(function(){ 

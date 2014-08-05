@@ -53,7 +53,7 @@
 						</div>
 							
 						<div class="info_desc clear">
-							<h1>软件简介：</h1>
+							<h1>简介：</h1>
 							<?php echo $soft->introduce;?>
 						</div>						
 					</div>
