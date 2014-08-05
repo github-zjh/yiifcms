@@ -43,7 +43,7 @@ class KindEditor extends CInputWidget{
 	 '.$editObj.' = K.create("'.$key.'", {
 	     '.$systemDefault . $combineParams .' ,afterBlur:function(){
             this.sync();
-        },"emoticonsPath":"/public/emoticons/images/",
+        },"emoticonsPath":"public/emoticons/images/",
 	            
 	});
 	'.$editObj.'.sync();

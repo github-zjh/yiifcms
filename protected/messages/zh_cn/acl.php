@@ -24,10 +24,10 @@ return array(
 		
 		//Menu
 		'menu' => '导航管理',
-		'menu|index' => '栏目列表',
-		'menu|create' => '栏目添加',
-		'menu|update' => '栏目更新',
-		'menu|delete' => '栏目删除',
+		'menu|index' => '导航列表',
+		'menu|create' => '导航添加',
+		'menu|update' => '导航更新',
+		'menu|delete' => '导航删除',
 		'menu|batch' => '批量操作',
 		
 		//Post
@@ -162,6 +162,7 @@ return array(
 		
 		//Cache
 		'cache'=> '缓存管理',
+		'cache|index'=> '缓存列表',
 		'cache|cacheUpdate' => '缓存更新',
 		
 		//Maillog
