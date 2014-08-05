@@ -37,7 +37,7 @@ class Controller extends CController
 	protected  $_basePath = ''; //应用程序目录
 	protected  $_webRoot = '';  //网站根目录
 	protected  $_fonts = '';    //字体目录	
-	public     $_static_public = 'public'; //公共资源目录	
+	public     $_static_public = ''; //公共资源目录	
 	public     $_data = '';
 	protected  $_adminGroupID = 10; //系统管理员用户组ID
 	protected  $_type_ids = array(); //内容模型id
@@ -53,7 +53,8 @@ class Controller extends CController
 		$this->_webRoot = Yii::getPathOfAlias('webroot');
 		$this->_fonts = $this->_webRoot.'/public';
 		$this->_data = WWWPATH.'/protected/data/';
-		
+		$this->_static_public = $this->_baseUrl.'/public';
+
 		//检测系统是否已经安装
 		/*if(!file_exists($this->_data.'/install.lock')){
 			$this->redirect($this->createUrl('/install/index'));
