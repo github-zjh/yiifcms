@@ -1,6 +1,6 @@
-
+/protected/config/main.php
 /protected/runtime
-
+/protected/data/dbbak
 /.settings
 
 /assets
