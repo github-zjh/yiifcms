@@ -16,7 +16,7 @@
 			<ul id="menu">			
 				<?php foreach((array)$this->_public_menu as $menu):?>				
 				<li <?php if(isset($this->_menu_unique) && $this->_menu_unique == $menu['value']['unique']):?> class="selected"<?php endif;?>>
-					<a href="<?php echo $this->_request->hostinfo.Yii::app()->homeUrl.$menu['value']['menu_link'];?>" <?php if($menu['value']['target']== 'Y'):?> target="_blank" <?php endif;?>><?php echo $menu['value']['menu_name'];?></a>
+					<a href="<?php echo $menu['value']['menu_link'];?>" <?php if($menu['value']['target']== 'Y'):?> target="_blank" <?php endif;?>><?php echo $menu['value']['menu_name'];?></a>
 					<?php if($menu['children']):?>
 					<div class="child_box">											
 						<ul class="child_menu">
