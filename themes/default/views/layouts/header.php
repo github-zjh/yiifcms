@@ -5,7 +5,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="<?php echo $this->_yii->language;?>" />
 	<meta name="keywords" content="<?php echo $this->_seoKeywords;?>" />
-	<meta name="description" content="<?php echo $this->_seoDescription;?>" />	
+	<meta name="description" content="<?php echo $this->_seoDescription;?>" />
+	<script type="text/javascript">
+	    var SITE_URL = '<?php echo $this->_request->hostinfo.Yii::app()->homeUrl;?>';
+	</script>	
 </head>
 <body>
 <!-- 头部header开始 -->
@@ -31,20 +34,20 @@
 				</li>
 				<?php endforeach;?>			
 			</ul>
-			<form id="search"  tabindex="0" method="get">				
+			<form id="search"  tabindex="0" action="<?php echo $this->createUrl('tag/index');?>" method="get">				
 				<input type="submit" class="search_btn" value="<?php echo Yii::t('common','Search');?>" />	
-				<input type="hidden" name="r" value="tag" />			
 				<input type="hidden" id="oldkeyword" value="" />
 				<input type="text" name="tag" id="keyword" value="" autocomplete="off" placeholder="<?php echo Yii::t('common','Search Desc');?>"/>
 				<script type="text/javascript">
 					//ajax搜索
 					$(function(){						
 						$("#oldkeyword").val('');						
-						$("#keyword").on('keyup', function(){																				
+						$("#keyword").on('keyup', function(){																			
 							var tag = $(this).val().replace(/(^\s*)|(\s*$)/g, "");		
 							var oldtag = $("#oldkeyword").val();
 							if(tag && oldtag != tag){					
-								$.getJSON("<?php echo $this->createUrl('tag/ajax');?>", {"tag":tag,"ajax":1}, function(data){
+								$("#search_result").html('<li><a href="javascript:;">正在搜索...</a></li>');	
+								$.getJSON(SITE_URL+"tag/ajax/tag/"+tag+"/ajax/1", function(data){
 									var result = '';
 									if(data && data.length > 0){
 										$.each(data,function(i, item){
@@ -70,6 +73,7 @@
 						$("#keyword").on("focus",function(){
 							$("#search_result").show();
 						});
+
 					});
 				</script>
 				<ul id="search_result"></ul>

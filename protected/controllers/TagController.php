@@ -28,46 +28,48 @@ class TagController extends FrontBase
   	foreach((array)$arr_tag as $tag){	
   		$t = Tag::model()->find('tag_name = :tn', array(':tn'=>$tag));
   		$t && $tag_ids[] = $t->id;
-  	}  	
-  	
-  	$data = array();
-    if($tag_ids){
-    	$td = new TagData();
-    	$condition = "status = 'Y'";    	
-    	$criteria = new CDbCriteria();    	    	
-    	$criteria->condition = $condition;
-    	$criteria->addInCondition('tag_id', $tag_ids);
-    	//分页
-    	$count = $td->count( $criteria );
-    	$pages = new CPagination( $count );
-    	$pages->pageSize = 10;    	  	
-    	
-    	$criteria->limit = $pages->pageSize;
-    	$criteria->offset = $pages->currentPage * $pages->pageSize;
-    	
-    	$tddata = $td->findAll($criteria);
-    	
-    	foreach((array)$tddata as  $value){    		
-    		$modelType = ModelType::model()->findByPk($value->type);
-    		$model = $modelType->model;    		
-    		$value['type'] = $modelType->type_key;
-    		$value['data'] = $model::model()->findByPk($value->content_id);
-    		$data[] = $value;
-    	}   
+  	}
 
-    	//SEO
-    	$this->_seoTitle = $tag.' - '.$this->_setting['site_name'];
-    	$navs[] = array('url'=>$this->_request->getUrl(),'name'=>$tag);
-    	 
-    	//加载css,js
-    	Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/list.css");
-    	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
-    	
-    	$this->render( 'index', array('navs'=>$navs, 'datas'=>$data,'pagebar' => $pages, 'tags'=>$tags));
-    }else{
-    	throw new CHttpException('404', Yii::t('common','Nothing Is Found'));
-    }        
-  
+	if(!$tag_ids){		
+	    $alltags = Tag::model()->findAll(array('order'=>'data_count'));
+	    foreach((array)$alltags as $tv){
+		$tag_ids[] = $tv->id;	
+	    }	
+	}  	
+  	
+	$data = array();
+	$td = new TagData();
+	$condition = "status = 'Y'";    	
+	$criteria = new CDbCriteria();    	    	
+	$criteria->condition = $condition;
+	$criteria->addInCondition('tag_id', $tag_ids);
+	//分页
+	$count = $td->count( $criteria );
+	$pages = new CPagination( $count );
+	$pages->pageSize = 10;    	  	
+
+	$criteria->limit = $pages->pageSize;
+	$criteria->offset = $pages->currentPage * $pages->pageSize;
+
+	$tddata = $td->findAll($criteria);
+
+	foreach((array)$tddata as  $value){    		
+		$modelType = ModelType::model()->findByPk($value->type);
+		$model = $modelType->model;    		
+		$value['type'] = $modelType->type_key;
+		$value['data'] = $model::model()->findByPk($value->content_id);
+		$data[] = $value;
+	}   
+
+	//SEO
+	$this->_seoTitle = $tags?$tags.' - '.$this->_setting['site_name']:'所有标签 - '.$this->_setting['site_name'];
+	$navs[] = array('url'=>$this->_request->getUrl(),'name'=>$tags?$tags:'所有标签');
+
+	//加载css,js
+	Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/list.css");
+	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
+
+	$this->render( 'index', array('navs'=>$navs, 'datas'=>$data,'pagebar' => $pages, 'tags'=>$tags));
   }  
   
  
