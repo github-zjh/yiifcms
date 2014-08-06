@@ -125,7 +125,7 @@ class PostController extends Backend
     		$model->tags = implode(',',$explodeTags);
     		
     		//摘要
-    		$model->intro = trim($_POST['Post']['intro'])?$_POST['Post']['intro']:Helper::truncate_utf8_string($_POST['Post']['content'], 200);
+    		$model->intro = trim($_POST['Post']['intro'])?$_POST['Post']['intro']:Helper::truncate_utf8_string(preg_replace('/\s+/',' ',$_POST['Post']['content']), 200);
     		
     		$model->create_time = time();
     		$model->update_time = $model->create_time;
@@ -235,7 +235,7 @@ class PostController extends Backend
     		$explodeTags = array_slice($explodeTags, 0, 10);  
     		    		  	
     		//摘要
-    		$model->intro = trim($_POST['Post']['intro'])?$_POST['Post']['intro']:Helper::truncate_utf8_string($_POST['Post']['content'], 200);
+    		$model->intro = trim($_POST['Post']['intro'])?$_POST['Post']['intro']:Helper::truncate_utf8_string(preg_replace('/\s+/',' ',$_POST['Post']['content']), 200);
     		
     		$model->tags = implode(',',$explodeTags);
     		$model->update_time = time();
