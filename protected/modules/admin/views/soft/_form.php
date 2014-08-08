@@ -92,7 +92,7 @@
     	&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo Yii::t('admin','Soft Type');?>
     	<?php echo $form->dropDownList($model,'softtype',array('domestic'=>Yii::t('admin','Domestic Soft'),'foreign'=>Yii::t('admin','Foreign Soft'))); ?>
     	&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo Yii::t('admin','Soft OS');?>
-    	<?php echo $form->checkBoxList($model,'os',array('Linux'=>'Linux', 'Win2003'=>'Win2003','WinXP'=>'WinXP', 'Win8'=>'Win8'), array('separator'=>'&nbsp;&nbsp;')); ?>
+    	<?php echo $form->checkBoxList($model,'os',array('Linux'=>'Linux', 'Win2003'=>'Win2003','WinXP'=>'WinXP', 'Win7'=>'Win7', 'Win8'=>'Win8'), array('separator'=>'&nbsp;&nbsp;')); ?>
     </td>
   </tr>    
   <tr>

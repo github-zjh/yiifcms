@@ -35,7 +35,7 @@
 	<div id="copyright">	
 		<div class="clear">
 			<span><?php echo $this->_setting['site_copyright'];?></span>	
-			<span><?php echo $this->_setting['site_icp'];?></span>			
+			<span><a href="http://www.miitbeian.gov.cn/" target="_blank"><?php echo $this->_setting['site_icp'];?></a></span>			
 			<ul class="outer">
 				<li><?php echo $this->_setting['site_stats'];?></li>			
 			</ul>
