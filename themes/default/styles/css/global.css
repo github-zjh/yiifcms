@@ -150,7 +150,7 @@ box-shadow: 0 5px 0 #e2534b;
 #back_top:hover { background-position:-35px 0;}
 
 /* 公共底部footer */
-#footer { background-color:#666666; color:#FFFFFF; }
+#footer { width:100%;background-color:#666666; color:#FFFFFF; }
 #footer * { color:#FFFFFF; }
 #footer a:hover { text-decoration:underline; }
 #footer .ft_header {  padding:15px 0; width:1170px; margin:0 auto;}
