@@ -1,7 +1,7 @@
 	<div class="user">
 		<div class="user_left">
 			<div class="base_box clear">
-				<img class="fl" width="100" height="100" alt="<?php echo Yii::t('common','My Avatar');?>" src="<?php echo file_exists($profile->avatar)?$profile->avatar:$this->_stylePath.'/images/avatar-max-img.png';?>" />
+				<img class="fl" width="100" height="100" alt="<?php echo Yii::t('common','My Avatar');?>" src="<?php echo $profile->avatar?$profile->avatar:$this->_stylePath.'/images/avatar-max-img.png';?>" />
 				<ul class="base_info">
 					<li><label><?php echo Yii::t('model','username');?>：</label><span><?php echo $profile->username;?></span></li>
 					<li><label><?php echo Yii::t('model','email');?>：</label><span><?php echo $profile->email;?></span></li>
