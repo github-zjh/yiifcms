@@ -7,8 +7,9 @@
  * @oauth 2.0
  */
 class OAuthUserIdentity extends CUserIdentity
-{
-	public $_id = null;
+{	
+	public $id;
+
 	/**
 	 * Authenticates a user.
 	 * The example implementation makes sure if the username and password
@@ -20,13 +21,11 @@ class OAuthUserIdentity extends CUserIdentity
 	 */
 	public function authenticate()
 	{		
-		$user=User::model()->find('username=:username OR email=:email',array(':username'=>$this->username,':email'=>$this->username));
+		$user=User::model()->find('username=:username',array(':username'=>$this->username));
 		if($user===null)
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
-		else if(!$user->validatePassword($this->password) || $user->status == 0)
-			$this->errorCode=self::ERROR_PASSWORD_INVALID;
 		else{
-			$this->_id=$user->uid;
+			$this->id=$user->uid;
 			//把用户信息存入SESSION
 			$group = UserGroup::model()->findByPk($user->groupid);
 			$this->setState('status', $user->status);
@@ -46,6 +45,6 @@ class OAuthUserIdentity extends CUserIdentity
 	 */
 	public function getId()
 	{
-		return $this->_id;
+		return $this->id;
 	}
 }

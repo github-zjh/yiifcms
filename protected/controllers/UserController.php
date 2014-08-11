@@ -384,7 +384,7 @@ class UserController extends FrontBase
 		}
 		$this->layout = false;
 		$model=new RegisterForm();
-		$userModel = new User();
+		$userModel = new User('register');
 		// if it is ajax validation request
 		if(isset($_POST['ajax']) && $_POST['ajax']==='register-form')
 		{

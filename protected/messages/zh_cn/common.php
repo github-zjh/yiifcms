@@ -50,6 +50,7 @@ return array (
 	'Email Format Is Wrong' => '邮箱格式不正确',
 	'Username is required' => '用户名不能为空',
 	'Password is required' => '密码不能为空',
+	'Login Failed' => '登录失败',
 	'My Account' => '个人中心',
 	
 	//内容列表页

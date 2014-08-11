@@ -19,6 +19,7 @@
  * @property string $qq
  * @property string $last_login_ip
  * @property string $logins
+ * @property string $username_editable
  */
 class User extends CActiveRecord
 {
@@ -38,7 +39,8 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, password, email', 'required'),			
+			array('username, password, email', 'required','on'=>'create, register, update'),			
+			array('username', 'required','on'=>'bind_register'),			
 			array('username, password, email, avatar, sign, web', 'length', 'max'=>100),
 			array('groupid, logins', 'length', 'max'=>10),				
 			array('nickname', 'length', 'max'=>50),
@@ -52,7 +54,7 @@ class User extends CActiveRecord
 			array('last_login_ip', 'length', 'max'=>15),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('uid, username, password, email, groupid, status, addtime, avatar, nickname, sign, web, mobile, qq, last_login_ip, logins', 'safe', 'on'=>'search'),
+			array('uid, username, password, email, groupid, status, addtime, avatar, nickname, sign, web, mobile, qq, last_login_ip, logins, username_editable', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -110,6 +112,7 @@ class User extends CActiveRecord
 			'qq' => Yii::t('model','qq'),
 			'last_login_ip' => Yii::t('model','last_login_ip'),
 			'logins' => Yii::t('model','logins'),
+			'username_editable' => Yii::t('model','username_editable'),
 		);
 	}
 

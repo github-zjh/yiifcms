@@ -4,11 +4,9 @@
  * This is the model class for table "{{oauth_qq}}".
  *
  * The followings are the available columns in table '{{oauth_qq}}':
- * @property string $id
+ * @property string $openid
+ * @property string $access_token
  * @property string $uid
- * @property string $qq_uid
- * @property string $qq_token
- * @property string $qq_info
  */
 class OAuthQQ extends CActiveRecord
 {
@@ -28,12 +26,11 @@ class OAuthQQ extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('uid, qq_uid', 'length', 'max'=>10),
-			array('qq_token', 'length', 'max'=>100),
-			array('qq_info', 'safe'),
+			array('openid, access_token', 'length', 'max'=>100),
+			array('uid', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, uid, qq_uid, qq_token, qq_info', 'safe', 'on'=>'search'),
+			array('openid, access_token, uid', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,11 +51,9 @@ class OAuthQQ extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
+			'openid' => 'Openid',
+			'access_token' => 'Access Token',
 			'uid' => 'Uid',
-			'qq_uid' => 'Qq Uid',
-			'qq_token' => 'Qq Token',
-			'qq_info' => 'Qq Info',
 		);
 	}
 
@@ -80,15 +75,11 @@ class OAuthQQ extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id,true);
+		$criteria->compare('openid',$this->openid,true);
+
+		$criteria->compare('access_token',$this->access_token,true);
 
 		$criteria->compare('uid',$this->uid,true);
-
-		$criteria->compare('qq_uid',$this->qq_uid,true);
-
-		$criteria->compare('qq_token',$this->qq_token,true);
-
-		$criteria->compare('qq_info',$this->qq_info,true);
 
 		return new CActiveDataProvider('OAuthQQ', array(
 			'criteria'=>$criteria,
