@@ -57,7 +57,7 @@
 		    		<?php foreach((array)$oauth as $oa):?>
 		    		<?php if($oa->id == 'qq'):?>
 			    		<li>
-			    			<a href="<?php echo $this->createUrl('OAuth/qq')?>">
+			    			<a href="<?php echo $this->createUrl('oAuth/qq')?>">
 			    				<img src="<?php echo $this->_stylePath?>/images/qq_login.png" width="60" height="60" />
 			    				<span>QQ账号登录</span>
 			    			</a>		    			

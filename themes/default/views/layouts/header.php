@@ -90,11 +90,11 @@
 		<div id="logout">		
 			<a href="<?php echo $this->createUrl('user/index');?>" class="show_drop">
 				<?php $profile= User::model()->findByPk(Yii::app()->user->id);?>
-				<img src="<?php echo file_exists($profile->avatar)?$profile->avatar:$this->_stylePath.'/images/avatar-max-img.png';?>" width="24" height="24" />
+				<img src="<?php echo file_get_contents($profile->avatar)?$profile->avatar:$this->_stylePath.'/images/avatar-max-img.png';?>" width="24" height="24" />
 				<label><?php echo Yii::t('common','My Account');?><i class="fa fa-sort-desc"></i></label>
 			</a>
 			<div id="drop_down_user">
-				<a class="fl" href="<?php echo $this->createUrl('user/index');?>"><img src="<?php echo file_exists($profile->avatar)?$profile->avatar:$this->_stylePath.'/images/avatar-max-img.png';?>" width="80"/></a>
+				<a class="fl" href="<?php echo $this->createUrl('user/index');?>"><img src="<?php echo file_get_contents($profile->avatar)?$profile->avatar:$this->_stylePath.'/images/avatar-max-img.png';?>" width="80"/></a>
 				<div class="fl user_simple">
 					<p><label>账号：</label><a href="<?php echo $this->createUrl('user/index');?>"><?php echo Yii::app()->user->name;?></a></p>
 					<p><label>昵称：</label><a href="<?php echo $this->createUrl('user/index');?>"><?php echo Yii::app()->user->nickname;?></a></p>
