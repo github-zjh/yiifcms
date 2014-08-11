@@ -29,19 +29,50 @@
     <td ><?php echo $form->textField($model,'apiname',array('size'=>20,'maxlength'=>50, 'class'=>'validate[required]')); ?></td>
   </tr>
   <tr>
-    <td class="tb_title"><?php echo Yii::t('admin','ApiKey');?>(appkey/apikey/微信公共账号)：	 
-    </td>
+    <td class="tb_title"><?php echo Yii::t('model','ApiConfig');?>：</td>
   </tr>
   <tr >
     <td class="appdata">    	
-    	<?php echo $form->textField($model, 'apikey', array('size'=>50,'maxlength'=>100));?>    	
+    	<?php if($model->id == 'qq'):?>
+    	<label class="config_label">appid(应用id)：</label><input type="text" name="config[appid]" value="<?php echo $apiconfig['appid'];?>" /><br/><br/>
+    	<label class="config_label">appkey(应用key)：</label><input type="text" name="config[appkey]" value="<?php echo $apiconfig['appkey'];?>" size="50" /><br/><br/>
+    	<label class="config_label">callback(回调地址)：</label><input type="text" name="config[callback]" value="<?php echo $apiconfig['callback'];?>" size="35"/>(默认为本站域名)<br/><br/>
+    	
+    	<?php else:?>
+    	<?php echo $form->textField($model, 'apiconfig', array('size'=>50,'maxlength'=>100));?>
+    	<?php endif;?>    	
     </td>    
   </tr>  
+  <?php if($model->id == 'qq'):?>
+  <tr>
+    <td class="tb_title">请求授权列表：<input type="checkbox" name="chkall" id="chkall" onclick="checkAll(this.form, 'scope')" />
+          <label for="chkall"><?php echo Yii::t('admin','Check All');?></label></td>
+  </tr>
+  <tr>
+  	<td>
+  		<?php
+			$scope = array("get_user_info","add_t","del_t","get_info");
+			$scopeArr = $scope;
+			$i=1;
+			foreach($scopeArr as $val){
+		?>
+				<input type="checkbox" name="scope[]" value="<?php echo $val?>" id="<?php echo $val?>" <?php $this->selected($val, explode(',',$apiconfig['scope']),'checked');?>/>
+				<label  class="qq_oauth_list" for="<?php echo $val?>"><?php echo Yii::t('admin','qq_scope_'.$val);?></label>&nbsp;			
+			<?php
+				if($i%5==0 && $i>4){
+					echo "</br>";
+				}
+				$i++;
+			}
+			?>    	
+  	</td>
+  </tr>
+  <?php endif;?>
   <tr>
     <td class="tb_title"><?php echo Yii::t('admin','Show Status');?>：</td>
   </tr>
   <tr >
-    <td ><?php echo $form->dropDownList($model,'status',array('Y'=>Yii::t('admin','Yes'), 'N'=>Yii::t('admin','No'))); ?></td>
+    <td ><?php echo $form->dropDownList($model,'status',array('Y'=>Yii::t('admin','Enable'), 'N'=>Yii::t('admin','Disable'))); ?></td>
   </tr>
   <tr class="submit">
     <td >

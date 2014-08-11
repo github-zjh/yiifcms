@@ -6,7 +6,7 @@
  * The followings are the available columns in table '{{oauth}}':
  * @property string $id
  * @property string $apiname
- * @property string $apikey
+ * @property string $apiconfig
  * @property string $status
  */
 class OAuth extends CActiveRecord
@@ -29,11 +29,11 @@ class OAuth extends CActiveRecord
 		return array(
 			array('id', 'length', 'max'=>30),
 			array('apiname', 'length', 'max'=>50),
-			array('apikey', 'length', 'max'=>100),
 			array('status', 'length', 'max'=>1),
+			array('apiconfig', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, apiname, apikey, status', 'safe', 'on'=>'search'),
+			array('id, apiname, apiconfig, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,7 +56,7 @@ class OAuth extends CActiveRecord
 		return array(
 			'id' => 'Id',
 			'apiname' => 'Apiname',
-			'apikey' => 'Apikey',
+			'apiconfig' => 'Apiconfig',
 			'status' => 'Status',
 		);
 	}
@@ -83,7 +83,7 @@ class OAuth extends CActiveRecord
 
 		$criteria->compare('apiname',$this->apiname,true);
 
-		$criteria->compare('apikey',$this->apikey,true);
+		$criteria->compare('apiconfig',$this->apiconfig,true);
 
 		$criteria->compare('status',$this->status,true);
 

@@ -5,13 +5,13 @@ return array(
 	'sample1'=>array(
 		'id' => '',
 		'apiname' => '',
-		'apikey' => '',
+		'apiconfig' => '',
 		'status' => '',
 	),
 	'sample2'=>array(
 		'id' => '',
 		'apiname' => '',
-		'apikey' => '',
+		'apiconfig' => '',
 		'status' => '',
 	),
 	*/

@@ -11,9 +11,18 @@ class OAuthController extends FrontBase
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
 	 */
-	public function actionIndex()
-	{		
-		
+	public function actionQq()
+	{			
+		require_once(Yii::getPathOfAlias('ext')."/OAuth/qq/qqConnectAPI.php");
+		$qc = new QC();
+		$qc->qq_login();
+	}
+	public function actionQq_callback()
+	{
+		require_once(Yii::getPathOfAlias('ext')."/OAuth/qq/qqConnectAPI.php");
+		$qc = new QC();
+		echo $qc->qq_callback();
+		echo $qc->get_openid();
 	}
 	
 }

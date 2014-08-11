@@ -46,24 +46,6 @@ class OAuthController extends Backend
         $result = $model->findAll($criteria);
         $this->render('index', array ('datalist' => $result , 'pagebar' => $pages ));
     }
-    
-    /**
-     * 添加新接口
-     * 
-     */
-    public function actionCreate ()
-    {
-        $model = new OAuth();
-        if (isset($_POST['OAuth'])) {
-            $model->attributes = $_POST['OAuth'];            
-            if ($model->save()) {                
-                $this->redirect(array ('index' ));
-            }
-        }
-        
-        $this->render('create', array ('model' => $model ));
-    
-    }
 
     /**
 	 * 更新接口
@@ -71,14 +53,36 @@ class OAuthController extends Backend
 	 */
     public function actionUpdate ($id)
     {
-        $model = $this->loadModel();              
-        if (isset($_POST['OAuth'])) {
-            $remove = $this->_request->getParam('remove');
-            $model->attributes = $_POST['OAuth'];                    
+        $model = $this->loadModel();             
+        $extension_oauth =  Yii::getPathOfAlias('ext')."/OAuth";
+        if (isset($_POST['OAuth'])) {            
+            $model->attributes = $_POST['OAuth'];
+            switch($model->id){
+            	case 'qq':
+            		$config['appid'] = intval($_POST['config']['appid']);
+            		$config['appkey'] = trim($_POST['config']['appkey']);
+            		$config['callback'] = trim($_POST['config']['callback']);            		
+            		$config['scope'] = $_POST['scope']?implode(',', $_POST['scope']):"";
+            		$config['errorReport'] = true;
+            		$config['storageType'] = 'file';
+            		$model->apiconfig = CJSON::encode($config);
+            		//写入配置文件
+            		$setting = "<?php die('forbidden'); ?>\n";
+            		$setting .= $model->apiconfig;
+            		$setting = str_replace("\/", "/",$setting);
+            		$incFile = fopen($extension_oauth."/qq/comm/inc.php","w+") or die("请设置API\comm\inc.php的权限为777");
+            		if(fwrite($incFile, $setting)){            			
+            			fclose($incFile);            			
+            		}            		
+            		break;
+            }                    
         	if($model->save())
         		$this->message('success',Yii::t('admin','Update Success'),$this->createUrl('index'));
-        }       
-        $this->render('update', array ('model' => $model ));
+        }    
+
+        //获取接口配置信息
+        $apiconfig = CJSON::decode($model->apiconfig);
+        $this->render('update', array ('model' => $model ,'apiconfig'=>$apiconfig));
     
     }
    
@@ -101,7 +105,7 @@ class OAuthController extends Backend
         empty($ids) && $this->message('error', Yii::t('admin','No Select'));
         
         switch ($command) {              
-            case 'Show':
+            case 'Enable':
         		foreach((array)$ids as $id){
             		$oauthModel = OAuth::model()->findByPk($id);
             		if($oauthModel){
@@ -110,7 +114,7 @@ class OAuthController extends Backend
             		}
             	}
                 break;
-            case 'Hidden':
+            case 'Disable':
         		foreach((array)$ids as $id){
             		$oauthModel = OAuth::model()->findByPk($id);
             		if($oauthModel){

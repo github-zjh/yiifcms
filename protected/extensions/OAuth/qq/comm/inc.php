@@ -1,0 +1,2 @@
+<?php die('forbidden'); ?>
+{"appid":101145243,"appkey":"1016c728351ccd6756becae709b295f3","callback":"yiifcms.com/OAuth/qq_callback","scope":"get_user_info,add_t,del_t,get_info","errorReport":true,"storageType":"file"}

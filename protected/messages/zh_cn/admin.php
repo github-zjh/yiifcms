@@ -30,9 +30,10 @@ return array (
 	'Manage' => '管理',
 	'System Home' => '系统首页',
 	'Success' => '成功',
-	'Failed' =>'失败',
-	'ApiKey' => '接口Key',
+	'Failed' =>'失败',	
 	'Parent ID can not eque itself ID' =>'上级分类不能和本分类相同',
+	'Enable' => '启用',
+	'Disable' => '禁用',
 	
 	/* 设置 */
 	'Web Set' => '站点设置',
@@ -303,4 +304,9 @@ return array (
 	'OAuth SinaWb' => '新浪微博登录',
 	'OAuth WeiXin' => '微信登录',
 	'OAuth RenRen' => '人人网登录',
+	'qq_scope_get_user_info' => '用户基本信息',
+	'qq_scope_add_t' => '发布一条微博',
+	'qq_scope_del_t' => '删除一条微博',
+	'qq_scope_get_info' => '获取微博资料',
+	
 );

@@ -10,6 +10,7 @@ $(function(){
 关键词整获取
 */
 function keywordGet(titleId, contentId, keywordIdSet){
+	
 	var title = $("#"+titleId).val();
 	var content = $("#"+contentId).val();
 	$.post('<?php echo $this->createUrl('default/keyword')?>',{'title':title,'content':content},function(res){
@@ -22,6 +23,7 @@ function keywordGet(titleId, contentId, keywordIdSet){
 }
 
 function uploadifyAction(fileField,frameId) {
+	
     $.Zebra_Dialog('', {
         source: {
             'iframe': {           
@@ -57,7 +59,8 @@ function uploadifyAction(fileField,frameId) {
     });
 }
 //删除文件
-function uploadifyRemove(fileId,attrName, otherid=''){	
+function uploadifyRemove(fileId,attrName, otherid){	
+	
 	if(confirm('本操作不可恢复，确定继续？')){
 		$.post("<?php echo $this->createUrl('uploadify/remove')?>",{imageId:fileId},function(res){
 			$("#"+attrName+fileId).remove();
@@ -69,10 +72,12 @@ function uploadifyRemove(fileId,attrName, otherid=''){
 }
 //js转换字符<>&
 function _escape(val) {
+	
 	return val.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 //js反转换字符<>&
 function _unescape(val) {
+	
 	return val.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&amp;/g, '&');
 }
 

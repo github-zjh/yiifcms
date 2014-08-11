@@ -123,3 +123,8 @@ body[dir='rtl'] .formError .formErrorArrow, body.rtl .formError .formErrorArrow 
 #error img { padding: 0 0 5px 260px; }
 #error .redirect a{text-decoration:none;font-size: 12px;color:#FFFF00;}
 #error .redirect a:hover{text-decoration:underline;color:#FFF;}
+
+
+/* 部分表单样式 */
+.config_label { width:130px; display:inline-block;}
+.qq_oauth_list { width:120px; display:inline-block;}

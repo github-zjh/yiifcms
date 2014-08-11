@@ -136,4 +136,8 @@ return array(
 		'MailLevel' => '邮件优先级',
 		'MailTimes' => '发送次数',
 		'MailError' => '发送失败原因',
+		
+		'ApiName' => '接口名称',
+		'ApiConfig' => '接口配置',
+		
 );
