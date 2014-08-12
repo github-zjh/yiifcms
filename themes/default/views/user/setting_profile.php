@@ -11,8 +11,9 @@
 			array('id'=>'edit_form','htmlOptions'=>array('name'=>'edit_form','enctype'=>'multipart/form-data'))); 
 		?>
 			<table class="base_table">
-				<tr><th><?php echo $form->label($model,'username');?>：</th><td><?php echo Yii::app()->user->name;?></td></tr>
-				<tr><th><?php echo $form->label($model,'email');?>：</th><td><?php echo Yii::app()->user->email;?></td></tr>
+				<tr><th><?php echo $form->label($model,'username');?>：</th><td><?php echo $model->username;?></td></tr>
+				<tr><th><?php echo $form->label($model,'email');?>：</th><td><?php if($model->email):?><?php echo $model->email;?><?php else:?>
+				<a href="<?php echo $this->createUrl('user/settingEmail');?>">重设邮箱</a><?php endif;?></td></tr>
 				<tr><th><?php echo $form->label($model,'nickname');?>：</th><td><?php echo $form->textField($model,'nickname');?></td></tr>
 				<tr><th><?php echo $form->label($model,'sign');?>：</th><td><?php echo $form->textArea($model,'sign');?></td></tr>
 				<tr><th><?php echo $form->label($model,'web');?>：</th><td><?php echo $form->textField($model,'web');?></td></tr>

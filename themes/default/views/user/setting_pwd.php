@@ -13,7 +13,7 @@
 				)); 
 		?>
 			<table class="base_table">			
-				<tr><th><?php echo $form->label($model,'initpassword');?>：</th><td><?php echo $form->passwordField($model,'initpassword');?></td></tr>
+				<?php if(!$password_empty):?><tr><th><?php echo $form->label($model,'initpassword');?>：</th><td><?php echo $form->passwordField($model,'initpassword');?></td></tr><?php endif;?>
 				<tr><th><?php echo $form->label($model,'newpassword');?>：</th><td><?php echo $form->passwordField($model,'newpassword');?></td></tr>	
 				<tr><th><?php echo $form->label($model,'confirmpassword');?>：</th><td><?php echo $form->passwordField($model,'confirmpassword');?></td></tr>							
 				<tr>

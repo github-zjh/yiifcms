@@ -25,13 +25,13 @@ class SetPwdForm extends CFormModel
 	{
 		return array(
 			// username and password are required	
-			array('initpassword, newpassword, confirmpassword','required'),			
+			array('newpassword, confirmpassword','required'),			
 			array('newpassword','length','min'=>6, 'max'=>30, 
 				'tooShort'=>Yii::t('common','new password length is between 6 and 30'),
 				'tooLong'=>Yii::t('common','new password length is between 6 and 40'),					
 			),
 			array('confirmpassword', 'compare', 'compareAttribute'=>'newpassword','message'=>Yii::t('common','The two passwords do not match')),
-		
+	        array('initpassword, newpassword, confirmpassword','safe'),	
 		);
 	}
 
@@ -52,9 +52,9 @@ class SetPwdForm extends CFormModel
 	 * @return boolean
 	 */
 	
-	public function checkPwd(){		
+	public function checkPwd(){	
 		$user = User::model()->findByPk($this->id);
-		if($user->validatePassword($this->initpassword)){
+		if(!$this->initpassword || !$user->validatePassword($this->initpassword)){
 			$this->addError('initpassword', Yii::t('common','Init Password Is Wrong'));
 			return false;
 		}

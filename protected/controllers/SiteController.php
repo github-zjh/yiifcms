@@ -63,7 +63,7 @@ class SiteController extends FrontBase
 		
 		//友情链接
 		$link_logos = Link::model()->findAll("logo !='' AND status_is='Y'", array('order'=>'sortorder ASC, id DESC'));
-		$link_texts = Link::model()->findAll("logo ='' AND status_is='Y'", array('order'=>'sortorder ASC, id DESC'));
+		$link_texts = Link::model()->findAll("logo ='' or logo is null AND status_is='Y'", array('order'=>'sortorder ASC, id DESC'));
 		$this->render('index',compact(
 			array(
 					'index_top_banner', 

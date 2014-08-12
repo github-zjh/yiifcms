@@ -83,7 +83,7 @@ class UserController extends FrontBase
 	    $old_avatar = $model->avatar;	   
 	  	    
 	    if(isset($_POST['User'])){
-	    	$model->attributes = $_POST['User'];
+	    	$model->attributes = array_map('trim',$_POST['User']);
 	    	//把确定上传的头像重命名
 	    	$new_avatar =  str_replace('old_','',$model->avatar);	 
 	    	@rename($model->avatar,$new_avatar);
@@ -102,6 +102,8 @@ class UserController extends FrontBase
     				}
     				Uploader::deleteFile($old);	    			
 	    		}	   		  
+				//同步昵称
+				Yii::app()->user->nickname = $model->nickname;
 	    		$this->redirect($this->createUrl('index'));
 	    	}
 	    }
@@ -158,29 +160,25 @@ class UserController extends FrontBase
 			}else{
 			
 				$post = array_map('trim', $_POST);
-				$initemail = $post['initEmail'];
 				$newemail = $post['newEmail'];
 				$captcha = $post['captchaEmail'];
-				if($initemail != $model->email){
-					$model->addError('email',Yii::t('common','Please Input Right Init Email'));
+
+				if(!$newemail || !preg_match($reg, $newemail)){
+					$model->addError('email',Yii::t('common','Please Input Right New Email'));
 				}else{
-					
-					if(!$newemail || !preg_match($reg, $newemail)){
-						$model->addError('email',Yii::t('common','Please Input Right New Email'));
+					if($newemail == $model->email){
+						//校验邮箱唯一性
+						$model->addError('email',Yii::t('common','Please Input Different Email'));
 					}else{
-						if($newemail == $model->email){
-							//校验邮箱唯一性
-							$model->addError('email',Yii::t('common','Please Input Different Email'));
-						}else{
-							$acceptCaptcha = Yii::app()->session[$newemail.'_captcha'];
-							if(!$captcha || $captcha != $acceptCaptcha){
-								$model->addError('email',Yii::t('common','Please Input Right Email Captcha'));
-							}
+						$acceptCaptcha = Yii::app()->session[$newemail.'_captcha'];
+						if(!$captcha || $captcha != $acceptCaptcha){
+							$model->addError('email',Yii::t('common','Please Input Right Email Captcha'));
 						}
 					}
 				}
-				$model->email = $newemail;		
-				if(!$model->getErrors() && $model->save()){
+				if(!$model->getErrors()){
+					$model->email = $newemail;	
+					$model->save();
 					unset(Yii::app()->session[$newemail.'_captcha']);
 					$this->message('success',Yii::t('common','Reset Email Success'),$this->createUrl('index'));
 				}
@@ -205,20 +203,30 @@ class UserController extends FrontBase
 		if($user->status == -1){
 			$this->redirect($this->createUrl('activeEmail'));
 		}
-		
+	    //判断账号的密码是否为空
+		if($user->validatePassword(' ')){
+			$password_empty = true;
+		}else{
+			$password_empty = false;
+		}
 		$model = new SetPwdForm();
 		$model->id = $user->uid;	
 							
 		if(isset($_POST['SetPwdForm'])){
-			$model->attributes = $_POST['SetPwdForm'];	
-			if($model->validate()){
+			$model->attributes = $_POST['SetPwdForm'];
+			if(!$password_empty){
+				//校验原始密码
+				$model->checkPwd();
+			}
+			if(!$model->getErrors() && $model->validate()){
 				$user->password = User::createPassword($model->newpassword);
 				if($user->save()){
-					$this->message('success',Yii::t('common','Update Password Success'),$this->createUrl('user/logout'));
+					Yii::app()->user->logout(false);
+					$this->message('success',Yii::t('common','Update Password Success'),$this->createUrl('user/login'));
 				}	
 			}
 		}		
-		$this->render('setting_pwd', array('model'=>$model));
+		$this->render('setting_pwd', array('model'=>$model,'user'=>$user,'password_empty'=>$password_empty));
 	}
 	
 	/**

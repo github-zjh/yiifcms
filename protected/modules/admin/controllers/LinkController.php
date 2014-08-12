@@ -58,14 +58,16 @@ class LinkController extends Backend
         $model = new Link();
         if (isset($_POST['Link'])) {
             $model->attributes = $_POST['Link'];
-            $upload = new Uploader;
-            $upload->uploadFile($_FILES['logo']);
-            if ($upload->_error) {
-            	$this->message('error', Yii::t('admin',$upload->_error));
-            	return;            	
-            	
-            }
-            $model->logo = $upload->_file_name;
+            if($_FILES['logo']['error'] == UPLOAD_ERR_OK){
+				$upload = new Uploader;
+				$upload->uploadFile($_FILES['logo']);
+				if ($upload->_error) {
+					$this->message('error', Yii::t('admin',$upload->_error));
+					return;            	
+
+				}
+				$model->logo = $upload->_file_name;
+			}
             if ($model->save()) {                
                 $this->redirect(array ('index' ));
             }
