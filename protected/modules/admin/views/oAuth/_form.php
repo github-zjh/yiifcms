@@ -36,9 +36,13 @@
     	<?php if($model->id == 'qq'):?>
     	<label class="config_label">appid(应用id)：</label><input type="text" name="config[appid]" value="<?php echo $apiconfig['appid'];?>" /><br/><br/>
     	<label class="config_label">appkey(应用key)：</label><input type="text" name="config[appkey]" value="<?php echo $apiconfig['appkey'];?>" size="50" /><br/><br/>
-    	<label class="config_label">callback(回调地址)：</label><input type="text" name="config[callback]" value="<?php echo $apiconfig['callback'];?>" size="35"/>(域名/oAuth/qq_callback)<br/><br/>
+    	<label class="config_label">callback(回调地址)：</label><input type="text" name="config[callback]" value="<?php echo $apiconfig['callback'];?>" size="50"/>(域名/oAuth/qq_callback)<br/><br/>
     	
-    	<?php else:?>
+    	<?php elseif($model->id == 'sinawb'):?>
+    	<label class="config_label">App Key(应用key)：</label><input type="text" name="config[wb_akey]" value="<?php echo $apiconfig['wb_akey'];?>" /><br/><br/>
+    	<label class="config_label">App Secret(应用secret)：</label><input type="text" name="config[wb_skey]" value="<?php echo $apiconfig['wb_skey'];?>" size="50" /><br/><br/>
+    	<label class="config_label">callback(回调地址)：</label><input type="text" name="config[callback]" value="<?php echo $apiconfig['callback'];?>" size="50"/>(域名/oAuth/sinawb_callback)<br/><br/>
+		<?php else:?>
     	<?php echo $form->textField($model, 'apiconfig', array('size'=>50,'maxlength'=>100));?>
     	<?php endif;?>    	
     </td>    

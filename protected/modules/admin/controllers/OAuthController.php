@@ -70,11 +70,27 @@ class OAuthController extends Backend
             		$setting = "<?php die('forbidden'); ?>\n";
             		$setting .= $model->apiconfig;
             		$setting = str_replace("\/", "/",$setting);
-            		$incFile = fopen($extension_oauth."/qq/comm/inc.php","w+") or die("请设置API\comm\inc.php的权限为777");
+            		$incFile = fopen($extension_oauth."/qq/comm/inc.php","w+") or die("请设置{$extension_oauth}/qq/comm/inc.php的权限为777");
             		if(fwrite($incFile, $setting)){            			
             			fclose($incFile);            			
             		}            		
             		break;
+				case 'sinawb':
+					$config['wb_akey'] = trim($_POST['config']['wb_akey']);
+					$config['wb_skey'] = trim($_POST['config']['wb_skey']);
+					$config['callback'] = trim($_POST['config']['callback']);
+					$model->apiconfig = CJSON::encode($config);
+					//写入配置文件
+					$setting = "<?php\nheader('Content-Type: text/html; charset=UTF-8'); \n";
+					$setting .= "define( \"WB_AKEY\" , '".$config['wb_akey']."' );\n";
+					$setting .= "define( \"WB_SKEY\" , '".$config['wb_skey']."' );\n";
+					$setting .= "define( \"WB_CALLBACK_URL\" , '".$config['callback']."' );\n";
+            		$setting = str_replace("\/", "/",$setting);					
+					$incFile = fopen($extension_oauth."/sinawb/config.php","w+") or die("请设置{$extension_oauth}/sinawb/config.php的权限为777");
+            		if(fwrite($incFile, $setting)){            			
+            			fclose($incFile);            			
+            		}
+					break;
             }                    
         	if($model->save())
         		$this->message('success',Yii::t('admin','Update Success'),$this->createUrl('index'));

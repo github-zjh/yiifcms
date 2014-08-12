@@ -31,21 +31,87 @@ class OAuthController extends FrontBase
 		$qc = new QC($access_token, $openid);
 		$user_info = $qc->get_user_info();
 		//查看是否已绑定
-		$qq_bind = OAuthQQ::model()->findByPk($openid);
+		$bind = OAuthQQ::model()->findByPk($openid);
 
 		//数据
 		$data = array(
 				'type'=>'qq', 
 				'access_token'=>$access_token, 
-				'openid'=>'openid',
-				'uid'=>$qq_bind?$qq_bind->uid:0,
+				'openid'=>$openid,
+				'uid'=>$bind?$bind->uid:0,
 				'username'=>$user_info['nickname'],
 				'avatar'=>$user_info['figureurl_2']
 		);
 		
 		//绑定注册
-		$this->bind_register($qq_bind, $data);
+		$this->bind_register($bind, $data);
 				
+	}
+
+	/**
+	 * 新浪微博授权登录
+	 * sinawb login
+	 */
+	public function actionSinawb(){
+		require_once(Yii::getPathOfAlias('ext')."/OAuth/sinawb/config.php");
+		require_once(Yii::getPathOfAlias('ext')."/OAuth/sinawb/saetv2.ex.class.php");
+
+	    $sinawb = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
+		$code_url = $sinawb->getAuthorizeURL( WB_CALLBACK_URL );
+		$this->redirect($code_url);
+	}
+	
+	/**
+	 * 新浪微博回调地址
+	 * sinawb login
+	 */
+	public function actionSinawb_callback(){
+		require_once(Yii::getPathOfAlias('ext')."/OAuth/sinawb/config.php");
+		require_once(Yii::getPathOfAlias('ext')."/OAuth/sinawb/saetv2.ex.class.php");
+
+	    $sinawb = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
+        
+		if (isset($_REQUEST['code'])) {
+			$keys = array();
+			$keys['code'] = $_REQUEST['code'];
+			$keys['redirect_uri'] = WB_CALLBACK_URL;
+			try {
+				$token = $sinawb->getAccessToken( 'code', $keys ) ;
+			} catch (OAuthException $e) {
+				throw new CHttpException(500,$e->getMessage());
+			}
+		}
+
+		if ($token) {
+			$access_token = Yii::app()->session['access_token'] = $token['access_token'];
+			$openid = $token['uid'];
+			//设置cookie
+			$cookie_name = 'weibojs_'.$openid;
+			$cookie = new CHttpCookie($cookie_name, http_build_query($token));
+			$cookie->expire = time()+60*60*24*30;  //有限期30天
+			Yii::app()->request->cookies[$cookie_name]=$cookie;
+            
+			//获取用户信息
+			$user_info = $sinawb->get('https://api.weibo.com/2/users/show.json', array('uid'=>$openid, 'access_token'=>$access_token));
+
+			//查看是否已绑定
+			$bind = OAuthSinawb::model()->findByPk($openid);
+
+			//数据
+			$data = array(
+					'type'=>'sinawb', 
+					'access_token'=>$access_token, 
+					'openid'=>$openid,
+					'uid'=>$bind?$bind->uid:0,
+					'username'=>$user_info['screen_name'],
+					'avatar'=>$user_info['avatar_large']
+					);
+			//绑定注册
+			$this->bind_register($bind, $data);
+
+		}else{
+			throw new CHttpException(500,Yii::t('common','Login Failed').'(1000)');
+		}
 	}
 
 	/**
@@ -68,8 +134,6 @@ class OAuthController extends FrontBase
             switch($data['type']){
 				case 'qq':
 					$model = new OAuthQQ();
-					$model->openid = $openid;
-					$model->access_token = $access_token;
 					break;
                 case 'sinawb':
 					$model = new OAuthSinawb();
@@ -85,6 +149,8 @@ class OAuthController extends FrontBase
 					break;
 			}
 			$model->uid = 0; 
+			$model->openid = $data['openid'];
+			$model->access_token = $data['access_token'];
 
 			//判断用户名是否已经存在
 			$if_exist = User::model()->find('username=:username', array(':username'=>$username));

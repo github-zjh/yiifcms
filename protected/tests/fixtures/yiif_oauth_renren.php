@@ -3,16 +3,14 @@
 return array(
 	/*
 	'sample1'=>array(
+		'openid' => '',
+		'access_token' => '',
 		'uid' => '',
-		'renren_uid' => '',
-		'renren_token' => '',
-		'renren_info' => '',
 	),
 	'sample2'=>array(
+		'openid' => '',
+		'access_token' => '',
 		'uid' => '',
-		'renren_uid' => '',
-		'renren_token' => '',
-		'renren_info' => '',
 	),
 	*/
 );

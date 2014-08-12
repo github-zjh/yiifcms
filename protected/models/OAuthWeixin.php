@@ -4,11 +4,9 @@
  * This is the model class for table "{{oauth_weixin}}".
  *
  * The followings are the available columns in table '{{oauth_weixin}}':
- * @property string $id
+ * @property string $openid
+ * @property string $access_token
  * @property string $uid
- * @property string $weixin_uid
- * @property string $weixin_token
- * @property string $weixin_info
  */
 class OAuthWeixin extends CActiveRecord
 {
@@ -28,12 +26,11 @@ class OAuthWeixin extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('uid, weixin_uid', 'length', 'max'=>10),
-			array('weixin_token', 'length', 'max'=>100),
-			array('weixin_info', 'safe'),
+			array('openid, access_token', 'length', 'max'=>100),
+			array('uid', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, uid, weixin_uid, weixin_token, weixin_info', 'safe', 'on'=>'search'),
+			array('openid, access_token, uid', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,11 +51,9 @@ class OAuthWeixin extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
+			'openid' => 'Openid',
+			'access_token' => 'Access Token',
 			'uid' => 'Uid',
-			'weixin_uid' => 'Weixin Uid',
-			'weixin_token' => 'Weixin Token',
-			'weixin_info' => 'Weixin Info',
 		);
 	}
 
@@ -80,15 +75,11 @@ class OAuthWeixin extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id,true);
+		$criteria->compare('openid',$this->openid,true);
+
+		$criteria->compare('access_token',$this->access_token,true);
 
 		$criteria->compare('uid',$this->uid,true);
-
-		$criteria->compare('weixin_uid',$this->weixin_uid,true);
-
-		$criteria->compare('weixin_token',$this->weixin_token,true);
-
-		$criteria->compare('weixin_info',$this->weixin_info,true);
 
 		return new CActiveDataProvider('OAuthWeixin', array(
 			'criteria'=>$criteria,

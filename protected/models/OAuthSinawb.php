@@ -4,11 +4,9 @@
  * This is the model class for table "{{oauth_sinawb}}".
  *
  * The followings are the available columns in table '{{oauth_sinawb}}':
- * @property string $id
+ * @property string $openid
+ * @property string $access_token
  * @property string $uid
- * @property string $sinawb_uid
- * @property string $sinawb_token
- * @property string $sinawb_info
  */
 class OAuthSinawb extends CActiveRecord
 {
@@ -28,12 +26,11 @@ class OAuthSinawb extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('uid, sinawb_uid', 'length', 'max'=>10),
-			array('sinawb_token', 'length', 'max'=>100),
-			array('sinawb_info', 'safe'),
+			array('openid, access_token', 'length', 'max'=>100),
+			array('uid', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, uid, sinawb_uid, sinawb_token, sinawb_info', 'safe', 'on'=>'search'),
+			array('openid, access_token, uid', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,11 +51,9 @@ class OAuthSinawb extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
+			'openid' => 'Openid',
+			'access_token' => 'Access Token',
 			'uid' => 'Uid',
-			'sinawb_uid' => 'Sinawb Uid',
-			'sinawb_token' => 'Sinawb Token',
-			'sinawb_info' => 'Sinawb Info',
 		);
 	}
 
@@ -80,15 +75,11 @@ class OAuthSinawb extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id,true);
+		$criteria->compare('openid',$this->openid,true);
+
+		$criteria->compare('access_token',$this->access_token,true);
 
 		$criteria->compare('uid',$this->uid,true);
-
-		$criteria->compare('sinawb_uid',$this->sinawb_uid,true);
-
-		$criteria->compare('sinawb_token',$this->sinawb_token,true);
-
-		$criteria->compare('sinawb_info',$this->sinawb_info,true);
 
 		return new CActiveDataProvider('OAuthSinawb', array(
 			'criteria'=>$criteria,

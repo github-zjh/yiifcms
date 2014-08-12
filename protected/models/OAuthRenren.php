@@ -4,11 +4,9 @@
  * This is the model class for table "{{oauth_renren}}".
  *
  * The followings are the available columns in table '{{oauth_renren}}':
- * @property string $id
+ * @property string $openid
+ * @property string $access_token
  * @property string $uid
- * @property string $renren_uid
- * @property string $renren_token
- * @property string $renren_info
  */
 class OAuthRenren extends CActiveRecord
 {
@@ -28,12 +26,11 @@ class OAuthRenren extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('uid, renren_uid', 'length', 'max'=>10),
-			array('renren_token', 'length', 'max'=>100),
-			array('renren_info', 'safe'),
+			array('openid, access_token', 'length', 'max'=>100),
+			array('uid', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, uid, renren_uid, renren_token, renren_info', 'safe', 'on'=>'search'),
+			array('openid, access_token, uid', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,11 +51,9 @@ class OAuthRenren extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
+			'openid' => 'Openid',
+			'access_token' => 'Access Token',
 			'uid' => 'Uid',
-			'renren_uid' => 'Renren Uid',
-			'renren_token' => 'Renren Token',
-			'renren_info' => 'Renren Info',
 		);
 	}
 
@@ -80,15 +75,11 @@ class OAuthRenren extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id,true);
+		$criteria->compare('openid',$this->openid,true);
+
+		$criteria->compare('access_token',$this->access_token,true);
 
 		$criteria->compare('uid',$this->uid,true);
-
-		$criteria->compare('renren_uid',$this->renren_uid,true);
-
-		$criteria->compare('renren_token',$this->renren_token,true);
-
-		$criteria->compare('renren_info',$this->renren_info,true);
 
 		return new CActiveDataProvider('OAuthRenren', array(
 			'criteria'=>$criteria,

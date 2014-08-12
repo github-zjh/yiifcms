@@ -64,7 +64,7 @@
 			    		</li>
 			    	<?php elseif($oa->id == 'sinawb'):?>
 			    		<li>
-			    			<a href="#">
+			    			<a href="<?php echo $this->createUrl('oAuth/sinawb');?>">
 			    				<img src="<?php echo $this->_stylePath?>/images/sina_weibo_login.png" width="60"  height="60"/>
 			    				<span>新浪微博登录</span>
 			    			</a>		    			
