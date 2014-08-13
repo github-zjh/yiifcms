@@ -68,8 +68,9 @@ class OAuthController extends FrontBase
 	public function actionSinawb_callback(){
 		require_once(Yii::getPathOfAlias('ext')."/OAuth/sinawb/config.php");
 		require_once(Yii::getPathOfAlias('ext')."/OAuth/sinawb/saetv2.ex.class.php");
-
-	    $sinawb = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
+		
+	    
+		$sinawb = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
         
 		if (isset($_REQUEST['code'])) {
 			$keys = array();
@@ -78,10 +79,9 @@ class OAuthController extends FrontBase
 			try {
 				$token = $sinawb->getAccessToken( 'code', $keys ) ;
 			} catch (OAuthException $e) {
-				throw new CHttpException(500,$e->getMessage());
+				throw new CHttpException(500,'Error:'.$e->getMessage());
 			}
 		}
-
 		if ($token) {
 			$access_token = Yii::app()->session['access_token'] = $token['access_token'];
 			$openid = $token['uid'];
@@ -92,8 +92,12 @@ class OAuthController extends FrontBase
 			Yii::app()->request->cookies[$cookie_name]=$cookie;
             
 			//获取用户信息
-			$user_info = $sinawb->get('https://api.weibo.com/2/users/show.json', array('uid'=>$openid, 'access_token'=>$access_token));
-
+			$c = new SaeTClientV2( WB_AKEY , WB_SKEY , $access_token );
+			$user_info = $c->show_user_by_id( $openid);//根据ID获取用户等基本信息
+			if($user_info['error']){
+				throw new CHttpException('500', Yii::t('common','Login Failed').'('.$user_info['error_code'].')');
+			}
+			
 			//查看是否已绑定
 			$bind = OAuthSinawb::model()->findByPk($openid);
 
@@ -106,11 +110,12 @@ class OAuthController extends FrontBase
 					'username'=>$user_info['screen_name'],
 					'avatar'=>$user_info['avatar_large']
 					);
+		    
 			//绑定注册
 			$this->bind_register($bind, $data);
 
 		}else{
-			throw new CHttpException(500,Yii::t('common','Login Failed').'(1000)');
+			$this->message('error', Yii::t('common','Login Failed').'(sinawb_x_0000)', $this->createUrl('user/login'));
 		}
 	}
 
@@ -123,6 +128,11 @@ class OAuthController extends FrontBase
 	 */
 	public function bind_register($bind, $data=array()){
 		
+		if(!$data['username']){
+			throw new CHttpException(500,Yii::t('common','Login Failed').'(bind_x_1000)');
+		}
+
+
 		//初始密码
 		$initPwd = ' ';
 		if(!$bind){
@@ -145,7 +155,7 @@ class OAuthController extends FrontBase
 					$model = new OAuthRenren();
 					break;
 				default:
-					throw new CHttpException(500,Yii::t('common','Login Failed').'(1000)');
+					throw new CHttpException(500,Yii::t('common','Login Failed').'(bind_x_1001)');
 					break;
 			}
 			$model->uid = 0; 
@@ -171,7 +181,7 @@ class OAuthController extends FrontBase
 					//保存第三方授权信息
 					$model->save();
 				}else{
-					throw new CHttpException(500,Yii::t('common','Login Failed').'(1001)');
+					throw new CHttpException(500,Yii::t('common','Login Failed').'(bind_x_1002)');
 				}	
 			}else{
 				$uid = $if_exist->uid;
@@ -200,10 +210,10 @@ class OAuthController extends FrontBase
 			if($user->save()){
 				$this->redirect(Yii::app()->homeUrl);
 			}else{
-				throw new CHttpException(500,Yii::t('common','Login Failed').'(1003)');
+				throw new CHttpException(500,Yii::t('common','Login Failed').'(bind_x_1003)');
 			}
 		}else{
-			throw new CHttpException(500,Yii::t('common','Login Failed').'(1004)');
+			throw new CHttpException(500,Yii::t('common','Login Failed').'(bind_x_1004)');
 		}
 
 	

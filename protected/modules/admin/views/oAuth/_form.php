@@ -33,15 +33,28 @@
   </tr>
   <tr >
     <td class="appdata">    	
+		<!-- 腾讯qq互联接口配置 -->
     	<?php if($model->id == 'qq'):?>
     	<label class="config_label">appid(应用id)：</label><input type="text" name="config[appid]" value="<?php echo $apiconfig['appid'];?>" /><br/><br/>
     	<label class="config_label">appkey(应用key)：</label><input type="text" name="config[appkey]" value="<?php echo $apiconfig['appkey'];?>" size="50" /><br/><br/>
     	<label class="config_label">callback(回调地址)：</label><input type="text" name="config[callback]" value="<?php echo $apiconfig['callback'];?>" size="50"/>(域名/oAuth/qq_callback)<br/><br/>
     	
+		<!-- 新浪微博接口配置 -->
     	<?php elseif($model->id == 'sinawb'):?>
     	<label class="config_label">App Key(应用key)：</label><input type="text" name="config[wb_akey]" value="<?php echo $apiconfig['wb_akey'];?>" /><br/><br/>
     	<label class="config_label">App Secret(应用secret)：</label><input type="text" name="config[wb_skey]" value="<?php echo $apiconfig['wb_skey'];?>" size="50" /><br/><br/>
     	<label class="config_label">callback(回调地址)：</label><input type="text" name="config[callback]" value="<?php echo $apiconfig['callback'];?>" size="50"/>(域名/oAuth/sinawb_callback)<br/><br/>
+		
+		<!-- 人人网互联接口配置 -->
+		<?php elseif($model->id == 'renren'):?>
+    	<label class="config_label">App Key(应用key)：</label><input type="text" name="config[app_key]" value="<?php echo $apiconfig['app_key'];?>" /><br/><br/>
+    	<label class="config_label">App Secret(应用secret)：</label><input type="text" name="config[app_secret]" value="<?php echo $apiconfig['app_secret'];?>" size="50" /><br/><br/>
+    	<label class="config_label">callback(回调地址)：</label><input type="text" name="config[callback]" value="<?php echo $apiconfig['callback'];?>" size="50"/>(域名/oAuth/renren_callback)<br/><br/>
+		
+		<!-- 微信登录接口配置 -->
+		<?php elseif($model->id == 'weixin'):?>
+
+		<!-- 其他 -->
 		<?php else:?>
     	<?php echo $form->textField($model, 'apiconfig', array('size'=>50,'maxlength'=>100));?>
     	<?php endif;?>    	

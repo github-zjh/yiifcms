@@ -16,7 +16,11 @@
 <!-- 头部header开始 -->
 <div id="header">
 	<div class="header_main clear">
-		<div id="logo"><a class="logo_a" href="<?php echo Yii::app()->homeUrl;?>"><?php echo $this->_setting['site_name'];?></a></div>
+		<div id="logo">
+			<a class="logo_a" href="<?php echo Yii::app()->homeUrl;?>" title="<?php echo $this->_setting['site_name'];?>">
+				<img src="<?php echo $this->_static_public.'/logo.png';?>"/>
+			</a>
+		</div>
 		<div id="msbox">			
 			<ul id="menu">			
 				<?php foreach((array)$this->_public_menu as $menu):?>				

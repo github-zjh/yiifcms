@@ -91,6 +91,25 @@ class OAuthController extends Backend
             			fclose($incFile);            			
             		}
 					break;
+				case 'weixin':
+
+					break;
+				case 'renren':
+					$config['app_key'] = trim($_POST['config']['app_key']);
+					$config['app_secret'] = trim($_POST['config']['app_secret']);
+					$config['callback'] = trim($_POST['config']['callback']);
+					$model->apiconfig = CJSON::encode($config);
+					//写入配置文件
+					$setting = "<?php\nheader('Content-Type: text/html; charset=UTF-8'); \n";
+					$setting .= "define( \"APP_KEY\" , '".$config['app_key']."' );\n";
+					$setting .= "define( \"APP_SECRET\" , '".$config['app_secret']."' );\n";
+					$setting .= "define( \"CALLBACK_URL\" , '".$config['callback']."' );\n";
+            		$setting = str_replace("\/", "/",$setting);					
+					$incFile = fopen($extension_oauth."/renren/config.php","w+") or die("请设置{$extension_oauth}/renren/config.php的权限为777");
+            		if(fwrite($incFile, $setting)){            			
+            			fclose($incFile);            			
+            		}
+					break;
             }                    
         	if($model->save())
         		$this->message('success',Yii::t('admin','Update Success'),$this->createUrl('index'));

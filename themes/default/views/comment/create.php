@@ -73,7 +73,7 @@
 		<?php foreach((array)$comments as $comment):?>		
 		<li class="clear">
 			<?php $cuser = User::model()->findByPk($comment->user_id);?>						
-			<img width="50" <?php if($cuser && $cuser->avatar && file_exists($cuser->avatar)):?> src="<?php echo $cuser->avatar;?>" <?php else:?>  src="<?php echo $this->_stylePath;?>/images/default_avatar.png"  <?php endif;?> class="avatar" />
+			<img width="50" <?php if($cuser && $cuser->avatar):?> src="<?php echo $cuser->avatar;?>" <?php else:?>  src="<?php echo $this->_stylePath;?>/images/default_avatar.png"  <?php endif;?> class="avatar" />
 			<div class="comment_desc">
 				<p class="desc_head">
 					<strong class="user"><?php echo $cuser->username?$cuser->username:Yii::t('common','Anonymity')?></strong>
@@ -98,7 +98,7 @@
 						<?php $ruser = User::model()->findByPk($rto->user_id);?>	
 						<div class="comment_desc">							
 							<p class="desc_head">
-								<img width="20" <?php if($user && $user->avatar && file_exists($user->avatar)):?> src="<?php echo $user->avatar;?>" <?php else:?>  src="<?php echo $this->_stylePath;?>/images/default_avatar.png"  <?php endif;?> class="avatar" />
+								<img width="20" <?php if($user && $user->avatar ):?> src="<?php echo $user->avatar;?>" <?php else:?>  src="<?php echo $this->_stylePath;?>/images/default_avatar.png"  <?php endif;?> class="avatar" />
 								<strong class="user"><?php echo $user->username?$user->username:Yii::t('common','Anonymity')?>&nbsp;&nbsp;@:&nbsp;&nbsp;<?php echo $ruser->username?$ruser->username:$cuser->username;?></strong>								
 								<span class="submit_time"><?php echo date('Y年m月d日 H:i:s',$reply->create_time)?></span>
 								<span class="position"><?php echo $position;?>#</span>
