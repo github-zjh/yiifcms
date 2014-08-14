@@ -87,6 +87,10 @@ $("input[datePicker='true']").click(function(){
 	WdatePicker({dateFmt:'yyyy-MM-dd H:m:s'});
 });
 
+$(function(){
+	//代码着色
+	prettyPrint();
+});
 </script>
 </div><!-- end container -->
 </body>

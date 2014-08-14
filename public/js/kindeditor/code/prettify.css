@@ -38,5 +38,6 @@ pre.prettyprint {
 	font-family: "Consolas", "Monaco", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
 	margin: 1em 0px;
 	white-space: pre;
+	max-height:500px;
 	overflow:auto;
 }

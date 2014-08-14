@@ -96,7 +96,9 @@
 		//刷新验证码
 		$("#yw0").ready(function(){
 		     $('#yw0').trigger('click');
-		});		
+		});	
+		//代码着色
+		prettyPrint();
 	});
 </script>
 <!-- Js script结束 -->
