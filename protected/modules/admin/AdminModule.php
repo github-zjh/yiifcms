@@ -20,7 +20,7 @@ class AdminModule extends CWebModule
 		Yii::app()->setComponents(array(
 			'user' => array(
 				'stateKeyPrefix' => 'admin',
-				'loginUrl'=>Yii::app()->createUrl('admin/default/login'),									
+				'loginUrl'=>Yii::app()->createUrl('/admin/default/login'),									
 			),
 			'errorHandler'=>array(
 			// use 'site/error' action to display errors
