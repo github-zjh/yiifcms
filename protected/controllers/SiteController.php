@@ -102,4 +102,23 @@ class SiteController extends FrontBase
 		}
 	}
 	
+	/**
+	 * sitemap列表
+	 */
+	public function actionSitemap(){
+		$this->layout = false;
+		//rss创建
+		$obj = new Sitemap();
+	
+		$this->render('sitemap',array('rss'=>$obj->show()));
+	}
+	
+	/**
+	 * sitemap索引
+	 */
+	public function actionSitemapXsl(){
+		
+		$this->render('sitemapxsl');
+	}
+	
 }
