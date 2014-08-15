@@ -29,7 +29,7 @@ class AdminModule extends CWebModule
 		)
 		);
 		//设定跳转url
-		Yii::app()->user->setReturnUrl(Yii::app()->createUrl('/admin'));
+		Yii::app()->user->setReturnUrl(Yii::app()->createUrl('admin'));
 		
 		//发布样式资源
 		$this->assetsUrl = Yii::app()->getAssetManager()->publish(Yii::getPathOfAlias('application.modules.admin.assets'));

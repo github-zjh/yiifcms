@@ -88,8 +88,12 @@ $("input[datePicker='true']").click(function(){
 });
 
 $(function(){
-	//代码着色
-	prettyPrint();
+		try{
+			if (typeof(eval(prettyPrint)) == "function") {
+			//代码着色
+			prettyPrint();
+			}
+		}catch(e){}
 });
 </script>
 </div><!-- end container -->
