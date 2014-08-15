@@ -71,14 +71,14 @@
 			    		</li>
 			    	<?php elseif($oa->id == 'weixin'):?>
 			    		<li>
-			    			<a href="#">
+			    			<a href="<?php echo $this->createUrl('oAuth/weixin');?>">
 			    				<img src="<?php echo $this->_stylePath?>/images/weixin_login.png" width="60" height="60" />
 			    				<span>微信平台登录</span>
 			    			</a>		    			
 			    		</li>
 			    	<?php elseif($oa->id == 'renren'):?>
 			    		<li class="last">
-			    			<a href="#">
+			    			<a href="<?php echo $this->createUrl('oAuth/renren');?>">
 			    				<img src="<?php echo $this->_stylePath?>/images/renren_login.png" width="60"  height="60"/>
 			    				<span>人人网登录</span>
 			    			</a>		    			

@@ -22,7 +22,7 @@ class Recorder{
             $this->error->showError("20001");
         }
 
-        if(empty($_SESSION['QC_userData'])){
+        if(empty(Yii::app()->session['QC_userData'])){
             self::$data = array();
         }else{
             self::$data = Yii::app()->session['QC_userData'];

@@ -90,6 +90,7 @@ class RennClientBase {
 		try {
 			// 根据code来获得token
 			$token = $this->getTokenFromTokenEndpoint ( 'code', $keys );
+			return $token;
 		} catch ( RennException $e ) {
 			throw new InvalideAuthorizationException ( "Authorization failed with Authorization Code. " . $e->getMessage () );
 		}
@@ -187,7 +188,7 @@ class RennClientBase {
 	 *        	string token_type token的类型,可以为:bearer,mac
 	 * @return array
 	 */
-	private function getTokenFromTokenEndpoint($grantType, $keys, $tokenType = TokenType::MAC) {
+	public function getTokenFromTokenEndpoint($grantType, $keys, $tokenType = TokenType::MAC) {
 		$params = array ();
 		$params ['client_id'] = $this->clientId;
 		$params ['client_secret'] = $this->clientSecret;

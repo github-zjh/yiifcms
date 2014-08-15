@@ -118,6 +118,97 @@ class OAuthController extends FrontBase
 			$this->message('error', Yii::t('common','Login Failed').'(sinawb_x_0000)', $this->createUrl('user/login'));
 		}
 	}
+	
+	/**
+	 * 人人网授权登录
+	 * sinawb login
+	 */
+	public function actionRenren(){
+		require_once(Yii::getPathOfAlias('ext')."/OAuth/renren/config.php");
+		require_once(Yii::getPathOfAlias('ext')."/OAuth/renren/rennclient/RennClient.php");
+
+		$rennClient = new RennClient ( APP_KEY, APP_SECRET );
+		// 生成state并存入SESSION，以供CALLBACK时验证使用
+		$state = uniqid ( 'renren_', true );
+		Yii::app()->session['renren_state'] = $state;
+
+		// 得认证授权的url
+		$code_url = $rennClient->getAuthorizeURL ( CALLBACK_URL, 'code', $state );
+		$this->redirect($code_url);
+	}
+	
+	/**
+	 * 人人网回调地址
+	 * sinawb login
+	 */
+	public function actionRenren_callback(){
+	error_reporting ( E_ALL );
+		ini_set ( 'display_errors', true );
+	
+		require_once(Yii::getPathOfAlias('ext')."/OAuth/renren/config.php");
+		require_once(Yii::getPathOfAlias('ext')."/OAuth/renren/rennclient/RennClient.php");
+		$rennClient = new RennClient ( APP_KEY, APP_SECRET );
+		
+		// 处理code -- 根据code来获得token
+		if (isset ( $_REQUEST ['code'] )) {
+
+			$keys = array ();
+			// 验证state，防止伪造请求跨站攻击
+			$state = $_REQUEST ['state'];
+			if (empty ( $state ) || $state !== Yii::app()->session ['renren_state']) {
+				throw new CHttpException(500,'Error: Illegal Request');
+			}
+			unset ( Yii::app()->session ['renren_state'] );
+
+			// 获得code
+			$code = $_REQUEST ['code'];
+			$redirect_uri = CALLBACK_URL;
+			try {				
+				// 根据code来获得token
+				$token = $rennClient->authWithAuthorizationCode ( $code, $redirect_uri);
+			} catch ( RennException $e ) {
+				throw new CHttpException(500,'Error:'.$e->getMessage());
+			}
+		}else{
+			throw new CHttpException(500,'Auth Failed');
+		}
+		if ($token) {
+		
+			$renn_client = new RennClient ( APP_KEY, APP_SECRET );
+
+			// 获得保存的token
+			$renn_client->authWithStoredToken ();
+			// 获得用户接口
+			$user_service = $renn_client->getUserService ();
+			// 获得用户信息
+			$user = $user_service->getUser (null);
+			if(!$user){
+				throw new CHttpException('500', Yii::t('common','Login Failed').'(get userinfo failed)');
+			}
+            // 获取accessToken
+			$access_token = $token->accessToken;
+			$openid = $user['id'];
+			
+			//查看是否已绑定
+			$bind = OAuthRenren::model()->findByPk($openid);
+
+			//数据
+			$data = array(
+					'type'=>'renren', 
+					'access_token'=>$access_token, 
+					'openid'=>$openid,
+					'uid'=>$bind?$bind->uid:0,
+					'username'=>$user['name'],
+					'avatar'=>$user['avatar'][1]['url']
+					);
+		    
+			//绑定注册
+			$this->bind_register($bind, $data);
+
+		}else{
+			$this->message('error', Yii::t('common','Login Failed').'(renren_x_0000)', $this->createUrl('user/login'));
+		}
+	}
 
 	/**
 	 *
