@@ -5,6 +5,10 @@
  * @copyright     Copyright (c) 2014-2015. All rights reserved.
  *
  */
+
+/*error_reporting ( E_ALL );
+ini_set ( 'display_errors', true );*/
+
 class OAuthController extends FrontBase
 {	
 	/**
@@ -142,8 +146,6 @@ class OAuthController extends FrontBase
 	 * sinawb login
 	 */
 	public function actionRenren_callback(){
-	error_reporting ( E_ALL );
-		ini_set ( 'display_errors', true );
 	
 		require_once(Yii::getPathOfAlias('ext')."/OAuth/renren/config.php");
 		require_once(Yii::getPathOfAlias('ext')."/OAuth/renren/rennclient/RennClient.php");

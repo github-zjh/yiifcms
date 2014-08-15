@@ -736,7 +736,10 @@ class CookieTokenStore implements TokenStore {
 	 * @return array 成功返回array('access_token'=>'value', 'refresh_token'=>'value'); 失败返回false
 	 */
 	public function loadToken($key) {
-		if (isset ( $_COOKIE [$key] ) && $cookie = $_COOKIE [$key]) {
+		//if (isset ( $_COOKIE [$key] ) && $cookie = $_COOKIE [$key]) {
+		  $cookies = Yii::app()->request->getCookies();
+		  $token_cookie = $cookies[$key]->value;
+		  if(isset($token_cookie) && $cookie=$token_cookie){
 			parse_str ( $cookie, $token );
 			return new AccessToken ( $token ['type'], $token ['accessToken'], isset ( $token ['refreshToken'] ) ? $token ['refreshToken'] : null, isset ( $token ['macKey'] ) ? $token ['macKey'] : null, isset ( $token ['macAlgorithm'] ) ? $token ['macAlgorithm'] : null );
 		} else {
@@ -751,8 +754,11 @@ class CookieTokenStore implements TokenStore {
 	 * @param array $token        	
 	 */
 	public function saveToken($key, $token) {
-		echo $key;
-		setcookie ( $key, http_build_query ( $token ) );
+		//echo $key;
+		$cookie = new CHttpCookie($key, http_build_query($token));
+		$cookie->expire = time()+60*60*24*30;  //有限期30天
+		Yii::app()->request->cookies[$key]=$cookie;
+		//setcookie ( $key, http_build_query ( $token ) );
 	}
 }
 ?>
