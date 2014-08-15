@@ -120,9 +120,7 @@
   <tr>
     <td >
     <?php echo Yii::t('admin','Favorite Count');?>：<?php echo $form->textField($model,'favorite_count',array('size'=>5,'maxlength'=>10)); ?> 
-    <?php echo Yii::t('admin','Attention Count');?><?php echo $form->textField($model,'attention_count',array('size'=>5,'maxlength'=>10)); ?>
     <?php echo Yii::t('admin','View Count');?>：<?php echo $form->textField($model,'view_count',array('size'=>5,'maxlength'=>10)); ?> 
-    <?php echo Yii::t('admin','Reply Count');?> <?php echo $form->textField($model,'reply_count',array('size'=>5,'maxlength'=>10)); ?>
     <?php echo Yii::t('admin','Sort Order');?> <?php echo $form->textField($model,'sort_desc',array('size'=>5,'maxlength'=>10)); ?>
     </td>
   </tr>

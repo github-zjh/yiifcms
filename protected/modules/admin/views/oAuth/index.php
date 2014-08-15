@@ -46,8 +46,8 @@ $(document).ready(function(){
           <label for="chkall"><?php echo Yii::t('admin','Check All');?></label>
           <select name="command">
             <option><?php echo Yii::t('admin','Select Operate');?></option>           
-            <option value="Show"><?php echo Yii::t('admin','Enable');?></option>
-            <option value="Hidden"><?php echo Yii::t('admin','Disable');?></option>
+            <option value="Enable"><?php echo Yii::t('admin','Enable');?></option>
+            <option value="Disable"><?php echo Yii::t('admin','Disable');?></option>
           </select>
           <input id="submit_maskall" class="button confirmSubmit" type="submit" value="<?php echo Yii::t('common','Submit');?>" name="maskall" />
         </div></td>

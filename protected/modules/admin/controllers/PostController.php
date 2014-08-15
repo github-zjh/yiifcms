@@ -372,16 +372,27 @@ class PostController extends Backend
         		}
         	}                 
             break;
-        case 'unCommend': 
-        	//文章取消推荐
+		
+		case 'stick':     
+        	//文章置顶      
         	foreach((array)$ids as $id){
-        		$postModel = Post::model()->findByPk($id);
+        		$postModel = Post::model()->findByPk($id);        		
         		if($postModel){
-        			$postModel->commend = 'N';
+        			$postModel->top_line = 'Y';
         			$postModel->save();
         		}
-        	}                    
-            break;        
+            }
+            break;
+        case 'cancelStick':     
+        	//文章取消置顶      
+        	foreach((array)$ids as $id){
+        		$postModel = Post::model()->findByPk($id);        		
+        		if($postModel){
+        			$postModel->top_line = 'N';
+        			$postModel->save();
+        		}
+            }
+            break;
          default:
             throw new CHttpException(404, Yii::t('admin','Error Operation'));
             break;

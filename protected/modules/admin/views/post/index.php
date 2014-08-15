@@ -35,6 +35,7 @@ $(document).ready(function(){
         <th width="12%"><?php echo Yii::t('admin','Categorys');?></th>
         <th width="8%"><?php echo Yii::t('admin','Status');?></th>
         <th width="8%"><?php echo Yii::t('admin','Recommend');?></th>
+        <th width="8%"><?php echo Yii::t('common','Stick');?></th>
         <th width="8%"><?php echo Yii::t('admin','Views');?></th>
         <th width="15%"><?php echo Yii::t('admin','Add Time');?></th>
         <th><?php echo Yii::t('admin','Operate');?></th>
@@ -50,6 +51,7 @@ $(document).ready(function(){
       <td ><?php echo $row->catalog->catalog_name?></td>
       <td><?php if($row->status == 'Y'){echo Yii::t('admin','Show');}else{echo "<span class='red'>".Yii::t('admin','Hidden')."</span>";}?></td>
       <td><?php if($row->commend == 'Y'){echo Yii::t('admin','Yes');}else{echo Yii::t('admin','No');}?></td>
+      <td><?php if($row->top_line == 'Y'){echo Yii::t('admin','Yes');}else{echo Yii::t('admin','No');}?></td>
       <td><span ><?php echo $row->view_count?></span></td>
       <td ><?php echo date('Y-m-d H:i',$row->create_time)?></td>
       <td >
@@ -72,6 +74,8 @@ $(document).ready(function(){
             <option value="delete"><?php echo Yii::t('admin','Delete');?></option>
             <option value="show"><?php echo Yii::t('admin','Show');?></option>
             <option value="hidden"><?php echo Yii::t('admin','Hidden');?></option>
+            <option value="stick"><?php echo Yii::t('common','Stick');?></option>
+            <option value="cancelStick"><?php echo Yii::t('common','Cancel Stick');?></option>
             <option value="commend" id="recom"><?php echo Yii::t('admin','Recommend');?></option>            
           </select>
           <input id="submit_maskall" class="button confirmSubmit" type="submit" value="<?php echo Yii::t('common','Submit');?>" name="maskall" />

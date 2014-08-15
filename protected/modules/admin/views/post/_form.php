@@ -170,9 +170,7 @@
 	<tr>
 		<td>
     <?php echo Yii::t('admin','Favorite Count');?>：<?php echo $form->textField($model,'favorite_count',array('size'=>5,'maxlength'=>10)); ?> 
-    <?php echo Yii::t('admin','Attention Count');?><?php echo $form->textField($model,'attention_count',array('size'=>5,'maxlength'=>10)); ?>
     <?php echo Yii::t('admin','View Count');?>：<?php echo $form->textField($model,'view_count',array('size'=>5,'maxlength'=>10)); ?> 
-    <?php echo Yii::t('admin','Reply Count');?> <?php echo $form->textField($model,'reply_count',array('size'=>5,'maxlength'=>10)); ?>
     <?php echo Yii::t('admin','Sort Order');?> <?php echo $form->textField($model,'sort_desc',array('size'=>5,'maxlength'=>10)); ?>
     </td>
 	</tr>
@@ -180,7 +178,11 @@
 		<td class="tb_title"><?php echo Yii::t('admin','Status');?>：</td>
 	</tr>
 	<tr>
-		<td><?php echo $form->dropDownList($model,'status',array('Y'=>Yii::t('admin','Show'), 'N'=>Yii::t('admin','Hidden'))); ?><?php echo $form->dropDownList($model,'commend',array('Y'=>'已推荐', 'N'=>'未推荐')); ?><?php echo $form->dropDownList($model,'top_line',array('Y'=>'头条', 'N'=>'非头条')); ?><?php echo $form->dropDownList($model,'reply_allow',array('Y'=>'允许回复', 'N'=>'不允许回复')); ?></td>
+		<td>
+			<?php echo $form->dropDownList($model,'status',array('Y'=>Yii::t('admin','Show'), 'N'=>Yii::t('admin','Hidden'))); ?>
+			<?php echo $form->dropDownList($model,'top_line',array('Y'=>Yii::t('common','Stick'), 'N'=>Yii::t('common','Cancel Stick'))); ?>
+			<?php echo $form->dropDownList($model,'reply_allow',array('Y'=>Yii::t('common','Allow Comment'), 'N'=>Yii::t('common','Deny Comment'))); ?>
+		</td>
 	</tr>
 	<tr>
 		<td class="tb_title"><?php echo Yii::t('admin','SEO Title');?>：</td>

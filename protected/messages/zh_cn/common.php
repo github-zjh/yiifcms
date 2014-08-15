@@ -53,7 +53,7 @@ return array (
 	'Login Failed' => '登录失败',
 	'My Account' => '个人中心',
 	
-	//内容列表页
+	//内容
 	'ContentList' => '内容列表',
 	'PostList' => '文章列表',
 	'ImageList' => '图集列表',
@@ -80,7 +80,11 @@ return array (
 	'Read More'=>'继续阅读',
 	'View Info' => '查看详情',
 	'Guide Read' => '导读',
-	
+    'Stick' => '置顶',
+	'Cancel Stick' => '取消置顶',
+	'Allow Comment' => '允许评论',
+	'Deny Comment' => '禁止评论',
+
 	//注册
 	'Register' => '注册',
 	'username length is between 6 and 40' => '用户名长度介于6~40个字符',
