@@ -10,7 +10,12 @@
 	<meta property="wb:webmaster" content="cca24d5480c4043c" />
 	<script type="text/javascript">
 	    var SITE_URL = '<?php echo $this->_request->hostinfo.Yii::app()->homeUrl;?>';
-	</script>	
+	</script>
+	<!-- 手持设备样式 -->
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="HandheldFriendly" content="true">
+	<link rel="stylesheet" type="text/css" media="only screen and (max-width:720px),only screen and (max-device-width:720px)" href="<?php echo $this->_stylePath;?>/css/media.css"/>
 </head>
 <body>
 <!-- 头部header开始 -->

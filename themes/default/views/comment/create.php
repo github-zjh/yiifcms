@@ -76,7 +76,7 @@
 			<img width="50" <?php if($cuser && $cuser->avatar):?> src="<?php echo $cuser->avatar;?>" <?php else:?>  src="<?php echo $this->_stylePath;?>/images/default_avatar.png"  <?php endif;?> class="avatar" />
 			<div class="comment_desc">
 				<p class="desc_head">
-					<strong class="user"><?php echo $cuser->username?$cuser->username:Yii::t('common','Anonymity')?></strong>
+					<strong class="user"><?php echo $cuser->nickname?$cuser->nickname:($cuser->username?$cuser->username:Yii::t('common','Anonymity'));?></strong>
 					<span class="submit_time"><?php echo date('Y年m月d日 H:i:s',$comment->create_time)?></span>
 				</p>
 				<div class="desc_body"><?php echo $comment->content;?></div>

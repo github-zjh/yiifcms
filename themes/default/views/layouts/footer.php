@@ -21,7 +21,7 @@
 			</ul>
 		</li>
 		<li class="footer_right">
-			<h2>Power By <strong>zhao jinhan(Beijing Of China)</strong></h2>			
+			<h2>Power By <strong>惜暮(Sim)</strong></h2>			
 			<div class="clear">
 				<label><img width="70" src="<?php echo $this->_stylePath;?>/images/my_header.jpg" /></label>
 				<div class="text">
@@ -107,6 +107,19 @@
 	});
 </script>
 <!-- Js script结束 -->
+<!-- 分享代码 -->
+<!-- JiaThis Button BEGIN -->
+<script type="text/javascript" >
+var jiathis_config={
+summary:"",
+		showClose:true,
+		shortUrl:false,
+		hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?btn=r3.gif&move=0" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
 <?php if($this->_dialogMessage):?>
 <div><?php echo $this->_dialogMessage;?></div>
 <?php endif;?>
