@@ -26,5 +26,8 @@ return array(
 	'接口',
 	'api',
 	'人人网',
-	'第三方'
+	'第三方',	
+	'ueditor',
+	'kindeditor',
+	'IT',
 );

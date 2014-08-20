@@ -56,14 +56,22 @@
     <td class="tb_title"><?php echo Yii::t('admin','Description');?>：</td>
   </tr>
   <tr >
-    <td ><?php echo $form->textArea($model,'content', array('class'=>'validate[required]')); ?>
-      <?php $this->widget('application.widget.kindeditor.KindEditor',array(
-	  'target'=>array(
-	  	'#Goods_content'=>array(
-		'uploadJson'=>$this->createUrl('/admin/uploadify/basicexecute', array('from'=>'editor')),
-		'fileManagerJson'=>$this->createUrl('/admin/kindeditor/'),		
-		'allowFileManager'=>true,		
-	  	'extraFileUploadParams'=>array(array('sessionId'=>Yii::app()->session->sessionID))))));?></td>
+    <td ><?php echo $form->textArea($model,'content'); ?>
+     <?php 
+	  		$this->widget('application.widget.ueditor.Ueditor',
+				array('htmlOptions'=>
+	  				array(
+	  						'id'=>'Goods_content',//页面中输入框（或其他初始化容器）的ID
+	  						'name'=>'ue',//指定ueditor实例的名称,个页面有多个ueditor实例时使用
+							'config'=> array(
+								'initialFrameHeight'=>'400',
+								'initialFrameWidth'=>'80%',			
+							),
+	  				)
+				)
+	  		);
+	  		?>
+     </td>
   </tr> 
   <tr>
     <td class="tb_title"><?php echo Yii::t('admin','Group Image');?>：</td>

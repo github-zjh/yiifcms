@@ -1,13 +1,22 @@
 <?php
 /**
- * BageCMS KindEditor Widget
+ * YiifCMS KindEditor Widget
  *
- * @author        shuguang <5565907@qq.com>
+ * @author        Sim <326196998@qq.com>
  * @copyright     Copyright (c) 2007-2013 bagesoft. All rights reserved.
- * @link          http://www.bagecms.com
- * @package       BageCMS.Widget
- * @license       http://www.bagecms.com/license
+ * @link          http://www.yiifcms.com
+ * @package       YiiCMS.Widget
+ * @license       http://www.yiifcms.com/license
  * @version       v1.0.0
+ * @example 	  $this->widget('application.widget.kindeditor.KindEditor',
+ *				      'target'=>array(
+ *	  						'#Post_content'=>array(
+ *							'uploadJson'=>$this->createUrl('/admin/uploadify/basicexecute', array('from'=>'editor')),
+ *							'fileManagerJson'=>$this->createUrl('/admin/kindeditor/'),		
+ *							'allowFileManager'=>true,
+ *	  						'extraFileUploadParams'=>array(array('sessionId'=>Yii::app()->session->sessionID))))));
+ *				   		)
+ *	  		     );
  */
 
 class KindEditor extends CInputWidget{

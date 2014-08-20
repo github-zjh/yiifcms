@@ -102,7 +102,11 @@ class PostController extends FrontBase
 	Yii::app()->clientScript->registerCssFile($this->_static_public . "/js/kindeditor/code/prettify.css");
 	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
 	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/kindeditor/code/prettify.js",CClientScript::POS_END);
-	 
+	
+	//加载SyntaxHighlighter
+	Yii::app()->clientScript->registerCssFile($this->_static_public . "/js/SyntaxHighlighter/shCoreDefault.css");
+	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/SyntaxHighlighter/shCore.js",CClientScript::POS_END);
+	
 	
 	//最近的文章
 	$last_posts = Post::model()->findAll(array('condition'=>'catalog_id = '.$post->catalog_id,'order'=>'id DESC','limit'=>10,));

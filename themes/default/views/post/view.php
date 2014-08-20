@@ -30,7 +30,7 @@
 				
 			</div>	
 			<!-- 分享按钮 -->
-			<?php $this->renderPartial('/layouts/shareJs');?>
+			<?php //$this->renderPartial('/layouts/shareJs');?>
 			
 			<!-- 评论区 -->
 			<iframe id="comment_iframe" scrolling="no"  marginheight="0" marginwidth="0" frameborder="0" src="<?php echo $this->createUrl('comment/create', array('view_url'=>$this->_request->getUrl(),'topic_id'=>$post->id,'topic_type'=>'post'));?>"></iframe>		
@@ -46,6 +46,7 @@
 	<a href="javascript:;" title="返回顶部" id="back_top"></a>
 	<script type="text/javascript">
 		$(function(){
+			SyntaxHighlighter.all() //执行代码高亮
 			$(window).scroll(function(){				
 				var scrollt = $(this).scrollTop(); //获取滚动后的高度 
 				if(scrollt > 200){

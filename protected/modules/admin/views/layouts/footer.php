@@ -12,6 +12,12 @@ $(function(){
 function keywordGet(titleId, contentId, keywordIdSet){
 	
 	var title = $("#"+titleId).val();
+	
+	//Ueditor同步内容
+	if(typeof(UE) != 'undefined'){
+		$("#"+contentId).val(UE.getEditor(contentId).getPlainTxt());
+	}
+	
 	var content = $("#"+contentId).val();
 	$.post('<?php echo $this->createUrl('default/keyword')?>',{'title':title,'content':content},function(res){
 		if(res.state =='error'){
