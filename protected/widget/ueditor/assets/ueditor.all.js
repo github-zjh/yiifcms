@@ -16967,14 +16967,27 @@ UE.plugins['fiximgclick'] = (function () {
                     tmp = parseInt(dom.style.top) + offset.y;
                     dom.style.top = me._validScaledProp('top', tmp) + 'px';
                 }
-                if (rect[dir][2] != 0) {
+                /*if (rect[dir][2] != 0) {
                     tmp = dom.clientWidth + rect[dir][2] * offset.x;
                     dom.style.width = me._validScaledProp('width', tmp) + 'px';
                 }
                 if (rect[dir][3] != 0) {
                     tmp = dom.clientHeight + rect[dir][3] * offset.y;
                     dom.style.height = me._validScaledProp('height', tmp) + 'px';
-                }
+		        }*/
+				//等比缩放图片
+				if (rect[dir][2] != 0) {
+					tmp = dom.clientWidth + rect[dir][2] * offset.x;
+					var tmpwh = parseInt(dom.style.width)/parseInt(dom.style.height);
+					dom.style.width = me._validScaledProp('width', tmp) + 'px';
+					dom.style.height = me._validScaledProp('height', tmp/tmpwh) + 'px';
+				}
+				if (rect[dir][3] != 0) {
+					tmp = dom.clientHeight + rect[dir][3] * offset.y;
+					var tmpwh = parseInt(dom.style.width)/parseInt(dom.style.height);
+					dom.style.height = me._validScaledProp('height', tmp) + 'px';
+					dom.style.width = me._validScaledProp('width', tmp*tmpwh) + 'px';
+				}
             },
             _validScaledProp: function (prop, value) {
                 var ele = this.resizer,

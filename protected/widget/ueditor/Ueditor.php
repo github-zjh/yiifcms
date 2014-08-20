@@ -135,7 +135,7 @@ class Ueditor extends CInputWidget{
 		$assets = $this->getAssetsPath();			
 		$clientScript = Yii::app()->getClientScript();	
 		$clientScript->registerScriptFile( $assets.'/ueditor.config.js', CClientScript::POS_END );		
-		$clientScript->registerScriptFile( $assets.'/ueditor.all.min.js', CClientScript::POS_END );
+		$clientScript->registerScriptFile( $assets.'/ueditor.all.js', CClientScript::POS_END );
 		$clientScript->registerScriptFile( $assets.'/lang/'.$this->language.'/'.$this->language.'.js', CClientScript::POS_END );
 		$clientScript->registerScript( 'content', $this->makeOptions(), CClientScript::POS_END );
 	}

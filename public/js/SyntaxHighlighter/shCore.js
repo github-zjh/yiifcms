@@ -2268,7 +2268,7 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
             html =
                 '<div id="' + getHighlighterId(this.id) + '" class="' + classes.join(' ') + '">'
                     + (this.getParam('toolbar') ? sh.toolbar.getHtml(this) : '')
-                    + '<div style="max-height:800px; overflow:auto;"><table border="0" cellpadding="0" cellspacing="0">'
+                    + '<table border="0" cellpadding="0" cellspacing="0">'
                     + this.getTitleHtml(this.getParam('title'))
                     + '<tbody>'
                     + '<tr>'
@@ -2280,7 +2280,7 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
                     + '</td>'
                     + '</tr>'
                     + '</tbody>'
-                    + '</table></div>'
+                    + '</table>'
                     + '</div>'
             ;
 
