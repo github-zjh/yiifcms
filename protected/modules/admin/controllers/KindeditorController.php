@@ -15,7 +15,7 @@ class KindEditorController extends Backend
 	 */
     public function actionIndex ()
     {  
-    	Yii::import('application.extensions.kindeditor.file_manager_json',true);     	
+    	Yii::import('application.widget.kindeditor.file_manager_json',true);     	
     }
    
 }

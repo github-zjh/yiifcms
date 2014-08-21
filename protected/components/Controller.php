@@ -36,6 +36,8 @@ class Controller extends CController
 	protected  $_baseUrl = '';
 	protected  $_basePath = ''; //应用程序目录
 	protected  $_webRoot = '';  //网站根目录
+	protected  $_extPath = '';  //网站扩展目录
+	protected  $_widgetPath = ''; //widget目录
 	protected  $_fonts = '';    //字体目录	
 	public     $_static_public = ''; //公共资源目录	
 	public     $_data = '';
@@ -50,9 +52,11 @@ class Controller extends CController
 		$this->_theme = Yii::app()->theme;
 		$this->_baseUrl = Yii::app()->baseUrl;
 		$this->_basePath = Yii::app()->basePath;		
-		$this->_webRoot = Yii::getPathOfAlias('webroot');
+		$this->_webRoot = WWWPATH;
+		$this->_extPath = $this->_webRoot.'/protected/extensions';
+		$this->_widgetPath = $this->_webRoot.'/protected/widget';
 		$this->_fonts = $this->_webRoot.'/public';
-		$this->_data = WWWPATH.'/protected/data/';
+		$this->_data = $this->_webRoot.'/protected/data/';		
 		$this->_static_public = $this->_baseUrl.'/public';
 
 		//检测系统是否已经安装

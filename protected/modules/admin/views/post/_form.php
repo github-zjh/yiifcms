@@ -113,7 +113,7 @@
 	  						'id'=>'Post_content',//页面中输入框（或其他初始化容器）的ID
 	  						'name'=>'ue',//指定ueditor实例的名称,个页面有多个ueditor实例时使用
 							'config'=> array(
-								'initialFrameHeight'=>'400',
+								'initialFrameHeight'=>'800',
 								'initialFrameWidth'=>'80%',			
 							),
 	  				)

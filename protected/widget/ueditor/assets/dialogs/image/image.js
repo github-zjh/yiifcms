@@ -898,9 +898,16 @@
                 urlPrefix = editor.getOpt('imageManagerUrlPrefix');
             for (i = 0; i < list.length; i++) {
                 if(list[i] && list[i].url) {
-                    item = document.createElement('li');
+                    item = document.createElement('li');                    
                     img = document.createElement('img');
                     icon = document.createElement('span');
+                    del = document.createElement('a');
+                    del.innerHTML = '删除';
+                    domUtils.addClass(del, 'del');
+                    var delid='imagelist_'+i;
+                    del.setAttribute('id',delid);
+                    del.setAttribute('href','javascript:;');
+                    del.setAttribute('onclick','uedel("'+list[i].url+'","'+delid+'")');
 
                     domUtils.on(img, 'load', (function(image){
                         return function(){
@@ -910,10 +917,11 @@
                     img.width = 113;
                     img.setAttribute('src', urlPrefix + list[i].url + (list[i].url.indexOf('?') == -1 ? '?noCache=':'&noCache=') + (+new Date()).toString(36) );
                     img.setAttribute('_src', urlPrefix + list[i].url);
-                    domUtils.addClass(icon, 'icon');
-
+                    domUtils.addClass(icon, 'icon');                    
+                    
                     item.appendChild(img);
                     item.appendChild(icon);
+                    item.appendChild(del);
                     this.list.insertBefore(item, this.clearFloat);
                 }
             }
@@ -1134,6 +1142,6 @@
             }
             return list;
         }
-    };
-
+    };    
+   
 })();
