@@ -95,4 +95,43 @@ class Tag extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	/**
+	 *
+	 *  插入或者更新内容时，同时更新标签数据
+	 *  @author Sim <326196998@qq.com>
+	 *  @param $tagdata tag数据 
+	 *  @param $param [content_id]关联内容id [status]关联内容状态 [type_id](1-5) 
+	 *
+	 **/
+	public static function updateTagData($tagdata = array(), $param = array()){
+		foreach ((array) $tagdata as $value) {    	
+			if($value){		
+				$model_tag = new Tag();
+				$get_tags = $model_tag->find('tag_name=:tagname', array(':tagname'=>$value));
+				if($get_tags){    					
+					$tag_id = $get_tags->id;
+				}else{
+					$model_tag->data_count = 1;
+					$model_tag->tag_name = $value;
+					$model_tag->save();
+					$tag_id = $model_tag->id;    				
+				}
+				//添加关联表数据
+				$tagData = TagData::model()->findByPk(array('tag_id'=>$tag_id, 'content_id'=>$param['content_id']));
+				if(!$tagData){
+					$tagData = new TagData();
+					$tagData->tag_id = $tag_id;
+					$tagData->content_id = $param['content_id'];
+					$tagData->type = $param['type_id'];
+					$tagData->status = $param['status'];
+					$tagData->save();
+				}
+			}
+		}
+		//更新关联的标签状态
+		$tagData = TagData::model()->updateAll(array('status'=>$param['status']),'content_id =:id AND type =:type', array(':id'=>$param['content_id'], ':type'=>$param['type_id']));
+		return true;
+	}
+
 }

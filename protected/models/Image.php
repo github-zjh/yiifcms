@@ -13,7 +13,7 @@
  * @property string $html_file
  * @property integer $catalog_id
  * @property integer $special_id
- * @property string $intro
+ * @property string $introduce
  * @property string $image_list
  * @property string $seo_title
  * @property string $seo_description
@@ -61,10 +61,10 @@ class Image extends CActiveRecord
 			array('title, title_second, title_style, seo_title, seo_keywords, copy_url, redirect_url, tags, attach_file, attach_thumb', 'length', 'max'=>255),
 			array('html_path, html_file, copy_from', 'length', 'max'=>100),
 			array('commend, attach_status, top_line, reply_allow, status', 'length', 'max'=>1),
-			array('intro, image_list, seo_description', 'safe'),
+			array('introduce, image_list, seo_description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, user_id, title, title_second, title_style, html_path, html_file, catalog_id, special_id, intro, image_list, seo_title, seo_description, seo_keywords, content, copy_from, copy_url, redirect_url, tags, view_count, commend, attach_status, attach_file, attach_thumb, favorite_count, top_line, update_time, reply_count, reply_allow, sort_desc, status, create_time', 'safe', 'on'=>'search'),
+			array('id, user_id, title, title_second, title_style, html_path, html_file, catalog_id, special_id, introduce, image_list, seo_title, seo_description, seo_keywords, content, copy_from, copy_url, redirect_url, tags, view_count, commend, attach_status, attach_file, attach_thumb, favorite_count, top_line, update_time, reply_count, reply_allow, sort_desc, status, create_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -95,7 +95,7 @@ class Image extends CActiveRecord
 			'html_file' => 'html文件名',			
 			'catalog_id' => '分类',
 			'special_id' => '专题编号',
-			'intro' => '摘要',
+			'introduce' => '摘要',
 			'image_list' => '组图',
 			'seo_title' => 'SEO标题',
 			'seo_description' => 'SEO描述',
@@ -157,7 +157,7 @@ class Image extends CActiveRecord
 
 		$criteria->compare('special_id',$this->special_id);
 
-		$criteria->compare('intro',$this->intro,true);
+		$criteria->compare('introduce',$this->introduce,true);
 
 		$criteria->compare('image_list',$this->image_list,true);
 

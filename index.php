@@ -5,6 +5,7 @@ $yii=dirname(__FILE__).'/framework/yii.php';
 $config=dirname(__FILE__).'/protected/config/main.php';
 
 error_reporting(E_ALL & ~E_NOTICE);
+ini_set("display_errors","on");
 // remove the following lines when in production mode
 define('WWWPATH', str_replace(array('\\', '\\\\'), '/', dirname(__FILE__)));
 define('DS','/');

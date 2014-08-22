@@ -66,7 +66,7 @@
     <td class="tb_title"><?php echo Yii::t('admin','Introduce');?>：</td>
   </tr>
   <tr >
-    <td ><?php echo CHtml::activeTextArea($model,'intro',array('rows'=>5, 'cols'=>90)); ?></td>
+    <td ><?php echo CHtml::activeTextArea($model,'introduce',array('rows'=>5, 'cols'=>90)); ?></td>
   </tr>
   <tr>
     <td class="tb_title"><?php echo Yii::t('admin','Template');?>：</td>

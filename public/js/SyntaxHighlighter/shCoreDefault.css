@@ -1,7 +1,13 @@
 
 .syntaxhighlighter a,.syntaxhighlighter div,.syntaxhighlighter code,.syntaxhighlighter,.syntaxhighlighter td,
 .syntaxhighlighter tr,.syntaxhighlighter tbody,.syntaxhighlighter thead,.syntaxhighlighter caption,.syntaxhighlighter textarea
-{-moz-border-radius:0 0 0 0!important;-webkit-border-radius:0 0 0 0!important;background:none!important;border:0!important;bottom:auto!important;float:none!important;left:auto!important;line-height:1.1em!important;margin:0!important;outline:0!important;overflow:visible!important;padding:0!important;position:static!important;right:auto!important;text-align:left!important;top:auto!important;vertical-align:baseline!important;width:auto!important;box-sizing:content-box!important; font-weight:normal!important;font-style:normal!important;min-height:inherit!important;min-height:auto!important;font-size:14px!important}
+{
+	-moz-border-radius:0 0 0 0!important;-webkit-border-radius:0 0 0 0!important;background:none!important;border:0!important;
+	bottom:auto!important;float:none!important;left:auto!important;margin:0!important;
+	outline:0!important;overflow:visible!important;padding:0!important;position:static!important;right:auto!important;
+	text-align:left!important;top:auto!important;vertical-align:baseline!important;width:auto!important;box-sizing:content-box!important; 
+	font-weight:normal!important;font-style:normal!important;min-height:inherit!important;min-height:auto!important;font-size:12px!important
+}
 .syntaxhighlighter{width:99%!important;margin:.3em 0 .3em 0!important;position:relative!important;overflow:auto!important;background-color:#f5f5f5!important;border:1px dashed #ccc!important;border-radius:4px!important;border-collapse:separate!important}
 
 .syntaxhighlighter.source{overflow:hidden!important}

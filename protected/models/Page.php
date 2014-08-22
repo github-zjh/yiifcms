@@ -6,7 +6,7 @@
  * The followings are the available columns in table '{{page}}':
  * @property string $id
  * @property string $title
- * @property string $intro
+ * @property string $introduce
  * @property string $content
  * @property string $seo_title
  * @property string $seo_keywords
@@ -49,10 +49,10 @@ class Page extends CActiveRecord
 			array('attach_file, attach_thumb', 'length', 'max'=>60),
 			array('view_count, create_time, update_time', 'length', 'max'=>10),
 			array('status', 'length', 'max'=>1),
-			array('intro, seo_description', 'safe'),
+			array('introduce, seo_description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, intro, content, seo_title, seo_keywords, seo_description, template, link, attach_file, attach_thumb, sort_order, view_count, status, create_time, update_time', 'safe', 'on'=>'search'),
+			array('id, title, introduce, content, seo_title, seo_keywords, seo_description, template, link, attach_file, attach_thumb, sort_order, view_count, status, create_time, update_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -75,7 +75,7 @@ class Page extends CActiveRecord
 		return array(
 			'id' => 'Id',
 			'title' => 'Title',
-			'intro' => 'Intro',
+			'introduce' => 'Intro',
 			'content' => 'Content',
 			'seo_title' => 'Seo Title',
 			'seo_keywords' => 'Seo Keywords',
@@ -114,7 +114,7 @@ class Page extends CActiveRecord
 
 		$criteria->compare('title',$this->title,true);
 
-		$criteria->compare('intro',$this->intro,true);
+		$criteria->compare('introduce',$this->introduce,true);
 
 		$criteria->compare('content',$this->content,true);
 

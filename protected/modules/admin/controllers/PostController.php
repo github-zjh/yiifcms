@@ -125,46 +125,14 @@ class PostController extends Backend
     		$model->tags = implode(',',$explodeTags);
     		
     		//摘要
-    		$model->intro = trim($_POST['Post']['intro'])?$_POST['Post']['intro']:Helper::truncate_utf8_string(preg_replace('/\s+/',' ',$_POST['Post']['content']), 200);
+    		$model->introduce = trim($_POST['Post']['introduce'])?$_POST['Post']['introduce']:Helper::truncate_utf8_string(preg_replace('/\s+/',' ',$_POST['Post']['content']), 200);
     		
     		$model->create_time = time();
     		$model->update_time = $model->create_time;
     		if($model->save()){
     			//更新标签数据
-    			foreach ((array) $explodeTags as $value) {
-    				if($value){
-		    			$model_tag = new Tag();
-		    			$get_tags = $model_tag->find('tag_name=:tagname', array(':tagname'=>$value));
-		    			if($get_tags){
-		    				//标签+1
-		    				$get_tags->data_count = $get_tags->data_count+1;
-		    				$get_tags->save();
-		    				$tag_id = $get_tags->id;
-		    			}else{
-		    				$model_tag->data_count = 1;
-		    				$model_tag->tag_name = $value;
-		    				$model_tag->save();
-		    				$tag_id = $model_tag->id;
-		    			}
-		    			if($tag_id){
-		    				//添加关联表数据
-		    				$tagData = TagData::model()->findByPk(array('tag_id'=>$tag_id, 'content_id'=>$model->id));
-		    				if(!$tagData){
-		    					$tagData = new TagData();
-		    					$tagData->tag_id = $tag_id;
-		    					$tagData->content_id = $model->id;
-		    					$tagData->type = $this->_type_ids['post'];
-		    					$tagData->status = $model->status;
-		    					$tagData->save();
-		    				}		    			
-		    			}
-    				}
-    			}    			
-    			
-    			//更新关联的标签
-    			$tagData = TagData::model()->updateAll(array('status'=>$model->status),'content_id =:id AND type =:type', array(':id'=>$model->id, ':type'=>$this->_type_ids['post']));
-    			
-    			$this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
+				Tag::model()->updateTagData($explodeTags, array('content_id'=>$model->id, 'status'=>$model->status, 'type_id'=>$this->_type_ids['post']));
+				$this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
     		}
     	}
     	//判断有无文章栏目
@@ -235,41 +203,14 @@ class PostController extends Backend
     		$explodeTags = array_slice($explodeTags, 0, 10);  
     		    		  	
     		//摘要
-    		$model->intro = trim($_POST['Post']['intro'])?$_POST['Post']['intro']:Helper::truncate_utf8_string(preg_replace('/\s+/',' ',$_POST['Post']['content']), 200);
+    		$model->introduce = trim($_POST['Post']['introduce'])?$_POST['Post']['introduce']:Helper::truncate_utf8_string(preg_replace('/\s+/',' ',$_POST['Post']['content']), 200);
     		
     		$model->tags = implode(',',$explodeTags);
     		$model->update_time = time();
     		
     		if($model->save()){
     			//更新标签数据
-    			foreach ((array) $explodeTags as $value) {    	
-    				if($value){		
-	    				$model_tag = new Tag();
-	    				$get_tags = $model_tag->find('tag_name=:tagname', array(':tagname'=>$value));
-	    				if($get_tags){    					
-	    					$tag_id = $get_tags->id;
-	    				}else{
-	    					$model_tag->data_count = 1;
-	    					$model_tag->tag_name = $value;
-	    					$model_tag->save();
-	    					$tag_id = $model_tag->id;    				
-	    				}
-	    				//添加关联表数据
-	    				$tagData = TagData::model()->findByPk(array('tag_id'=>$tag_id, 'content_id'=>$model->id));
-	    				if(!$tagData){
-		    				$tagData = new TagData();
-		    				$tagData->tag_id = $tag_id;
-		    				$tagData->content_id = $model->id;
-		    				$tagData->type = $this->_type_ids['post'];
-		    				$tagData->status = $model->status;
-		    				$tagData->save();
-	    				}
-    				}
-    			}
-    			
-    			//更新关联的标签
-    			$tagData = TagData::model()->updateAll(array('status'=>$model->status),'content_id =:id AND type =:type', array(':id'=>$model->id, ':type'=>$this->_type_ids['post']));
-    			 
+				Tag::model()->updateTagData($explodeTags, array('content_id'=>$model->id, 'status'=>$model->status, 'type_id'=>$this->_type_ids['post']));
     			$this->message('success',Yii::t('admin','Update Success'),$this->createUrl('index'));
     		}
     	}else{

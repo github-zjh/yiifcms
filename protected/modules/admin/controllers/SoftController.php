@@ -110,10 +110,17 @@ class SoftController extends Backend
     			$model->cover_image = $_POST['old_cover'];    			
     		}
     		  
-    		$model->create_time = time();
+    		//关键字(即标签,只要前10个关键字作为标签)
+    		$tags = trim($_POST['Soft']['seo_keywords']);    		
+    		$explodeTags = array_unique(explode(',', str_replace(array (' ' , '，' ), array('',','), $tags)));    		
+    		
+			$model->create_time = time();
     		$model->update_time = $model->create_time;
-    		if($model->save())
-    			$this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
+    		if($model->save()){
+				//更新标签数据
+				Tag::model()->updateTagData($explodeTags, array('content_id'=>$model->id, 'status'=>$model->status, 'type_id'=>$this->_type_ids['soft']));
+				$this->message('success',Yii::t('admin','Add Success'),$this->createUrl('index'));
+			}
     	}
     	//判断有无软件栏目
     	$soft_cat = Catalog::model()->find('type=:type', array(':type'=>$this->_type));
@@ -173,9 +180,16 @@ class SoftController extends Backend
     			$model->cover_image = $_POST['old_cover'];    			
     		}
     		
+    		//关键字(即标签,只要前10个关键字作为标签)
+    		$tags = trim($_POST['Soft']['seo_keywords']);    		
+    		$explodeTags = array_unique(explode(',', str_replace(array (' ' , '，' ), array('',','), $tags)));    	
+
     		$model->update_time = time();
-    		if($model->save())
+    		if($model->save()){
+				//更新标签数据
+				Tag::model()->updateTagData($explodeTags, array('content_id'=>$model->id, 'status'=>$model->status, 'type_id'=>$this->_type_ids['soft']));
     			$this->message('success',Yii::t('admin','Update Success'),$this->createUrl('index'));
+			}
     	}	
     	    	
     	$this->render('update',array(

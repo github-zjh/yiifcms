@@ -66,7 +66,7 @@ class Sitemap extends CController{
     private function postSitemap(){
         $criteria = new CDbCriteria();
         $criteria->condition = "status = 'Y'";
-        $criteria->select = 'id, tags, update_time';
+        $criteria->select = 'id, update_time';
         $criteria->order = 'id DESC';
         $model = Post::model()->findAll($criteria);
         $tagItems = array();
@@ -75,29 +75,31 @@ class Sitemap extends CController{
                 'url'=>$this->createUrl('post/view', array('id'=>$v->id)),
                 'date'=>date(DATE_W3C, $v->update_time)
             );
-
-            $tagArr = preg_split('/,|，/i', $v->tags);
-
-            if(!empty($tagArr)){
-                foreach($tagArr as $k=>$v){
-                    if(!in_array($v,$this->tagItems)){
-                        $tagItems[] = $v;
-                    }
-                }
-            }
-        }
-
-        //创建临时函数数组
-        $tmp = array();
-        $tmp = $tagItems;       
-        foreach($tmp as $k=>$v){
-            $this->tagItems[] = array(
-                'url'=>$this->createUrl('tag/index', array('tag_name'=>$v)),
-                'date'=>date(DATE_W3C, time())
-            );
-        }
-        unset($tmp);
+		}
     }
+
+	/**
+	  *	
+	  * tag
+      *
+	  */
+	private function tagSitemap(){
+        $criteria = new CDbCriteria();
+		$criteria->condition = "status = 'Y'";
+        $criteria->select = 'tag_id, count(tag_id) as count_tag';
+		$criteria->group = 'tag_id';
+        $criteria->order = 'count_tag DESC';
+		$model = TagData::model()->findAll($criteria);
+		foreach($model as $k=>$v){
+			$tag_id = $v->tag_id;
+			$tag = Tag::model()->findByPk($tag_id);
+			$this->tagItems[] = array(
+					'url'=>$this->createUrl('tag/index', array('tag_name'=>$tag->tag_name)),
+					'date'=>date(DATE_W3C, time())
+				);
+		}
+		$this->tagItems[] = array('url'=>$this->createUrl('tag/index'), 'date'=>date(DATE_W3C, time()));
+	}
     
     /**
      * 图集
@@ -105,7 +107,7 @@ class Sitemap extends CController{
     private function imageSitemap(){
     	$criteria = new CDbCriteria();
     	$criteria->condition = "status = 'Y'";
-    	$criteria->select = 'id, tags, update_time';
+    	$criteria->select = 'id, update_time';
     	$criteria->order = 'id DESC';
     	$model = Image::model()->findAll($criteria);
     	$tagItems = array();
@@ -114,30 +116,9 @@ class Sitemap extends CController{
     				'url'=>$this->createUrl('image/view', array('id'=>$v->id)),
     				'date'=>date(DATE_W3C, $v->update_time)
     		);
-    
-    		$tagArr = preg_split('/,|，/i', $v->tags);
-    
-    		if(!empty($tagArr)){
-    			foreach($tagArr as $k=>$v){
-    				if(!in_array($v,$this->tagItems)){
-    					$tagItems[] = $v;
-    				}
-    			}
-    		}
     	}   
 
-    	//创建临时函数数组
-    	$tmp = array();
-    	$tmp = $tagItems;    	
-    	foreach($tmp as $k=>$v){
-    		$this->tagItems[] = array(
-    				'url'=>$this->createUrl('tag/index', array('tag_name'=>$v)),
-    				'date'=>date(DATE_W3C, time())
-    		);
-    	}
-    	unset($tmp);
-    	
-    }
+	}
     
     /**
      * 
@@ -177,19 +158,6 @@ POST;
 
         }
         
-        $imageitem = '';
-        foreach($this->imageItems as $k=>$v){
-        	$imageitem .= <<<POST
-            <url>\r\n
-                <loc>{$this->webSiteTitle}{$v['url']}</loc>\r\n
-                <lastmod>{$v['date']}</lastmod>\r\n
-                <changefreq>{$this->changefreq}</changefreq>\r\n
-                <priority>{$this->priority}</priority>\r\n
-            </url>\r\n
-POST;
-        
-        }
-        
         $downloaditem = '';
         foreach($this->downloadItems as $k=>$v){
         	$downloaditem .= <<<POST
@@ -201,8 +169,34 @@ POST;
             </url>\r\n
 POST;
         
-        }        
+        }
+        
+		$imageitem = '';
+        foreach($this->imageItems as $k=>$v){
+        	$imageitem .= <<<POST
+            <url>\r\n
+                <loc>{$this->webSiteTitle}{$v['url']}</loc>\r\n
+                <lastmod>{$v['date']}</lastmod>\r\n
+                <changefreq>{$this->changefreq}</changefreq>\r\n
+                <priority>{$this->priority}</priority>\r\n
+            </url>\r\n
+POST;
+        
+        }
+                
 
+        $tagitem = '';
+        foreach($this->tagItems as $k=>$v){
+        	$tagitem .= <<<POST
+            <url>\r\n
+                <loc>{$this->webSiteTitle}{$v['url']}</loc>\r\n
+                <lastmod>{$v['date']}</lastmod>\r\n
+                <changefreq>{$this->changefreq}</changefreq>\r\n
+                <priority>{$this->priority}</priority>\r\n
+            </url>\r\n
+POST;
+        
+        }
         $categoryitem = '';
         foreach($this->categoryItems as $k=>$v){
             $categoryitem .= <<<POST
@@ -238,10 +232,10 @@ POST;
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"\r\n
         xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\r\n
             {$postitem}
-            {$imageitem}
             {$downloaditem}
-            {$categoryitem}
             {$tagitem}
+            {$categoryitem}
+            {$imageitem}
 </urlset>\r\n
 SITEMAP;
    	}
@@ -251,9 +245,10 @@ SITEMAP;
    */
   function show() {
         $this->postSitemap();
-        $this->imageSitemap();
         $this->downloadSitemap();
+        $this->tagSitemap();
         $this->categorySitemap();
+        $this->imageSitemap();
     	if (empty($this->content)) {
     		$this->buildSitemap();
     	}

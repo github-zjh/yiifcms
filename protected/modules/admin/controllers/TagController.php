@@ -55,10 +55,11 @@ class TagController extends Backend
     	foreach((array) $tags as $tag){    		
     		$post = Post::model()->findAll("FIND_IN_SET(:tag, tags)", array(':tag'=>$tag->tag_name));   
     		$image = Image::model()->findAll("FIND_IN_SET(:tag, tags)", array(':tag'=>$tag->tag_name));
-    		if(!$post && !$image){
+    		$soft = Soft::model()->findAll("FIND_IN_SET(:tag, seo_keywords)", array(':tag'=>$tag->tag_name));
+    		if(!$post && !$image && !$soft){
     			$tag->delete();
     		}else{
-    			$tag->data_count = count($post) + count($image);
+    			$tag->data_count = count($post) + count($image) + count($soft);
     			$tag->save();
     		}
     	}

@@ -29,7 +29,7 @@
 							<?php if(file_exists($post->attach_thumb)):?>
 							<a class="content_cover" alt="<?php echo $post->title;?>" title="<?php echo CHtml::encode($post->title);?>" href="<?php echo $this->createUrl('post/view', array('id'=>$post->id));?>"><img src="<?php echo $post->attach_thumb;?>" /></a>
 							<?php endif;?>												
-							<div><?php echo $post->intro?CHtml::encode($post->intro):'...';?></div>
+							<div><?php echo $post->introduce?CHtml::encode($post->introduce):'...';?></div>
 						</div>
 						
 						<a href="<?php echo $this->createUrl('post/view', array('id'=>$post->id));?>" class="continue_read"><?php echo Yii::t('common','Read More');?></a>
