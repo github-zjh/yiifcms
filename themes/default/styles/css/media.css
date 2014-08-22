@@ -67,6 +67,10 @@ background:#e8645a;
 .content_list .content_info { height:65px; overflow:hidden;}
 .content_right { display:none;}
 
+/* 详情页 */
+#content , #content .content_left{ width:auto!important;}
+#content .content_right { display:none!important;}
+
 /* 单页 */
 .page_left { width:95%!important;}
 .page_right { width:95%!important; float:left;}

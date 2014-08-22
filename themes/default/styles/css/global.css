@@ -150,10 +150,10 @@ box-shadow: 0 5px 0 #e2534b;
 #back_top:hover { background-position:-35px 0;}
 
 /* 公共底部footer */
-#footer { width:100%;background-color:#666666; color:#FFFFFF; }
+#footer { width:100%;background-color:#428bca; color:#FFFFFF; }
 #footer * { color:#FFFFFF; }
 #footer a:hover { text-decoration:underline; }
-#footer .ft_header {  padding:15px 0; width:1170px; margin:0 auto; background-color:#666666; }
+#footer .ft_header {  padding:15px 0; width:1170px; margin:0 auto; }
 #footer .ft_header li { float:left; text-align:left; }
 #footer .footer_left { width:370px;}
 #footer .footer_mid { width:160px;}
@@ -172,8 +172,8 @@ box-shadow: 0 5px 0 #e2534b;
 #footer .footer_right .text .email_me { background-image:url(../images/ico_163.jpg);}
 #footer .footer_right .text .qq_me { background-image:url(../images/ico_qq.jpg);}
 
-#copyright { background-color:#555555; }
-#copyright div { width:1170px; margin:0 auto; background-color:#555555; }
+#copyright { border-top:1px solid #FFFFFF; }
+#copyright div { width:1170px; margin:0 auto;}
 #copyright span { float:left; line-height:50px; margin-right:20px;}
 #copyright .outer { float:right; padding-top:15px; }
 #copyright .outer a { display:block; }

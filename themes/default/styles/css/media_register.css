@@ -1,0 +1,8 @@
+@CHARSET "UTF-8"
+/* 注册页面 */
+.reg_head { display:none!important;}
+.reg_body { width:auto!important; top:0!important;}
+.reg_body h2 { height:33px!important; line-height:33px!important;font-size:1rem!important;}
+#register-form { width:auto!important;}
+#register-form .notice { width:auto!important;}
+#register-form .form_box { margin:0!important;}

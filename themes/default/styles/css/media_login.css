@@ -1,0 +1,13 @@
+@CHARSET "UTF-8"
+/* 登录页面 */
+
+#wrapper { padding:0!important;}
+#wrapper .form , .login_auth{ float:none!important;width:auto!important;}
+.wrapper_bg { display:none;}
+.login_bg { display:none;}
+.login_list { position:absolute; top:290px!important;}
+.login_auth .title { display:none!important;}
+.login_list li img { display:none!important;}
+.login_list li a { padding:0px!important; }
+.login_auth .auth_desc { display:none!important;}
+.copyright { margin:0!important; position:absolute; top:420px;}
