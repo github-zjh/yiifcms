@@ -23,7 +23,7 @@
 	<div class="header_main clear">
 		<div id="logo">
 			<a class="logo_a" href="<?php echo Yii::app()->homeUrl;?>" title="<?php echo $this->_setting['site_name'];?>">
-				<img src="<?php echo $this->_static_public.'/logo.png';?>"/>
+				<img src="<?php echo $this->_static_public.'/logo.png';?>" alt="<?php echo $this->_setting['site_name'];?>"/>
 			</a>
 		</div>
 		<div id="msbox">			
@@ -92,8 +92,8 @@
 		</div>	
 		<?php if(Yii::app()->user->getIsGuest()):?>	
 		<div id="login">			
-			<a href="<?php echo $this->createUrl('user/login');?>"><?php echo Yii::t('common','Login');?></a>
-			<a href="<?php echo $this->createUrl('user/register');?>"><?php echo Yii::t('common','Register');?></a>			
+			<a href="<?php echo $this->createUrl('user/login');?>" rel="nofollow"><?php echo Yii::t('common','Login');?></a>
+			<a href="<?php echo $this->createUrl('user/register');?>" rel="nofollow"><?php echo Yii::t('common','Register');?></a>			
 		</div>
 		<?php else:?>
 		<div id="logout">		

@@ -114,7 +114,7 @@
 				<?php foreach((array)$soft_new as $sn):?>
 				<li>
 					<a href="<?php echo $this->createUrl('soft/view', array('id'=>$sn->id));?>" title="<?php echo $sn->title;?>">
-						<img class="dl_img" src="<?php echo $sn->soft_icon;?>" width="70" height="70"/>											
+						<img class="dl_img" alt="<?php echo $sn->title;?>" src="<?php echo $sn->soft_icon;?>" width="70" height="70"/>											
 					</a>		
 					<a href="<?php echo $this->createUrl('soft/view', array('id'=>$sn->id));?>"><?php echo Helper::truncate_utf8_string($sn->title, 4);?></a>
 					<a href="<?php echo $this->createUrl('soft/download', array('id'=>$sn->id));?>" class="dl_btn" target="_blank">下载</a>			
@@ -126,7 +126,7 @@
 				<?php foreach((array)$soft_hot as $sh):?>
 				<li>
 					<a href="<?php echo $this->createUrl('soft/view', array('id'=>$sh->id));?>" title="<?php echo $sh->title;?>">
-						<img class="dl_img" src="<?php echo $sh->soft_icon;?>" width="70" height="70"/>											
+						<img class="dl_img" alt="<?php echo $sh->title;?>" src="<?php echo $sh->soft_icon;?>" width="70" height="70"/>											
 					</a>		
 					<a href="<?php echo $this->createUrl('soft/view', array('id'=>$sh->id));?>"><?php echo Helper::truncate_utf8_string($sh->title, 4);?></a>
 					<a href="<?php echo $this->createUrl('soft/download', array('id'=>$sh->id));?>" class="dl_btn" target="_blank">下载</a>			

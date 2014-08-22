@@ -16,8 +16,8 @@
 		<li class="footer_mid">
 			<h2>快捷通道</h2>
 			<ul>
-				<li><a href="<?php echo $this->createUrl('page/index', array('id'=>'about'));?>">关于我们</a></li>
-				<li><a href="<?php echo $this->createUrl('question/index');?>">留言反馈</a></li>	
+				<li><a href="<?php echo $this->createUrl('page/index', array('id'=>'about'));?>" rel="nofollow">关于我们</a></li>
+				<li><a href="<?php echo $this->createUrl('question/index');?>" rel="nofollown">留言反馈</a></li>	
 			</ul>
 		</li>
 		<li class="footer_right">
