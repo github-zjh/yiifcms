@@ -22,7 +22,7 @@
 				</p>
 				<div class="content_info">
 					<div class="description">
-						[<?php echo Yii::t('common','Guide Read')?>]：<?php echo $post->intro?$post->intro:'...';?>
+						[<?php echo Yii::t('common','Guide Read')?>]：<?php echo $post->introduce?$post->introduce:'...';?>
 					</div>
 					<?php echo $post->content;?>
 				</div>
