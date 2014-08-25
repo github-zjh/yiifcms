@@ -21,7 +21,7 @@ $(function(){
     <td class="tb_title">
     	<select name="Catalog[type]" id="Catalog_type">        
         <?php foreach((array)$this->_model_type as $type):?>
-        <option value="<?php echo $type['id']?>" <?php $this->selected($type['id'], $model->type);?>><?php echo $type->type_name;?></option>
+        <option value="<?php echo $type['id']?>" <?php Helper::selected($type['id'], $model->type);?>><?php echo $type->type_name;?></option>
         <?php endforeach;?>
       </select>
     </td>
@@ -40,7 +40,7 @@ $(function(){
     <td ><select name="Catalog[parent_id]" id="Catalog_parent_id">
         <option value="0">==<?php echo Yii::t('admin','Top Category');?>==</option>
         <?php foreach((array)Catalog::get(0, $this->_catalog) as $catalog):?>
-        <option value="<?php echo $catalog['id']?>" <?php $this->selected($catalog['id'], $model->parent_id);?>><?php echo $catalog['str_repeat']?><?php echo $catalog['catalog_name']?></option>
+        <option value="<?php echo $catalog['id']?>" <?php Helper::selected($catalog['id'], $model->parent_id);?>><?php echo $catalog['str_repeat']?><?php echo $catalog['catalog_name']?></option>
         <?php endforeach;?>
       </select></td>
   </tr>

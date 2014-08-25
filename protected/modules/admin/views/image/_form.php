@@ -33,13 +33,13 @@
   <tr >
     <td ><select name="Image[catalog_id]" id="Image_catalog_id">
         <?php foreach((array)Catalog::get(0, $this->_catalog) as $catalog):?>
-        <option value="<?php echo $catalog['id']?>" <?php $this->selected($catalog['id'], $model->catalog_id);?>><?php echo $catalog['str_repeat']?><?php echo $catalog['catalog_name']?></option>
+        <option value="<?php echo $catalog['id']?>" <?php Helper::selected($catalog['id'], $model->catalog_id);?>><?php echo $catalog['str_repeat']?><?php echo $catalog['catalog_name']?></option>
         <?php endforeach;?>
       </select>
       <select name="Image[special_id]">
         <option value="0">==<?php echo Yii::t('admin','Belong Special');?>==</option>
         <?php foreach((array)$this->_special as $speical):?>
-        <option value="<?php echo $speical['id']?>" <?php $this->selected($speical['id'], $model->special_id);?>><?php echo $speical['title']?></option>
+        <option value="<?php echo $speical['id']?>" <?php Helper::selected($speical['id'], $model->special_id);?>><?php echo $speical['title']?></option>
         <?php endforeach;?>
       </select></td>
   </tr>

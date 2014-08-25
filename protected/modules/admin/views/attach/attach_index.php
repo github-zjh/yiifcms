@@ -51,7 +51,7 @@ $(document).ready(function(){
         
       <!--<td ></td>-->
       
-      <td ><span ><?php echo $this->byteFormat($row->file_size)?></span></td>
+      <td ><span ><?php echo Helper::byteFormat($row->file_size)?></span></td>
       <td ><?php echo date('Y-m-d H:i',$row->create_time)?></td>
       <td ><a href="<?php echo  $this->createUrl('batch',array('command'=>'attachDelete', 'id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->module->assetsUrl;?>/images/delete.png" align="absmiddle" /></a></td>
     </tr>

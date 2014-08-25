@@ -10,7 +10,7 @@
       <select name="groupid" id="groupid">
         <option value="">=组=</option>
         <?php foreach((array)$this->group_list as $group):?>
-        <option value="<?php echo $group['id']?>" <?php $this->selected($group['id'], $this->_request->getParam('groupid'));?>><?php echo $group['group_name']?></option>
+        <option value="<?php echo $group['id']?>" <?php Helper::selected($group['id'], $this->_request->getParam('groupid'));?>><?php echo $group['group_name']?></option>
         <?php endforeach;?>
       </select>
       <?php endif;?>

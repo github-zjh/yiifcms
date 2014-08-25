@@ -14,7 +14,7 @@
   <table cellspacing="0" cellpadding="0" class="content_list">
     <thead>
       <tr class="operate">
-        <th colspan="8" >当前数据库尺寸：<?php echo $this->byteFormat($dataSize)?></th>
+        <th colspan="8" >当前数据库尺寸：<?php echo Helper::byteFormat($dataSize)?></th>
       </tr>
       <tr class="tb_header">
         <th style="width:5%">&nbsp;</th>
@@ -34,7 +34,7 @@
       <td><?php echo $row['Engine']?></td>
       <td><?php echo $row['Collation']?></td>
       <td><?php echo $row['Rows']?></td>
-      <td><?php echo $this->byteFormat($row['Data_length'])?></td>
+      <td><?php echo Helper::byteFormat($row['Data_length'])?></td>
       <td><?php echo $row['Data_free']?></td>
       <td><?php echo $row['Comment']?></td>
     </tr>

@@ -38,7 +38,7 @@
 	  	 	<tr id="<?php echo $ak.'_id';?>">	  	 		
 	  	 		<td style="width:8%"><input type="checkbox" name="acls[]" value="all"  onclick="selectAll('<?php echo $ak.'_id';?>', this.checked)"/><strong><?php echo Yii::t('acl',$ak);?></strong></td>
 	  	 		<?php foreach((array)$acl as $value):?>
-	  	 		<td style="width:8%"><input type="checkbox" name="acls[]" value="<?php echo $ak.'|'.$value?>" <?php $this->selected($ak.'|'.$value, $has_acls,'checked');?>/><?php echo Yii::t('acl',$ak.'|'.$value);?></td>	  	 		
+	  	 		<td style="width:8%"><input type="checkbox" name="acls[]" value="<?php echo $ak.'|'.$value?>" <?php Helper::selected($ak.'|'.$value, $has_acls,'checked');?>/><?php echo Yii::t('acl',$ak.'|'.$value);?></td>	  	 		
 	  	 		<?php endforeach;?>
 	  	 		<td></td>
 	  	 	</tr>

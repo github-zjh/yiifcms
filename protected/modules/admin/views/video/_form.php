@@ -23,7 +23,7 @@
   <tr >
     <td ><select name="Video[catalog_id]" id="Video_catalog_id">
         <?php foreach((array)Catalog::get(0, $this->_catalog) as $catalog):?>
-        <option value="<?php echo $catalog['id']?>" <?php $this->selected($catalog['id'], $model->catalog_id);?>><?php echo $catalog['str_repeat']?><?php echo $catalog['catalog_name']?></option>
+        <option value="<?php echo $catalog['id']?>" <?php Helper::selected($catalog['id'], $model->catalog_id);?>><?php echo $catalog['str_repeat']?><?php echo $catalog['catalog_name']?></option>
         <?php endforeach;?>
       </select>
     </td>

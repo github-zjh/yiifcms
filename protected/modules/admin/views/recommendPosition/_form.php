@@ -21,7 +21,7 @@
     <td >
     	<select name="RecommendPosition[type]" id="RecommendPosition_type">        
 	        <?php foreach((array)$this->_recom_type as $type):?>
-	        <option value="<?php echo $type['id']?>" <?php $this->selected($type['id'], $model->type);?>><?php echo $type->type_name;?></option>
+	        <option value="<?php echo $type['id']?>" <?php Helper::selected($type['id'], $model->type);?>><?php echo $type->type_name;?></option>
 	        <?php endforeach;?>
       	</select>
     </td>

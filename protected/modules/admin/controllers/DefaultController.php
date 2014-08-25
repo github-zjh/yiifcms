@@ -103,7 +103,7 @@ class DefaultController extends BackendBase
 			$dbsize += $table['Data_length'] + $table['Index_length'];
 		$mysqlVersion = $connection->createCommand("SELECT version() AS version")->queryAll();
 		$data['mysqlVersion'] = $mysqlVersion[0]['version'];
-		$data['dbsize'] = $this->byteFormat($dbsize);
+		$data['dbsize'] = Helper::byteFormat($dbsize);
 		$this->render('home', array ('server' => $data ));
 		
 	}

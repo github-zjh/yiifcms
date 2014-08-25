@@ -1,23 +1,5 @@
 <div id="contentHeader">
-  <h3><?php echo Yii::t('admin','OAuth Manage');?></h3>
-  <div class="searchArea">    
-    <div class="search right">
-      <?php $form = $this->beginWidget('CActiveForm',array('id'=>'searchForm','method'=>'get','action'=>array('link'),'htmlOptions'=>array('name'=>'xform'))); ?>
-      <?php echo Yii::t('admin','Title');?>
-      <input id="title" type="text" name="apiname" value="" class="txt" size="15"/>
-      <input name="searchsubmit" type="submit" value="<?php echo Yii::t('admin','Query');?>" class="button"/>
-      <script type="text/javascript">
-$(function(){
-	$("#xform").validationEngine();	
-});
-</script>
-      <?php $form=$this->endWidget(); ?>
-      <script type="text/javascript">
-$(document).ready(function(){
-	$("#apiname").val('<?php echo $this->_request->getParam('apiname')?>');
-});
-</script> </div>
-  </div>
+  <h3><?php echo Yii::t('admin','OAuth Manage');?></h3>  
 </div>
 <table class="content_list">
   <form method="post" action="<?php echo $this->createUrl('batch')?>" name="cpform" >

@@ -22,8 +22,8 @@
     </tr>
     <tr >
       <td ><select name="Setting[site_status]">
-          <option value="open" <?php echo $this->selected($setting['site_status'], 'open')?>>开启</option>
-          <option value="close" <?php echo $this->selected($setting['site_status'], 'close')?>>关闭</option>
+          <option value="open" <?php echo Helper::selected($setting['site_status'], 'open')?>>开启</option>
+          <option value="close" <?php echo Helper::selected($setting['site_status'], 'close')?>>关闭</option>
         </select></td>
     </tr>
     <tr >

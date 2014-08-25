@@ -41,7 +41,7 @@ $(function(){
     <td ><select name="Menu[parent_id]" id="Menu_parent_id">
         <option value="0">==<?php echo Yii::t('admin','Top Category');?>==</option>
         <?php foreach((array)Menu::get(0, $this->_menu) as $menu):?>
-        <option value="<?php echo $menu['id']?>" <?php $this->selected($menu['id'], $model->parent_id);?>><?php echo $menu['str_repeat']?><?php echo $menu['menu_name']?></option>
+        <option value="<?php echo $menu['id']?>" <?php Helper::selected($menu['id'], $model->parent_id);?>><?php echo $menu['str_repeat']?><?php echo $menu['menu_name']?></option>
         <?php endforeach;?>
       </select></td>
   </tr>  

@@ -45,14 +45,14 @@
 			<select name="Post[catalog_id]" id="Post_catalog_id">
         <?php foreach((array)Catalog::get(0, $this->_catalog) as $catalog):?>
         <option value="<?php echo $catalog['id']?>"
-					<?php $this->selected($catalog['id'], $model->catalog_id);?>><?php echo $catalog['str_repeat']?><?php echo $catalog['catalog_name']?></option>
+					<?php Helper::selected($catalog['id'], $model->catalog_id);?>><?php echo $catalog['str_repeat']?><?php echo $catalog['catalog_name']?></option>
         <?php endforeach;?>
       </select>
 			<select name="Post[special_id]">
 				<option value="0">==<?php echo Yii::t('admin','Belong Special');?>==</option>
         <?php foreach((array)$this->_special as $speical):?>
         <option value="<?php echo $speical['id']?>"
-					<?php $this->selected($speical['id'], $model->special_id);?>><?php echo $speical['title']?></option>
+					<?php Helper::selected($speical['id'], $model->special_id);?>><?php echo $speical['title']?></option>
         <?php endforeach;?>
       </select>
 		</td>

@@ -68,7 +68,7 @@ class Helper
 		static $ret = array();
 		if ( false !== ($handle = opendir ( $dir ))) {
 			while ( false !== ($file = readdir ( $handle )) ) {
-				if ($file != '.' && $file !== '..' && $file !== '.git' && $file !== '.svn' && $file !== '.htaccess') {
+				if (!in_array($file, array('.', '..', '.git', '.gitignore', '.svn', '.htaccess', '.buildpath','.project'))) {
 					$cur_path = $dir . '/' . $file;
 					if (is_dir ( $cur_path )) {
 						$ret['dirs'][] =$cur_path;
@@ -270,5 +270,40 @@ class Helper
 	
 		return $writeable;
 	}
+	/**
+	 * 格式化单位
+	 */
+	static public function byteFormat( $size, $dec = 2 ) {
+		$a = array ( "B" , "KB" , "MB" , "GB" , "TB" , "PB" );
+		$pos = 0;
+		while ( $size >= 1024 ) {
+			$size /= 1024;
+			$pos ++;
+		}
+		return round( $size, $dec ) . " " . $a[$pos];
+	}
+	
+	/**
+	 * 下拉框，单选按钮 自动选择
+	 *
+	 * @param $string 输入字符
+	 * @param $param  条件
+	 * @param $type   类型
+	 * selected checked
+	 * @return string
+	 */
+	static public function selected( $string, $param = 1, $type = 'select' ) {
+	
+		if ( is_array( $param ) ) {
+			$true = in_array( $string, $param );
+		}elseif ( $string == $param ) {
+			$true = true;
+		}
+		if ( $true )
+			$return = $type == 'select' ? 'selected="selected"' : 'checked="checked"';
+	
+		echo $return;
+	}
+	
         
 }

@@ -7,8 +7,8 @@
     <div class="search right"> </div>
   </div>
 </div>
-<table class="content_list">
-  <form method="post" action="<?php echo $this->createUrl('/admin/catalog/batch');?>" name="cpform" >
+<?php $form = $this->beginWidget('CActiveForm',array('id'=>'cpform', 'action'=>$this->createUrl('batch'), 'htmlOptions'=>array('name'=>'zip_form'))); ?>
+<table class="content_list">  
     <tr class="tb_header">
       <th width="8%"> ID</th>
       <th width="8%"> <?php echo Yii::t('admin', 'Sort Order');?></th>
@@ -60,6 +60,6 @@
           <input id="submit_maskall" class="button confirmSubmit" type="submit" value="<?php echo Yii::t('common','Submit');?>" name="maskall" />
         </div></td>
     </tr>
-  </form>
+ 
 </table>
-
+<?php $form=$this->endWidget();?>

@@ -15,43 +15,43 @@
   <div class="nav">
     <ul>
             <li index="0">
-        <div><a href="<?php echo $this->createUrl('default/home');?>" target="win" hidefocus>首页</a></div>
+        <div><a href="<?php echo $this->createUrl('default/home');?>" target="win" ><?php echo Yii::t('admin','BM_Home');?></a></div>
       </li>      
       <li index="1">
-        <div><a href="<?php echo $this->createUrl('setting/index');?>" target="win" hidefocus>设置</a></div>
+        <div><a href="<?php echo $this->createUrl('setting/index');?>" target="win" ><?php echo Yii::t('admin','BM_Setting');?></a></div>
       </li>
       <li index="2">
-        <div><a href="<?php echo $this->createUrl('catalog/index');?>" target="win" hidefocus>栏目</a></div>
+        <div><a href="<?php echo $this->createUrl('catalog/index');?>" target="win" ><?php echo Yii::t('admin','BM_Catalog');?></a></div>
       </li>
       <li index="3">
-        <div><a href="<?php echo $this->createUrl('post/index');?>" target="win" hidefocus>内容</a></div>
+        <div><a href="<?php echo $this->createUrl('post/index');?>" target="win" ><?php echo Yii::t('admin','BM_Content');?></a></div>
       </li>
       <li index="4">
-        <div><a href="<?php echo $this->createUrl('user/index');?>" target="win" hidefocus>用户</a></div>
+        <div><a href="<?php echo $this->createUrl('user/index');?>" target="win" ><?php echo Yii::t('admin','BM_User');?></a></div>
       </li>     
       <li index="5">
-        <div><a href="<?php echo $this->createUrl('ad/index');?>" target="win" hidefocus>广告</a></div>
+        <div><a href="<?php echo $this->createUrl('ad/index');?>" target="win" ><?php echo Yii::t('admin','BM_Ad');?></a></div>
       </li> 
       <li index="6">
-        <div><a href="<?php echo $this->createUrl('recommendPosition/index');?>" target="win" hidefocus>组件</a></div>
+        <div><a href="<?php echo $this->createUrl('recommendPosition/index');?>" target="win" ><?php echo Yii::t('admin','BM_Component');?></a></div>
       </li>
       <li index="7">
-        <div><a href="<?php echo $this->createUrl('modeltype/index');?>" target="win" hidefocus>模型</a></div>
+        <div><a href="<?php echo $this->createUrl('modeltype/index');?>" target="win" ><?php echo Yii::t('admin','BM_Model');?></a></div>
       </li>
       <li index="8">
-        <div><a href="<?php echo $this->createUrl('database/index');?>" target="win" hidefocus>工具</a></div>
+        <div><a href="<?php echo $this->createUrl('database/index');?>" target="win" ><?php echo Yii::t('admin','BM_Tools');?></a></div>
       </li>
       <li index="9">
-        <div><a href="<?php echo $this->createUrl('oAuth/index');?>" target="win" hidefocus>第三方登录</a></div>
+        <div><a href="<?php echo $this->createUrl('oAuth/index');?>" target="win" ><?php echo Yii::t('admin','BM_Oauth');?></a></div>
       </li>
           </ul>
   </div>  
   <div class="logininfo">
 	  <span class="welcome"><img src="<?php echo $this->module->assetsUrl;?>/images/user_edit.png" align="absmiddle"> 欢迎【<?php echo Yii::app()->user->groupname;?>】, <em><?php echo Yii::app()->user->name;?></em> </span> 
-	  <a href="<?php echo $this->createUrl('user/update', array('id'=>Yii::app()->user->id));?>" target="win">修改密码</a> 
-	  <a href="<?php echo $this->createUrl('default/logout');?>" target="_top">退出登录</a> 
-	  <a href="<?php echo $this->_request->hostinfo.Yii::app()->homeUrl;?>" target="_blank">前台首页</a><br/>
-	  <a href="javascript:;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前服务器时间：<?php echo date('Y年m月d日 H:i:s',time());?></a>
+	  <a href="<?php echo $this->createUrl('user/update', array('id'=>Yii::app()->user->id));?>" target="win"><?php echo Yii::t('admin','Update Password');?></a> 
+	  <a href="<?php echo $this->createUrl('default/logout');?>" target="_top"><?php echo Yii::t('admin','Logout');?></a> 
+	  <a href="<?php echo $this->_request->hostinfo.Yii::app()->homeUrl;?>" target="_blank"><?php echo Yii::t('admin','Home Url');?></a><br/>
+	  <a href="javascript:;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo Yii::t('admin','Cur Server Date');?>：<?php echo date('Y年m月d日 H:i:s',time());?></a>
   </div>
   
 </div>
@@ -101,7 +101,8 @@
                 <li index="2"><a href="<?php echo $this->createUrl('link/index');?>" target="win"><?php echo Yii::t('admin','Link Manage');?></a></li>  
                 <li index="3"><a href="<?php echo $this->createUrl('comment/index');?>" target="win"><?php echo Yii::t('admin','Comment Manage');?></a></li>
                 <li index="4"><a href="<?php echo $this->createUrl('reply/index');?>" target="win"><?php echo Yii::t('admin','Reply Manage');?></a></li>
-                <li index="5"><a href="<?php echo $this->createUrl('tag/index');?>" target="win"><?php echo Yii::t('admin','Tags Manage');?></a></li>                             
+                <li index="5"><a href="<?php echo $this->createUrl('tag/index');?>" target="win"><?php echo Yii::t('admin','Tags Manage');?></a></li>   
+                <li index="6"><a href="<?php echo $this->createUrl('maillog/index');?>" target="win"><?php echo Yii::t('admin','Maillog Manage');?></a></li>                          
               </ul>
               
              <ul index="7" class="left_menu">
@@ -111,7 +112,7 @@
             <ul index="8" class="left_menu">
                 <li index="0"><a href="<?php echo $this->createUrl('database/index');?>" target="win"><?php echo Yii::t('admin','Database Manage');?></a></li>
                 <li index="1"><a href="<?php echo $this->createUrl('cache/index');?>" target="win"><?php echo Yii::t('admin','Cache Manage');?></a></li>
-                <li index="2"><a href="<?php echo $this->createUrl('maillog/index');?>" target="win"><?php echo Yii::t('admin','Maillog Manage');?></a></li>
+                <li index="2"><a href="<?php echo $this->createUrl('zip/index');?>" target="win"><?php echo Yii::t('admin','Zip Manage');?></a></li>
               </ul>
               
               <ul index="9" class="left_menu">

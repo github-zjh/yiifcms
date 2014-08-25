@@ -58,7 +58,7 @@
     	<select name="User[groupid]" id="User[groupid]" class="validate[required]">
     		<option value="">=组=</option>
     		<?php foreach($this->group_list as $group):?>
-    		<option value="<?php echo $group['id'];?>" <?php $this->selected($group['id'], $model->groupid);?>><?php echo $group['group_name'];?></option>
+    		<option value="<?php echo $group['id'];?>" <?php Helper::selected($group['id'], $model->groupid);?>><?php echo $group['group_name'];?></option>
     		<?php endforeach;?>
     	</select>
     </td>

@@ -73,7 +73,7 @@
 			$i=1;
 			foreach($scopeArr as $val){
 		?>
-				<input type="checkbox" name="scope[]" value="<?php echo $val?>" id="<?php echo $val?>" <?php $this->selected($val, explode(',',$apiconfig['scope']),'checked');?>/>
+				<input type="checkbox" name="scope[]" value="<?php echo $val?>" id="<?php echo $val?>" <?php Helper::selected($val, explode(',',$apiconfig['scope']),'checked');?>/>
 				<label  class="qq_oauth_list" for="<?php echo $val?>"><?php echo Yii::t('admin','qq_scope_'.$val);?></label>&nbsp;			
 			<?php
 				if($i%5==0 && $i>4){

@@ -34,6 +34,22 @@ return array (
 	'Parent ID can not eque itself ID' =>'上级分类不能和本分类相同',
 	'Enable' => '启用',
 	'Disable' => '禁用',
+	'Home Url' => '前台首页',
+	'Cur Server Date' => '当前服务器时间',
+	'Update Password' => '修改密码',
+	'Logout' => '退出登录',
+	
+	/* 后台菜单 */
+	'BM_Home' =>'首页',
+	'BM_Setting' => '设置',
+	'BM_Catalog' => '栏目',
+	'BM_Content' => '内容',
+	'BM_User' => '用户',
+	'BM_Ad' => '广告',
+	'BM_Component' => '组件',
+	'BM_Model' => '模型',
+	'BM_Tools' => '工具',
+	'BM_Oauth' => '第三方授权',
 	
 	/* 设置 */
 	'Web Set' => '站点设置',
@@ -46,6 +62,7 @@ return array (
 	'WaterMark Alpha Should Between 1 AND 100' => '水印透明度应该介于1~100的数字',
 	'Test Email Subject'=>'测试邮件标题',
 	'Test Email Content' => '测试邮件内容',
+	
 	/* 栏目 */
 	'Catalog Manage' => '栏目管理',
 	'Attach Manage' => '附件管理',
@@ -72,6 +89,9 @@ return array (
 	'Special Manage' => '专题管理',
 	'Page Manage' => '单页管理',
 	'Maillog Manage'=>'邮件日志管理',
+	'Zip Manage' =>'文件打包下载',
+	'Zip Download' => '打包下载',
+	'File Size' => '文件大小',
 	
 	'All Content'  => '全部内容',
 	'Title'	=> '标题',
