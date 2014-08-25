@@ -4,14 +4,20 @@
 {
 	-moz-border-radius:0 0 0 0!important;-webkit-border-radius:0 0 0 0!important;background:none!important;border:0!important;
 	bottom:auto!important;float:none!important;left:auto!important;margin:0!important;
-	outline:0!important;overflow:visible!important;padding:0!important;position:static!important;right:auto!important;
-	text-align:left!important;top:auto!important;vertical-align:baseline!important;width:auto!important;box-sizing:content-box!important; 
-	font-weight:normal!important;font-style:normal!important;min-height:inherit!important;min-height:auto!important;font-size:12px!important
+	outline:0!important;
+	overflow:auto!important;
+	padding:0!important;position:static!important;right:auto!important;
+	text-align:left!important;top:auto!important;
+	vertical-align:baseline!important;
+	width:auto!important;
+	font-weight:normal!important;
+	font-style:normal!important;
+	font-size:12px/22px!important;
 }
 .syntaxhighlighter{width:99%!important;margin:.3em 0 .3em 0!important;position:relative!important;overflow:auto!important;background-color:#f5f5f5!important;border:1px dashed #ccc!important;border-radius:4px!important;border-collapse:separate!important}
 
 .syntaxhighlighter.source{overflow:hidden!important}
-.syntaxhighlighter .bold{font-weight:bold!important}
+.syntaxhighlighter .bold{font-weight:normal!important}
 .syntaxhighlighter .italic{font-style:italic!important}
 
 .syntaxhighlighter .gutter div{white-space:pre!important;word-wrap:normal}
@@ -47,6 +53,8 @@
 .syntaxhighlighter.printing .line.highlighted .number,
 .syntaxhighlighter.printing .line.highlighted.alt1 .content,
 .syntaxhighlighter.printing .line.highlighted.alt2 .content{background:none!important}
+.syntaxhighlighter .code .alt1 { background-color:#FFFFFF!important;}
+.syntaxhighlighter .code .container .line { width:150%!important;}
 .syntaxhighlighter.printing .line .number{color:#bbb!important}
 .syntaxhighlighter.printing .line .content{color:black!important}
 .syntaxhighlighter.printing .toolbar{display:none!important}
@@ -57,13 +65,13 @@
 .syntaxhighlighter.printing .comments a{color:#008200!important}
 .syntaxhighlighter.printing .string,
 .syntaxhighlighter.printing .string a{color:blue!important}
-.syntaxhighlighter.printing .keyword{color:#ff7800!important;font-weight:bold!important}
+.syntaxhighlighter.printing .keyword{color:#ff7800!important;font-weight:normal!important}
 .syntaxhighlighter.printing .preprocessor{color:gray!important}
 .syntaxhighlighter.printing .variable{color:#a70!important}
 .syntaxhighlighter.printing .value{color:#090!important}
 .syntaxhighlighter.printing .functions{color:#ff1493!important}
 .syntaxhighlighter.printing .constants{color:#06c!important}
-.syntaxhighlighter.printing .script{font-weight:bold!important}
+.syntaxhighlighter.printing .script{font-weight:normal!important}
 .syntaxhighlighter.printing .color1,
 .syntaxhighlighter.printing .color1 a{color:gray!important}
 .syntaxhighlighter.printing .color2,
@@ -98,11 +106,11 @@
 .syntaxhighlighter .value{color:#090!important}
 .syntaxhighlighter .functions{color:#ff1493!important}
 .syntaxhighlighter .constants{color:#06c!important}
-.syntaxhighlighter .script{font-weight:bold!important;color:#ff7800!important;background-color:none!important}
+.syntaxhighlighter .script{font-weight:normal!important;color:#ff7800!important;background-color:none!important}
 .syntaxhighlighter .color1,
 .syntaxhighlighter .color1 a{color:gray!important}
 .syntaxhighlighter .color2,
 .syntaxhighlighter .color2 a{color:#ff1493!important}
 .syntaxhighlighter .color3,
 .syntaxhighlighter .color3 a{color:red!important}
-.syntaxhighlighter .keyword{font-weight:bold!important}
+.syntaxhighlighter .keyword{font-weight:normal!important}
