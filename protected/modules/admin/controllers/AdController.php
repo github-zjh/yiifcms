@@ -148,7 +148,7 @@ class AdController extends Backend
         		foreach((array)$ids as $id){
             		$adModel = Ad::model()->findByPk($id);
             		if($adModel){
-            			$adModel->status_is = 'Y';
+            			$adModel->status = 'Y';
             			$adModel->save();
             		}
             	}
@@ -157,7 +157,7 @@ class AdController extends Backend
         		foreach((array)$ids as $id){
             		$adModel = Ad::model()->findByPk($id);
             		if($adModel){
-            			$adModel->status_is = 'N';
+            			$adModel->status = 'N';
             			$adModel->save();
             		}
             	}

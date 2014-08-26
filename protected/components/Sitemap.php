@@ -98,7 +98,7 @@ class Sitemap extends CController{
 					'date'=>date(DATE_W3C, time())
 				);
 		}
-		$this->tagItems[] = array('url'=>$this->createUrl('tag/index'), 'date'=>date(DATE_W3C, time()));
+		$this->tagItems[] = array('url'=>$this->createUrl('tag/all'), 'date'=>date(DATE_W3C, time()));
 	}
     
     /**

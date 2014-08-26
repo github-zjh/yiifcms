@@ -41,7 +41,7 @@ $(document).ready(function(){
       <td ><input type="checkbox" name="id[]" value="<?php echo $row->id?>">
         <?php echo $row->id?></td>
       <td ><?php echo $row->title?>
-        <?php if($row->status_is == 'N'):?>
+        <?php if($row->status == 'N'):?>
         <img src="<?php echo $this->module->assetsUrl;?>/images/error.png" align="absmiddle" />[<?php echo Yii::t('admin','Hidden');?>]
         <?php endif;?></p>
       </td>   

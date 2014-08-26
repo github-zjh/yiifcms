@@ -63,9 +63,6 @@
 									<li><?php echo Yii::t('model','DownCount');?>：<?php echo $video->down_count;?></li>
 								</ul>
 								
-								<!-- 分享按钮 -->
-								<?php $this->renderPartial('/layouts/shareJs');?>	
-								
 								<!-- 下载按钮 -->
 								<div class="clear">
 									<a href="<?php echo $this->createUrl('video/download', array('id'=>$video->id));?>" target="_blank" class="fl download_now"></a>

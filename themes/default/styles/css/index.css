@@ -14,8 +14,10 @@
 #slide_change li a.select { background-color:#e2534b; }
 
 #intro, #section, #clients { width:1170px; margin:0 auto; }
+#intro { padding-bottom:25px;}
 #intro h1 { font-size:30px; color:#7f8c8c; }
 #intro .intro_title { padding:24px 35px 24px 27px; text-align:left;}
+#intro .intro_desc { font-size:16px; font-weight:bold; padding-top:20px;}
 #intro .view_more { 
 	float:right;
 	width:200px;

@@ -20,10 +20,9 @@ class TagController extends FrontBase
   /**
    * 标签首页
    */
-  public function actionIndex() {     
+  public function actionIndex($tag) {     
   	
-   	$tags = trim( $this->_request->getParam( 'tag' ) );
-  	$tags = preg_replace('/(\s)+/', ',', trim($tags));
+  	$tags = preg_replace('/(\s)+/', ',', trim($tag));
   	$arr_tag = explode(',',$tags);    
   	foreach((array)$arr_tag as $tag){	
   		$t = Tag::model()->find('tag_name = :tn', array(':tn'=>$tag));
@@ -71,7 +70,29 @@ class TagController extends FrontBase
 
 	$this->render( 'index', array('navs'=>$navs, 'datas'=>$data,'pagebar' => $pages, 'tags'=>$tags));
   }  
-  
+ 
+  /**
+   *
+   *  所有标签
+   *
+   */
+  public function actionAll(){
+	  $criteria = new CDbCriteria();
+	  $criteria->select = 'tag_name, data_count';
+	  $criteria->order = 'data_count DESC';
+	  $tags = Tag::model()->findAll($criteria);
+	  
+	  //SEO
+	  $this->_seoTitle = Yii::t('common','All Tags').' - '.$this->_setting['site_name'];
+	  $navs[] = array('url'=>$this->_request->getUrl(),'name'=>Yii::t('common','All Tags'));
+
+	  //加载css,js
+	  Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/tag.css");
+	  Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
+
+	  $this->render( 'all', array('navs'=>$navs,'tags'=>$tags));
+
+  }
  
   /**
    * ajax搜索

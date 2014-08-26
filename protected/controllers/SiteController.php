@@ -34,11 +34,11 @@ class SiteController extends FrontBase
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.easytabs.min.js");
 		
 		//头部banner
-		$index_top_banner = Ad::model()->find('position_id = 4 ORDER BY id DESC');
+		$index_top_banner = Ad::model()->find('position_id = :pid AND status = :status ORDER BY id DESC', array(':pid'=>4, ':status'=>'Y'));
 		//中部banner
-		$index_mid_banner = Ad::model()->find('position_id = 3 ORDER BY id DESC');
+		$index_mid_banner = Ad::model()->find('position_id = :pid AND status = :status ORDER BY id DESC', array(':pid'=>3, ':status'=>'Y'));
 		//底部banner
-		$index_bottom_banner = Ad::model()->find('position_id = 5 ORDER BY id DESC');
+		$index_bottom_banner = Ad::model()->find('position_id = :pid AND status = :status ORDER BY id DESC', array(':pid'=>5, ':status'=>'Y'));
 
 		
 		//最新资讯

@@ -27,8 +27,6 @@
 									<li><?php echo Yii::t('model','GoodsSales');?>：<?php echo $good->sales;?></li>
 								</ul>
 								
-								<!-- 分享按钮 -->
-								<?php $this->renderPartial('/layouts/shareJs');?>	
 								
 								
 							</div>												

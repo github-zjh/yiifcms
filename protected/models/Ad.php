@@ -12,11 +12,11 @@
  * @property string $image_url
  * @property string $width
  * @property string $height
- * @property string $intro
+ * @property string $introduce
  * @property string $click_count
  * @property string $attach_file
  * @property string $sort_order
- * @property string $status_is
+ * @property string $status
  * @property string $create_time
  */
 class Ad extends CActiveRecord
@@ -43,11 +43,11 @@ class Ad extends CActiveRecord
 			array('title_alias', 'length', 'max'=>40),
 			array('link_url, image_url', 'length', 'max'=>255),
 			array('attach_file', 'length', 'max'=>100),
-			array('status_is', 'length', 'max'=>1),
-			array('intro', 'safe'),
+			array('status', 'length', 'max'=>1),
+			array('introduce', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, position_id, title, title_alias, link_url, image_url, width, height, intro, click_count, attach_file, sort_order, status_is, create_time', 'safe', 'on'=>'search'),
+			array('id, position_id, title, title_alias, link_url, image_url, width, height, introduce, click_count, attach_file, sort_order, status, create_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -76,11 +76,11 @@ class Ad extends CActiveRecord
 			'image_url' => 'Image Url',
 			'width' => 'Width',
 			'height' => 'Height',
-			'intro' => 'Intro',
+			'introduce' => 'Intro',
 			'click_count' => 'Click Count',
 			'attach_file' => 'Attach File',
 			'sort_order' => 'Sort Order',
-			'status_is' => 'Status Is',
+			'status' => 'Status Is',
 			'create_time' => 'Create Time',
 		);
 	}
@@ -119,7 +119,7 @@ class Ad extends CActiveRecord
 
 		$criteria->compare('height',$this->height,true);
 
-		$criteria->compare('intro',$this->intro,true);
+		$criteria->compare('introduce',$this->introduce,true);
 
 		$criteria->compare('click_count',$this->click_count,true);
 
@@ -127,7 +127,7 @@ class Ad extends CActiveRecord
 
 		$criteria->compare('sort_order',$this->sort_order,true);
 
-		$criteria->compare('status_is',$this->status_is,true);
+		$criteria->compare('status',$this->status,true);
 
 		$criteria->compare('create_time',$this->create_time,true);
 

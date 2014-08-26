@@ -1,0 +1,5 @@
+@CHARSET "UTF-8";
+.crumb_box a { color:#555555; }
+#content { width:1170px; margin:20px auto;}
+.tag_list dd { float:left; margin-right:10px; border-radius:5px;  margin-bottom:10px; line-height:33px; background-color:#7f8c8c; }
+.tag_list dd a { color:#FFFFFF; padding:5px 8px; font-size:2em;}

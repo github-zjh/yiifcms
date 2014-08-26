@@ -10,9 +10,9 @@
 			<dl class="category tag clear">
 				<dt><?php echo Yii::t('common','Tags');?></dt>
 				<?php foreach((array)$this->_tags as $tag):?>				
-				<dd><a href="<?php echo $this->createUrl('tag/index',array('tag'=>$tag->tag_name));?>"><?php echo $tag->tag_name;?></a></dd>		
+				<dd><a href="<?php echo $this->createUrl('tag/index',array('tag'=>$tag->tag_name));?>" title="<?php echo $tag->tag_name;?>"><?php echo $tag->tag_name;?></a></dd>		
 				<?php endforeach;?>	
-				<dd class="tag_more"><a href="<?php echo $this->createUrl('tag/index');?>"><?php echo Yii::t('common','More');?></a></dd>				
+				<dd class="tag_more"><a href="<?php echo $this->createUrl('tag/all');?>"><?php echo Yii::t('common','More');?></a></dd>				
 			</dl>
 			
 			<dl class="category recent_post">

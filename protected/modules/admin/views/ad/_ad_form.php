@@ -60,7 +60,7 @@
     <td class="tb_title"><?php echo Yii::t('admin','Ad Intro');?>：</td>
   </tr>
   <tr >
-    <td ><?php echo $form->textArea($model,'intro',array('rows'=>5, 'cols'=>80)); ?></td>
+    <td ><?php echo $form->textArea($model,'introduce',array('rows'=>5, 'cols'=>80)); ?></td>
   </tr>
   
   <tr>
@@ -73,7 +73,7 @@
     <td class="tb_title"><?php echo Yii::t('admin','Status');?>：</td>
   </tr>
   <tr >
-    <td ><?php echo $form->dropDownList($model,'status_is',array('Y'=>Yii::t('admin','Yes'), 'N'=>Yii::t('admin','No'))); ?></td>
+    <td ><?php echo $form->dropDownList($model,'status',array('Y'=>Yii::t('admin','Yes'), 'N'=>Yii::t('admin','No'))); ?></td>
   </tr>
   <tr class="submit">
     <td ><input name="oAttach" type="hidden" value="<?php echo $model->attach_file ?>" />
