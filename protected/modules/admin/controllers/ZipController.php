@@ -36,7 +36,15 @@ class ZipController extends Backend
 	    		//创建一个空的zip文件
 	    		if($zip->open($zipname,ZipArchive::OVERWRITE)){	    			    			
 	    			foreach((array) $files as $file){	
-	    				$zip->addFile(WWWPATH.'/'.$file, $file);	    			
+	    				if(is_dir($file)){
+	    					//递归检索文件
+	    					$allfiles = Helper::scanfDir($file,true);
+	    					foreach((array)$allfiles['files'] as $v){
+	    						$zip->addFile(WWWPATH.'/'.$v, $v);
+	    					} 
+	    				}else{
+	    					$zip->addFile(WWWPATH.'/'.$file, $file);
+	    				}	    			
 	    			}
 	    			$zip->close();
 	    			//开始下载
