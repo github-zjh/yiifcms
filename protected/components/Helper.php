@@ -64,19 +64,18 @@ class Helper
 	 * @param boolean $all  true表示递归遍历
 	 * @return array
 	 */
-	public static function scanfDir($dir='', $all = false){		
-		static $ret = array();
+	public static function scanfDir($dir='', $all = false, &$ret = array()){	
 		if ( false !== ($handle = opendir ( $dir ))) {
 			while ( false !== ($file = readdir ( $handle )) ) {
 				if (!in_array($file, array('.', '..', '.git', '.gitignore', '.svn', '.htaccess', '.buildpath','.project'))) {
 					$cur_path = $dir . '/' . $file;
 					if (is_dir ( $cur_path )) {
 						$ret['dirs'][] =$cur_path;
-						$all && self::scanfDir( $cur_path, $all);
-					} else {
+						$all && self::scanfDir( $cur_path, $all, $ret);
+					} else {						
 						$ret ['files'] [] = $cur_path;
 					}
-				}
+				}				
 			}
 			closedir ( $handle );
 		}

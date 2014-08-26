@@ -55,15 +55,16 @@ class ZipController extends Backend
 	    			throw new CHttpException('404','Failed');
 	    		}
     		}
-    	}else{
+    	}else{    		
 	        $files = Helper::scanfDir(WWWPATH);
 	        $files = array_merge($files['dirs'], $files['files']);
 	        $listfiles = array();       
+	        
 	        foreach($files as $file){        	
 	            $tmpfilename = explode('/',$file); 
 	            $filename = end($tmpfilename);   
 	        	if(is_dir($file)){        		
-	        		$allfiles = Helper::scanfDir($file, true);
+	        		$allfiles = Helper::scanfDir($file, true);	        		
 	        		if($allfiles['files']){  
 	        			$filesize = 0;      			
 	        			foreach((array) $allfiles['files'] as $val){
