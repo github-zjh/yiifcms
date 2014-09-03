@@ -15,7 +15,7 @@
 					</a>					
 				</div>
 				<div class="list_body">	
-					<h2><a href="<?php echo $this->createUrl('soft/view', array('id'=>$soft->id));?>"><?php echo CHtml::encode($soft->title);?></a></h2>
+					<h2><?php echo CHtml::encode($soft->title);?></h2>
 					
 					<div class="content_info soft_info">
 						<div class="info_head clear">

@@ -4,7 +4,7 @@
 #content .content_left { float:left; width:870px; overflow:hidden;}
 #content .content_right { float:right; width:270px; }
 .content_left .list_box { margin-bottom:25px; border-bottom:3px solid #e5e6e6;}
-.content_left .list_box h2 { font-size:30px;}
+.content_left .list_box h2 { font-size:28px; line-height:33px;}
 .content_left .list_head { float:left; width:70px; text-align:center; }
 .content_left .list_body { float:right; width:770px;}
 .content_left .content_type { width:70px; height:70px; margin-top:20px; background:url(../images/type_text.png) no-repeat left center;}
