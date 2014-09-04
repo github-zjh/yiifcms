@@ -444,6 +444,7 @@ class UserController extends FrontBase
 		$salt = base64_encode(mt_rand(0,time()));  //随机盐
 		//加入时间session
 		Yii::app()->session[$params['id'].'_activeAccount'] = time();
+		error_log('id='.$params['id'].' '.Yii::app()->session[$params['id'].'_activeAccount']."\n", 3,'D:/xampp/htdocs/test.log');
 		
 		$authcode = crypt($params['id'].$safestr.$params['email'], $salt);
 		$authurl = $this->_request->hostInfo.$this->createUrl('authEmail', array('id'=>$params['id'], 'authcode'=>$authcode));
@@ -468,22 +469,28 @@ class UserController extends FrontBase
 		if($user->status == 1){
 			$this->message('success',Yii::t('common','Auth Is Ok'), $this->createUrl('login'));
 		}
-		$sendTime = Yii::app()->session[$id.'_activeAccount'];
-		if((time()-$sendTime)/3600 > 2){
-			//超过2小时视为过期
+		
+		//需验证的邮箱		
+		$email = $user->email;
+		//邮件标题
+		$subject = Yii::t('common','Account Active');
+		
+		//获取邮件发送成功的时间
+		$maillog = MailLog::model()->find('accept=:accept AND status=:status AND subject=:subject ORDER BY sendtime DESC', array(':accept'=>$email, ':status'=>'success', ':subject'=>$subject));
+		$maillog && $sendTime = $maillog->sendtime;
+		
+		if((time()-$sendTime)/60 > 20){
+			//超过20分钟视为过期
 			$this->message('error',Yii::t('common','The link is invalid'), $this->createUrl('site/index'),0, true);
 		}
 		$safestr = $this->_setting['safe_str'];  //安全分隔符
-		$email = $user->email;
+		
 		$authcode = $this->_request->getParam('authcode');
 		if(crypt($id.$safestr.$email, $authcode) == $authcode){
 			//验证通过
 			$user->status = 1;
-			$user->save();
-			
-			//清除 session
-			unset(Yii::app()->session[$id.'_activeAccount']);
-			$this->message('success',Yii::t('common','Auth Success'), $this->createUrl('login'));
+			$user->save();			
+			$this->message('success',Yii::t('common','Auth Success'), $this->createUrl('login'),5);
 		}else{
 			$this->message('error',Yii::t('common','Auth Failed'), $this->createUrl('register'));
 		}
@@ -575,8 +582,8 @@ class UserController extends FrontBase
 			$this->message('error',Yii::t('common','The link is invalid'), $this->createUrl('forgetPwd'));
 		}
 		
-		//超过一小时视为过期
-		if(!$sessionTime || ($sessionTime + 3600) < time()){
+		//超过20分钟视为过期
+		if(!$sessionTime || ($sessionTime + 1200) < time()){
 			$this->message('error',Yii::t('common','The link is invalid'), $this->createUrl('forgetPwd'));
 		}		
 		
