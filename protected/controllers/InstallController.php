@@ -113,6 +113,7 @@ class InstallController extends Controller
                  version_compare(PHP_VERSION,"5.3.0",">="),
                 '系统核心',
                 'PHP 5.3.0 或更高版本是必须的.'),    
+
         	array (
 				'$_SERVER 服务器变量',
 				true,
@@ -261,7 +262,7 @@ class InstallController extends Controller
         try {
             $dbObj = new CDbConnection('mysql:host='.$dbHost.';port='.$dbPort.';',$dbUsername,$dbPassword);
             //$dbObj = new CDbConnection('mysql:host='.$dbHost,$dbUsername,$dbPassword);
-            $dbObj->active = true;           
+            //$dbObj->active = true;           
             self::_appendLog('数据库信息检测通过');
             $configTpl = file_get_contents($this->tplPath.'/config.main.php');
             $configIni = str_replace(array('~dbHost~','~dbPort~', '~dbName~', '~dbUsername~', '~dbPassword~', '~dbPre~'), array($dbHost, $dbPort, $dbName, $dbUsername, $dbPassword, $tbPre), $configTpl);
@@ -281,11 +282,11 @@ class InstallController extends Controller
 				//如果不存在数据库，则重新创建
 				$dbObj->createCommand("CREATE DATABASE IF NOT EXISTS `{$dbName}` DEFAULT CHARACTER SET UTF8")->execute();
 			}
-			self::_appendLog('数据库创建完成');
+			self::_appendLog("数据库{$dbName}创建完成");
 			
             //创建数据表
             $tableSql = file_get_contents($this->tplPath.'db.sql');   
-            $dbObj->createCommand("USE {$dbName}")->execute();         
+            $dbObj->createCommand("USE `{$dbName}`")->execute();         
             $dbObj->createCommand("SET NAMES 'utf8',character_set_client=binary,sql_mode=''")->execute();
             
             //替换表前缀
