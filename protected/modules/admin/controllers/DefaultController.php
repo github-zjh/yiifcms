@@ -80,7 +80,111 @@ class DefaultController extends BackendBase
 		$this->layout = false;
 		$this->pageTitle = Yii::t('common','Admin Manage');
 		
-		$this->render('index');
+		//后台头部一级菜单
+		$FirstMenus = array(
+			'0' => array('url'=>'', 'name'=>Yii::t('admin','BM_Home')),
+			'1' => array('url'=>'', 'name'=>Yii::t('admin','BM_Setting')),
+			'2' => array('url'=>'', 'name'=>Yii::t('admin','BM_Catalog')),
+			'3' => array('url'=>'', 'name'=>Yii::t('admin','BM_Content')),
+			'4' => array('url'=>'', 'name'=>Yii::t('admin','BM_User')),
+			'5' => array('url'=>'', 'name'=>Yii::t('admin','BM_Ad')),		
+			'6' => array('url'=>'', 'name'=>Yii::t('admin','BM_Component')),
+			'7' => array('url'=>'', 'name'=>Yii::t('admin','BM_Model')),
+			'8' => array('url'=>'', 'name'=>Yii::t('admin','BM_Tools')),
+			'9' => array('url'=>'', 'name'=>Yii::t('admin','BM_Oauth')),
+		);
+		//后台左侧二级菜单
+		$SecMenus = array(
+			'0' => array(
+				array('url'=> $this->createUrl('default/home'), 'name'=>Yii::t('admin','System Home')),					
+			),
+			'1' => array(
+				array('url'=> $this->createUrl('setting/index'), 'name'=>Yii::t('admin','Web Set')),
+				array('url'=> $this->createUrl('setting/seo'), 'name'=>Yii::t('admin','SEO Set')),
+				array('url'=> $this->createUrl('setting/upload'), 'name'=>Yii::t('admin','Upload Set')),
+				array('url'=> $this->createUrl('setting/template'), 'name'=>Yii::t('admin','Template Set')),
+				array('url'=> $this->createUrl('setting/email'), 'name'=>Yii::t('admin','Email Set')),
+				array('url'=> $this->createUrl('setting/custom'), 'name'=>Yii::t('admin','Custom Set')),
+			),	
+			'2' => array(
+					array('url'=> $this->createUrl('catalog/index'), 'name'=>Yii::t('admin','Catalog Manage')),
+					array('url'=> $this->createUrl('menu/index'), 'name'=>Yii::t('admin','Menu Manage')),
+					array('url'=> $this->createUrl('special/index'), 'name'=>Yii::t('admin','Special Manage')),					
+			),
+			'3' => array(
+					array('url'=> $this->createUrl('post/index'), 'name'=>Yii::t('admin','Article Manage')),
+					array('url'=> $this->createUrl('image/index'), 'name'=>Yii::t('admin','Image Manage')),
+					array('url'=> $this->createUrl('soft/index'), 'name'=>Yii::t('admin','Soft Manage')),
+					array('url'=> $this->createUrl('video/index'), 'name'=>Yii::t('admin','Video Manage')),
+					array('url'=> $this->createUrl('goods/index'), 'name'=>Yii::t('admin','Goods Manage')),
+					array('url'=> $this->createUrl('page/index'), 'name'=>Yii::t('admin','Page Manage')),
+			),
+			'4' => array(
+					array('url'=> $this->createUrl('user/index'), 'name'=>Yii::t('admin','User List')),
+					array('url'=> $this->createUrl('user/admin'), 'name'=>Yii::t('admin','Admin List')),
+					array('url'=> $this->createUrl('user/group'), 'name'=>Yii::t('admin','Group Manage')),
+					array('url'=> $this->createUrl('question/index'), 'name'=>Yii::t('admin','Question List')),				
+			),
+			'5' => array(
+					array('url'=> $this->createUrl('ad/index'), 'name'=>Yii::t('admin','Ads Manage')),
+					array('url'=> $this->createUrl('adPosition/index'), 'name'=>Yii::t('admin','Adposition Manage')),				
+			),
+			'6' => array(
+					array('url'=> $this->createUrl('recommendPosition/index'), 'name'=>Yii::t('admin','RecommendPosition Manage')),
+					array('url'=> $this->createUrl('attach/index'), 'name'=>Yii::t('admin','Attach Manage')),
+					array('url'=> $this->createUrl('link/index'), 'name'=>Yii::t('admin','Link Manage')),
+					array('url'=> $this->createUrl('comment/index'), 'name'=>Yii::t('admin','Comment Manage')),
+					array('url'=> $this->createUrl('reply/index'), 'name'=>Yii::t('admin','Reply Manage')),
+					array('url'=> $this->createUrl('tag/index'), 'name'=>Yii::t('admin','Tags Manage')),
+					array('url'=> $this->createUrl('maillog/index'), 'name'=>Yii::t('admin','Maillog Manage')),
+			),
+			'7' => array(
+					array('url'=> $this->createUrl('modeltype/index'), 'name'=>Yii::t('admin','Modeltype Manage')),					
+			),
+			'8' => array(
+					array('url'=> $this->createUrl('database/index'), 'name'=>Yii::t('admin','Database Manage')),
+					array('url'=> $this->createUrl('cache/index'), 'name'=>Yii::t('admin','Cache Manage')),
+					array('url'=> $this->createUrl('zip/index'), 'name'=>Yii::t('admin','Zip Manage')),					
+			),
+			'9' => array(
+					array('url'=> $this->createUrl('oAuth/index'), 'name'=>Yii::t('admin','OAuth Manage')),					
+			),
+		);
+		
+		//只显示授权的菜单
+		$groupid = Yii::app()->user->groupid;
+		$group = UserGroup::model()->findByPk($groupid);
+		if($groupid != $this->_adminGroupID){
+			//非超级管理员
+			$acls = explode(',', $group->acl);
+			$loginkey = array_search('default|login', $acls); //删除login授权
+			$acls[$loginkey] = 'default|home';
+			foreach($acls as $ak => $av){
+				$av = str_replace('|', '/', $av);
+				$tmpacls[] = $this->createUrl($av);				
+			}
+			
+			foreach($SecMenus as $sk => $sv){
+				foreach($sv as $sek => $sev){						
+					if(in_array($sev['url'], $tmpacls)){
+						$OAuthSecMenus[$sk][$sek] = $sev;
+					}
+				}
+				if(!$OAuthSecMenus[$sk]){
+					unset($FirstMenus[$sk]);
+				}
+			}			
+		}else{
+			$OAuthSecMenus = $SecMenus;
+		}
+
+		//取左侧菜单第一个菜单作为头部菜单的链接
+		foreach($FirstMenus as $key=>$val){
+			$OAuthSecMenus[$key] && $firstUrl = reset($OAuthSecMenus[$key]);
+			$FirstMenus[$key]['url'] = $firstUrl['url'];
+		}
+		
+		$this->render('index', array('FirstMenus' => $FirstMenus, 'SecMenus' => $OAuthSecMenus));
 	}
 		
 	public function actionHome()

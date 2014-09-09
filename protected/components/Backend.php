@@ -48,7 +48,7 @@ class Backend extends BackendBase
 			'database' => array('index','query','doQuery','execute','export', 'database','operate'), 		//数据库管理
 			'cache' => array('index','cacheUpdate'),       //缓存管理
 			'maillog' => array('index','batch'),           //邮件日志管理
-			'oAuth' => array('index','create','update','batch'),       //第三方登录管理
+			'oAuth' => array('index','update','batch'),       //第三方登录管理
 		
 		);
 		return $acl;
