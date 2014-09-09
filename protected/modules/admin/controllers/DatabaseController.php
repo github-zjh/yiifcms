@@ -90,6 +90,21 @@ class DatabaseController extends Backend
             }            
         }
     }
+    
+    /**
+     * 安装测试数据
+     */
+    public function actionInstalltestdata(){
+    	if($this->_request->isPostRequest){
+    		$testdataPath = WWWPATH.'/protected/data/temp/test_data.sql';
+    		$testData = file_get_contents($testdataPath);
+    		$tbPre = Yii::app()->db->tablePrefix;
+    		$command = Yii::app()->db->createCommand(str_replace('#@__', $tbPre, $testData))->execute();
+    		$this->message('success', "安装测试数据完成!", $this->createUrl('index'));
+    	}else{
+    		$this->render('install_test');
+    	}
+    }
 
     /**
      * 执行sql

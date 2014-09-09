@@ -186,6 +186,7 @@ return array(
 		'database|export' => '导出',
 		'database|database' => '备份',
 		'database|operate' => '批处理',
+		'database|installtestdata' => '安装测试数据',
 		
 		//第三方登录
 		'oAuth' => '第三方登录管理',

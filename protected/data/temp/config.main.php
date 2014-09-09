@@ -50,7 +50,9 @@ return array(
 			'showScriptName'=>false,			
 			//'urlSuffix'=>'.htm',			
 			'rules'=>array(	
-				'page/<title_alias:\w+>'=>'page/index',   //单页		
+				'sitemap\.xml' => 'site/sitemap', //网站地图
+				'sitemap\.xsl' => 'site/sitemapxsl', //网站索引
+				'page/<id:\w+>'=>'page/index', //单页	
 				'<controller:\w+>/<action:\w+>/cat_<catalog_id:\d+>/page_<page:\d+>'=>'<controller>/<action>', //分页
 				'<controller:\w+>/<action:\w+>/page_<page:\d+>'=>'<controller>/<action>', //分页
 				'<controller:\w+>/<action:\w+>/cat_<catalog_id:\d+>' => '<controller>/<action>',  //内容列表				

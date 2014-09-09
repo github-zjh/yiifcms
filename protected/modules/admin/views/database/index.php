@@ -6,6 +6,7 @@
       <li><a href="<?php echo $this->createUrl('query')?>" class=""><span>执行SQL</span></a></li>
       <li><a href="<?php echo $this->createUrl('database/export')?>" class=""><span>数据库备份</span></a></li>
       <li><a href="<?php echo $this->createUrl('database/import')?>" class=""><span>数据库还原</span></a></li>
+      <li><a href="<?php echo $this->createUrl('database/installtestdata')?>" class=""><span>安装测试数据</span></a></li>
     </ul>
     <div class="search right"> </div>
   </div>

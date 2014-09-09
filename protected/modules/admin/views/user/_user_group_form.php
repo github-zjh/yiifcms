@@ -36,11 +36,10 @@
 		  	 </script>
 	  	 	<?php foreach((array) $acls as $ak => $acl):?>
 	  	 	<tr id="<?php echo $ak.'_id';?>">	  	 		
-	  	 		<td style="width:8%"><input type="checkbox" name="acls[]" value="all"  onclick="selectAll('<?php echo $ak.'_id';?>', this.checked)"/><strong><?php echo Yii::t('acl',$ak);?></strong></td>
+	  	 		<td style="width:8%; border:1px solid #CCCCCC;"><input type="checkbox" name="acls[]" value="all"  onclick="selectAll('<?php echo $ak.'_id';?>', this.checked)"/><strong style="color:#000000;"><?php echo Yii::t('acl',$ak);?></strong></td>
 	  	 		<?php foreach((array)$acl as $value):?>
-	  	 		<td style="width:8%"><input type="checkbox" name="acls[]" value="<?php echo $ak.'|'.$value?>" <?php Helper::selected($ak.'|'.$value, $has_acls,'checked');?>/><?php echo Yii::t('acl',$ak.'|'.$value);?></td>	  	 		
-	  	 		<?php endforeach;?>
-	  	 		<td></td>
+	  	 		<td style="width:8%; border:1px solid #CCCCCC;"><input type="checkbox" name="acls[]" value="<?php echo $ak.'|'.$value?>" <?php Helper::selected($ak.'|'.$value, $has_acls,'checked');?>/><?php echo Yii::t('acl',$ak.'|'.$value);?></td>	  	 		
+	  	 		<?php endforeach;?>	  	 		
 	  	 	</tr>
 	  	 	<?php endforeach;?>	  	 	
 	  	 </table>  

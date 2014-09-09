@@ -45,7 +45,7 @@ class Backend extends BackendBase
 			'ad' => array('index','create','update','delete','batch'), 		//广告管理
 			'attach' => array('index','batch'), 							//附件管理		
 			'modeltype' => array('index','create','update','batch'),       //内容模型管理
-			'database' => array('index','query','doQuery','execute','export', 'database','operate'), 		//数据库管理
+			'database' => array('index','query','doQuery','execute','export', 'database','operate','installtestdata'), 		//数据库管理
 			'cache' => array('index','cacheUpdate'),       //缓存管理
 			'maillog' => array('index','batch'),           //邮件日志管理
 			'oAuth' => array('index','update','batch'),       //第三方登录管理

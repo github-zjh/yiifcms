@@ -44,6 +44,9 @@ class Controller extends CController
 	protected  $_adminGroupID = 10; //系统管理员用户组ID
 	protected  $_type_ids = array(); //内容模型id
 	public     $_dialogMessage  = ''; //弹窗信息
+	protected  $_cmsVersion = 'yiifcms1.4.0';
+	protected  $_cmsRelease = '20140909';
+	
 	
 	public function init ()
 	{						

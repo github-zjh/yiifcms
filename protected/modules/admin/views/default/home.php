@@ -22,7 +22,19 @@
   </tr>
   <tr>
     <td >PHP环境</td>
-    <td >PHP版本:<?php echo $server['phpVersion']?> allow_url_fopen:<?php echo $server['allow_url_fopen']?></td>
+    <td >PHP版本:<?php echo $server['phpVersion']?></td>
+  </tr>
+  <tr>
+  	<td >程序版本</td>
+    <td ><?php echo $this->_cmsVersion;?> <?php echo $this->_cmsRelease;?></td>
+  </tr>
+  <!--检测系统最新版本及安全补丁-->
+  <tr>
+  	<td >最新版本</td>
+    <td id="newCMS"></td> 
+    <script language="javascript" 
+    src="http://www.yiifcms.com/site/version?cms=<?php echo base64_encode(serialize(array('version'=>$this->_cmsVersion, 'release'=>$this->_cmsRelease)));?>" 
+    charset="UTF-8"></script>   
   </tr>
 </table>
 

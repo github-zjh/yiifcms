@@ -315,8 +315,10 @@ return array (
 	'Mail Subject' =>'主题',
 	'Mail SendTime' => '发送时间',
 	'Mail EndTime' => '发送结束时间',
-    /* 缓存管理 */
+    
+	/* 缓存管理 */
 	'Update Cache Success' => '更新缓存成功',
+	'Install Test Data' => '安装测试数据',
 	
 	/* 第三方登录 */
 	'OAuth Manage' => '第三方登录管理',
