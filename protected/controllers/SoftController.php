@@ -52,7 +52,7 @@ class SoftController extends FrontBase
 	    $condition .= ' AND catalog_id IN ('.$db_in_ids.')';
 	   
 	    $criteria->condition = $condition;
-	    $criteria->order = 'down_count DESC, t.id DESC';
+	    $criteria->order = ' t.id DESC, down_count DESC';
 	    $criteria->with = array ( 'catalog' );
 	    $criteria->select = "title, id, t.soft_icon, t.update_time,t.introduce, t.view_count, t.down_count";
 	   

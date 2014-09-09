@@ -15,6 +15,7 @@ return array(
 	'yii',
 	'linux',
 	'cms',
+	'yiifcms',
 	'baidu',
 	'facebook',
 	'ueditor',
@@ -22,6 +23,8 @@ return array(
 	'IT',
 	'api',
 	'w3c',
+	'安装包',
+	'下载',
 	'服务器',
 	'手册',
 	'美女',
@@ -30,8 +33,6 @@ return array(
 	'新闻',
 	'图集',
 	'视频',
-	'电影',
 	'接口',
 	'人人网',
-	'第三方'	
 );
