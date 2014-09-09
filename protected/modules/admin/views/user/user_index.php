@@ -19,17 +19,19 @@
       <input name="searchsubmit" type="submit" class="button" value="<?php echo Yii::t('admin','Search');?>"/>
       <input type="reset" class="button"  onclick="location.href='<?php echo $this->createUrl('index');?>'" <?php echo Yii::t('admin','Reset');?>"/>
       <script type="text/javascript">
-$(function(){
-	$("#xform").validationEngine();	
-});
-</script>
+	  $(function(){
+			  $("#xform").validationEngine();	
+			  });
+	  </script>
       <?php $form=$this->endWidget(); ?>
-      <script type="text/javascript">
-$(document).ready(function(){
-	$("#groupid").val('<?php echo $this->_request->getParam('groupid')?>');	
-	$("#username").val('<?php echo $this->_request->getParam('username')?>');	
-});
-</script> </div>
+	  <script type="text/javascript">
+	  $(document).ready(function(){
+			  $("#groupid").val('<?php echo $this->_request->getParam('groupid')?>');	
+			  $("#username").val('<?php echo $this->_request->getParam('username')?>');	
+			  });
+	</script> 
+
+	</div>
   </div>
 </div>
 <form method="post" action="<?php echo $this->createUrl('batch')?>" name="cpform" >
@@ -37,8 +39,10 @@ $(document).ready(function(){
     <tr class="tb_header">
       <th width="5%">ID</th>
       <th width="20%">用户名 </th> 
-      <th width="20%">用户组 </th>
+      <th width="10%">用户组 </th>
       <th width="8%">状态</th>
+	  <th width="8%">登陆次数</th>
+      <th width="13%">上次登录ip</th>
       <th width="13%">注册时间</th>
       <th>操作</th>
     </tr>
@@ -56,6 +60,8 @@ $(document).ready(function(){
         <span class="red"><img src="<?php echo $this->module->assetsUrl;?>/images/error.png" align="absmiddle" />待审核</span>
         <?php endif;?>
       </td>
+      <td ><?php echo $row->logins;?></td>
+      <td ><?php echo $row->last_login_ip;?></td>
       <td ><?php echo date('Y-m-d H:i',$row->addtime)?></td>
       <td >
       <a href="<?php echo  $this->createUrl('update',array('id'=>$row->uid))?>"><img src="<?php echo $this->module->assetsUrl;?>/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;

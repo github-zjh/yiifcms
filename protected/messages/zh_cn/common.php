@@ -52,6 +52,7 @@ return array (
 	'Password is required' => '密码不能为空',
 	'Login Failed' => '登录失败',
 	'My Account' => '个人中心',
+	'UserAvatar' => '用户头像',
 	
 	//内容
 	'ContentList' => '内容列表',

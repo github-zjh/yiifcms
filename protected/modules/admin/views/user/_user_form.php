@@ -21,6 +21,14 @@
     </td>
   </tr>
   <tr>
+    <td class="tb_title"><?php echo Yii::t('common','UserAvatar');?>：</td>
+  </tr>
+  <tr >
+    <td >
+    	<img src="<?php echo $model->avatar?$this->_baseUrl.'/'.$model->avatar:$this->_theme->baseUrl.'/styles/images/avatar-max-img.png';?>" width="100"/>
+    </td>
+  </tr>
+  <tr>
     <td class="tb_title"><?php echo Yii::t('common','PassWord');?>：</td>
   </tr>
   <tr >
