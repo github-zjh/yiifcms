@@ -248,6 +248,13 @@ class UserController extends Backend
             		$userModel = User::model()->findByPk($id);
             		if($userModel){
             			$userModel->delete();
+						//删除绑定用户
+						OAuthQQ::model()->deleteAllByAttributes(array('uid'=>$id));
+						OAuthSinawb::model()->deleteAllByAttributes(array('uid'=>$id));
+						OAuthRenren::model()->deleteAllByAttributes(array('uid'=>$id));
+						OAuthWeixin::model()->deleteAllByAttributes(array('uid'=>$id));
+						//删除头像
+						Uploader::deleteFile($userModel->avatar);
             		}
             	}
                 break;

@@ -25,7 +25,7 @@
   </tr>
   <tr >
     <td >
-    	<img src="<?php echo $model->avatar?$this->_baseUrl.'/'.$model->avatar:$this->_theme->baseUrl.'/styles/images/avatar-max-img.png';?>" width="100"/>
+    	<img src="<?php echo $model->avatar?(strstr($model->avatar, 'http://')?$model->avatar:$this->_baseUrl.'/'.$model->avatar):$this->_theme->baseUrl.'/styles/images/avatar-max-img.png';?>" width="100"/>
     </td>
   </tr>
   <tr>

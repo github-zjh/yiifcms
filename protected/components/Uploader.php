@@ -253,7 +253,7 @@ class Uploader{
 			//解决windows下中文文件名乱码的问题
 			$filename = iconv("UTF-8", "GB2312", $filename);			
 		}		
-		if($filename && file_exists($filename)){			
+		if($filename && file_exists($filename) && !is_dir($filename)){			
 			unlink($filename);			
 		}
 	}

@@ -277,10 +277,11 @@ class OAuthController extends FrontBase
 					
 					//保存远程图片到本地
 					$avatar_name = 'small_'.$user_model->uid.'_'.substr(md5(uniqid('file')), 0,11);
-					$remote = Helper::downloadImage($data['avatar'], 'uploads/avatar/'.date('Ymd'), $avatar_name);
+					$filepath = 'uploads/avatar/'.date('Ym',time());
+					$remote = Helper::downloadImage($data['avatar'], WWWPATH.'/'.$filepath, $avatar_name);
 					if($remote){
-						$local_avatar = $remote['filepath'];
-						$bind_user = User::model()->findByPk($user_model->uid);
+						$local_avatar = $filepath.'/'.$remote['filename'];
+						$bind_user = User::model()->findByPk($uid);
 						$bind_user->avatar = $local_avatar;
 						$bind_user->save();
 					}
@@ -301,7 +302,7 @@ class OAuthController extends FrontBase
 		}
 		$user = User::model()->findByPk($uid);
 		$username = $user->username;
-	
+		
 		//自动登录
 		$duration=3600*24*30; // 30 days	
 		$identity = new OAuthUserIdentity($username,'');
