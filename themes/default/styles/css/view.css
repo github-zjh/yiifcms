@@ -53,11 +53,10 @@ a { color:#555555;}
 a:hover { text-decoration:underline; }
 
 .content_info a { color:#428bca;}
-.content_info ul, .content_info ol { list-style:inherit;}
+.content_info ul { list-style:inherit;}
 
 /* 文章详情 */
 .content_info ul { list-style:inside disc none;}
-.content_info ol { list-style:inside decimal none;}
 .content_info blockquote { margin:auto; padding:2em 4em; padding-right:0;}
 .content_info p { padding:3px 0;}
 .description { background-color:#ececec; border: 1px solid #dcdcdc; color: #333333;
