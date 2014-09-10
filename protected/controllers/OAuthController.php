@@ -262,7 +262,7 @@ class OAuthController extends FrontBase
 				//注册本地账号
 				$user_model = new User('bind_register');
 				$user_model->username = $username; //分配用户名
-				$user_model->password = $initPwd;
+				$user_model->password = $initPwd;				
 				$user_model->avatar = $data['avatar'];     //调用空间头像(100*100)	
 				$user_model->status = 1;
 				$user_model->groupid = 1;
@@ -271,8 +271,20 @@ class OAuthController extends FrontBase
 				$user_model->username_editable = 'Y';  //允许修改用户名
 				if($user_model->save()){
 					$model->uid = $uid = $user_model->uid;
+					
 					//保存第三方授权信息
 					$model->save();
+					
+					//保存远程图片到本地
+					$avatar_name = 'small_'.$user_model->uid.'_'.substr(md5(uniqid('file')), 0,11);
+					$remote = Helper::downloadImage($data['avatar'], 'uploads/avatar/'.date('Ymd'), $avatar_name);
+					if($remote){
+						$local_avatar = $remote['filepath'];
+						$bind_user = User::model()->findByPk($user_model->uid);
+						$bind_user->avatar = $local_avatar;
+						$bind_user->save();
+					}
+					
 				}else{
 					throw new CHttpException(500,Yii::t('common','Login Failed').'(bind_x_1002)');
 				}	
