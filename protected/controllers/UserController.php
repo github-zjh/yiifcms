@@ -442,9 +442,6 @@ class UserController extends FrontBase
 		}
 		$safestr = $this->_setting['safe_str'];  //安全分隔符
 		$salt = base64_encode(mt_rand(0,time()));  //随机盐
-		//加入时间session
-		Yii::app()->session[$params['id'].'_activeAccount'] = time();
-		error_log('id='.$params['id'].' '.Yii::app()->session[$params['id'].'_activeAccount']."\n", 3,'D:/xampp/htdocs/test.log');
 		
 		$authcode = crypt($params['id'].$safestr.$params['email'], $salt);
 		$authurl = $this->_request->hostInfo.$this->createUrl('authEmail', array('id'=>$params['id'], 'authcode'=>$authcode));
