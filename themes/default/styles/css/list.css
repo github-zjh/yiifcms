@@ -2,6 +2,9 @@
 #content { width:1170px; margin:0 auto; text-align:left; margin-bottom:70px; }
 #content .content_left { float:left; width:870px; }
 #content .content_right { float:right; width:270px; }
+.content_left .order_box { float:right;  border:1px solid #DDDDDD; background-color:#CCCCCC; border-radius:5px; font-size:16px; }
+.content_left .order_box a {  float:left; height:33px; line-height:33px; padding:0 5px; color:#999999; font-weight:bold; }
+.content_left .order_box a.current { border-radius:3px; background-color:#FFFFFF; color:#5cb85c; }
 .content_list .list_box { padding:10px 0; border-bottom:1px solid #e5e6e6;}
 .content_list .list_head { float:left; width:70px; padding:5px 0; border-radius:5px; background-color:#996600; text-align:center; }
 .content_list .list_head a { color:#FFFFFF;  }

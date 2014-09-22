@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 #main { width:1170px; margin:0 auto; margin-top:67px;}
-.page_left { float:left; width:auto; text-align:center; }
-.page_right { float:right; width:80%;}
+.page_left { float:left; width:auto; text-align:center; position:fixed;}
+.page_right { float:right; width:80%; min-height:350px;}
 a { color:#555555; }
 
 #bread_crumbs { margin:0; }

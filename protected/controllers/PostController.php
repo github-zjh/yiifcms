@@ -28,8 +28,25 @@ class PostController extends FrontBase
    */
   public function actionIndex() {  
     $catalog_id = trim( $this->_request->getParam( 'catalog_id' ) );
+    $order = trim( $this->_request->getParam( 'order' ) );
     $keyword = trim( $this->_request->getParam( 'keyword' ) );
-    $catalog = Catalog::model()->findByPk($catalog_id);    
+    $catalog = Catalog::model()->findByPk($catalog_id);   
+	if(!$order){
+		$order = 'id';
+	}
+	switch($order){
+		case 'id':
+			$order_by = 't.id DESC';
+			break;
+		case 'view_count':
+			$order_by = 'view_count DESC';
+			break;
+		default:
+			$order = 'id';
+			$order_by = 't.id DESC';
+			break;
+	}
+	
     //调取子孙分类和当前分类
     $catalog_ids = Catalog::get($catalog?$catalog_id:0, $this->_catalog);  
     $children_ids = Helper::array_key_values($catalog_ids, 'id');     
@@ -59,9 +76,9 @@ class PostController extends FrontBase
     $condition .= ' AND catalog_id IN ('.$db_in_ids.')';
    
     $criteria->condition = $condition;
-    $criteria->order = 'view_count DESC, t.id DESC';
+    $criteria->order = $order_by;
     $criteria->with = array ( 'catalog' );
-    $criteria->select = "title, id,t.title_style, t.attach_thumb, t.image_list, t.copy_from, t.copy_url, t.update_time,t.introduce, t.tags, t.view_count";
+    $criteria->select = "title, t.id,t.title_style, t.attach_thumb, t.image_list, t.copy_from, t.copy_url, t.update_time,t.introduce, t.tags, t.view_count";
    
     //分页
     $count = $post->count( $criteria );    
@@ -74,13 +91,13 @@ class PostController extends FrontBase
     $datalist = $post->findAll($criteria);   
     
     //最近的文章
-    $last_posts = Post::model()->findAll(array('condition'=>'catalog_id IN ('.$db_in_ids.')','order'=>'id DESC','limit'=>10,));
+    $last_posts = Post::model()->findAll(array('condition'=>'catalog_id IN ('.$db_in_ids.') AND status="Y"','order'=>'t.id DESC, view_count DESC','limit'=>10,));
     
     //加载css,js	
     Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/list.css");
 	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");	
 	
-    $this->render( 'index', array('navs'=>$navs, 'posts'=>$datalist,'pagebar' => $pages, 'tags'=>$tags, 'last_posts'=>$last_posts));
+    $this->render( 'index', array('navs'=>$navs, 'posts'=>$datalist,'pagebar' => $pages, 'tags'=>$tags, 'last_posts'=>$last_posts,'order'=>$order));
   }
   
   /**
