@@ -37,6 +37,7 @@ return array (
 	'Nothing Is Found' => '未找到任何结果',
 	'Notice Message' => '信息提示',
 	'Unpass' => '待审核',
+	'Access frequency too fast' => '您访问频率过快，请稍后访问',
 		
 	//登录
 	'Login' => '登录',

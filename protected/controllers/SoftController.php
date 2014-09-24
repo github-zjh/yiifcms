@@ -129,12 +129,27 @@ class SoftController extends FrontBase
 	 * 软件下载
 	 */
 	public function actionDownload($id){			
+		
+		//限制下载频率
+		$cookie = Yii::app()->request->getCookies();		
+		$cookie_key = 'DL'.$id.'TIMES';
+		$down_cookie = $cookie[$cookie_key]->value;
+		if($down_cookie){
+			throw new CHttpException(404, Yii::t('common','Access frequency too fast'));
+		}
 		$soft = Soft::model()->findByPk($id);		
 		if($soft){
 			$file = Upload::model()->findByPk($soft->fileid);
 			if($file && file_exists($file->file_name)){
 				//更新下载次数
 				$soft->updateCounters(array ('down_count' => 1 ), 'id=:id', array ('id' => $id ));
+				
+				//存储下载cookie次数
+				unset($cookie[$cookie_key]);
+				$down = 1;
+				$cookie = new CHttpCookie($cookie_key,$down);
+				$cookie->expire = time()+20;   //20秒之后可以再次下载				
+				Yii::app()->request->cookies[$cookie_key]=$cookie;
 				
 				//开始下载
 				Yii::app()->request->sendFile($soft->title.'.'.$file->file_ext, file_get_contents($file->file_name), $file->file_mime);
