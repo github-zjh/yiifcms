@@ -23,25 +23,25 @@
 		<tr>			
 			<td width="540px" colspan="2">
 				<?php echo $form->textArea($model, 'content');?>
-				<?php $this->widget('application.widget.kindeditor.KindEditor',array(
-				  'target'=>array(
-						//对内容评论
-					  	'#Comment_content'=>array(
-							 'themeType'=>'simple',
-					  		 'width'=>'100%',	
-							 'height'=>'200',	
-				  			 'items'=>array(
-				  					'fontname', 'fontsize','|','undo', 'redo','|','code', 'forecolor', 'hilitecolor', 'bold', 'italic',
-				  					'underline', 'removeformat', '|', 'justifyleft', 'justifycenter',
-				  					'justifyright', 'insertorderedlist','insertunorderedlist', '|',
-				  					'emoticons', 'image', 'link'),
-							 'resizeType'=>0,
-							 'dialogAlignType'=>'',//弹窗按编辑器居中
-						)
-							  		
-					)						
+				<?php $this->widget('application.widget.kindeditor.KindEditor',
+    			array(
+					'id'=>'Comment_content',
+					'options'=>array(
+						'themeType'=>'simple',
+						 'width'=>'100%',	
+						 'height'=>'200',
+						 'items'=>array(
+							 'fontname', 'fontsize','|','undo', 'redo','|','code', 'forecolor', 'hilitecolor', 'bold', 'italic',
+							 'underline', 'removeformat', '|', 'justifyleft', 'justifycenter',
+							 'justifyright', 'insertorderedlist','insertunorderedlist', '|',
+							 'emoticons', 'image', 'link'
+						),			
+						'resizeType'=>0,
+						'dialogAlignType'=>'',//弹窗按编辑器居中
+					)
 				)
-				);?>				
+    			);
+		?>    							
 				
 				<div class="clear subBox">
 					<div class="fl">
