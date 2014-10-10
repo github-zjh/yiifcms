@@ -91,7 +91,7 @@ class PostController extends FrontBase
     $datalist = $post->findAll($criteria);   
     
     //最近的文章
-    $last_posts = Post::model()->findAll(array('condition'=>'catalog_id IN ('.$db_in_ids.') AND status="Y"','order'=>'t.id DESC, view_count DESC','limit'=>10,));
+    $last_posts = Post::model()->findAll(array('condition'=>'catalog_id IN ('.$db_in_ids.') AND status="Y"','order'=>'t.id DESC','limit'=>10,));
     
     //加载css,js	
     Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/list.css");
