@@ -9,19 +9,22 @@
  * @license       http://www.yiifcms.com/license
  * @version       v1.0.0
  * @example 	  $this->widget('application.widget.kindeditor.KindEditor',
- *				      'target'=>array(
- *	  						'#Post_content'=>array(
- *							'uploadJson'=>$this->createUrl('/admin/uploadify/basicexecute', array('from'=>'editor')),
- *							'fileManagerJson'=>$this->createUrl('/admin/kindeditor/'),		
- *							'allowFileManager'=>true,
- *	  						'extraFileUploadParams'=>array(array('sessionId'=>Yii::app()->session->sessionID))))));
- *				   		)
- *	  		     );
+ 				      'id'=>'Post_content',
+	  				  'options'=>array(
+					  		'uploadJson'=>$this->createUrl('/admin/uploadify/basicexecute', array('from'=>'editor')),
+							'fileManagerJson'=>$this->createUrl('/admin/kindeditor/'),		
+							'allowFileManager'=>true,
+				  			'extraFileUploadParams'=>array('sessionId'=>Yii::app()->session->sessionID)
+							)
+						)
+ 	  		     	);
+ *
  */
 
 class KindEditor extends CInputWidget{
 	public $language = 'zh_CN';
-	public $target;
+	public $id;
+	public $options;
 
 	/**
 	 * 获取资源文件路径
@@ -38,33 +41,62 @@ class KindEditor extends CInputWidget{
 	 *
 	 * @return [type] [description]
 	 */
-	public function makeOptions() {		
+	public function makeOptions($assets='') {		
 		$script = 'KindEditor.ready(function(K) {';
-
-		foreach ( $this->target as $key=>$row ) {
-			$systemDefault = $this->_defaultParams( $row );
-
-			$combineParams= $this->combineParams( $row );
-
-			$editObj =  strtolower( str_replace( '#', '__', $key ) );
-
-			$script .= '
-	 '.$editObj.' = K.create("'.$key.'", {
-	     '.$systemDefault . $combineParams .' ,afterBlur:function(){
+		$id = $this->id;
+		$Params = $this->_defaultParams($this->options);
+		$Params .= $this->combineParams( $this->options );
+						
+		$editObj =  '__'.strtolower($id);
+		$script .= ''.$editObj.' = K.create("#'.$id.'", {
+	     '.$Params.' ,afterBlur:function(){
             this.sync();
-        },"emoticonsPath":"'.Yii::app()->baseUrl.'/public/emoticons/images/",
+        },
+	     "emoticonsPath":"'.Yii::app()->baseUrl.'/public/emoticons/images/",
+          "cssPath":"'.$assets.'/plugins/code/prettify.css?'.time().'",         
 	            
 	});
-	'.$editObj.'.sync();
-';
-		}
+	'.$editObj.'.sync();	
+';		
 		$script .=  '});';
 		return $script;
 	}
 
 
 	/**
-	 * 组合参数
+	 * 设置默认参数，如果没有设置则使用默认值
+	 *
+	 * @return [type]        [description]
+	 */
+	protected function _defaultParams($items) {
+		$defaultArr = array( 
+				'width'=>'80%', 
+				'height'=>'400px',
+				'uploadJson'=>Yii::app()->createUrl('/admin/uploadify/basicexecute', array('from'=>'editor')),
+				'fileManagerJson'=>Yii::app()->createUrl('/admin/kindeditor/'),		
+				'allowFileManager'=>true,
+				'extraFileUploadParams'=>array('sessionId'=>Yii::app()->session->sessionID)
+		 );		
+		foreach ( $defaultArr as $key=>$row ) {
+			!isset($dot) && $dot = '';
+			if ( is_array( $items ) && !empty($items)) {
+				$itemKeys = array_keys( $items );
+				if ( !in_array( $key, $itemKeys ) ) {
+					if ( count( $itemKeys )>0 )
+						$string .= $key.":'{$row}',";
+					else
+						$string .= $dot.$key.":'{$row}'";
+				}
+			}else {
+				$string .= $dot.$key.":'{$row}'";
+			}		
+			$dot = ',';
+		}
+		return $string ;		
+	}
+
+	/**
+	 * 组合其他参数
 	 *
 	 * @param [type]  $items [description]
 	 * @return [type]        [description]
@@ -104,7 +136,7 @@ class KindEditor extends CInputWidget{
 	 * 对象
 	 */
 	protected function _obj( $key, $item) {
-		$script .=  $dot ."'$key':{";
+		$script .=  "'$key':{";
 		$subDot = '';
 		foreach ( $item as $keys=>$value ) {			
 			$arrkeys = array_keys($value);
@@ -121,7 +153,7 @@ class KindEditor extends CInputWidget{
 	 * 数组
 	 */
 	protected function _arr( $key, $item ) {
-		$script .=  $dot ."'$key':[";
+		$script .=  "'$key':[";
 		$subDot = '';
 		foreach ( $item as $value ) {
 			$script .= $subDot. "'$value' ";
@@ -131,32 +163,6 @@ class KindEditor extends CInputWidget{
 		return $script;
 	}
 
-	/**
-	 * 设置默认参数，如果没有设置则使用默认值
-	 *
-	 * @param [type]  $items [description]
-	 * @return [type]        [description]
-	 */
-	protected function _defaultParams( $items ) {
-		$defaultArr = array( 'width'=>'80%', 'height'=>'400px' );
-		foreach ( $defaultArr as $key=>$row ) {
-
-			if ( is_array( $items ) ) {
-				$itemKeys = array_keys( $items );
-				if ( !in_array( $key, $itemKeys ) ) {
-					if ( count( $itemKeys )>0 )
-						$string .= $key.":'{$row}',";
-					else
-						$string .= $dot.$key.":'{$row}'";
-				}
-			}else {
-				$string .= $dot.$key.":'{$row}'";
-			}
-
-			$dot = ',';
-		}
-		return $string ;
-	}
 
 	/**
 	 * 运行
@@ -166,9 +172,9 @@ class KindEditor extends CInputWidget{
 		$assets = $this->getAssetsPath();			
 		$clientScript = Yii::app()->getClientScript();
 		$clientScript->registerCssFile( $assets.'/themes/default/default.css' );		
-		$clientScript->registerScriptFile( $assets.'/kindeditor-min.js', CClientScript::POS_END );		
+		$clientScript->registerScriptFile( $assets.'/kindeditor-min.js', CClientScript::POS_END );			
 		$clientScript->registerScriptFile( $assets.'/lang/'.$this->language.'.js', CClientScript::POS_END );
-		$clientScript->registerScript( 'content', $this->makeOptions(), CClientScript::POS_END );
+		$clientScript->registerScript( 'content', $this->makeOptions($assets), CClientScript::POS_END );
 	}
 }
 ?>

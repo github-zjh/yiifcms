@@ -22,21 +22,23 @@
   <tr >
     <td >
     	<?php echo $form->textArea($model,'content',array('rows'=>7,'cols'=>70)); ?>
-    	<?php $this->widget('application.widget.kindeditor.KindEditor',array(
-				  'target'=>array(
-				  	'#Reply_content'=>array(
-						 'themeType'=>'simple',
-				  		 'width'=>'500',	
-						 'height'=>'200',	
-			  			 'items'=>array(
-			  					'fontname', 'fontsize','|','undo', 'redo','|','code', 'forecolor', 'hilitecolor', 'bold', 'italic',
-			  					'underline', 'removeformat', '|', 'justifyleft', 'justifycenter',
-			  					'justifyright', 'insertorderedlist','insertunorderedlist', '|',
-			  					'emoticons', 'image', 'link'),
-						)				  		
-					)						
+    	<?php $this->widget('application.widget.kindeditor.KindEditor',
+    			array(
+					'id'=>'Reply_content',
+					'options'=>array(
+						'themeType'=>'simple',
+						 'width'=>'500',	
+						 'height'=>'200',
+						 'items'=>array(
+							 'fontname', 'fontsize','|','undo', 'redo','|','code', 'forecolor', 'hilitecolor', 'bold', 'italic',
+							 'underline', 'removeformat', '|', 'justifyleft', 'justifycenter',
+							 'justifyright', 'insertorderedlist','insertunorderedlist', '|',
+							 'emoticons', 'image', 'link'
+						),						
+					)
 				)
-				);?>			
+    			);
+		?>    			
     </td>
   </tr> 
   <tr>

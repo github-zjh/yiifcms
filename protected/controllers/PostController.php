@@ -120,8 +120,8 @@ class PostController extends FrontBase
 	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
 	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/kindeditor/code/prettify.js",CClientScript::POS_END);
 	
-	//加载SyntaxHighlighter
-	Yii::app()->clientScript->registerCssFile($this->_static_public . "/js/SyntaxHighlighter/shCoreDefault.css");
+	//加载SyntaxHighlighter(有需要可以自行开启)
+	//Yii::app()->clientScript->registerCssFile($this->_static_public . "/js/SyntaxHighlighter/shCoreDefault.css");
 	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/SyntaxHighlighter/shCore.js",CClientScript::POS_END);
 	
 	

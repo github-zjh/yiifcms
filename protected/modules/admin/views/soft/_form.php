@@ -100,20 +100,7 @@
   </tr>
   <tr >
     <td ><?php echo $form->textArea($model,'introduce'); ?>      
-	  	<?php 
-	  		$this->widget('application.widget.ueditor.Ueditor',
-				array('htmlOptions'=>
-	  				array(
-	  						'id'=>'Soft_introduce',//页面中输入框（或其他初始化容器）的ID
-	  						'name'=>'ue',//指定ueditor实例的名称,个页面有多个ueditor实例时使用
-							'config'=> array(
-								'initialFrameHeight'=>'400',
-								'initialFrameWidth'=>'80%',			
-							),
-	  				)
-				)
-	  		);
-	  		?>
+	  	<?php $this->widget('application.widget.kindeditor.KindEditor',array('id'=>'Soft_introduce'));?>
 	  	</td>
   </tr> 
   
