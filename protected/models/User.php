@@ -200,7 +200,10 @@ class User extends CActiveRecord
 	 * @return string
 	 */
 	public static function createPassword($password=''){
-		return CPasswordHelper::hashPassword($password, 8);
+		$salt = CPasswordHelper::generateSalt(8);
+		$hash = crypt($password,$salt);
+		return $hash;
+		//return CPasswordHelper::hashPassword($password, 8);
 	}
 	
 	/**
@@ -209,6 +212,18 @@ class User extends CActiveRecord
 	 * @return [type]           [description]
 	 */
 	public function validatePassword($password){		
-		return CPasswordHelper::verifyPassword($password, $this->password);
+		if(!is_string($password) || $password==='')
+			return false;
+		
+		if (!$password || !preg_match('{^\$2[axy]\$(\d\d)\$[\./0-9A-Za-z]{22}}',$this->password,$matches) ||
+		$matches[1]<4 || $matches[1]>31)
+			return false;
+		
+		$test=crypt($password,$this->password);
+		if(!is_string($test) || strlen($test)<32)
+			return false;
+		
+		return CPasswordHelper::same($test, $this->password);
+		//return CPasswordHelper::verifyPassword($password, $this->password);
 	}
 }
