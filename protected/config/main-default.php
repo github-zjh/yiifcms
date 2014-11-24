@@ -49,9 +49,9 @@ return array(
 		// uncomment the following to enable URLs in path-format
 		
 		'urlManager'=>array(			
-			'urlFormat'=>'path',
+			//'urlFormat'=>'path',
 			'showScriptName'=>false,			
-			'urlSuffix'=>'/',			
+			//'urlSuffix'=>'/',			
 			'rules'=>array(
 				'sitemap\.xml' => 'site/sitemap', //网站地图
 				'sitemap\.xsl' => 'site/sitemapxsl', //网站索引

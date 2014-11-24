@@ -176,6 +176,7 @@ class Catalog extends CActiveRecord
 	 */
 	static public function get($parentid = 0, $array = array(), $level = 0, $add = 2, $repeat = '&nbsp;&nbsp;') {
 	
+		$modelType = new ModelType();
 		$str_repeat = '';
 		if ($level) {
 			for($j = 0; $j < $level; $j ++) {
@@ -191,6 +192,11 @@ class Catalog extends CActiveRecord
 			if ($v ['parent_id'] == $parentid) {
 				$v['level'] = $level;
 				$v['str_repeat'] = $str_repeat;
+				
+				//模型标示
+				$typeinfo = $modelType->findByPk($v['type']);
+				$v['type_key'] = $typeinfo->type_key;
+				
 				$newarray[] = $v;
 				
 				$temparray = self::get ( $v ['id'], $array, ($level + $add) );

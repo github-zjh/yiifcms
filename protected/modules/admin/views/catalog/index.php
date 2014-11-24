@@ -39,7 +39,7 @@
       <td >
       	<a href="<?php echo  $this->createUrl('update',array('id'=>$row['id']))?>"><img src="<?php echo $this->module->assetsUrl;?>/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
       	<a href="<?php echo  $this->createUrl('batch',array('command'=>'delete', 'id'=>$row['id']))?>" class="confirmSubmit"><img src="<?php echo $this->module->assetsUrl;?>/images/delete.png" align="absmiddle" /></a>&nbsp;&nbsp;
-      	<a href="<?php echo  $this->createUrl('/catelog/index',array('id'=>$row['id']))?>" target="_blank"><img src="<?php echo $this->module->assetsUrl;?>/images/view.png" align="absmiddle" /></a>
+      	<a href="<?php echo  $this->createUrl('/'.$row['type_key'].'/index',array('catalog_id'=>$row['id']))?>" target="_blank"><img src="<?php echo $this->module->assetsUrl;?>/images/view.png" align="absmiddle" /></a>
       </td>
     </tr>
     <?php endforeach;?>

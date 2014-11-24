@@ -39,7 +39,7 @@ class CatalogController extends Backend
      */
     public function actionIndex ()
     {   
-        $datalist = Catalog::get(0, $this->_catalog);
+        $datalist = Catalog::get(0, $this->_catalog);              
         $this->render('index', array ('datalist' => $datalist ));
     }
 

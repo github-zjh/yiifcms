@@ -62,7 +62,7 @@ EOT;
 		$this->_stylePath = $this->_theme->baseUrl.'/styles';
 		
 		//菜单导航
-		$menus = Menu::model()->findAll('status_is =:status', array(':status'=>'Y'));	
+		$menus = Menu::model()->findAll('status_is =:status ORDER BY sort_order, id DESC', array(':status'=>'Y'));	
 		$tree = new Xtree();	
 		foreach((array)$menus as $menu){
 			$data[] = $menu->attributes;
