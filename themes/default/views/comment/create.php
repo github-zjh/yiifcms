@@ -34,10 +34,12 @@
 							 'fontname', 'fontsize','|','undo', 'redo','|','code', 'forecolor', 'hilitecolor', 'bold', 'italic',
 							 'underline', 'removeformat', '|', 'justifyleft', 'justifycenter',
 							 'justifyright', 'insertorderedlist','insertunorderedlist', '|',
-							 'emoticons', 'image', 'link'
+							 'emoticons', 'link'
 						),			
 						'resizeType'=>0,
 						'dialogAlignType'=>'',//弹窗按编辑器居中
+						'uploadJson'=>'',						
+						'allowFileManager'=>false,
 					)
 				)
     			);

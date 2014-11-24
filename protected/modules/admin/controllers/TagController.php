@@ -65,5 +65,44 @@ class TagController extends Backend
     	}
     	$this->message('success',Yii::t('admin','Reset Tags Success'),$this->createUrl('index'));
     }
+    
+    /**
+     * 批量操作
+     *
+     */
+    public function actionBatch ()
+    {
+    
+    	if ($this->method() == 'GET') {
+    		$command = trim($_GET['command']);
+    		$ids = intval($_GET['id']);
+    	} else
+    	if ($this->method() == 'POST') {
+    		$command = trim($_POST['command']);
+    		$ids = $_POST['id'];
+    	} else {
+    		$this->message('errorBack', Yii::t('admin','Only POST Or GET'));
+    	}
+    	empty($ids) && $this->message('error', Yii::t('admin','No Select'));
+    
+    	switch ($command) {
+    		case 'tagsDelete':
+    			//删除评论
+    			foreach((array)$ids as $id){
+    				$tagModel = Tag::model()->findByPk($id);
+    				if($tagModel){
+    					$tagModel->delete();
+    				}
+    			}
+    			break;
+    		
+    		default:
+    			throw new CHttpException(404,  Yii::t('admin','Error Operation'));
+    			break;
+    	}
+    
+    	$this->message('success', Yii::t('admin','Batch Operate Success'),$this->createUrl('index'));
+    
+    }
 
 }

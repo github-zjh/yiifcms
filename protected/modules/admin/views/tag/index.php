@@ -5,7 +5,7 @@
       <li><a href="<?php echo $this->createUrl('tag/reset')?>" class="actionBtn"><span><?php echo Yii::t('admin','Reset Tags');?></span></a></li>
     </ul>
     <div class="search right">
-      <?php $form = $this->beginWidget('CActiveForm',array('id'=>'searchForm','method'=>'get','action'=>array('newsTags'),'htmlOptions'=>array('name'=>'xform'))); ?>
+      <?php $form = $this->beginWidget('CActiveForm',array('id'=>'searchForm','method'=>'get','action'=>array('index'),'htmlOptions'=>array('name'=>'xform'))); ?>
       
       名称
       <input id="tagName" type="text" name="tagName" value="" class="txt" size="15"/>
