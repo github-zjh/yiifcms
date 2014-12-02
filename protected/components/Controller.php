@@ -63,10 +63,11 @@ class Controller extends CController
 		$this->_static_public = $this->_baseUrl.'/public';
 
 		//检测系统是否已经安装
-		/*if(!file_exists($this->_data.'/install.lock')){
+		if(!file_exists($this->_data.'/install.lock')){
 			$this->redirect($this->createUrl('/install/index'));
-		}*/
+		}
 		
+		//后台全局设置
 		$settings = Setting::model()->findAll();
 		foreach ($settings as $key => $row) {
 			$this->_setting[$row['variable']] = $row['value'];
