@@ -15,6 +15,18 @@ class UserController extends FrontBase
 	 * @var CActiveRecord the currently loaded data model instance.
 	 */
 	private $_model;	
+	private $_active_need;
+	
+	public function init(){
+		parent::init();
+		//邮箱激活设置
+		if($this->_setting['email_active'] == 'open'){			
+			$this->_active_need = true;
+		}else{			
+			$this->_active_need = false;
+		}
+	}
+	
 	
 	/**
 	 * Declares class-based actions.
@@ -75,8 +87,9 @@ class UserController extends FrontBase
 		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/jquery.Jcrop.min.css");		
 		
 	    $model = $this->loadModel();	   
+	    
 	    //判断账号是否已激活
-	    if($model->status == -1){
+	    if($this->_active_need && $model->status == -1){
 	    	$this->redirect($this->createUrl('activeEmail'));
 	    }
 	     
@@ -122,8 +135,9 @@ class UserController extends FrontBase
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
 		$model = $this->loadModel();
 		
+		
 		//判断账号是否已激活	
-		if($model->status == -1){
+		if($this->_active_need && $model->status == -1){
 			$this->redirect($this->createUrl('activeEmail'));
 		}
 		if($this->_request->isPostRequest){	
@@ -143,13 +157,17 @@ class UserController extends FrontBase
 							exit( CJSON::encode( array ( 'status' => 'error' ,  'field'=>'newEmail', 'message' => Yii::t('common','Please Input Different Email') ) ) );
 						}
 						$exit_email = User::model()->find('email=:email', array(':email'=>$email));
-						if(!$exit_email){
+						if(!$exit_email){							
 							//校验邮箱唯一性
-							$acceptCaptcha = Yii::app()->session[$email.'_captcha'] = substr(mt_rand(0,time()),2,6);
-							$subject = Yii::t('common','Reset Email Subject');
-							$message = Yii::t('common','Reset Email Content', array('{username}'=>$model->username, '{email_captcha}'=>$acceptCaptcha,'{admin_email}'=>$this->_setting['admin_email']));
-							Helper::sendMail($model->uid, $email, $subject, $message);			
-							exit( CJSON::encode( array ( 'status' => 'success' , 'message' => Yii::t('common','Send Success') ) ) );
+							if($this->_active_need) {
+								$acceptCaptcha = Yii::app()->session[$email.'_captcha'] = substr(mt_rand(0,time()),2,6);
+								$subject = Yii::t('common','Reset Email Subject');
+								$message = Yii::t('common','Reset Email Content', array('{username}'=>$model->username, '{email_captcha}'=>$acceptCaptcha,'{admin_email}'=>$this->_setting['admin_email']));
+								Helper::sendMail($model->uid, $email, $subject, $message);
+								exit( CJSON::encode( array ( 'status' => 'success' , 'message' => Yii::t('common','Send Success') ) ) );
+							}else{			
+								exit( CJSON::encode( array ( 'status' => 'success'  ) ) );
+							}
 						}else{
 							exit( CJSON::encode( array ( 'status' => 'error' , 'field'=>'newEmail', 'message' => Yii::t('common','Existing Email') ) ) );
 						}
@@ -161,7 +179,10 @@ class UserController extends FrontBase
 			
 				$post = array_map('trim', $_POST);
 				$newemail = $post['newEmail'];
-				$captcha = $post['captchaEmail'];
+				if($this->_active_need) {
+					//激活设置开启时，需接收验证码
+					$captcha = $post['captchaEmail'];
+				}
 
 				if(!$newemail || !preg_match($reg, $newemail)){
 					$model->addError('email',Yii::t('common','Please Input Right New Email'));
@@ -170,9 +191,12 @@ class UserController extends FrontBase
 						//校验邮箱唯一性
 						$model->addError('email',Yii::t('common','Please Input Different Email'));
 					}else{
-						$acceptCaptcha = Yii::app()->session[$newemail.'_captcha'];
-						if(!$captcha || $captcha != $acceptCaptcha){
-							$model->addError('email',Yii::t('common','Please Input Right Email Captcha'));
+						if($this->_active_need) {
+							//激活设置开启时，需接收验证码
+							$acceptCaptcha = Yii::app()->session[$newemail.'_captcha'];
+							if(!$captcha || $captcha != $acceptCaptcha){
+								$model->addError('email',Yii::t('common','Please Input Right Email Captcha'));
+							}
 						}
 					}
 				}
@@ -180,11 +204,11 @@ class UserController extends FrontBase
 					$model->email = $newemail;	
 					$model->save();
 					unset(Yii::app()->session[$newemail.'_captcha']);
-					$this->message('success',Yii::t('common','Reset Email Success'),$this->createUrl('index'));
+					$this->_dialogMessage = $this->dialogMessage('success',Yii::t('common','Reset Email Success'),$this->createUrl('index'));
 				}
 			}
 		}
-		$this->render('setting_email', array('model'=>$model,'post'=>$post));
+		$this->render('setting_email', array('model'=>$model,'post'=>$post ,'need_active'=>$this->_active_need));
 	}
 	
 	/**
@@ -200,7 +224,7 @@ class UserController extends FrontBase
 		$user = $this->loadModel();
 		
 		//判断账号是否已激活
-		if($user->status == -1){
+		if($this->_active_need && $user->status == -1){
 			$this->redirect($this->createUrl('activeEmail'));
 		}
 	    //判断账号的密码是否为空
@@ -222,7 +246,7 @@ class UserController extends FrontBase
 				$user->password = User::createPassword($model->newpassword);
 				if($user->save()){
 					Yii::app()->user->logout(false);
-					$this->message('success',Yii::t('common','Update Password Success'),$this->createUrl('user/login'));
+					$this->_dialogMessage = $this->dialogMessage('success',Yii::t('common','Update Password Success'),$this->createUrl('user/login'));
 				}	
 			}
 		}		
@@ -408,14 +432,20 @@ class UserController extends FrontBase
 			$userModel->username = $model->username;
 			$userModel->password = $model->password;
 			$userModel->email = $model->email;
-			$userModel->status = -1; //待审核，要验证邮箱
+			$userModel->status = $this->_active_need?-1:1;  //审核状态
 			$userModel->groupid = 1;			
 			$userModel->nickname = $userModel->username;
 			$userModel->logins = 0;
 			// validate user input and redirect to the previous page if valid
-			if($userModel->save()){				
-				$this->activeAccount(array('id'=>$userModel->uid, 'email'=>$userModel->email, 'username'=>$userModel->username));
-				$this->message('success', Yii::t('common','Register Success'), $this->createUrl('login'), 5);
+			if($userModel->save()){			
+				
+				if($this->_active_need){	
+					//发送激活邮件				
+					$this->activeAccount(array('id'=>$userModel->uid, 'email'=>$userModel->email, 'username'=>$userModel->username));
+					$this->message('success', Yii::t('common','Register Success And Active Email'), $this->createUrl('login'), 5);
+				}else{					
+					$this->message('success', Yii::t('common','Register Success'), $this->createUrl('login'), 5);
+				}
 			}else{
 				$this->message('error',Yii::t('common','Register Failed'), $this->createUrl('register'));
 			}

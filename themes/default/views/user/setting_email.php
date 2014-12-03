@@ -14,6 +14,7 @@
 				<tr><th><label><?php echo Yii::t('common','Init Email');?>：</label></th><td><?php echo $model->email?$model->email:'暂无';?>
 				<input type="hidden" name="initEmail" value="<?php echo $model->email;?>"/></td></tr>
 				<tr><th><label><?php echo Yii::t('common','New Email');?>：</label></th><td><input type="text" name="newEmail" value="<?php echo $post['newEmail'];?>"/></td></tr>	
+				<?php if($need_active):?>
 				<tr>
 					<th><label><?php echo Yii::t('common','Email Captcha');?>：</label></th>
 					<td>
@@ -21,7 +22,8 @@
 						<input type="button" id="send_e_btn" class="send_btn" name="sendEmailCaptcha" value="<?php echo Yii::t('common','Click Send Email');?>"/>
 					</td>
 				</tr>
-				<tr><td></td><td id="send_msg"></td></tr>							
+				<tr><td></td><td id="send_msg"></td></tr>
+				<?php endif;?>							
 				<tr>
 					<td></td>
 					<td>						
