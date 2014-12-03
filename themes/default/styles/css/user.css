@@ -2,15 +2,23 @@
 
 /* 个人中心 */
 .user { width:1170px; margin:0 auto; padding:40px 0; text-align:left; }
-.user_left { width:60%; }
-.user_right { width:30%; }
-.user_left .base_box { padding:20px; border:1px solid #DDDDDD; border-radius:5px; background-color:#F0F0F0;}
-.user_left .base_info { float:left; padding-left:20px;}
+.user_left { width:20%; float:left;  border:1px solid #DDDDDD;  border-radius:5px;}
+.left_menu dl { margin-bottom:10px; }
+.left_menu dl dt { padding-left:20px; background-color:#F7F7F7; font-weight:bold; font-size:18px; line-height:36px; }
+.left_menu dl dd { padding-left:50px; line-height:30px; font-size:14px; background:url(../images/ico_menu.gif) no-repeat 20px -135px;}
+.left_menu dd a { color:#444444;}
+.left_menu .ico_base { background-position-y:-160px;}
+.left_menu .ico_pwd{ background-position-y:-382px;}
+.left_menu .ico_email { background-position-y:-2254px;}
+
+.user_right { width:70%; float:right; border:1px solid #DDDDDD; border-radius:5px; }
+.user_right .base_box { padding:20px; }
+.user_right .base_info { float:left; padding-left:20px;}
 .base_info li { line-height:33px; font-size:16px; font-weight:bold; }
 .base_info li label { width:100px; display:inline-block; font-weight:normal; }
 .base_info li span { font-size:12px;}
-.user_left .edit_btn { float:right; width:80px; height:32px; line-height:32px; background-color:#5CB85C; border-radius:3px; font-size:14px; color:#FFFFFF; text-align:center; }
-.user_left .fa_edit:before { content:"\f044"; }
+.edit_btn { float:right; width:80px; height:32px; line-height:32px; background-color:#5CB85C; border-radius:3px; font-size:14px; color:#FFFFFF; text-align:center; }
+.fa_edit:before { content:"\f044"; }
 
 /* 用户设置 */
 .user_edit .tab_menu {  border-bottom:1px solid #DDDDDD;}
@@ -20,7 +28,7 @@
 .tab_menu h2 { float:left; padding-left:20px; font-size:18px; line-height:33px;}
 .user_edit  h3 { background-color:#F7F7F7; padding-left:20px; font-size:16px; line-height:32px; }
 .user_edit #edit_form { padding:20px 0; }
-.user_edit .base_table { float:left; margin-left:5%; width:40%; }
+.user_edit .base_table { float:left; margin-left:5%; width:90%; }
 .base_table tr { line-height:33px; }
 .base_table th, .base_table td{ font-size:14px; padding-bottom:10px;}
 .base_table input { 
@@ -43,17 +51,18 @@
     border-top: 1px solid #666666;
 	min-width:260px; max-width:260px; 
 	min-height:80px; max-height:80px; height:80px; }
-.upload_avatar { float:right; width:50%;}
+.upload_avatar { float:left; margin-left:5%; width:80%;}
 .upload_avatar dt { width:100px; float:left;}
 .upload_avatar .upload_desc { float:left; padding-left:20px;}
 .upload_desc p { line-height:33px;}
 .upload_cut_box { width:300px; float:left;}	
-.upload_desc .upload_btn { float:left; width:80px; height:28px; position:relative; overflow:hidden; }
+.submit_cut .upload_btn { float:left; width:80px; height:28px;}
 .btn_text { display:block; height:28px; line-height:28px; border-radius: 4px; font-size: 14px;	background-color: #5CB85C;border-color: #4CAE4C;	color:#FFFFFF;	text-align:center;}
-.submit_cut { width:80px; height:28px; margin-top:10px; padding-left:20px; float:left;}
+.submit_cut { width:190px; height:90px; margin-top:40px; padding-left:20px; float:left; position:relative; }
+.btn_cut { width:80px; position:absolute; top:50px;}
 .upload_btn .uploadify { position:absolute; top:0; opacity:0; cursor:pointer; filter:alpha(opacity=0);}
-.upload_avatar_status { display:none; float:left; margin-left:10px; padding-left:16px; position:relative; background:url(../images/ajax_loading.gif) no-repeat; bottom:-5px; }
-
+.upload_avatar_status { display:none; position:absolute; left:90px; margin-left:10px; padding-left:20px; background:url(../images/ajax_loading.gif) no-repeat left center;}
+.upload_avatar_status_success { background:none;}
 	
 #edit_form .submit {	
 	margin-top:20px;

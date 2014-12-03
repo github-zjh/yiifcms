@@ -44,10 +44,10 @@ class SiteController extends FrontBase
 		//最新资讯
 		$news_new = Post::model()->findAll("status=:status ORDER BY id DESC Limit 20", array(':status'=>'Y'));
 		//热门资讯
-		$news_hot = Post::model()->findAll("status=:status ORDER BY view_count DESC, id DESC Limit 20", array(':status'=>'Y'));
+		$news_hot = Post::model()->findAll("status=:status ORDER BY view_count DESC, id DESC Limit 10", array(':status'=>'Y'));
 		
 		//最新图集
-		$image_new = Image::model()->findAll("status=:status AND attach_thumb != '' ORDER BY id DESC Limit 20", array(':status'=>'Y'));
+		$image_new = Image::model()->findAll("status=:status AND attach_thumb != '' ORDER BY id DESC Limit 10", array(':status'=>'Y'));
 		//热门图集
 		$image_hot = Image::model()->findAll("status=:status AND attach_thumb != '' ORDER BY view_count DESC, id DESC Limit 20", array(':status'=>'Y'));
 		

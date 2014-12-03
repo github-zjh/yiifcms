@@ -1,5 +1,11 @@
-	<div class="user">
+	<div class="user clear">
 		<div class="user_left">
+			<!-- 用户菜单导航开始 -->
+			<?php $this->renderPartial('user_left');?>
+			<!-- 用户菜单导航结束 -->
+		</div>
+		
+		<div class="user_right">
 			<div class="base_box clear">
 				<img class="fl" width="100" height="100" alt="<?php echo Yii::t('common','My Avatar');?>" src="<?php echo $profile->avatar?$profile->avatar:$this->_stylePath.'/images/avatar-max-img.png';?>" />
 				<ul class="base_info">
@@ -18,10 +24,6 @@
 					<i class="fa fa_edit"></i><?php echo Yii::t('common','Edit');?>
 				</a>
 			</div>		
-		</div>
-		
-		<div class="user_right">
-		
 		</div>
 		
 	</div>
