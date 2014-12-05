@@ -8,15 +8,14 @@
 	</dl>
 	<dl>
 		<dt><?php echo Yii::t('common','My Collect');?></dt>
-		<dd><a href="<?php echo $this->createUrl('user/setting');?>"><?php echo Yii::t('common','Collect Posts');?></a></dd>
-		<dd><a href="<?php echo $this->createUrl('user/setting');?>"><?php echo Yii::t('common','Collect Goods');?></a></dd>
+		<dd class="ico_collect"><a href="<?php echo $this->createUrl('user/mycollect');?>"><?php echo Yii::t('common','Collect Posts');?></a></dd>		
 	</dl>
 	<dl>
 		<dt><?php echo Yii::t('common','My Comment');?></dt>
-		<dd><a href="<?php echo $this->createUrl('user/setting');?>"><?php echo Yii::t('common','Comments Manage');?></a></dd>		
+		<dd class="ico_comment"><a href="<?php echo $this->createUrl('user/mycomments');?>"><?php echo Yii::t('common','Comments Manage');?></a></dd>		
 	</dl>
 	<dl>
 		<dt><?php echo Yii::t('common','My Friends');?></dt>
-		<dd><a href="<?php echo $this->createUrl('user/setting');?>"><?php echo Yii::t('common','Friends Manage');?></a></dd>		
+		<dd class="ico_friend"><a href="<?php echo $this->createUrl('user/myfriends');?>"><?php echo Yii::t('common','Friends Manage');?></a></dd>		
 	</dl>
 </div>

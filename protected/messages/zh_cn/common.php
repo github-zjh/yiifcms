@@ -86,6 +86,9 @@ return array (
 	'Cancel Stick' => '取消置顶',
 	'Allow Comment' => '允许评论',
 	'Deny Comment' => '禁止评论',
+	'Collect Manage' => '收藏管理',
+	'Comments Manage' => '评论管理',
+	'Friends Manage' => '好友管理',
 
 	//注册
 	'Register' => '注册',

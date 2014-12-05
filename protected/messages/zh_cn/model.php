@@ -50,6 +50,7 @@ return array(
 		'parent_id' => '上级菜单',
 		'menu_sort_order' => '排序',
 		'new_open' => '新窗口打开',
+		
 		//Ad
 		
 		//AdPositon
@@ -124,6 +125,14 @@ return array(
 		'QuestionClient_ip' => '客户端ip',
 		'QuestionCreate_time' => '留言时间',	
 		
+		//Collect
+		'CollectId' => '收藏ID',
+		'CollectCid' => '收藏内容ID',
+		'CollectTitle' => '收藏内容标题',
+		'CollectUrl' => '收藏链接',
+		'CollectType' => '收藏类型',
+		'CollectAddTime' => '收藏时间',
+				
 		//Special
 		
 		//MailLog

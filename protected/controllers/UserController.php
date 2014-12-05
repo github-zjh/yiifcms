@@ -53,6 +53,16 @@ class UserController extends FrontBase
 				'page'=>array(
 						'class'=>'CViewAction',
 				),
+				//外部action
+				'mycollect' => array(
+						'class'=>'application.controllers.user.mycollectAction'						
+				),
+				'mycomments' => array(
+						'class'=>'application.controllers.user.mycommentsAction'
+				),
+				'myfriends' => array(
+						'class'=>'application.controllers.user.myfriendsAction'
+				),
 		);
 	}
 	

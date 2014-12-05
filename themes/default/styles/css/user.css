@@ -10,6 +10,10 @@
 .left_menu .ico_base { background-position-y:-160px;}
 .left_menu .ico_pwd{ background-position-y:-382px;}
 .left_menu .ico_email { background-position-y:-2254px;}
+.left_menu .ico_collect { background-position-y:-274px;}
+.left_menu .ico_comment { background-position-y:-1651px;}
+.left_menu .ico_friend { background-position-y:-216px;}
+
 
 .user_right { width:70%; float:right; border:1px solid #DDDDDD; border-radius:5px; }
 .user_right .base_box { padding:20px; }

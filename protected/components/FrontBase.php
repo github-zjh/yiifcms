@@ -105,11 +105,14 @@ EOT;
 		$actionID = $action->id;	
 	
 		//需要登录的页面,要小写
-		$need_auth = array(
+		$need_auth = array(				
 				'user/index',				
 				'user/setting',
 				'user/settingpwd',
 				'user/settingemail',
+				'user/mycollect',
+				'user/mycomments',
+				'user/myfriends',
 				'uploadify/index',
 				'uploadify/avatar',
 				'uploadify/submitcut',
