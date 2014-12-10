@@ -32,6 +32,7 @@ class MycollectAction extends CAction
 		$collect_mod = new Collect();
 		$uid = Yii::app()->user->id;			
 		$criteria = new CDbCriteria();		
+		$criteria->condition = 't.user_id='.$uid;
 		$criteria->order = 't.id DESC';		
 		
 		//分页

@@ -30,6 +30,7 @@ class MyattentionAction extends CAction
 		$attention_mod = new Attention();
 		$uid = Yii::app()->user->id;			
 		$criteria = new CDbCriteria();		
+		$criteria->condition = 't.user_id='.$uid;
 		$criteria->order = 't.id DESC';		
 		
 		//分页
