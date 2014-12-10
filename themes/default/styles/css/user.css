@@ -24,6 +24,14 @@
 .edit_btn { float:right; width:80px; height:32px; line-height:32px; background-color:#5CB85C; border-radius:3px; font-size:14px; color:#FFFFFF; text-align:center; }
 .fa_edit:before { content:"\f044"; }
 
+/* 收藏列表css */
+.form_table { display: table; border-spacing: 2px; border-color: gray; width: 100%;}
+.form_table .tb_header { background: #eef3f7; height: 30px; line-height: 25px; padding-left: 5px; border-bottom: #d5dfe8 1px solid; border-top: #d5dfe8 1px solid; font-weight: bold }
+.form_table .tb_header th { font-weight: bold; padding-left: 4px; }
+.form_table td { border-bottom: #eee 1px solid; height: 30px; line-height: 25px; padding-left: 5px; }
+.form_table tr.tb_list:hover { background: #FBFFE4; color: #333; }
+.form_table .tb_title { font-weight: bold }
+
 /* 用户设置 */
 .user_edit .tab_menu {  border-bottom:1px solid #DDDDDD;}
 .user_edit .tab_menu li { float:right; width:100px;  border:1px solid #DDDDDD; border-bottom:none; margin-left:4px; line-height:33px; font-size:14px; text-align:center; }

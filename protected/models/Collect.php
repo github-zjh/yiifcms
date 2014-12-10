@@ -6,6 +6,7 @@
  * The followings are the available columns in table '{{collect}}':
  * @property string $id
  * @property string $cid
+ * @property string $user_id
  * @property string $title
  * @property string $url
  * @property integer $type
@@ -30,12 +31,12 @@ class Collect extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('type', 'numerical', 'integerOnly'=>true),
-			array('cid, create_time', 'length', 'max'=>10),
+			array('user_id, cid, create_time', 'length', 'max'=>10),
 			array('title', 'length', 'max'=>100),
 			array('url', 'length', 'max'=>200),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, cid, title, url, type, create_time', 'safe', 'on'=>'search'),
+			array('id, cid, user_id, title, url, type, create_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,6 +59,7 @@ class Collect extends CActiveRecord
 		return array(
 			'id' => Yii::t('model', 'CollectID'),
 			'cid' => Yii::t('model', 'CollectCid'),
+			'user_id' => Yii::t('model', 'CollectUserid'),
 			'title' => Yii::t('model', 'CollectTitle'),
 			'url' => Yii::t('model', 'CollectUrl'),
 			'type' => Yii::t('model', 'CollectType'),
@@ -86,6 +88,8 @@ class Collect extends CActiveRecord
 		$criteria->compare('id',$this->id,true);
 
 		$criteria->compare('cid',$this->cid,true);
+		
+		$criteria->compare('user_id',$this->user_id,true);
 
 		$criteria->compare('title',$this->title,true);
 

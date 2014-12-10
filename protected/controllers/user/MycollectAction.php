@@ -25,7 +25,7 @@ class MycollectAction extends CAction
 		//加载css,js
 		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/user.css");
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");		
-		//基本资料
+		//收藏列表
 		$uid = Yii::app()->user->id;	
 		$profile = User::model()->findByPk($uid);
 		$controller->render('mycollect', array('profile'=>$profile));

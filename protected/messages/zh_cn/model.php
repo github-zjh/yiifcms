@@ -128,6 +128,7 @@ return array(
 		//Collect
 		'CollectId' => '收藏ID',
 		'CollectCid' => '收藏内容ID',
+		'CollectUserid' => '收藏人id',
 		'CollectTitle' => '收藏内容标题',
 		'CollectUrl' => '收藏链接',
 		'CollectType' => '收藏类型',

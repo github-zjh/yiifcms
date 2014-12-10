@@ -30,10 +30,14 @@ class TagController extends FrontBase
   	}
 
 	if(!$tag_ids){		
-	    $alltags = Tag::model()->findAll(array('order'=>'data_count'));
-	    foreach((array)$alltags as $tv){
-		$tag_ids[] = $tv->id;	
-	    }	
+		if(!$tag){
+		    $alltags = Tag::model()->findAll(array('order'=>'data_count'));
+		    foreach((array)$alltags as $tv){
+				$tag_ids[] = $tv->id;	
+		    }	
+		}else{
+			throw new CHttpException(404,  Yii::t('common','The requested page does not exist.'));
+		}
 	}  	
   	
 	$data = array();
