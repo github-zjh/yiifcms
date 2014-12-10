@@ -275,9 +275,10 @@ class UserController extends FrontBase
 			exit;
 		}
 		//获取登录前的URL
-		if (!empty($_GET['ret_url']))
+		$get_url = $this->_request->getParam('ret_url');
+		if (!empty($get_url))
 		{
-			$ret_url = trim($_GET['ret_url']);
+			$ret_url = trim($get_url);
 		}
 		else
 		{
