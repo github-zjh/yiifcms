@@ -56,12 +56,9 @@ class UserController extends FrontBase
 				//外部action
 				'mycollect' => array(
 						'class'=>'application.controllers.user.MycollectAction'						
-<<<<<<< HEAD
-=======
 				),
 				'myattention' => array(
 						'class'=>'application.controllers.user.MyattentionAction'
->>>>>>> e8fde610aaa56f022ef97ab02913c2014ce69bc0
 				),
 				'mycomments' => array(
 						'class'=>'application.controllers.user.MycommentsAction'
