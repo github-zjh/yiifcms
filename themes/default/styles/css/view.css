@@ -20,6 +20,9 @@
 
 .content_left .view_info .views { padding-left:23px; background:url(../images/ico_view.png) no-repeat left center; }
 .content_left .view_info .downs { padding-left:23px; background:url(../images/ico_down.png) no-repeat left center; }
+.content_left .view_info .collects { padding-left:23px; background:url(../images/ico_collect.png) no-repeat left center; position:relative; }
+.content_left .view_info .attentions { padding-left:23px; background:url(../images/ico_attention.jpg) no-repeat left center; position:relative;  }
+.content_left .view_info .ajax_msg { display:none; background-color:#428BCA; width:90px; text-align:center; color:#FFFFFF; position:absolute; left:0; top:-30px; border:1px solid #dddddd;}
 .content_left .content_info { margin-bottom:20px; }
 .content_left .share_box { background-color:#ececec; padding:6px 12px;}
 .content_left .share_box strong { font-size:14px;}

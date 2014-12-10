@@ -46,6 +46,7 @@
 
 <!-- Js script开始 -->
 <script type="text/javascript">
+	
 	$(function(){		
 		//导航菜单
 		$("#menu li a").mouseover(function(){
@@ -103,8 +104,39 @@
 			//代码着色
 			prettyPrint();
 			}
-		}catch(e){}
+		}catch(e){}	
+		
 	});
+
+	//收藏、关注
+	function ajaxClick(act) {			
+		var obj = $("a[data-act='"+act+"']");		
+		var uid = "<?php echo Yii::app()->user->id;?>";				
+		var cid = obj.attr("data-id");
+		$("span.ajax_msg").hide();	
+		if(uid){
+			$.post('<?php echo $this->createUrl('post/ajax');?>',{'act':act, 'id':cid}, function(data){
+				if(data.count > 0){	
+					console.log(obj.children("em").children("i").html());
+					obj.children("em").children("i").html(data.count);
+				}
+				obj.next("span.ajax_msg").html(data.message).show().delay(5000).fadeOut();
+			},'json');
+		}else{
+			obj.next("span.ajax_msg").html("<?php echo Yii::t('common','You Need Login')?>").show().delay(5000).fadeOut();				
+		}
+	}
+
+	// JavaScript Document
+	function checkAll(form, name) {
+		for(var i = 0; i < form.elements.length; i++) {
+			var e = form.elements[i];
+			if(e.name.match(name)) {
+				e.checked = form.elements['chkall'].checked;
+			}
+		}
+	}
+	
 </script>
 <!-- Js script结束 -->
 <!-- 分享代码 -->

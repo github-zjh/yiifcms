@@ -7,13 +7,13 @@
 	
 	<div class="user_right">		
 		<div class="user_edit">			
-			<h3><?php echo Yii::t('common','Collect Manage');?></h3>
+			<h3><?php echo Yii::t('common','Attention Manage');?></h3>
 			<?php $form=$this->beginWidget('CActiveForm',array('id'=>'collect_form','htmlOptions'=>array('name'=>'collect_form'))); ?>
 			<table class="form_table">
 				<tr class="tb_header">
 			        <th width="10%" class="first_title">ID</th>
-			        <th><?php echo Yii::t('model','CollectTitle');?></th>			      
-			        <th width="15%"><?php echo Yii::t('model','CollectAddTime');?></th>
+			        <th><?php echo Yii::t('model','AttentionTitle');?></th>			      
+			        <th width="15%"><?php echo Yii::t('model','AttentionAddTime');?></th>
 			        <th><?php echo Yii::t('admin','Operate');?></th>
 			      </tr>
 				<?php foreach ((array)$datalist as $row):?>

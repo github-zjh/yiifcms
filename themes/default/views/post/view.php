@@ -19,6 +19,21 @@
 					</span>
 					<?php endif;?>
 					<span class="views"><em><?php echo $post->view_count;?></em></span>
+					
+					<!-- 收藏 -->
+					<span class="collects">
+						<a href="javascript:ajaxClick('collect');" data-act="collect" data-id="<?php echo $post->id;?>">
+							<em><?php echo Yii::t('common','Collection');?>+<i><?php echo $post->favorite_count;?></i></em>
+						</a>
+						<span class="ajax_msg">loading...</span>
+					</span>
+					<!-- 关注 -->
+					<span class="attentions">
+						<a href="javascript:ajaxClick('attention');"" data-act="attention" data-id="<?php echo $post->id;?>">
+							<em><?php echo Yii::t('common','Attention');?>+<i><?php echo $post->attention_count;?></i></em>
+						</a>
+						<span class="ajax_msg">loading...</span>
+					</span>					
 				</p>
 				<div class="content_info">
 					<div class="description">

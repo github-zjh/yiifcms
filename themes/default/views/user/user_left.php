@@ -7,8 +7,9 @@
 		<dd class="ico_email"><a href="<?php echo $this->createUrl('user/settingEmail');?>"><?php echo Yii::t('common','Setting Email');?></a></dd>
 	</dl>
 	<dl>
-		<dt><?php echo Yii::t('common','My Collect');?></dt>
-		<dd class="ico_collect"><a href="<?php echo $this->createUrl('user/mycollect');?>"><?php echo Yii::t('common','Collect Posts');?></a></dd>		
+		<dt><?php echo Yii::t('common','Collect & Attention');?></dt>
+		<dd class="ico_collect"><a href="<?php echo $this->createUrl('user/mycollect');?>"><?php echo Yii::t('common','Collect Manage');?></a></dd>	
+		<dd class="ico_attention"><a href="<?php echo $this->createUrl('user/myattention');?>"><?php echo Yii::t('common','Attention Manage');?></a></dd>			
 	</dl>
 	<dl>
 		<dt><?php echo Yii::t('common','My Comment');?></dt>

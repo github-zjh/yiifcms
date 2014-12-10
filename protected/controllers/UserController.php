@@ -55,13 +55,16 @@ class UserController extends FrontBase
 				),
 				//外部action
 				'mycollect' => array(
-						'class'=>'application.controllers.user.mycollectAction'						
+						'class'=>'application.controllers.user.MycollectAction'						
+				),
+				'myattention' => array(
+						'class'=>'application.controllers.user.MyattentionAction'
 				),
 				'mycomments' => array(
-						'class'=>'application.controllers.user.mycommentsAction'
+						'class'=>'application.controllers.user.MycommentsAction'
 				),
 				'myfriends' => array(
-						'class'=>'application.controllers.user.myfriendsAction'
+						'class'=>'application.controllers.user.MyfriendsAction'
 				),
 		);
 	}
