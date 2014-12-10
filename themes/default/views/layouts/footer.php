@@ -115,7 +115,7 @@
 		var cid = obj.attr("data-id");
 		$("span.ajax_msg").hide();	
 		if(uid){
-			$.post('<?php echo $this->createUrl('post/ajax');?>',{'act':act, 'id':cid}, function(data){
+			$.post('<?php echo $this->_request->hostinfo.$this->createUrl('post/ajax');?>',{'act':act, 'id':cid}, function(data){
 				if(data.count > 0){	
 					console.log(obj.children("em").children("i").html());
 					obj.children("em").children("i").html(data.count);

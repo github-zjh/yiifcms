@@ -19,7 +19,7 @@ class Attention extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{Attention}}';
+		return '{{attention}}';
 	}
 
 	/**
