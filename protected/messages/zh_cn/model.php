@@ -125,6 +125,15 @@ return array(
 		'QuestionClient_ip' => '客户端ip',
 		'QuestionCreate_time' => '留言时间',	
 		
+		//Attention
+		'AttentionId' => '关注ID',
+		'AttentionCid' => '关注内容ID',
+		'AttentionUserid' => '关注人id',
+		'AttentionTitle' => '关注内容标题',
+		'AttentionUrl' => '关注链接',
+		'AttentionType' => '关注类型',
+		'AttentionAddTime' => '关注时间',
+		
 		//Collect
 		'CollectId' => '收藏ID',
 		'CollectCid' => '收藏内容ID',

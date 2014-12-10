@@ -48,7 +48,7 @@ class CommentController extends FrontBase
   	$view_url = $this->_request->getParam('view_url');
   	$topic_id = $this->_request->getParam('topic_id');
   	$topic_type = $this->_request->getParam('topic_type');
-  	$cur_url = $this->_request->getUrl();
+  	$cur_url = $this->_request->hostinfo.$this->_request->getUrl();
   	$post = false;
   	//评论类型
   	switch($topic_type){

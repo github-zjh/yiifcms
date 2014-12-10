@@ -1,5 +1,21 @@
 @CHARSET "UTF-8";
 
+/*表单样式 */
+.form_table textarea, 
+.form_table input[type="text"], 
+.form_table input[type='password'], 
+.form_table select { padding: 5px 2px; border: 1px solid; border-color: #666 #ccc #ccc #666; background: #F9F9F9; color: #333;  font-size: 14px}
+.form_table .button { -webkit-border-radius: 3px; border-radius: 3px; border: 1px solid #3079ED; background: #428BCA; color: #FFF; font: bold 12px arial, sans-serif; padding: 0.15em 1em; text-transform: uppercase; height: 27px; line-height: 19px; margin: 0; overflow: visible; width: auto; *width: 1;
+cursor: pointer }
+.form_table .btnBlue{ border: border: 1px solid #3079ED; background: #428BCA; color: #FFF; }
+.form_table .button .btnDefault{ border: border: 1px solid #3079ED; background: #428BCA; color: #FFF; }
+.form_table .first_title { padding-left:20px;}
+.form_table .operate, .submit { height: 45px }
+.form_table td a { color:#444444;}
+#chkall { margin-left:20px;}
+.form_table .right { float:right;}
+.form_table .cuspages { padding:10px 20px;}
+
 /* 个人中心 */
 .user { width:1170px; margin:0 auto; padding:40px 0; text-align:left; }
 .user_left { width:20%; float:left;  border:1px solid #DDDDDD;  border-radius:5px;}
@@ -11,6 +27,7 @@
 .left_menu .ico_pwd{ background-position-y:-382px;}
 .left_menu .ico_email { background-position-y:-2254px;}
 .left_menu .ico_collect { background-position-y:-274px;}
+.left_menu .ico_attention { background-position-y:-849px;}
 .left_menu .ico_comment { background-position-y:-1651px;}
 .left_menu .ico_friend { background-position-y:-216px;}
 
@@ -27,8 +44,8 @@
 /* 收藏列表css */
 .form_table { display: table; border-spacing: 2px; border-color: gray; width: 100%;}
 .form_table .tb_header { background: #eef3f7; height: 30px; line-height: 25px; padding-left: 5px; border-bottom: #d5dfe8 1px solid; border-top: #d5dfe8 1px solid; font-weight: bold }
-.form_table .tb_header th { font-weight: bold; padding-left: 4px; }
-.form_table td { border-bottom: #eee 1px solid; height: 30px; line-height: 25px; padding-left: 5px; }
+.form_table .tb_header th { font-weight: bold;}
+.form_table td { border-bottom: #eee 1px solid; height: 30px; line-height: 25px; }
 .form_table tr.tb_list:hover { background: #FBFFE4; color: #333; }
 .form_table .tb_title { font-weight: bold }
 

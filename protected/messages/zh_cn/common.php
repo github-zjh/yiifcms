@@ -38,6 +38,7 @@ return array (
 	'Notice Message' => '信息提示',
 	'Unpass' => '待审核',
 	'Access frequency too fast' => '您访问频率过快，请稍后访问',
+	'Operation Failed' => '操作失败',
 		
 	//登录
 	'Login' => '登录',
@@ -86,9 +87,17 @@ return array (
 	'Cancel Stick' => '取消置顶',
 	'Allow Comment' => '允许评论',
 	'Deny Comment' => '禁止评论',
+	'Collection' => '收藏',
+	'Attention' => '关注',
 	'Collect Manage' => '收藏管理',
 	'Comments Manage' => '评论管理',
 	'Friends Manage' => '好友管理',
+	'Collect Success' => '收藏成功',
+	'Collect Failed' => '收藏失败',
+	'You Have Collected it' => '您已经收藏过了',
+	'Attent Success' => '关注成功',
+	'Attent Failed' => '关注失败',
+	'You Have Attented it' => '您已经关注过了',
 
 	//注册
 	'Register' => '注册',
@@ -194,6 +203,8 @@ return array (
 	'Send Success' => '发送成功',	
 	'Send Failed' => '发送失败',
 	'Reset Email Success' => '重设邮箱成功',
+	'Attention Manage' => '关注管理',
+	'Collect & Attention' => '收藏关注',
 	
 	//分页
 	'First Page' => '首页',
