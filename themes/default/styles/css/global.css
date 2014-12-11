@@ -145,6 +145,17 @@ box-shadow: 0 5px 0 #e2534b;
 #page li.prev_page { padding-left:0; padding-right:10px;}
 #page li.next_page { padding-left:10px; padding-right:0; }
 
+/* 公共提示信息(类似alert形式) */
+.alert {padding: 15px; margin-bottom: 20px;  background-color: #dff0d8; border: 1px solid #DDDDDD; border-radius: 4px;}
+.alert_success { color: #3c763d; border-color: #d6e9c6;}
+.alert_error { color:#a94442;  border-color: #a94442;}
+.alert_notice { color:#CCCC00;  border-color: #CCCC00;}
+.close { float: right; font-size: 21px; font-weight: bold; line-height: 1; color: #000; text-shadow: 0 1px 0 #fff;
+  filter: alpha(opacity=20); opacity: .2;}
+.close:hover,
+.close:focus { color: #000; text-decoration: none; cursor: pointer; filter: alpha(opacity=50); opacity: .5;}
+button.close { -webkit-appearance: none; padding: 0; cursor: pointer; background: transparent; border: 0;}
+
 /* 返回顶部 */
 #back_top { display:none; width:35px; height:35px; position:fixed; right:0; bottom:100px; z-index:999; background:url(../images/back_top.png) no-repeat;}
 #back_top:hover { background-position:-35px 0;}

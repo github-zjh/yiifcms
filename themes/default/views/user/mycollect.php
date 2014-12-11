@@ -1,4 +1,9 @@
 <div class="user clear">
+	
+	<?php
+		//引用公共提示信息
+	   $this->renderPartial('/layouts/alert');
+	?>
 	<div class="user_left">
 		<!-- 用户菜单导航开始 -->
 		<?php $this->renderPartial('user_left');?>
@@ -8,7 +13,14 @@
 	<div class="user_right">		
 		<div class="user_edit">			
 			<h3><?php echo Yii::t('common','Collect Manage');?></h3>
-			<?php $form=$this->beginWidget('CActiveForm',array('id'=>'collect_form','htmlOptions'=>array('name'=>'collect_form'))); ?>
+			<?php 
+				$form=$this->beginWidget('CActiveForm',
+					array('id'=>'collect_form',
+						'htmlOptions'=>array('name'=>'collect_form'), 
+						'action'=>$this->createUrl('user/cancel')
+					)
+				); 
+			?>
 			<table class="form_table">
 				<tr class="tb_header">
 			        <th width="10%" class="first_title">ID</th>
@@ -25,7 +37,10 @@
 			      </td>			     
 			      <td ><?php echo date('Y-m-d H:i',$row->create_time)?></td>
 			      <td >			      	
-			      	<a href="<?php echo  $this->createUrl('batch',array('command'=>'delete','id'=>$row->id))?>" class="confirmSubmit"><img src="<?php echo $this->_static_public;?>/images/delete.png" align="absmiddle" /></a>&nbsp;&nbsp;
+			      	<a href="<?php echo $this->createUrl('user/cancel',array('op'=>'collect','id'=>$row->id))?>" 
+			      		class="confirmSubmit">
+			      		<img src="<?php echo $this->_static_public;?>/images/delete.png" align="absmiddle" />
+			      	</a>&nbsp;&nbsp;
 			      	<a href="<?php echo $row->url;?>" target="_blank"><img src="<?php echo $this->_static_public;?>/images/view.png" align="absmiddle" /></a>
 			      </td>
 			    </tr>
@@ -39,9 +54,8 @@
 			        <div class="fixsel">
 			          <input type="checkbox" name="chkall" id="chkall" onClick="checkAll(this.form, 'id')" />
 			          <label for="chkall"><?php echo Yii::t('admin','Check All');?></label>
-			          <select name="command">
-			            <option><?php echo Yii::t('admin','Select Operate');?></option>			           
-			            <option value="delete"><?php echo Yii::t('admin','Delete');?></option>			                     
+			          <select name="op">			           		           
+			            <option value="collect"><?php echo Yii::t('admin','Delete');?></option>			                     
 			          </select>
 			          <input id="submit_maskall" class="button confirmSubmit" type="submit" value="<?php echo Yii::t('common','Submit');?>" name="maskall" />
 			        </div></td>

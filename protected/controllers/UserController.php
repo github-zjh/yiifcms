@@ -53,18 +53,26 @@ class UserController extends FrontBase
 				'page'=>array(
 						'class'=>'CViewAction',
 				),
-				//外部action
+				
+				//收藏
 				'mycollect' => array(
 						'class'=>'application.controllers.user.MycollectAction'						
 				),
+				//关注
 				'myattention' => array(
 						'class'=>'application.controllers.user.MyattentionAction'
 				),
+				//评论
 				'mycomments' => array(
 						'class'=>'application.controllers.user.MycommentsAction'
 				),
+				//好友
 				'myfriends' => array(
 						'class'=>'application.controllers.user.MyfriendsAction'
+				),
+				//取消操作
+				'cancel' => array(
+						'class'=>'application.controllers.user.CancelAction'
 				),
 		);
 	}
@@ -130,7 +138,8 @@ class UserController extends FrontBase
 	    		}	   		  
 				//同步昵称
 				Yii::app()->user->nickname = $model->nickname;
-	    		$this->redirect($this->createUrl('index'));
+				//提示信息
+				Yii::app()->user->setFlash('success',Yii::t('common','Update Profile Success'));	    		
 	    	}
 	    }
 		$this->render('setting_profile', array('model'=>$model));
@@ -217,7 +226,8 @@ class UserController extends FrontBase
 					$model->email = $newemail;	
 					$model->save();
 					unset(Yii::app()->session[$newemail.'_captcha']);
-					$this->_dialogMessage = $this->dialogMessage('success',Yii::t('common','Reset Email Success'),$this->createUrl('index'));
+					//提示信息
+					Yii::app()->user->setFlash('success',Yii::t('common','Reset Email Success'));					
 				}
 			}
 		}
@@ -259,7 +269,9 @@ class UserController extends FrontBase
 				$user->password = User::createPassword($model->newpassword);
 				if($user->save()){
 					Yii::app()->user->logout(false);
-					$this->_dialogMessage = $this->dialogMessage('success',Yii::t('common','Update Password Success'),$this->createUrl('user/login'));
+					//提示信息
+					Yii::app()->user->setFlash('success',Yii::t('common','Update Password Success'));
+					$this->redirect($this->createUrl('user/login'));
 				}	
 			}
 		}		
@@ -322,9 +334,7 @@ class UserController extends FrontBase
 				$user = $this->loadModel();					
 				$user->logins = $user->logins + 1;
 				$user->last_login_ip = $this->getClientIP();
-				$user->save();
-				
-				//$this->_dialogMessage = $this->dialogMessage('success',Yii::t('common','Login Success'),$ret_url);
+				$user->save();				
 				$this->redirect($ret_url);
 			}
 		}

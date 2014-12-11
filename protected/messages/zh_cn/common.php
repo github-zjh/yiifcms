@@ -39,6 +39,7 @@ return array (
 	'Unpass' => '待审核',
 	'Access frequency too fast' => '您访问频率过快，请稍后访问',
 	'Operation Failed' => '操作失败',
+	'Cancel Success' => '取消成功',
 		
 	//登录
 	'Login' => '登录',
@@ -200,8 +201,9 @@ return array (
 						{email_captcha}<br/><br/>
 						==================<br/><br/>如果不是您本人操作，请尽快联系本网站的管理员：<a href="mailto:{admin_email}">{admin_email}</a>。</p>',
 	'Sending..' => '发送中...',
-	'Send Success' => '发送成功',	
+	'Send Success' => '发送成功',		
 	'Send Failed' => '发送失败',
+	'Update Profile Success' => '更新资料成功',
 	'Reset Email Success' => '重设邮箱成功',
 	'Attention Manage' => '关注管理',
 	'Collect & Attention' => '收藏关注',

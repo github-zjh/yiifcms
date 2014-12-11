@@ -1,4 +1,9 @@
 <div class="user clear">
+	<?php
+		//引用公共提示信息
+	   $this->renderPartial('/layouts/alert');
+	?>
+	
 	<div class="user_left">
 		<!-- 用户菜单导航开始 -->
 		<?php $this->renderPartial('user_left');?>

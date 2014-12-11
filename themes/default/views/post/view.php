@@ -55,28 +55,4 @@
 	</div>
 	
 	<!-- 返回顶部 -->
-	<a href="javascript:;" title="返回顶部" id="back_top"></a>
-	<script type="text/javascript">
-		$(function(){
-			SyntaxHighlighter.all() //执行代码高亮
-			$(window).scroll(function(){				
-				var scrollt = $(this).scrollTop(); //获取滚动后的高度 
-				if(scrollt > 200){
-					$("#back_top").fadeIn(200);					
-				}else{		
-					$("#back_top").fadeOut(200);					
-				}
-			});
-			
-			$("#back_top").click(function(){						
-				$("html,body").animate({scrollTop:"0px"},200);
-			});
-			
-			//iframe自适应高度
-			$("iframe").load(function() {
-			      $( this).height($(this).contents().height());			      
-			});	
-		});
-	</script>
-	
-			
+	<a href="javascript:;" title="返回顶部" id="back_top"></a>		

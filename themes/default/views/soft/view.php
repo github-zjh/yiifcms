@@ -69,23 +69,4 @@
 	</div>
 	
 	<!-- 返回顶部 -->
-	<a href="javascript:;" id="back_top"></a>
-	<script type="text/javascript">
-		$(function(){
-			$(window).scroll(function(){				
-				var scrollt = $(this).scrollTop(); //获取滚动后的高度 
-				if(scrollt > 200){
-					$("#back_top").fadeIn(200);					
-				}else{		
-					$("#back_top").fadeOut(200);					
-				}
-			});
-			
-			$("#back_top").click(function(){						
-				$("html,body").animate({scrollTop:"0px"},200);
-			});
-			
-		});
-	</script>
-	
-			
+	<a href="javascript:;" id="back_top"></a>			

@@ -42,8 +42,7 @@ class Controller extends CController
 	public     $_static_public = ''; //公共资源目录	
 	public     $_data = '';
 	protected  $_adminGroupID = 10; //系统管理员用户组ID
-	protected  $_type_ids = array(); //内容模型id
-	public     $_dialogMessage  = ''; //弹窗信息
+	protected  $_type_ids = array(); //内容模型id	
 	protected  $_cmsVersion = 'yiifcms1.4.0';
 	protected  $_cmsRelease = '20140909';
 	
@@ -200,69 +199,6 @@ class Controller extends CController
 		}
 	}
 	
-	/**
-	 * 弹窗提示信息 
-	 * @param string $action
-	 * @param string $content
-	 * @param string $redirect
-	 * @param number $timeout
-	 * @param string $stop
-	 */
-	public function dialogMessage($action = 'success', $content = '', $redirect = 'javascript:history.back(-1);', $timeout = 4 , $stop=false){
-		switch ( $action ) {
-			case 'success':				
-				$type = 'information';
-				break;
-			case 'error':			
-				$type = 'error';
-				break;
-			case 'errorBack':
-				$type = 'question';
-				break;
-			case 'redirect':
-				header( "Location:$redirect" );
-				break;
-			case 'script':
-				if ( empty( $redirect ) ) {
-					exit( '<script type="text/javascript">alert("' . $content . '");window.history.back(-1)</script>' );
-				} else {
-					exit( '<script type="text/javascript">alert("' . $content . '");window.location=" ' . $redirect . '   "</script>' );
-				}
-				break;
-		}
-		//加载css,js
-		$static = '<script type="text/javascript" src="'.$this->_static_public.'/js/jquery/jquery.js"></script>';
-		$static .= '<script type="text/javascript" src="'.$this->_static_public.'/js/zebra_dialog/zebra_dialog.js"></script>';
-		$static .= '<link rel="stylesheet" href="'.$this->_static_public.'/js/zebra_dialog/css/zebra_dialog.css" type="text/css">';
-		
-		$notice = '<p class="return">系统自动跳转在  <span class="time" id="time">' . $timeout . ' </span>  秒后，如果不想等待，<a href="' . $redirect . '">点击这里跳转</a></p>';
-		$message = $content.$notice;
-		$auto_close = $stop?false:$timeout*1000;
-		$dialog = "<script type='text/javascript'>		
-			//倒计时			
-	        function delayURL() {
-		        var delay = document.getElementById('time').innerHTML;	       
-		        if(delay > 0){
-			        delay--;
-			        document.getElementById('time').innerHTML = delay;	
-					setTimeout('delayURL()', 1000);			
-			    }
-			}
-					
-			$.Zebra_Dialog({
-			    'type':     '".$type."',
-			    'title':    '温馨提示',
-			    'message':  '".$message."',
-			    'auto_close': $auto_close,
-			    'onClose': function(){
-					window.location.href = '".$redirect."';	
-				},			   
-			});				
-
-			delayURL();
-		</script>";
-		return $static.$dialog;
-	}
 	
 	/**
 	 * 页面提示信息

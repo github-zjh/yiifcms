@@ -45,115 +45,35 @@
 <!-- 底部footer结束 -->
 
 <!-- Js script开始 -->
+<script type="text/javascript" src="<?php echo $this->_stylePath;?>/js/common.js"></script>
 <script type="text/javascript">
-	
-	$(function(){		
-		//导航菜单
-		$("#menu li a").mouseover(function(){
-			$(this).next().next("div.child_box").show();
-		});
-		$("#menu li").mouseleave(function(){
-			$(this).children("div.child_box").hide();
-		});		
-		
-		//友情链接滑动				
-		var li_len = $(".client_body li").width();		
-		var move_len = 3*(li_len+30);	
-		var client_len = $(".client_body li").length;
-		var max_len = (client_len-1)*li_len;	
-		$("#client_left").val(0);
-		$(".crt_btn").click(function(){				
-			//向左滑动		
-			var cur_left = parseFloat($("#client_left").val());			
-			var move_left = cur_left - move_len;
-			if(client_len <= 6 || Math.abs(move_left) > max_len){
-				return;
-			}else{			
-				$("#client_left").val(move_left);
-				$(".client_body").animate({left: move_left+'px'}, "slow");
+//收藏、关注
+function ajaxClick(act) {			
+	var obj = $("a[data-act='"+act+"']");		
+	var uid = "<?php echo Yii::app()->user->id;?>";				
+	var cid = obj.attr("data-id");
+	$("span.ajax_msg").hide();	
+	if(uid){
+		$.post('<?php echo $this->_request->hostinfo.$this->createUrl('post/ajax');?>',{'act':act, 'id':cid}, function(data){
+			if(data.count > 0){					
+				obj.children("em").children("i").html(data.count);
 			}
-		});
-		$(".clf_btn").click(function(){
-			//向右滑动			
-			var cur_left = parseFloat($("#client_left").val());					
-			var move_left = cur_left + move_len;			
-			if(client_len <= 6 || cur_left >= 0 ){
-				return;
-			}else{		
-				$("#client_left").val(move_left);
-				$(".client_body").animate({left: move_left+'px'}, "slow");
-			}
-		});
-		//登录状态
-		$("#logout").mouseover(function(){
-			$(".show_drop").addClass("show_drop_hover");
-			$("#drop_down_user").show();
-		});
-		$("#logout").mouseout(function(){
-			$(".show_drop").removeClass("show_drop_hover");
-			$("#drop_down_user").hide();
-		});
-		
-		//刷新验证码
-		$("#yw0").ready(function(){
-		     $('#yw0').trigger('click');
-		});	
-		
-		try{
-			if (typeof(eval(prettyPrint)) == "function") {
-			//代码着色
-			prettyPrint();
-			}
-		}catch(e){}	
-		
-	});
-
-	//收藏、关注
-	function ajaxClick(act) {			
-		var obj = $("a[data-act='"+act+"']");		
-		var uid = "<?php echo Yii::app()->user->id;?>";				
-		var cid = obj.attr("data-id");
-		$("span.ajax_msg").hide();	
-		if(uid){
-			$.post('<?php echo $this->_request->hostinfo.$this->createUrl('post/ajax');?>',{'act':act, 'id':cid}, function(data){
-				if(data.count > 0){	
-					console.log(obj.children("em").children("i").html());
-					obj.children("em").children("i").html(data.count);
-				}
-				obj.next("span.ajax_msg").html(data.message).show().delay(5000).fadeOut();
-			},'json');
-		}else{
-			obj.next("span.ajax_msg").html("<?php echo Yii::t('common','You Need Login')?>").show().delay(5000).fadeOut();				
-		}
+			obj.next("span.ajax_msg").html(data.message).show().delay(5000).fadeOut();
+		},'json');
+	}else{
+		obj.next("span.ajax_msg").html("<?php echo Yii::t('common','You Need Login')?>").show().delay(5000).fadeOut();				
 	}
-
-	// JavaScript Document
-	function checkAll(form, name) {
-		for(var i = 0; i < form.elements.length; i++) {
-			var e = form.elements[i];
-			if(e.name.match(name)) {
-				e.checked = form.elements['chkall'].checked;
-			}
-		}
-	}
-	
-</script>
-<!-- Js script结束 -->
-<!-- 分享代码 -->
-<!-- JiaThis Button BEGIN -->
-<script type="text/javascript" >
-var jiathis_config={
-summary:"",
-		showClose:true,
-		shortUrl:false,
-		hideMore:false
 }
 </script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?btn=r3.gif&move=0" charset="utf-8"></script>
+<!-- Js script结束 -->
+
+<!-- 分享代码 -->
+<!-- JiaThis Button BEGIN -->
+<?php echo $this->renderPartial('/layouts/shareJs');?>
 <!-- JiaThis Button END -->
 
-<?php if($this->_dialogMessage):?>
-<div><?php echo $this->_dialogMessage;?></div>
-<?php endif;?>
+<!-- 弹窗内容区域开始 -->
+<div id="ajaxDialog"></div>
+<!-- 弹窗内容区域结束 -->
 </body>
 </html>

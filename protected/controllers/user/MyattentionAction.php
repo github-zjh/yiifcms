@@ -39,8 +39,7 @@ class MyattentionAction extends CAction
 		$pages->pageSize = 15;		
 		$criteria->limit = $pages->pageSize;
 		$criteria->offset = $pages->currentPage * $pages->pageSize;				
-		$datalist = $attention_mod->findAll($criteria);		
-		
+		$datalist = $attention_mod->findAll($criteria);				
 		$controller->render('myattention', array('datalist'=>$datalist, 'pages'=>$pages));
 	}
 
