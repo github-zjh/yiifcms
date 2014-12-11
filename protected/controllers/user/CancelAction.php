@@ -24,10 +24,10 @@ class CancelAction extends CAction
 		$count_field = ''; //统计数据的字段名
 		$action = ''; //要返回的action名
 		if(!$uid){
-			$dialogMessage = Yii::t('common','You Need Login');			
+			$message = Yii::t('common','You Need Login');			
 		}else{	
 			if(!$ids){
-				$dialogMessage = Yii::t('common','Operation Failed');
+				$message = Yii::t('common','Operation Failed');
 			}else{	
 				switch($op){
 					case 'collect':
@@ -63,25 +63,28 @@ class CancelAction extends CAction
 						break;
 				}			
 				if($res && $content){				
-					$dialogMessage = Yii::t('common', 'Cancel Success');				
+					$message = Yii::t('common', 'Cancel Success');				
 					//减少统计数据
 					$model_type = new ModelType();					
 					foreach($content as $c){						
 						$type = $model_type->findByPk($c->type);				
 						$type_name = ucfirst($type->type_key);
-						$content_mod = new $type_name();
-						if($c && $count_field){					
-							$content_mod->updateCounters(array ($count_field => -1 ), 'id=:id', array ('id' => $c->cid ));				
+						if($type_name && $c && $count_field){		
+							$content_mod = new $type_name();
+							$cur_post = $content_mod->findByPk($c->cid);
+							if($cur_post->$count_field > 0){
+								$content_mod->updateCounters(array ($count_field => -1 ), 'id=:id', array ('id' => $c->cid ));				
+							}
 						}  
 					}
 				}else{				
-					$dialogMessage = Yii::t('common', 'Operation Failed');
+					$message = Yii::t('common', 'Operation Failed');
 				}
 			}
 		}		
 		//用setFlash提示信息(类似alert)
 		$controller->layout = false;
-		Yii::app()->user->setFlash($res?'success':'error',$dialogMessage);
+		Yii::app()->user->setFlash($res?'success':'error',$message);
 		$controller->redirect($controller->createUrl('user/'.$action));		
 	}
 
