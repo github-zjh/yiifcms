@@ -48,7 +48,7 @@ class SoftController extends FrontBase
 	    $datalist = Soft::model()->getList(array('condition'=>$condition, 'limit'=>15, 'order'=>$order_by, 'page'=>true), $pages);
 	     
 	    //该栏目下最新的软件
-	    $last_posts = Soft::model()->getList(array('condition'=>$condition, 'limit'=>10));
+	    $last_softs = Soft::model()->getList(array('condition'=>$condition, 'limit'=>10));
 	    
 	    //加载css,js	
 	    Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/list.css");
