@@ -198,7 +198,7 @@ class Soft extends CActiveRecord
 		$criteria->order = $params['order']?$params['order']:'t.id DESC';
 		$criteria->with = array ( 'catalog' );
 		$criteria->select = "t.title, t.id, t.soft_icon, t.cover_image,";
-		$criteria->select .= "  t.update_time,t.introduce, t.view_count";
+		$criteria->select .= "  t.update_time,t.introduce, t.view_count, t.down_count";
 		$criteria->params = array(':status'=> 'Y');
 		$params['with'] && $criteria->with = (array)$params['with'];
 	
