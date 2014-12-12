@@ -34,27 +34,26 @@ class SiteController extends FrontBase
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.easytabs.min.js");
 		
 		//头部banner
-		$index_top_banner = Ad::model()->find('position_id = :pid AND status = :status ORDER BY id DESC', array(':pid'=>4, ':status'=>'Y'));
+		$index_top_banner = Ad::model()->getAdOne(4);
 		//中部banner
-		$index_mid_banner = Ad::model()->find('position_id = :pid AND status = :status ORDER BY id DESC', array(':pid'=>3, ':status'=>'Y'));
+		$index_mid_banner = Ad::model()->getAdOne(3);
 		//底部banner
-		$index_bottom_banner = Ad::model()->find('position_id = :pid AND status = :status ORDER BY id DESC', array(':pid'=>5, ':status'=>'Y'));
-
+		$index_bottom_banner = Ad::model()->getAdOne(5);
 		
 		//最新资讯
-		$news_new = Post::model()->findAll("status=:status ORDER BY id DESC Limit 20", array(':status'=>'Y'));
+		$news_new = Post::model()->getList(array('limit'=>20));
 		//热门资讯
-		$news_hot = Post::model()->findAll("status=:status ORDER BY view_count DESC, id DESC Limit 20", array(':status'=>'Y'));
+		$news_hot = Post::model()->getList(array('order'=>'t.view_count DESC, t.id DESC', 'limit'=>20));
 		
 		//最新图集
-		$image_new = Image::model()->findAll("status=:status AND attach_thumb != '' ORDER BY id DESC Limit 10", array(':status'=>'Y'));
+		$image_new = Image::model()->getList(array('limit'=>10));
 		//热门图集
-		$image_hot = Image::model()->findAll("status=:status AND attach_thumb != '' ORDER BY view_count DESC, id DESC Limit 10", array(':status'=>'Y'));
+		$image_hot = Image::model()->getList(array('limit'=>10, 'order'=>'view_count DESC, t.id DESC'));
 		
 		//最新软件
-		$soft_new = Soft::model()->findAll("status=:status ORDER BY id DESC Limit 20", array(':status'=>'Y'));
+		$soft_new = Soft::model()->getList(array('limit'=>20));
 		//热门软件
-		$soft_hot = Soft::model()->findAll("status=:status ORDER BY down_count DESC, id DESC Limit 20", array(':status'=>'Y'));
+		$soft_hot = Soft::model()->getList(array('limit'=>10, 'order'=>'down_count DESC, t.id DESC'));
 		
 		//最新视频
 		//$video_new = Video::model()->findAll("status=:status AND catalog_id = 13 ORDER BY id DESC Limit 20", array(':status'=>'Y'));
@@ -84,7 +83,7 @@ class SiteController extends FrontBase
 	}
 
 	/**
-	 * This is the action to handle external exceptions.
+	 * 前端错误提示页(40x, 50x等)
 	 */
 	public function actionError()
 	{		

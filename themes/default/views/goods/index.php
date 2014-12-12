@@ -8,21 +8,20 @@
 			<?php foreach((array)$goods as $good):?>					
 				<li class="list_box clear">
 					<div class="list_head soft_list_head">
-						<a href="<?php echo $this->createUrl('soft/view', array('id'=>$good->id));?>" title="<?php echo CHtml::encode($good->title);?>">
-							<?php if($good->soft_icon && file_exists($good->soft_icon)):?>
-							<img src="<?php echo $good->soft_icon;?>" width="60" height="60" alt="<?php echo CHtml::encode($good->title);?>"/>
+						<a href="<?php echo $this->createUrl('soft/view', array('id'=>$good->id));?>" title="<?php echo CHtml::encode($good->goods_name);?>">
+							<?php if($good->default_thumb && file_exists($good->default_thumb)):?>
+							<img src="<?php echo $good->default_thumb;?>" width="60" height="60" alt="<?php echo CHtml::encode($good->goods_name);?>"/>
 							<?php else:?>
-							<img src="<?php echo $this->_stylePath;?>/images/ico_none.jpg" width="60" height="60" alt="<?php echo CHtml::encode($good->title);?>"/>
+							<img src="<?php echo $this->_stylePath;?>/images/ico_none.jpg" width="60" height="60" alt="<?php echo CHtml::encode($good->goods_name);?>"/>
 							<?php endif;?>	
 						</a>
 									
 					</div>
 					<div class="list_body">
-						<h2><a href="<?php echo $this->createUrl('soft/view', array('id'=>$good->id));?>"  title="<?php echo CHtml::encode($good->title);?>"><?php echo CHtml::encode($good->title);?></a></h2>
+						<h2><a href="<?php echo $this->createUrl('soft/view', array('id'=>$good->id));?>"  title="<?php echo CHtml::encode($good->goods_name);?>"><?php echo CHtml::encode($good->goods_name);?></a></h2>
 						<p class="view_info">
 							<span class="times fa">&nbsp;&nbsp;<?php echo Yii::t('common','UpdateTime')?>：<?php echo date('Y-m-d H:i',$good->update_time)?></span>
-							<span class="views fa">&nbsp;&nbsp;<?php echo Yii::t('model','ViewCount')?>：<em><?php echo $good->view_count;?></em></span>
-							<span class="downs fa">&nbsp;&nbsp;<?php echo Yii::t('model','DownCount')?>：<em><?php echo $good->down_count;?></em></span>							
+							<span class="views fa">&nbsp;&nbsp;<?php echo Yii::t('model','ViewCount')?>：<em><?php echo $good->views;?></em></span>							
 						</p>						
 						<a href="<?php echo $this->createUrl('soft/view', array('id'=>$good->id));?>" class="continue_read">[<?php echo Yii::t('common','View Info');?>]</a>
 					</div>

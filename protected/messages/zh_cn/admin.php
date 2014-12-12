@@ -74,6 +74,12 @@ return array (
 	'WaterMark Alpha Should Between 1 AND 100' => '水印透明度应该介于1~100的数字',
 	'Test Email Subject'=>'测试邮件标题',
 	'Test Email Content' => '测试邮件内容',
+	'Web Title' => '网站标题',
+	'Web Keywords' => '网站关键字',
+	'Web Description' => '网站描述',	
+	'SEO Title' => 'SEO 标题',
+	'SEO Keywords' => 'SEO 关键字',
+	'SEO Description' => 'SEO 描述',
 	
 	/* 栏目 */
 	'Catalog Manage' => '栏目管理',

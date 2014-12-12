@@ -23,6 +23,10 @@
  */
 class Catalog extends CActiveRecord
 {
+	public $level;
+	public $str_repeat;
+	public $type_key;
+	
 	/**
 	 * @return string the associated database table name
 	 */
@@ -164,17 +168,46 @@ class Catalog extends CActiveRecord
 		}
 		return true;
 	}
+	/**
+	 * 获取某个栏目下的子孙分类
+	 * @param number $id
+	 */
+	public static function getChildren($id = 0){		
+		$data = array();
+		$data['catalog'] = $catalog = self::model()->findByPk($id);
+		$allcatalog = self::getCatalog($id);
+		$catalog_ids = self::get($catalog?$id:0, $allcatalog);
+		$children_ids = Helper::array_key_values($catalog_ids, 'id');
+		$id?$all_ids = array_merge($children_ids, (array)$id):$all_ids = $children_ids;
+		$data['db_in_ids'] = implode(',',$all_ids);
+		return $data;		
+	}
+	
+	/**
+	 * 获取某个内容模型下的所有显示的栏目
+	 * @param number $type
+	 * @return array
+	 */
+	public static function getCatalog($type = 0){
+		$data = array();
+		if($type){
+			$data = self::model()->findAll('status=:status AND type = :type',array(':status'=>'Y',':type'=>$type));
+		}else{
+			$data = self::model()->findAll('status=:status',array(':status'=>'Y'));
+		}
+		return $data;
+	}
 	
 	/**
 	 * 所有栏目分类
 	 * @param number $parentid
-	 * @param unknown $array
 	 * @param number $level
+	 * @param array $array
 	 * @param number $add
 	 * @param string $repeat
 	 * @return Ambigous <multitype:, multitype:multitype:number unknown string  >
 	 */
-	static public function get($parentid = 0, $array = array(), $level = 0, $add = 2, $repeat = '&nbsp;&nbsp;') {
+	public static  function get($parentid = 0, $array = array(), $level = 0, $add = 2, $repeat = '&nbsp;&nbsp;') {
 	
 		$modelType = new ModelType();
 		$str_repeat = '';
@@ -185,11 +218,9 @@ class Catalog extends CActiveRecord
 		}
 		$newarray = array ();
 		$temparray = array ();
-		foreach ( ( array ) $array as $value ) {
-			$arr[] = $value->attributes; 	
-		}
-		foreach ( ( array ) $arr as $v ) {
-			if ($v ['parent_id'] == $parentid) {
+		
+		foreach ( ( array ) $array as $v ) {
+			if ($v['parent_id'] == $parentid) {
 				$v['level'] = $level;
 				$v['str_repeat'] = $str_repeat;
 				

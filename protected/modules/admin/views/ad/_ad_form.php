@@ -46,7 +46,9 @@
   <tr >
     <td ><input name="attach" type="file" id="attach" />
       <?php if ($model->attach_file):?>
-      <a href="<?php echo $this->_baseUrl.'/'. $model->attach_file?>" target="_blank"><img src="<?php echo $this->_baseUrl.'/'. $model->attach_file?>" width="50" align="absmiddle"/></a>
+      <a href="<?php echo $this->_baseUrl.'/'. $model->attach_file?>" target="_blank">
+      	<img src="<?php echo $this->_baseUrl.'/'. $model->attach_file?>" width="50%" align="absmiddle"/>
+      </a>
       <?php endif?></td>
   </tr>
    <tr>

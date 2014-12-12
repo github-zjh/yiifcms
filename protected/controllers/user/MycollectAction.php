@@ -42,7 +42,7 @@ class MycollectAction extends CAction
 		$criteria->limit = $pages->pageSize;
 		$criteria->offset = $pages->currentPage * $pages->pageSize;				
 		$datalist = $collect_mod->findAll($criteria);
-		$controller->render('mycollect', array('datalist'=>$datalist, 'pages'=>$pages));
+		$controller->render('my_collect', array('datalist'=>$datalist, 'pages'=>$pages));
 	}
 
 }

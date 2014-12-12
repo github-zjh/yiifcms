@@ -54,7 +54,7 @@ class MaillogController extends Backend
         $criteria->limit = $pages->pageSize;
         $criteria->offset = $pages->currentPage * $pages->pageSize;
         $result = $model->findAll( $criteria );      
-        $this->render( 'index', array ( 'datalist' => $result , 'pagebar' => $pages) );
+        $this->render( 'index', array ( 'datalist' => $result , 'pagebar' => $pages, 'model'=>$model) );
     }
 	
     /**

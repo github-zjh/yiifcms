@@ -5,7 +5,7 @@
       <li><a href="<?php echo $this->createUrl('create')?>" class="actionBtn"><span><?php echo Yii::t('admin','add');?></span></a></li>
     </ul>
     <div class="search right">
-      <?php $form = $this->beginWidget('CActiveForm',array('id'=>'searchForm','method'=>'get','htmlOptions'=>array('name'=>'xform'))); ?>
+      <?php $form = $this->beginWidget('CActiveForm',array('id'=>'searchForm','method'=>'get','action'=>$this->createUrl('user/index'), 'htmlOptions'=>array('name'=>'xform'))); ?>
       <?php if(!$adminPage):?>
       <select name="groupid" id="groupid">
         <option value="">=组=</option>

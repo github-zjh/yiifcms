@@ -16,6 +16,8 @@
 class Comment extends CActiveRecord
 {
 	public $verifyCode;
+	public $title;  // 相关内容title
+	public $url;    // 相关内容url
 	/**
 	 * @return string the associated database table name
 	 */
@@ -68,6 +70,8 @@ class Comment extends CActiveRecord
 		return array(
 			'id' => Yii::t('model','CommentId'),
 			'topic_id' => Yii::t('model','CommentTopic_id'),
+			'title' => Yii::t('model','CommentTitle'),
+			'url' => Yii::t('model','CommentUrl'),
 			'user_id' => Yii::t('model','CommentUser_id'),
 			'content' => Yii::t('model','CommentContent'),
 			'status' => Yii::t('model','CommentStatus'),

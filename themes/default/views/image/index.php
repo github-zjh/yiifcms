@@ -5,7 +5,7 @@
 	<div id="content" class="clear">
 		<div class="content_left">
 			<ul class="content_list">
-			<?php foreach((array)$posts as $post):?>
+			<?php foreach((array)$datalist as $post):?>
 				<?php $post_tags = $post->tags?explode(',',$post->tags):array(); $tags_len = count($post_tags);?>	
 				<li class="list_box clear">
 					<div class="list_head">

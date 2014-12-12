@@ -144,4 +144,25 @@ class Ad extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	
+	/**
+	 * 获取一条广告
+	 * @param number $position_id
+	 * @param string $order
+	 * @return array()
+	 */
+	public static function getAdOne($position_id = 0, $order=''){
+		$data = array();
+		if($position_id){
+			$order or $order='id DESC';
+			$data = self::model()->find(array(
+					'select'=>array('id', 'title', 'link_url', 'image_url', 'width', 'height', 'attach_file'),
+					'order' =>$order,
+					'condition'=>'position_id = :pid AND status = :status', 
+					'params'=>array(':pid'=>$position_id, ':status'=>'Y')
+					)
+			);
+		}
+		return $data;
+	}
 }

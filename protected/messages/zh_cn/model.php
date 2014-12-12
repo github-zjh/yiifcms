@@ -70,6 +70,8 @@ return array(
 		
 		//Comment
 		'CommentId' => '评论id',
+		'CommentTitle' => '评论主题',
+		'CommentUrl' => '评论内容',
 		'CommentTopic_id' => '评论主题id',
 		'CommentUser_id' => '评论用户id',
 		'CommentContent' => '评论内容',

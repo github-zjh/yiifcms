@@ -41,6 +41,28 @@
   <tr >
     <td ><?php echo $form->dropDownList($model,'status',array('Y'=>Yii::t('admin','Yes'), 'N'=>Yii::t('admin','No'))); ?></td>
   </tr>
+  
+  <tr>
+      <td class="tb_title"><?php echo Yii::t('admin','SEO Title');?>：</td>
+  </tr>
+  <tr >
+      <td ><?php echo $form->textField($model,'seo_title',array('size'=>40,'maxlength'=>128)); ?></td>
+  </tr>
+    
+  <tr>
+      <td class="tb_title"><?php echo Yii::t('admin','SEO Keywords');?>：</td>
+  </tr>
+  <tr >
+      <td ><?php echo $form->textField($model,'seo_keywords',array('size'=>40,'maxlength'=>128)); ?></td>
+  </tr>
+  
+  <tr>
+      <td class="tb_title"><?php echo Yii::t('admin','SEO Description');?>：</td>
+  </tr>
+  <tr >
+      <td ><?php echo $form->textArea($model,'seo_description',array('size'=>40,'maxlength'=>128, 'class'=>'tarea middenWidth')); ?></td>
+  </tr>
+ 
   <tr class="submit">
     <td >
       <input type="submit" name="editsubmit" value="<?php echo Yii::t('common','Submit');?>" class="button" tabindex="3" /></td>

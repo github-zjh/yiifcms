@@ -28,7 +28,7 @@ class MyfriendsAction extends CAction
 		//基本资料
 		$uid = Yii::app()->user->id;	
 		$profile = User::model()->findByPk($uid);
-		$controller->render('myfriends', array('profile'=>$profile));
+		$controller->render('my_friends', array('profile'=>$profile));
 	}
 
 }

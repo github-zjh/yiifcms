@@ -15,7 +15,7 @@ class SoftController extends FrontBase
 		//导航标示
 		$this->_menu_unique = 'soft';
 		//栏目		
-		$this->_catalog = Catalog::model()->findAll('status=:status AND type = :type',array(':status'=>'Y',':type'=>$this->_type_ids['soft']));
+			$this->_catalog = Catalog::model()->getCatalog($this->_type_ids['soft']);
 	}
 	  /**
 	   * 首页
@@ -23,15 +23,7 @@ class SoftController extends FrontBase
 	  public function actionIndex() {  	
 	    $catalog_id = trim( $this->_request->getParam( 'catalog_id' ) );
 	    $keyword = trim( $this->_request->getParam( 'keyword' ) );
-	    $catalog = Catalog::model()->findByPk($catalog_id);    
-	    //调取子孙分类和当前分类
-	    $catalog_ids = Catalog::get($catalog?$catalog_id:0, $this->_catalog);  
-	    $children_ids = Helper::array_key_values($catalog_ids, 'id');     
-	    $catalog_id?$all_ids = array_merge($children_ids, (array)$catalog_id):$all_ids = $children_ids;   
-	    $db_in_ids = implode(',',$all_ids);   
-	    if(!$db_in_ids || ($catalog_id && $catalog->type != $this->_type_ids['soft'])){
-		throw new CHttpException(404,Yii::t('common','The requested page does not exist.'));
-	    }
+	   
 	    //SEO
 	    if($catalog){
 	    	$this->_seoTitle = $catalog->seo_title?$catalog->seo_title:$catalog->catalog_name.' - '.$this->_setting['site_name'];
@@ -39,35 +31,24 @@ class SoftController extends FrontBase
 	    	$this->_seoDescription = $catalog->seo_description; 
 	    	$navs[] = array('url'=>$this->createUrl('soft/index', array('catalog_id'=>$catalog->id)),'name'=>$catalog->catalog_name);   		  	
 	    }else{ 
-	    	$this->_seoTitle = Yii::t('common','SoftListTitle').' - '.$this->_setting['site_name'];
-	    	$this->_seoKeywords = Yii::t('common','SoftListKeywords');
-	    	$this->_seoDescription = Yii::t('common','SoftListDescription',array('{site_name}'=>$this->_setting['site_name']));
+	    	$seo = ModelType::getSEO('soft');
+	    	$this->_seoTitle = $seo['seo_title'].' - '.$this->_setting['site_name'];
+	    	$this->_seoKeywords = $seo['seo_keywords'];
+	    	$this->_seoDescription = $seo['seo_description'];	
 	    	$navs[] = array('url'=>$this->_request->getUrl(),'name'=>$this->_seoTitle); 
 	    }
-	    //查询条件
-	    $post = new Soft();
-	    $criteria = new CDbCriteria();
-	    $condition = "t.status = 'Y'";
-	    $keyword && $condition .= ' AND title LIKE \'%' . $keyword . '%\'';
-	    $condition .= ' AND catalog_id IN ('.$db_in_ids.')';
-	   
-	    $criteria->condition = $condition;
-	    $criteria->order = ' t.id DESC, down_count DESC';
-	    $criteria->with = array ( 'catalog' );
-	    $criteria->select = "title, id, t.soft_icon, t.update_time,t.introduce, t.view_count, t.down_count";
-	   
-	    //分页
-	    $count = $post->count( $criteria );    
-	    $pages = new CPagination( $count );
-	    $pages->pageSize = 10;
+	    //获取子孙分类(包括本身)
+	    $data = Catalog::model()->getChildren($catalog_id);
+	    $catalog = $data['catalog'];
+	    $db_in_ids = $data['db_in_ids'];
 	    
-	    $criteria->limit = $pages->pageSize;
-	    $criteria->offset = $pages->currentPage * $pages->pageSize;
-	    
-	    $datalist = $post->findAll($criteria);	   
-	    
-	    //最近的软件
-	    $last_softs = Soft::model()->findAll(array('condition'=>'catalog_id IN ('.$db_in_ids.')','order'=>'id DESC','limit'=>10,));
+	    //获取所有符合条件的文章
+	    $condition = '';
+	    $catalog && $condition .= ' AND catalog_id IN ('.$db_in_ids.')';
+	    $datalist = Soft::model()->getList(array('condition'=>$condition, 'limit'=>15, 'order'=>$order_by, 'page'=>true), $pages);
+	     
+	    //该栏目下最新的软件
+	    $last_posts = Soft::model()->getList(array('condition'=>$condition, 'limit'=>10));
 	    
 	    //加载css,js	
 	    Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/list.css");

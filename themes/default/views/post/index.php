@@ -5,8 +5,8 @@
 	<div id="content" class="clear">
 		<div class="content_left">
 		    <div class="order_box">
-				<a <?php if($order == 'view_count'): ?>class="current" <?php endif;?> href="<?php echo $this->createUrl('post/index',array('order'=>'view_count'));?>">热度排行</a> 
-				<a  <?php if($order == 'id'): ?>class="current" <?php endif;?> href="<?php echo $this->createUrl('post/index',array('order'=>'id'));?>">最新发表</a> 
+				<a <?php if($order == 'view_count'): ?>class="current" <?php endif;?> href="<?php echo $this->createUrl('post/index',array('order'=>'view_count', 'catalog_id'=>$catalog->id));?>">热度排行</a> 
+				<a  <?php if($order == 'id'): ?>class="current" <?php endif;?> href="<?php echo $this->createUrl('post/index',array('order'=>'id', 'catalog_id'=>$catalog->id));?>">最新发表</a> 
 			</div>
 			<div class="clear"></div>
 			<ul class="content_list">

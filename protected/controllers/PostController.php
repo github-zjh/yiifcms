@@ -14,7 +14,7 @@ class PostController extends FrontBase
 	public function init(){
 		parent::init();
 		//栏目
-		$this->_catalog = Catalog::model()->findAll('status=:status AND type = :type',array(':status'=>'Y',':type'=>$this->_type_ids['post']));
+		$this->_catalog = Catalog::model()->getCatalog($this->_type_ids['post']);
 		
 		//导航标示
 		$this->_menu_unique = 'post';
@@ -30,7 +30,7 @@ class PostController extends FrontBase
     $catalog_id = trim( $this->_request->getParam( 'catalog_id' ) );
     $order = trim( $this->_request->getParam( 'order' ) );
     $keyword = trim( $this->_request->getParam( 'keyword' ) );
-    $catalog = Catalog::model()->findByPk($catalog_id);   
+    
 	if(!$order){
 		$order = 'id';
 	}
@@ -46,15 +46,11 @@ class PostController extends FrontBase
 			$order_by = 't.id DESC';
 			break;
 	}
+	//获取子孙分类(包括本身)
+	$data = Catalog::model()->getChildren($catalog_id);
+	$catalog = $data['catalog'];
+	$db_in_ids = $data['db_in_ids'];
 	
-    //调取子孙分类和当前分类
-    $catalog_ids = Catalog::get($catalog?$catalog_id:0, $this->_catalog);  
-    $children_ids = Helper::array_key_values($catalog_ids, 'id');     
-    $catalog_id?$all_ids = array_merge($children_ids, (array)$catalog_id):$all_ids = $children_ids;   
-    $db_in_ids = implode(',',$all_ids);   
-    if(!$db_in_ids || ($catalog_id && $catalog->type != $this->_type_ids['post'])){
-	    throw new CHttpException(404,Yii::t('common','The requested page does not exist.'));
-    }
     //SEO
     $navs = array();
     if($catalog){
@@ -63,41 +59,26 @@ class PostController extends FrontBase
     	$this->_seoDescription = $catalog->seo_description; 
     	$navs[] = array('url'=>$this->createUrl('post/index', array('catalog_id'=>$catalog->id)),'name'=>$catalog->catalog_name);   	
     }else{ 
-    	$this->_seoTitle = Yii::t('common','PostListTitle').' - '.$this->_setting['site_name'];
-    	$this->_seoKeywords = Yii::t('common','PostListKeywords');
-    	$this->_seoDescription = Yii::t('common','PostListDescription',array('{site_name}'=>$this->_setting['site_name']));
+    	$seo = ModelType::getSEO('post');    	
+    	$this->_seoTitle = $seo['seo_title'].' - '.$this->_setting['site_name'];
+    	$this->_seoKeywords = $seo['seo_keywords'];
+    	$this->_seoDescription = $seo['seo_description'];
     	$navs[] = array('url'=>$this->_request->getUrl(),'name'=>$this->_seoTitle);  
     }
-    //查询条件
-    $post = new Post();
-    $criteria = new CDbCriteria();
-    $condition = "t.status = 'Y'";
-    $keyword && $condition .= ' AND title LIKE \'%' . $keyword . '%\'';
-    $condition .= ' AND catalog_id IN ('.$db_in_ids.')';
+    
+    //获取所有符合条件的文章  
+    $condition = '';   
+    $catalog && $condition .= ' AND catalog_id IN ('.$db_in_ids.')';    
+    $datalist = Post::model()->getList(array('condition'=>$condition, 'limit'=>15, 'order'=>$order_by, 'page'=>true), $pages);   
    
-    $criteria->condition = $condition;
-    $criteria->order = $order_by;
-    $criteria->with = array ( 'catalog' );
-    $criteria->select = "title, t.id,t.title_style, t.attach_thumb, t.image_list, t.copy_from, t.copy_url, t.update_time,t.introduce, t.tags, t.view_count";
-   
-    //分页
-    $count = $post->count( $criteria );    
-    $pages = new CPagination( $count );
-    $pages->pageSize = 15;
-    
-    $criteria->limit = $pages->pageSize;
-    $criteria->offset = $pages->currentPage * $pages->pageSize;
-    
-    $datalist = $post->findAll($criteria);   
-    
-    //最近的文章
-    $last_posts = Post::model()->findAll(array('condition'=>'catalog_id IN ('.$db_in_ids.') AND status="Y"','order'=>'t.id DESC','limit'=>10,));
+    //该栏目下最新的文章
+    $last_posts = Post::model()->getList(array('condition'=>$condition, 'limit'=>10));
     
     //加载css,js	
     Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/list.css");
 	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");	
 	
-    $this->render( 'index', array('navs'=>$navs, 'posts'=>$datalist,'pagebar' => $pages, 'tags'=>$tags, 'last_posts'=>$last_posts,'order'=>$order));
+    $this->render( 'index', array('navs'=>$navs, 'catalog'=>$catalog, 'posts'=>$datalist,'pagebar' => $pages, 'tags'=>$tags, 'last_posts'=>$last_posts,'order'=>$order));
   }
   
   /**

@@ -95,13 +95,13 @@ class UserController extends FrontBase
 	}
 	
 	/**
-	 * 用户设置
+	 * 修改基本资料
 	 * @param string $setting
 	 */	
 	public function actionSetting()
 	{		
 		
-		$this->_seoTitle = Yii::t('common','User Setting').' - '.Yii::t('common','Base Profile').' - '.$this->_setting['site_name'];
+		$this->_seoTitle = Yii::t('common','User Setting').' - '.Yii::t('common','Setting Profile').' - '.$this->_setting['site_name'];
 		//加载css,js
 		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/user.css");
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");

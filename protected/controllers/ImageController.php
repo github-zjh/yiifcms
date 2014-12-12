@@ -14,7 +14,7 @@ class ImageController extends FrontBase
 	public function init(){
 		parent::init();
 		//栏目
-		$this->_catalog = Catalog::model()->findAll('status=:status AND type = :type',array(':status'=>'Y',':type'=>$this->_type_ids['image']));
+		$this->_catalog = Catalog::model()->getCatalog($this->_type_ids['image']);
 		//导航标示
 		$this->_menu_unique = 'image';
 		//标签
@@ -27,15 +27,12 @@ class ImageController extends FrontBase
 	  public function actionIndex() {  	
 	    $catalog_id = trim( $this->_request->getParam( 'catalog_id' ) );
 	    $keyword = trim( $this->_request->getParam( 'keyword' ) );
-	    $catalog = Catalog::model()->findByPk($catalog_id);    
-	    //调取子孙分类和当前分类
-	    $catalog_ids = Catalog::get($catalog?$catalog_id:0, $this->_catalog);  
-	    $children_ids = Helper::array_key_values($catalog_ids, 'id');     
-	    $catalog_id?$all_ids = array_merge($children_ids, (array)$catalog_id):$all_ids = $children_ids;   
-	    $db_in_ids = implode(',',$all_ids);   
-	    if(!$db_in_ids || ($catalog_id && $catalog->type != $this->_type_ids['image'])){
-		throw new CHttpException(404,Yii::t('common','The requested page does not exist.'));
-	    }
+	  
+	    //获取子孙分类(包括本身)
+	    $data = Catalog::model()->getChildren($catalog_id);
+	    $catalog = $data['catalog'];
+	    $db_in_ids = $data['db_in_ids'];
+	    
 	    //SEO
 	    $navs = array();
 	    if($catalog){
@@ -44,44 +41,29 @@ class ImageController extends FrontBase
 	    	$this->_seoDescription = $catalog->seo_description; 
 	    	$navs[] = array('url'=>$this->createUrl('image/index', array('catalog_id'=>$catalog->id)),'name'=>$catalog->catalog_name);   		
 	    }else{ 
-	    	$this->_seoTitle = Yii::t('common','ImageListTitle').' - '.$this->_setting['site_name'];
-	    	$this->_seoKeywords = Yii::t('common','ImageListKeywords');
-	    	$this->_seoDescription = Yii::t('common','ImageListDescription',array('{site_name}'=>$this->_setting['site_name']));
+	    	$seo = ModelType::getSEO('image');
+	    	$this->_seoTitle = $seo['seo_title'].' - '.$this->_setting['site_name'];
+	    	$this->_seoKeywords = $seo['seo_keywords'];
+	    	$this->_seoDescription = $seo['seo_description'];	    
 	    	$navs[] = array('url'=>$this->_request->getUrl(),'name'=>$this->_seoTitle); 
 	    }
-	    //查询条件
-	    $post = new Image();
-	    $criteria = new CDbCriteria();
-	    $condition = "t.status = 'Y'";
-	    $keyword && $condition .= ' AND title LIKE \'%' . $keyword . '%\'';
-	    $condition .= ' AND catalog_id IN ('.$db_in_ids.')';
-	   
-	    $criteria->condition = $condition;
-	    $criteria->order = 'view_count DESC, t.id DESC';
-	    $criteria->with = array ( 'catalog' );
-	    $criteria->select = "title, id, t.attach_thumb, t.copy_from, t.copy_url, t.image_list, t.update_time,t.introduce, t.tags, t.view_count";
-	   
-	    //分页
-	    $count = $post->count( $criteria );    
-	    $pages = new CPagination( $count );
-	    $pages->pageSize = 10;
 	    
-	    $criteria->limit = $pages->pageSize;
-	    $criteria->offset = $pages->currentPage * $pages->pageSize;
-	    
-	    $datalist = $post->findAll($criteria);
-	   
+	    //获取所有符合条件的图集  
+	    $condition = '';   
+	    $catalog && $condition .= ' AND catalog_id IN ('.$db_in_ids.')';    
+	    $datalist = Image::model()->getList(array('condition'=>$condition, 'limit'=>15, 'order'=>$order_by, 'page'=>true), $pages);   
+   	   
 	    //标签
 	    $tags = Tag::model()->findAll(array('order'=>'data_count DESC','limit'=>20));
 	    
 	    //最近的图集
-	    $last_images = Image::model()->findAll(array('condition'=>'catalog_id IN ('.$db_in_ids.')','order'=>'id DESC','limit'=>10,));
+	    $last_images = Image::model()->getList(array('condition'=>$condition, 'limit'=>10));	   
 	    
 	    //加载css,js	
 	    Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/list.css");	    
 		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");	
 		
-	    $this->render( 'index', array('navs'=>$navs, 'posts'=>$datalist,'pagebar' => $pages, 'tags'=>$tags, 'last_images'=>$last_images));
+	    $this->render( 'index', array('navs'=>$navs, 'datalist'=>$datalist,'pagebar' => $pages, 'tags'=>$tags, 'last_images'=>$last_images));
 	  }
   
   /**

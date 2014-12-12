@@ -9,7 +9,7 @@
   <?php echo Yii::t('admin','Mail Subject');?>：
       <input id="subject" type="text" name="subject" value="" size="15"/>
   <?php echo Yii::t('admin','Mail SendTime');?>：
-      <input id="start_time" type="text" datePicker="true" name="start_time" value="" size="30"/>
+      <input id="start_time" type="text" datePicker="true" name="start_time" value="" size="30"/>     
  -
       <input id="end_time" type="text" datePicker="true" name="end_time" value="" size="30"/>
       
@@ -68,9 +68,6 @@ $(function(){
 	$("#subject").val('<?php echo $this->_request->getParam('subject')?>');
 	$("#start_time").val('<?php echo $this->_request->getParam('start_time')?>');
 	$("#end_time").val('<?php echo $this->_request->getParam('end_time')?>');
-
-	//校验js库
-	$("#xform").validationEngine();	
 
 });
 </script>

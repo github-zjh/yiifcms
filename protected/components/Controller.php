@@ -42,7 +42,8 @@ class Controller extends CController
 	public     $_static_public = ''; //公共资源目录	
 	public     $_data = '';
 	protected  $_adminGroupID = 10; //系统管理员用户组ID
-	protected  $_type_ids = array(); //内容模型id	
+	public  $_type_ids = array(); //内容模型id	
+	public  $_content_models = array(); //内容模型对象
 	protected  $_cmsVersion = 'yiifcms1.4.0';
 	protected  $_cmsRelease = '20140909';
 	
@@ -71,12 +72,16 @@ class Controller extends CController
 		foreach ($settings as $key => $row) {
 			$this->_setting[$row['variable']] = $row['value'];
 		}
+		//内容模型id
 		$model_types = ModelType::model()->findAll();
 		if($model_types && is_array($model_types)){
 			foreach($model_types as $tp){
 				$this->_type_ids[$tp->type_key] = $tp->id;
 			}
-		}		
+		}	
+		//内容模型对象	
+		$this->_content_models = ModelType::getContentModel();
+		
 	}
 	
 	/**

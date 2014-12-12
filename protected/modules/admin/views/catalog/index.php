@@ -24,9 +24,7 @@
         <?php echo $row['id']?></td>
       <td ><input name="sortOrder[<?php echo $row['id']?>]" type="text" id="sortOrder[]" value="<?php echo $row['sort_order']?>" size="5" /></td>
       <td ><?php echo $row['str_repeat'] ?><a href="<?php echo $this->createUrl('create',array('id'=>$row['id']))?>"><img src="<?php echo $this->module->assetsUrl;?>/images/insert.png" align="absmiddle" /></a> <a href="<?php echo  $this->createUrl('update',array('id'=>$row['id']))?>"><?php echo $row['catalog_name'] ?></a>
-        <?php if ($row['catalog_name_alias']):?>
-        [<?php echo $row['catalog_name_alias'] ?>]
-        <?php endif;?>
+        
         <?php if($row['attach_file']):?>
         <img src="<?php echo $this->module->assetsUrl;?>/images/image.png" align="absmiddle" />
         <?php endif;?>

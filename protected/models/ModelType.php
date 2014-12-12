@@ -9,6 +9,10 @@
  * @property string $type_name
  * @property string $model
  * @property string $status
+ * @property string $seo_title
+ * @property string $seo_keywords
+ * @property string $seo_description
+ * 
  */
 class ModelType extends CActiveRecord
 {
@@ -33,9 +37,12 @@ class ModelType extends CActiveRecord
 			array('type_key, type_name','unique'),
 			array('type_name, model', 'length', 'max'=>50),
 			array('status', 'length', 'max'=>1),
+			array('seo_title', 'length', 'max' =>100),
+			array('seo_keywords', 'length', 'max' =>200),
+			array('seo_description', 'length', 'max' =>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, type_key, type_name, model, status', 'safe', 'on'=>'search'),
+			array('id, type_key, type_name, model, status, seo_title, seo_keywords, seo_description', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,6 +68,9 @@ class ModelType extends CActiveRecord
 			'type_name' => Yii::t('model','MTtype_name'),
 			'model' => Yii::t('model','MTmodel'),
 			'status' => Yii::t('model','Status'),
+			'seo_title' => Yii::t('model','SEO Title'),
+			'seo_keywords' => Yii::t('model','SEO Keywords'),
+			'seo_description' => Yii::t('model','SEO Description'),
 		);
 	}
 
@@ -91,10 +101,39 @@ class ModelType extends CActiveRecord
 		$criteria->compare('model',$this->model,true);
 
 		$criteria->compare('status',$this->status,true);
+		
+		$criteria->compare('seo_title',$this->seo_title,true);
+		
+		$criteria->compare('seo_keywords',$this->seo_keywords,true);
+		
+		$criteria->compare('seo_description',$this->seo_description,true);
 
 		return new CActiveDataProvider('ModelType', array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	/**
+	 * 返回所有内容模型
+	 * 
+	 * @return array
+	 */
+	public static function getContentModel(){
+		$models = array();
+		$all_type = self::Model()->findAll();
+		foreach((array) $all_type as $type){
+			$models[$type->id] = ucfirst($type->model);
+		}		
+		return $models;
+	}
+	
+	public static function getSEO($model=''){
+		$seo = array();
+		if($model){
+			$model = ucfirst(strtolower($model));
+			$seo = self::model()->findByAttributes(array('model'=>$model));
+		}
+		return $seo;
 	}
 
 	/**

@@ -11,7 +11,7 @@
 	
 	<div class="user_right">	
 		<div class="user_edit">			
-			<h3><?php echo Yii::t('common','Base Profile');?></h3>
+			<h3><?php echo Yii::t('common','Setting Profile');?></h3>
 			<?php 
 				$form=$this->beginWidget('CActiveForm',
 				array('id'=>'edit_form','htmlOptions'=>array('name'=>'edit_form','enctype'=>'multipart/form-data'))); 
