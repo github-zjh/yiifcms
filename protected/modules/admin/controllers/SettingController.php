@@ -82,6 +82,16 @@ class SettingController extends Backend
 	}
 	
 	/**
+	 * 访问控制设置
+	 *
+	 */
+	public function actionAccess ()
+	{
+		self::_updateData($_POST['Setting'], 'access');
+		$this->render('access', array ('setting' => self::loadData('scope=:scope',array('scope'=>'access'))));
+	}
+	
+	/**
 	 * 自定义字段
 	 */
 	public function actionCustom ()

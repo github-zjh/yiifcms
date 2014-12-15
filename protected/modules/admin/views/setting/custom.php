@@ -1,6 +1,6 @@
 
 <div id="contentHeader">
-  <h3>自定义属性</h3>  
+  <h3><?php echo Yii::t('admin','Custom Set');?></h3>  
 </div>
 
 <?php if($setting):?>

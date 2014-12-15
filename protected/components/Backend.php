@@ -24,7 +24,7 @@ class Backend extends BackendBase
 	public function acl(){
 		$acl = array(
 			'default' => 'login',       									//后台登录
-			'setting' => array('seo','upload','template','email', 'custom'), 		//网站设置
+			'setting' => array('seo','upload','template','email', 'access','custom'), 		//网站设置
 			'catalog' => array('index','create','update','delete','batch'), //栏目管理
 			'menu' => array('index','create','update','delete','batch'),   //导航管理
 			'special' => array('index','create','update','delete','batch'), //专题管理

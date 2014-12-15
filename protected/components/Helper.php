@@ -383,5 +383,36 @@ class Helper
 		return false;
 	}
 	
+	
+	/**
+	 * 查找ip是否在某个段位里面
+	 * @param string $ip 要查询的ip
+	 * @param $arrIP     禁止的ip
+	 * @return boolean
+	 */
+	public static function ipAccess($ip='0.0.0.0', $arrIP = array()){
+		$access = true;		
+		$ip && $arr_cur_ip = explode('.', $ip);		
+		foreach((array)$arrIP as $key=> $value){
+			if($value == '*.*.*.*'){
+				$access = false; //禁止所有
+				break;
+			}
+			$tmp_arr = explode('.', $value);
+			if(($arr_cur_ip[0] == $tmp_arr[0]) && ($arr_cur_ip[1] == $tmp_arr[1])) {
+				//前两段相同
+				if(($arr_cur_ip[2] == $tmp_arr[2]) || ($tmp_arr[2] == '*')){
+					//第三段为* 或者相同
+					if(($arr_cur_ip[3] == $tmp_arr[3]) || ($tmp_arr[3] == '*')){
+						//第四段为* 或者相同
+						$access = false; //在禁止ip列，则禁止访问
+						break;
+					}
+				}
+			}
+		}
+		return $access;	
+	}
+	
         
 }

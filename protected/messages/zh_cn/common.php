@@ -40,6 +40,7 @@ return array (
 	'Access frequency too fast' => '您访问频率过快，请稍后访问',
 	'Operation Failed' => '操作失败',
 	'Cancel Success' => '取消成功',
+	'Register Deny!' => '禁止注册',
 		
 	//登录
 	'Login' => '登录',
@@ -77,6 +78,7 @@ return array (
 	'Attention' => '关注',
 	'Collect Manage' => '收藏管理',
 	'Comments Manage' => '评论管理',
+	'My Replys' => '我的回复',
 	'Friends Manage' => '好友管理',
 	'Comments & Replies' => '评论回复',
 	'Collect Success' => '收藏成功',

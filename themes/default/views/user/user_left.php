@@ -13,7 +13,8 @@
 	</dl>
 	<dl>
 		<dt><?php echo Yii::t('common','Comments & Replies');?></dt>
-		<dd class="ico_comment"><a href="<?php echo $this->createUrl('user/mycomments');?>"><?php echo Yii::t('common','My Comments');?></a></dd>		
+		<dd class="ico_comment"><a href="<?php echo $this->createUrl('user/mycomments');?>"><?php echo Yii::t('common','My Comments');?></a></dd>	
+		<dd class="ico_comment"><a href="<?php echo $this->createUrl('user/myreplys');?>"><?php echo Yii::t('common','My Replys');?></a></dd>			
 	</dl>
 	<dl>
 		<dt><?php echo Yii::t('common','My Friends');?></dt>

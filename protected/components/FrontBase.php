@@ -57,6 +57,16 @@ EOT;
 		    exit;
 		}
 		
+		//前端ip访问控制
+		$cur_ip = $this->_request->userHostAddress;		
+		$access_ips = $this->_setting['deny_access_ip'];
+		$access_ips && $access_ips = explode("\r\n", trim($access_ips));
+		$access = Helper::ipAccess($cur_ip, $access_ips);
+		if(!$access) {			
+			throw new CHttpException(403, '403 Forbidden!');
+			exit;
+		}
+		
 		//主题设置
 		Yii::app()->theme = $this->_setting['theme'];
 		$this->_stylePath = $this->_theme->baseUrl.'/styles';

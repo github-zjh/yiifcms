@@ -71,7 +71,7 @@ return array(
 		//Comment
 		'CommentId' => '评论id',
 		'CommentTitle' => '评论主题',
-		'CommentUrl' => '评论内容',
+		'CommentUrl' => '评论内容地址',
 		'CommentTopic_id' => '评论主题id',
 		'CommentUser_id' => '评论用户id',
 		'CommentContent' => '评论内容',
@@ -80,6 +80,17 @@ return array(
 		'CommentClient_ip' => '评论ip',
 		'CommentCreate_time' => '评论时间',
 		'verifyCode'=> '验证码',
+		
+		//Reply
+		'ReplyId' => '回复id',
+		'ReplyTitle' => '回复主题',
+		'ReplyUrl' => '回复内容地址',
+		'ReplyTopicid' => '回复主题id',
+		'ReplyUserid' => '回复用户id',
+		'ReplyContent' => '回复内容',
+		'ReplyStatus' => '回复状态',
+		'ReplyType' => '回复类型',	
+ 		'ReplyCreateTime' => '回复时间',
 		
 		//Soft
 		'SoftId' =>'软件id',

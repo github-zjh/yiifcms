@@ -104,6 +104,7 @@ class DefaultController extends BackendBase
 				array('url'=> $this->createUrl('setting/upload'), 'name'=>Yii::t('admin','Upload Set')),
 				array('url'=> $this->createUrl('setting/template'), 'name'=>Yii::t('admin','Template Set')),
 				array('url'=> $this->createUrl('setting/email'), 'name'=>Yii::t('admin','Email Set')),
+				array('url'=> $this->createUrl('setting/access'), 'name'=>Yii::t('admin','Access Set')),
 				array('url'=> $this->createUrl('setting/custom'), 'name'=>Yii::t('admin','Custom Set')),
 			),	
 			'2' => array(

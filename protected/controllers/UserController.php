@@ -66,6 +66,10 @@ class UserController extends FrontBase
 				'mycomments' => array(
 						'class'=>'application.controllers.user.MycommentsAction'
 				),
+				//回复
+				'myreplys' => array(
+						'class'=>'application.controllers.user.MyreplysAction'
+				),
 				//好友
 				'myfriends' => array(
 						'class'=>'application.controllers.user.MyfriendsAction'
@@ -439,6 +443,17 @@ class UserController extends FrontBase
 			exit;
 		}
 		$this->layout = false;
+		
+		//注册ip访问控制
+		$cur_ip = $this->_request->userHostAddress;		
+		$access_ips = $this->_setting['deny_register_ip'];
+		$access_ips && $access_ips = explode("\r\n", trim($access_ips));
+		$access = Helper::ipAccess($cur_ip, $access_ips);		
+		if(!$access) {
+			throw new CHttpException(403, Yii::t('common', 'Register Deny!'));
+			exit;
+		}
+		
 		$model=new RegisterForm();
 		$userModel = new User('register');
 		// if it is ajax validation request

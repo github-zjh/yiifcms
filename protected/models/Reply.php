@@ -14,6 +14,8 @@
  */
 class Reply extends CActiveRecord
 {
+	public $title;  // 相关内容title
+	public $url;    // 相关内容url
 	/**
 	 * @return string the associated database table name
 	 */
@@ -56,13 +58,13 @@ class Reply extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
-			'user_id' => 'User',
-			'cid' => 'Cid',
-			'reply_id' => 'Reply',
-			'content' => 'Content',
-			'status' => 'Status',
-			'create_time' => 'Create Time',
+			'id' => Yii::t('model', 'ReplyId'),
+			'user_id' => Yii::t('model', 'ReplyUserid'),
+			'cid' => Yii::t('model', 'ReplyCid'),
+			'reply_id' => Yii::t('model', 'ReplyRid'),
+			'content' => Yii::t('model', 'ReplyContent'),
+			'status' => Yii::t('model', 'ReplyStatus'),
+			'create_time' => Yii::t('model', 'ReplyCreateTime'),
 		);
 	}
 
