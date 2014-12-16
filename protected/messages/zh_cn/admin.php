@@ -38,6 +38,8 @@ return array (
 	'Cur Server Date' => '当前服务器时间',
 	'Update Password' => '修改密码',
 	'Logout' => '退出登录',
+	'Default' => '默认',
+	'Recommend' => '推荐',
 	
 	/* 后台菜单 */
 	'BM_Home' =>'首页',
@@ -53,6 +55,19 @@ return array (
 	
 	/* 设置 */
 	'Web Set' => '站点设置',
+	'Web Name' => '网站名称',
+	'Web URL' => '网站 URL',
+	'Web Status' => '站点开关/关闭说明',
+	'Admin Email' => '管理员邮箱',
+	'Web ICP Number' => '网站备案号',
+	'Please Input ICP Number' => '请填写 ICP 备案号',
+	'CopyRight' => '版权信息',
+	'Statistical Code' => '统计代码',
+	'Please Input Statistical Code' => '请填写第三方统计的 js 代码',
+	'User Encrypt Method' => '用户加密方式(一旦更改，原密码将失效)',
+	'Support The Crypt Encryption' => '支持crypt加密，我们推荐使用它。',
+	'Don`t Support The Crypt Encryption' => '不支持crypt加密，请选择MD5。',
+	'Safe String' => '网站安全密匙',
 	'SEO Set' => 'SEO设置',
 	'Upload Set' => '上传设置',
 	'Template Set' => '模板设置',

@@ -38,13 +38,14 @@
 <table class="content_list">  
     <tr class="tb_header">
       <th width="5%">ID</th>
-      <th width="20%">用户名 </th> 
-      <th width="10%">用户组 </th>
-      <th width="8%">状态</th>
-	  <th width="8%">登陆次数</th>
-      <th width="13%">上次登录ip</th>
-      <th width="13%">注册时间</th>
-      <th>操作</th>
+      <th width="20%"><?php echo Yii::t('model','username');?> </th> 
+      <th width="10%"><?php echo Yii::t('model','usergroup');?> </th>
+      <th width="8%"><?php echo Yii::t('model','status');?></th>
+	  <th width="8%"><?php echo Yii::t('model','logins');?></th>
+	  <th width="6%"><?php echo Yii::t('model','register_ip');?></th>
+      <th width="6%"><?php echo Yii::t('model','last_login_ip');?></th>
+      <th width="13%"><?php echo Yii::t('model','addtime');?></th>
+      <th><?php echo Yii::t('admin','Operate');?></th>
     </tr>
     <?php foreach ($datalist as $row):?>
     <tr class="tb_list">
@@ -61,6 +62,7 @@
         <?php endif;?>
       </td>
       <td ><?php echo $row->logins;?></td>
+      <td ><?php echo $row->register_ip;?></td>
       <td ><?php echo $row->last_login_ip;?></td>
       <td ><?php echo date('Y-m-d H:i',$row->addtime)?></td>
       <td >

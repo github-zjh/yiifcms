@@ -224,7 +224,7 @@ class Controller extends CController
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<title>操作提示</title>
+<title>操作提示    -  '.$this->_setting["seo_title"].'</title>
 <style type="text/css">
 body{font:12px/1.7 "\5b8b\4f53",Tahoma;}
 html,body,div,p,a,h3{margin:0;padding:0;}

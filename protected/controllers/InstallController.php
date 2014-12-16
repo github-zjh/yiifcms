@@ -110,9 +110,9 @@ class InstallController extends Controller
             array(
                 'PHP版本',
                  true,
-                 version_compare(PHP_VERSION,"5.3.0",">="),
+                 version_compare(PHP_VERSION,"5.2.0",">="),
                 '系统核心',
-                'PHP 5.3.0 或更高版本是必须的.'),    
+                'PHP 5.2.0 或更高版本是必须的.'),    
 
         	array (
 				'$_SERVER 服务器变量',
@@ -304,7 +304,9 @@ class InstallController extends Controller
 			self::_appendLog('安装必要数据完成!');
 			
             //写入管理员信息
-            $dbObj->createCommand("INSERT INTO `".$tbPre."user`(`uid`, `username`, `password`,`groupid`, `email`,`addtime`) VALUES('1','".$username."','".CPasswordHelper::hashPassword($password, 8)."','10','".$email."', ".time().");")->execute();
+            $password = md5($password);
+            $register_ip = $this->_request->userHostAddress;
+            $dbObj->createCommand("INSERT INTO `".$tbPre."user`(`uid`, `username`, `password`,`groupid`,`register_ip`,`email`,`addtime`) VALUES('1','".$username."','".$password."', '10', '".$register_ip."', ".$email."', ".time().");")->execute();
 
             //安装测试数据
             if($testData == 'Y'){

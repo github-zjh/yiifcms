@@ -383,9 +383,9 @@ class UserController extends FrontBase
 				$ret_url = Yii::app()->user->returnUrl;
 			}
 		}
-		/* 防止登陆成功后跳转到登陆、退出的页面 */
+		/* 防止登陆成功后跳转到登陆、退出、验证等页面 */
 		$ret_url = strtolower($ret_url);
-		if (str_replace(array('user/login', 'user/logout', 'user/register', 'user/authEmail'), '', $ret_url) != $ret_url)
+		if (str_replace(array('user/login', 'user/logout', 'user/register', 'user/authEmail', 'user/forgetpwd', 'user/resetpwd'), '', $ret_url) != $ret_url)
 		{
 			$ret_url = Yii::app()->user->returnUrl;
 		}
@@ -475,12 +475,13 @@ class UserController extends FrontBase
 			$userModel->groupid = 1;			
 			$userModel->nickname = $userModel->username;
 			$userModel->logins = 0;
+			$userModel->register_ip = $this->_request->userHostAddress;  //注册ip
 			// validate user input and redirect to the previous page if valid
 			if($userModel->save()){			
 				
 				if($this->_active_need){	
 					//发送激活邮件				
-					$this->activeAccount(array('id'=>$userModel->uid, 'email'=>$userModel->email, 'username'=>$userModel->username));
+					$this->sendActiveAccount(array('id'=>$userModel->uid, 'email'=>$userModel->email, 'username'=>$userModel->username));
 					$this->message('success', Yii::t('common','Register Success And Active Email'), $this->createUrl('login'), 5);
 				}else{					
 					$this->message('success', Yii::t('common','Register Success'), $this->createUrl('login'), 5);
@@ -500,20 +501,20 @@ class UserController extends FrontBase
 		$this->render('register',array('model'=>$model));
 	}
 	/**
-	 * 账号激活
+	 * 发送账号激活邮件
 	 * @param unknown $params
 	 */
-	public function activeAccount($params = array())
+	public function sendActiveAccount($params = array())
 	{
 		//生成校验字符串
 		if(!$params['id'] || !$params['username'] || !$params['email']){
 			return false;
 		}
-		$safestr = $this->_setting['safe_str'];  //安全分隔符
-		$salt = base64_encode(mt_rand(0,time()));  //随机盐
-		
-		$authcode = crypt($params['id'].$safestr.$params['email'], $salt);
-		$authurl = $this->_request->hostInfo.$this->createUrl('authEmail', array('id'=>$params['id'], 'authcode'=>$authcode));
+		$safestr = $this->_setting['safe_str'];  //安全密匙
+		$important_string = $params['id'];
+		$authcode = Helper::authcode($important_string, 'ENCODE', $safestr, 3600*2); //加密处理，2个小时过期
+		$authcode = urlencode($authcode);   //url编码		
+		$authurl = $this->_request->hostInfo.$this->createUrl('authEmail', array('authcode'=>$authcode));
 		$subject = Yii::t('common','Account Active');
 		$message = Yii::t('common','Register Email',
 				array('{username}'=>$params['username'],
@@ -527,39 +528,28 @@ class UserController extends FrontBase
 	 * 验证账号激活邮件
 	 */
 	public function actionAuthEmail(){
-		$id = $this->_request->getParam('id');
-		$user = User::model()->findByPk($id);
-		if(!$user){
-			$this->message('error',Yii::t('common','Auth Account Do Not Exist'), $this->createUrl('site/index'),0, true);
-		}
-		if($user->status == 1){
-			$this->message('success',Yii::t('common','Auth Is Ok'), $this->createUrl('login'));
-		}
-		
-		//需验证的邮箱		
-		$email = $user->email;
-		//邮件标题
-		$subject = Yii::t('common','Account Active');
-		
-		//获取邮件发送成功的时间
-		$maillog = MailLog::model()->find('accept=:accept AND status=:status AND subject=:subject ORDER BY sendtime DESC', array(':accept'=>$email, ':status'=>'success', ':subject'=>$subject));
-		$maillog && $sendTime = $maillog->sendtime;
-		
-		if((time()-$sendTime)/60 > 20){
-			//超过20分钟视为过期
+		//解密
+		$authcode = urldecode($this->_request->getParam('authcode'));
+		$safestr = $this->_setting['safe_str'];  //安全密匙
+		$decode = Helper::authcode($authcode, 'DECODE', $safestr);
+		if($decode){
+			$id = intval($decode);
+			$user = User::model()->findByPk($id);
+			if(!$user){
+				$this->message('error',Yii::t('common','Auth Account Do Not Exist'), $this->createUrl('site/index'),0, true);
+			}else{
+				if($user->status == 1){
+					$this->message('success',Yii::t('common','Auth Is Ok'), $this->createUrl('login'));
+				}else{
+					$user->status = 1;
+					$user->save();
+					$this->message('success',Yii::t('common','Auth Success'), $this->createUrl('login'),5);
+				}
+			}			
+		}else{
 			$this->message('error',Yii::t('common','The link is invalid'), $this->createUrl('site/index'),0, true);
 		}
-		$safestr = $this->_setting['safe_str'];  //安全分隔符
 		
-		$authcode = $this->_request->getParam('authcode');
-		if(crypt($id.$safestr.$email, $authcode) == $authcode){
-			//验证通过
-			$user->status = 1;
-			$user->save();			
-			$this->message('success',Yii::t('common','Auth Success'), $this->createUrl('login'),5);
-		}else{
-			$this->message('error',Yii::t('common','Auth Failed'), $this->createUrl('register'));
-		}
 	}
 	
 	/**
@@ -578,7 +568,7 @@ class UserController extends FrontBase
 		}else{
 			if($this->_request->isPostRequest){
 				if($_POST['ajax'] == 'ajax_active_form'){
-					$this->activeAccount(array('id'=>$model->uid, 'username'=>$model->username,'email'=>$model->email));
+					$this->sendActiveAccount(array('id'=>$model->uid, 'username'=>$model->username,'email'=>$model->email));
 					exit(CJSON::encode(array('message'=>Yii::t('common','Send Success'))));
 				}else{
 					exit(CJSON::encode(array('message'=>Yii::t('common','Send Failed'))));
@@ -598,13 +588,11 @@ class UserController extends FrontBase
 		if(isset($_POST['ForgetPwdForm'])){
 			$model->attributes = $_POST['ForgetPwdForm'];
 			if($model->validate()){				
-				$safestr = $this->_setting['safe_str'];  //安全分隔符
-				$salt = base64_encode(mt_rand(0,time()));  //随机盐
-				$authcode = crypt($model->username.$safestr.$model->email, $salt);
-				//SESSION保存重要信息
-				Yii::app()->session[$model->id.'_forgetpwd'] = array('email'=>$model->email, 'time'=>time());
-								
-				$authurl = $this->_request->hostInfo.$this->createUrl('resetPwd', array('id'=>$model->id, 'authcode'=>$authcode));
+				$safestr = $this->_setting['safe_str'];  //安全密匙
+				$important_string = $model->id;
+				$authcode = Helper::authcode($important_string, 'ENCODE', $safestr, 600); //加密处理，10分钟内过期
+				$authcode = urlencode($authcode);   //url编码
+				$authurl = $this->_request->hostInfo.$this->createUrl('resetPwd', array('authcode'=>$authcode));	
 				$subject = Yii::t('common','Reset Pwd');
 				$message = Yii::t('common','ResetPwd Email',
 						array('{username}'=>$model->username,
@@ -631,56 +619,44 @@ class UserController extends FrontBase
 	 * 重置密码
 	 * 
 	 */	
-	public function actionResetPwd(){		
+	public function actionResetPwd(){				
 		
-		$id = $this->_request->getParam('id');
-		$user = User::model()->findByPk($id);	
-		$authcode = $this->_request->getParam('authcode');
-		
-		if(!$id || !$user || !$authcode){
-			$this->message('error',Yii::t('common','The link is invalid'), $this->createUrl('forgetPwd'));
-		}
-		
-		//校验session
-		$sessionEmail = Yii::app()->session[$id.'_forgetpwd']['email'];
-		$sessionTime = Yii::app()->session[$id.'_forgetpwd']['time'];		
-		if(!$sessionEmail || ($sessionEmail != $user->email)){
-			$this->message('error',Yii::t('common','The link is invalid'), $this->createUrl('forgetPwd'));
-		}
-		
-		//超过20分钟视为过期
-		if(!$sessionTime || ($sessionTime + 1200) < time()){
-			$this->message('error',Yii::t('common','The link is invalid'), $this->createUrl('forgetPwd'));
-		}		
-		
-		
-		$safestr = $this->_setting['safe_str'];  //安全分隔符
-		if(crypt($user->username.$safestr.$sessionEmail, $authcode) != $authcode){
-			//验证不通过
-			$this->message('error',Yii::t('common','Auth Failed'), $this->createUrl('forgetPwd'));
-		}
-		$model = new ResetPwdForm();
-		if(isset($_POST['ResetPwdForm'])){
-			$model->attributes = $_POST['ResetPwdForm'];
-			if($model->validate()){				
-				$user->password = User::createPassword($model->newpassword);
-				$user->save();	
-				//清除session
-				unset(Yii::app()->session[$id.'_forgetpwd']);
+		$authcode = urldecode($this->_request->getParam('authcode')); //解码	
+		$safestr = $this->_setting['safe_str'];  //安全密匙
+		$decode = Helper::authcode($authcode, 'DECODE', $safestr);	 //解密	
+		if($decode){
+			$id = intval($decode);
+			$user = User::model()->findByPk($id);
+			if(!$user){
+				$this->message('error',Yii::t('common','Auth Account Do Not Exist'), $this->createUrl('site/index'),0, true);
+			}else{
+				$model = new ResetPwdForm();
+				if(isset($_POST['ResetPwdForm'])){
+					$model->attributes = $_POST['ResetPwdForm'];
+					if($model->validate()){
+						$user->password = User::createPassword($model->newpassword);
+						$user->save();
+						//清除session
+						unset(Yii::app()->session[$id.'_forgetpwd']);
 				
-				$this->message('success', Yii::t('common','ResetPwd Success'), $this->createUrl('login'), 5);
-			}
-			
-		}
-		//set seo
-		$this->_seoTitle = Yii::t('common','Reset Pwd').' - '.$this->_setting['site_name'];
-		$this->_seoKeywords = Yii::t('common','Reset Pwd');
-		$this->_seoDescription = Yii::t('common','Reset Pwd');
-		//加载css,js
-		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/user.css");
-		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
-			
-		$this->render('resetpwd', array('model'=>$model));
+						$this->message('success', Yii::t('common','ResetPwd Success'), $this->createUrl('login'), 5);
+					}						
+				}
+
+				//set seo
+				$this->_seoTitle = Yii::t('common','Reset Pwd').' - '.$this->_setting['site_name'];
+				$this->_seoKeywords = Yii::t('common','Reset Pwd');
+				$this->_seoDescription = Yii::t('common','Reset Pwd');
+				//加载css,js
+				Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/user.css");
+				Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
+					
+				$this->render('resetpwd', array('model'=>$model));
+			}			
+		}else{
+			$this->message('error',Yii::t('common','The link is invalid'), $this->createUrl('forgetPwd'),0, true);
+		}	
+		
 	}
 
 

@@ -186,8 +186,13 @@ class SettingController extends Backend
 	 */
 	public function actionIndex()
 	{
+		//检查crypt加密是否支持
+		$crypt = true;
+		if(!function_exists('crypt') || !defined('CRYPT_BLOWFISH') || !CRYPT_BLOWFISH) {
+			$crypt = false;
+		}
 		self::_updateData($_POST['Setting']);
-        $this->render('index', array ('setting' => self::loadData() ));
+        $this->render('index', array ('setting' => self::loadData(),'crypt'=>$crypt ));
 	}
 	
 }

@@ -16,6 +16,7 @@ return array(
 		'nickname' => '昵称',
 		'web' => '个人网址',
 		'mobile' => '手机号码',
+		'register_ip' => '注册ip',
 		'last_login_ip' => '上次登录ip',
 		'logins' => '登录次数',
 		'usergroup'=>'用户组',

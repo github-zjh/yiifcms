@@ -17,6 +17,7 @@
  * @property string $web
  * @property string $mobile
  * @property string $qq
+ * @property string $register_ip
  * @property string $last_login_ip
  * @property string $logins
  * @property string $username_editable
@@ -51,10 +52,10 @@ class User extends CActiveRecord
 			array('mobile, qq', 'length', 'max'=>11, 'on'=>'update'),
 			array('qq, status, addtime', 'numerical', 'integerOnly'=>true),
 			array('mobile','checkMobile', 'on'=>'update'),
-			array('last_login_ip', 'length', 'max'=>15),
+			array('register_ip, last_login_ip', 'length', 'max'=>15),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('uid, username, password, email, groupid, status, addtime, avatar, nickname, sign, web, mobile, qq, last_login_ip, logins, username_editable', 'safe', 'on'=>'search'),
+			array('uid, username, password, email, groupid, status, addtime, avatar, nickname, sign, web, mobile, qq, register_ip, last_login_ip, logins, username_editable', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -110,6 +111,7 @@ class User extends CActiveRecord
 			'web' => Yii::t('model','web'),
 			'mobile' => Yii::t('model','mobile'),
 			'qq' => Yii::t('model','qq'),
+			'register_ip' => Yii::t('model','register_ip'),
 			'last_login_ip' => Yii::t('model','last_login_ip'),
 			'logins' => Yii::t('model','logins'),
 			'username_editable' => Yii::t('model','username_editable'),
@@ -159,6 +161,8 @@ class User extends CActiveRecord
 		$criteria->compare('mobile',$this->mobile,true);
 
 		$criteria->compare('qq',$this->qq,true);
+		
+		$criteria->compare('register_ip',$this->register_ip,true);
 
 		$criteria->compare('last_login_ip',$this->last_login_ip,true);
 
@@ -200,7 +204,21 @@ class User extends CActiveRecord
 	 * @return string
 	 */
 	public static function createPassword($password=''){
-		return CPasswordHelper::hashPassword($password, 8);
+		
+		//判断加密方式
+		$settings = Setting::model()->find('scope = :scope AND variable = :variable', array(':scope'=>'base', ':variable'=>'encrypt'));
+		switch($settings->value){
+			case 'md5':
+				$pwd = md5($password);
+				break;
+			case 'crypt':
+				$pwd = CPasswordHelper::hashPassword($password, 8);
+				break;
+			default:
+				throw new CHttpException(500, 'Unknown Encrypt Method!');
+				break;
+		}
+		return $pwd;
 	}
 	
 	/**
@@ -209,6 +227,22 @@ class User extends CActiveRecord
 	 * @return [type]           [description]
 	 */
 	public function validatePassword($password){		
-		return CPasswordHelper::verifyPassword($password, $this->password);
+		$return = false;
+		//判断加密方式
+		$settings = Setting::model()->find('scope = :scope AND variable = :variable', array(':scope'=>'base', ':variable'=>'encrypt'));
+		switch($settings->value){
+			case 'md5':
+				if(strcmp(md5($password), $this->password) == 0){
+					$return = true;	
+				}			
+				break;
+			case 'crypt':
+				$return = CPasswordHelper::verifyPassword($password, $this->password);
+				break;
+			default:
+				throw new CHttpException(500, 'Unknown Encrypt Method!');
+				break;
+		}
+		return $return;
 	}
 }
