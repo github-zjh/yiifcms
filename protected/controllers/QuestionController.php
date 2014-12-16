@@ -51,7 +51,7 @@ class QuestionController extends FrontBase
 		if(isset($_POST['Question']))
 		{
 			$model->attributes=$_POST['Question'];
-			$model->client_ip = $this->getClientIP();
+			$model->client_ip = $this->_request->userHostAddress;
 			$model->create_time = time();
 			if($model->save()){
 				$this->message('success',Yii::t('common','Question Submit Success'), $this->_request->getUrl());

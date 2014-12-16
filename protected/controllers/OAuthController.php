@@ -267,7 +267,7 @@ class OAuthController extends FrontBase
 				$user_model->status = 1;
 				$user_model->groupid = 1;
 				$user_model->logins = 0;
-				$user_model->last_login_ip = $this->getClientIP();
+				$user_model->last_login_ip = $this->_request->userHostAddress;
 				$user_model->username_editable = 'Y';  //允许修改用户名
 				if($user_model->save()){
 					$model->uid = $uid = $user_model->uid;
@@ -311,7 +311,7 @@ class OAuthController extends FrontBase
 			Yii::app()->user->login($identity, $duration);
 
 			//更新登录次数和登录ip
-			$user->last_login_ip = $this->getClientIP();
+			$user->last_login_ip = $this->_request->userHostAddress;
 			$user->logins = $user->logins + 1;
 			if($user->save()){
 				$this->redirect(Yii::app()->homeUrl);

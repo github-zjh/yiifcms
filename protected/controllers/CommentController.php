@@ -109,7 +109,7 @@ class CommentController extends FrontBase
   		$model->type = $this->_type_ids[$topic_type];
   		$model->user_id = $uid;
   		$model->status = 'N';
-  		$model->client_ip = $this->getClientIP();
+  		$model->client_ip = $this->_request->userHostAddress;
   		$model->create_time = time();
   		
   		$ret_url = $_POST['ret_url'];  	

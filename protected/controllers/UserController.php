@@ -337,7 +337,7 @@ class UserController extends FrontBase
 				//更新登录次数和ip				
 				$user = $this->loadModel();					
 				$user->logins = $user->logins + 1;
-				$user->last_login_ip = $this->getClientIP();
+				$user->last_login_ip = $this->_request->userHostAddress;
 				$user->save();				
 				$this->redirect($ret_url);
 			}
@@ -410,7 +410,7 @@ class UserController extends FrontBase
 				//更新登录次数和ip
 				$user = $this->loadModel();
 				$user->logins = $user->logins + 1;
-				$user->last_login_ip = $this->getClientIP();
+				$user->last_login_ip = $this->_request->userHostAddress;
 				$user->save();
 				$this->rediretParentUrl($ret_url);
 			}
