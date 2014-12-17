@@ -74,7 +74,7 @@ class User extends CActiveRecord
 	 * 校验个人网址
 	 */
 	public function checkWeb(){
-		$reg = '/^http[s]?:\/\/[a-z\d]+[\.][a-z\d]+[\.](com|net|cn|org|com\.cn)$/';
+		$reg = '/^http[s]?:\/\/[a-z\d]+[\.][a-z\d]+[\.](com|net|cn|org|com\.cn)(\/?)$/';
 		if($this->web && !preg_match($reg, $this->web)){
 			$this->addError('web', Yii::t('common','Web Is Invalid'));
 			return false;

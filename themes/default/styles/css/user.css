@@ -52,6 +52,7 @@ cursor: pointer }
 .space_left .profile_list { padding:10px 20px;}
 .space_left .cc dt { float:left; width:90px;}
 .space_left .cc dd { float:right; width:460px;}
+.space_left .cc a { color:#428bca;}
 .space_right { float:right; width:30%; border:1px solid #CCCCCC;}
 .space_right .space_user_info { padding:25px 25px 20px;  text-align:center;}
 .space_right .space_user_info .name {font-size: 22px; font-weight: 400; line-height: normal; padding: 5px 0 10px;}

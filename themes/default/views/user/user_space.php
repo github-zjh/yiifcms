@@ -17,7 +17,7 @@
 			</dl>
 			<dl class="cc clear">
 				<dt><?php echo Yii::t('model','web');?></dt>
-				<dd><?php echo $user['web'];?></dd>
+				<dd><a href="<?php echo $user['web'];?>" target="_blank"><?php echo $user['web'];?></a></dd>
 			</dl>
 			<dl class="cc clear">
 				<dt><?php echo Yii::t('model','register_ip');?></dt>
