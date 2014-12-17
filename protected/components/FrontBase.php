@@ -124,6 +124,7 @@ EOT;
 				'user/mycollect',
 				'user/mycomments',
 				'user/myfriends',
+				'user/addfriend',
 				'uploadify/index',
 				'uploadify/avatar',
 				'uploadify/submitcut',
