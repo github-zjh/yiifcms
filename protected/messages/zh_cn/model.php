@@ -156,7 +156,10 @@ return array(
 		'CollectUrl' => '收藏链接',
 		'CollectType' => '收藏类型',
 		'CollectAddTime' => '收藏时间',
-				
+		
+		//Friend
+		'Friend Name' => '好友名称',
+		
 		//Special
 		
 		//MailLog

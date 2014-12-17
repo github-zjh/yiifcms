@@ -19,6 +19,7 @@
 					<li><label><?php echo Yii::t('model','logins');?>：</label><span><?php echo $profile->logins;?></span></li>
 					<li><label><?php echo Yii::t('model','last_login_ip');?>：</label><span><?php echo $profile->last_login_ip?$profile->last_login_ip:'您这是首次登录哦~';?></span></li>
 					<li><label><?php echo Yii::t('model','usergroup');?>：</label><span><?php echo Yii::app()->user->groupname;?></span></li>
+					<li><label><?php echo Yii::t('common','User Space');?>：</label><span><a href="<?php echo $this->createUrl('user/space', array('id'=>$profile->uid));?>" title="<?php echo $user['username'].' - '.Yii::t('common','User Space');?>"><?php echo $this->_request->hostinfo.$this->createUrl('user/space', array('id'=>$profile->uid));?></a></span></li>
 				</ul>				
 				<a href="<?php echo $this->createUrl('setting');?>" class="edit_btn">
 					<i class="fa fa_edit"></i><?php echo Yii::t('common','Edit');?>

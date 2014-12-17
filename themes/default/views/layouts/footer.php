@@ -53,10 +53,20 @@ function ajaxClick(act) {
 	var uid = "<?php echo Yii::app()->user->id;?>";				
 	var cid = obj.attr("data-id");
 	$("span.ajax_msg").hide();	
-	if(uid){
-		$.post('<?php echo $this->_request->hostinfo.$this->createUrl('post/ajax');?>',{'act':act, 'id':cid}, function(data){
+	if(uid){		
+		if(act == 'friend'){
+			var url = '<?php echo $this->_request->hostinfo.$this->createUrl('user/addfriend');?>';			
+		}else{
+			var url = '<?php echo $this->_request->hostinfo.$this->createUrl('post/ajax');?>';
+		}	
+		$.post(url,{'act':act, 'id':cid}, function(data){
 			if(data.count > 0){					
 				obj.children("em").children("i").html(data.count);
+			}					
+			if(act == 'friend' && data.state == 'success'){
+				//添加好友成功
+				obj.attr("href","<?php echo $this->createUrl('user/myfriends');?>");
+				obj.children("em").html('<?php echo Yii::t('common','Cancel Friends');?>');
 			}
 			obj.next("span.ajax_msg").html(data.message).show().delay(5000).fadeOut();
 		},'json');

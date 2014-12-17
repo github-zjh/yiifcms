@@ -54,6 +54,14 @@ class UserController extends FrontBase
 						'class'=>'CViewAction',
 				),
 				
+				//个人空间
+				'space' => array(
+						'class'=>'application.controllers.user.SpaceAction'
+				),
+				//添加好友
+				'addfriend' => array(
+						'class'=>'application.controllers.user.AddfriendAction'
+				),
 				//收藏
 				'mycollect' => array(
 						'class'=>'application.controllers.user.MycollectAction'						

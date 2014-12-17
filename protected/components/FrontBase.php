@@ -120,6 +120,7 @@ EOT;
 				'user/setting',
 				'user/settingpwd',
 				'user/settingemail',
+				'user/cancel',
 				'user/mycollect',
 				'user/mycomments',
 				'user/myfriends',

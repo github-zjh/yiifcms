@@ -20,7 +20,8 @@ class CancelAction extends CAction
 		$op = Yii::app()->request->getParam('op');	
 		$ids = Yii::app()->request->getParam('id');
 		$uid = Yii::app()->user->id;		
-		$res = false;
+		$res = false;    //操作状态
+		$count = true;   //是否需要统计
 		$count_field = ''; //统计数据的字段名
 		$action = ''; //要返回的action名
 		if(!$uid){
@@ -32,8 +33,14 @@ class CancelAction extends CAction
 				switch($op){
 					case 'collect':
 						$collect_mod = new Collect();
-						foreach((array)$ids as $id){
-							$content[] = $collect_mod->findByPk($id);
+						//检测是否是自己收藏的
+						foreach((array)$ids as $k => $id){
+							$tmp = $collect_mod->findByPk($id);
+							if($tmp->user_id != $uid){
+								unset($ids[$k]);
+							}else{
+								$content[] = $collect_mod->findByPk($id);
+							}
 						}
 						$collect_mod->deleteByPk($ids);											
 						$res = true;	
@@ -42,9 +49,16 @@ class CancelAction extends CAction
 						break;
 					case 'attention':
 						$attention_mod = new Attention();
-						foreach((array)$ids as $id){
-							$content[] = $attention_mod->findByPk($id);						
-						}						
+						//检测是否是自己关注的
+						foreach((array)$ids as $k => $id){
+							$tmp = $attention_mod->findByPk($id);
+							if($tmp->user_id != $uid){
+								unset($ids[$k]);
+							}else{
+								$content[] = $attention_mod->findByPk($id);
+							}
+						}
+											
 						$attention_mod->deleteByPk($ids);					
 						$res = true;					
 						$count_field = 'attention_count';
@@ -52,30 +66,37 @@ class CancelAction extends CAction
 						break;
 					case 'friend':
 						$friend_mod = new Friend();
-						foreach((array)$ids as $id){
-							$content[] = $friend_mod->findByPk($id);		
-						}						
+						//检测是否是自己的好友
+						foreach((array)$ids as $k => $id){
+							$tmp = $friend_mod->findByPk($id);
+							if($tmp->uid1 != $uid && $tmp->uid2 != $uid){
+								unset($ids[$k]);
+							}
+						}											
 						$friend_mod->deleteByPk($ids);
-						$res = true;						
-						$action = 'myfriend';
+						$res = true;			
+						$count = false;			
+						$action = 'myfriends';
 						break;
 					default:										
 						break;
 				}			
-				if($res && $content){				
-					$message = Yii::t('common', 'Cancel Success');				
-					//减少统计数据
-					$model_type = new ModelType();					
-					foreach($content as $c){						
-						$type = $model_type->findByPk($c->type);				
-						$type_name = ucfirst($type->type_key);
-						if($type_name && $c && $count_field){		
-							$content_mod = new $type_name();
-							$cur_post = $content_mod->findByPk($c->cid);
-							if($cur_post->$count_field > 0){
-								$content_mod->updateCounters(array ($count_field => -1 ), 'id=:id', array ('id' => $c->cid ));				
-							}
-						}  
+				if($res){				
+					$message = Yii::t('common', 'Cancel Success');			
+					if($count && $content)	{
+						//减少统计数据
+						$model_type = new ModelType();					
+						foreach($content as $c){						
+							$type = $model_type->findByPk($c->type);				
+							$type_name = ucfirst($type->type_key);
+							if($type_name && $c && $count_field){		
+								$content_mod = new $type_name();
+								$cur_post = $content_mod->findByPk($c->cid);
+								if($cur_post->$count_field > 0){
+									$content_mod->updateCounters(array ($count_field => -1 ), 'id=:id', array ('id' => $c->cid ));				
+								}
+							}  
+						}
 					}
 				}else{				
 					$message = Yii::t('common', 'Operation Failed');

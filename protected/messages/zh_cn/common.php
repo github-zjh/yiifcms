@@ -144,6 +144,7 @@ return array (
 	'My Comments' => '我的评论',
 	'My Friends' => '我的好友',
 	'My Avatar' => '我的头像',
+	'Personal Profile' => '个人资料',
 	'Comments Manage' => '评论管理',
 	'Friends Manage' => '好友管理',
 	'Edit' => '编辑',
@@ -195,6 +196,12 @@ return array (
 	'Reset Email Success' => '重设邮箱成功',
 	'Attention Manage' => '关注管理',
 	'Collect & Attention' => '收藏关注',
+	'User Space' => '个人空间',
+	'Add Friends' => '加为好友',
+	'Cancel Friends' => '取消好友',
+	'Add Friend Failed' => '添加好友失败',
+	'Add Friend Success' => '添加好友成功',
+	'You`are Friend' => '你们已经是好友了',
 	
 	//分页
 	'First Page' => '首页',

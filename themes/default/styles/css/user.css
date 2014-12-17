@@ -38,8 +38,26 @@ cursor: pointer }
 .base_info li { line-height:33px; font-size:16px; font-weight:bold; }
 .base_info li label { width:100px; display:inline-block; font-weight:normal; }
 .base_info li span { font-size:12px;}
+.base_info li span a { color:#428bca;}
 .edit_btn { float:right; width:80px; height:32px; line-height:32px; background-color:#5CB85C; border-radius:3px; font-size:14px; color:#FFFFFF; text-align:center; }
 .fa_edit:before { content:"\f044"; }
+
+/* 个人空间 */
+.space_header { margin-bottom:10px;}
+.space_header h1 {font-size: 36px; font-weight: 400; margin-right: 35px; line-height:200%;}
+.space_header a { color:#444444; }
+.space_header .sign { font-style:italic;}
+.space_left { float:left; width:60%; border:1px solid #CCCCCC;}
+.space_left h2 { background:#DDDDDD; font-size:18px; line-height:33px; padding-left:20px;}
+.space_left .profile_list { padding:10px 20px;}
+.space_left .cc dt { float:left; width:90px;}
+.space_left .cc dd { float:right; width:460px;}
+.space_right { float:right; width:30%; border:1px solid #CCCCCC;}
+.space_right .space_user_info { padding:25px 25px 20px;  text-align:center;}
+.space_right .space_user_info .name {font-size: 22px; font-weight: 400; line-height: normal; padding: 5px 0 10px;}
+.space_right .space_user_info .enum  li { border:1px solid #CCCCCC; margin:20px; line-height:33px; background:#428bca; border-radius:5px;  position:relative;}
+.space_right .space_user_info .enum li a { width:100%; display:inline-block; color:#FFFFFF;}
+.space_right .space_user_info .ajax_msg { display:none; background-color:#EEEEEE; width:120px; text-align:center; color:#04e000; position:absolute; left:83px; top:40px; border:1px solid #dddddd;}
 
 /* 收藏列表css */
 .form_table { display: table; border-spacing: 2px; border-color: gray; width: 100%;}
