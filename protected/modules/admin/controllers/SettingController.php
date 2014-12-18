@@ -26,22 +26,19 @@ class SettingController extends Backend
 		return true;
 	}
 	
+
 	/**
-	 * 取配置数据
-	 *
+	 * 站点设置
 	 */
-	public function loadData ($conditions='scope=:scope', $params=array('scope'=>'base'))
+	public function actionIndex()
 	{
-		if($conditions){
-			$model = Setting::model()->findAll($conditions,$params);
-		}else{
-			$model = Setting::model()->findAll();
+		//检查crypt加密是否支持
+		$crypt = true;
+		if(!function_exists('crypt') || !defined('CRYPT_BLOWFISH') || !CRYPT_BLOWFISH) {
+			$crypt = false;
 		}
-		foreach ($model as $key => $row) {
-			$setting[$row['variable']] = $row['value'];
-		}
-		return $setting;
-	
+		self::_updateData($_POST['Setting']);
+		$this->render('index', array ('setting' => self::loadData(),'crypt'=>$crypt ));
 	}
 	
 	
@@ -53,14 +50,6 @@ class SettingController extends Backend
 	{
 		self::_updateData($_POST['Setting'], 'seo');
 		$this->render('seo', array ('setting' => self::loadData('scope=:scope',array('scope'=>'seo'))));
-	}
-	
-	/**
-	 * 附件设置
-	 */
-	public function actionUpload(){
-		self::_updateData($_POST['Setting'], 'upload');
-		$this->render('upload', array ('setting' => self::loadData('scope=:scope',array('scope'=>'upload')) ));
 	}
 	
 	/**
@@ -80,6 +69,27 @@ class SettingController extends Backend
 		}		
 		$this->render('template', array ('setting' => self::loadData('scope=:scope',array('scope'=>'template')) ,'themes'=>$themes));
 	}
+	
+
+	/**
+	 * 上传设置
+	 */
+	public function actionUpload(){
+		self::_updateData($_POST['Setting'], 'upload');
+		$this->render('upload', array ('setting' => self::loadData('scope=:scope',array('scope'=>'upload')) ));
+	}
+	
+	
+	/**
+	 * 缓存设置
+	 */
+	public function actionCache(){
+		self::_updateData($_POST['Setting'], 'cache');
+		$setting = self::loadData('scope=:scope',array('scope'=>'cache'));	
+		$setting['data'] && $data = unserialize($setting['data']);
+		$this->render('cache', array ('data' => $data ));
+	}
+	
 	
 	/**
 	 * 访问控制设置
@@ -123,6 +133,25 @@ class SettingController extends Backend
 			exit(CJSON::encode(array('state'=>'failed')));
 		}
 	}
+	
+	/**
+	 * 取配置数据
+	 *
+	 */
+	public function loadData ($conditions='scope=:scope', $params=array('scope'=>'base'))
+	{
+		if($conditions){
+			$model = Setting::model()->findAll($conditions,$params);
+		}else{
+			$model = Setting::model()->findAll();
+		}
+		foreach ($model as $key => $row) {
+			$setting[$row['variable']] = $row['value'];
+		}
+		return $setting;
+	
+	}
+	
 	
 	/**
 	 * 更新数据
@@ -178,21 +207,6 @@ class SettingController extends Backend
 			$this->message('success', '更新完成', $this->createUrl($this->action->id));
 		}
 	
-	}
-	
+	}	
 
-	/**
-	 * Lists all models.
-	 */
-	public function actionIndex()
-	{
-		//检查crypt加密是否支持
-		$crypt = true;
-		if(!function_exists('crypt') || !defined('CRYPT_BLOWFISH') || !CRYPT_BLOWFISH) {
-			$crypt = false;
-		}
-		self::_updateData($_POST['Setting']);
-        $this->render('index', array ('setting' => self::loadData(),'crypt'=>$crypt ));
-	}
-	
 }

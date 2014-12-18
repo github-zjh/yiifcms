@@ -59,7 +59,7 @@
   
   <tr>
     <td >核心框架</td>
-    <td><?php echo Yii::powered(); ?></td>
+    <td><?php echo Yii::powered(); ?>  Version:<?php echo Yii::getVersion(); ?></td>
   </tr>
   
 </table>

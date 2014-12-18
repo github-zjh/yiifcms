@@ -1,7 +1,7 @@
 ###yiifcms打造顶级内容管理系统
 ======
 
-yiifcms是基于yii framework 1.1.4 个人开发的cms  目前已开发到 1.4.0版本
+yiifcms是基于yii framework 1.1.14 个人开发的cms  目前已开发到 1.4.0版本
 
 官方网址：http://www.yiifcms.com/
 官方论坛：http://bbs.yiifcms.com/
