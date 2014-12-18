@@ -67,9 +67,9 @@ EOT;
 			exit;
 		}
 		
-		//主题设置
+		//主题设置		
 		Yii::app()->theme = $this->_setting['theme'];
-		$this->_stylePath = $this->_theme->baseUrl.'/styles';
+		$this->_stylePath = Yii::app()->theme->baseUrl.'/styles';		
 		
 		//菜单导航
 		$menus = Menu::model()->findAll('status_is =:status ORDER BY sort_order, id DESC', array(':status'=>'Y'));	

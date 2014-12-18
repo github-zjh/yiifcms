@@ -51,8 +51,7 @@ class Controller extends CController
 	public function init ()
 	{						
 		$this->_yii = Yii::app();
-		$this->_request = Yii::app()->request;		
-		$this->_theme = Yii::app()->theme;
+		$this->_request = Yii::app()->request;				
 		$this->_baseUrl = Yii::app()->baseUrl;
 		$this->_basePath = Yii::app()->basePath;		
 		$this->_webRoot = WWWPATH;
