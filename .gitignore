@@ -1,4 +1,5 @@
 /protected/config/main.php
+/protected/config/cache.php
 /protected/runtime
 /protected/data/dbbak
 /.settings
