@@ -82,7 +82,7 @@ return array (
 	'IF Enable' => '是否可用',
 	'Cache Enable' => '<font color="green">缓存可用</font>',
 	'Cache Disable' => '<font color="red">缓存不可用</font>',
-	'Cache Error Msg' => '缓存不可用，请检查相关配置。错误信息：{msg}',
+	'Cache Error Msg' => '请检查{cache}环境和相关配置。错误信息：{msg}',
 	'CacheFiles Depth' => '缓存目录深度',
 	'Cache Host' => '缓存主机(IP)',
 	'Cache Port' => '缓存端口号',
