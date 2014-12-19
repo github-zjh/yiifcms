@@ -69,7 +69,7 @@
 				<td>
 					<div class="custom_title"><?php echo Yii::t('admin','Cache Host');?>：</div>
 					<div class="custom_content">
-						<input type="text" value="<?php echo $data['rediscache']['depth'];?>" name="data[redis][depth]" class="txt">					
+						<input type="text" value="<?php echo $data['rediscache']['host'];?>" name="data[rediscache][host]" class="txt">					
       				</div>
 				</td>
 			</tr>

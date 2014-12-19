@@ -106,6 +106,9 @@ class SettingController extends Backend
 			$data_rediscache['port'] = $post['rediscache']['port'];
 			$data_rediscache['database'] = intval($post['rediscache']['database']);
 			
+			//配置文件路径
+			$config_file = Yii::app()->basePath.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'cache.php';			
+			
 			//保存缓存配置
 			switch($cache_type){
 				case 'filecache':
@@ -163,10 +166,29 @@ class SettingController extends Backend
 			$data_cache_type->value = $cache_type;
 			$data_cache_type->save();		
 
-			//写入配置文件
+			//若缓存可用  则写入新的配置文件
 			if($cache){
-				$cache = var_export(array('cache'=>$cache), true);
-				$cache_config_file = file_put_contents(Yii::app()->basePath.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'cache.php',"<?php\r\n\r\nreturn {$cache};\r\n\r\n?>");
+				$cache = array('cache'=>$cache);				
+				$old_cache_config = file_get_contents($config_file);
+
+				//先清空配置文件
+				file_put_contents($config_file, "<?php return array();?>");
+				//测试缓存
+				Yii::app()->setComponents($cache);
+				if(Yii::app()->cache){
+					try {
+						$test = Yii::app()->cache->set('test','123456');
+						Yii::app()->cache->delete('test');
+					} catch (Exception $e){
+						$error = Helper::safeEncoding($e->getMessage());
+						exit(Yii::t('admin','Cache Error Msg:['.$cache_type.']'.$error));
+					}						
+					if($test){							
+						$cache = var_export($cache, true);	
+						file_put_contents($config_file,"<?php\r\n\r\nreturn {$cache};\r\n\r\n?>");
+					}
+				}
+								
 			}
 						
 			$this->message('success', Yii::t('admin','Update Success'));
@@ -176,18 +198,19 @@ class SettingController extends Backend
 			$data['setting_filecache'] && $data['filecache'] = unserialize($data['setting_filecache']);	
 			$data['setting_memcache'] && $data['memcache'] = unserialize($data['setting_memcache']);
 			$data['setting_rediscache'] && $data['rediscache'] = unserialize($data['setting_rediscache']);
-			try {
-				//测试缓存
-				if(Yii::app()->cache){						
+			
+			//测试缓存
+			if(Yii::app()->cache){		
+				try {				
 					$test = Yii::app()->cache->set('test','123456');									
-					Yii::app()->cache->delete('test');	
-					if($test){	
-						$cache_enable = true;
-					}
+					Yii::app()->cache->delete('test');				
+				}catch (Exception $e){
+					
+				}		
+				if($test){	
+					$cache_enable = true;
 				}
-			} catch (CHttpException $e){
-				throw new CHttpException(500, Yii::t('admin','Cache Error Msg', array('{msg}'=>$e->getMessage())));
-			}				
+			}						
 			
 			if($cache_enable){
 				$data['cache_enable'] = Yii::t('admin','Cache Enable');

@@ -126,7 +126,6 @@ $config = array(
 );
 $cache =  require(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'cache.php');
 if (!empty($cache)) {
-	$config['components'] = CMap::mergeArray($config['components'],$cache);
-	//    Yii::app()->setComponents($database);
+	$config['components'] = CMap::mergeArray($config['components'],$cache);	
 }
 return $config;
