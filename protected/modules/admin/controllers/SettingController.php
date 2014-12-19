@@ -181,7 +181,7 @@ class SettingController extends Backend
 						Yii::app()->cache->delete('test');
 					} catch (Exception $e){
 						$error = Helper::safeEncoding($e->getMessage());
-						exit(Yii::t('admin','Cache Error Msg:['.$cache_type.']'.$error));
+						$this->message('error',Yii::t('admin','Cache Error Msg:['.$cache_type.']'.$error));
 					}						
 					if($test){							
 						$cache = var_export($cache, true);	
