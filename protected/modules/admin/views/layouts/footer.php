@@ -33,7 +33,7 @@ function uploadifyAction(fileField,frameId) {
     $.Zebra_Dialog('', {
         source: {
             'iframe': {           
-            	'src': '<?php echo $this->createUrl('uploadify/basic')?>',     
+            	'src': '<?php echo $this->createUrl("uploadify/basic")?>',     
                 'height': 300,
                 'name': 'yii_upload',
                 'id': 'yii_upload_id'

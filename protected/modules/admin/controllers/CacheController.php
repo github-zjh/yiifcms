@@ -59,6 +59,11 @@ class CacheController extends Backend{
 			}
 			if($value == 'content'){
 				//更新内容缓存
+				try {
+					Yii::app()->cache && Yii::app()->cache->flush();
+				} catch (CHttpException $e){
+					throw new CHttpException(500, Yii::t('admin','Cache Error Msg', array('{msg}'=>$e->getMessage())));
+				}
 			}
 		}
 		$this->message('success',Yii::t('admin','Update Cache Success'), $this->createUrl('index'));

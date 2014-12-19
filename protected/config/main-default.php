@@ -6,7 +6,7 @@
  * @copyright     Copyright (c) 2014-2015 . All rights reserved.
  *
  */
-return array(
+$config = array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',	
 	'name' =>'Yiifcms',
 	'language'=>'zh_cn',
@@ -124,3 +124,9 @@ return array(
 	'params'=>array(	
 	),
 );
+$cache =  require(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'cache.php');
+if (!empty($cache)) {
+	$config['components'] = CMap::mergeArray($config['components'],$cache);
+	//    Yii::app()->setComponents($database);
+}
+return $config;

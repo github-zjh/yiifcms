@@ -128,3 +128,7 @@ body[dir='rtl'] .formError .formErrorArrow, body.rtl .formError .formErrorArrow 
 /* 部分表单样式 */
 .config_label { width:130px; display:inline-block;}
 .qq_oauth_list { width:120px; display:inline-block;}
+
+/* 缓存设置样式 */
+.cache_param { display:none;}
+.cache_show { display:block;}

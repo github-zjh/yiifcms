@@ -96,4 +96,22 @@ class Setting extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	
+	/**
+	 * 取配置数据
+	 *
+	 */
+	public static function loadData ($conditions='scope=:scope', $params=array('scope'=>'base'))
+	{
+		if($conditions){
+			$model = self::model()->findAll($conditions,$params);
+		}else{
+			$model = self::model()->findAll();
+		}
+		foreach ($model as $key => $row) {
+			$setting[$row['variable']] = $row['value'];
+		}
+		return $setting;
+	
+	}
 }
