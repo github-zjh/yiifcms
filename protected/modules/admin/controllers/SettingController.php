@@ -186,7 +186,7 @@ class SettingController extends Backend
 							$error = Helper::safeEncoding($e->getMessage());
 							$this->message('error',Yii::t('admin','Cache Error Msg', array('{cache}'=>$cache_type, '{msg}'=>$error)));
 						}						
-						if($test){							
+						if($test && $post['cache_status'] == 'open'){							
 							$cache = var_export($cache, true);
 							file_put_contents($config_file,"<?php\r\n\r\nreturn {$cache};\r\n\r\n?>");
 						}
