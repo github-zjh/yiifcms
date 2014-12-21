@@ -58,6 +58,22 @@ class CacheController extends Backend{
 				}	
 			}
 			if($value == 'content'){
+				
+				$file_caches = Yii::app()->runtimePath.'/cache';
+				if(is_dir($file_caches)){
+					$dirs = Helper::scanfDir($file_caches,true);						
+					//先删除文件
+					foreach((array)$dirs['files'] as $file){						
+						@unlink($file);						
+					}
+						
+					// 再删除目录
+					rsort($dirs['dirs']);  //降序
+					foreach((array)$dirs['dirs'] as $dir){
+						@rmdir($dir);
+					}
+				}
+				
 				//更新内容缓存
 				try {
 					Yii::app()->cache && Yii::app()->cache->flush();
