@@ -8,7 +8,7 @@
  */
 $config = array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',	
-	'name' =>'Yiifcms',
+	'name' =>'yiifcms',
 	'language'=>'zh_cn',
 	'theme'=>'default',
 	'timeZone'=>'Asia/Shanghai',
@@ -89,7 +89,7 @@ $config = array(
 				'sessionTableName' => 'yiif_session',
 				'timeout'=>3600,    //default 1440 seconds
 				'autoStart'=>true,								
-				'sessionName'=>'WWWYIIFCMSCOM',	
+				'sessionName'=>'YFCMSSN',	
 		),
 		
 		//Configure Authorization Manager
