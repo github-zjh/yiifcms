@@ -20,18 +20,7 @@
         大小
         <input name="sizelimit" type="text" id="sizelimit" value="2048" />
         kb<br /></td>
-    </tr>
-    <tr>
-      <td class="tb_title">建表语句格式：</td>
-    </tr>
-    <tr >
-      <td ><input type="radio" name="sqlcompat" value="" checked="">
-        默认 &nbsp;
-        <input type="radio" name="sqlcompat" value="MYSQL40">
-        MySQL 3.23/4.0.x &nbsp;
-        <input type="radio" name="sqlcompat" value="MYSQL41">
-        MySQL 4.1.x/5.x &nbsp;</td>
-    </tr>
+    </tr>    
     <tr>
       <td class="tb_title">强制字符集：</td>
     </tr>

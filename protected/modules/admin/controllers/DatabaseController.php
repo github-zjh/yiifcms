@@ -135,21 +135,19 @@ class DatabaseController extends Backend
         if ($dosubmit) {
             $tables = $this->_db->schema->tableNames;
             $sqlcharset = $_POST['sqlcharset'] ? $_POST['sqlcharset'] : $_GET['sqlcharset'];
-            $sqlcompat = $_POST['sqlcompat'] ? $_POST['sqlcompat'] : $_GET['sqlcompat'];
             $sizelimit = $_POST['sizelimit'] ? $_POST['sizelimit'] : $_GET['sizelimit'];
             $fileid = $_POST['fileid'] ? $_POST['fileid'] : trim($_GET['fileid']);
             $random = $_POST['random'] ? $_POST['random'] : trim($_GET['random']);
             $tableid = $_POST['tableid'] ? $_POST['tableid'] : trim($_GET['tableid']);
             $startfrom = $_POST['startfrom'] ? $_POST['startfrom'] : trim($_GET['startfrom']);
             $tabletype = $_POST['tabletype'] ? $_POST['tabletype'] : trim($_GET['tabletype']);
-            self::exportDatabase($tables, $sqlcompat, $sqlcharset, $sizelimit, $fileid, $random, $tableid, $startfrom, $tabletype);
+            self::exportDatabase($tables, $sqlcharset, $sizelimit, $fileid, $random, $tableid, $startfrom, $tabletype);
         }
     }
 
     /**
      * 数据备份
      * @param  $tables
-     * @param  $sqlcompat
      * @param  $sqlcharset
      * @param  $sizelimit
      * @param  $fileid
@@ -158,7 +156,7 @@ class DatabaseController extends Backend
      * @param  $startfrom
      * @param  $tabletype
      */
-    private function exportDatabase ($tables, $sqlcompat, $sqlcharset, $sizelimit, $fileid, $random, $tableid, $startfrom, $tabletype)
+    private function exportDatabase ($tables, $sqlcharset, $sizelimit, $fileid, $random, $tableid, $startfrom, $tabletype)
     {
         $dumpcharset = $sqlcharset ? $sqlcharset : 'UTF8';
         
@@ -170,11 +168,7 @@ class DatabaseController extends Backend
             if ($sqlcharset) {
                 $this->_db->createCommand("SET NAMES '" . $sqlcharset . "';\n\n")->execute();
             }
-            if ($sqlcompat == 'MYSQL40') {
-                $this->_db->createCommand("SET SQL_MODE='MYSQL40'")->execute();
-            } elseif ($sqlcompat == 'MYSQL41') {
-                $this->_db->createCommand("SET SQL_MODE=''")->execute();
-            }
+            $this->_db->createCommand("SET SQL_MODE=''")->execute();            
         }
         
         $tabledump = '';
@@ -191,7 +185,7 @@ class DatabaseController extends Backend
                 $createtable = $this->_db->createCommand("SHOW CREATE TABLE `$tables[$i]` ")->queryAll(false);
                 $tabledump .= $createtable[0][1] . ";\n\n";
                 
-                if ($sqlcompat == 'MYSQL41' && $this->_db->serverVersion < '4.1') {
+                if ($this->_db->serverVersion < '4.1') {
                     $tabledump = preg_replace("/TYPE\=([a-zA-Z0-9]+)/", "ENGINE=\\1 DEFAULT CHARSET=" . $dumpcharset, $tabledump);
                 }
                 if ($this->_db->serverVersion > '4.1' && $sqlcharset) {
@@ -249,7 +243,7 @@ class DatabaseController extends Backend
             
             file_put_contents($bakfile, $tabledump);
             
-            $this->message('success', "备份文件 $filename 写入成功!", $this->createUrl('doExport', array ('sizelimit' => $sizelimit , 'tableid' => $tableid , 'fileid' => $fileid , 'random' => $random , 'startfrom' => $startrow , 'dosubmit' => 1 , 'sqlcompat' => $sqlcompat , 'sqlcharset' => $sqlcharset , 'tabletype' => $tabletype )), 1);
+            $this->message('success', "备份文件 $filename 写入成功!", $this->createUrl('doExport', array ('sizelimit' => $sizelimit , 'tableid' => $tableid , 'fileid' => $fileid , 'random' => $random , 'startfrom' => $startrow , 'dosubmit' => 1 ,  'sqlcharset' => $sqlcharset , 'tabletype' => $tabletype )), 1);
         
         } else {
             @file_put_contents($this->_bakupPath . 'index.html', '');
