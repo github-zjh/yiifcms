@@ -139,7 +139,7 @@ class SiteController extends FrontBase
 				
 		//最新发布版本
 		$newCMS = array('version'=>$this->_cmsVersion, 'release'=>$this->_cmsRelease);
-		if(strcmp($cms, $newCMS) < 0) {
+		if($cms != $newCMS) {
 			$html = <<<EOT
 			document.getElementById('newCMS').innerHTML = '<span style="color:#F00; font-weight:bold">发现新版本，涉及重要更新，务必升级：{$newCMS['version']} {$newCMS['release']} <a href="http://www.yiifcms.com/soft/index/cat_11/" target="_blank">下载</a></span>';
 EOT;
