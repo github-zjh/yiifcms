@@ -228,11 +228,12 @@ class InstallController extends Controller
      * 追加安装日志
      */
     private function _appendLog($message, $callBack = false){    	
-        if($callBack)
+        if($callBack) {
             $callBack = " <a href='".$this->createUrl('db')."' class='red'>返回检查</a>";
+        }
         ob_flush();
         flush();
-        echo '<script>$("#progress").append("'.$message.$callBack.'<br />");showmessage();</script>';
+        echo '<script type="text/javascript">$("#progress").append("'.$message.$callBack.'<br />");showmessage();</script>';        
     }
 
     /**
@@ -260,9 +261,7 @@ class InstallController extends Controller
         $this->titler = '安装数据表';
         $this->render('progress', $data);
         try {
-            $dbObj = new CDbConnection('mysql:host='.$dbHost.';port='.$dbPort.';',$dbUsername,$dbPassword);
-            //$dbObj = new CDbConnection('mysql:host='.$dbHost,$dbUsername,$dbPassword);
-            //$dbObj->active = true;           
+            $dbObj = new CDbConnection('mysql:host='.$dbHost.';port='.$dbPort.';',$dbUsername,$dbPassword);                  
             self::_appendLog('数据库信息检测通过');
             $configTpl = file_get_contents($this->tplPath.'/config.main.php');
             $configIni = str_replace(array('~dbHost~','~dbPort~', '~dbName~', '~dbUsername~', '~dbPassword~', '~dbPre~'), array($dbHost, $dbPort, $dbName, $dbUsername, $dbPassword, $tbPre), $configTpl);
@@ -285,7 +284,7 @@ class InstallController extends Controller
 			self::_appendLog("数据库{$dbName}创建完成");
 			
             //创建数据表
-            $tableSql = file_get_contents($this->tplPath.'db.sql');   
+            $tableSql = file_get_contents($this->tplPath.'install_db.sql');   
             $dbObj->createCommand("USE `{$dbName}`")->execute();         
             $dbObj->createCommand("SET NAMES 'utf8',character_set_client=binary,sql_mode=''")->execute();
             
@@ -297,16 +296,18 @@ class InstallController extends Controller
 			foreach((array)$matches[0] as $sk => $sql){				
 				$dbObj->createCommand($sql)->execute();
 				self::_appendLog('创建数据表: '.$matches[1][$sk].' 完成!');
-			} 
+			} 				
+			
 			//安装必要数据
-			$dataSql = str_replace('#@__', $tbPre, file_get_contents($this->tplPath.'db_data.sql'));
+			$dataSql = str_replace('#@__', $tbPre, file_get_contents($this->tplPath.'install_data.sql'));
 			$dbObj->createCommand($dataSql)->execute();
 			self::_appendLog('安装必要数据完成!');
 			
             //写入管理员信息
             $password = md5($password);
             $register_ip = $this->_request->userHostAddress;
-            $dbObj->createCommand("INSERT INTO `".$tbPre."user`(`uid`, `username`, `password`,`groupid`,`register_ip`,`email`,`addtime`) VALUES('1','".$username."','".$password."', '10', '".$register_ip."', ".$email."', ".time().");")->execute();
+            $admin_sql = "INSERT INTO `".$tbPre."user`(`uid`, `username`, `password`,`groupid`,`register_ip`,`email`,`addtime`) VALUES('1','".$username."','".$password."', '10', '".$register_ip."', '".$email."', ".time().")";
+            $dbObj->createCommand($admin_sql)->execute();
 
             //安装测试数据
             if($testData == 'Y'){

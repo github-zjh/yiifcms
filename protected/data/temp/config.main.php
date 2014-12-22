@@ -6,9 +6,9 @@
  * @copyright     Copyright (c) 2014-2015 . All rights reserved.
  *
  */
-return array(
+$config = array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',	
-	'name' =>'demo_yiifcms',
+	'name' =>'yiifcms',
 	'language'=>'zh_cn',
 	'theme'=>'default',
 	'timeZone'=>'Asia/Shanghai',
@@ -35,6 +35,7 @@ return array(
 		'admin'=>array(
 			'class' => 'application.modules.admin.AdminModule'		
 		)
+		
 	),
 
 	// application components
@@ -48,8 +49,8 @@ return array(
 		'urlManager'=>array(			
 			//'urlFormat'=>'path',
 			'showScriptName'=>false,			
-			//'urlSuffix'=>'.htm',			
-			'rules'=>array(	
+			//'urlSuffix'=>'/',			
+			'rules'=>array(
 				'sitemap\.xml' => 'site/sitemap', //网站地图
 				'sitemap\.xsl' => 'site/sitemapxsl', //网站索引
 				'page/<id:\w+>'=>'page/index', //单页	
@@ -86,7 +87,7 @@ return array(
 				'sessionTableName' => '~dbPre~session',
 				'timeout'=>3600,    //default 1440 seconds
 				'autoStart'=>true,								
-				'sessionName'=>'YIIFCMS',	
+				'sessionName'=>'YFCMSSN',	
 		),
 		
 		//Configure Authorization Manager
@@ -115,9 +116,14 @@ return array(
 			),
 		),
 	),
+
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
-	'params'=>array(
+	'params'=>array(	
 	),
-	
 );
+$cache =  require(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'cache.php');
+if (!empty($cache)) {
+	$config['components'] = CMap::mergeArray($config['components'],$cache);	
+}
+return $config;

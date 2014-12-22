@@ -74,7 +74,7 @@ EOT;
 		//菜单导航
 		$this->_public_menu = Yii::app()->cache->get('global_menus');
 		if($this->_public_menu == false){			
-			$menus = Menu::model()->findAll('status_is =:status ORDER BY sort_order, id DESC', array(':status'=>'Y'));	
+			$menus = Menu::model()->findAll('status_is =:status ORDER BY sort_order, id', array(':status'=>'Y'));	
 			$tree = new Xtree();	
 			foreach((array)$menus as $menu){
 				$data[] = $menu->attributes;

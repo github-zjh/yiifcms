@@ -11,6 +11,8 @@ return array(
 		'setting|seo' => 'SEO设置',
 		'setting|upload' => '上传设置',
 		'setting|template' => '模板设置',
+		'setting|cache' => '缓存设置',
+		'setting|access' => '访问控制设置',
 		'setting|email' => '邮件设置',
 		'setting|custom' => '自定义设置',
 		
