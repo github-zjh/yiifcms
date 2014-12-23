@@ -666,16 +666,7 @@ class CHttpRequest extends CApplicationComponent
 	 */
 	public function getUserHostAddress()
 	{
-		return isset($_SERVER['REMOTE_ADDR'])?$_SERVER['REMOTE_ADDR']:'127.0.0.1';
-	}
-
-	/**
-	 * Returns the user host name, null if it cannot be determined.
-	 * @return string user host name, null if cannot be determined
-	 */
-	public function getUserHost()
-	{
-		//return isset($_SERVER['REMOTE_HOST'])?$_SERVER['REMOTE_HOST']:null;
+		//return isset($_SERVER['REMOTE_ADDR'])?$_SERVER['REMOTE_ADDR']:'127.0.0.1';
 		static $ip = NULL;
 		if ( $ip !== NULL )
 			return $ip;
@@ -691,8 +682,17 @@ class CHttpRequest extends CApplicationComponent
 			$ip = $_SERVER['REMOTE_ADDR'];
 		}
 		// IP地址合法验证
-		$ip = ( false !== ip2long( $ip ) ) ? $ip : '0.0.0.0';
+		$ip = ( false !== ip2long( $ip ) ) ? $ip : '127.0.0.1';
 		return $ip;
+	}
+
+	/**
+	 * Returns the user host name, null if it cannot be determined.
+	 * @return string user host name, null if cannot be determined
+	 */
+	public function getUserHost()
+	{
+		return isset($_SERVER['REMOTE_HOST'])?$_SERVER['REMOTE_HOST']:null;		
 	}
 
 	/**
