@@ -267,6 +267,7 @@ class OAuthController extends FrontBase
 				$user_model->status = 1;
 				$user_model->groupid = 1;
 				$user_model->logins = 0;
+				$user_model->register_ip = $this->_request->userHostAddress;  //注册ip
 				$user_model->last_login_ip = $this->_request->userHostAddress;
 				$user_model->username_editable = 'Y';  //允许修改用户名
 				if($user_model->save()){
