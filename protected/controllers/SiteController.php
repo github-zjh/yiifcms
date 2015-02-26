@@ -41,16 +41,16 @@ class SiteController extends FrontBase
 		$index_bottom_banner = Ad::model()->getAdOne(5);
 		
 		//最新资讯
-		$news_new = Yii::app()->cache->get('news_new');
+		Yii::app()->cache && $news_new = Yii::app()->cache->get('news_new');
 		if($news_new == false){			
 			$news_new = Post::model()->getList(array('limit'=>20));
-			Yii::app()->cache->set('news_new', $news_new);
+			Yii::app()->cache && Yii::app()->cache->set('news_new', $news_new);
 		}
 		//热门资讯		
-		$news_hot = Yii::app()->cache->get('news_host');
+		Yii::app()->cache && $news_hot = Yii::app()->cache->get('news_host');
 		if($news_hot == false){
 			$news_hot = Post::model()->getList(array('order'=>'t.view_count DESC, t.id DESC', 'limit'=>20));
-			Yii::app()->cache->set('news_hot', $news_hot);
+			Yii::app()->cache && Yii::app()->cache->set('news_hot', $news_hot);
 		}
 		
 		//最新图集

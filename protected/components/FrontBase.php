@@ -2,9 +2,9 @@
 /**
  * 
  * 前端控制基础类
- * @author zhaojinhan <326196998@qq.com>
+ * @author Sim <326196998@qq.com>
  * @copyright Copyright (c) 2014-2015 Personal. All rights reserved.
- * @link http://yiicms.icode100.com
+ * @link http://www.yiifcms.com
  * @version v1.0.0
  * 
  */
@@ -72,7 +72,7 @@ EOT;
 		$this->_stylePath = Yii::app()->theme->baseUrl.'/styles';		
 		
 		//菜单导航
-		$this->_public_menu = Yii::app()->cache->get('global_menus');
+		Yii::app()->cache && $this->_public_menu = Yii::app()->cache->get('global_menus');
 		if($this->_public_menu == false){			
 			$menus = Menu::model()->findAll('status_is =:status ORDER BY sort_order, id', array(':status'=>'Y'));	
 			$tree = new Xtree();	
@@ -81,7 +81,7 @@ EOT;
 			}
 			$tree->setTree($data, 'id', 'parent_id', array('menu_name','menu_link','unique','target'));
 			$this->_public_menu = $tree->getArrayList(0);			
-			Yii::app()->cache->set('global_menus', $this->_public_menu , 3600*24*7);
+			Yii::app()->cache && Yii::app()->cache->set('global_menus', $this->_public_menu , 3600*24*7);
 		}		
 		$this->_cur_url = Yii::app()->request->getUrl();
 		//登录状态

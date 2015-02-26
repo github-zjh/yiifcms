@@ -87,6 +87,8 @@ class SettingController extends Backend
 		if(isset($_POST) && $_POST['data']){
 			$post = $_POST['data'];					
 			
+            //缓存状态
+			$cache_status = $post['cache_status'];
 			//缓存类型
 			$cache_type = $post['cache_type'];			
 			
@@ -160,7 +162,11 @@ class SettingController extends Backend
 					break;					
 					
 			}
-			
+			//保存缓存状态
+			$data_cache_status = Setting::model()->find('scope =:scope AND variable =:variable', array(':scope'=>'cache', ':variable'=>'cache_status'));
+			$data_cache_status->value = $cache_status;
+			$data_cache_status->save();
+            
 			//保存缓存类型
 			$data_cache_type = Setting::model()->find('scope =:scope AND variable =:variable', array(':scope'=>'cache', ':variable'=>'cache_type'));
 			$data_cache_type->value = $cache_type;

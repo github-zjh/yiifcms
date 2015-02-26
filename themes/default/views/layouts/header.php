@@ -6,6 +6,9 @@
 	<meta name="language" content="<?php echo $this->_yii->language;?>" />
 	<meta name="keywords" content="<?php echo $this->_seoKeywords;?>" />
 	<meta name="description" content="<?php echo $this->_seoDescription;?>" />
+    <meta name="author" content="Sim <326196998@qq.com>" />
+    <meta name="cmsVersion" content="<?php echo $this->_cmsVersion;?>" />
+    <meta name="cmsRelease" content="<?php echo $this->_cmsRelease;?>" />
 	<meta property="qc:admins" content="3621316677611163536375" />
 	<meta property="wb:webmaster" content="cca24d5480c4043c" />	
 	<!-- 手持设备样式 -->

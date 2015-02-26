@@ -28,42 +28,6 @@ function keywordGet(titleId, contentId, keywordIdSet){
 	},'json')
 }
 
-function uploadifyAction(fileField,frameId) {
-	
-    $.Zebra_Dialog('', {
-        source: {
-            'iframe': {           
-            	'src': '<?php echo $this->createUrl("uploadify/basic")?>',     
-                'height': 300,
-                'name': 'yii_upload',
-                'id': 'yii_upload_id'
-            }
-        },
-        width: 600,
-        'buttons': [
-			{
-				caption: '确认',
-				callback: function() {
-					var htmls = $(window.frames['yii_upload'].document).find("#fileListWarp").html();
-					if(htmls){
-						$("#" + fileField).append(htmls);
-					}else{
-						 alert('没有文件被选择');
-					}
-				}
-			},
-			{
-				caption: '取消',
-				callback: function() {
-					return;
-				}
-			}
-		],
-        'type': false,
-        'title': '附件上传',
-        'modal': false
-    });
-}
 //删除文件
 function uploadifyRemove(fileId,attrName, otherid){	
 	

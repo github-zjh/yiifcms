@@ -113,14 +113,7 @@
 	<tr>
 		<td>
 			<div>
-				<p>
-					<a href="javascript:uploadifyAction('fileListWarp')">
-						<img
-							src="<?php echo $this->module->assetsUrl;?>/images/create.gif"
-							align="absmiddle">
-						添加图片
-					</a>
-				</p>
+				<iframe id="uploadIframe" frameBorder="0" scrolling="no" style="height:80px;" src="<?php echo $this->createUrl("uploadify/basic")?>"></iframe>                 
 				<ul id="fileListWarp" class="clear">
           <?php foreach((array)$imageList as $key=>$row):?>
           <?php if($row):?>
@@ -131,7 +124,7 @@
 								width="40" height="40" align="absmiddle">
 						</a>
 						&nbsp;
-						<br>
+						<br />
 						<label>描述：</label>
 						<input name="imageList[desc][]" type="text"
 							value="<?php echo $row['desc']?>" />
