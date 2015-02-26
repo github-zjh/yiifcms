@@ -150,53 +150,55 @@
 $(function(){
 	$("#xform").validationEngine();
 	//上传
-	 $('#uploadFile').uploadify({		 	
-		    'overrideEvents':['onDialogClose','onSelectError','onUploadSuccess','onUploadError','onFallback'],  //覆盖原来的触发函数  	
-	        'buttonText': '选择文件..',
-	        'fileObjName': 'file',
-	        'method': 'post',
-	        'multi': true,	        	        
-			'queueID': 'fileQueue',	
-	        'fileSizeLimit' : '50MB',
-	        'fileTypeExts': '*.pdf;*.doc;*.docx;*.chm;*.xls;*.ppt;*.exe;*.zip;*.tar;*.gz;*.msi;*.7z;',
-	        'buttonImage': '<?php echo $this->_static_public?>/js/uploadify/select.png',
-	        'formData': {
-	            'sessionId'   : '<?php echo Yii::app()->session->sessionID; ?>',
-				'timestamp'   : '<?php echo time();?>',
-				'token'       : '<?php echo md5('unique_salt'.time()); ?>'
-	        },
-	        'swf': '<?php echo $this->_static_public?>/js/uploadify/uploadify.swf',
-	        'uploader': '<?php echo $this->createUrl('uploadify/file')?>',	                
-	       	'onSelectError':function(file, errorCode, errorMsg){
-		       	var msg = '';
-		     	switch(errorCode){		     		
-		     		case -110:
-		     			msg += "上传文件大小超过限制的"+$("#uploadFile").uploadify('settings','fileSizeLimit');
-		     			break;
-		     		case -130:
-		     			msg += "只允许上传："+$("#uploadFile").uploadify('settings','fileTypeExts')+" 格式的文件";
-		     		default:
-		     			msg += "上传错误："+errorCode+" "+errorMsg;
-		     			break;
-		     	}
-		     	alert(msg);
-		     },			        
-	        'onUploadSuccess': function(file, data, response) { 	
-	            var json = $.parseJSON(data);   
-	            if (json.state == 'success') {		            
-	                var imgHtml = '<li id="file_' + json.fileId + '">';
-	                imgHtml += '<a href="javascript:;">' + json.realname;
-	                imgHtml += '<input type="hidden" name="fileid[]" value="'+json.fileId+'"/></a>&nbsp;<br />';	                                
-	                imgHtml += '<a href="javascript:uploadifyRemove(&quot;' + json.fileId + '&quot;,&quot;file_&quot;,&quot;Soft_fileid&quot;)">删除</a>';
-	                $("#fileList").append(imgHtml);
-	            } else {
-	                alert(json.message);
-	            }
-	        },
-	        'onFallback' : function() {
-	            alert('您未安装FLASH控件，无法上传！请先安装FLASH控件后再试。');
-	        }
-	    });
+     setTimeout(function(){
+    	 $('#uploadFile').uploadify({		 	
+    		    'overrideEvents':['onDialogClose','onSelectError','onUploadSuccess','onUploadError','onFallback'],  //覆盖原来的触发函数  	
+    	        'buttonText': '选择文件..',
+    	        'fileObjName': 'file',
+    	        'method': 'post',
+    	        'multi': true,	        	        
+    			'queueID': 'fileQueue',	
+    	        'fileSizeLimit' : '50MB',
+    	        'fileTypeExts': '*.pdf;*.doc;*.docx;*.chm;*.xls;*.ppt;*.exe;*.zip;*.tar;*.gz;*.msi;*.7z;',
+    	        'buttonImage': '<?php echo $this->_static_public?>/js/uploadify/select.png',
+    	        'formData': {
+    	            'sessionId'   : '<?php echo Yii::app()->session->sessionID; ?>',
+    				'timestamp'   : '<?php echo time();?>',
+    				'token'       : '<?php echo md5('unique_salt'.time()); ?>'
+    	        },
+    	        'swf': '<?php echo $this->_static_public?>/js/uploadify/uploadify.swf',
+    	        'uploader': '<?php echo $this->createUrl('uploadify/file')?>',	                
+    	       	'onSelectError':function(file, errorCode, errorMsg){
+    		       	var msg = '';
+    		     	switch(errorCode){		     		
+    		     		case -110:
+    		     			msg += "上传文件大小超过限制的"+$("#uploadFile").uploadify('settings','fileSizeLimit');
+    		     			break;
+    		     		case -130:
+    		     			msg += "只允许上传："+$("#uploadFile").uploadify('settings','fileTypeExts')+" 格式的文件";
+    		     		default:
+    		     			msg += "上传错误："+errorCode+" "+errorMsg;
+    		     			break;
+    		     	}
+    		     	alert(msg);
+    		     },			        
+    	        'onUploadSuccess': function(file, data, response) { 	
+    	            var json = $.parseJSON(data);   
+    	            if (json.state == 'success') {		            
+    	                var imgHtml = '<li id="file_' + json.fileId + '">';
+    	                imgHtml += '<a href="javascript:;">' + json.realname;
+    	                imgHtml += '<input type="hidden" name="fileid[]" value="'+json.fileId+'"/></a>&nbsp;<br />';	                                
+    	                imgHtml += '<a href="javascript:uploadifyRemove(&quot;' + json.fileId + '&quot;,&quot;file_&quot;,&quot;Soft_fileid&quot;)">删除</a>';
+    	                $("#fileList").append(imgHtml);
+    	            } else {
+    	                alert(json.message);
+    	            }
+    	        },
+    	        'onFallback' : function() {
+    	            alert('您未安装FLASH控件，无法上传！请先安装FLASH控件后再试。');
+    	        }
+    	    });
+        },10);
 	 	
 });
 
