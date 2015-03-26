@@ -174,7 +174,7 @@ class KindEditor extends CInputWidget{
 		$clientScript->registerCssFile( $assets.'/themes/default/default.css' );		
 		$clientScript->registerScriptFile( $assets.'/kindeditor-min.js', CClientScript::POS_END );			
 		$clientScript->registerScriptFile( $assets.'/lang/'.$this->language.'.js', CClientScript::POS_END );
-		$clientScript->registerScript( 'content', $this->makeOptions($assets), CClientScript::POS_END );
+		$clientScript->registerScript('textarea_editor_'.$this->id, $this->makeOptions($assets), CClientScript::POS_END );
 	}
 }
 ?>
