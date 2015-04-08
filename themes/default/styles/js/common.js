@@ -4,7 +4,7 @@
 $(function(){		
 		//导航菜单
 		$("#menu li a").mouseover(function(){
-			$(this).next().next("div.child_box").show();
+			$(this).next("div.child_box").show();
 		});
 		$("#menu li").mouseleave(function(){
 			$(this).children("div.child_box").hide();
