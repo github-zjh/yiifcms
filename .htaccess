@@ -36,6 +36,6 @@
 	ExpiresByType image/png "access plus 7 days"
 	
 	# cache CSS files for 24 hours
-	ExpiresByType text/css "access plus 24 hours"
+	#ExpiresByType text/css "access plus 24 hours"
 </IfModule> 
  

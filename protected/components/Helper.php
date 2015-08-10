@@ -270,9 +270,13 @@ class Helper
 		return $writeable;
 	}
 	/**
-	 * 格式化单位
-	 */
-	static public function byteFormat( $size, $dec = 2 ) {
+     * 格式化单位
+     * 
+     * @param int $size
+     * @param int $dec
+     * @return numberic
+     */
+	public static function byteFormat( $size, $dec = 2 ) {
 		$a = array ( "B" , "KB" , "MB" , "GB" , "TB" , "PB" );
 		$pos = 0;
 		while ( $size >= 1024 ) {
@@ -295,12 +299,15 @@ class Helper
 	
 		if ( is_array( $param ) ) {
 			$true = in_array( $string, $param );
-		}elseif ( $string == $param ) {
+		}else if ( $string == $param ) {
 			$true = true;
-		}
-		if ( $true )
-			$return = $type == 'select' ? 'selected="selected"' : 'checked="checked"';
-	
+		} else {
+            $true = false;
+        }
+        $return = '';
+		if ( $true ) {
+            $return = $type == 'select' ? 'selected="selected"' : 'checked="checked"';        
+        }	
 		echo $return;
 	}
 	
@@ -484,6 +491,60 @@ class Helper
 		}
 	
 	}
-	
-        
+	/**
+	 * 友好显示var_dump
+	 * @param unknown $var
+	 * @param string $echo
+	 * @param string $label
+	 * @param string $strict
+	 * @return NULL|string
+	 */
+	public static function vdump( $var, $echo = true, $label = null, $strict = true ) {
+		$label = ( $label === null ) ? '' : rtrim( $label ) . ' ';
+		if ( ! $strict ) {
+			if ( ini_get( 'html_errors' ) ) {
+				$output = print_r( $var, true );
+				$output = "<pre>" . $label . htmlspecialchars( $output, ENT_QUOTES ) . "</pre>";
+			} else {
+				$output = $label . print_r( $var, true );
+			}
+		} else {
+			ob_start();
+			var_dump( $var );
+			$output = ob_get_clean();
+			if ( ! extension_loaded( 'xdebug' ) ) {
+				$output = preg_replace( "/\]\=\>\n(\s+)/m", "] => ", $output );
+				$output = '<pre>' . $label . htmlspecialchars( $output, ENT_QUOTES ) . '</pre>';
+			}
+		}
+		if ( $echo ) {
+			header('content-type:text/html; charset=utf-8');
+			echo $output;
+			return null;
+		} else {
+            return $output;        
+        }
+	}
+    /**
+     * 递归删除目录
+     * 
+     * @param string $dir
+     */
+    public static function rrmdir($dir = '') {
+        if (is_dir($dir)) {
+            $objects = scandir($dir);
+            foreach ($objects as $object) {
+                if ($object != "." && $object != "..") {
+                    if (filetype($dir . DS . $object) == "dir") {
+                        rrmdir($dir . DS . $object);
+                    } else {
+                        unlink($dir . DS . $object);
+                    }
+                }
+            }
+            reset($objects);
+            rmdir($dir);
+        }
+    }
+
 }

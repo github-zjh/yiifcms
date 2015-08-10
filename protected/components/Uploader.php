@@ -1,55 +1,58 @@
 <?php
 /**
  * 文件上传
-*
-* @author        zhao jihan <326196998@qq.com>
-* @copyright     Copyright (c) 2014-2015 . All rights reserved.
-* 
-*/
+ *
+ * @author    Sim Zhao <326196998@qq.com>
+ * @copyright 2015 All rights reserved.
+ * 
+ */
+defined('TEMP_PATH', UPLOAD_PATH . DS . 'temp');
 
 class Uploader{
-	public $_max_upload_filesize = '';
-	public $_image_path = 'uploads/images/';        			//默认图片上传路径
-	public $_thumb_path = 'uploads/thumbs/';        			//默认缩略图上传路径
-	public $_file_path = 'uploads/files/';          			//默认文件上传路径
-	public $_watermark_status = 'close';     			        //默认不开启水印 
-	public $_watermark_pic = 'public/watermark.png';     		//默认水印图片完整路径
-	public $_watermark_alpha = '';     							//默认水印透明度
-	public $_real_name = '';									//原始文件名
-	public $_tmp_name = '';										//临时文件
-	public $_file_name = '';									//生成的文件完整路径
-	public $_thumb_name = '';                       			//生成缩略图的完整路径
-	public $_thumb_width = 300;									//生成缩略图宽度
-	public $_thumb_height = 300;								//生成缩略图高度
-	public $_file_ext = '';										//文件扩展名
-	public $_allow_exts = 'gif,png,jpg,jpeg';					//允许上传的类型
-	public $_file_size = ''; 									//文件大小
-	public $_mime_type = '';									//MIME类型
-	public $_is_image = false;									//是不是图片
-	public $_rand_name = true;								    //是否生成随机文件名
-	public $_thumb_prefix = 'small_';			    			//缩略图前缀
-	public $_error = '';		
+    
+    public $_watermark_pic = 'public/watermark.png';     		//默认水印图片完整路径    
+	public $_error = '';
 	
-	public function __construct(){		
-		
-		$settings = Setting::model()->findAll();		
-		foreach ($settings as $key => $row) {
-			$setting[$row['variable']] = $row['value'];
-		}				
-		//获取上传限制		
-		$size = $setting['upload_max_size'];
-		$this->_max_upload_filesize = $size*1024;
-				
-		//允许的类型
-		$this->_allow_exts = $setting['upload_allow_ext']?$setting['upload_allow_ext']:$this->_allow_exts;
-		//是否开启水印
-		$this->_watermark_status = $setting['upload_water_status'];
-		//水印图片
-		$this->_watermark_pic = $setting['upload_water_pic'];
-		//水印透明度
-		$this->_watermark_alpha = $setting['upload_water_alpha'];
-		
-	}	
+    public $config = array(
+        //文章
+        'post' => array(            
+            'save_path'           => 'post',                //保存路径
+            'allow_ext'           => 'jpg,jpeg,png,gif',    //允许类型 *代表所有
+            'max_upload_filesize' => 2097152,               //允许最大上传大小2M
+            'make_thumb'          => true,                  //是否生成缩略图
+            'make_watermark'      => false,                 //是否添加水印
+            'rand_name'           => true,                  //是否随机生成文件名
+            'thumb_width'         => 300,                   //缩略图宽度
+            'thumb_height'        => 300                    //缩略图高度
+        ),
+        //图集
+        'album' => array(            
+            'save_path'           => 'album',               //保存路径
+            'allow_ext'           => 'jpg,jpeg,png,gif',    //允许类型
+            'max_upload_filesize' => 2097152,               //允许最大上传大小2M
+            'make_thumb'          => true,                  //是否生成缩略图
+            'thumb_width'         => 300,                   //缩略图宽度
+            'thumb_height'        => 300                    //缩略图高度
+        ),
+        //软件
+        'soft' => array(            
+            'save_path'           => 'album',               //保存路径
+            'allow_ext'           => '*',                   //允许类型  *代表所有
+            'max_upload_filesize' => 1258291200,            //允许最大上传大小1.2G            
+        ),
+        //商品
+        'goods' => array(            
+            'save_path'           => 'goods',               //保存路径
+            'allow_ext'           => 'jpg,jpeg,png',        //允许类型  *代表所有
+            'max_upload_filesize' => 2097152,               //允许最大上传大小2M            
+        ),
+        //视频
+        'video' => array(            
+            'save_path'           => 'goods',               //保存路径
+            'allow_ext'           => 'jpg,jpeg,png',        //允许类型  *代表所有
+            'max_upload_filesize' => 1258291200,            //允许最大上传大小1.2G            
+        ),
+    );	
 	
 	/**
 	 * 上传文件
@@ -88,8 +91,7 @@ class Uploader{
 				//添加水印
 				$this->waterMark($this->_tmp_name, $save_path);
 			}else{						
-				if(Helper::getOS()=='Linux'){
-					
+				if(Helper::getOS()=='Linux'){					
 					$mv = move_uploaded_file($this->_tmp_name, $save_path);
 				}else{
 					//解决windows下中文文件名乱码的问题					
@@ -314,11 +316,10 @@ class Uploader{
 	 * 取得图像信息
 	 * @static
 	 * @access public
-	 * @param string $image 图像文件名
+	 * @param string $img 图像文件名
 	 * @return mixed
-	 */
-	
-	static function getImageInfo($img) {
+	 */	
+	public static function getImageInfo($img) {
 		$imageInfo = getimagesize($img);
 		if ($imageInfo !== false) {
 			$imageType = strtolower(substr(image_type_to_extension($imageInfo[2]), 1));
@@ -335,22 +336,70 @@ class Uploader{
 			return false;
 		}
 	}
-	
+    
 	/**
-	 * 格式化单位
-	 * @param unknown $size
-	 * @param number $dec
-	 * @return string
-	 */
-	static public function byteFormat( $size, $dec = 2 ) {
-		$a = array ( "B" , "KB" , "MB" , "GB" , "TB" , "PB" );
-		$pos = 0;
-		while ( $size >= 1024 ) {
-			$size /= 1024;
-			$pos ++;
-		}
-		return round( $size, $dec ) . " " . $a[$pos];
-	}
-	
-		
+     *
+     * 合并片段文件到目标文件 
+     * 
+     * @param string $temp_dir  片段文件 存放目录
+     * @param string $fileName  保存的文件名
+     * @param string $chunkSize 每片段文件大小(单位:字节)
+     * @param string $totalSize 总共文件大小(单位字节)
+     */
+    public function createFileFromChunks($temp_dir, $fileName, $chunkSize, $totalSize) {
+        
+        //检查片段文件数
+        $total_files = 0;
+        foreach (scandir($temp_dir) as $file) {
+            if (stripos($file, $fileName) !== false) {
+                $total_files++;
+            }
+        }
+
+        //检查片段文件是否上传完整
+        //最后一个上传的片段文件大小应介于1-2个片段大小
+        //最终生成一个完整的文件
+        if ($total_files * $chunkSize >= ($totalSize - $chunkSize + 1)) {            
+            if (($fp = fopen(TEMP_PATH . $fileName, 'w')) !== false) {
+                for ($i = 1; $i <= $total_files; $i++) {
+                    fwrite($fp, file_get_contents($temp_dir . $fileName . '.part' . $i));                    
+                    $this->_log('write chunks' . $i);
+                }
+                fclose($fp);
+            } else {
+                $this->_log('cannot create the destination file');
+                return false;
+            }
+            //删除临时存放目录
+            Helper::rrmdir($temp_dir);           
+        }
+    }
+    
+    /**
+     * 检查片段文件是否已上传
+     * 
+     */
+    public function checkExistChunks()
+    {
+        $id           = Yii::app()->request->getParam('resumableIdentifier');
+        $file_name    = Yii::app()->request->getParam('resumableFilename');
+        $chunk_number = Yii::app()->request->getParam('resumableChunkNumber');
+        $temp_dir = TEMP_PATH . $id;
+        $chunk_file = $temp_dir .DS. $file_name.'.part'.$chunk_number;       
+        if (file_exists($chunk_file)) {
+            header("HTTP/1.0 200 Ok");
+        } else {
+            header("HTTP/1.0 404 Not Found");
+        }        
+    }
+    
+    /**
+     * 记录普通日志信息
+     * 
+     * @param string $msg
+     */
+    private function _log($msg = '')
+    {
+        Yii::log($msg,'info', 'upload');
+    }		
 }

@@ -50,15 +50,15 @@ class Controller extends CController
 	
 	public function init ()
 	{						
-		$this->_yii = Yii::app();
-		$this->_request = Yii::app()->request;				
-		$this->_baseUrl = Yii::app()->baseUrl;
-		$this->_basePath = Yii::app()->basePath;		
-		$this->_webRoot = WWWPATH;
-		$this->_extPath = $this->_webRoot.'/protected/extensions';
-		$this->_widgetPath = $this->_webRoot.'/protected/widget';
-		$this->_fonts = $this->_webRoot.'/public';
-		$this->_data = $this->_webRoot.'/protected/data/';		
+		$this->_yii           = Yii::app();
+		$this->_request       = Yii::app()->request;				
+		$this->_baseUrl       = Yii::app()->baseUrl;
+		$this->_basePath      = Yii::app()->basePath;		
+		$this->_webRoot       = ROOT_PATH;
+		$this->_extPath       = $this->_webRoot.'/protected/extensions';
+		$this->_widgetPath    = $this->_webRoot.'/protected/widget';
+		$this->_fonts         = $this->_webRoot.'/public';
+		$this->_data          = $this->_webRoot.'/protected/data/';		
 		$this->_static_public = $this->_baseUrl.'/public';
 
 		//检测系统是否已经安装
@@ -90,49 +90,15 @@ class Controller extends CController
 	public function rediretParentUrl($url=''){
 		exit ("<script>parent.window.location.href='".$url."';</script>");
 	}
-	
-	/**
-	 * 友好显示var_dump
-	 * @param unknown $var
-	 * @param string $echo
-	 * @param string $label
-	 * @param string $strict
-	 * @return NULL|string
-	 */
-	static public function vdump( $var, $echo = true, $label = null, $strict = true ) {
-		$label = ( $label === null ) ? '' : rtrim( $label ) . ' ';
-		if ( ! $strict ) {
-			if ( ini_get( 'html_errors' ) ) {
-				$output = print_r( $var, true );
-				$output = "<pre>" . $label . htmlspecialchars( $output, ENT_QUOTES ) . "</pre>";
-			} else {
-				$output = $label . print_r( $var, true );
-			}
-		} else {
-			ob_start();
-			var_dump( $var );
-			$output = ob_get_clean();
-			if ( ! extension_loaded( 'xdebug' ) ) {
-				$output = preg_replace( "/\]\=\>\n(\s+)/m", "] => ", $output );
-				$output = '<pre>' . $label . htmlspecialchars( $output, ENT_QUOTES ) . '</pre>';
-			}
-		}
-		if ( $echo ) {
-			header('content-type:text/html; charset=utf-8');
-			echo $output;
-			return null;
-		} else
-			return $output;
-	}
-	
-	
+		
 	/**
 	 * [格式化图片列表数据]
 	 *
 	 * @return [type] [description]
 	 */
-	public static function imageListSerialize( $data ) {
-	
+	public static function imageListSerialize( $data ) 
+    {
+        $var = array();
 		foreach ( (array)$data['file'] as $key => $row ) {
 			if ( $row ) {
 				$var[$key]['fileId'] = $data['fileId'][$key];
@@ -140,11 +106,9 @@ class Controller extends CController
 				$var[$key]['thumb'] = $data['thumb'][$key];
 				$var[$key]['desc'] = $data['desc'][$key];
 				$var[$key]['url'] = $data['url'][$key];
-			}
-	
+			}	
 		}
-		return array( 'data'=>$var, 'dataSerialize'=>empty( $var )? '': serialize( $var ) );
-	
+		return array( 'data'=>$var, 'dataSerialize'=>empty( $var )? '': serialize( $var ) );	
 	}
 	/**
 	 * 格式化输出样式
@@ -169,6 +133,7 @@ class Controller extends CController
 	 * @return unknown
 	 */
 	static public function buildCondition( array $getArray, array $keys = array() ) {
+        $arr = array();
 		if ( $getArray ) {
 			foreach ( $getArray as $key => $value ) {
 				if ( in_array( $key, $keys ) && $value ) {
@@ -291,4 +256,21 @@ html,body,div,p,a,h3{margin:0;padding:0;}
 	    	exit( $header . $body2 . $footer );
 	    }
 	}
+    
+    /**
+     * 简化 actions
+     * 
+     * @param array $actions
+     * @param string $prefix
+     * @return array
+     */
+    public function actionMapping($actions = array(), $prefix = '')
+    {                 
+        if(is_array($actions) && $actions) {
+            foreach($actions as $k => $v) {
+                $actions[$k] = $prefix.'.'.$v.'Action';
+            }
+        }        
+        return $actions;
+    }
 }

@@ -109,6 +109,12 @@ class Post extends CActiveRecord
 	public static function getList($params = array(), &$pages = null){
 		$data = array();
 		$pages = array();
+        
+        $params['condition'] = isset($params['condition'])?$params['condition']:'';
+        $params['order']     = isset($params['order'])?$params['order']:'';
+        $params['with']      = isset($params['with'])?$params['with']:'';
+        $params['limit']     = isset($params['limit'])?$params['limit']:'';
+        $params['page']      = isset($params['page'])?$params['page']:'';
 		
 		//组合条件
 		$criteria = new CDbCriteria();

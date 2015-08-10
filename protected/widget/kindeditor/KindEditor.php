@@ -74,12 +74,12 @@ class KindEditor extends CInputWidget{
 				'height'=>'400px',
 				'uploadJson'=>Yii::app()->createUrl('/admin/uploadify/basicexecute', array('from'=>'editor')),
 				'fileManagerJson'=>Yii::app()->createUrl('/admin/kindeditor/'),		
-				'allowFileManager'=>true,
-				'extraFileUploadParams'=>array('sessionId'=>Yii::app()->session->sessionID)
-		 );		
-		foreach ( $defaultArr as $key=>$row ) {
-			!isset($dot) && $dot = '';
-			if ( is_array( $items ) && !empty($items)) {
+				'allowFileManager'=>true
+		 );
+        $string = '';
+        $dot  = '';
+		foreach ( $defaultArr as $key => $row ) {            
+			if ( is_array( $items )) {
 				$itemKeys = array_keys( $items );
 				if ( !in_array( $key, $itemKeys ) ) {
 					if ( count( $itemKeys )>0 )
@@ -88,7 +88,7 @@ class KindEditor extends CInputWidget{
 						$string .= $dot.$key.":'{$row}'";
 				}
 			}else {
-				$string .= $dot.$key.":'{$row}'";
+				$string .= $dot.$key.":'$row'";
 			}		
 			$dot = ',';
 		}
@@ -104,6 +104,7 @@ class KindEditor extends CInputWidget{
 	protected function combineParams( $items ) {
 
 		$script = '';
+        $dot = '';
 		foreach ( (array)$items as $key => $item ) {
 			if ( is_array( $item ) ) {
 				if ( self::_checkType( $item ) == 'arr' ) {
@@ -126,10 +127,11 @@ class KindEditor extends CInputWidget{
 	 */
 	protected function _checkType( $var ) {
 
-		if ( gettype( $var ) == 'array' )
+		if ( gettype( $var ) == 'array' ) {
 			return 'arr';
-		else
-			return 'obj';
+        } else {
+            return 'obj';        
+        }
 	}
 
 	/**

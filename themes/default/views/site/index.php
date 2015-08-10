@@ -56,9 +56,11 @@
 		
 		<div class="panel_container">
 			<ul id="tab_post1" class="tab_post clear">
-				<?php foreach((array)$news_new as $nn):?>
+                <?php if($news_new):?>
+				<?php foreach($news_new as $nn):?>
 				<li><a href="<?php echo $this->createUrl('post/view', array('id'=>$nn->id));?>" title="<?php echo $nn->title;?>"><?php echo Helper::truncate_utf8_string($nn->title, 20);?></a></li>
-				<?php endforeach;?>				
+				<?php endforeach;?>
+                <?php endif;?>
 			</ul>
 			
 			<ul id="tab_post2" class="tab_post clear">

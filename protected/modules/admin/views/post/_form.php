@@ -113,7 +113,7 @@
 	<tr>
 		<td>
 			<div>
-				<iframe id="uploadIframe" frameBorder="0" scrolling="no" style="height:80px;" src="<?php echo $this->createUrl("uploadify/basic")?>"></iframe>                 
+				<?php $this->widget('application.widget.resumable.Resumable', array('options'=>array('upload_url'=>'baidu.com')));?>  
 				<ul id="fileListWarp" class="clear">
           <?php foreach((array)$imageList as $key=>$row):?>
           <?php if($row):?>
@@ -203,4 +203,5 @@ $(function(){
 	$("#xform").validationEngine();	
 });
 </script>
-<?php $form=$this->endWidget(); ?>
+<?php 
+    $this->endWidget();

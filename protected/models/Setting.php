@@ -103,7 +103,7 @@ class Setting extends CActiveRecord
 	 */
 	public static function loadData ($conditions='scope=:scope', $params=array('scope'=>'base'))
 	{
-		if($conditions){
+		if($conditions && $params){
 			$model = self::model()->findAll($conditions,$params);
 		}else{
 			$model = self::model()->findAll();

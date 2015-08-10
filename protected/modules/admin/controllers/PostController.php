@@ -10,7 +10,7 @@ class PostController extends Backend
 {
 	protected $_catalog;
 	protected $_special;
-	protected $_type;
+	public $_type;
 	
 	public function init(){
 		parent::init();
@@ -35,35 +35,17 @@ class PostController extends Backend
 		}
 		return true;
 	}
-	
-    /**
-     * 首页
-     *
-     */
-	
-    public function actionIndex() {
-        $model = new Post();
-        $criteria = new CDbCriteria();
-        $condition = "type = ".$this->_type;
-        $title = trim( $this->_request->getParam( 'title' ) );        
-        $catalogId = intval( $this->_request->getParam( 'catalogId' ) );
-        $title && $condition .= ' AND title LIKE \'%' . $title . '%\'';        
-        $catalogId && $condition .= ' AND catalog_id= ' . $catalogId;
-        $criteria->condition = $condition;
-        $criteria->order = 't.id DESC';
-        $criteria->with = array ( 'catalog' );
-        $count = $model->count( $criteria );
-        $pages = new CPagination( $count );
-        $pages->pageSize = 10;
-        //根据title,catelogId,titleAlias查询
-        $pageParams = $this->buildCondition( $_GET, array ( 'title' , 'catalogId' ) );
-        $pages->params = is_array( $pageParams ) ? $pageParams : array ();
-        $criteria->limit = $pages->pageSize;
-        $criteria->offset = $pages->currentPage * $pages->pageSize;
-        $result = $model->findAll( $criteria );    
-        //推荐位
-        $recom_list = RecommendPosition::model()->findAll('type=:type', array(':type'=>$this->_type), array('order'=>'id'));
-        $this->render( 'index', array ( 'datalist' => $result , 'pagebar' => $pages ,'recom_list'=>$recom_list) );
+    
+    public function actions()
+    {
+        $extra_actions = array();
+        $actions = $this->actionMapping(array(
+            'index'  => 'Index',    //列表页
+            'create' => 'Create',   //添加文章
+            'update' => 'Update',   //编辑文章
+            'batch'  => 'Batch',    //批量操作
+        ), 'application.modules.admin.controllers.post');
+        return array_merge($actions, $extra_actions);
     }
 
     /**
@@ -143,87 +125,6 @@ class PostController extends Backend
     	$this->render('update',array(
     			'model'=>$model,
     	));       
-    }   
-
-    /**
-     * 更新
-     *
-     * @param  $id
-     */
-    public function actionUpdate( $id ) {
-    	$model = Post::model()->findByPk($id);    	
-    	if(isset($_POST['Post']))
-    	{
-    		$model->attributes=$_POST['Post'];    		
-    		//标题样式
-    		$title_style = $this->_request->getPost('style');   
-    		if($title_style['bold'] != 'Y'){
-    			unset($title_style['bold']);
-    		}
-    		if($title_style['underline'] != 'Y'){
-    			unset($title_style['underline']);
-    		}
-    		if(!$title_style['color']){
-    			unset($title_style['color']);
-    		}
-    		if($title_style){    			
-    			$model->title_style = serialize($title_style);
-    		}else{
-    			$model->title_style = '';
-    		}
-    		
-    		
-    		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
-	    		//封面图片
-	    		$upload = new Uploader;
-	    		$upload->_thumb_width = 100;
-	    		$upload->_thumb_height = 100;    		
-	    		$upload->uploadFile($_FILES['attach'], true);
-	    		if($upload->_error){
-	    			$upload->deleteFile($upload->_file_name);
-	    			$upload->deleteFile($upload->_thumb_name);
-	    			$this->message('error', Yii::t('admin',$upload->_error));
-	    			return;
-	    		}    		
-	    		$model->attach_file = $upload->_file_name;
-	    		$model->attach_thumb = $upload->_thumb_name;
-    		}else{
-    			//未改变前的封面图片
-    			$model->attach_file = $_POST['old_file'];
-    			$model->attach_thumb = $_POST['old_thumb'];
-    		}
-    		//组图
-    		$imageList = $this->_request->getPost( 'imageList' );
-    		$imageListSerialize = $this->imageListSerialize($imageList);
-    		$model->image_list = $imageListSerialize['dataSerialize'];
-    		
-    		//标签   (前10个标签有效) 		
-    		$tags = trim($_POST['Post']['tags']);    		
-    		$explodeTags = array_unique(explode(',', str_replace(array (' ' , '，' ), array('',','), $tags)));    		
-    		$explodeTags = array_slice($explodeTags, 0, 10);  
-    		    		  	
-    		//摘要
-    		$model->introduce = trim($_POST['Post']['introduce'])?$_POST['Post']['introduce']:Helper::truncate_utf8_string(preg_replace('/\s+/',' ',$_POST['Post']['content']), 200);
-    		
-    		$model->tags = implode(',',$explodeTags);
-    		$model->update_time = time();
-    		
-    		if($model->save()){
-    			//更新标签数据
-				Tag::model()->updateTagData($explodeTags, array('content_id'=>$model->id, 'status'=>$model->status, 'type_id'=>$this->_type_ids['post']));
-    			$this->message('success',Yii::t('admin','Update Success'),$this->createUrl('index'));
-    		}
-    	}else{
-    		$imageList = unserialize($model->image_list);
-    		$style = unserialize($model->title_style);
-    	}   	
-    	    	
-    	$this->render('update',array(
-    			'model'=>$model,
-    			'imageList' => $imageList,
-    			'style' => $style,
-    	));    	
-        
     }   
    
     /**

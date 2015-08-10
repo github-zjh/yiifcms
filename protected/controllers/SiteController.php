@@ -41,13 +41,19 @@ class SiteController extends FrontBase
 		$index_bottom_banner = Ad::model()->getAdOne(5);
 		
 		//最新资讯
-		Yii::app()->cache && $news_new = Yii::app()->cache->get('news_new');
+        $news_new = array();
+        if(Yii::app()->cache) {
+            $news_new = Yii::app()->cache->get('news_new');        
+        }
 		if($news_new == false){			
 			$news_new = Post::model()->getList(array('limit'=>20));
 			Yii::app()->cache && Yii::app()->cache->set('news_new', $news_new);
 		}
-		//热门资讯		
-		Yii::app()->cache && $news_hot = Yii::app()->cache->get('news_host');
+		//热门资讯
+        $news_hot = array();
+        if(Yii::app()->cache) {
+            $news_hot = Yii::app()->cache->get('news_host');        
+        }
 		if($news_hot == false){
 			$news_hot = Post::model()->getList(array('order'=>'t.view_count DESC, t.id DESC', 'limit'=>20));
 			Yii::app()->cache && Yii::app()->cache->set('news_hot', $news_hot);
@@ -63,9 +69,11 @@ class SiteController extends FrontBase
 		//热门软件		
 		$soft_hot = Soft::model()->getList(array('limit'=>10, 'order'=>'down_count DESC, t.id DESC'));
 	
-		//最新视频		
+		//最新视频
+        $video_new = array();		
 		//$video_new = Video::model()->findAll("status=:status AND catalog_id = 13 ORDER BY id DESC Limit 20", array(':status'=>'Y'));
 		//热门视频
+        $video_host = array();
 		//$video_hot = Video::model()->findAll("status=:status AND catalog_id = 13 ORDER BY view_count DESC, video_score DESC, id DESC Limit 20", array(':status'=>'Y'));
 		
 		//友情链接
