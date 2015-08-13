@@ -1,9 +1,9 @@
 <?php
 /**
  * 助手类
- * @author zhao jinhan
+ * 
+ * @author Sim Zhao <326196998@qq.com>
  * @version v1.0.0
- *
  */
 class Helper
 {	
@@ -221,10 +221,12 @@ class Helper
 			}
 		}
 	
-		if (strtoupper ( $encoding ) == strtoupper ( $outEncoding ))
+		if (strtoupper ( $encoding ) == strtoupper ( $outEncoding )) {
 			return $string;
-		else
-			return @iconv ( $encoding, $outEncoding, $string );
+        } else {
+            return mb_convert_encoding($string, $outEncoding, $encoding);
+			//return @iconv ( $encoding, $outEncoding, $string );
+        }
 	}
 	/**
 	 * 返回二维数组中某个键名的所有值
@@ -546,5 +548,18 @@ class Helper
             rmdir($dir);
         }
     }
+    
+    /**
+	 * 取得上传文件的后缀
+	 * @access private
+	 * @param string $realname 文件名
+	 * @return boolean
+	 */
+	public static function getExtensionName($realname = '') {		
+		$pathinfo = pathinfo($realname);
+        return strtolower($pathinfo['extension']);		
+	}
+	
+    
 
 }

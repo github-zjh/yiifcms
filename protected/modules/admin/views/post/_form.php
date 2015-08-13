@@ -113,7 +113,7 @@
 	<tr>
 		<td>
 			<div>
-				<?php $this->widget('application.widget.resumable.Resumable', array('options'=>array('upload_url'=>'baidu.com')));?>  
+				<?php $this->widget('application.widget.resumable.Resumable', array('options'=>array('upload_url'=>$this->createUrl('post/upload'))));?>  
 				<ul id="fileListWarp" class="clear">
           <?php foreach((array)$imageList as $key=>$row):?>
           <?php if($row):?>

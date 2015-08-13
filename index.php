@@ -14,8 +14,8 @@ $config = dirname(__FILE__).'/protected/config/main.php';
 //全局常量
 defined('ROOT_PATH') or define('ROOT_PATH', str_replace(array('\\', '\\\\'), '/', dirname(__FILE__)));
 defined('DS') or define('DS', DIRECTORY_SEPARATOR);
-defined('UPLOAD_PATH') or define('UPLOAD_PATH', ROOT_PATH . DS . 'upload' . DS);
-defined('PUBLIC_PATH') or define('PUBLIC_PATH', ROOT_PATH . DS . 'public' . DS);
+defined('UPLOAD_PATH') or define('UPLOAD_PATH', ROOT_PATH . DS . 'upload');
+defined('PUBLIC_PATH') or define('PUBLIC_PATH', ROOT_PATH . DS . 'public');
 defined('YII_DEBUG') or define('YII_DEBUG',false);
 
 //是否开启调试模式

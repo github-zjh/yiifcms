@@ -56,7 +56,7 @@ class ZipController extends Backend
 	    		}
     		}
     	}else{    		
-	        $files = Helper::scanfDir(WWWPATH);
+	        $files = Helper::scanfDir(ROOT_PATH);
 			asort($files['dirs']);
 			asort($files['files']);
 	        $files = array_merge($files['dirs'], $files['files']);

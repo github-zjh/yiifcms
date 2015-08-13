@@ -6,13 +6,26 @@
  * @copyright 2015 All rights reserved.
  * 
  */
-defined('TEMP_PATH', UPLOAD_PATH . DS . 'temp');
+define('TEMP_PATH', UPLOAD_PATH . DS . 'temp');
 
 class Uploader{
     
-    public $_watermark_pic = 'public/watermark.png';     		//默认水印图片完整路径    
-	public $_error = '';
-	
+    public  $watermark_pic = 'public/watermark.png';       //默认水印图片完整路径
+    public  $real_name = '';                               //上传的原始文件名
+    public  $file_id   = '';                               //文件ID
+    public  $file_ext  = '';                               //文件扩展名
+    public  $file_path = '';                               //存到数据中的路径
+    public  $save_path = '';                               //生成的文件路径
+    public  $save_name = '';                               //生成的文件名
+    public  $model = '';                                   //上传文件模型
+    public  $total_size  = 0;                              //总文件大小
+    
+    private $_chunk_dir  = '';                             //断点片段文件保存目录
+    private $_chunk_size = 1024;                           //断点续传片段大小(1M)
+    private $_chunk_num  = 1;                              //当前片段编号
+	private $_error = '';                                  //错误信息
+    
+
     public $config = array(
         //文章
         'post' => array(            
@@ -36,9 +49,9 @@ class Uploader{
         ),
         //软件
         'soft' => array(            
-            'save_path'           => 'album',               //保存路径
+            'save_path'           => 'soft',                //保存路径
             'allow_ext'           => '*',                   //允许类型  *代表所有
-            'max_upload_filesize' => 1258291200,            //允许最大上传大小1.2G            
+            'max_upload_filesize' => 512000,                //允许最大上传大小500M            
         ),
         //商品
         'goods' => array(            
@@ -48,13 +61,101 @@ class Uploader{
         ),
         //视频
         'video' => array(            
-            'save_path'           => 'goods',               //保存路径
-            'allow_ext'           => 'jpg,jpeg,png',        //允许类型  *代表所有
+            'save_path'           => 'video',               //保存路径
+            'allow_ext'           => 'mp4,avi,rmvb,flv',    //允许类型  *代表所有
             'max_upload_filesize' => 1258291200,            //允许最大上传大小1.2G            
         ),
-    );	
-	
-	/**
+    );        
+       
+    /**
+     * 初始化断点续传参数
+     * 
+     * @return \Uploader
+     */
+    public function initResumable($model = '')
+    {
+        //文件模型名
+        $this->model = $model;
+        //文件ID
+        $this->file_id      = Yii::app()->request->getParam('resumableIdentifier');
+        //原始文件名
+        $this->real_name    = Yii::app()->request->getParam('resumableFilename');
+        //文件总大小
+        $this->total_size   = Yii::app()->request->getParam('resumableTotalSize');
+        //文件扩展名
+        $this->file_ext     = Helper::getExtensionName($this->real_name);        
+        //当前片段编号
+        $this->_chunk_num   =  Yii::app()->request->getParam('resumableChunkNumber');
+        //每个片段大小
+        $this->_chunk_size  =  Yii::app()->request->getParam('resumableChunkSize');
+        return $this;
+    }
+    
+    /**
+     * 断点上传文件
+     * 
+     * @param string $name 文件流名称    
+     * @return boolean
+     */
+    public function uploadResumable($name = '')
+    {
+        if(isset($this->config[$this->model])) {
+            
+            //获取一个上传实例
+            $ins = CUploadedFile::getInstanceByName($name);
+            if(!$ins) {
+                $this->setError('please select a file');
+                return false;
+            }            
+            //验证文件合法性
+            $check = $this->_checkValid();
+            if($check) {
+                //断点片段文件保存目录
+                $this->_chunk_dir   = $this->_getChunkDir($this->file_id);
+                //保存片段文件
+                $conver_filename = $this->_convertChineseName($this->real_name);
+                $ins->saveAs($this->_chunk_dir . DS . $conver_filename. '.part'.$this->_chunk_num);                
+                //完整的保存路径
+                $save_full_path = $this->_getSavePath();                
+                //校验片段文件 并把片段文件合并成一个文件
+                $this->createFileFromChunks($save_full_path);
+                return true;
+            }
+            return false;
+        } else {
+            $this->setError('invalid upload model');            
+            return false;
+        }
+    }
+    
+    /**
+     * 获取保存路径 并创建相应的目录
+     * 
+     * @param type $model
+     */
+    private function _getSavePath()
+    {   
+        //保存文件的物理路径
+        $save_dir = UPLOAD_PATH . DS .$this->config[$this->model]['save_path'] . DS . date('Ym',time());        
+        if(!is_dir($save_dir)){
+            mkdir($save_dir, 0777, true);
+        }        
+        //是否生成随机名
+        if(isset($this->config[$this->model]['rand_name']) && $this->config[$this->model]['rand_name'])
+        {
+            $this->file_name = substr(md5(uniqid('file')), 0,11). '.'.$this->file_ext;            
+        } else {
+            //解决windows下中文文件名乱码的问题
+            $this->file_name = $this->_convertChineseName($this->real_name);            
+        }        
+        //包含文件名的完整物理路径
+        $save_path = $save_dir . DS . $this->file_name;
+        //存储到数据库的文件路径 并转化编码
+        $this->file_path = Helper::safeEncoding(str_replace(array('\\', '\\\\'), '/', str_replace(ROOT_PATH, '', $save_path)));        
+        return $save_path;
+    }
+    
+    /**
 	 * 上传文件
 	 * @param string $file          上传的文件
 	 * @param string $save_path     保存的路径
@@ -261,57 +362,26 @@ class Uploader{
 	}
 	/**
 	 * 校验上传文件是否符合要求(包括文件类型、大小)
-	 * @param string $file
-	 * @param string $name
-	 * @param string $type
+     * 
+	 * @param string $model
+	 * @param object $instance
 	 * @return boolean
 	 */
-	public function checkUpload($file = ''){	
-		if($file && $file['error'] == UPLOAD_ERR_OK){			
-			$this->_tmp_name = $file['tmp_name'];
-			$this->_real_name = $file['name'];
-			$this->_file_ext = $this->getExt($file['name']);
-			$this->_mime_type = $file['type'];
-			$this->_file_size = $file['size'];				
-			if(in_array($this->_file_ext, array('bmp', 'png','jpg','jgeg','gif'))){
-				$this->_is_image = true;
-			}
-			
-			if(!in_array($this->_file_ext, explode(',',$this->_allow_exts))){
-				//校验文件类型
-				$this->_error = 'File type is error, Please upload a legal file.';
-				return false;
-			}elseif($file['size'] > $this->_max_upload_filesize){
-				//文件大小超出限制				
-				$this->_error = 'File size is too large.';
-				return false;
-			}else{				
-				if(!is_uploaded_file($this->_tmp_name)){
-					//非法上传
-					$this->_error = 'File source is Invalid.';
-					return false;
-				}				
-			}
-			
-		}else{
-			//尚未选择文件
-			$this->_error = 'Please select a file.';
-			return false;
-		}
+	private function _checkValid(){        
+        //文件类型不合法
+        $allow_ext = explode(',', $this->config[$this->model]['allow_ext']);
+        if(!in_array($this->file_ext, $allow_ext) && $allow_ext != '*'){
+            $this->setError('file type is error, please upload a legal file');
+            return false;
+        }
+        //文件大小超出限制
+        if($this->total_size > $this->config[$this->model]['max_upload_filesize']) {
+            $this->setError('file size is too large');
+            return false;
+        }		
 		return true;
 	}
-	
-	/**
-	 * 取得上传文件的后缀
-	 * @access private
-	 * @param string $realname 文件名
-	 * @return boolean
-	 */
-	private function getExt($realname) {		
-		$pathinfo = pathinfo($realname);
-		return strtolower($pathinfo['extension']);
-	}
-	
+		
 	/**
 	 * 取得图像信息
 	 * @static
@@ -337,42 +407,63 @@ class Uploader{
 		}
 	}
     
+    /**
+     * 设置上传错误信息
+     * 
+     * @param string $msg
+     */
+    public function setError($msg = '')
+    {
+        $this->_error = Yii::t('upload' , $msg);
+        return true;
+    }
+    
+    /**
+     * 获取上传错误信息
+     * 
+     * @return string
+     */
+    public function getError()
+    {
+        return $this->_error;
+    }
+    
 	/**
      *
      * 合并片段文件到目标文件 
      * 
-     * @param string $temp_dir  片段文件 存放目录
-     * @param string $fileName  保存的文件名
-     * @param string $chunkSize 每片段文件大小(单位:字节)
-     * @param string $totalSize 总共文件大小(单位字节)
+     * @param string $file_path  保存的完整文件路径
+     * 
      */
-    public function createFileFromChunks($temp_dir, $fileName, $chunkSize, $totalSize) {
-        
+    public function createFileFromChunks($file_path = '') 
+    {        
         //检查片段文件数
-        $total_files = 0;
-        foreach (scandir($temp_dir) as $file) {
-            if (stripos($file, $fileName) !== false) {
+        $total_files = 0;       
+        foreach (scandir($this->_chunk_dir) as $file) {
+            $file = Helper::safeEncoding($file, 'UTF-8');                      
+            if (stripos($file, $this->real_name) !== false) {
                 $total_files++;
             }
         }
-
+       
         //检查片段文件是否上传完整
         //最后一个上传的片段文件大小应介于1-2个片段大小
         //最终生成一个完整的文件
-        if ($total_files * $chunkSize >= ($totalSize - $chunkSize + 1)) {            
-            if (($fp = fopen(TEMP_PATH . $fileName, 'w')) !== false) {
+        if ($total_files * $this->_chunk_size >= ($this->total_size - $this->_chunk_size + 1)) {            
+            if (($fp = fopen($file_path, 'w')) !== false) {
                 for ($i = 1; $i <= $total_files; $i++) {
-                    fwrite($fp, file_get_contents($temp_dir . $fileName . '.part' . $i));                    
-                    $this->_log('write chunks' . $i);
+                    $convert_name = $this->_convertChineseName($this->real_name);
+                    fwrite($fp, file_get_contents($this->_chunk_dir . DS . $convert_name .'.part' . $i));
                 }
                 fclose($fp);
-            } else {
-                $this->_log('cannot create the destination file');
+            } else {                
+                $msg = 'cannot create the destination file';
+                $this->setError($msg);                
                 return false;
-            }
-            //删除临时存放目录
-            Helper::rrmdir($temp_dir);           
+            }                       
         }
+        //删除临时存放目录
+        Helper::rrmdir($this->_chunk_dir);
     }
     
     /**
@@ -381,16 +472,42 @@ class Uploader{
      */
     public function checkExistChunks()
     {
-        $id           = Yii::app()->request->getParam('resumableIdentifier');
+        $file_id      = Yii::app()->request->getParam('resumableIdentifier');
         $file_name    = Yii::app()->request->getParam('resumableFilename');
-        $chunk_number = Yii::app()->request->getParam('resumableChunkNumber');
-        $temp_dir = TEMP_PATH . $id;
-        $chunk_file = $temp_dir .DS. $file_name.'.part'.$chunk_number;       
-        if (file_exists($chunk_file)) {
+        $chunk_number = Yii::app()->request->getParam('resumableChunkNumber');        
+        $temp_dir     = $this->_getChunkDir($file_id);
+        $convert_name = $this->_convertChineseName($file_name);
+        $chunk_file   =  str_replace(array('\\', '\\\\'), '/', $temp_dir .DS. $convert_name.'.part'.$chunk_number);        
+        if (file_exists($chunk_file)) {            
             header("HTTP/1.0 200 Ok");
         } else {
             header("HTTP/1.0 404 Not Found");
         }        
+    }
+    
+    /**
+     * 转换中文文件名
+     * 
+     * @param type $name
+     * @return type
+     */
+    private function _convertChineseName($name = '') 
+    {
+        return Helper::getOS() == 'Windows' ? Helper::safeEncoding($name, 'GB2312') : $name;
+    }
+    
+    /**
+     * 获取片段保存目录
+     * 
+     * @return string
+     */
+    private function _getChunkDir($file_id = '')
+    {        
+        $temp_dir = TEMP_PATH . DS . $file_id;
+        if(!is_dir($temp_dir)){
+            mkdir($temp_dir, 0777, true);
+        }
+        return $temp_dir;        
     }
     
     /**

@@ -24,14 +24,13 @@
     </tr>
     <?php endforeach;?>
     <tr class="submit">
-      <td colspan="9"><div class="cuspages right">
-          <?php $this->widget('CLinkPager',array('pages'=>$pagebar));?>
-        </div>
+      <td colspan="9">
         <div class="fixsel">
           <input type="checkbox" name="chkall" id="chkall" onclick="checkAll(this.form, 'id')" />
           <label for="chkall"><?php echo Yii::t('admin','Check All');?></label>         
           <input id="submit_maskall" class="button" type="submit" value="<?php echo Yii::t('admin','Zip Download');?>" name="maskall" />
-        </div></td>
+        </div>
+      </td>
     </tr>
   
 </table>

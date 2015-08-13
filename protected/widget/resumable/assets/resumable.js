@@ -392,7 +392,7 @@
             var f = new ResumableFile($, file, uniqueIdentifier);
             $.files.push(f);
             files.push(f);
-            f.container = (typeof event != 'undefined' ? event.srcElement : null);
+            f.container = (typeof event !== 'undefined' ? event.srcElement : null);
             window.setTimeout(function(){
               $.fire('fileAdded', f, event)
             },0);
@@ -761,7 +761,7 @@
         if($.xhr) $.xhr.abort();
         $.xhr = null;
       };
-      $.status = function(){
+      $.status = function(){          
         // Returns: 'pending', 'uploading', 'success', 'error'
         if($.pendingRetry) {
           // if pending retry then that's effectively the same as actively uploading,
@@ -773,22 +773,36 @@
           // Status is really 'OPENED', 'HEADERS_RECEIVED' or 'LOADING' - meaning that stuff is happening
           return('uploading');
         } else {
-          if($.xhr.status == 200 || $.xhr.status == 201) {
-            // HTTP 200 or 201 (created) perfect
-            return('success');
-          } else if($h.contains($.getOpt('permanentErrors'), $.xhr.status) || $.retries >= $.getOpt('maxChunkRetries')) {
-            // HTTP 415/500/501, permanent error
-            return('error');
-          } else {
-            // this should never happen, but we'll reset and queue a retry
-            // a likely case for this would be 503 service unavailable
-            $.abort();
-            return('pending');
-          }
+            if($.xhr.status == 200 || $.xhr.status == 201) {
+                // HTTP 200 or 201 (created) perfect
+                if($.xhr.response){
+                    var response = $.xhr.responseText;                    
+                    var jsonObj =  eval('(' + response + ')');                    
+                    if(jsonObj.code == 200) {
+                        return ('success');
+                    } else {
+                        return ('error');
+                    }
+                }                
+                return('success');
+            } else if($h.contains($.getOpt('permanentErrors'), $.xhr.status) || $.retries >= $.getOpt('maxChunkRetries')) {
+                // HTTP 415/500/501, permanent error
+                return('error');            
+            } else {
+                // this should never happen, but we'll reset and queue a retry
+                // a likely case for this would be 503 service unavailable
+                $.abort();
+                return('pending');
+            }
         }
       };
       $.message = function(){
-        return($.xhr ? $.xhr.responseText : '');
+        var message = '';
+        if($.xhr) {
+            var jsonObj = eval('('+$.xhr.responseText+')');
+            message = jsonObj.message;
+        }
+        return message;        
       };
       $.progress = function(relative){
         if(typeof(relative)==='undefined') relative = false;
@@ -817,12 +831,12 @@
       // metadata and determine if there's even a point in continuing.
       if ($.getOpt('prioritizeFirstAndLastChunk')) {
         $h.each($.files, function(file){
-          if(file.chunks.length && file.chunks[0].status()=='pending' && file.chunks[0].preprocessState === 0) {
+          if(file.chunks.length && file.chunks[0].status()==='pending' && file.chunks[0].preprocessState === 0) {
             file.chunks[0].send();
             found = true;
             return(false);
           }
-          if(file.chunks.length>1 && file.chunks[file.chunks.length-1].status()=='pending' && file.chunks[file.chunks.length-1].preprocessState === 0) {
+          if(file.chunks.length>1 && file.chunks[file.chunks.length-1].status()==='pending' && file.chunks[file.chunks.length-1].preprocessState === 0) {
             file.chunks[file.chunks.length-1].send();
             found = true;
             return(false);
@@ -835,7 +849,7 @@
       $h.each($.files, function(file){
         if(file.isPaused()===false){
          $h.each(file.chunks, function(chunk){
-           if(chunk.status()=='pending' && chunk.preprocessState === 0) {
+           if(chunk.status()==='pending' && chunk.preprocessState === 0) {
              chunk.send();
              found = true;
              return(false);
@@ -864,7 +878,7 @@
 
     // PUBLIC METHODS FOR RESUMABLE.JS
     $.assignBrowse = function(domNodes, isDirectory){
-      if(typeof(domNodes.length)=='undefined') domNodes = [domNodes];
+      if(typeof(domNodes.length)==='undefined') domNodes = [domNodes];
 
       $h.each(domNodes, function(domNode) {
         var input;
@@ -884,7 +898,7 @@
           domNode.appendChild(input);
         }
         var maxFiles = $.getOpt('maxFiles');
-        if (typeof(maxFiles)==='undefined'||maxFiles!=1){
+        if (typeof(maxFiles)==='undefined'||maxFiles!==1){
           input.setAttribute('multiple', 'multiple');
         } else {
           input.removeAttribute('multiple');
@@ -974,7 +988,7 @@
     $.getFromUniqueIdentifier = function(uniqueIdentifier){
       var ret = false;
       $h.each($.files, function(f){
-        if(f.uniqueIdentifier==uniqueIdentifier) ret = f;
+        if(f.uniqueIdentifier===uniqueIdentifier) ret = f;
       });
       return(ret);
     };
@@ -991,7 +1005,7 @@
 
 
   // Node.js-style export for Node and Component
-  if (typeof module != 'undefined') {
+  if (typeof module !== 'undefined') {
     module.exports = Resumable;
   } else if (typeof define === "function" && define.amd) {
     // AMD/requirejs: Define the module

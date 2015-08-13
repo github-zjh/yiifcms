@@ -5,8 +5,8 @@
 $(function(){    
     var r = new Resumable({
        target:resumable_upload_url,
-       chunkSize:1*1024*1024,
-       simultaneousUploads:4,
+       chunkSize:resumable_chunk_size,
+       simultaneousUploads:simultaneousUploads,
        testChunks: true,
        throttleProgressCallbacks:1
     });
@@ -27,7 +27,7 @@ $(function(){
             $('.resumable-progress .progress-resume-link').hide();
             $('.resumable-progress .progress-pause-link').show();
             // 显示上传文件队列
-            $('.resumable-list').append('<li class="resumable-file-'+file.uniqueIdentifier+'">Uploading <span class="resumable-file-name"></span> <span class="resumable-file-progress"></span>');
+            $('.resumable-list').append('<li class="resumable-file-'+file.uniqueIdentifier+'">上传文件... <span class="resumable-file-name"></span> <span class="resumable-file-progress"></span>');
             $('.resumable-file-'+file.uniqueIdentifier+' .resumable-file-name').html(file.fileName);
             // 开始上传
             r.upload();
@@ -45,11 +45,11 @@ $(function(){
         });
         // 单个上传完成
         r.on('fileSuccess', function(file, message){      
-            $('.resumable-file-'+file.uniqueIdentifier+' .resumable-file-progress').html('(completed)');
+            $('.resumable-file-'+file.uniqueIdentifier+' .resumable-file-progress').html('(<span style="color:green">上传完成</span>)');
         });
         // 上传出错
         r.on('fileError', function(file, message){      
-            $('.resumable-file-'+file.uniqueIdentifier+' .resumable-file-progress').html('(file could not be uploaded: '+message+')');
+            $('.resumable-file-'+file.uniqueIdentifier+' .resumable-file-progress').html('(<span style="color:red">上传失败: '+message+'</span>)');
         });
         // 进度条变化
         r.on('fileProgress', function(file){      

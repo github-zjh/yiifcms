@@ -41,6 +41,7 @@ class DatabaseController extends Backend
     public function actionIndex ()
     {        
         $dataList = $this->_db->createCommand("SHOW TABLE STATUS")->queryAll();
+        $dataSize = 0;
         foreach ($dataList as $row) {
             $dataSize += $row['Data_length'];
         }

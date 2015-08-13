@@ -44,6 +44,7 @@ class PostController extends Backend
             'create' => 'Create',   //添加文章
             'update' => 'Update',   //编辑文章
             'batch'  => 'Batch',    //批量操作
+            'upload' => 'Upload',   //图片上传
         ), 'application.modules.admin.controllers.post');
         return array_merge($actions, $extra_actions);
     }

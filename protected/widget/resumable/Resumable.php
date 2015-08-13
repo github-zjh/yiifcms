@@ -2,15 +2,13 @@
 /**
  * Resumable Widget
  *
- * @author        Sim <326196998@qq.com>
+ * @author        Sim Zhao<326196998@qq.com>
  * @copyright     Copyright (c) 2015. All rights reserved. 
- * @example 	  $this->widget('application.widget.kindeditor.KindEditor',
- 				      'id'=>'Post_content',
+ * @example 	    $this->widget('application.widget.resumable.Resumable',
+ 				      'id'=>'Post_file',
 	  				  'options'=>array(
-					  		'uploadJson'=>$this->createUrl('/admin/uploadify/basicexecute', array('from'=>'editor')),
-							'fileManagerJson'=>$this->createUrl('/admin/kindeditor/'),		
-							'allowFileManager'=>true,
-				  			'extraFileUploadParams'=>array('sessionId'=>Yii::app()->session->sessionID)
+					  		'upload_url'=>$this->createUrl('post/upload'),
+                            'chunk_size'=>1*1024*1024
 							)
 						)
  	  		     	);
@@ -37,10 +35,17 @@ class Resumable extends CInputWidget{
      */
     protected function displayHtml() 
     {
-        $upload_url = $this->options['upload_url'];        
+        //上传url
+        $upload_url = $this->options['upload_url'];
+        //片段大小(字节)
+        $chunk_size = isset($this->options['chunk_size']) ? $this->options['chunk_size'] : 1*1024*1024;
+        //一次最多上传文件数
+        $max_num    = isset($this->options['max_num']) ? $this->options['max_num'] : 1;
         echo <<< EOT
         <script type="text/javascript">
             var resumable_upload_url = '{$upload_url}';
+            var resumable_chunk_size = {$chunk_size};
+            var simultaneousUploads  = {$max_num};
        </script>
         <div>
 				 <div class="resumable-error">
