@@ -17,7 +17,7 @@ $(function(){
       <?php $form=$this->endWidget(); ?>
       <script type="text/javascript">
 $(document).ready(function(){
-	$("#title").val('<?php echo $this->_request->getParam('title')?>');
+	$("#title").val('<?php echo Yii::app()->request->getParam('title')?>');
 });
 </script> </div>
   </div>

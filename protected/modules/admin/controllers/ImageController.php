@@ -45,8 +45,8 @@ class ImageController extends Backend
         $model = new Image();
         $criteria = new CDbCriteria();
         $condition = "type = ".$this->_type;
-        $title = trim( $this->_request->getParam( 'title' ) );      
-        $catalogId = intval( $this->_request->getParam( 'catalogId' ) );
+        $title = trim( Yii::app()->request->getParam( 'title' ) );      
+        $catalogId = intval( Yii::app()->request->getParam( 'catalogId' ) );
         $title && $condition .= ' AND title LIKE \'%' . $title . '%\'';       
         $catalogId && $condition .= ' AND catalog_id= ' . $catalogId;
         $criteria->condition = $condition;
@@ -77,7 +77,7 @@ class ImageController extends Backend
     	{
     		$model->attributes=$_POST['Image'];
     		//标题样式
-    		$title_style = $this->_request->getPost('style');   
+    		$title_style = Yii::app()->request->getPost('style');   
     		if($title_style['bold'] != 'Y'){
     			unset($title_style['bold']);
     		}
@@ -113,7 +113,7 @@ class ImageController extends Backend
     			$model->attach_thumb = $_POST['old_thumb'];
     		}
     		//组图
-    		$imageList = $this->_request->getPost( 'imageList' );
+    		$imageList = Yii::app()->request->getPost( 'imageList' );
     		$imageListSerialize = $this->imageListSerialize($imageList);
     		$model->image_list = $imageListSerialize['dataSerialize'];
     		
@@ -183,7 +183,7 @@ class ImageController extends Backend
     	{
     		$model->attributes=$_POST['Image'];
     		//标题样式
-    		$title_style = $this->_request->getPost('style');   
+    		$title_style = Yii::app()->request->getPost('style');   
     		if($title_style['bold'] != 'Y'){
     			unset($title_style['bold']);
     		}
@@ -219,7 +219,7 @@ class ImageController extends Backend
     			$model->attach_thumb = $_POST['old_thumb'];
     		}
     		//组图
-    		$imageList = $this->_request->getPost( 'imageList' );
+    		$imageList = Yii::app()->request->getPost( 'imageList' );
     		$imageListSerialize = $this->imageListSerialize($imageList);
     		$model->image_list = $imageListSerialize['dataSerialize'];
     		

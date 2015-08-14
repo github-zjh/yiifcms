@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="<?php echo $this->_yii->language;?>" />	
-	<base href="<?php echo $this->_request->hostinfo.Yii::app()->homeUrl;?>" />
+	<base href="<?php echo Yii::app()->request->hostinfo.Yii::app()->homeUrl;?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo $this->module->assetsUrl;?>/css/login-style.css" />
 	<title><?php echo $this->pageTitle;?></title>
 	<script type="text/javascript">

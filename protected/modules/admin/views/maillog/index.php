@@ -64,10 +64,10 @@
 <script type="text/javascript">
 $(function(){
 	//搜索条件
-	$("#accept").val('<?php echo $this->_request->getParam('accept')?>');
-	$("#subject").val('<?php echo $this->_request->getParam('subject')?>');
-	$("#start_time").val('<?php echo $this->_request->getParam('start_time')?>');
-	$("#end_time").val('<?php echo $this->_request->getParam('end_time')?>');
+	$("#accept").val('<?php echo Yii::app()->request->getParam('accept')?>');
+	$("#subject").val('<?php echo Yii::app()->request->getParam('subject')?>');
+	$("#start_time").val('<?php echo Yii::app()->request->getParam('start_time')?>');
+	$("#end_time").val('<?php echo Yii::app()->request->getParam('end_time')?>');
 
 });
 </script>

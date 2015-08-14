@@ -237,8 +237,8 @@ class DefaultController extends BackendBase
 	{
 		parent::auth();
 		$mailer = Yii::createComponent ( 'application.extensions.autokeyword.AutoKeyword' );
-		$title = trim($this->_request->getParam('title'));
-		$content = trim($this->_request->getParam('content'));
+		$title = trim(Yii::app()->request->getParam('title'));
+		$content = trim(Yii::app()->request->getParam('content'));
 		//$return  = XAutoKeyword::discuz($string);		
 		$return = AutoKeyword::simple($title,$content);
 		if($return  == 'empty'){

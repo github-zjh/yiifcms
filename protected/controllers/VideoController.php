@@ -31,8 +31,8 @@ class VideoController extends FrontBase
    * 首页
    */
   public function actionIndex() {  	
-        $catalog_id = trim( $this->_request->getParam( 'catalog_id' ) );
-	    $keyword = trim( $this->_request->getParam( 'keyword' ) );
+        $catalog_id = trim( Yii::app()->request->getParam( 'catalog_id' ) );
+	    $keyword = trim( Yii::app()->request->getParam( 'keyword' ) );
 	    $catalog = Catalog::model()->findByPk($catalog_id);    
 	    //调取子孙分类和当前分类
 	    $catalog_ids = Catalog::get($catalog?$catalog_id:0, $this->_catalog);  
@@ -53,7 +53,7 @@ class VideoController extends FrontBase
 	    	$this->_seoTitle = Yii::t('common','VideoListTitle').' - '.$this->_setting['site_name'];
 	    	$this->_seoKeywords = Yii::t('common','VideoListKeywords');
 	    	$this->_seoDescription = Yii::t('common','VideoListDescription',array('{site_name}'=>$this->_setting['site_name']));
-	    	$navs[] = array('url'=>$this->_request->getUrl(),'name'=>$this->_seoTitle); 
+	    	$navs[] = array('url'=>Yii::app()->request->getUrl(),'name'=>$this->_seoTitle); 
 	    }
 	    //查询条件
 	    $post = new Video();
@@ -136,9 +136,9 @@ class VideoController extends FrontBase
    * 给影片评分 
    */
   public function actionScore(){
-  	$g = $this->_request->getParam('g');  //1获取 0评分
-  	$id = $this->_request->getParam('id');
-  	$s = $this->_request->getParam('s');  //等级0-5
+  	$g = Yii::app()->request->getParam('g');  //1获取 0评分
+  	$id = Yii::app()->request->getParam('id');
+  	$s = Yii::app()->request->getParam('s');  //等级0-5
   	$res = Video::model()->findByPk($id);
   	//t 总人数 s 从低分人数到高分人数分布
   	if($g == 1){  		

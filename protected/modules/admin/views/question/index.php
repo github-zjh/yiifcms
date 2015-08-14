@@ -14,8 +14,8 @@
       <?php $form=$this->endWidget(); ?>
       <script type="text/javascript">
 $(document).ready(function(){
-	$("#question").val('<?php echo $this->_request->getParam('question')?>');
-	$("#realname").val('<?php echo $this->_request->getParam('realname')?>');
+	$("#question").val('<?php echo Yii::app()->request->getParam('question')?>');
+	$("#realname").val('<?php echo Yii::app()->request->getParam('realname')?>');
 });
 </script> </div>
   </div>

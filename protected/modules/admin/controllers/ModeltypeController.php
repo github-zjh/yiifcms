@@ -32,7 +32,7 @@ class ModeltypeController extends Backend
         $model = new ModelType();
         $criteria = new CDbCriteria();
         $condition = '1';        
-        $title = $this->_request->getParam('type_name');      
+        $title = Yii::app()->request->getParam('type_name');      
         $title && $condition .= ' AND type_name LIKE \'%' . $title . '%\'';
         $criteria->condition = $condition;    
         $count = $model->count($criteria);

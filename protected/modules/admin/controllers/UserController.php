@@ -43,9 +43,9 @@ class UserController extends Backend
     {       
         $model = new User();
         $criteria = new CDbCriteria();
-        $groupid = intval( $this->_request->getParam( 'groupid' ) );
-        $username = trim( $this->_request->getParam( 'username' ) );
-        $realname = trim( $this->_request->getParam( 'realname' ) );     
+        $groupid = intval( Yii::app()->request->getParam( 'groupid' ) );
+        $username = trim( Yii::app()->request->getParam( 'username' ) );
+        $realname = trim( Yii::app()->request->getParam( 'realname' ) );     
         $groupid && $condition .= ' AND groupid =' . $groupid;
         $username && $condition .= ' AND username LIKE \'%' . $username . '%\'';
         $realname && $condition .= ' AND realname LIKE \'%' . $realname . '%\'';   
@@ -67,7 +67,7 @@ class UserController extends Backend
     public function actionAdmin(){
     	$model = new User();
     	$criteria = new CDbCriteria();
-    	$username = trim( $this->_request->getParam( 'username' ) );
+    	$username = trim( Yii::app()->request->getParam( 'username' ) );
     	$username && $condition .= ' AND username LIKE \'%' . $username . '%\'';
     	$criteria->condition = "status=1 AND groupid=".$this->_adminGroupID. $condition;
     	$criteria->order = 'uid DESC';
@@ -202,11 +202,11 @@ class UserController extends Backend
     {
         
         if ($this->method() == 'GET') {
-			$command = trim($this->_request->getParam('command'));
-			$ids = intval($this->_request->getParam('id'));
+			$command = trim(Yii::app()->request->getParam('command'));
+			$ids = intval(Yii::app()->request->getParam('id'));
 		} elseif ($this->method() == 'POST') {
-			$command = $this->_request->getPost('command');
-			$ids = $this->_request->getPost('id');			
+			$command = Yii::app()->request->getPost('command');
+			$ids = Yii::app()->request->getPost('id');			
 		} else {
 			throw new CHttpException(404, Yii::t('admin','Only POST Or GET'));
 		}

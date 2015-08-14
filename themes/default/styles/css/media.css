@@ -54,7 +54,7 @@ background:#e8645a;
 #content { width:95%!important; margin:0 auto;}
 #content .content_left, #content .content_right { float:none!important;}
 @media screen and (max-width: 480px) { 
-	.content_list { float:left: width:250px!important;}
+	.content_list { float:left; width:250px!important;}
 }
 @media screen and (max-width: 720px) { 
 	.content_list { float:left; width:300px!important; } 

@@ -19,15 +19,15 @@
 	<tr>
 		<td><?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>128, 'class'=>'validate[required]')); ?>
       <input name="style[bold]" type="checkbox" id="style[bold]"
-				<?php if($style['bold'] == 'Y'):?> checked="checked" <?php endif;?>
+				<?php if($style && $style['bold'] == 'Y'):?> checked="checked" <?php endif;?>
 				value="Y">
   <?php echo Yii::t('admin','Blod');?>
       <input name="style[underline]" type="checkbox"
-				<?php if($style['underline'] == 'Y'):?> checked="checked"
+				<?php if($style && $style['underline'] == 'Y'):?> checked="checked"
 				<?php endif;?> id="style[underline]" value="Y">
   <?php echo Yii::t('admin','Underline');?>
       <input name="style[color]" class="color {required:false}"
-				id="style[color]" value="<?php echo $style['color'];?>" size="5">      
+				id="style[color]" value="<?php echo isset($style['color'])?$style['color']:'';?>" size="5">      
       <?php echo Yii::t('admin','Color');?>
       </td>
 	</tr>
@@ -42,19 +42,21 @@
 	</tr>
 	<tr>
 		<td>
-			<select name="Post[catalog_id]" id="Post_catalog_id">
-        <?php foreach((array)Catalog::get(0, $this->_catalog) as $catalog):?>
-        <option value="<?php echo $catalog['id']?>"
-					<?php Helper::selected($catalog['id'], $model->catalog_id);?>><?php echo $catalog['str_repeat']?><?php echo $catalog['catalog_name']?></option>
-        <?php endforeach;?>
-      </select>
-			<select name="Post[special_id]">
-				<option value="0">==<?php echo Yii::t('admin','Belong Special');?>==</option>
-        <?php foreach((array)$this->_special as $speical):?>
-        <option value="<?php echo $speical['id']?>"
-					<?php Helper::selected($speical['id'], $model->special_id);?>><?php echo $speical['title']?></option>
-        <?php endforeach;?>
-      </select>
+            <select name="Post[catalog_id]" id="Post_catalog_id">
+                <?php foreach ((array) Catalog::get(0, $this->_catalog) as $catalog): ?>
+                    <option value="<?php echo $catalog['id'] ?>"
+                        <?php Helper::selected($catalog['id'], $model->catalog_id); ?>><?php echo $catalog['str_repeat'] ?><?php echo $catalog['catalog_name'] ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+            <select name="Post[special_id]">
+                <option value="0">==<?php echo Yii::t('admin', 'Belong Special'); ?>==</option>
+                <?php foreach ((array) $this->_special as $speical): ?>
+                    <option value="<?php echo $speical['id'] ?>"
+                        <?php Helper::selected($speical['id'], $model->special_id); ?>><?php echo $speical['title'] ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
 		</td>
 	</tr>
 	<tr>
@@ -75,30 +77,25 @@
 	<tr>
 		<td colspan="2">
 			<input name="attach" type="file" id="attach" />
-      <?php if ($model->attach_file):?>
-      <a href="<?php echo $this->_baseUrl.'/'. $model->attach_file?>"
-				target="_blank">
-				<img style="padding: 5px; border: 1px solid #cccccc;"
-					src="<?php echo $this->_baseUrl.'/'. $model->attach_file?>"
-					width="50" align="absmiddle" />
+            <?php if ($model->attach_file):?>
+            <a href="<?php echo $this->_baseUrl.'/'. $model->attach_file?>" target="_blank">
+				<img style="padding: 5px; border: 1px solid #cccccc;" src="<?php echo $this->_baseUrl.'/'. $model->attach_file?>" width="50" align="absmiddle" />
 			</a>
-      <?php endif?>
-      <?php if ($model->attach_thumb):?>
-      <a href="<?php echo $this->_baseUrl.'/'. $model->attach_thumb?>"
-				target="_blank">
-				<img style="padding: 5px; border: 1px solid #cccccc;"
-					src="<?php echo $this->_baseUrl.'/'. $model->attach_thumb?>"
-					width="50" align="absmiddle" />
-			</a>
-      <?php endif?>   
-  	</td>
+            <?php endif?>
+            <?php if ($model->attach_thumb):?>
+            <a href="<?php echo $this->_baseUrl.'/'. $model->attach_thumb?>"  target="_blank">
+                <img style="padding: 5px; border: 1px solid #cccccc;" src="<?php echo $this->_baseUrl.'/'. $model->attach_thumb?>" width="50" align="absmiddle" />
+            </a>
+            <?php endif?>   
+        </td>
 	</tr>
 	<tr>
 		<td class="tb_title"><?php echo Yii::t('admin','Description');?>：</td>
 	</tr>
 	<tr>
-		<td><?php echo $form->textArea($model,'content'); ?>
-		 <?php $this->widget('application.widget.kindeditor.KindEditor',array('id'=>'Post_content'));?>
+		<td>
+            <?php echo $form->textArea($model,'content'); ?>
+            <?php $this->widget('application.widget.kindeditor.KindEditor',array('id'=>'Post_content'));?>
 	  	</td>
 	</tr>
 	<tr>
@@ -113,36 +110,7 @@
 	<tr>
 		<td>
 			<div>
-				<?php $this->widget('application.widget.resumable.Resumable', array('options'=>array('upload_url'=>$this->createUrl('post/upload'))));?>  
-				<ul id="fileListWarp" class="clear">
-          <?php foreach((array)$imageList as $key=>$row):?>
-          <?php if($row):?>
-          <li id="image_<?php echo $row['fileId']?>">
-						<a href="<?php echo $this->_baseUrl?>/<?php echo $row['file']?>"
-							target="_blank">
-							<img src="<?php echo $this->_baseUrl?>/<?php echo $row['file']?>"
-								width="40" height="40" align="absmiddle">
-						</a>
-						&nbsp;
-						<br />
-						<label>描述：</label>
-						<input name="imageList[desc][]" type="text"
-							value="<?php echo $row['desc']?>" />
-						<br />
-						<label>网址：</label>
-						<input name="imageList[url][]" type="text"
-							value="<?php echo $row['url']?>" />
-						<br />
-						<a
-							href='javascript:uploadifyRemove("<?php echo $row['fileId']?>", "image_")'><?php echo Yii::t('admin','Delete');?></a>
-						<input name="imageList[fileId][]" type="hidden"
-							value="<?php echo $row['fileId']?>">
-						<input name="imageList[file][]" type="hidden"
-							value="<?php echo $row['file']?>">
-					</li>
-          <?php endif?>
-          <?php endforeach?>
-        </ul>
+				<?php $this->widget('application.widget.resumable.Resumable', array('options'=>array('upload_url'=>$this->createUrl('post/upload'))));?>  				        
 			</div>
 		</td>
 	</tr>
@@ -157,10 +125,10 @@
 	</tr>
 	<tr>
 		<td>
-    <?php echo Yii::t('admin','Favorite Count');?>：<?php echo $form->textField($model,'favorite_count',array('size'=>5,'maxlength'=>10)); ?> 
-    <?php echo Yii::t('admin','View Count');?>：<?php echo $form->textField($model,'view_count',array('size'=>5,'maxlength'=>10)); ?> 
-    <?php echo Yii::t('admin','Sort Order');?> <?php echo $form->textField($model,'sort_desc',array('size'=>5,'maxlength'=>10)); ?>
-    </td>
+            <?php echo Yii::t('admin','Favorite Count');?>：<?php echo $form->textField($model,'favorite_count',array('size'=>5,'maxlength'=>10)); ?> 
+            <?php echo Yii::t('admin','View Count');?>：<?php echo $form->textField($model,'view_count',array('size'=>5,'maxlength'=>10)); ?> 
+            <?php echo Yii::t('admin','Sort Order');?> <?php echo $form->textField($model,'sort_desc',array('size'=>5,'maxlength'=>10)); ?>
+        </td>
 	</tr>
 	<tr>
 		<td class="tb_title"><?php echo Yii::t('admin','Status');?>：</td>
@@ -203,5 +171,4 @@ $(function(){
 	$("#xform").validationEngine();	
 });
 </script>
-<?php 
-    $this->endWidget();
+<?php $this->endWidget();

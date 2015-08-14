@@ -268,7 +268,7 @@ class SettingController extends Backend
 	 * 测试发送邮件
 	 */
 	public function actionTestEmail(){
-		if($this->_request->isPostRequest && $_POST['ajax'] == 1){
+		if(Yii::app()->request->isPostRequest && $_POST['ajax'] == 1){
 			$toemail = $_POST['toemail'];
 			if(Helper::sendMail('',$toemail,Yii::t('admin','Test Email Subject'),Yii::t('admin','Test Email Content'))){
 				exit(CJSON::encode(array('state'=>'success')));

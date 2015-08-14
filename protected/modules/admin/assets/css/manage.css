@@ -36,7 +36,7 @@ zoom: 1; }
 .main .mainC { width: 60%; text-align: left; }
 .main .mainC h1,
 .main .mainC p { width: 340px; float: right; margin-right: 20px; clear: both; zoom: 1; _display: inline; font-family: Arial; }
-.main .mainC h1 { text-align: center; margin: 0; font-size: 18px; color: #666; _ margin-bottom:10px;
+.main .mainC h1 { text-align: center; margin: 0; font-size: 18px; color: #666; _margin-bottom:10px;
 }
 .main .mainC p { text-indent: 24px; font-size: 12px; line-height: 24px; color: #666; }
 .main .mainD { width: 39%; border-left: 1px solid #DFDFDF; font-size: 12px; }

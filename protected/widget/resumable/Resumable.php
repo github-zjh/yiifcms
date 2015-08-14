@@ -46,30 +46,31 @@ class Resumable extends CInputWidget{
             var resumable_upload_url = '{$upload_url}';
             var resumable_chunk_size = {$chunk_size};
             var simultaneousUploads  = {$max_num};
-       </script>
+        </script>
         <div>
-				 <div class="resumable-error">
-        Your browser, unfortunately, is not supported by Resumable.js. The library requires support for <a href="http://www.w3.org/TR/FileAPI/">the HTML5 File API</a> along with <a href="http://www.w3.org/TR/FileAPI/#normalization-of-params">file slicing</a>.
-      </div>
-
-      <div class="resumable-drop" ondragenter="jQuery(this).addClass('resumable-dragover');" ondragend="jQuery(this).removeClass('resumable-dragover');" ondrop="jQuery(this).removeClass('resumable-dragover');">
-        拖拽文件到此处或者 <a href="javascript:;" class="resumable-browse"><u>选择文件</u></a>
-      </div>
-      
-      <div class="resumable-progress">
-        <table>
-          <tr>
-            <td width="100%"><div class="progress-container"><div class="progress-bar"></div></div></td>
-            <td class="progress-text" nowrap="nowrap"></td>
-            <td class="progress-pause" nowrap="nowrap">
-              <a href="#" onclick="r.upload(); return(false);" class="progress-resume-link"><img src="images/resume.png" title="Resume upload" /></a>
-              <a href="#" onclick="r.pause(); return(false);" class="progress-pause-link"><img src="images/pause.png" title="Pause upload" /></a>
-            </td>
-          </tr>
-        </table>
-      </div>
-      
-      <ul class="resumable-list"></ul> 
+			<div class="resumable-error">
+                抱歉，您的浏览器不支持此断点续传控件。必须依赖的库为:<a href="http://www.w3.org/TR/FileAPI/">the HTML5 File API</a> along with <a href="http://www.w3.org/TR/FileAPI/#normalization-of-params">file slicing</a>.
+            </div>
+            <div class="resumable-drop" ondragenter="jQuery(this).addClass('resumable-dragover');" ondragend="jQuery(this).removeClass('resumable-dragover');" ondrop="jQuery(this).removeClass('resumable-dragover');">
+              拖拽文件到此处或者 <a href="javascript:;" class="resumable-browse"><u>选择文件</u></a>
+            </div>      
+            <div class="resumable-progress">
+              <table>
+                <tr>
+                  <td width="100%"><div class="progress-container"><div class="progress-bar"></div></div></td>
+                  <td class="progress-text" nowrap="nowrap"></td>
+                  <td class="progress-pause" nowrap="nowrap">
+                    <a href="#" onclick="r.upload(); return(false);" class="progress-resume-link"><img src="images/resume.png" title="Resume upload" /></a>
+                    <a href="#" onclick="r.pause(); return(false);" class="progress-pause-link"><img src="images/pause.png" title="Pause upload" /></a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <!-- 进度条 -->
+            <ul class="resumable-list"></ul>
+            <!-- 显示已上传的文件-->
+            <ul class="resumable-files"></ul>
+        </div>
 EOT;
     }
     /**

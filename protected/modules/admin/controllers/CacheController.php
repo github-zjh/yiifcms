@@ -34,7 +34,7 @@ class CacheController extends Backend{
 	 * 缓存更新
 	 */
 	public function actionCacheUpdate() {
-		$cache = $this->_request->getPost('cache');
+		$cache = Yii::app()->request->getPost('cache');
 		foreach((array)$cache as $value){
 			if($value == 'style'){
 				//更新样式缓存

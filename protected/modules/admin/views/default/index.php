@@ -25,7 +25,7 @@
 	  <span class="welcome"><img src="<?php echo $this->module->assetsUrl;?>/images/user_edit.png" align="absmiddle"> 欢迎【<?php echo Yii::app()->user->groupname;?>】, <em><?php echo Yii::app()->user->name;?></em> </span> 
 	  <a href="<?php echo $this->createUrl('user/update', array('id'=>Yii::app()->user->id));?>" target="win"><?php echo Yii::t('admin','Update Password');?></a> 
 	  <a href="<?php echo $this->createUrl('default/logout');?>" target="_top"><?php echo Yii::t('admin','Logout');?></a> 
-	  <a href="<?php echo $this->_request->hostinfo.Yii::app()->homeUrl;?>" target="_blank"><?php echo Yii::t('admin','Home Url');?></a><br/>
+	  <a href="<?php echo Yii::app()->request->hostinfo.Yii::app()->homeUrl;?>" target="_blank"><?php echo Yii::t('admin','Home Url');?></a><br/>
 	  <a href="javascript:;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo Yii::t('admin','Cur Server Date');?>：<?php echo date('Y年m月d日 H:i:s',time());?></a>
   </div>
   

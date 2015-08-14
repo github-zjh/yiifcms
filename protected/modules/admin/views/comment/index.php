@@ -28,10 +28,10 @@ $(function(){
       <?php $form=$this->endWidget(); ?>
       <script type="text/javascript">
 $(document).ready(function(){
-	$("#postTitle").val('<?php echo $this->_request->getParam('postTitle')?>');
-	$("#content").val('<?php echo $this->_request->getParam('content')?>');
-	$("#type").val('<?php echo $this->_request->getParam('type')?>');
-	$("#status").val('<?php echo $this->_request->getParam('status')?>');
+	$("#postTitle").val('<?php echo Yii::app()->request->getParam('postTitle')?>');
+	$("#content").val('<?php echo Yii::app()->request->getParam('content')?>');
+	$("#type").val('<?php echo Yii::app()->request->getParam('type')?>');
+	$("#status").val('<?php echo Yii::app()->request->getParam('status')?>');
 });
 </script> 
     </div>

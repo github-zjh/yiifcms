@@ -10,7 +10,7 @@
       <select name="groupid" id="groupid">
         <option value="">=组=</option>
         <?php foreach((array)$this->group_list as $group):?>
-        <option value="<?php echo $group['id']?>" <?php Helper::selected($group['id'], $this->_request->getParam('groupid'));?>><?php echo $group['group_name']?></option>
+        <option value="<?php echo $group['id']?>" <?php Helper::selected($group['id'], Yii::app()->request->getParam('groupid'));?>><?php echo $group['group_name']?></option>
         <?php endforeach;?>
       </select>
       <?php endif;?>
@@ -26,8 +26,8 @@
       <?php $form=$this->endWidget(); ?>
 	  <script type="text/javascript">
 	  $(document).ready(function(){
-			  $("#groupid").val('<?php echo $this->_request->getParam('groupid')?>');	
-			  $("#username").val('<?php echo $this->_request->getParam('username')?>');	
+			  $("#groupid").val('<?php echo Yii::app()->request->getParam('groupid')?>');	
+			  $("#username").val('<?php echo Yii::app()->request->getParam('username')?>');	
 			  });
 	</script> 
 

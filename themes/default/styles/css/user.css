@@ -7,8 +7,8 @@
 .form_table select { padding: 5px 2px; border: 1px solid; border-color: #666 #ccc #ccc #666; background: #F9F9F9; color: #333;  font-size: 14px}
 .form_table .button { -webkit-border-radius: 3px; border-radius: 3px; border: 1px solid #3079ED; background: #428BCA; color: #FFF; font: bold 12px arial, sans-serif; padding: 0.15em 1em; text-transform: uppercase; height: 27px; line-height: 19px; margin: 0; overflow: visible; width: auto; *width: 1;
 cursor: pointer }
-.form_table .btnBlue{ border: border: 1px solid #3079ED; background: #428BCA; color: #FFF; }
-.form_table .button .btnDefault{ border: border: 1px solid #3079ED; background: #428BCA; color: #FFF; }
+.form_table .btnBlue{ border: 1px solid #3079ED; background: #428BCA; color: #FFF; }
+.form_table .button .btnDefault{ border: 1px solid #3079ED; background: #428BCA; color: #FFF; }
 .form_table .first_title { padding-left:20px;}
 .form_table .operate, .submit { height: 45px }
 .form_table td a { color:#444444;}

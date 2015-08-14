@@ -43,8 +43,8 @@ class SpecialController extends Backend
         $model = new Special();
         $criteria = new CDbCriteria();
         $condition = '1';
-        $title = $this->_request->getParam( 'title' );
-        $titleAlias = $this->_request->getParam( 'titleAlias' );
+        $title = Yii::app()->request->getParam( 'title' );
+        $titleAlias = Yii::app()->request->getParam( 'titleAlias' );
         $title && $condition .= ' AND title LIKE \'%' . $title . '%\'';
         $titleAlias && $condition .= ' AND title_alias LIKE \'%' . $titleAlias . '%\'';
         $criteria->condition = $condition;

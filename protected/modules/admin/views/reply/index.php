@@ -16,7 +16,7 @@ $(function(){
 });
 
 $(document).ready(function(){	
-	$("#status").val('<?php echo $this->_request->getParam('status')?>');
+	$("#status").val('<?php echo Yii::app()->request->getParam('status')?>');
 });
 </script> 
     </div>

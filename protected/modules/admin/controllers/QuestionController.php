@@ -28,8 +28,8 @@ class QuestionController extends Backend
         $model = new Question();
         $criteria = new CDbCriteria();
         $condition = '1';
-        $realname = trim( $this->_request->getParam( 'realname' ) );
-        $question = trim( $this->_request->getParam( 'question' ) );
+        $realname = trim( Yii::app()->request->getParam( 'realname' ) );
+        $question = trim( Yii::app()->request->getParam( 'question' ) );
         $question && $condition .= ' AND question LIKE \'%' . $question . '%\'';
         $realname && $condition .= ' AND realname LIKE \'%' . $realname . '%\'';
         $criteria->condition = $condition;
@@ -67,11 +67,11 @@ class QuestionController extends Backend
     public function actionBatch() {
     	
         if ($this->method() == 'GET') {
-			$command = trim($this->_request->getParam('command'));
-			$ids = intval($this->_request->getParam('id'));
+			$command = trim(Yii::app()->request->getParam('command'));
+			$ids = intval(Yii::app()->request->getParam('id'));
 		} elseif ($this->method() == 'POST') {
-			$command = $this->_request->getPost('command');
-			$ids = $this->_request->getPost('id');			
+			$command = Yii::app()->request->getPost('command');
+			$ids = Yii::app()->request->getPost('id');			
 		} else {
 			throw new CHttpException(404, Yii::t('admin','Only POST Or GET'));
 		}

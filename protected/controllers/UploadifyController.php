@@ -18,13 +18,13 @@ class UploadifyController extends FrontBase
             $adminiUserId = Yii::app()->user->id;  
             $file = new Uploader;
             $thumb = false;
-            if($this->_request->getParam('from') == 'editor'){
+            if(Yii::app()->request->getParam('from') == 'editor'){
             	//从外部编辑器上传的图片
             	$outside = 'Y';
-            	$file->_image_path = 'uploads/attached/'.$this->_request->getParam('dir').'/';
+            	$file->_image_path = 'uploads/attached/'.Yii::app()->request->getParam('dir').'/';
             }else{
-            	$this->_request->getParam('thumb') && $thumb = true;
-            	$dir = $this->_request->getParam('dir');
+            	Yii::app()->request->getParam('thumb') && $thumb = true;
+            	$dir = Yii::app()->request->getParam('dir');
             	$dir && $file->_image_path = 'uploads/'.$dir.'/';
             	$thumb && $dir && $file->_thumb_path = 'uploads/'.$dir.'/';
             	switch($dir){

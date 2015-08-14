@@ -36,8 +36,8 @@ class RecommendPositionController extends Backend
         $model = new RecommendPosition();
         $criteria = new CDbCriteria();
         $condition = '1';
-        $recommend_type = $this->_request->getParam('recommend_type');
-        $recommend_name = $this->_request->getParam('recommend_name');   
+        $recommend_type = Yii::app()->request->getParam('recommend_type');
+        $recommend_name = Yii::app()->request->getParam('recommend_name');   
         $recommend_type && $condition .= ' AND type= "'.$recommend_type.'"';
         $recommend_name && $condition .= ' AND recommend_name LIKE \'%' . $recommend_name . '%\'';
         $criteria->condition = $condition;    
@@ -98,8 +98,8 @@ class RecommendPositionController extends Backend
 		$content = new Recommend();
 		$criteria = new CDbCriteria();		
 		$condition = '1 = 1';		
-		$id = $this->_request->getParam('id');
-		$title = $this->_request->getParam('title');
+		$id = Yii::app()->request->getParam('id');
+		$title = Yii::app()->request->getParam('title');
 		$id && $condition .= ' AND t.id =' . $id;	
 		$title && $condition .= " AND {$table}.title like '%{$title}%'";
 		$criteria->condition = $condition;		

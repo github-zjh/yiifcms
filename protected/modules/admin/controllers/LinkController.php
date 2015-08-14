@@ -33,7 +33,7 @@ class LinkController extends Backend
         $model = new Link();
         $criteria = new CDbCriteria();
         $condition = '1';
-        $siteName = trim($this->_request->getParam('title'));
+        $siteName = trim(Yii::app()->request->getParam('title'));
         $siteName && $condition .= ' AND title LIKE \'%' . $siteName . '%\'';
         $criteria->condition = $condition;
         //$criteria->params = '';
@@ -90,7 +90,7 @@ class LinkController extends Backend
        
         
         if (isset($_POST['Link'])) {
-            $remove = $this->_request->getParam('remove');
+            $remove = Yii::app()->request->getParam('remove');
             $model->attributes = $_POST['Link'];
             if($_FILES['logo']['error'] == UPLOAD_ERR_OK){
     			$upload = new Uploader;    			

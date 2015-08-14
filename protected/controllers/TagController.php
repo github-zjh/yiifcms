@@ -66,7 +66,7 @@ class TagController extends FrontBase
 
 	//SEO
 	$this->_seoTitle = $tags?$tags.' - '.$this->_setting['site_name']:'所有标签 - '.$this->_setting['site_name'];
-	$navs[] = array('url'=>$this->_request->getUrl(),'name'=>$tags?$tags:'所有标签');
+	$navs[] = array('url'=>Yii::app()->request->getUrl(),'name'=>$tags?$tags:'所有标签');
 
 	//加载css,js
 	Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/list.css");
@@ -88,7 +88,7 @@ class TagController extends FrontBase
 	  
 	  //SEO
 	  $this->_seoTitle = Yii::t('common','All Tags').' - '.$this->_setting['site_name'];
-	  $navs[] = array('url'=>$this->_request->getUrl(),'name'=>Yii::t('common','All Tags'));
+	  $navs[] = array('url'=>Yii::app()->request->getUrl(),'name'=>Yii::t('common','All Tags'));
 
 	  //加载css,js
 	  Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/tag.css");
@@ -102,7 +102,7 @@ class TagController extends FrontBase
    * ajax搜索
    */
   public function actionAjax() {
-  	$tags = trim( $this->_request->getParam( 'tag' ) );
+  	$tags = trim( Yii::app()->request->getParam( 'tag' ) );
   	$tags = preg_replace('/(\s)+/', ',', trim($tags));
   	$arr_tag = explode(',',$tags);    
   	foreach((array)$arr_tag as $tag){	
@@ -110,7 +110,7 @@ class TagController extends FrontBase
   		$t && $tag_ids[] = $t->id;
   	}
   	
-  	$ajax = $this->_request->getParam( 'ajax' );
+  	$ajax = Yii::app()->request->getParam( 'ajax' );
   	$data = array();
   	$searchData = array();
   	if($tag_ids && $ajax == 1){

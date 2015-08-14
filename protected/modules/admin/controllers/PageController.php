@@ -15,8 +15,8 @@ class PageController extends Backend
         $model = new Page();
         $criteria = new CDbCriteria();
         $condition = '1';
-        $title = $this->_request->getParam('title');
-        $titleAlias = $this->_request->getParam('titleAlias');
+        $title = Yii::app()->request->getParam('title');
+        $titleAlias = Yii::app()->request->getParam('titleAlias');
         $title && $condition .= ' AND title LIKE \'%' . $title . '%\'';
         $titleAlias && $condition .= ' AND title_alias LIKE \'%' . $titleAlias . '%\'';
         $criteria->condition = $condition;
@@ -107,11 +107,11 @@ class PageController extends Backend
     public function actionBatch ()
     {
         if ($this->method() == 'GET') {
-			$command = trim($this->_request->getParam('command'));
-			$ids = intval($this->_request->getParam('id'));
+			$command = trim(Yii::app()->request->getParam('command'));
+			$ids = intval(Yii::app()->request->getParam('id'));
 		} elseif ($this->method() == 'POST') {
-			$command = $this->_request->getPost('command');
-			$ids = $this->_request->getPost('id');			
+			$command = Yii::app()->request->getPost('command');
+			$ids = Yii::app()->request->getPost('id');			
 		} else {
 			throw new CHttpException(404, Yii::t('admin','Only POST Or GET'));
 		}

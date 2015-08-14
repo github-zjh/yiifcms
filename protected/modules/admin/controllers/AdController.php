@@ -42,8 +42,8 @@ class AdController extends Backend
         $model = new Ad();
         $criteria = new CDbCriteria();
         $condition = '1';        
-        $title = $this->_request->getParam('title');
-        $position_id = $this->_request->getParam('positionID');
+        $title = Yii::app()->request->getParam('title');
+        $position_id = Yii::app()->request->getParam('positionID');
         $position_id && $condition .= ' AND position_id ='.$position_id;
         $title && $condition .= ' AND title LIKE \'%' . $title . '%\'';
         $criteria->condition = $condition;    

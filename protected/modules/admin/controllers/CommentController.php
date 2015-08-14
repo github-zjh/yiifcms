@@ -33,10 +33,10 @@ class CommentController extends Backend
         $model = new Comment();
         $criteria = new CDbCriteria();
         $condition = '1';
-        $status = $this->_request->getParam( 'status' );
-        $title = $this->_request->getParam( 'postTitle' );
-        $content = $this->_request->getParam( 'content' );
-        $type = $this->_request->getParam( 'type' )?$this->_request->getParam( 'type' ):$this->_type_ids['post'];
+        $status = Yii::app()->request->getParam( 'status' );
+        $title = Yii::app()->request->getParam( 'postTitle' );
+        $content = Yii::app()->request->getParam( 'content' );
+        $type = Yii::app()->request->getParam( 'type' )?Yii::app()->request->getParam( 'type' ):$this->_type_ids['post'];
         $type && $condition .= " AND type={$type}";
         $status && $condition .= " AND t.status='{$status}'";
         $table = array_search($type,$this->_type_ids);

@@ -95,8 +95,8 @@ class UeditorController extends Backend
 		    					'.pdf','.txt','.md', '.xml'),
 		);
 		
-		$action = $this->_request->getParam('action');		
-		$callback = $this->_request->getParam('callback');
+		$action = Yii::app()->request->getParam('action');		
+		$callback = Yii::app()->request->getParam('callback');
 		switch ($action) {
 		    case 'config':
 		        $result =  json_encode($CONFIG);

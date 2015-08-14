@@ -174,7 +174,7 @@ class UserController extends FrontBase
 		if($this->_active_need && $model->status == -1){
 			$this->redirect($this->createUrl('activeEmail'));
 		}
-		if($this->_request->isPostRequest){	
+		if(Yii::app()->request->isPostRequest){	
 			//发送验证码		
 			$reg = '/^[a-zA-Z0-9_]+@(qq|126|163|sina|hotmail|yahoo|gmail|sohu|live)(\.com|\.com\.cn)$/';
 			if($_POST['ajax'] == 'edit_form'){
@@ -302,7 +302,7 @@ class UserController extends FrontBase
 			exit;
 		}
 		//获取登录前的URL
-		$get_url = $this->_request->getParam('ret_url');
+		$get_url = Yii::app()->request->getParam('ret_url');
 		if (!empty($get_url))
 		{
 			$ret_url = trim($get_url);
@@ -345,7 +345,7 @@ class UserController extends FrontBase
 				//更新登录次数和ip				
 				$user = $this->loadModel();					
 				$user->logins = $user->logins + 1;
-				$user->last_login_ip = $this->_request->userHostAddress;
+				$user->last_login_ip = Yii::app()->request->userHostAddress;
 				$user->save();				
 				$this->redirect($ret_url);
 			}
@@ -418,7 +418,7 @@ class UserController extends FrontBase
 				//更新登录次数和ip
 				$user = $this->loadModel();
 				$user->logins = $user->logins + 1;
-				$user->last_login_ip = $this->_request->userHostAddress;
+				$user->last_login_ip = Yii::app()->request->userHostAddress;
 				$user->save();
 				$this->rediretParentUrl($ret_url);
 			}
@@ -453,7 +453,7 @@ class UserController extends FrontBase
 		$this->layout = false;
 		
 		//注册ip访问控制
-		$cur_ip = $this->_request->userHostAddress;		
+		$cur_ip = Yii::app()->request->userHostAddress;		
 		$access_ips = $this->_setting['deny_register_ip'];
 		$access_ips && $access_ips = explode("\r\n", trim($access_ips));
 		$access = Helper::ipAccess($cur_ip, $access_ips);		
@@ -483,7 +483,7 @@ class UserController extends FrontBase
 			$userModel->groupid = 1;			
 			$userModel->nickname = $userModel->username;
 			$userModel->logins = 0;
-			$userModel->register_ip = $this->_request->userHostAddress;  //注册ip
+			$userModel->register_ip = Yii::app()->request->userHostAddress;  //注册ip
 			// validate user input and redirect to the previous page if valid
 			if($userModel->save()){			
 				
@@ -522,7 +522,7 @@ class UserController extends FrontBase
 		$important_string = $params['id'];
 		$authcode = Helper::authcode($important_string, 'ENCODE', $safestr, 3600*2); //加密处理，2个小时过期
 		$authcode = urlencode($authcode);   //url编码		
-		$authurl = $this->_request->hostInfo.$this->createUrl('authEmail', array('authcode'=>$authcode));
+		$authurl = Yii::app()->request->hostInfo.$this->createUrl('authEmail', array('authcode'=>$authcode));
 		$subject = Yii::t('common','Account Active');
 		$message = Yii::t('common','Register Email',
 				array('{username}'=>$params['username'],
@@ -537,7 +537,7 @@ class UserController extends FrontBase
 	 */
 	public function actionAuthEmail(){
 		//解密
-		$authcode = urldecode($this->_request->getParam('authcode'));
+		$authcode = urldecode(Yii::app()->request->getParam('authcode'));
 		$safestr = $this->_setting['safe_str'];  //安全密匙
 		$decode = Helper::authcode($authcode, 'DECODE', $safestr);
 		if($decode){
@@ -574,7 +574,7 @@ class UserController extends FrontBase
 		if($model->status == 1){
 			$this->redirect($this->createUrl('index'));
 		}else{
-			if($this->_request->isPostRequest){
+			if(Yii::app()->request->isPostRequest){
 				if($_POST['ajax'] == 'ajax_active_form'){
 					$this->sendActiveAccount(array('id'=>$model->uid, 'username'=>$model->username,'email'=>$model->email));
 					exit(CJSON::encode(array('message'=>Yii::t('common','Send Success'))));
@@ -600,7 +600,7 @@ class UserController extends FrontBase
 				$important_string = $model->id;
 				$authcode = Helper::authcode($important_string, 'ENCODE', $safestr, 600); //加密处理，10分钟内过期
 				$authcode = urlencode($authcode);   //url编码
-				$authurl = $this->_request->hostInfo.$this->createUrl('resetPwd', array('authcode'=>$authcode));	
+				$authurl = Yii::app()->request->hostInfo.$this->createUrl('resetPwd', array('authcode'=>$authcode));	
 				$subject = Yii::t('common','Reset Pwd');
 				$message = Yii::t('common','ResetPwd Email',
 						array('{username}'=>$model->username,
@@ -629,7 +629,7 @@ class UserController extends FrontBase
 	 */	
 	public function actionResetPwd(){				
 		
-		$authcode = urldecode($this->_request->getParam('authcode')); //解码	
+		$authcode = urldecode(Yii::app()->request->getParam('authcode')); //解码	
 		$safestr = $this->_setting['safe_str'];  //安全密匙
 		$decode = Helper::authcode($authcode, 'DECODE', $safestr);	 //解密	
 		if($decode){

@@ -32,10 +32,10 @@ class MaillogController extends Backend
         $model = new MailLog();
         $criteria = new CDbCriteria();
         $condition = '1';
-        $accept = $this->_request->getParam( 'accept' ); //收件人
-        $subject = $this->_request->getParam( 'subject' ); //主题
-        $start_time = $this->_request->getParam( 'start_time' );  
-        $end_time = $this->_request->getParam( 'end_time' );
+        $accept = Yii::app()->request->getParam( 'accept' ); //收件人
+        $subject = Yii::app()->request->getParam( 'subject' ); //主题
+        $start_time = Yii::app()->request->getParam( 'start_time' );  
+        $end_time = Yii::app()->request->getParam( 'end_time' );
         
         $accept && $condition .= " AND accept='{$accept}'";
         $subject && $condition .= " AND subject like '%{$subject}%'";

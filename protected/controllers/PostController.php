@@ -27,9 +27,9 @@ class PostController extends FrontBase
    * 首页
    */
   public function actionIndex() {  
-    $catalog_id = trim( $this->_request->getParam( 'catalog_id' ) );
-    $order = trim( $this->_request->getParam( 'order' ) );
-    $keyword = trim( $this->_request->getParam( 'keyword' ) );
+    $catalog_id = trim( Yii::app()->request->getParam( 'catalog_id' ) );
+    $order = trim( Yii::app()->request->getParam( 'order' ) );
+    $keyword = trim( Yii::app()->request->getParam( 'keyword' ) );
     
 	if(!$order){
 		$order = 'id';
@@ -63,7 +63,7 @@ class PostController extends FrontBase
     	$this->_seoTitle = $seo['seo_title'].' - '.$this->_setting['site_name'];
     	$this->_seoKeywords = $seo['seo_keywords'];
     	$this->_seoDescription = $seo['seo_description'];
-    	$navs[] = array('url'=>$this->_request->getUrl(),'name'=>$this->_seoTitle);  
+    	$navs[] = array('url'=>Yii::app()->request->getUrl(),'name'=>$this->_seoTitle);  
     }
     
     //获取所有符合条件的文章  
@@ -130,8 +130,8 @@ class PostController extends FrontBase
   	if(!$uid){
   		$ret = array('state'=>'error', 'message'=>Yii::t('common', 'You Need Login'));
   	}else{
-  		$act = $this->_request->getParam('act');
-  		$postid = $this->_request->getParam('id');
+  		$act = Yii::app()->request->getParam('act');
+  		$postid = Yii::app()->request->getParam('id');
   		$post = Post::model()->findByPk($postid);
   		$type_id = $this->_type_ids['post'];
   		if(!$post){
@@ -150,7 +150,7 @@ class PostController extends FrontBase
 		  				$attention_mod->cid = $postid;
 		  				$attention_mod->title = $post->title;
 		  				$attention_mod->user_id = $uid;
-		  				$attention_mod->url = $this->_request->hostinfo.$this->createUrl('post/view', array('id'=>$postid));
+		  				$attention_mod->url = Yii::app()->request->hostinfo.$this->createUrl('post/view', array('id'=>$postid));
 		  				$attention_mod->type = $type_id;
 		  				$attention_mod->create_time = time();
 		  				if($attention_mod->save()){
@@ -171,7 +171,7 @@ class PostController extends FrontBase
 	  					$collect_mod->cid = $postid;
 	  					$collect_mod->title = $post->title;
 	  					$collect_mod->user_id = $uid;
-	  					$collect_mod->url = $this->_request->hostinfo.$this->createUrl('post/view', array('id'=>$postid));
+	  					$collect_mod->url = Yii::app()->request->hostinfo.$this->createUrl('post/view', array('id'=>$postid));
 	  					$collect_mod->type = $type_id;
 	  					$collect_mod->create_time = time();
 	  					if($collect_mod->save()){

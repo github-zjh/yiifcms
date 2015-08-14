@@ -44,8 +44,8 @@ class GoodsController extends Backend
         $model = new Goods();
         $criteria = new CDbCriteria();
         $condition = "type = ".$this->_type;
-        $goods_name = trim( $this->_request->getParam( 'goods_name' ) );     
-        $catalogId = intval( $this->_request->getParam( 'catalogId' ) );
+        $goods_name = trim( Yii::app()->request->getParam( 'goods_name' ) );     
+        $catalogId = intval( Yii::app()->request->getParam( 'catalogId' ) );
         $goods_name && $condition .= ' AND goods_name LIKE \'%' . $goods_name . '%\'';       
         $catalogId && $condition .= ' AND catalog_id= ' . $catalogId;
         $criteria->condition = $condition;
@@ -92,7 +92,7 @@ class GoodsController extends Backend
 	    		$model->default_thumb = $upload->_thumb_name;
     		}
     		//组图
-    		$imageList = $this->_request->getPost( 'imageList' );
+    		$imageList = Yii::app()->request->getPost( 'imageList' );
     		$imageListSerialize = $this->imageListSerialize($imageList);
     		$model->image_list = $imageListSerialize['dataSerialize'];    
     		//添加时间
@@ -139,7 +139,7 @@ class GoodsController extends Backend
 	    		$model->default_thumb = $upload->_thumb_name;
     		}
     		//组图
-    		$imageList = $this->_request->getPost( 'imageList' );
+    		$imageList = Yii::app()->request->getPost( 'imageList' );
     		$imageListSerialize = $this->imageListSerialize($imageList);
     		$model->image_list = $imageListSerialize['dataSerialize'];    
     		

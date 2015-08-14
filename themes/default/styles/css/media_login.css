@@ -1,7 +1,6 @@
-@CHARSET "UTF-8"
+@CHARSET 'UTF-8';
 /* 登录页面 */
-
-#wrapper { padding:0!important;}
+#wrapper{ padding:0!important;}
 #wrapper .form , .login_auth{ float:none!important;width:auto!important;}
 .wrapper_bg { display:none;}
 .login_bg { display:none;}

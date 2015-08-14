@@ -51,10 +51,10 @@ class QuestionController extends FrontBase
 		if(isset($_POST['Question']))
 		{
 			$model->attributes=$_POST['Question'];
-			$model->client_ip = $this->_request->userHostAddress;
+			$model->client_ip = Yii::app()->request->userHostAddress;
 			$model->create_time = time();
 			if($model->save()){
-				$this->message('success',Yii::t('common','Question Submit Success'), $this->_request->getUrl());
+				$this->message('success',Yii::t('common','Question Submit Success'), Yii::app()->request->getUrl());
 			}
 		}
 		
@@ -64,7 +64,7 @@ class QuestionController extends FrontBase
 		$this->_seoDescription = Yii::t('common','Question Description');
 		
 		//导航
-		$navs[] = array('url'=>$this->_request->getUrl(),'name'=>Yii::t('common','Question Title'));
+		$navs[] = array('url'=>Yii::app()->request->getUrl(),'name'=>Yii::t('common','Question Title'));
 		
 		//加载样式表
 		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/question.css");

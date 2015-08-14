@@ -25,8 +25,8 @@ class ImageController extends FrontBase
 	   * 首页
 	   */
 	  public function actionIndex() {  	
-	    $catalog_id = trim( $this->_request->getParam( 'catalog_id' ) );
-	    $keyword = trim( $this->_request->getParam( 'keyword' ) );
+	    $catalog_id = trim( Yii::app()->request->getParam( 'catalog_id' ) );
+	    $keyword = trim( Yii::app()->request->getParam( 'keyword' ) );
 	  
 	    //获取子孙分类(包括本身)
 	    $data = Catalog::model()->getChildren($catalog_id);
@@ -45,7 +45,7 @@ class ImageController extends FrontBase
 	    	$this->_seoTitle = $seo['seo_title'].' - '.$this->_setting['site_name'];
 	    	$this->_seoKeywords = $seo['seo_keywords'];
 	    	$this->_seoDescription = $seo['seo_description'];	    
-	    	$navs[] = array('url'=>$this->_request->getUrl(),'name'=>$this->_seoTitle); 
+	    	$navs[] = array('url'=>Yii::app()->request->getUrl(),'name'=>$this->_seoTitle); 
 	    }
 	    
 	    //获取所有符合条件的图集  

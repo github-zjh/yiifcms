@@ -20,7 +20,7 @@ class InstallController extends Controller
     public function init(){        	
     	$this->_static_public = Yii::app()->baseUrl.'/public';   
     	$this->_theme = Yii::app()->theme;   
-    	$this->_request = Yii::app()->request;
+    	Yii::app()->request = Yii::app()->request;
     	$this->_data = WWWPATH.'/protected/data/';
         $this->tplPath = $this->_data.'temp/';
         $this->configPath = Yii::app()->basePath.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR;		
@@ -248,16 +248,16 @@ class InstallController extends Controller
     public function actionProgress()
     {
         self::_checkInstall();
-        $dbHost = $this->_request->getParam('dbHost');
-        $dbPort = $this->_request->getParam('dbPort');        
-        $dbName = $this->_request->getParam('dbName');
-        $dbUsername = $this->_request->getParam('dbUsername');
-        $dbPassword = $this->_request->getParam('dbPassword');
-        $tbPre = $this->_request->getParam('tbPre');
-        $username = $this->_request->getParam('username');
-        $password = $this->_request->getParam('password');
-        $email = $this->_request->getParam('email');
-        $testData = $this->_request->getParam('testData');
+        $dbHost = Yii::app()->request->getParam('dbHost');
+        $dbPort = Yii::app()->request->getParam('dbPort');        
+        $dbName = Yii::app()->request->getParam('dbName');
+        $dbUsername = Yii::app()->request->getParam('dbUsername');
+        $dbPassword = Yii::app()->request->getParam('dbPassword');
+        $tbPre = Yii::app()->request->getParam('tbPre');
+        $username = Yii::app()->request->getParam('username');
+        $password = Yii::app()->request->getParam('password');
+        $email = Yii::app()->request->getParam('email');
+        $testData = Yii::app()->request->getParam('testData');
         $this->titler = '安装数据表';
         $this->render('progress', $data);
         try {
@@ -305,7 +305,7 @@ class InstallController extends Controller
 			
             //写入管理员信息
             $password = md5($password);
-            $register_ip = $this->_request->userHostAddress;
+            $register_ip = Yii::app()->request->userHostAddress;
             $admin_sql = "INSERT INTO `".$tbPre."user`(`uid`, `username`, `password`,`groupid`,`register_ip`,`email`,`addtime`) VALUES('1','".$username."','".$password."', '10', '".$register_ip."', '".$email."', ".time().")";
             $dbObj->createCommand($admin_sql)->execute();
 
@@ -355,11 +355,11 @@ class InstallController extends Controller
     public function actionDbCheck(){
     	self::_checkInstall();
     	
-        $dbHost = $this->_request->getParam('dbHost');
-        $dbPort = $this->_request->getParam('dbPort');
-        $dbName = $this->_request->getParam('dbName');
-        $dbUsername = $this->_request->getParam('dbUsername');
-        $dbPassword = $this->_request->getParam('dbPassword');
+        $dbHost = Yii::app()->request->getParam('dbHost');
+        $dbPort = Yii::app()->request->getParam('dbPort');
+        $dbName = Yii::app()->request->getParam('dbName');
+        $dbUsername = Yii::app()->request->getParam('dbUsername');
+        $dbPassword = Yii::app()->request->getParam('dbPassword');
         try {
             if(empty($dbHost) || empty($dbPort) || empty($dbName) || empty($dbUsername) || empty($dbPassword))
                 throw new Exception('数据库信息必须填写完整');

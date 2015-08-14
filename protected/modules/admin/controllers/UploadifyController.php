@@ -25,10 +25,10 @@ class UploadifyController extends Backend
         if ( $this->method() == 'POST' ) {
             $adminiUserId = Yii::app()->user->id;  
             $file = new Uploader;
-            if($this->_request->getParam('from') == 'editor'){
+            if(Yii::app()->request->getParam('from') == 'editor'){
             	//从外部编辑器上传的图片
             	$outside = 'Y';
-            	$file->_image_path = 'uploads/attached/'.$this->_request->getParam('dir').'/';
+            	$file->_image_path = 'uploads/attached/'.Yii::app()->request->getParam('dir').'/';
             }                 
             if(is_array($_FILES['imgFile']) && !empty($_FILES['imgFile'])){
             	foreach($_FILES['imgFile'] as $value){
@@ -135,7 +135,7 @@ class UploadifyController extends Backend
      * @return [type] [description]
      */
     public function actionRemove() {
-        $imageId = intval( $this->_request->getParam( 'imageId' ) );
+        $imageId = intval( Yii::app()->request->getParam( 'imageId' ) );
         try {
             $imageModel = Upload::model()->findByPk( $imageId );
             if ( $imageModel ==false )
@@ -158,7 +158,7 @@ class UploadifyController extends Backend
      * 
      */
     public function actionAjaxDel(){
-    	$file = $this->_request->getParam('path');
+    	$file = Yii::app()->request->getParam('path');
     	$firstchar = substr($file,0,1);
     	if(in_array($firstchar, array('/','\\'))){
     		$file = substr($file,1);

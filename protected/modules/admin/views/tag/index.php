@@ -19,7 +19,7 @@ $(function(){
       <script type="text/javascript">
 $(document).ready(function(){
 	$("#tagName").val('<?php echo Yii::app()->request->getParam('tagName')?>');
-	$("#catalog_id").val('<?php echo $this->_request->getParam('catalog_id')?>');
+	$("#catalog_id").val('<?php echo Yii::app()->request->getParam('catalog_id')?>');
 });
 </script> 
     </div>

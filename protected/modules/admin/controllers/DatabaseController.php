@@ -63,8 +63,8 @@ class DatabaseController extends Backend
     public function actionDoQuery ()
     {       
         if ($this->method() == 'POST') {
-        	$command=$this->_request->getParam('command');        	    
-            $table=$this->_request->getParam('table');
+        	$command=Yii::app()->request->getParam('command');        	    
+            $table=Yii::app()->request->getParam('table');
             empty($table) && exit('表必须选择');
             $tb = implode(',', $table);            
             switch ($command) {
@@ -96,7 +96,7 @@ class DatabaseController extends Backend
      * 安装测试数据
      */
     public function actionInstalltestdata(){
-    	if($this->_request->isPostRequest){
+    	if(Yii::app()->request->isPostRequest){
     		$testdataPath = WWWPATH.'/protected/data/temp/test_data.sql';
     		$testData = file_get_contents($testdataPath);
     		$tbPre = Yii::app()->db->tablePrefix;
@@ -113,7 +113,7 @@ class DatabaseController extends Backend
     public function actionExecute ()
     {
         if ($this->method() == 'POST') {            
-            $sql = $this->_request->getParam('command');
+            $sql = Yii::app()->request->getParam('command');
             self::_execute($sql);           
         }
     }
@@ -132,7 +132,7 @@ class DatabaseController extends Backend
      */
     public function actionDoExport ()
     {        
-        $dosubmit = $this->_request->getParam('dosubmit');
+        $dosubmit = Yii::app()->request->getParam('dosubmit');
         if ($dosubmit) {
             $tables = $this->_db->schema->tableNames;
             $sqlcharset = $_POST['sqlcharset'] ? $_POST['sqlcharset'] : $_GET['sqlcharset'];
@@ -257,9 +257,9 @@ class DatabaseController extends Backend
      */
     public function actionImport ()
     {        
-        if ($this->_request->getParam('dosubmit')) {
-            $pre = trim($this->_request->getParam('pre'));
-            $fileid = $this->_request->getParam('fileid');
+        if (Yii::app()->request->getParam('dosubmit')) {
+            $pre = trim(Yii::app()->request->getParam('pre'));
+            $fileid = Yii::app()->request->getParam('fileid');
             self::_import($pre, $fileid);
         } else {
             
@@ -346,7 +346,7 @@ class DatabaseController extends Backend
      */
     private function _execute ($command = '')
     {
-        $exeSql = empty($command) ? trim($this->_request->getParam('command')) : $command;        
+        $exeSql = empty($command) ? trim(Yii::app()->request->getParam('command')) : $command;        
         $formatExeSql = array($exeSql);
         foreach ($formatExeSql as $sql) {
             if (empty($sql))
@@ -400,11 +400,11 @@ class DatabaseController extends Backend
      */
     public function actionOperate ()
     {
-        $command = trim($this->_request->getParam('command'));
+        $command = trim(Yii::app()->request->getParam('command'));
         
         switch ($command) {
             case 'deleteFile':                
-                $filenames = $this->_request->getParam('sqlfile');
+                $filenames = Yii::app()->request->getParam('sqlfile');
                 
                 if ($filenames) {
                     if (is_array($filenames)) {
@@ -427,8 +427,8 @@ class DatabaseController extends Backend
                 
                 break;
             case 'downloadFile':                
-                $sqlfile = $this->_bakupPath . $this->_request->getParam('sqlfile');
-                Yii::app()->request->sendFile($this->_request->getParam('sqlfile'), file_get_contents($sqlfile));
+                $sqlfile = $this->_bakupPath . Yii::app()->request->getParam('sqlfile');
+                Yii::app()->request->sendFile(Yii::app()->request->getParam('sqlfile'), file_get_contents($sqlfile));
                 break;
             default:
                 throw new CHttpException(404, '未找到操作' );

@@ -9,7 +9,7 @@
      
   <?php echo Yii::t('admin','Title');?>
       <input id="title" type="text" name="title" value="" class="txt" size="15"/>  
-      <input id="id" type="hidden" name="id" value="<?php echo $this->_request->getParam('id');?>" />
+      <input id="id" type="hidden" name="id" value="<?php echo Yii::app()->request->getParam('id');?>" />
       <input name="searchsubmit" type="submit"  value="<?php echo Yii::t('admin','Query');?>" class="button "/>
       <input name="searchsubmit" type="reset"  value="<?php echo Yii::t('admin','Reset');?>" class="button "/>
       <script type="text/javascript">

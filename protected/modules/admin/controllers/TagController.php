@@ -30,7 +30,7 @@ class TagController extends Backend
         $model = new Tag();
         $criteria = new CDbCriteria();
         $condition = '1';
-        $tagName = $this->_request->getParam( 'tagName' );
+        $tagName = Yii::app()->request->getParam( 'tagName' );
         $tagName && $condition .= ' AND tag_name LIKE \'%' . $tagName . '%\'';
         $criteria->condition = $condition;
         $criteria->order = 't.id DESC';        

@@ -31,7 +31,7 @@ class ReplyController extends Backend
         $model = new Reply();
         $criteria = new CDbCriteria();
         $condition = '1';
-        $status = $this->_request->getParam( 'status' );       
+        $status = Yii::app()->request->getParam( 'status' );       
         $status && $condition .= " AND t.status='{$status}'";       
         $criteria->condition = $condition;
         $criteria->order = 't.id DESC';        

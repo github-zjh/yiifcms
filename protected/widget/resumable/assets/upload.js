@@ -46,6 +46,12 @@ $(function(){
         // 单个上传完成
         r.on('fileSuccess', function(file, message){      
             $('.resumable-file-'+file.uniqueIdentifier+' .resumable-file-progress').html('(<span style="color:green">上传完成</span>)');
+            if(file.xhr.response){
+                var response = file.xhr.responseText;                    
+                var jsonObj =  eval('(' + response + ')');
+                var data = jsonObj.data;
+                
+            }       
         });
         // 上传出错
         r.on('fileError', function(file, message){      

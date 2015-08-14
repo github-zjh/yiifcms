@@ -142,7 +142,7 @@ class SiteController extends FrontBase
 	 * 
 	 */
 	public function actionVersion(){
-		$cms = $this->_request->getParam('cms');
+		$cms = Yii::app()->request->getParam('cms');
 		$cms = unserialize(base64_decode($cms));
 				
 		//最新发布版本

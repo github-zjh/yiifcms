@@ -43,8 +43,8 @@ class SoftController extends Backend
         $model = new Soft();
         $criteria = new CDbCriteria();
         $condition = "type = ".$this->_type;
-        $title = trim( $this->_request->getParam( 'title' ) );      
-        $catalogId = intval( $this->_request->getParam( 'catalogId' ) );
+        $title = trim( Yii::app()->request->getParam( 'title' ) );      
+        $catalogId = intval( Yii::app()->request->getParam( 'catalogId' ) );
         $title && $condition .= ' AND title LIKE \'%' . $title . '%\'';        
         $catalogId && $condition .= ' AND catalog_id= ' . $catalogId;
         $criteria->condition = $condition;

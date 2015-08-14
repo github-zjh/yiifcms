@@ -30,8 +30,7 @@ class Controller extends CController
 	 * @var $_request
 	 */
 	
-	protected  $_yii = '';
-	protected  $_request = '';	
+	protected  $_yii = '';	
 	protected  $_theme = '';
 	protected  $_baseUrl = '';
 	protected  $_basePath = ''; //应用程序目录
@@ -50,8 +49,7 @@ class Controller extends CController
 	
 	public function init ()
 	{						
-		$this->_yii           = Yii::app();
-		$this->_request       = Yii::app()->request;				
+		$this->_yii           = Yii::app();					
 		$this->_baseUrl       = Yii::app()->baseUrl;
 		$this->_basePath      = Yii::app()->basePath;		
 		$this->_webRoot       = ROOT_PATH;

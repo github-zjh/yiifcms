@@ -58,7 +58,7 @@ EOT;
 		}
 		
 		//前端ip访问控制
-		$cur_ip = $this->_request->userHostAddress;		
+		$cur_ip = Yii::app()->request->userHostAddress;		
 		$access_ips = $this->_setting['deny_access_ip'];
 		$access_ips && $access_ips = explode("\r\n", trim($access_ips));
 		$access = Helper::ipAccess($cur_ip, $access_ips);

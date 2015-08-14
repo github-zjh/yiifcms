@@ -45,10 +45,10 @@ class CommentController extends FrontBase
   	
   	$this->layout = false;  
 
-  	$view_url = $this->_request->getParam('view_url');
-  	$topic_id = $this->_request->getParam('topic_id');
-  	$topic_type = $this->_request->getParam('topic_type');
-  	$cur_url = $this->_request->hostinfo.$this->_request->getUrl();
+  	$view_url = Yii::app()->request->getParam('view_url');
+  	$topic_id = Yii::app()->request->getParam('topic_id');
+  	$topic_type = Yii::app()->request->getParam('topic_type');
+  	$cur_url = Yii::app()->request->hostinfo.Yii::app()->request->getUrl();
   	$post = false;
   	//评论类型
   	switch($topic_type){
@@ -98,7 +98,7 @@ class CommentController extends FrontBase
   	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
   	Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/kindeditor/code/prettify.js",CClientScript::POS_END);
   	
-  	if($this->_request->isPostRequest){
+  	if(Yii::app()->request->isPostRequest){
   		$uid = Yii::app()->user->id;
   		if(!$uid){
   			$this->message('script', Yii::t('common','You Need Login'));
@@ -109,7 +109,7 @@ class CommentController extends FrontBase
   		$model->type = $this->_type_ids[$topic_type];
   		$model->user_id = $uid;
   		$model->status = 'N';
-  		$model->client_ip = $this->_request->userHostAddress;
+  		$model->client_ip = Yii::app()->request->userHostAddress;
   		$model->create_time = time();
   		
   		$ret_url = $_POST['ret_url'];  	
@@ -140,7 +140,7 @@ class CommentController extends FrontBase
    */
   public function actionReply(){
   	  $this->layout = false;
-  	  if($this->_request->isPostRequest){
+  	  if(Yii::app()->request->isPostRequest){
   	  	//当前登录用户id
   	  	$uid = Yii::app()->user->id;  	  	
   	  	if(!$uid){

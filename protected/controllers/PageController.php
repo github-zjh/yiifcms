@@ -34,7 +34,7 @@ class PageController extends FrontBase
       $this->_menu_unique = $id;
       
       //导航
-      $navs[] = array('url'=>$this->_request->getUrl(),'name'=>$page->title);
+      $navs[] = array('url'=>Yii::app()->request->getUrl(),'name'=>$page->title);
       $this->render('index', array('page'=>$page, 'navs'=>$navs, 'pagelists'=>$pagelists));
   }
   

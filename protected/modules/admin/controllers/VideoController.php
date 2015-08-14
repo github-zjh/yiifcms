@@ -51,8 +51,8 @@ class VideoController extends Backend
         $model = new Video();
         $criteria = new CDbCriteria();
         $condition = "type = ".$this->_type;
-        $name = trim( $this->_request->getParam( 'name' ) );        
-        $catalogId = intval( $this->_request->getParam( 'catalogId' ) );
+        $name = trim( Yii::app()->request->getParam( 'name' ) );        
+        $catalogId = intval( Yii::app()->request->getParam( 'catalogId' ) );
         $title && $condition .= ' AND name LIKE \'%' . $name . '%\'';        
         $catalogId && $condition .= ' AND catalog_id= ' . $catalogId;
         $criteria->condition = $condition;

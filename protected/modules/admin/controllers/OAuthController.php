@@ -33,7 +33,7 @@ class OAuthController extends Backend
         $model = new OAuth();
         $criteria = new CDbCriteria();
         $condition = '1';
-        $apiname = trim($this->_request->getParam('apiname'));
+        $apiname = trim(Yii::app()->request->getParam('apiname'));
         $apiname && $condition .= ' AND apiname LIKE \'%' . $apiname . '%\'';
         $criteria->condition = $condition;        
         $count = $model->count($criteria);
