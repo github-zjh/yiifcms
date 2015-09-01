@@ -267,12 +267,16 @@
 			if (hasError) {
 				$error.html(messages[attribute.id][0]);
 				$container.addClass(attribute.errorCssClass);
+                if (!attribute.hideErrorMessage) {
+                    $error.toggle(hasError);
+                }
 			} else if (attribute.enableAjaxValidation || attribute.clientValidation) {
+                $error.html('').show();
 				$container.addClass(attribute.successCssClass);
 			}
-			if (!attribute.hideErrorMessage) {
-				$error.toggle(hasError);
-			}
+//			if (!attribute.hideErrorMessage) {
+//				$error.toggle(hasError);
+//			}
 
 			attribute.value = getAFValue($el);
 		}

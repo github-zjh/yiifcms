@@ -16,7 +16,7 @@ class Uploader{
     public  $file_ext  = '';                               //文件扩展名
     public  $file_path = '';                               //存到数据中的路径
     public  $save_path = '';                               //生成的文件路径
-    public  $save_name = '';                               //生成的文件名
+    public  $file_name = '';                               //生成的文件名
     public  $model = '';                                   //上传文件模型
     public  $total_size  = 0;                              //总文件大小
     
@@ -30,8 +30,8 @@ class Uploader{
         //文章
         'post' => array(            
             'save_path'           => 'post',                //保存路径
-            'allow_ext'           => 'jpg,jpeg,png,gif',    //允许类型 *代表所有
-            'max_upload_filesize' => 2097152,               //允许最大上传大小2M
+            'allow_ext'           => 'jpg',    //允许类型 *代表所有
+            'max_upload_filesize' => 2097152000,               //允许最大上传大小2M
             'make_thumb'          => true,                  //是否生成缩略图
             'make_watermark'      => false,                 //是否添加水印
             'rand_name'           => true,                  //是否随机生成文件名
@@ -156,64 +156,28 @@ class Uploader{
     }
     
     /**
-	 * 上传文件
-	 * @param string $file          上传的文件
-	 * @param string $save_path     保存的路径
-	 * @param string $type
-	 * @param boolean $thumb
-	 * @param boolean $watermark
-	 * @return boolean
-	 */
-	public function uploadFile($file = '', $thumb = false, $watermark = false){		
-		if($this->checkUpload($file)){						
-			//验证通过
-			$real_thumb = false;
-			$real_watermark = false;	
-			if($this->_is_image){
-				//如果是图片
-				$save_path = $this->_image_path?$this->_image_path:'uploads';
-				$real_thumb = $thumb;
-				$real_watermark = $watermark;
-			}else{	
-				$save_path = $this->_file_path?$this->_file_path:'uploads';
-			}	
-			
-			$save_path .= date('Ym',time()).'/';			
-			$filename = $this->_rand_name?substr(md5(uniqid('file')), 0,11).'.'.$this->_file_ext:$this->_real_name; 				
-			if(!is_dir($save_path)){
-				mkdir($save_path, 0777, true);
-			}
-			$this->_file_name = $save_path .= $filename;				
-			if($real_thumb){
-				//生成缩略图
-				$this->makeThumb($this->_tmp_name, $filename);						
-			}
-			if($real_watermark){
-				//添加水印
-				$this->waterMark($this->_tmp_name, $save_path);
-			}else{						
-				if(Helper::getOS()=='Linux'){					
-					$mv = move_uploaded_file($this->_tmp_name, $save_path);
-				}else{
-					//解决windows下中文文件名乱码的问题					
-					$save_path = Helper::safeEncoding($save_path,'GB2312');
-					if(!$save_path){
-						//转换失败
-						$this->_error = 'File Names Contains doesnt recognize Chinese';
-						return false;
-					}					
-					$mv = move_uploaded_file($this->_tmp_name, $save_path);
-				}
-				if(!$mv){					
-					$this->_error = 'Upload Failed, Can not MoveUp Tmp File.';
-					return false;
-				}				
-			}
-			
-			return true;
-		}else{
+	 * 取得图像信息
+	 * @static
+	 * @access public
+	 * @param string $img 图像文件名
+	 * @return mixed
+	 */	
+	public static function getImageInfo($img) {
+		$imageInfo = getimagesize($img);
+		if ($imageInfo !== false) {
+			$imageType = strtolower(substr(image_type_to_extension($imageInfo[2]), 1));
+			$imageSize = filesize($img);
+			$info = array(
+					"width" => $imageInfo[0],
+					"height" => $imageInfo[1],
+					"type" => $imageType,
+					"size" => $imageSize,
+					"mime" => $imageInfo['mime']
+			);
+			return $info;
+		} else {
 			return false;
-		}		
+		}
 	}
 	
 	/**
@@ -225,7 +189,7 @@ class Uploader{
 	 * @param string $savepath
 	 * @return boolean
 	 */
-	function makeThumb($tmpname='' , $filename=''){
+	public function makeThumb($tmpname='' , $filename=''){
 		if(file_exists($tmpname)){
 			//缩略图尺寸
 			$width = $this->_thumb_width;
@@ -369,10 +333,13 @@ class Uploader{
 	 */
 	private function _checkValid(){        
         //文件类型不合法
-        $allow_ext = explode(',', $this->config[$this->model]['allow_ext']);
-        if(!in_array($this->file_ext, $allow_ext) && $allow_ext != '*'){
-            $this->setError('file type is error, please upload a legal file');
-            return false;
+        $allow_ext =  $this->config[$this->model]['allow_ext'];
+        if($allow_ext != '*') {
+            $allow_ext = explode(',', $allow_ext);        
+            if(!in_array($this->file_ext, $allow_ext)){
+                $this->setError('file type is error, please upload a legal file');
+                return false;
+            }
         }
         //文件大小超出限制
         if($this->total_size > $this->config[$this->model]['max_upload_filesize']) {
@@ -380,32 +347,7 @@ class Uploader{
             return false;
         }		
 		return true;
-	}
-		
-	/**
-	 * 取得图像信息
-	 * @static
-	 * @access public
-	 * @param string $img 图像文件名
-	 * @return mixed
-	 */	
-	public static function getImageInfo($img) {
-		$imageInfo = getimagesize($img);
-		if ($imageInfo !== false) {
-			$imageType = strtolower(substr(image_type_to_extension($imageInfo[2]), 1));
-			$imageSize = filesize($img);
-			$info = array(
-					"width" => $imageInfo[0],
-					"height" => $imageInfo[1],
-					"type" => $imageType,
-					"size" => $imageSize,
-					"mime" => $imageInfo['mime']
-			);
-			return $info;
-		} else {
-			return false;
-		}
-	}
+	}	
     
     /**
      * 设置上传错误信息
@@ -455,15 +397,15 @@ class Uploader{
                     $convert_name = $this->_convertChineseName($this->real_name);
                     fwrite($fp, file_get_contents($this->_chunk_dir . DS . $convert_name .'.part' . $i));
                 }
-                fclose($fp);
+                fclose($fp);                
             } else {                
                 $msg = 'cannot create the destination file';
                 $this->setError($msg);                
                 return false;
-            }                       
-        }
-        //删除临时存放目录
-        Helper::rrmdir($this->_chunk_dir);
+            }
+            //删除临时存放目录
+            Helper::rrmdir($this->_chunk_dir);
+        }        
     }
     
     /**
@@ -475,7 +417,7 @@ class Uploader{
         $file_id      = Yii::app()->request->getParam('resumableIdentifier');
         $file_name    = Yii::app()->request->getParam('resumableFilename');
         $chunk_number = Yii::app()->request->getParam('resumableChunkNumber');        
-        $temp_dir     = $this->_getChunkDir($file_id);
+        $temp_dir     = $this->_getChunkDir($file_id, false);
         $convert_name = $this->_convertChineseName($file_name);
         $chunk_file   =  str_replace(array('\\', '\\\\'), '/', $temp_dir .DS. $convert_name.'.part'.$chunk_number);        
         if (file_exists($chunk_file)) {            
@@ -499,24 +441,15 @@ class Uploader{
     /**
      * 获取片段保存目录
      * 
+     * @param $makedir
      * @return string
      */
-    private function _getChunkDir($file_id = '')
+    private function _getChunkDir($file_id = '', $makedir = true)
     {        
         $temp_dir = TEMP_PATH . DS . $file_id;
-        if(!is_dir($temp_dir)){
+        if(!is_dir($temp_dir) && $makedir){
             mkdir($temp_dir, 0777, true);
         }
         return $temp_dir;        
     }
-    
-    /**
-     * 记录普通日志信息
-     * 
-     * @param string $msg
-     */
-    private function _log($msg = '')
-    {
-        Yii::log($msg,'info', 'upload');
-    }		
 }

@@ -1,10 +1,9 @@
 <?php
 
 /**
- * 附件表
- * This is the model class for table "{{upload}}".
+ * This is the model class for table "{{attachment}}".
  *
- * The followings are the available columns in table '{{upload}}':
+ * The followings are the available columns in table '{{attachment}}':
  * @property string $id
  * @property string $user_id
  * @property string $real_name
@@ -16,14 +15,14 @@
  * @property string $down_count
  * @property string $create_time
  */
-class Upload extends CActiveRecord
+class Attachment extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return '{{upload}}';
+		return '{{attachment}}';
 	}
 
 	/**
@@ -113,14 +112,14 @@ class Upload extends CActiveRecord
 
 		$criteria->compare('create_time',$this->create_time,true);
 
-		return new CActiveDataProvider('Upload', array(
+		return new CActiveDataProvider('Attachment', array(
 			'criteria'=>$criteria,
 		));
 	}
 
 	/**
 	 * Returns the static model of the specified AR class.
-	 * @return Upload the static model class
+	 * @return Attachment the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

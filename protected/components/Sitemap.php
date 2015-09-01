@@ -93,6 +93,9 @@ class Sitemap extends CController{
 		foreach($model as $k=>$v){
 			$tag_id = $v->tag_id;
 			$tag = Tag::model()->findByPk($tag_id);
+            if(!$tag) {
+                continue;
+            }
 			$this->tagItems[] = array(
 					'url'=>$this->createUrl('tag/index', array('tag_name'=>$tag->tag_name)),
 					'date'=>date(DATE_W3C, time())

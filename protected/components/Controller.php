@@ -40,6 +40,7 @@ class Controller extends CController
 	protected  $_fonts = '';    //字体目录	
 	public     $_static_public = ''; //公共资源目录	
 	public     $_data = '';
+    public     $_request = '';
 	protected  $_adminGroupID = 10; //系统管理员用户组ID
 	public  $_type_ids = array(); //内容模型id	
 	public  $_content_models = array(); //内容模型对象
@@ -51,7 +52,8 @@ class Controller extends CController
 	{						
 		$this->_yii           = Yii::app();					
 		$this->_baseUrl       = Yii::app()->baseUrl;
-		$this->_basePath      = Yii::app()->basePath;		
+		$this->_basePath      = Yii::app()->basePath;
+        $this->_request       = Yii::app()->request;
 		$this->_webRoot       = ROOT_PATH;
 		$this->_extPath       = $this->_webRoot.'/protected/extensions';
 		$this->_widgetPath    = $this->_webRoot.'/protected/widget';

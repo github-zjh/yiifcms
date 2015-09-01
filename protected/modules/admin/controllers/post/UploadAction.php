@@ -16,8 +16,12 @@ class UploadAction extends CAction
             $error = $uploader->getError();
             if (!$error) {
                 $data = array(
-                    'file_path' => $uploader->file_path
+                    'file_name' => $uploader->file_name,
+                    'file_path' => $uploader->file_path,
+                    'file_ext'  => $uploader->file_ext
                 );
+                //保存到附件表里
+                $upload = new Upload();
                 App::response(200, 'success', $data);
             } else {                
                 App::response(101 , $error);

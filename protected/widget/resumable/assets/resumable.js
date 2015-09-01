@@ -116,13 +116,14 @@
       // Find event listeners, and support pseudo-event `catchAll`
       var event = args[0].toLowerCase();
       for (var i=0; i<=$.events.length; i+=2) {
-        if($.events[i]==event) $.events[i+1].apply($,args.slice(1));
-        if($.events[i]=='catchall') $.events[i+1].apply(null,args);
+        if($.events[i]===event) $.events[i+1].apply($,args.slice(1));
+        if($.events[i]==='catchall') $.events[i+1].apply(null,args);
       }
-      if(event=='fileerror') $.fire('error', args[2], args[1]);
-      if(event=='fileprogress') $.fire('progress');
+      if(event==='fileerror') $.fire('error', args[2], args[1]);
+      if(event==='fileprogress') $.fire('progress');
     };
-
+    //上传ajax请求 返回json数据
+    $.responseData = null;
 
     // INTERNAL HELPER METHODS (handy, but ultimately not part of uploading)
     var $h = {
@@ -156,7 +157,7 @@
         var result = false;
 
         $h.each(array, function(value) {
-          if (value == test) {
+          if (value === test) {
             result = true;
             return false;
           }
@@ -394,12 +395,12 @@
             files.push(f);
             f.container = (typeof event !== 'undefined' ? event.srcElement : null);
             window.setTimeout(function(){
-              $.fire('fileAdded', f, event)
+              $.fire('fileAdded', f, event);
             },0);
-          })()};
+          })();};
         }
         // directories have size == 0
-        var uniqueIdentifier = $h.generateUniqueIdentifier(file)
+        var uniqueIdentifier = $h.generateUniqueIdentifier(file);
         if(uniqueIdentifier && typeof uniqueIdentifier.done === 'function' && typeof uniqueIdentifier.fail === 'function'){
           uniqueIdentifier
           .done(function(uniqueIdentifier){
@@ -414,7 +415,7 @@
 
       });
       window.setTimeout(function(){
-        $.fire('filesAdded', files)
+        $.fire('filesAdded', files);
       },0);
     };
 
@@ -467,7 +468,7 @@
         // Stop current uploads
         var abortCount = 0;
         $h.each($.chunks, function(c){
-          if(c.status()=='uploading') {
+          if(c.status()==='uploading') {
             c.abort();
             abortCount++;
           }
@@ -480,7 +481,7 @@
         $.chunks = [];
         // Stop current uploads
         $h.each(_chunks, function(c){
-          if(c.status()=='uploading')  {
+          if(c.status()==='uploading')  {
             c.abort();
             $.resumableObj.uploadNextChunk();
           }
@@ -509,7 +510,7 @@
                 $.chunks.push(new ResumableChunk($.resumableObj, $, offset, chunkEvent));
                 $.resumableObj.fire('chunkingProgress',$,offset/maxOffset);
             },0);
-        })(offset)}
+        })(offset);}
         window.setTimeout(function(){
             $.resumableObj.fire('chunkingComplete',$);
         },0);
@@ -520,7 +521,7 @@
         var ret = 0;
         var error = false;
         $h.each($.chunks, function(c){
-          if(c.status()=='error') error = true;
+          if(c.status()==='error') error = true;
           ret += c.progress(true); // get chunk progress relative to entire file
         });
         ret = (error ? 1 : (ret>0.99999 ? 1 : ret));
@@ -531,7 +532,7 @@
       $.isUploading = function(){
         var uploading = false;
         $h.each($.chunks, function(chunk){
-          if(chunk.status()=='uploading') {
+          if(chunk.status()==='uploading') {
             uploading = true;
             return(false);
           }
@@ -542,7 +543,7 @@
         var outstanding = false;
         $h.each($.chunks, function(chunk){
           var status = chunk.status();
-          if(status=='pending' || status=='uploading' || chunk.preprocessState === 1) {
+          if(status==='pending' || status==='uploading' || chunk.preprocessState === 1) {
             outstanding = true;
             return(false);
           }
@@ -566,8 +567,8 @@
       $.bootstrap();
       return(this);
     }
-
-
+    
+    
     function ResumableChunk(resumableObj, fileObj, offset, callback){
       var $ = this;
       $.opts = {};
@@ -603,7 +604,7 @@
         var testHandler = function(e){
           $.tested = true;
           var status = $.status();
-          if(status=='success') {
+          if(status==='success') {
             $.callback(status, $.message());
             $.resumableObj.uploadNextChunk();
           } else {
@@ -618,7 +619,7 @@
         var params = [];
         var parameterNamespace = $.getOpt('parameterNamespace');
         var customQuery = $.getOpt('query');
-        if(typeof customQuery == 'function') customQuery = customQuery($.fileObj, $);
+        if(typeof customQuery === 'function') customQuery = customQuery($.fileObj, $);
         $h.each(customQuery, function(k,v){
           params.push([encodeURIComponent(parameterNamespace+k), encodeURIComponent(v)].join('='));
         });
@@ -681,7 +682,7 @@
         // Done (either done, failed or retry)
         var doneHandler = function(e){
           var status = $.status();
-          if(status=='success'||status=='error') {
+          if(status==='success'||status==='error') {
             $.callback(status, $.message());
             $.resumableObj.uploadNextChunk();
           } else {
@@ -715,7 +716,7 @@
         };
         // Mix in custom data
         var customQuery = $.getOpt('query');
-        if(typeof customQuery == 'function') customQuery = customQuery($.fileObj, $);
+        if(typeof customQuery === 'function') customQuery = customQuery($.fileObj, $);
         $h.each(customQuery, function(k,v){
           query[k] = v;
         });
@@ -773,16 +774,19 @@
           // Status is really 'OPENED', 'HEADERS_RECEIVED' or 'LOADING' - meaning that stuff is happening
           return('uploading');
         } else {
-            if($.xhr.status == 200 || $.xhr.status == 201) {
+            if($.xhr.status === 200 || $.xhr.status === 201) {
                 // HTTP 200 or 201 (created) perfect
-                if($.xhr.response){
-                    var response = $.xhr.responseText;                    
-                    var jsonObj =  eval('(' + response + ')');                    
-                    if(jsonObj.code == 200) {
-                        return ('success');
-                    } else {
-                        return ('error');
-                    }
+                if($.xhr.response){                    
+                    var response = $.xhr.responseText;
+                    try {
+                        var jsonObj =  eval('(' + response + ')');
+                        resumableObj.responseData = jsonObj.data;
+                        if(jsonObj.code === 200) {
+                            return ('success');
+                        } else {
+                            return ('error');
+                        }
+                    }catch(e){}
                 }                
                 return('success');
             } else if($h.contains($.getOpt('permanentErrors'), $.xhr.status) || $.retries >= $.getOpt('maxChunkRetries')) {
@@ -795,14 +799,18 @@
                 return('pending');
             }
         }
-      };
+      };      
       $.message = function(){
         var message = '';
         if($.xhr) {
-            var jsonObj = eval('('+$.xhr.responseText+')');
-            message = jsonObj.message;
+            try {
+                var jsonObj = eval('('+$.xhr.responseText+')');
+                if(jsonObj) {
+                    message = jsonObj.message;
+                }
+            } catch (e){}
         }
-        return message;        
+        return message;    
       };
       $.progress = function(relative){
         if(typeof(relative)==='undefined') relative = false;
@@ -916,7 +924,7 @@
       });
     };
     $.assignDrop = function(domNodes){
-      if(typeof(domNodes.length)=='undefined') domNodes = [domNodes];
+      if(typeof(domNodes.length)==='undefined') domNodes = [domNodes];
 
       $h.each(domNodes, function(domNode) {
         domNode.addEventListener('dragover', preventDefault, false);
@@ -925,7 +933,7 @@
       });
     };
     $.unAssignDrop = function(domNodes) {
-      if (typeof(domNodes.length) == 'undefined') domNodes = [domNodes];
+      if (typeof(domNodes.length) === 'undefined') domNodes = [domNodes];
 
       $h.each(domNodes, function(domNode) {
         domNode.removeEventListener('dragover', preventDefault);
@@ -944,7 +952,7 @@
       return(uploading);
     };
     $.upload = function(){
-      // Make sure we don't start too many uploads at once
+      // Make sure we don't start too many uploads at once      
       if($.isUploading()) return;
       // Kick off the queue
       $.fire('uploadStart');

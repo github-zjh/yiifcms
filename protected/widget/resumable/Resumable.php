@@ -19,6 +19,7 @@ class Resumable extends CInputWidget{
 	public $language = 'zh_CN';
 	public $id;
 	public $options;
+    public $assets = '';
 
 	/**
 	 * 获取资源文件路径
@@ -40,12 +41,12 @@ class Resumable extends CInputWidget{
         //片段大小(字节)
         $chunk_size = isset($this->options['chunk_size']) ? $this->options['chunk_size'] : 1*1024*1024;
         //一次最多上传文件数
-        $max_num    = isset($this->options['max_num']) ? $this->options['max_num'] : 1;
+        $max_num    = isset($this->options['max_num']) ? $this->options['max_num'] : 1;        
         echo <<< EOT
         <script type="text/javascript">
             var resumable_upload_url = '{$upload_url}';
             var resumable_chunk_size = {$chunk_size};
-            var simultaneousUploads  = {$max_num};
+            var simultaneousUploads  = {$max_num};            
         </script>
         <div>
 			<div class="resumable-error">
@@ -60,8 +61,8 @@ class Resumable extends CInputWidget{
                   <td width="100%"><div class="progress-container"><div class="progress-bar"></div></div></td>
                   <td class="progress-text" nowrap="nowrap"></td>
                   <td class="progress-pause" nowrap="nowrap">
-                    <a href="#" onclick="r.upload(); return(false);" class="progress-resume-link"><img src="images/resume.png" title="Resume upload" /></a>
-                    <a href="#" onclick="r.pause(); return(false);" class="progress-pause-link"><img src="images/pause.png" title="Pause upload" /></a>
+                    <a href="javascript:;" id="resume-start" class="progress-resume-link"><img src="{$this->assets}/resume.png" title="Resume upload" /></a>
+                    <a href="javascript:;" id="resume-pause" class="progress-pause-link"><img src="{$this->assets}/pause.png" title="Pause upload" /></a>
                   </td>
                 </tr>
               </table>
@@ -78,7 +79,7 @@ EOT;
 	 */
 	public function run() {
 		parent::run();		
-		$assets = $this->getAssetsPath();
+		$this->assets = $assets = $this->getAssetsPath();
         $this->displayHtml();
 		$clientScript = Yii::app()->getClientScript();
 		$clientScript->registerCssFile( $assets.'/default.css' );		

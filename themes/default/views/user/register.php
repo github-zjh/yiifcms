@@ -21,7 +21,7 @@
 			array(
 				'id'=>'register-form',
 				'enableAjaxValidation' => true,
-				'enableClientValidation'=>true,
+				'enableClientValidation'=>false,
 				'clientOptions'=>array(
 					'validateOnSubmit'=>true,
 				),
@@ -62,7 +62,7 @@
 			$(function(){
 				$(".inputMailList").mailAutoComplete();
 				//刷新验证码
-				$("#yw0").ready(function(){
+				$("#yw0").ready(function(){                    
 			        $('#yw0').trigger('click');
 			    });
 					

@@ -28,6 +28,9 @@
 .uploader-item-title {position:absolute; font-size:9px; line-height:11px; padding:3px 50px 3px 5px; bottom:0; left:0; right:0; color:white; background-color:rgba(0,0,0,0.6); min-height:27px;}
 .uploader-item-status {position:absolute; bottom:3px; right:3px;}
 
+/* Uploader: List of having uploaded */
+.resumable-files li { border:1px solid #cccccc; padding:2px; float:left; margin-right:20px;}
+
 /* Uploader: Hover & Active status */
 .uploader-item:hover, .is-active .uploader-item {border-color:#4a873c; cursor:pointer; }
 .uploader-item:hover .uploader-item-title, .is-active .uploader-item .uploader-item-title {background-color:rgba(74,135,60,0.8);}
