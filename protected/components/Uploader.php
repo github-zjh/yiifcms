@@ -13,7 +13,7 @@ class Uploader{
     public  $watermark_pic = 'public/watermark.png';       //默认水印图片完整路径
     public  $real_name = '';                               //上传的原始文件名
     public  $file_id   = '';                               //文件ID
-    public  $file_ext  = '';                               //文件扩展名
+    public  $file_ext  = '';                               //文件扩展名   
     public  $file_path = '';                               //存到数据中的路径
     public  $save_path = '';                               //生成的文件路径
     public  $file_name = '';                               //生成的文件名
@@ -300,13 +300,13 @@ class Uploader{
 					imagedestroy($sImg);					
 				}
 			}else{
-				//$this->_error = 'Watermark image is not found';
-				//return false;
+				$this->_error = 'Watermark image is not found';
+				return false;
 			}
 			//return true;
 		}else{
-			//$this->_error = 'Add watermark failed';
-			//return false;
+			$this->_error = 'Add watermark failed';
+			return false;
 		}
 		return true;
 	}

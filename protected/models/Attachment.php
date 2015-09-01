@@ -10,9 +10,7 @@
  * @property string $file_name
  * @property string $thumb_name
  * @property string $file_ext
- * @property string $file_mime
  * @property string $file_size
- * @property string $down_count
  * @property string $create_time
  */
 class Attachment extends CActiveRecord
@@ -33,14 +31,13 @@ class Attachment extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, file_size, down_count, create_time', 'length', 'max'=>10),
+			array('user_id, file_size, create_time', 'length', 'max'=>10),
 			array('real_name, thumb_name', 'length', 'max'=>255),
 			array('file_name', 'length', 'max'=>100),
-			array('file_ext', 'length', 'max'=>5),
-			array('file_mime', 'length', 'max'=>50),
+			array('file_ext', 'length', 'max'=>5),			
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, user_id, real_name, file_name, thumb_name, file_ext, file_mime, file_size, down_count, create_time', 'safe', 'on'=>'search'),
+			array('id, user_id, real_name, file_name, thumb_name, file_ext, file_size, create_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -66,10 +63,8 @@ class Attachment extends CActiveRecord
 			'real_name' => 'Real Name',
 			'file_name' => 'File Name',
 			'thumb_name' => 'Thumb Name',
-			'file_ext' => 'File Ext',
-			'file_mime' => 'File Mime',
-			'file_size' => 'File Size',
-			'down_count' => 'Down Count',
+			'file_ext' => 'File Ext',			
+			'file_size' => 'File Size',			
 			'create_time' => 'Create Time',
 		);
 	}
@@ -103,13 +98,9 @@ class Attachment extends CActiveRecord
 		$criteria->compare('thumb_name',$this->thumb_name,true);
 
 		$criteria->compare('file_ext',$this->file_ext,true);
-
-		$criteria->compare('file_mime',$this->file_mime,true);
-
+		
 		$criteria->compare('file_size',$this->file_size,true);
-
-		$criteria->compare('down_count',$this->down_count,true);
-
+        
 		$criteria->compare('create_time',$this->create_time,true);
 
 		return new CActiveDataProvider('Attachment', array(
@@ -125,4 +116,41 @@ class Attachment extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+    
+    /**
+     * 保存附件数据
+     * 
+     * @param Uploader $uploader
+     * @return boolean
+     */
+    public static function saveData($uploader = NULl)
+    {
+        if($uploader instanceof Uploader) {
+            $att = new Attachment();
+            $att->user_id   = Yii::app()->user->id ? Yii::app()->user->id : 0;
+            $att->file_ext  = $uploader->file_ext;
+            $att->file_name = $uploader->file_path;
+            $att->real_name = $uploader->real_name;
+            $att->file_size = $uploader->total_size;
+            $att->create_time = time();
+            $att->save();
+        }
+        return true;
+    }
+    /**
+     * 删除附件
+     * 
+     * @param int $id
+     * @return boolean
+     */
+    public static function deleteData($id = 0)
+    {
+        $attachment = self::model()->findByPk($id);
+        if($attachment) {
+            Uploader::deleteFile($attachment->file_name);
+            Uploader::deleteFile($attachment->thumb_name);
+            $attachment->delete();
+        }
+        return true;
+    }
 }

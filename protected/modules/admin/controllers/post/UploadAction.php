@@ -21,7 +21,7 @@ class UploadAction extends CAction
                     'file_ext'  => $uploader->file_ext
                 );
                 //保存到附件表里
-                $upload = new Upload();
+                Attachment::saveData($uploader);
                 App::response(200, 'success', $data);
             } else {                
                 App::response(101 , $error);
