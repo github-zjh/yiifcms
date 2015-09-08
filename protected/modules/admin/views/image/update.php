@@ -8,5 +8,13 @@
     <div class="search right"> </div>
   </div>
 </div>
-<?php $this->renderPartial('_form',array('model'=>$model, 'imageList'=>$imageList, 'style'=>$style))?>
+<?php $this->renderPartial('_form',array(
+    'model'     => $model,
+    'style'     => isset($style) ? $style : array(),
+    'bold'      => isset($bold) ? $bold : array(),
+    'imageList' => isset($imageList) ? $imageList : array(),
+    'attrModel' => isset($attrModel) ? $attrModel : array(),
+    'attrData'  => isset($attrData) ? $attrData : array(),
+    'groupList' => isset($groupList) ? $groupList : array()
+)); 
 

@@ -26,12 +26,12 @@ class Post extends CActiveRecord
 			array('catalog_id, special_id', 'numerical', 'integerOnly'=>true),
 			array('user_id, view_count, favorite_count, update_time, reply_count, sort_desc, create_time', 'length', 'max'=>10),
 			array('html_path, html_file, copy_from', 'length', 'max'=>100),
-			array('title, title_second, title_style, seo_title, seo_keywords, copy_url, redirect_url, tags, attach_file, attach_thumb', 'length', 'max'=>255),
+			array('title, title_second, title_style, seo_title, seo_keywords, copy_url, redirect_url, tags', 'length', 'max'=>255),
 			array('commend, top_line, reply_allow, status', 'length', 'max'=>1),
-			array('content, introduce, image_list, seo_description', 'safe'),
+			array('content, introduce, seo_description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, user_id, title, title_second, title_style, html_path, html_file, catalog_id, special_id, introduce, image_list, seo_title, seo_description, seo_keywords, content, copy_from, copy_url, redirect_url, tags, view_count, commend, attach_file, attach_thumb, favorite_count, top_line, update_time, reply_count, reply_allow, sort_desc, status, create_time', 'safe', 'on'=>'search'),
+			array('id, user_id, title, title_second, title_style, html_path, html_file, catalog_id, special_id, introduce, seo_title, seo_description, seo_keywords, content, copy_from, copy_url, redirect_url, tags, view_count, commend, favorite_count, top_line, update_time, reply_count, reply_allow, sort_desc, status, create_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,8 +62,7 @@ class Post extends CActiveRecord
 			'html_file' => 'html文件名',			
 			'catalog_id' => '分类',
 			'special_id' => '专题编号',
-			'introduce' => '摘要',
-			'image_list' => '组图',
+			'introduce' => '摘要',			
 			'seo_title' => 'SEO标题',
 			'seo_description' => 'SEO描述',
 			'seo_keywords' => 'SEO关键字',
@@ -73,9 +72,7 @@ class Post extends CActiveRecord
 			'redirect_url' => '跳转URL',
 			'tags' => 'tags',
 			'view_count' => '查看次数',
-			'commend' => '推荐',
-			'attach_file' => '封面大图',
-			'attach_thumb' => '封面缩略图',
+			'commend' => '推荐',			
 			'favorite_count' => '收藏次数',
 			'top_line' => '头条',
 			'update_time' => '最后更新时间',
@@ -121,7 +118,7 @@ class Post extends CActiveRecord
 		$params['condition'] && $criteria->condition .= $params['condition'];		
 		$criteria->order = $params['order']?$params['order']:'t.id DESC';
 		$criteria->with = array ( 'catalog' );
-		$criteria->select = "t.title, t.id,t.title_style, t.attach_thumb, t.image_list,";
+		$criteria->select = "t.title, t.id,t.title_style, t.attach_thumb, ";
 		$criteria->select .= " t.copy_from, t.copy_url, t.update_time,t.introduce, t.tags, t.view_count";
 		$criteria->params = array(':status'=> 'Y');
 		$params['with'] && $criteria->with = (array)$params['with'];

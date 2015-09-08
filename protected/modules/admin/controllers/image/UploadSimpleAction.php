@@ -1,6 +1,6 @@
 <?php
 /**
- * 文章封面图片ajax上传
+ * 封面图片ajax上传
  * 
  * @author        Sim Zhao <326196998@qq.com>
  * @copyright     Copyright (c) 2015. All rights reserved.
@@ -12,7 +12,7 @@ class UploadSimpleAction extends CAction
         $uploader = new Uploader();
         if(Yii::app()->request->isPostRequest) {
             //断点上传
-            $uploader->initSimple('post')->uploadSimple('simple_file');
+            $uploader->initSimple('album')->uploadSimple('simple_file');
             $error = $uploader->getError();
             if (!$error) {
                 $data = array(

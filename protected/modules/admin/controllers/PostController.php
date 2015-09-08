@@ -28,8 +28,8 @@ class PostController extends Backend
 	 */
 	public function beforeAction($action){
 		$controller = Yii::app()->getController()->id;
-		$action = $action->id;
-		if(!$this->checkAcl($controller.'/'.$action)){
+		$action_id = $action->id;
+		if(!$this->checkAcl($controller.'/'.$action_id)){
 			$this->message('error',Yii::t('common','Access Deny'),$this->createUrl('index'),'',true);
 			return false;
 		}

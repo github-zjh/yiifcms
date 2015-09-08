@@ -16,4 +16,5 @@ return array(
     'Upload Failed, Please Check Service Config.' =>'上传失败，请检测服务器配置',
 	'Upload Failed, Can not MoveUp Tmp File.' =>'上传失败，不能移动临时文件',
 	'Upload Success' => '上传成功',
+    'invalid upload model' => '非法的上传模型',
 );

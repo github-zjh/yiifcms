@@ -12,7 +12,7 @@ class UploadResumableAction extends CAction
         $uploader = new Uploader();
         if(Yii::app()->request->isPostRequest) {
             //断点上传
-            $uploader->initResumable('post')->uploadResumable('file');
+            $uploader->initResumable('album')->uploadResumable('file');
             $error = $uploader->getError();
             if (!$error) {
                 $data = array(
