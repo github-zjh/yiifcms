@@ -12,26 +12,26 @@ $php_path = dirname(dirname(dirname(dirname(__FILE__))));
 $php_url = 'http://'.$_SERVER['HTTP_HOST'];
 
 //根目录路径，可以指定绝对路径，比如 /var/www/attached/
-$root_path = $php_path . '/uploads/attached/';
+$root_path = $php_path . '/upload/';
 //根目录URL，可以指定绝对路径，比如 http://www.yoursite.com/attached/
-$root_url = $php_url . '/uploads/attached/';
+$root_url = $php_url . '/upload/';
 
 //图片扩展名
 $ext_arr = array('gif', 'jpg', 'jpeg', 'png', 'bmp');
 
 //目录名
-$dir_name = empty($_GET['dir']) ? '' : trim($_GET['dir']);
-if (!in_array($dir_name, array('', 'image', 'flash', 'media', 'file'))) {
-	echo "Invalid Directory name.";
-	exit;
-}
-if ($dir_name !== '') {
-	$root_path .= $dir_name . "/";
-	$root_url .= $dir_name . "/";
-	if (!file_exists($root_path)) {
-		mkdir($root_path);
-	}
-}
+//$dir_name = empty($_GET['dir']) ? '' : trim($_GET['dir']);
+//if (!in_array($dir_name, array('', 'image', 'flash', 'media', 'file'))) {
+//	echo "Invalid Directory name.";
+//	exit;
+//}
+//if ($dir_name !== '') {
+//	$root_path .= $dir_name . "/";
+//	$root_url .= $dir_name . "/";
+//	if (!file_exists($root_path)) {
+//		mkdir($root_path);
+//	}
+//}
 
 //根据path参数，设置各路径和URL
 if (empty($_GET['path'])) {

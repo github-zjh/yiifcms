@@ -68,9 +68,7 @@ class Resumable extends CInputWidget{
               </table>
             </div>
             <!-- 进度条 -->
-            <ul class="resumable-list"></ul>
-            <!-- 显示已上传的文件-->
-            <ul class="resumable-files"></ul>
+            <ul class="resumable-list"></ul>            
         </div>
 EOT;
     }

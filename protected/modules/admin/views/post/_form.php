@@ -9,8 +9,9 @@
 	</tr>
 </table>
 <?php endif?>
-<script type="text/javascript"
-	src="<?php echo $this->_static_public?>/js/jscolor/jscolor.js"></script>
+<script type="text/javascript" src="<?php echo $this->_static_public?>/js/jquery/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="<?php echo $this->_static_public?>/js/jquery/jquery.fileupload.js"></script>
+<script type="text/javascript" src="<?php echo $this->_static_public?>/js/jscolor/jscolor.js"></script>
 <?php $form=$this->beginWidget('CActiveForm',array('id'=>'xform','htmlOptions'=>array('name'=>'xform','enctype'=>'multipart/form-data'))); ?>
 <table class="form_table">
 	<tr>
@@ -76,17 +77,23 @@
 	</tr>
 	<tr>
 		<td colspan="2">
-			<input name="attach" type="file" id="attach" />
-            <?php if ($model->attach_file):?>
-            <a href="<?php echo $this->_baseUrl.'/'. $model->attach_file?>" target="_blank">
-				<img style="padding: 5px; border: 1px solid #cccccc;" src="<?php echo $this->_baseUrl.'/'. $model->attach_file?>" width="50" align="absmiddle" />
-			</a>
-            <?php endif?>
-            <?php if ($model->attach_thumb):?>
-            <a href="<?php echo $this->_baseUrl.'/'. $model->attach_thumb?>"  target="_blank">
-                <img style="padding: 5px; border: 1px solid #cccccc;" src="<?php echo $this->_baseUrl.'/'. $model->attach_thumb?>" width="50" align="absmiddle" />
-            </a>
-            <?php endif?>   
+			<input name="attach_file" type="hidden" id="attach_file" value="<?php echo $model->attach_file;?>"/>
+            <input name="attach_thumb" type="hidden" id="attach_thumb" value="<?php echo $model->attach_thumb;?>"/>
+            <input name="simple_file" id="fileupload" onclick="fileUpload()" type="file">
+            <div id="img_preview" style="padding:10px;">
+                <?php if ($model->attach_file):?>
+                <span>大图：</span>
+                <a href="<?php echo $model->attach_file?>" target="_blank">
+                    <img style="max-width:600px; padding: 5px; border: 1px solid #cccccc;" src="<?php echo $model->attach_file?>" align="absmiddle" />
+                </a>
+                <?php endif?>
+                <?php if ($model->attach_thumb):?>
+                <span>小图：</span>
+                <a href="<?php echo $model->attach_thumb?>"  target="_blank">
+                    <img style="max-width:600px; padding: 5px; border: 1px solid #cccccc;" src="<?php echo $model->attach_thumb?>" align="absmiddle" />
+                </a>
+                <?php endif?>
+            </div>
         </td>
 	</tr>
 	<tr>
@@ -95,7 +102,7 @@
 	<tr>
 		<td>
             <?php echo $form->textArea($model,'content'); ?>
-            <?php $this->widget('application.widget.kindeditor.KindEditor',array('id'=>'Post_content'));?>
+            <?php $this->widget('application.widget.kindeditor.KindEditor',array( 'id'=>'Post_content'));?>
 	  	</td>
 	</tr>
 	<tr>
@@ -110,8 +117,23 @@
 	<tr>
 		<td>
 			<div>
-				<?php $this->widget('application.widget.resumable.Resumable', array('options'=>array('upload_url'=>$this->createUrl('post/upload'))));?>  				        
+				<?php $this->widget('application.widget.resumable.Resumable', array('options'=>array('upload_url'=>$this->createUrl('post/uploadResumable'))));?>  				        
 			</div>
+            <!-- 显示已上传的文件-->            
+            <ul class="resumable-files clear">
+                <?php if($imageList):?>
+                <?php foreach($imageList as $img):?>
+                <li>
+                    <img src="<?php echo $img;?>" width="100px" height="100px">
+                    <input type="hidden" value="<?php echo $img;?>" name="imagelist[]">
+                    <div class="clear">
+                        <a href="<?php echo $img;?>" class="left" target="_blank">[查看]</a>
+                        <a href="javascript:;" class="right" onclick="deleteFile(this)">[删除]</a>
+                    </div>
+                </li>
+                <?php endforeach;?>
+                <?php endif;?>
+            </ul>
 		</td>
 	</tr>
 
@@ -159,16 +181,39 @@
 		<td><?php echo CHtml::activeTextArea($model,'seo_description',array('rows'=>5, 'cols'=>80)); ?></td>
 	</tr>
 	<tr class="submit">
-		<td colspan="2">
-			<input name="old_file" type="hidden" value="<?php echo $model->attach_file ?>" />
-			<input name="old_thumb" type="hidden" value="<?php echo $model->attach_thumb ?>" />
+		<td colspan="2">			
 			<input type="submit" name="editsubmit" value="<?php echo Yii::t('common','Submit');?>" class="button" tabindex="3" />
 		</td>
 	</tr>
 </table>
 <script type="text/javascript">
+     //ajax上传图片
+    function fileUpload() {        
+        $('#fileupload').fileupload({
+            url: "<?php echo $this->createUrl('post/uploadSimple');?>",
+            dataType: 'json',
+            done: function(e, JsonData) {
+                var data = JsonData.result;
+                if (200 === data.code) {                    
+                    var atta_file = '', atta_thumb = '';
+                    if(data.data.file_path) {
+                        $('#attach_file').val(data.data.file_path);
+                        atta_file = '<span>大图：</span><a href="'+data.data.file_path+'" target="_blank"><img  style="max-width:600px; padding: 5px; border: 1px solid #cccccc;"  src="'+data.data.file_path+'"  align="absmiddle" /></a><br/>';
+                    }
+                    if(data.data.thumb_path) {
+                        $('#attach_thumb').val(data.data.thumb_path);
+                        atta_thumb = '<span>小图：</span><a href="'+data.data.thumb_path+'" target="_blank"><img  style="max-width:600px; padding: 5px; border: 1px solid #cccccc;"  src="'+data.data.thumb_path+'"  align="absmiddle" /></a>';
+                    }
+                    $('#img_preview').html(atta_file+atta_thumb);                    
+                }else{
+                    alert(data.message);
+                }
+                return false;
+            }
+        });
+    }
 $(function(){
-	$("#xform").validationEngine();	
+	$("#xform").validationEngine();	   
 });
 </script>
 <?php $this->endWidget();

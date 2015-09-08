@@ -17,7 +17,7 @@ KindEditor.plugin('image', function(K) {
 		imageTabIndex = K.undef(self.imageTabIndex, 0),
 		imgPath = self.pluginsPath + 'image/images/',
 		extraParams = K.undef(self.extraFileUploadParams, {}),
-		filePostName = K.undef(self.filePostName, 'imgFile'),
+		filePostName = K.undef(self.filePostName, 'kindeditor_file'),
 		fillDescAfterUploadImage = K.undef(self.fillDescAfterUploadImage, false),
 		lang = self.lang(name + '.');
 

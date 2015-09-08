@@ -51,13 +51,14 @@
                 if(data.file_ext.match(/(jpg|jpeg|gif|png|bmp)/i)) {   //图片
                     var li = '<li>'                           
                            + '<img src="'+data.file_path+'" width="100px" height="100px" />'
-                           + '<input type="hidden" value="'+data.file_path+'" />'
-                           + '<div class="clear"><a href="'+data.file_path+'" class="left" target="_blank">[查看]</a><a href="javascript:;" class="right">[删除]</a></span></div>'
+                           + '<input type="hidden" value="'+data.file_path+'" name="imagelist[]" />'
+                           + '<div class="clear"><a href="'+data.file_path+'" class="left" target="_blank">[查看]</a><a href="javascript:;" class="right" onclick="deleteFile(this)">[删除]</a></span></div>'
                            + '</li>';
                 } else {                                               //其他附件
                     var li = '<li>'
                            + '<span style="color:green">[已上传]'+data.file_name+'</span>' 
-                           + '<input type="hidden" value="'+data.file_path+'" />'                       
+                           + '<input type="hidden" value="'+data.file_path+'" name="filelist[]" />'
+                           + '<div class="clear"><a href="'+data.file_path+'" class="left" target="_blank">[查看]</a><a href="javascript:;" class="right" onclick="deleteFile(this)">[删除]</a></span></div>'
                            + '</li>';
                 }
                 $('.resumable-files').append(li);

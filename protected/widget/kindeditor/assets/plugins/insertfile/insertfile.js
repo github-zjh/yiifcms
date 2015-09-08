@@ -14,7 +14,7 @@ KindEditor.plugin('insertfile', function(K) {
 		formatUploadUrl = K.undef(self.formatUploadUrl, true),
 		uploadJson = K.undef(self.uploadJson, self.basePath + 'php/upload_json.php'),
 		extraParams = K.undef(self.extraFileUploadParams, {}),
-		filePostName = K.undef(self.filePostName, 'imgFile'),
+		filePostName = K.undef(self.filePostName, 'kindeditor_file'),
 		lang = self.lang(name + '.');
 	self.plugin.fileDialog = function(options) {
 		var fileUrl = K.undef(options.fileUrl, 'http://'),

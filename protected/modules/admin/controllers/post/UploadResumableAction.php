@@ -1,12 +1,12 @@
 <?php
 /**
- * 文件上传
+ * 文件断点上传
  * 
  * @author        Sim Zhao <326196998@qq.com>
  * @copyright     Copyright (c) 2015. All rights reserved.
  */
 
-class UploadAction extends CAction
+class UploadResumableAction extends CAction
 {	
 	public function run(){
         $uploader = new Uploader();
@@ -19,9 +19,7 @@ class UploadAction extends CAction
                     'file_name' => $uploader->file_name,
                     'file_path' => $uploader->file_path,
                     'file_ext'  => $uploader->file_ext
-                );
-                //保存到附件表里
-                Attachment::saveData($uploader);
+                );                
                 App::response(200, 'success', $data);
             } else {                
                 App::response(101 , $error);

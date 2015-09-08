@@ -14,21 +14,32 @@ function keywordGet(titleId, contentId, keywordIdSet){
 	var title = $("#"+titleId).val();
 	
 	//Ueditor同步内容
-	if(typeof(UE) != 'undefined'){
+	if(typeof(UE) !== 'undefined'){
 		$("#"+contentId).val(UE.getEditor(contentId).getPlainTxt());
 	}
 	
 	var content = $("#"+contentId).val();
 	$.post('<?php echo $this->createUrl('default/keyword')?>',{'title':title,'content':content},function(res){
-		if(res.state =='error'){
+		if(res.state === 'error'){
 			alert('获取失败，请手动填写');
 		}else{
 			$("#"+keywordIdSet).val(res.datas);
 		}
-	},'json')
+	},'json');
+}
+//直接删除文件
+function deleteFile(object) {
+    if(confirm('本操作不可恢复，确定继续？')){
+        filepath = $(object).parent().prev('input').val();        
+		$.post("<?php echo $this->createUrl('uploadify/delete')?>",{filepath:filepath},function(res){
+            if(res.state === 'success') {
+                $(object).closest('li').remove();
+            }			
+		},'json');
+	}
 }
 
-//删除文件
+//根据附件id删除文件
 function uploadifyRemove(fileId,attrName, otherid){	
 	
 	if(confirm('本操作不可恢复，确定继续？')){

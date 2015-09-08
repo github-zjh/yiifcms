@@ -11,7 +11,7 @@
  * @example 	  $this->widget('application.widget.kindeditor.KindEditor',
  				      'id'=>'Post_content',
 	  				  'options'=>array(
-					  		'uploadJson'=>$this->createUrl('/admin/uploadify/basicexecute', array('from'=>'editor')),
+					  		'uploadJson'=>$this->createUrl('kindeditor/upload'),
 							'fileManagerJson'=>$this->createUrl('/admin/kindeditor/'),		
 							'allowFileManager'=>true,
 				  			'extraFileUploadParams'=>array('sessionId'=>Yii::app()->session->sessionID)
@@ -72,8 +72,8 @@ class KindEditor extends CInputWidget{
 		$defaultArr = array( 
 				'width'=>'80%', 
 				'height'=>'400px',
-				'uploadJson'=>Yii::app()->createUrl('/admin/uploadify/basicexecute', array('from'=>'editor')),
-				'fileManagerJson'=>Yii::app()->createUrl('/admin/kindeditor/'),		
+				'uploadJson'=>Yii::app()->createUrl('/admin/kindeditor/upload'),
+				'fileManagerJson'=>Yii::app()->createUrl('/admin/kindeditor/index'),		
 				'allowFileManager'=>true
 		 );
         $string = '';
@@ -174,9 +174,9 @@ class KindEditor extends CInputWidget{
 		$assets = $this->getAssetsPath();			
 		$clientScript = Yii::app()->getClientScript();
 		$clientScript->registerCssFile( $assets.'/themes/default/default.css' );		
-		$clientScript->registerScriptFile( $assets.'/kindeditor-min.js', CClientScript::POS_END );			
+		$clientScript->registerScriptFile( $assets.'/kindeditor-all.js', CClientScript::POS_END );			
 		$clientScript->registerScriptFile( $assets.'/lang/'.$this->language.'.js', CClientScript::POS_END );
 		$clientScript->registerScript('textarea_editor_'.$this->id, $this->makeOptions($assets), CClientScript::POS_END );
 	}
 }
-?>
+

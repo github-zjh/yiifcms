@@ -203,7 +203,7 @@ KindEditor.plugin('multiimage', function(K) {
 		imageSizeLimit = K.undef(self.imageSizeLimit, '1MB'),
 		imageFileTypes = K.undef(self.imageFileTypes, '*.jpg;*.gif;*.png'),
 		imageUploadLimit = K.undef(self.imageUploadLimit, 20),
-		filePostName = K.undef(self.filePostName, 'imgFile'),
+		filePostName = K.undef(self.filePostName, 'kindeditor_file'),
 		lang = self.lang(name + '.');
 
 	self.plugin.multiImageDialog = function(options) {

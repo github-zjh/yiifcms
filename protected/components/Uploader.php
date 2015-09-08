@@ -1,6 +1,6 @@
 <?php
 /**
- * 文件上传
+ * 文件上传组件
  *
  * @author    Sim Zhao <326196998@qq.com>
  * @copyright 2015 All rights reserved.
@@ -8,17 +8,21 @@
  */
 define('TEMP_PATH', UPLOAD_PATH . DS . 'temp');
 
-class Uploader{
+class Uploader{    
     
     public  $watermark_pic = 'public/watermark.png';       //默认水印图片完整路径
     public  $real_name = '';                               //上传的原始文件名
     public  $file_id   = '';                               //文件ID
     public  $file_ext  = '';                               //文件扩展名   
     public  $file_path = '';                               //存到数据中的路径
-    public  $save_path = '';                               //生成的文件路径
+    public  $save_path = '';                               //生成的文件路径(带文件名的完整路径)
     public  $file_name = '';                               //生成的文件名
     public  $model = '';                                   //上传文件模型
     public  $total_size  = 0;                              //总文件大小
+    public  $thumb_prefix = 'small_';                      //缩略图前缀
+    public  $thumb_save_path = '';                         //生成缩略图文件路径(带文件名的完整路径)
+    public  $thumb_path = '';                              //存到数据中的缩略图路径
+    public  $thumb_name = '';                              //生成缩略图文件名
     
     private $_chunk_dir  = '';                             //断点片段文件保存目录
     private $_chunk_size = 1024;                           //断点续传片段大小(1M)
@@ -30,13 +34,13 @@ class Uploader{
         //文章
         'post' => array(            
             'save_path'           => 'post',                //保存路径
-            'allow_ext'           => 'jpg',    //允许类型 *代表所有
+            'allow_ext'           => 'jpg,gif,png,bmp,jpeg',    //允许类型 *代表所有
             'max_upload_filesize' => 2097152000,               //允许最大上传大小2M
             'make_thumb'          => true,                  //是否生成缩略图
             'make_watermark'      => false,                 //是否添加水印
             'rand_name'           => true,                  //是否随机生成文件名
-            'thumb_width'         => 300,                   //缩略图宽度
-            'thumb_height'        => 300                    //缩略图高度
+            'thumb_width'         => 150,                   //缩略图宽度
+            'thumb_height'        => 150                    //缩略图高度
         ),
         //图集
         'album' => array(            
@@ -44,6 +48,7 @@ class Uploader{
             'allow_ext'           => 'jpg,jpeg,png,gif',    //允许类型
             'max_upload_filesize' => 2097152,               //允许最大上传大小2M
             'make_thumb'          => true,                  //是否生成缩略图
+            'rand_name'           => true,                  //是否随机生成文件名
             'thumb_width'         => 300,                   //缩略图宽度
             'thumb_height'        => 300                    //缩略图高度
         ),
@@ -51,21 +56,89 @@ class Uploader{
         'soft' => array(            
             'save_path'           => 'soft',                //保存路径
             'allow_ext'           => '*',                   //允许类型  *代表所有
+            'rand_name'           => false,                  //是否随机生成文件名
             'max_upload_filesize' => 512000,                //允许最大上传大小500M            
         ),
         //商品
         'goods' => array(            
             'save_path'           => 'goods',               //保存路径
             'allow_ext'           => 'jpg,jpeg,png',        //允许类型  *代表所有
+            'rand_name'           => true,                  //是否随机生成文件名
             'max_upload_filesize' => 2097152,               //允许最大上传大小2M            
         ),
         //视频
         'video' => array(            
             'save_path'           => 'video',               //保存路径
             'allow_ext'           => 'mp4,avi,rmvb,flv',    //允许类型  *代表所有
+            'rand_name'           => false,                  //是否随机生成文件名
             'max_upload_filesize' => 1258291200,            //允许最大上传大小1.2G            
         ),
-    );        
+        //KindEditor
+        'kindeditor' => array(            
+            'save_path'           => 'kindeditor',          //保存路径
+            'allow_ext'           => '*',                   //允许类型  *代表所有
+            'rand_name'           => true,                  //是否随机生成文件名
+            'max_upload_filesize' => 2097152,               //允许最大上传大小2M           
+        ),
+    );  
+    
+    /**
+     * 初始化普通上传参数
+     * 
+     * @param type $model
+     * @return \Uploader
+     */
+    public function initSimple($model = '')
+    {
+        //文件模型名
+        $this->model = $model;        
+        return $this;
+    }
+    
+    /**
+     * 普通上传开始
+     * 
+     * @param string $name 文件流名称
+     * @return boolean
+     */
+    public function uploadSimple($name = '')
+    {
+        if(isset($this->config[$this->model])) {
+            
+            //获取一个上传实例
+            $ins = CUploadedFile::getInstanceByName($name);
+            if(!$ins) {
+                $this->setError('please select a file');
+                return false;
+            }
+            if($ins->getHasError()) {
+                $this->setError('Upload Failed, Please Check Service Config.');
+                return false;
+            }
+            //上传文件基本信息
+            $this->file_ext     = Helper::getExtensionName($ins->name);
+            $this->total_size   = $ins->size;
+            $this->real_name    = $ins->name;
+            
+            //验证文件合法性
+            $check = $this->_checkValid();
+            if($check) {
+                //保存文件
+                $this->_getSavePath();                
+                if($ins->saveAs($this->save_path)){
+                    //生成缩略图
+                    $this->makeThumb();
+                    return true;
+                } else {
+                    $this->setError('Upload Failed, Can not MoveUp Tmp File.');            
+                    return false;
+                }                 
+            }
+        } else {
+            $this->setError('invalid upload model');            
+            return false;
+        }
+    }
        
     /**
      * 初始化断点续传参数
@@ -106,7 +179,11 @@ class Uploader{
             if(!$ins) {
                 $this->setError('please select a file');
                 return false;
-            }            
+            }
+            if($ins->getHasError()) {
+                $this->setError('Upload Failed, Please Check Service Config.');
+                return false;
+            }
             //验证文件合法性
             $check = $this->_checkValid();
             if($check) {
@@ -116,9 +193,9 @@ class Uploader{
                 $conver_filename = $this->_convertChineseName($this->real_name);
                 $ins->saveAs($this->_chunk_dir . DS . $conver_filename. '.part'.$this->_chunk_num);                
                 //完整的保存路径
-                $save_full_path = $this->_getSavePath();                
+                $this->_getSavePath();                
                 //校验片段文件 并把片段文件合并成一个文件
-                $this->createFileFromChunks($save_full_path);
+                $this->createFileFromChunks($this->save_path);
                 return true;
             }
             return false;
@@ -131,7 +208,7 @@ class Uploader{
     /**
      * 获取保存路径 并创建相应的目录
      * 
-     * @param type $model
+     * @param bool $thumb  true表示 带缩略图路径
      */
     private function _getSavePath()
     {   
@@ -149,10 +226,16 @@ class Uploader{
             $this->file_name = $this->_convertChineseName($this->real_name);            
         }        
         //包含文件名的完整物理路径
-        $save_path = $save_dir . DS . $this->file_name;
+        $this->save_path = $save_dir . DS . $this->file_name;
         //存储到数据库的文件路径 并转化编码
-        $this->file_path = Helper::safeEncoding(str_replace(array('\\', '\\\\'), '/', str_replace(ROOT_PATH, '', $save_path)));        
-        return $save_path;
+        $this->file_path = Helper::safeEncoding(str_replace(array('\\', '\\\\'), '/', str_replace(ROOT_PATH, '', $this->save_path)));        
+        
+        //缩略图路径
+        if(isset($this->config[$this->model]['make_thumb']) && $this->config[$this->model]['make_thumb']) {
+            $this->thumb_save_path =  $save_dir . DS . $this->thumb_prefix. $this->file_name;        
+            $this->thumb_path = Helper::safeEncoding(str_replace(array('\\', '\\\\'), '/', str_replace(ROOT_PATH, '', $this->thumb_save_path)));        
+        }
+        return true;
     }
     
     /**
@@ -182,43 +265,37 @@ class Uploader{
 	
 	/**
 	 * 生成缩略图
-	 * @param string $filename
-	 * @param string $width
-	 * @param string $height
-	 * @param string $quality
-	 * @param string $savepath
 	 * @return boolean
 	 */
-	public function makeThumb($tmpname='' , $filename=''){
-		if(file_exists($tmpname)){
-			//缩略图尺寸
-			$width = $this->_thumb_width;
-			$height = $this->_thumb_height;
-			//上传图片的尺寸
-			$imageinfo = $this->getImageInfo($tmpname);
-			$imagesize = $imageinfo['size'];
+	public function makeThumb(){
+        if($this->thumb_save_path) {
+            //缩略图尺寸
+			$width = isset($this->config[$this->model]['thumb_width']) ? $this->config[$this->model]['thumb_width'] : 0;
+			$height = isset($this->config[$this->model]['thumb_height']) ? $this->config[$this->model]['thumb_height'] : 0;
+			
+            //上传图片的尺寸
+			$imageinfo = $this->getImageInfo($this->save_path);			
 			$imagewidth = $imageinfo['width'];
 			$imageheight = $imageinfo['height'];
 			$mime = $imageinfo['mime'];
 			//宽高比例
 			$ratio = $imagewidth/$imageheight;
-	
-			//新建一个背景图片
+            //新建一个背景图片
 			$bgimg = imagecreatetruecolor($width, $height);
 			$white = imagecolorallocate($bgimg, 255, 255, 255);
 			//填充背景色为白色
 			imagefill($bgimg,0,0,$white);			
 			if($mime == 'image/gif' ){
-				$im = @imagecreatefromgif($tmpname); /* Attempt to open */
+				$im = imagecreatefromgif($this->save_path); /* Attempt to open */
 				$outfun = 'imagegif';
 			} elseif($mime == 'image/png' ){
-				$im = @imagecreatefrompng($tmpname); /* Attempt to open */
+				$im = imagecreatefrompng($this->save_path); /* Attempt to open */
 				$outfun = 'imagepng';
 			} else{
-				$im = @imagecreatefromjpeg($tmpname); /* Attempt to open */
+				$im = imagecreatefromjpeg($this->save_path); /* Attempt to open */
 				$outfun = 'imagejpeg';
 			}
-	
+            $copy = false;
 			if($ratio > 1){
 				//宽度较大
 				if($imagewidth > $width){
@@ -249,24 +326,12 @@ class Uploader{
 				$bg_x = ceil(($width-$imagewidth)/2);
 				$bg_y = ceil(($height-$imageheight)/2);
 				imagecopy($bgimg, $im, $bg_x, $bg_y, 0, 0, $imagewidth, $imageheight);
-			}		
-			
-			//保存路径			
-			$savepath = $this->_thumb_path?$this->_thumb_path:'uploads';	
-			$savepath .= date('Ym',time()).'/';
-			if(!is_dir($savepath)){
-				mkdir($savepath, 0777, true);
-			}
-			//生成缩略图文件名
-			$filename || $filename = substr(md5(uniqid('file')), 0,11).'.'.$this->_file_ext;			
-			$this->_thumb_name = $savepath.$this->_thumb_prefix.$filename;
-			$outfun($bgimg, $this->_thumb_name);			
+			}					
+			//保存缩略图
+			$outfun($bgimg, $this->thumb_save_path);			
 			imagedestroy($bgimg);			
 			return true;
-		} else{
-			$this->_error = 'Make thumb is failed.';
-			return false;
-		}
+        }		
 	}	
 	
 	/**
@@ -328,7 +393,6 @@ class Uploader{
 	 * 校验上传文件是否符合要求(包括文件类型、大小)
      * 
 	 * @param string $model
-	 * @param object $instance
 	 * @return boolean
 	 */
 	private function _checkValid(){        
@@ -396,7 +460,7 @@ class Uploader{
                 for ($i = 1; $i <= $total_files; $i++) {
                     $convert_name = $this->_convertChineseName($this->real_name);
                     fwrite($fp, file_get_contents($this->_chunk_dir . DS . $convert_name .'.part' . $i));
-                }
+                }                
                 fclose($fp);                
             } else {                
                 $msg = 'cannot create the destination file';

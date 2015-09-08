@@ -29,36 +29,20 @@ class CreateAction extends CAction
             } else {    		
     			$model->title_style = '';
     		}
-    		
-    		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
-	    		//封面图片
-	    		$upload = new Uploader;
-	    		$upload->_thumb_width = 100;
-	    		$upload->_thumb_height = 100;
-	    		$upload->uploadFile($_FILES['attach'], true);
-	    		if($upload->_error){
-	    			$upload->deleteFile($upload->_file_name);
-	    			$upload->deleteFile($upload->_thumb_name);
-	    			$this->controller->message('error', Yii::t('admin',$upload->_error));
-	    			return;
-	    		}    		
-	    		$model->attach_file = $upload->_file_name;
-	    		$model->attach_thumb = $upload->_thumb_name;
-    		}else{
-    			//未改变前的封面图片
-    			$model->attach_file = $_POST['old_file'];
-    			$model->attach_thumb = $_POST['old_thumb'];
-    		}
+    		//封面
+    		$model->attach_file = isset($_POST['attach_file']) ? $_POST['attach_file'] : '';
+            $model->attach_thumb = isset($_POST['attach_thumb']) ? $_POST['attach_thumb'] : '';
+            
     		//组图
-    		$imageList = Yii::app()->request->getPost( 'imageList' );
-    		$imageListSerialize = $this->controller->imageListSerialize($imageList);
-    		$model->image_list = $imageListSerialize['dataSerialize'];
+    		$imageList = isset($_POST['imagelist']) ? trim($_POST['imagelist']) : '';
+            if($imageList) {
+                $model->image_list = implode(',', $imageList);
+            }
     		
-    		//标签(只要前10个标签)
+    		//标签   (前10个标签有效) 		
     		$tags = trim($_POST['Post']['tags']);    		
-    		$explodeTags = array_unique(explode(',', str_replace(array (' ' , '，' ), array('',','), $tags)));    		
-    		
-    		$explodeTags = array_slice($explodeTags, 0, 10);  
+    		$unique_tags = array_unique(explode(',', str_replace(array (' ' , '，' ), array('',','), $tags)));    		
+    		$explodeTags = array_slice($unique_tags, 0, 10);  
     		$model->tags = implode(',',$explodeTags);
     		
     		//摘要
