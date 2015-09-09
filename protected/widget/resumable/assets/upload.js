@@ -1,15 +1,17 @@
 /** 
-  * 断点续传交互
-  * upload.js  
+  * 断点续传交互 upload.js
+  * 
+  * @author Sim Zhao <326196998@qq.com>
+  * @link http://www.yiifcms.com/  
   */
-(function(){    
+(function(){      
     var r = new Resumable({
-       target:resumable_upload_url,
-       chunkSize:resumable_chunk_size,
-       simultaneousUploads:4,
-       testChunks: true,
-       throttleProgressCallbacks:1
-    });
+       target:resumable_upload_url,           //上传脚本url
+       chunkSize:resumable_chunk_size,        //每个片段大小
+       simultaneousUploads:simultaneousUploads,//一次允最多上传文件数量
+       testChunks: true,                      //必选  见官网解释
+       throttleProgressCallbacks:1,           //必选  见官网解释       
+    });    
     //如果不支持 则给予提示
     if(!r.support) {
         $('.resumable-error').show();
@@ -51,13 +53,13 @@
                 if(data.file_ext.match(/(jpg|jpeg|gif|png|bmp)/i)) {   //图片
                     var li = '<li>'                           
                            + '<img src="'+data.file_path+'" width="100px" height="100px" />'
-                           + '<input type="hidden" value="'+data.file_path+'" name="imagelist[]" />'
+                           + '<input type="hidden" value="'+data.file_path+'" name="'+upload_file_name+'" />'
                            + '<div class="clear"><a href="'+data.file_path+'" class="left" target="_blank">[查看]</a><a href="javascript:;" class="right" onclick="deleteFile(this)">[删除]</a></span></div>'
                            + '</li>';
                 } else {                                               //其他附件
                     var li = '<li>'
                            + '<span style="color:green">[已上传]'+data.file_name+'</span>' 
-                           + '<input type="hidden" value="'+data.file_path+'" name="filelist[]" />'
+                           + '<input type="hidden" value="'+data.file_path+'" name="'+upload_file_name+'" />'
                            + '<div class="clear"><a href="'+data.file_path+'" class="left" target="_blank">[查看]</a><a href="javascript:;" class="right" onclick="deleteFile(this)">[删除]</a></span></div>'
                            + '</li>';
                 }

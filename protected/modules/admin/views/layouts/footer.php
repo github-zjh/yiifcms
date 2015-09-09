@@ -39,18 +39,6 @@ function deleteFile(object) {
 	}
 }
 
-//根据附件id删除文件
-function uploadifyRemove(fileId,attrName, otherid){	
-	
-	if(confirm('本操作不可恢复，确定继续？')){
-		$.post("<?php echo $this->createUrl('uploadify/remove')?>",{imageId:fileId},function(res){
-			$("#"+attrName+fileId).remove();
-			if(otherid){
-				$("#"+otherid).val(0);
-			}
-		},'json');
-	}
-}
 //js转换字符<>&
 function _escape(val) {
 	

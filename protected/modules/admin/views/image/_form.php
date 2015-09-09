@@ -101,7 +101,7 @@
   <tr >
       <td>
             <div>
-				<?php $this->widget('application.widget.resumable.Resumable', array('options'=>array('upload_url'=>$this->createUrl('image/uploadResumable'))));?>  				        
+				<?php $this->widget('application.widget.resumable.Resumable', array('options'=>array('upload_url'=>$this->createUrl('image/uploadResumable'), 'upload_file_name' => 'imagelist[]')));?>  				        
 			</div>
             <!-- 显示已上传的文件-->            
             <ul class="resumable-files clear">

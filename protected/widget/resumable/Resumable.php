@@ -8,7 +8,8 @@
  				      'id'=>'Post_file',
 	  				  'options'=>array(
 					  		'upload_url'=>$this->createUrl('post/upload'),
-                            'chunk_size'=>1*1024*1024
+                            'chunk_size'=>1*1024*1024,
+                            'upload_file_name' => 'filelist[]',
 							)
 						)
  	  		     	);
@@ -41,12 +42,16 @@ class Resumable extends CInputWidget{
         //片段大小(字节)
         $chunk_size = isset($this->options['chunk_size']) ? $this->options['chunk_size'] : 1*1024*1024;
         //一次最多上传文件数
-        $max_num    = isset($this->options['max_num']) ? $this->options['max_num'] : 1;        
+        $max_num    = isset($this->options['max_num']) ? $this->options['max_num'] : 1; 
+        //上传文件name
+        $upload_file_name = isset($this->options['upload_file_name']) ? $this->options['upload_file_name'] : 'filelist[]'; 
+        
         echo <<< EOT
         <script type="text/javascript">
             var resumable_upload_url = '{$upload_url}';
             var resumable_chunk_size = {$chunk_size};
-            var simultaneousUploads  = {$max_num};            
+            var simultaneousUploads  = {$max_num};
+            var upload_file_name     = '{$upload_file_name}';
         </script>
         <div>
 			<div class="resumable-error">

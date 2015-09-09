@@ -23,7 +23,7 @@ class MyCaptchaAction extends CCaptchaAction
 			$this->maxLength = 20;
 		$length = mt_rand($this->minLength,$this->maxLength);
 
-		$letters = '123456789fghujklmnpqrstvwxyz';
+		$letters = '23456789fghiujkmnpqrstvwxyz';
 		$vowels = 'abcde';
 		$code = '';
 		for($i = 0; $i < $length; ++$i)

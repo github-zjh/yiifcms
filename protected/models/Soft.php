@@ -9,8 +9,7 @@
  * @property integer $catalog_id
  * @property string $soft_icon
  * @property string $cover_image
- * @property string $fileid
- * @property string $filetype
+ * @property string $soft_file
  * @property string $language
  * @property string $softtype
  * @property string $os
@@ -18,7 +17,7 @@
  * @property string $softsize
  * @property string $softlink
  * @property string $introduce
- * @property integer $pay
+ * @property string $content
  * @property string $update_time
  * @property string $create_time
  * @property integer $view_count
@@ -47,15 +46,14 @@ class Soft extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('catalog_id, view_count, down_count', 'numerical', 'integerOnly'=>true),
-			array('pay', 'numerical'),
-			array('title, cover_image, soft_icon, os, softlink', 'length', 'max'=>100),
-			array('fileid, seo_title, seo_keywords', 'length', 'max'=>255),
-			array('filetype, language, softtype, softsize, update_time, create_time', 'length', 'max'=>10),
+			array('title, cover_image, soft_file, soft_icon, os, softlink, seo_title, seo_keywords', 'length', 'max'=>100),
+			array('seo_description', 'length', 'max'=>200),
+			array('language, softtype, softsize, update_time, create_time', 'length', 'max'=>10),
 			array('softrank, status', 'length', 'max'=>1),
-			array('introduce, seo_description', 'safe'),
+			array('content, seo_title, seo_keywords, seo_description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, catalog_id, cover_image, fileid, filetype, language, softtype, soft_icon, os, softrank, softsize, softlink, introduce, pay, update_time, create_time, view_count, down_count, status, seo_title, seo_description, seo_keywords', 'safe', 'on'=>'search'),
+			array('id, title, catalog_id, cover_image, soft_file, language, softtype, soft_icon, os, softrank, softsize, softlink, content, update_time, create_time, view_count, down_count, status, seo_title, seo_description, seo_keywords', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -82,16 +80,15 @@ class Soft extends CActiveRecord
 			'catalog_id' => Yii::t('model','SoftCatalogId'),
 			'soft_icon' => Yii::t('model','SoftIcon'),
 			'cover_image' => Yii::t('model','SoftCoverImage'),
-			'fileid' => Yii::t('model','SoftFiledId'),
-			'filetype' => Yii::t('model','SoftFileType'),
+            'soft_file' => Yii::t('model','SoftFile'),	
 			'language' => Yii::t('model','SoftLanguage'),
 			'softtype' => Yii::t('model','SoftType'),
 			'os' => Yii::t('model','SoftOS'),
 			'softrank' => Yii::t('model','SoftRank'),
 			'softsize' => Yii::t('model','SoftSize'),
 			'softlink' => Yii::t('model','SoftLink'),
+            'content' => Yii::t('model','SoftContent'),
 			'introduce' => Yii::t('model','SoftIntroduce'),
-			'pay' => Yii::t('model','SoftPay'),
 			'update_time' => Yii::t('model','SoftUpdateTime'),
 			'create_time' => Yii::t('model','SoftCreateTime'),
 			'view_count' => Yii::t('model','ViewCount'),
@@ -130,11 +127,9 @@ class Soft extends CActiveRecord
 		$criteria->compare('soft_icon',$this->soft_icon,true);
 
 		$criteria->compare('cover_image',$this->cover_image,true);
-
-		$criteria->compare('fileid',$this->fileid,true);
-
-		$criteria->compare('filetype',$this->filetype,true);
-
+        
+        $criteria->compare('soft_file',$this->soft_file,true);
+		
 		$criteria->compare('language',$this->language,true);
 
 		$criteria->compare('softtype',$this->softtype,true);
@@ -146,10 +141,10 @@ class Soft extends CActiveRecord
 		$criteria->compare('softsize',$this->softsize,true);
 
 		$criteria->compare('softlink',$this->softlink,true);
+        
+        $criteria->compare('introduce',$this->introduce,true);
 
-		$criteria->compare('introduce',$this->introduce,true);
-
-		$criteria->compare('pay',$this->pay);
+		$criteria->compare('content',$this->content,true);
 
 		$criteria->compare('update_time',$this->update_time,true);
 

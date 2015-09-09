@@ -71,43 +71,17 @@ $(document).ready(function(){
             <option><?php echo Yii::t('admin','Select Operate');?></option>
             <option value="delete"><?php echo Yii::t('admin','Delete');?></option>
             <option value="show"><?php echo Yii::t('admin','Show');?></option>
-            <option value="hidden"><?php echo Yii::t('admin','Hidden');?></option>
-            <option value="commend" id="recom"><?php echo Yii::t('admin','Recommend');?></option>            
+            <option value="hidden"><?php echo Yii::t('admin','Hidden');?></option>                   
           </select>
           <input id="submit_maskall" class="button confirmSubmit" type="submit" value="<?php echo Yii::t('common','Submit');?>" name="maskall" />
         </div></td>
-    </tr>  
-     <tr id="recom_list" style="display:none;">
-    	<td>选择推荐位：</td>
-    	<td colspan="5">
-    		<?php if($recom_list):?>
-    		<ul>
-    			<?php $j=0;?>
-    			<?php foreach($recom_list as $recom):?>
-    			<li>
-    				<input type="radio" name="recom_id" <?php if($j==0):?> checked="checked"<?php endif;?> value="<?php echo $recom->attributes['id'];?>"/><?php echo $recom->attributes['recommend_name'];?>
-    			</li>    	
-    			<?php $j++;?>		
-    			<?php endforeach;?>
-    		</ul>
-    		<?php endif;?>
-    	</td>
     </tr>
 </table>
 </form>
 <!-- //javascript开始 -->
 <script type="text/javascript">
 $(function(){
-	$("#xform").validationEngine();		
-	//显示推荐位列表
-	$("select[name='command']").change(function(){
-		var value = $(this).val();
-		if(value == 'commend'){
-			$("#recom_list").show();
-		}else{
-			$("#recom_list").hide();
-		}
-	});
+	$("#xform").validationEngine();
 });
 </script>
 <!-- //javascript结束 -->

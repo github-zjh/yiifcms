@@ -2,7 +2,7 @@
 /**
  * 内容管理控制器类
  * 
- * @author        zhao jinhan <326196998@qq.com>
+ * @author        Sim Zhao <326196998@qq.com>
  * @copyright     Copyright (c) 2014-2015. All rights reserved.
  */
 
@@ -43,9 +43,7 @@ class PostController extends Backend
             'index'  => 'Index',    //列表页
             'create' => 'Create',   //添加文章
             'update' => 'Update',   //编辑文章
-            'batch'  => 'Batch',    //批量操作
-            'uploadSimple' => 'UploadSimple',   //图片ajax上传
-            'uploadResumable' => 'UploadResumable',   //图片断点上传
+            'batch'  => 'Batch',    //批量操作            
         ), 'application.modules.admin.controllers.post');
         return array_merge($actions, $extra_actions);
     }      

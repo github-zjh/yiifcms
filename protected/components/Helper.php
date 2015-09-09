@@ -560,6 +560,15 @@ class Helper
         return strtolower($pathinfo['extension']);		
 	}
 	
-    
+    /**
+     * 转换中文文件名
+     * 
+     * @param string $name
+     * @return string
+     */
+    public static function convertChineseName($name = '') 
+    {
+        return Helper::getOS() == 'Windows' ? self::safeEncoding($name, 'GB2312') : $name;
+    }
 
 }

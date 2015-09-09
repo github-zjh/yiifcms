@@ -9,6 +9,6 @@
   </div>
 </div>
 
-<?php $this->renderPartial('_form',array('model'=>$model, 'imageList'=>$imageList, 'attrModel'=>$attrModel, 'attrData'=>$attrData, 'groupList'=>$groupList))?>
+<?php $this->renderPartial('_form',array('model'=>$model));
 
 
