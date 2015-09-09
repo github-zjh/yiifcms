@@ -8,14 +8,13 @@
  * @property string $title
  * @property integer $catalog_id
  * @property string $cover_image
- * @property string $fileid
+ * @property string $video_file
  * @property string $language
  * @property string $video_type
  * @property string $video_score
  * @property string $video_size
  * @property string $download
  * @property string $introduce
- * @property string $pay
  * @property string $update_time
  * @property string $create_time
  * @property integer $view_count
@@ -45,15 +44,15 @@ class Video extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('catalog_id, view_count, down_count', 'numerical', 'integerOnly'=>true),
-			array('title, cover_image, download, voted', 'length', 'max'=>100),
-			array('fileid, seo_title, seo_keywords', 'length', 'max'=>255),
-			array('language, video_type, video_size, pay, update_time, create_time', 'length', 'max'=>10),
+			array('title, cover_image, video_file, download, voted, seo_title, seo_keywords', 'length', 'max'=>100),
+			array('introduce, seo_description', 'length', 'max'=>200),
+			array('language, video_type, video_size, update_time, create_time', 'length', 'max'=>10),
 			array('video_score', 'length', 'max'=>3),
 			array('status', 'length', 'max'=>1),
 			array('introduce, seo_description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, catalog_id, cover_image, fileid, language, video_type, video_score, video_size, download, introduce, pay, update_time, create_time, view_count, down_count, voted, status, seo_title, seo_description, seo_keywords', 'safe', 'on'=>'search'),
+			array('id, title, catalog_id, cover_image, video_file, language, video_type, video_score, video_size, download, introduce, update_time, create_time, view_count, down_count, voted, status, seo_title, seo_description, seo_keywords', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -79,14 +78,13 @@ class Video extends CActiveRecord
 			'title' => 'Title',
 			'catalog_id' => 'Catalog',
 			'cover_image' => 'Cover Image',
-			'fileid' => 'Fileid',
+			'video_file' => 'Fileid',
 			'language' => 'Language',
 			'video_type' => 'Video Type',
 			'video_score' => 'Video Score',
 			'video_size' => 'Video Size',
 			'download' => 'Download',
-			'introduce' => 'Introduce',
-			'pay' => 'Pay',
+			'introduce' => 'Introduce',			
 			'update_time' => 'Update Time',
 			'create_time' => 'Create Time',
 			'view_count' => 'View Count',
@@ -125,7 +123,7 @@ class Video extends CActiveRecord
 
 		$criteria->compare('cover_image',$this->cover_image,true);
 
-		$criteria->compare('fileid',$this->fileid,true);
+		$criteria->compare('video_file',$this->video_file,true);
 
 		$criteria->compare('language',$this->language,true);
 
@@ -138,8 +136,6 @@ class Video extends CActiveRecord
 		$criteria->compare('download',$this->download,true);
 
 		$criteria->compare('introduce',$this->introduce,true);
-
-		$criteria->compare('pay',$this->pay,true);
 
 		$criteria->compare('update_time',$this->update_time,true);
 

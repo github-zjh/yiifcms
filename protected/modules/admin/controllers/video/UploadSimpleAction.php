@@ -12,7 +12,7 @@ class UploadSimpleAction extends CAction
         $uploader = new Uploader();
         if(Yii::app()->request->isPostRequest) {
             //普通上传
-            $uploader->initSimple('soft')->uploadSimple('simple_file');
+            $uploader->initSimple('videoimg')->uploadSimple('simple_file');
             $error = $uploader->getError();
             if (!$error) {
                 $data = array(

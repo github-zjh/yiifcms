@@ -1,6 +1,6 @@
 <?php
 /**
- * 图集编辑
+ * 软件编辑
  * 
  * @author        Sim Zhao <326196998@qq.com>
  * @copyright     Copyright (c) 2015. All rights reserved.

@@ -52,12 +52,19 @@ class Uploader{
             'thumb_width'         => 300,                   //缩略图宽度
             'thumb_height'        => 300                    //缩略图高度
         ),
+        //软件封面
+        'softimg' => array(            
+            'save_path'           => 'soft',                //保存路径
+            'allow_ext'           => 'jpg,jpeg,png,gif',    //允许类型  *代表所有
+            'rand_name'           => false,                 //是否随机生成文件名
+            'max_upload_filesize' => 2097152,               //允许最大上传大小500M  
+        ),
         //软件
         'soft' => array(            
             'save_path'           => 'soft',                //保存路径
             'allow_ext'           => '*',                   //允许类型  *代表所有
-            'rand_name'           => false,                  //是否随机生成文件名
-            'max_upload_filesize' => 512000,                //允许最大上传大小500M            
+            'rand_name'           => false,                 //是否随机生成文件名
+            'max_upload_filesize' => 512000000,             //允许最大上传大小500M            
         ),
         //商品
         'goods' => array(            
@@ -66,6 +73,14 @@ class Uploader{
             'rand_name'           => true,                  //是否随机生成文件名
             'max_upload_filesize' => 2097152,               //允许最大上传大小2M            
         ),
+        //视频封面
+        'videoimg' => array(            
+            'save_path'           => 'video',               //保存路径
+            'allow_ext'           => 'jpg,jpeg,png,gif',    //允许类型  *代表所有
+            'rand_name'           => false,                 //是否随机生成文件名
+            'max_upload_filesize' => 2097152,               //允许最大上传大小2M            
+        ),
+        
         //视频
         'video' => array(            
             'save_path'           => 'video',               //保存路径
@@ -469,7 +484,7 @@ class Uploader{
                 $this->setError($msg);                
                 return false;
             }
-            //删除临时存放目录
+            //删除临时存放目录            
             Helper::rrmdir($this->_chunk_dir);
         }        
     }

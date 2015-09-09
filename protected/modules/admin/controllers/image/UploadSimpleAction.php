@@ -11,7 +11,7 @@ class UploadSimpleAction extends CAction
 	public function run(){
         $uploader = new Uploader();
         if(Yii::app()->request->isPostRequest) {
-            //断点上传
+            //普通上传
             $uploader->initSimple('album')->uploadSimple('simple_file');
             $error = $uploader->getError();
             if (!$error) {

@@ -9,8 +9,8 @@
 class VideoController extends Backend
 {
 	protected $_catalog;
-	protected $_video_type;	
-	protected $_type;
+	public $_video_type;	
+	public $_type;
 	
 	public function init(){
 		parent::init();
@@ -34,20 +34,35 @@ class VideoController extends Backend
 	 */
 	public function beforeAction($action){
 		$controller = Yii::app()->getController()->id;
-		$action = $action->id;
-		if(!$this->checkAcl($controller.'/'.$action)){
+		$action_id = $action->id;
+		if(!$this->checkAcl($controller.'/'.$action_id)){
 			$this->message('error',Yii::t('common','Access Deny'),$this->createUrl('index'),'',true);
 			return false;
 		}
 		return true;
 	}
+    
+    //所有动作
+    public function actions()
+    {
+        $extra_actions = array();
+        $actions = $this->actionMapping(array(
+            'index'  => 'Index',    //列表页
+            'create' => 'Create',   //添加文章
+            'update' => 'Update',   //编辑文章
+            'batch'  => 'Batch',    //批量操作  
+            'uploadSimple' => 'UploadSimple',   //图片ajax上传
+            'uploadResumable' => 'UploadResumable',   //图片断点上传
+        ), 'application.modules.admin.controllers.video');
+        return array_merge($actions, $extra_actions);
+    }      
 	
     /**
      * 首页
      *
      */
 	
-    public function actionIndex() {
+    public function actionIndex1() {
         $model = new Video();
         $criteria = new CDbCriteria();
         $condition = "type = ".$this->_type;
@@ -76,7 +91,7 @@ class VideoController extends Backend
      * 新增数据
      *
      */
-    public function actionCreate() 
+    public function actionCreate1() 
     {        
      	$model = new Video();       
     	if(isset($_POST['Video']))
@@ -120,7 +135,7 @@ class VideoController extends Backend
      *
      * @param  $id
      */
-    public function actionUpdate( $id ) {
+    public function actionUpdate1( $id ) {
     	$model = Video::model()->findByPk($id);    	
     	if(isset($_POST['Video']))
     	{
@@ -157,7 +172,7 @@ class VideoController extends Backend
      * 批量操作
      *
      */
-    public function actionBatch() {
+    public function actionBatch1() {
         if ( $this->method() == 'GET' ) {
             $command = trim( $_GET['command'] );
             $ids = intval( $_GET['id'] );
