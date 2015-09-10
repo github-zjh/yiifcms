@@ -19,13 +19,12 @@ class BatchAction extends CAction
                 //删除                
                 foreach((array)$ids as $id){
                     $softModel = Soft::model()->findByPk($id);
-                    if($softModel){                        
-                        Uploader::deleteFile(ROOT_PATH.$softModel->cover_img);
+                    if($softModel){ 
                         Uploader::deleteFile(ROOT_PATH.$softModel->soft_icon);
                         Uploader::deleteFile(ROOT_PATH.$softModel->soft_file);                                              
                     }
                 }
-                Soft::model()->deleteAllByAttributes($criteria);
+                Soft::model()->deleteAll($criteria);
                 break;       
             case 'show':     
                 //显示

@@ -1,157 +1,36 @@
 <?php
 /**
  * 单页管理
- * @author        zhao jinhan <326196998@qq.com>
+ * @author        Sim Zhao <326196998@qq.com>
  * @copyright     Copyright (c) 2014-2015. All rights reserved.
  */
 
 class PageController extends Backend
 {
-    /*
-	 * 首页
-	 */
-    public function actionIndex ()
-    {        
-        $model = new Page();
-        $criteria = new CDbCriteria();
-        $condition = '1';
-        $title = Yii::app()->request->getParam('title');
-        $titleAlias = Yii::app()->request->getParam('titleAlias');
-        $title && $condition .= ' AND title LIKE \'%' . $title . '%\'';
-        $titleAlias && $condition .= ' AND title_alias LIKE \'%' . $titleAlias . '%\'';
-        $criteria->condition = $condition;
-        $criteria->order = 't.id DESC';
-        $count = $model->count($criteria);
-        $pages = new CPagination($count);
-        $pages->pageSize = 13;
-        $pageParams = $this->buildCondition($_GET, array ('page_name_alias' , 'page_name' ));
-        $pages->params = is_array($pageParams) ? $pageParams : array ();
-        $criteria->limit = $pages->pageSize;
-        $criteria->offset = $pages->currentPage * $pages->pageSize;
-        $result = $model->findAll($criteria);
-        $this->render('index', array ('datalist' => $result , 'pagebar' => $pages ));
-    }
-
     /**
-	 * 单页添加
+	 * 动作权限判断
+	 * 
 	 */
-    public function actionCreate ()
-    {        
-        $model = new Page();
-        if (isset($_POST['Page'])) {
-            $model->attributes = $_POST['Page'];
-            if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
-            	$upload = new Uploader();
-            	$upload->_thumb_width = '200';
-            	$upload->_thumb_height = '180';
-            	$upload->uploadFile( $_FILES['attach'], true);
-            	 
-            	if($upload->_error){
-            		$upload->deleteFile($upload->_file_name);
-            		$upload->deleteFile($upload->_thumb_name);
-            		$this->message('error', Yii::t('admin',$upload->_error));
-            		return;
-            	}
-            	$model->attach_file = $upload->_file_name;
-            	$model->attach_thumb = $upload->_thumb_name;				
-            }
-            $model->create_time = time();
-            if ($model->save()) {               
-                $this->redirect(array ('index' ));
-            }
-        }
-        $this->render('create', array ('model' => $model ));
-    }
-
-    /**
-	 * 单页更新
-	 *
-	 * @param $id        	
-	 */
-    public function actionUpdate ($id)
-    {        
-        $model = Page::model()->findByPk($id);
-        if (isset($_POST['Page'])) {
-            $model->attributes = $_POST['Page'];
-        	if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
-        		
-            	$upload = new Uploader();
-            	$upload->_thumb_width = '200';
-            	$upload->_thumb_height = '180';
-            	$upload->uploadFile( $_FILES['attach'], true);
-            	 
-            	if($upload->_error){
-            		$upload->deleteFile($upload->_file_name);
-            		$upload->deleteFile($upload->_thumb_name);
-            		$this->message('error', Yii::t('admin',$upload->_error));
-            		return;
-            	}
-            	$model->attach_file = $upload->_file_name;
-            	$model->attach_thumb = $upload->_thumb_name;
-            }
-            $model->create_time = $model->create_time?$model->create_time:time();
-            $model->update_time = time();
-            
-            if ($model->save()) {                
-                $this->redirect(array ('index' ));
-            }
-           
-        }
-        $this->render('update', array ('model' => $model ));
-    
-    }
-    
-    /**
-	 * 批量操作
-	 */
-    public function actionBatch ()
-    {
-        if ($this->method() == 'GET') {
-			$command = trim(Yii::app()->request->getParam('command'));
-			$ids = intval(Yii::app()->request->getParam('id'));
-		} elseif ($this->method() == 'POST') {
-			$command = Yii::app()->request->getPost('command');
-			$ids = Yii::app()->request->getPost('id');			
-		} else {
-			throw new CHttpException(404, Yii::t('admin','Only POST Or GET'));
+	public function beforeAction($action){
+		$controller = Yii::app()->getController()->id;
+		$action_id = $action->id;
+		if(!$this->checkAcl($controller.'/'.$action_id)){
+			$this->message('error',Yii::t('common','Access Deny'),$this->createUrl('index'),'',true);
+			return false;
 		}
-		empty($ids) && $this->message('error',  Yii::t('admin','No Select'));	
-        
-        switch ($command) {
-            case 'delete':
-        		foreach((array)$ids as $id){
-            		$pageModel = Page::model()->findByPk($id);
-            		if($pageModel){
-            			Uploader::deleteFile($pageModel->attach_file);
-            			Uploader::deleteFile($pageModel->attach_thumb);
-            			$pageModel->delete();
-            		}
-            	}
-            	break;
-            case 'show' :
-				foreach ( ( array ) $ids as $id ) {
-					$pageModel = Page::model ()->findByPk ( $id );
-					if ($pageModel) {
-						$pageModel->status = 'Y';
-						$pageModel->save ();
-					}
-				}
-				break;
-			case 'hidden' :
-				foreach ( ( array ) $ids as $id ) {
-					$pageModel = Page::model ()->findByPk ( $id );
-					if ($pageModel) {
-						$pageModel->status = 'N';
-						$pageModel->save ();
-					}
-				}
-				break;
-            default:
-                throw new CHttpException(404, Yii::t('admin','Error Operation'));
-                break;
-        }
-        $this->message('success', Yii::t('admin','Batch Operate Success'),$this->createUrl('index'));
-        
-    }
-
+		return true;
+	}
+    
+    //所有动作
+    public function actions()
+    {
+        $extra_actions = array();
+        $actions = $this->actionMapping(array(
+            'index'  => 'Index',    //列表页
+            'create' => 'Create',   //添加文章
+            'update' => 'Update',   //编辑文章
+            'batch'  => 'Batch',    //批量操作            
+        ), 'application.modules.admin.controllers.page');
+        return array_merge($actions, $extra_actions);
+    }     
 }

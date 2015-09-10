@@ -21,7 +21,7 @@ class BatchAction extends CAction
                     //删除关联的标签
                     TagData::model()->deleteAll('content_id =:id AND type =:type', array(':id'=>$id, ':type'=>$this->controller->_type_ids['post']));
                 }
-                Image::model()->deleteAllByAttributes($criteria);
+                Image::model()->deleteAll($criteria);
                 break;       
             case 'show':     
                 //显示      

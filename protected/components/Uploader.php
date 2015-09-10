@@ -56,7 +56,7 @@ class Uploader{
         'softimg' => array(            
             'save_path'           => 'soft',                //保存路径
             'allow_ext'           => 'jpg,jpeg,png,gif',    //允许类型  *代表所有
-            'rand_name'           => false,                 //是否随机生成文件名
+            'rand_name'           => true,                  //是否随机生成文件名
             'max_upload_filesize' => 2097152,               //允许最大上传大小500M  
         ),
         //软件
@@ -77,14 +77,14 @@ class Uploader{
         'videoimg' => array(            
             'save_path'           => 'video',               //保存路径
             'allow_ext'           => 'jpg,jpeg,png,gif',    //允许类型  *代表所有
-            'rand_name'           => false,                 //是否随机生成文件名
+            'rand_name'           => true,                  //是否随机生成文件名
             'max_upload_filesize' => 2097152,               //允许最大上传大小2M            
         ),
         
         //视频
         'video' => array(            
             'save_path'           => 'video',               //保存路径
-            'allow_ext'           => 'mp4,avi,rmvb,flv',    //允许类型  *代表所有
+            'allow_ext'           => 'mp4,avi,rmvb,flv,mkv',    //允许类型  *代表所有
             'rand_name'           => false,                  //是否随机生成文件名
             'max_upload_filesize' => 1258291200,            //允许最大上传大小1.2G            
         ),

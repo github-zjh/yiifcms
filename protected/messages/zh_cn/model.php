@@ -124,11 +124,6 @@ return array(
 		'VideoLanguage' => '视频字幕',	
 		'DownCount' => '下载次数',
 		
-		//Goods		
-		'GoodsViews' => '商品查看次数',
-		'GoodsSales' => '销量',
-		'GoodsPrice' => '商品价格',
-		
 		//Question
 		'QuestionId' => '留言ID',
 		'QuestionRealname' => '姓名',

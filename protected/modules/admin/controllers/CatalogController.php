@@ -7,11 +7,8 @@
 
 class CatalogController extends Backend
 {
-	protected $_catalog;
-	protected $_model_type;
-	/**
-	 * @var CActiveRecord the currently loaded data model instance.
-	 */
+	public $_catalog;
+	protected $_model_type;	
 	private $_model;
 	
 	public function init(){		
@@ -21,69 +18,39 @@ class CatalogController extends Backend
 		$this->_model_type = ModelType::model()->findAll();
 	}
 	/**
-	 * !CodeTemplates.overridecomment.nonjd!
-	 * @see CController::beforeAction()
+	 * 动作权限控制
+	 * 
 	 */
 	public function beforeAction($action){
 		$controller = Yii::app()->getController()->id;
-		$action = $action->id;
-		if(!$this->checkAcl($controller.'/'.$action)){
+		$action_id = $action->id;
+		if(!$this->checkAcl($controller.'/'.$action_id)){
 			$this->message('error',Yii::t('common','Access Deny'),$this->createUrl('index'),'',true);
 			return false;
 		}
 		return true;
 	}
-	
-    /**
-     * 首页
-     */
-    public function actionIndex ()
-    {   
-        $datalist = Catalog::get(0, $this->_catalog);              
-        $this->render('index', array ('datalist' => $datalist ));
-    }
-
-    /**
-     * 添加栏目
-     *
-     */
-    public function actionCreate ()
+    
+    //所有动作
+    public function actions()
     {
-    	$model = new Catalog();    	
-    	if(isset($_POST['Catalog']))
-    	{    		
-    		$model->attributes=$_POST['Catalog']; 
-    		if($_FILES['attach']['error'] == UPLOAD_ERR_OK){
-    			$upload = new Uploader;    			
-	    		$upload->uploadFile($_FILES['attach'], 'image', true);
-	    		if($upload->_error){
-	    			$upload->deleteFile($upload->_file_name);
-	    			$upload->deleteFile($upload->_thumb_name);
-	    			$this->message('error', Yii::t('admin',$upload->_error));
-	    			return;
-	    		}
-	    		$model->attach_file = $upload->_file_name;
-	    		$model->attach_thumb = $upload->_thumb_name;
-    		}
-    		$now = time();
-    		$model->create_time = $now;
-    		$model->update_time = $now;
-    		if($model->save())
-    			$this->redirect(array('index'));    		
-    	}
-    	$parentId =intval($_GET['id']);
-    	$this->render('create',array(
-    			'model'=>$model,
-    			'parentId' => $parentId
-    	));
-    }
+        $extra_actions = array();
+        $actions = $this->actionMapping(array(
+            'index'    => 'Index',        //站点设置
+            'create'   => 'Create',       //添加
+            'update'   => 'Update',       //编辑
+            'batch'    => 'Batch',        //批量操作
+         
+        ), 'application.modules.admin.controllers.catalog');
+        return array_merge($actions, $extra_actions);
+    } 	
 
     /**
      * 编辑
      *
      * @param  $id
      */
-    public function actionUpdate ($id)
+    public function actionUpdate1 ($id)
     {
         $model=$this->loadModel();
         

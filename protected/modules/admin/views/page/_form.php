@@ -31,15 +31,6 @@
   </tr>
  
   <tr>
-    <td class="tb_title"><?php echo Yii::t('admin','Cover Image');?>：</td>
-  </tr>
-  <tr >
-    <td colspan="2" ><input name="attach" type="file" id="attach" />
-      <?php if ($model->attach_file):?>
-      <a href="<?php echo $this->_baseUrl.'/'. $model->attach_file?>" target="_blank"><img src="<?php echo $this->_baseUrl.'/'. $model->attach_file?>" width="50" align="absmiddle" /></a>
-      <?php endif?></td>
-  </tr>
-  <tr>
     <td class="tb_title"><?php echo Yii::t('admin','Description');?>：</td>
   </tr>
   <tr >
@@ -53,13 +44,7 @@
   </tr>
   <tr >
     <td ><?php echo CHtml::activeTextArea($model,'introduce',array('rows'=>5, 'cols'=>90)); ?></td>
-  </tr>
-  <tr>
-    <td class="tb_title"><?php echo Yii::t('admin','Template');?>：</td>
-  </tr>
-  <tr >
-    <td class=" rowform"><?php echo $form->textField($model,'template',array('size'=>30,'maxlength'=>128)); ?>默认为空</td>
-  </tr>
+  </tr> 
   <tr>
     <td class="tb_title"><?php echo Yii::t('admin','SEO Title');?>：</td>
   </tr>
@@ -91,9 +76,9 @@
   </tr>
   
   <tr class="submit">
-    <td ><input name="oAttach" type="hidden" value="<?php echo $model->attach_file ?>" />
-      <input name="oThumb" type="hidden" value="<?php echo $model->attach_thumb ?>" />
-      <input type="submit" name="editsubmit" value="<?php echo Yii::t('common','Submit');?>" class="button" tabindex="3" /></td>
+    <td>      
+      <input type="submit" name="editsubmit" value="<?php echo Yii::t('common','Submit');?>" class="button" tabindex="3" />
+    </td>
   </tr>
 </table>
 <script type="text/javascript">

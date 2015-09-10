@@ -23,14 +23,9 @@
       <td ><input type="checkbox" name="id[]" value="<?php echo $row['id']?>">
         <?php echo $row['id']?></td>
       <td ><input name="sortOrder[<?php echo $row['id']?>]" type="text" id="sortOrder[]" value="<?php echo $row['sort_order']?>" size="5" /></td>
-      <td ><?php echo $row['str_repeat'] ?><a href="<?php echo $this->createUrl('create',array('id'=>$row['id']))?>"><img src="<?php echo $this->module->assetsUrl;?>/images/insert.png" align="absmiddle" /></a> <a href="<?php echo  $this->createUrl('update',array('id'=>$row['id']))?>"><?php echo $row['catalog_name'] ?></a>
-        
-        <?php if($row['attach_file']):?>
-        <img src="<?php echo $this->module->assetsUrl;?>/images/image.png" align="absmiddle" />
-        <?php endif;?>
-        <?php if($row['status'] == 'N'):?>
-        <img src="<?php echo $this->module->assetsUrl;?>/images/error.png" align="absmiddle" />[<?php echo Yii::t('admin','Hidden');?>]
-        <?php endif;?></td>     
+      <td >
+          <?php echo $row['str_repeat'] ?><a href="<?php echo $this->createUrl('create',array('id'=>$row['id']))?>"><img src="<?php echo $this->module->assetsUrl;?>/images/insert.png" align="absmiddle" /></a> <a href="<?php echo  $this->createUrl('update',array('id'=>$row['id']))?>"><?php echo $row['catalog_name'] ?></a>        
+      </td>     
       <td ><?php echo Yii::t('admin','Type '.ucfirst(array_search($row['type'], $this->_type_ids)));?></td> 
       <td ><?php echo date('Y-m-d H:i',$row['create_time'])?></td>
       <td ><?php echo date('Y-m-d H:i',$row['update_time'])?></td>
@@ -42,9 +37,7 @@
     </tr>
     <?php endforeach;?>
     <tr class="submit">
-      <td colspan="9"><div class="cuspages right">
-          <?php $this->widget('CLinkPager',array('pages'=>$pagebar));?>
-        </div>
+      <td colspan="9">
         <div class="fixsel">
           <input type="checkbox" name="chkall" id="chkall" onclick="checkAll(this.form, 'id')" />
           <label for="chkall"><?php echo Yii::t('admin','Check All');?></label>
@@ -56,7 +49,8 @@
             <option value="hidden"><?php echo Yii::t('admin','Hidden');?></option>
           </select>
           <input id="submit_maskall" class="button confirmSubmit" type="submit" value="<?php echo Yii::t('common','Submit');?>" name="maskall" />
-        </div></td>
+        </div>
+      </td>
     </tr>
  
 </table>

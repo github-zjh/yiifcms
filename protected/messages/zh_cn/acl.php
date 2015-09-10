@@ -64,14 +64,6 @@ return array(
 		'video|delete' => '视频删除',
 		'video|batch' => '批量操作',
 		
-		//Goods
-		'goods' => '商品管理',
-		'goods|index' => '商品列表',
-		'goods|create' => '商品添加',
-		'goods|update' => '商品更新',
-		'goods|delete' => '商品删除',
-		'goods|batch' => '批量操作',
-		
 		//Page
 		'page' => '单页管理',
 		'page|index' => '单页列表',
@@ -80,7 +72,7 @@ return array(
 		'page|delete' => '单页删除',
 		'page|batch' => '批量操作',		
 		
-		//RecommendPost
+		//RecommendPosition
 		'recommendPosition' => '推荐位管理',
 		'recommendPosition|index' => '推荐位列表',
 		'recommendPosition|create' => '推荐位添加',

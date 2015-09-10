@@ -17,7 +17,7 @@ class UeditorController extends Backend
     	$ueditor_widget = $this->_widgetPath."/ueditor";
 		
 		//编辑器上传配置
-		$uploads_path = $this->_baseUrl.'/uploads';
+		$uploads_path = $this->_baseUrl.'/upload/ueditor';
 		$uploads_images = $uploads_path.'/images/{yyyy}{mm}';
 		$uploads_files = $uploads_path.'/files/{yyyy}{mm}';
 		$CONFIG = array (

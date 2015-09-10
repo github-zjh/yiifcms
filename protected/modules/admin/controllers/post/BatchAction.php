@@ -17,7 +17,7 @@ class BatchAction extends CAction
         switch ( $command ) {
             case 'delete':      
                 //删除
-                Post::model()->deleteAllByAttributes($criteria);
+                Post::model()->deleteAll($criteria);
                 foreach((array)$ids as $id){
                     //删除关联的标签
                     TagData::model()->deleteAll('content_id =:id AND type =:type', array(':id'=>$id, ':type'=>$this->controller->_type_ids['post']));

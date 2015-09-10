@@ -8,7 +8,7 @@
     <div class="search right"> </div>
   </div>
 </div>
-<?php $this->renderPartial('_form',array('model'=>$model, 'parentId'=>$parentId))?>
+<?php $this->renderPartial('_form',array('model'=>$model));
 
 
 

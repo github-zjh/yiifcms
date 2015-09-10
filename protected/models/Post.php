@@ -25,13 +25,13 @@ class Post extends CActiveRecord
 			array('title, catalog_id', 'required'),
 			array('catalog_id, special_id', 'numerical', 'integerOnly'=>true),
 			array('user_id, view_count, favorite_count, update_time, reply_count, sort_desc, create_time', 'length', 'max'=>10),
-			array('html_path, html_file, copy_from', 'length', 'max'=>100),
+			array('copy_from', 'length', 'max'=>100),
 			array('title, title_second, title_style, seo_title, seo_keywords, copy_url, redirect_url, tags', 'length', 'max'=>255),
 			array('commend, top_line, reply_allow, status', 'length', 'max'=>1),
 			array('content, introduce, seo_description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, user_id, title, title_second, title_style, html_path, html_file, catalog_id, special_id, introduce, seo_title, seo_description, seo_keywords, content, copy_from, copy_url, redirect_url, tags, view_count, commend, favorite_count, top_line, update_time, reply_count, reply_allow, sort_desc, status, create_time', 'safe', 'on'=>'search'),
+			array('id, user_id, title, title_second, title_style, catalog_id, special_id, introduce, seo_title, seo_description, seo_keywords, content, copy_from, copy_url, redirect_url, tags, view_count, commend, favorite_count, top_line, update_time, reply_count, reply_allow, sort_desc, status, create_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -57,9 +57,7 @@ class Post extends CActiveRecord
 			'user_id' => '用户',		
 			'title' => '标题',
 			'title_second' => '副标题',			
-			'title_style' => '标题样式',			
-			'html_path' => 'html路径',
-			'html_file' => 'html文件名',			
+			'title_style' => '标题样式',
 			'catalog_id' => '分类',
 			'special_id' => '专题编号',
 			'introduce' => '摘要',			
@@ -103,7 +101,7 @@ class Post extends CActiveRecord
 	 * @return array
 	 */
 	public static function getList($params = array(), &$pages = null){
-		$data = array();
+		
 		$pages = array();
         
         $params['condition'] = isset($params['condition'])?$params['condition']:'';
@@ -118,7 +116,7 @@ class Post extends CActiveRecord
 		$params['condition'] && $criteria->condition .= $params['condition'];		
 		$criteria->order = $params['order']?$params['order']:'t.id DESC';
 		$criteria->with = array ( 'catalog' );
-		$criteria->select = "t.title, t.id,t.title_style, t.attach_thumb, ";
+		$criteria->select = "t.title, t.id,t.title_style, ";
 		$criteria->select .= " t.copy_from, t.copy_url, t.update_time,t.introduce, t.tags, t.view_count";
 		$criteria->params = array(':status'=> 'Y');
 		$params['with'] && $criteria->with = (array)$params['with'];

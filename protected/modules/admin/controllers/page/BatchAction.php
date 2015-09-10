@@ -13,25 +13,19 @@ class BatchAction extends CAction
         $command = Yii::app()->request->getParam('command');
         empty( $ids ) && $this->controller->message( 'error', Yii::t('admin','No Select') );
         $criteria = new CDbCriteria();
-        $criteria->addInCondition('id', $ids);
+        $criteria->addInCondition('id', $ids);        
         switch ( $command ) {
             case 'delete':      
-                //删除                
-                foreach((array)$ids as $id){
-                    $videoModel = Video::model()->findByPk($id);
-                    if($videoModel){                        
-                        Uploader::deleteFile(ROOT_PATH.$videoModel->cover_image);                                                                 
-                    }
-                }
-                Video::model()->deleteAll($criteria);
+                //删除
+                Page::model()->deleteAll($criteria);
                 break;       
             case 'show':     
                 //显示
-                Video::model()->updateAll(['status' => 'Y'], $criteria);
+                Page::model()->updateAll(['status' => 'Y'], $criteria);                
                 break;
             case 'hidden':     
                 //隐藏      
-                Video::model()->updateAll(['status' => 'N'], $criteria);
+                Page::model()->updateAll(['status' => 'N'], $criteria);                
                 break;            
             default:
                 throw new CHttpException(404, Yii::t('admin','Error Operation'));                

@@ -35,7 +35,7 @@ class PostController extends Backend
 		}
 		return true;
 	}
-    
+    //所有动作
     public function actions()
     {
         $extra_actions = array();

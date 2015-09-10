@@ -101,7 +101,6 @@ class DefaultController extends BackendBase
 			'1' => array(
 				array('url'=> $this->createUrl('setting/index'), 'name'=>Yii::t('admin','Web Set')),
 				array('url'=> $this->createUrl('setting/seo'), 'name'=>Yii::t('admin','SEO Set')),
-				array('url'=> $this->createUrl('setting/upload'), 'name'=>Yii::t('admin','Upload Set')),
 				array('url'=> $this->createUrl('setting/template'), 'name'=>Yii::t('admin','Template Set')),					
 				array('url'=> $this->createUrl('setting/email'), 'name'=>Yii::t('admin','Email Set')),
 				array('url'=> $this->createUrl('setting/cache'), 'name'=>Yii::t('admin','Cache Set')),
@@ -117,8 +116,7 @@ class DefaultController extends BackendBase
 					array('url'=> $this->createUrl('post/index'), 'name'=>Yii::t('admin','Article Manage')),
 					array('url'=> $this->createUrl('image/index'), 'name'=>Yii::t('admin','Image Manage')),
 					array('url'=> $this->createUrl('soft/index'), 'name'=>Yii::t('admin','Soft Manage')),
-					array('url'=> $this->createUrl('video/index'), 'name'=>Yii::t('admin','Video Manage')),
-					array('url'=> $this->createUrl('goods/index'), 'name'=>Yii::t('admin','Goods Manage')),
+					array('url'=> $this->createUrl('video/index'), 'name'=>Yii::t('admin','Video Manage')),				
 					array('url'=> $this->createUrl('page/index'), 'name'=>Yii::t('admin','Page Manage')),
 			),
 			'4' => array(
