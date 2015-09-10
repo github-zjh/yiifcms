@@ -22,7 +22,7 @@
         <?php echo $row['id']?></td>
       <td ><input name="sortOrder[<?php echo $row['id']?>]" type="text" id="sortOrder[]" value="<?php echo $row['sort_order']?>" size="5" /></td>
       <td ><?php echo $row['str_repeat'] ?><a href="<?php echo $this->createUrl('create',array('id'=>$row['id']))?>"><img src="<?php echo $this->module->assetsUrl;?>/images/insert.png" align="absmiddle" /></a> <a href="<?php echo  $this->createUrl('update',array('id'=>$row['id']))?>"><?php echo $row['menu_name'] ?></a>
-       <?php if($row['status_is'] == 'N'):?>
+       <?php if($row['status'] == 'N'):?>
         <img src="<?php echo $this->module->assetsUrl;?>/images/error.png" align="absmiddle" />[<?php echo Yii::t('admin','Hidden');?>]
         <?php endif;?>
        </td>      
@@ -31,9 +31,7 @@
     </tr>
     <?php endforeach;?>
     <tr class="submit">
-      <td colspan="9"><div class="cuspages right">
-          <?php $this->widget('CLinkPager',array('pages'=>$pagebar));?>
-        </div>
+      <td colspan="9">
         <div class="fixsel">
           <input type="checkbox" name="chkall" id="chkall" onclick="checkAll(this.form, 'id')" />
           <label for="chkall"><?php echo Yii::t('admin','Check All');?></label>

@@ -143,7 +143,13 @@ class Catalog extends CActiveRecord
 			if($this->id == $this->parent_id){
 				$this->addError('parent_id', Yii::t('admin','Parent ID can not eque itself ID'));
 				return false;
-			}
+			}           
+            //判断是否是一级分类
+            $data = self::model()->findByPk($this->parent_id);            
+            if($data && $data->parent_id == 0) {
+                $this->addError('parent_id', Yii::t('admin','First Parent Category Can Not Change'));
+				return false;
+            }
 		}
 		return true;
 	}

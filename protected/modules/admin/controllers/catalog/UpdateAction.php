@@ -12,16 +12,15 @@ class UpdateAction extends CAction
         $model=$this->controller->loadModel();         	
     	if(isset($_POST['Catalog']))
     	{    		
-    		$model->attributes=$_POST['Catalog'];     	
+    		$model->attributes=$_POST['Catalog'];            
     		$now = time();    	
     		$model->update_time = $now;
-    		if($model->save()) {
-                $this->controller->redirect(array('index'));    		            
+    		if($model->save()) {                
+                $this->controller->message('success',Yii::t('admin','Update Success'),$this->controller->createUrl('index'));                
             }
-    	} else {    	
-            $this->controller->render('update',array(
-                    'model'=>$model                   
-            ));
-        }
-	}
+    	}        
+        $this->controller->render('update',array(
+                'model'=>$model                   
+        ));        
+	}   
 }

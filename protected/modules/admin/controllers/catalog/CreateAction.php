@@ -16,8 +16,8 @@ class CreateAction extends CAction
     		$now = time();
     		$model->create_time = $now;
     		$model->update_time = $now;
-    		if($model->save()) {
-                $this->controller->redirect(array('index'));    		            
+    		if($model->save()) {                
+                $this->controller->message('success',Yii::t('admin','Add Success'),$this->controller->createUrl('index'));                
             }
     	}
     	$parentId = intval(Yii::app()->request->getParam('id'));

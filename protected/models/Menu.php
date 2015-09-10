@@ -8,7 +8,7 @@
  * @property string $menu_name
  * @property string $menu_link
  * @property string $unique
- * @property string $status_is
+ * @property string $status
  * @property string $parent_id
  * @property string $sort_order
  * @property string $target
@@ -34,11 +34,11 @@ class Menu extends CActiveRecord
 			array('menu_name', 'length', 'max'=>30),
 			array('menu_link', 'length', 'max'=>50),
 			array('unique', 'length', 'max'=>20),
-			array('status_is, target', 'length', 'max'=>1),
+			array('status, target', 'length', 'max'=>1),
 			array('parent_id, sort_order', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, menu_name, menu_link, status_is, parent_id, sort_order, target', 'safe', 'on'=>'search'),
+			array('id, menu_name, menu_link, status, parent_id, sort_order, target', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,7 +63,7 @@ class Menu extends CActiveRecord
 			'menu_name' => Yii::t('model','menu_name'),
 			'menu_link' => Yii::t('model','menu_link'),
 			'unique' => Yii::t('model','menu_unique'),
-			'status_is' => Yii::t('model','status_is'),
+			'status' => Yii::t('model','status'),
 			'parent_id' => Yii::t('model','parent_id'),
 			'sort_order' => Yii::t('model','menu_sort_order'),
 			'target' => Yii::t('model','new_open')
@@ -96,7 +96,7 @@ class Menu extends CActiveRecord
 		
 		$criteria->compare('unique',$this->unique,true);
 
-		$criteria->compare('status_is',$this->status_is,true);
+		$criteria->compare('status',$this->status,true);
 
 		$criteria->compare('parent_id',$this->parent_id,true);
 
@@ -154,7 +154,7 @@ class Menu extends CActiveRecord
 		$temparray = array ();
 		foreach ( ( array ) $array as $v ) {
 			if ($v ['parent_id'] == $parentid) {
-				$newarray [] = array ('id' => $v ['id'], 'menu_name' => $v ['menu_name'], 'menu_link' => $v ['menu_link'], 'unique' => $v ['unique'], 'parent_id' => $v ['parent_id'], 'level' => $level, 'sort_order' => $v ['sort_order'],'status_is' => $v ['status_is'], 'target'=>$v['target'], 'str_repeat' => $str_repeat);
+				$newarray [] = array ('id' => $v ['id'], 'menu_name' => $v ['menu_name'], 'menu_link' => $v ['menu_link'], 'unique' => $v ['unique'], 'parent_id' => $v ['parent_id'], 'level' => $level, 'sort_order' => $v ['sort_order'],'status' => $v ['status'], 'target'=>$v['target'], 'str_repeat' => $str_repeat);
 	
 				$temparray = self::get ( $v ['id'], $array, ($level + $add) );
 				if ($temparray) {

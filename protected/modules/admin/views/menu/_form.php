@@ -6,11 +6,6 @@
   </tr>
 </table>
 <?php endif?>
-<script type="text/javascript">
-$(function(){
-  $("#Menu_parent_id").val(<?php echo $parentId ?>);
-});
-</script>
 <?php $form = $this->beginWidget('CActiveForm',array('id'=>'xform','htmlOptions'=>array('name'=>'xform', 'enctype'=>'multipart/form-data'))); ?>
 <table class="form_table">
   <tr>
