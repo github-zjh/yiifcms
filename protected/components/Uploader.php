@@ -65,14 +65,7 @@ class Uploader{
             'allow_ext'           => '*',                   //允许类型  *代表所有
             'rand_name'           => false,                 //是否随机生成文件名
             'max_upload_filesize' => 512000000,             //允许最大上传大小500M            
-        ),
-        //商品
-        'goods' => array(            
-            'save_path'           => 'goods',               //保存路径
-            'allow_ext'           => 'jpg,jpeg,png',        //允许类型  *代表所有
-            'rand_name'           => true,                  //是否随机生成文件名
-            'max_upload_filesize' => 2097152,               //允许最大上传大小2M            
-        ),
+        ),        
         //视频封面
         'videoimg' => array(            
             'save_path'           => 'video',               //保存路径
@@ -83,17 +76,33 @@ class Uploader{
         
         //视频
         'video' => array(            
-            'save_path'           => 'video',               //保存路径
+            'save_path'           => 'video',                   //保存路径
             'allow_ext'           => 'mp4,avi,rmvb,flv,mkv',    //允许类型  *代表所有
-            'rand_name'           => false,                  //是否随机生成文件名
-            'max_upload_filesize' => 1258291200,            //允许最大上传大小1.2G            
+            'rand_name'           => false,                     //是否随机生成文件名
+            'max_upload_filesize' => 1258291200,                //允许最大上传大小1.2G            
         ),
+        
         //KindEditor
         'kindeditor' => array(            
             'save_path'           => 'kindeditor',          //保存路径
             'allow_ext'           => '*',                   //允许类型  *代表所有
             'rand_name'           => true,                  //是否随机生成文件名
             'max_upload_filesize' => 2097152,               //允许最大上传大小2M           
+        ),
+        
+        //专题封面
+        'specialcover' => array(            
+            'save_path'           => 'special',             //保存路径
+            'allow_ext'           => 'jpg,jpeg,png',        //允许类型  *代表所有
+            'rand_name'           => true,                  //是否随机生成文件名
+            'max_upload_filesize' => 2097152,               //允许最大上传大小2M            
+        ),
+        //专题横幅
+        'specialbanner' => array(            
+            'save_path'           => 'special',             //保存路径
+            'allow_ext'           => 'jpg,jpeg,png,gif',    //允许类型  *代表所有
+            'rand_name'           => true,                  //是否随机生成文件名
+            'max_upload_filesize' => 2097152,               //允许最大上传大小2M            
         ),
     );  
     

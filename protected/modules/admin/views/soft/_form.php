@@ -5,8 +5,12 @@
   </tr>
 </table>
 <?php endif?>
+
+<!-- ajax上传必需js开始 -->
 <script type="text/javascript" src="<?php echo $this->_static_public?>/js/jquery/jquery.ui.widget.js"></script>
 <script type="text/javascript" src="<?php echo $this->_static_public?>/js/jquery/jquery.fileupload.js"></script>
+<!-- ajax上传必需js结束 -->
+
 <?php $form=$this->beginWidget('CActiveForm',array('id'=>'xform','htmlOptions'=>array('name'=>'xform','enctype'=>'multipart/form-data'))); ?>
 <table class="form_table">
   <tr>
@@ -178,8 +182,7 @@
         $('#fileupload_cover').fileupload({
             url: "<?php echo $this->createUrl('soft/uploadSimple');?>",
             dataType: 'json',
-            done: function(e, JsonData) {
-                console.log('aa');
+            done: function(e, JsonData) {                
                 var data = JsonData.result;
                 if (200 === data.code) {                    
                     var atta_file = '';
@@ -194,9 +197,6 @@
                 return false;
             }
         });
-    }
-    $(function(){
-        $("#xform").validationEngine();
-    });
+    }    
 </script>
 <?php $this->endWidget();

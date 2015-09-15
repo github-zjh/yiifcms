@@ -42,10 +42,10 @@
   </tr>  
  
   <tr>
-    <td class="tb_title"><?php echo $form->labelEx($model,'status_is'); ?>：</td>
+    <td class="tb_title"><?php echo $form->labelEx($model,'status'); ?>：</td>
   </tr>
   <tr >
-    <td ><?php echo $form->dropDownList($model,'status_is',array('Y'=>Yii::t('admin','Show'), 'N'=>Yii::t('admin','Hidden'))); ?></td>   
+    <td ><?php echo $form->dropDownList($model,'status',array('Y'=>Yii::t('admin','Show'), 'N'=>Yii::t('admin','Hidden'))); ?></td>   
    
   </tr>
  <tr>

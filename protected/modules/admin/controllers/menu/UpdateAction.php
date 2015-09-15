@@ -16,10 +16,9 @@ class UpdateAction extends CAction
     		if($model->save()) {
                 $this->controller->message('success',Yii::t('admin','Update Success'),$this->controller->createUrl('index'));
             }
-    	} else {    	
-            $this->controller->render('update',array(
-                    'model'=>$model                   
-            ));
-        }
+    	}
+        $this->controller->render('update',array(
+            'model'=>$model                   
+        ));
 	}
 }

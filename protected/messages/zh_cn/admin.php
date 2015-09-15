@@ -32,7 +32,7 @@ return array (
 	'Success' => '成功',
 	'Failed' =>'失败',	
 	'Parent ID can not eque itself ID' =>'上级分类不能和本分类相同',
-    'First Parent Category Can Not Change' => '一级分类不允许修改',
+    'First Parent Category Can Not Under His Child' => '父级分类不允许移动到子分类下',
 	'Enable' => '启用',
 	'Disable' => '禁用',
 	'Home Url' => '前台首页',
