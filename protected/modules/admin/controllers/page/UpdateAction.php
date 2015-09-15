@@ -8,8 +8,8 @@
 
 class UpdateAction extends CAction
 {	
-	public function run($id){
-		$model = Page::model()->findByPk($id);    	
+	public function run(){
+		$model = $this->controller->loadModel();    	
     	if(isset($_POST['Page']))
     	{
     		$model->attributes=$_POST['Page'];  

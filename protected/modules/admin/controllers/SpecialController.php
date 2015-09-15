@@ -18,19 +18,6 @@ class SpecialController extends Backend
 		//专题
 		$this->_special = Special::model()->findAll('status=:status',array('status'=>'Y'));
 	}
-	
-	/**
-	 * 动作权限控制
-	 */
-	public function beforeAction($action){
-		$controller = Yii::app()->getController()->id;
-		$action_id = $action->id;
-		if(!$this->checkAcl($controller.'/'.$action_id)){
-			$this->message('error',Yii::t('common','Access Deny'),$this->createUrl('index'),'',true);
-			return false;
-		}
-		return true;
-	}
     
     /**
      * 所有动作
@@ -47,5 +34,23 @@ class SpecialController extends Backend
             'uploadBanner' => 'UploadBanner',      //横幅图片上传
         ), 'application.modules.admin.controllers.special');
         return array_merge($actions, $extra_actions);
-    }   
+    }
+    
+    /**
+     * 判断数据是否存在
+     * 
+     * return \$this->model
+     */
+    public function loadModel()
+    {
+    	if ($this->model === null) {
+            if (isset($_GET['id'])) {
+                $this->model = Special::model()->findbyPk($_GET['id']);
+            }
+            if ($this->model === null) {
+                throw new CHttpException(404, Yii::t('common', 'The requested page does not exist.'));
+            }
+        }
+        return $this->model;
+    }  
 }

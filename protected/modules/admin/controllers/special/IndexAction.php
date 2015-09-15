@@ -20,11 +20,8 @@ class IndexAction extends CAction
         $count = $model->count( $criteria );
         //分页
         $pages = new CPagination( $count );
-        $pages->pageSize = 10;
-        $pageParams = $this->controller->buildCondition( $_GET, array ( 'page_name_alias' , 'page_name' ) );
-        $pages->params = is_array( $pageParams ) ? $pageParams : array ();
-        $criteria->limit = $pages->pageSize;
-        $criteria->offset = $pages->currentPage * $pages->pageSize;
+        $pages->pageSize = 10;       
+        $pages->applyLimit($criteria);
         //结果
         $result = $model->findAll( $criteria );
         $this->controller->render( 'index', array ( 'datalist' => $result , 'pagebar' => $pages ) );

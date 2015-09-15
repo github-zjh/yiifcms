@@ -8,8 +8,8 @@
 
 class UpdateAction extends CAction
 {	
-	public function run($id){
-		$model = Soft::model()->findByPk($id);    	
+	public function run(){
+		$model = $this->controller->loadModel();    	
     	if(isset($_POST['Soft']))
     	{
     		$model->attributes=$_POST['Soft'];

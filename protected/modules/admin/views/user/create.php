@@ -8,4 +8,4 @@
     <div class="search right"> </div>
   </div>
 </div>
-<?php $this->renderPartial('_user_form',array('model'=>$model))?>
+<?php $this->renderPartial('_form',array('model'=>$model));

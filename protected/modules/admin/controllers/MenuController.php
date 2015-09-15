@@ -8,30 +8,13 @@
 class MenuController extends Backend
 {
 	public $_menu;
-	/**
-	 * @var CActiveRecord the currently loaded data model instance.
-	 */
-	private $_model;
-	
+    
 	public function init(){		
 		//菜单
 		parent::init();
 		$this->_menu = Menu::model()->findAll();		
 	}
-	/**
-	 * !CodeTemplates.overridecomment.nonjd!
-	 * @see CController::beforeAction()
-	 */
-	public function beforeAction($action){
-		$controller = Yii::app()->getController()->id;
-		$action_id = $action->id;
-		if(!$this->checkAcl($controller.'/'.$action_id)){
-			$this->message('error',Yii::t('common','Access Deny'),$this->createUrl('index'),'',true);
-			return false;
-		}
-		return true;
-	}
-    
+	    
     //所有动作
     public function actions()
     {
@@ -47,19 +30,22 @@ class MenuController extends Backend
     }
 	
     /**
-     * Returns the data model based on the primary key given in the GET variable.
-     * If the data model is not found, an HTTP exception will be raised.
+     * 判断数据是否存在
+     * 
+     * return \$this->model
      */
     public function loadModel()
     {
-    	if($this->_model===null)
+    	if($this->model===null)
     	{
-    		if(isset($_GET['id']))
-    			$this->_model=Menu::model()->findbyPk($_GET['id']);
-    		if($this->_model===null)
-    			throw new CHttpException(404,'The requested page does not exist.');
+    		if(isset($_GET['id'])) {
+                $this->model=Menu::model()->findbyPk($_GET['id']);            
+            }
+    		if($this->model===null) {
+                throw new CHttpException(404,Yii::t('common', 'The requested page does not exist.'));          
+            }
     	}
-    	return $this->_model;
+    	return $this->model;
     }
 
 }

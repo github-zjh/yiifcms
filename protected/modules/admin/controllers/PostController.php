@@ -20,21 +20,8 @@ class PostController extends Backend
 		$this->_catalog = Catalog::model()->findAll('status=:status AND type=:type',array(':status'=>'Y',':type'=>$this->_type));
 		//专题
 		$this->_special = Special::model()->findAll('status=:status',array('status'=>'Y'));
-	}
-	
-	/**
-	 * !CodeTemplates.overridecomment.nonjd!
-	 * @see CController::beforeAction()
-	 */
-	public function beforeAction($action){
-		$controller = Yii::app()->getController()->id;
-		$action_id = $action->id;
-		if(!$this->checkAcl($controller.'/'.$action_id)){
-			$this->message('error',Yii::t('common','Access Deny'),$this->createUrl('index'),'',true);
-			return false;
-		}
-		return true;
-	}
+	}	
+
     //所有动作
     public function actions()
     {

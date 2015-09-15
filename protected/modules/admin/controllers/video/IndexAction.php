@@ -10,6 +10,8 @@ class IndexAction extends CAction
 {	
 	public function run(){
 		$model = new Video();
+        
+        //条件
         $criteria = new CDbCriteria();
         $condition = "type = ".$this->controller->_type;
         $title = trim( Yii::app()->request->getParam( 'title' ) );        
@@ -20,13 +22,11 @@ class IndexAction extends CAction
         $criteria->order = 't.id DESC';
         $criteria->with = array ( 'catalog' );
         $count = $model->count( $criteria );
+        
+        //分页
         $pages = new CPagination( $count );
-        $pages->pageSize = 10;
-        //根据title,catelogId,titleAlias查询
-        $pageParams = $this->controller->buildCondition( $_GET, array ( 'title' , 'catalogId' ) );
-        $pages->params = is_array( $pageParams ) ? $pageParams : array ();
-        $criteria->limit = $pages->pageSize;
-        $criteria->offset = $pages->currentPage * $pages->pageSize;
+        $pages->pageSize = 10;       
+        $pages->applyLimit($criteria);
         $result = $model->findAll( $criteria );    
         //推荐位
         $recom_list = RecommendPosition::model()->findAll('type=:type', array(':type'=>$this->controller->_type), array('order'=>'id'));

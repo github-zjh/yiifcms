@@ -40,10 +40,9 @@ class Controller extends CController
 	protected  $_fonts = '';    //字体目录	
 	public     $_static_public = ''; //公共资源目录	
 	public     $_data = '';
-    public     $_request = '';
-	protected  $_adminGroupID = 10; //系统管理员用户组ID
-	public  $_type_ids = array(); //内容模型id	
-	public  $_content_models = array(); //内容模型对象
+    public     $_request = '';	
+	public     $_type_ids = array(); //内容模型id	
+	public     $_content_models = array(); //内容模型对象
 	protected  $_cmsVersion = 'yiifcms1.4.1';
 	protected  $_cmsRelease = '20141222';
 	
@@ -59,16 +58,16 @@ class Controller extends CController
 		$this->_widgetPath    = $this->_webRoot.'/protected/widget';
 		$this->_fonts         = $this->_webRoot.'/public';
 		$this->_data          = $this->_webRoot.'/protected/data/';		
-		$this->_static_public = $this->_baseUrl.'/public';
+		$this->_static_public = $this->_baseUrl.'/public';        
 
 		//检测系统是否已经安装
 		if(!file_exists($this->_data.'/install.lock')){
 			$this->redirect($this->createUrl('/install/index'));
-		}
+		}        
 		
 		//后台全局设置
 		$settings = Setting::model()->findAll();
-		foreach ($settings as $key => $row) {
+		foreach ($settings as $row) {
 			$this->_setting[$row['variable']] = $row['value'];
 		}
 		//内容模型id

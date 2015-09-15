@@ -10,21 +10,8 @@ class OAuthController extends Backend
 	/**
 	 * @var CActiveRecord the currently loaded data model instance.
 	 */
-	private $_model;
+	private $_model;	
 	
-	/**
-	 * !CodeTemplates.overridecomment.nonjd!
-	 * @see CController::beforeAction()
-	 */
-	public function beforeAction($action){
-		$controller = Yii::app()->getController()->id;
-		$action = $action->id;
-		if(!$this->checkAcl($controller.'/'.$action)){
-			$this->message('error',Yii::t('common','Access Deny'),'','',true);
-			return false;
-		}
-		return true;
-	}
     /**
 	 * 首页
 	 */

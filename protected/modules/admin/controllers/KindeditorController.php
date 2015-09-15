@@ -28,13 +28,7 @@ class KindEditorController extends Backend
             //断点上传
             $uploader->initSimple('kindeditor')->uploadSimple('kindeditor_file');
             $error = $uploader->getError();
-            if (!$error) {
-                $data = array(
-                    'file_name' => $uploader->file_name,
-                    'file_path' => $uploader->file_path,
-                    'thumb_path'=> $uploader->thumb_path,
-                    'file_ext'  => $uploader->file_ext
-                );
+            if (!$error) {                
                 //返回kindeditor接收的json格式
                 exit(CJSON::encode(array('error'=>0, 'url'=>$uploader->file_path)));                
             } else {          

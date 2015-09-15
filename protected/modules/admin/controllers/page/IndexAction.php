@@ -10,6 +10,7 @@ class IndexAction extends CAction
 {	
 	public function run(){
 		$model = new Page();
+        //条件
         $criteria = new CDbCriteria(); 
         $condition = '1';
         $title = Yii::app()->request->getParam('title');
@@ -19,13 +20,11 @@ class IndexAction extends CAction
         $criteria->condition = $condition;
         $criteria->order = 't.id DESC';        
         $count = $model->count( $criteria );
+        //分页
         $pages = new CPagination( $count );
-        $pages->pageSize = 10;
-        //根据title, titleAlias查询
-        $pageParams = $this->controller->buildCondition($_GET, array ('page_name_alias' , 'page_name' ));
-        $pages->params = is_array( $pageParams ) ? $pageParams : array ();
-        $criteria->limit = $pages->pageSize;
-        $criteria->offset = $pages->currentPage * $pages->pageSize;
+        $pages->pageSize = 10;        
+        $pages->applyLimit($criteria);
+        //查询
         $result = $model->findAll( $criteria );
         $this->controller->render( 'index', array ( 'datalist' => $result , 'pagebar' => $pages ) );
 	}

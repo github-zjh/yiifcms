@@ -96,10 +96,14 @@ return array(
 		'user|update' => '用户更新',
 		'user|delete' => '用户删除',
 		'user|batch' => '批量操作',
-		'user|admin' => '管理员管理',
-		'user|group' => '用户组列表',
-		'user|groupCreate' => '用户组添加',
-		'user|groupUpdate' => '用户组更新',		
+		'user|admin' => '管理员管理',		
+    
+        //UserGroup
+		'usergroup' => '用户组管理',
+		'usergroup|index' => '用户组列表',
+		'usergroup|create' => '用户组添加',
+		'usergroup|update' => '用户组更新',		
+		'usergroup|batch' => '批量操作',		
 		
 		//Question	
 		'question' => '留言管理',

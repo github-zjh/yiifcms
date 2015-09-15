@@ -9,7 +9,6 @@ class CatalogController extends Backend
 {
 	public $_catalog;
 	protected $_model_type;	
-	private $_model;
 	
 	public function init(){		
 		//栏目
@@ -17,20 +16,7 @@ class CatalogController extends Backend
 		$this->_catalog = Catalog::model()->findAll();
 		$this->_model_type = ModelType::model()->findAll();
 	}
-	/**
-	 * 动作权限控制
-	 * 
-	 */
-	public function beforeAction($action){
-		$controller = Yii::app()->getController()->id;
-		$action_id = $action->id;
-		if(!$this->checkAcl($controller.'/'.$action_id)){
-			$this->message('error',Yii::t('common','Access Deny'),$this->createUrl('index'),'',true);
-			return false;
-		}
-		return true;
-	}
-    
+
     //所有动作
     public function actions()
     {
@@ -46,21 +32,21 @@ class CatalogController extends Backend
     }
    
     /**
-     * Returns the data model based on the primary key given in the GET variable.
-     * If the data model is not found, an HTTP exception will be raised.
+     * 判断数据是否存在
+     * 
      */
     public function loadModel()
     {
-    	if($this->_model===null)
+    	if($this->model===null)
     	{
     		if(isset($_GET['id'])) {
-                $this->_model=Catalog::model()->findbyPk($_GET['id']);            
+                $this->model=Catalog::model()->findbyPk($_GET['id']);            
             }
-    		if($this->_model===null) {
+    		if($this->model===null) {
                 throw new CHttpException(404,'The requested page does not exist.');             
             }
     	}
-    	return $this->_model;
+    	return $this->model;
     }
 
 }

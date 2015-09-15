@@ -18,22 +18,13 @@ class SoftController extends Backend
 		//栏目
 		$this->_catalog = Catalog::model()->findAll('status=:status AND type=:type',array(':status'=>'Y',':type'=>$this->_type));
 		
-	}
+	}	
 	
-	/**
-	 * !CodeTemplates.overridecomment.nonjd!
-	 * @see CController::beforeAction()
-	 */
-	public function beforeAction($action){
-		$controller = Yii::app()->getController()->id;
-		$action_id = $action->id;
-		if(!$this->checkAcl($controller.'/'.$action_id)){
-			$this->message('error',Yii::t('common','Access Deny'),$this->createUrl('index'),'',true);
-			return false;
-		}
-		return true;
-	}
-    
+    /**
+     * 所有动作
+     * 
+     * @return array
+     */
     public function actions()
     {
         $extra_actions = array();
@@ -47,4 +38,22 @@ class SoftController extends Backend
         ), 'application.modules.admin.controllers.soft');
         return array_merge($actions, $extra_actions);
     }
+    
+    /**
+     * 判断数据是否存在
+     * 
+     * return \$this->model
+     */
+    public function loadModel()
+    {
+    	if ($this->model === null) {
+            if (isset($_GET['id'])) {
+                $this->model = Soft::model()->findbyPk($_GET['id']);
+            }
+            if ($this->model === null) {
+                throw new CHttpException(404, Yii::t('common', 'The requested page does not exist.'));
+            }
+        }
+        return $this->model;
+    }  
 }

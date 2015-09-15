@@ -12,7 +12,7 @@ class DefaultController extends BackendBase
 	public function init(){		
 		parent::init();
 		$config = Setting::model()->findAll('scope=:scope',array(':scope'=>'base'));
-		foreach ($config as $key => $row) {
+		foreach ($config as $row) {
 			$this->setting_base[$row['variable']] = $row['value'];
 		}		
 	}
@@ -122,7 +122,7 @@ class DefaultController extends BackendBase
 			'4' => array(
 					array('url'=> $this->createUrl('user/index'), 'name'=>Yii::t('admin','User List')),
 					array('url'=> $this->createUrl('user/admin'), 'name'=>Yii::t('admin','Admin List')),
-					array('url'=> $this->createUrl('user/group'), 'name'=>Yii::t('admin','Group Manage')),
+					array('url'=> $this->createUrl('usergroup/index'), 'name'=>Yii::t('admin','Group Manage')),
 					array('url'=> $this->createUrl('question/index'), 'name'=>Yii::t('admin','Question List')),				
 			),
 			'5' => array(
@@ -154,7 +154,7 @@ class DefaultController extends BackendBase
 		//只显示授权的菜单
 		$groupid = Yii::app()->user->groupid;
 		$group = UserGroup::model()->findByPk($groupid);
-		if($groupid != $this->_adminGroupID){
+		if($groupid != User::AdminGroupID){
 			//非超级管理员
 			$acls = explode(',', $group->acl);
 			$loginkey = array_search('default|login', $acls); //删除login授权

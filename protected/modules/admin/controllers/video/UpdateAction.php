@@ -8,8 +8,8 @@
 
 class UpdateAction extends CAction
 {	
-	public function run($id){
-		$model = Video::model()->findByPk($id);    	
+	public function run(){
+		$model = $this->controller->loadModel();    	
     	if(isset($_POST['Video']))
     	{
     		$model->attributes=$_POST['Video'];

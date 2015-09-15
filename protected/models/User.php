@@ -24,6 +24,11 @@
  */
 class User extends CActiveRecord
 {
+    const STATUS_NORMAL  = 1;    //状态正常
+    const STATUS_AUDIT   = -1;   //状态待审核
+    const STATUS_DISABLE = 0;    //状态禁用
+    const AdminGroupID   = 10;   //管理员用户组id
+    
 	/**
 	 * @return string the associated database table name
 	 */
@@ -40,12 +45,14 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, password, email', 'required','on'=>'create, register'),			
+			array('username, password, email', 'required','on'=>'create, register'),
+            array('username', 'unique'),
 			array('username', 'required','on'=>'bind_register'),			
 			array('username, password, email, avatar, sign, web', 'length', 'max'=>100),
+            array('password', 'length', 'min' => 6),
 			array('groupid, logins', 'length', 'max'=>10),				
 			array('nickname', 'length', 'max'=>50),
-			array('username, email','unique'),
+			array('email','unique'),
 			array('nickname', 'unique', 'on'=>'update'),
 			array('web','checkWeb', 'on'=>'update'),
 			array('qq','length', 'min'=>6, 'on'=>'update'),
@@ -116,61 +123,6 @@ class User extends CActiveRecord
 			'logins' => Yii::t('model','logins'),
 			'username_editable' => Yii::t('model','username_editable'),
 		);
-	}
-
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 *
-	 * Typical usecase:
-	 * - Initialize the model fields with values from filter form.
-	 * - Execute this method to get CActiveDataProvider instance which will filter
-	 * models according to data in model fields.
-	 * - Pass data provider to CGridView, CListView or any similar widget.
-	 *
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('uid',$this->uid,true);
-
-		$criteria->compare('username',$this->username,true);
-
-		$criteria->compare('password',$this->password,true);
-
-		$criteria->compare('email',$this->email,true);
-
-		$criteria->compare('groupid',$this->groupid,true);
-
-		$criteria->compare('status',$this->status);
-
-		$criteria->compare('addtime',$this->addtime);
-
-		$criteria->compare('avatar',$this->avatar,true);
-
-		$criteria->compare('nickname',$this->nickname,true);
-
-		$criteria->compare('sign',$this->sign,true);
-
-		$criteria->compare('web',$this->web,true);
-
-		$criteria->compare('mobile',$this->mobile,true);
-
-		$criteria->compare('qq',$this->qq,true);
-		
-		$criteria->compare('register_ip',$this->register_ip,true);
-
-		$criteria->compare('last_login_ip',$this->last_login_ip,true);
-
-		$criteria->compare('logins',$this->logins,true);
-
-		return new CActiveDataProvider('User', array(
-			'criteria'=>$criteria,
-		));
 	}
 
 	/**

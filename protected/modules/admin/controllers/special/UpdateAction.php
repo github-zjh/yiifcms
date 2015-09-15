@@ -8,8 +8,8 @@
 
 class UpdateAction extends CAction
 {	
-	public function run($id){        
-        $model = Special::model()->findByPk( $id );
+	public function run(){        
+        $model = $this->controller->loadModel();
         if ( isset( $_POST['Special'] ) ) {
             $model->attributes = $_POST['Special'];
         	//封面、图标、 文件

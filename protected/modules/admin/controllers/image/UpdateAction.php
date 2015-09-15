@@ -8,8 +8,8 @@
 
 class UpdateAction extends CAction
 {	
-	public function run($id){
-		$model = Image::model()->findByPk($id);    	
+	public function run(){
+		$model = $this->controller->loadModel();    	
     	if(isset($_POST['Image']))
     	{
     		$model->attributes=$_POST['Image'];    		
