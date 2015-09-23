@@ -12,7 +12,7 @@ class CreateAction extends CAction
         $model = new UserGroup();        
         if (isset($_POST['UserGroup'])) {             
             $model->attributes = $_POST['UserGroup'];
-            $model->acl = $_POST['acls'];           
+            $model->acl = isset($_POST['acls']) ? $_POST['acls'] : array();           
             if ($model->save()) {               
                 $this->controller->message('success',Yii::t('admin','Add Success'), $this->controller->createUrl('index'));
             }

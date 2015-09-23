@@ -26,8 +26,9 @@ class UserGroup extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-            array('group_name', 'required'),
+            array('group_name', 'required'),            
 			array('group_name', 'length', 'max'=>30),
+            array('group_name', 'unique'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, group_name, acl', 'safe', 'on'=>'search'),
@@ -58,9 +59,9 @@ class UserGroup extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
-			'group_name' => 'Group Name',
-			'acl' => 'Acl',
+			'id' => Yii::t('model', 'UserGroupId'),
+			'group_name' => Yii::t('model', 'UserGroupName'),
+			'acl' => Yii::t('model', 'UserGroupAcl'),
 		);
 	}
 

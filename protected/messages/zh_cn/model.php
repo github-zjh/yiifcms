@@ -20,6 +20,11 @@ return array(
 		'last_login_ip'  => '上次登录ip',
 		'logins'         => '登录次数',
 		'usergroup'      => '用户组',
+        
+        //UserGroup
+        'UserGroupId'    => '用户组编号',
+        'UserGroupName'  => '用户组名称',
+        'UserGroupAcl'   => '用户组权限',
     
 		//Catalog
 		'catalog_id'           => '栏目ID',

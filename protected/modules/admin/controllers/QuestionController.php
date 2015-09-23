@@ -2,7 +2,7 @@
 /**
  * 留言管理
  * 
- * @author        zhao jinhan <326196998@qq.com>
+ * @author        Sim Zhao <326196998@qq.com>
  * @copyright     Copyright (c) 2014-2015. All rights reserved.
  */
 
