@@ -82,9 +82,7 @@ $config = array(
 		
 		//Configure SESSION 
 		'session'=>array(
-				'class'=>'CDbHttpSession',
-				'connectionID' => 'db',
-				'sessionTableName' => '~dbPre~session',
+				'class'=>'CHttpSession',				
 				'timeout'=>3600,    //default 1440 seconds
 				'autoStart'=>true,								
 				'sessionName'=>'YFCMSSN',	
