@@ -11,13 +11,11 @@ class IndexAction extends CAction
 	public function run(){
 		$model = new Page();
         //条件
-        $criteria = new CDbCriteria(); 
-        $condition = '1';
+        $criteria = new CDbCriteria();        
         $title = Yii::app()->request->getParam('title');
         $titleAlias = Yii::app()->request->getParam('titleAlias');
-        $title && $condition .= ' AND title LIKE \'%' . $title . '%\'';
-        $titleAlias && $condition .= ' AND title_alias LIKE \'%' . $titleAlias . '%\'';
-        $criteria->condition = $condition;
+        $title && $criteria->addSearchCondition('title', $title);
+        $titleAlias && $criteria->addSearchCondition('title_alias', $titleAlias);        
         $criteria->order = 't.id DESC';        
         $count = $model->count( $criteria );
         //分页

@@ -41,7 +41,7 @@ class Question extends CActiveRecord
 			array('telephone','checkPhone'),
 			array('qq', 'checkQQ'),
 			array('client_ip', 'length', 'max'=>15),
-			array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements()),
+			array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements(), 'on'=>'create'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, user_id, realname, email, telephone, qq, question, client_ip, create_time', 'safe', 'on'=>'search'),
@@ -80,6 +80,7 @@ class Question extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            'user' => array(self::BELONGS_TO, 'User','user_id', 'alias'=>'u', 'select'=>'u.username')
 		);
 	}
 

@@ -15,7 +15,7 @@
   <tr>
     <td ><div class="custom_title"><?php echo Yii::t('admin','UserName');?>：</div>
     <?php echo $form->hiddenField($model,'user_id');?>
-      <?php $user = User::model()->findByPk($model->user_id); echo $user->username?$user->username:'网友';?></td>
+      <?php echo $model->user?$model->user->username:'网友';?></td>
   </tr>
   <tr>
     <td ><div class="custom_title"><?php echo Yii::t('admin','IP');?>：</div>

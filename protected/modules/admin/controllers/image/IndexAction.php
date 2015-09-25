@@ -12,12 +12,11 @@ class IndexAction extends CAction
 		$model = new Image();
         //条件
         $criteria = new CDbCriteria();
-        $condition = "type = ".$this->controller->_type;
-        $title = trim( Yii::app()->request->getParam( 'title' ) );        
+        $title     = trim( Yii::app()->request->getParam( 'title' ) );        
         $catalogId = intval( Yii::app()->request->getParam( 'catalogId' ) );
-        $title && $condition .= ' AND title LIKE \'%' . $title . '%\'';        
-        $catalogId && $condition .= ' AND catalog_id= ' . $catalogId;
-        $criteria->condition = $condition;
+        $criteria->addColumnCondition(array('type' => $this->controller->_type ));      
+        $title && $criteria->addSearchCondition('title', $title);        
+        $catalogId && $criteria->addColumnCondition(array('catalog_id' => $catalogId));
         $criteria->order = 't.id DESC';
         $criteria->with = array ( 'catalog' );
         $count = $model->count( $criteria );

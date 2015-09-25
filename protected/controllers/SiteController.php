@@ -77,8 +77,8 @@ class SiteController extends FrontBase
 		//$video_hot = Video::model()->findAll("status=:status AND catalog_id = 13 ORDER BY view_count DESC, video_score DESC, id DESC Limit 20", array(':status'=>'Y'));
 		
 		//友情链接
-		$link_logos = Link::model()->findAll("logo !='' AND status_is='Y'", array('order'=>'sortorder ASC, id DESC'));
-		$link_texts = Link::model()->findAll("logo ='' or logo is null AND status_is='Y'", array('order'=>'sortorder ASC, id DESC'));
+		$link_logos = Link::model()->findAll("logo !='' AND status='Y'", array('order'=>'sortorder ASC, id DESC'));
+		$link_texts = Link::model()->findAll("logo ='' or logo is null AND status='Y'", array('order'=>'sortorder ASC, id DESC'));
 		$this->render('index',compact(
 			array(
 					'index_top_banner', 

@@ -1,6 +1,6 @@
 <?php
 /**
- *  留言列表
+ *  广告列表
  * 
  * @author        Sim Zhao <326196998@qq.com>
  * @copyright     Copyright (c) 2015. All rights reserved.
@@ -10,13 +10,13 @@ class IndexAction extends CAction
 {	
 	public function run(){
         
-        $model = new Question();        
+        $model = new Ad();        
         //条件
-        $criteria = new CDbCriteria();       
-        $realname = trim( Yii::app()->request->getParam( 'realname' ) );
-        $question = trim( Yii::app()->request->getParam( 'question' ) );
-        $question && $criteria->addSearchCondition('question', $question);
-        $realname && $criteria->addSearchCondition('realname', $realname);
+        $criteria = new CDbCriteria();        
+        $title = trim(Yii::app()->request->getParam('title'));
+        $position_id = intval(Yii::app()->request->getParam('position_id'));
+        $title && $criteria->addColumnCondition(array('title' =>$title));
+        $position_id && $criteria->addColumnCondition(array('position_id', $position_id));
         $criteria->order = 't.id ASC';        
         $count = $model->count($criteria);
         

@@ -17,8 +17,16 @@ class BatchAction extends CAction
         switch ( $command ) {
             case 'delete':      
                 //删除
-                Question::model()->deleteAll($criteria);                
-                break;           
+                Ad::model()->deleteAll($criteria);                
+                break;
+            case 'show':      
+                //显示
+                Ad::model()->updateAll(['status' => 'Y'], $criteria);                
+                break;
+            case 'hide':      
+                //隐藏
+                Ad::model()->updateAll(['status' => 'N'], $criteria);                
+                break;
             default:
                 throw new CHttpException(404, Yii::t('admin','Error Operation'));                
         }

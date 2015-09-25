@@ -9,7 +9,7 @@
  * @property string $link
  * @property string $logo
  * @property integer $sortorder
- * @property string $status_is
+ * @property string $status
  */
 class Link extends CActiveRecord
 {
@@ -32,10 +32,10 @@ class Link extends CActiveRecord
 			array('sortorder', 'numerical', 'integerOnly'=>true),
 			array('title, link', 'length', 'max'=>100),
 			array('logo', 'length', 'max'=>255),
-			array('status_is', 'length', 'max'=>1),
+			array('status', 'length', 'max'=>1),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, link, logo, sortorder, status_is', 'safe', 'on'=>'search'),
+			array('id, title, link, logo, sortorder, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,7 +61,7 @@ class Link extends CActiveRecord
 			'link' => 'Link',
 			'logo' => 'Logo',
 			'sortorder' => 'Sortorder',
-			'status_is' => 'Status Is',
+			'status' => 'Status Is',
 		);
 	}
 
@@ -93,7 +93,7 @@ class Link extends CActiveRecord
 
 		$criteria->compare('sortorder',$this->sortorder);
 
-		$criteria->compare('status_is',$this->status_is,true);
+		$criteria->compare('status',$this->status,true);
 
 		return new CActiveDataProvider('Link', array(
 			'criteria'=>$criteria,
