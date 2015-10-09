@@ -8,8 +8,9 @@
 
 class IndexAction extends CAction
 {	
-	public function run(){		
+	public function run(){
+        $model = new Catalog();
         $datalist = Catalog::get(0, $this->controller->_catalog);              
-        $this->controller->render('index', array ('datalist' => $datalist ));
+        $this->controller->render('index', array ( 'model' => $model, 'datalist' => $datalist ));
 	}
 }

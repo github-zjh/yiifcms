@@ -66,17 +66,17 @@ class Catalog extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => Yii::t('model','catalog_id'),
-			'parent_id' => Yii::t('model','parent_id'),
-			'catalog_name' => Yii::t('model','catalog_name'),
-			'seo_title' => Yii::t('model','seo_title'),
-			'seo_keywords' => Yii::t('model','seo_keywords'),
-			'seo_description' => Yii::t('model','seo_description'),		
-			'sort_order' => Yii::t('model','sort_order'),			
-			'status' => Yii::t('model','status_is'),		
-			'type' => Yii::t('model','catalog_type'),			
-			'create_time' => Yii::t('model','create_time'),
-			'update_time' => Yii::t('model','update_time'),
+			'id'              => Yii::t('model','CatalogId'),
+			'parent_id'       => Yii::t('model','CatalogParentId'),
+			'catalog_name'    => Yii::t('model','CatalogName'),
+			'seo_title'       => Yii::t('model','CatalogSeoTitle'),
+			'seo_keywords'    => Yii::t('model','CatalogSeoKeywords'),
+			'seo_description' => Yii::t('model','CatalogSeoDescription'),		
+			'sort_order'      => Yii::t('model','CatalogSortOrder'),			
+			'status'          => Yii::t('model','CatalogStatus'),		
+			'type'            => Yii::t('model','CatalogType'),			
+			'create_time'     => Yii::t('model','CatalogCreateTime'),
+			'update_time'     => Yii::t('model','CatalogUpdateTime'),
 		);
 	}
 

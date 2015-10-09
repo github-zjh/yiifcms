@@ -33,7 +33,7 @@
  * @property string $update_time
  * @property string $reply_count
  * @property string $reply_allow
- * @property string $sort_desc
+ * @property string $sort_order
  * @property string $status
  * @property string $create_time
  */
@@ -57,14 +57,14 @@ class Image extends CActiveRecord
 		return array(
 			array('title, catalog_id, content', 'required'),
 			array('catalog_id, special_id', 'numerical', 'integerOnly'=>true),
-			array('user_id, view_count, favorite_count, update_time, reply_count, sort_desc, create_time', 'length', 'max'=>10),
+			array('user_id, view_count, favorite_count, update_time, reply_count, sort_order, create_time', 'length', 'max'=>10),
 			array('title, title_second, title_style, seo_title, seo_keywords, copy_url, redirect_url, tags, attach_file, attach_thumb', 'length', 'max'=>255),
 			array('html_path, html_file, copy_from', 'length', 'max'=>100),
 			array('commend, attach_status, top_line, reply_allow, status', 'length', 'max'=>1),
 			array('introduce, image_list, seo_description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, user_id, title, title_second, title_style, html_path, html_file, catalog_id, special_id, introduce, image_list, seo_title, seo_description, seo_keywords, content, copy_from, copy_url, redirect_url, tags, view_count, commend, attach_status, attach_file, attach_thumb, favorite_count, top_line, update_time, reply_count, reply_allow, sort_desc, status, create_time', 'safe', 'on'=>'search'),
+			array('id, user_id, title, title_second, title_style, html_path, html_file, catalog_id, special_id, introduce, image_list, seo_title, seo_description, seo_keywords, content, copy_from, copy_url, redirect_url, tags, view_count, commend, attach_status, attach_file, attach_thumb, favorite_count, top_line, update_time, reply_count, reply_allow, sort_order, status, create_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -86,38 +86,35 @@ class Image extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'user_id' => '用户',		
-			'title' => '标题',
-			'title_second' => '副标题',			
-			'title_style' => '标题样式',			
-			'html_path' => 'html路径',
-			'html_file' => 'html文件名',			
-			'catalog_id' => '分类',
-			'special_id' => '专题编号',
-			'introduce' => '摘要',
-			'image_list' => '组图',
-			'seo_title' => 'SEO标题',
-			'seo_description' => 'SEO描述',
-			'seo_keywords' => 'SEO关键字',
-			'content' => '内容',
-			'copy_from' => '来源',
-			'copy_url' => '来源url',
-			'redirect_url' => '跳转URL',
-			'tags' => 'tags',
-			'view_count' => '查看次数',
-			'commend' => '推荐',
-			'attach_status' => '是否上传附件',
-			'attach_file' => '附件名称',
-			'attach_thumb' => '附件缩略图',
-			'favorite_count' => '收藏数量',
-			'top_line' => '头条',
-			'update_time' => '最后更新时间',
-			'reply_count' => '回复次数',
-			'reply_allow' => '允许评论',
-			'sort_desc' => '排序',			
-			'status' => '显示状态',
-			'create_time' => '添加时间',
+			'id'                => Yii::t('model','ImageId'),
+			'user_id'           => Yii::t('model','ImageUserId'),		
+			'title'             => Yii::t('model','ImageTitle'),
+			'title_second'      => Yii::t('model','ImageTitleSecond'),			
+			'title_style'       => Yii::t('model','ImageTitleStyle'),	
+			'catalog_id'        => Yii::t('model','ImageCatalogId'),
+			'special_id'        => Yii::t('model','ImageSpecialId'),
+			'introduce'         => Yii::t('model','ImageIntroduce'),
+			'image_list'        => Yii::t('model','ImageList'),
+			'seo_title'         => Yii::t('model','ImageSeoTitle'),
+            'seo_keywords'      => Yii::t('model','ImageSeoKeywords'),
+			'seo_description'   => Yii::t('model','ImageSeoDescription'),			
+			'content'           => Yii::t('model','ImageContent'),
+			'copy_from'         => Yii::t('model','ImageCopyFrom'),
+			'copy_url'          => Yii::t('model','ImageCopyUrl'),
+			'redirect_url'      => Yii::t('model','ImageRedirectUrl'),
+			'tags'              => Yii::t('model','ImageTags'),
+			'view_count'        => Yii::t('model','ImageViewCount'),
+			'commend'           => Yii::t('model','ImageCommend'),			
+			'attach_file'       => Yii::t('model','ImageAttachFile'),
+			'attach_thumb'      => Yii::t('model','ImageAttachThumb'),
+			'favorite_count'    => Yii::t('model','ImageFavoriteCount'),
+			'top_line'          => Yii::t('model','ImageTopLine'),			
+			'reply_count'       => Yii::t('model','ImageReplyCount'),
+			'reply_allow'       => Yii::t('model','ImageReplyAllow'),
+			'sort_order'        => Yii::t('model','ImageSortOrder'),			
+			'status'            => Yii::t('model','ImageStatus'),
+			'create_time'       => Yii::t('model','ImageCreateTime'),
+            'update_time'       => Yii::t('model','ImageUpdateTime'),
 		);
 	}
 
@@ -197,7 +194,7 @@ class Image extends CActiveRecord
 
 		$criteria->compare('reply_allow',$this->reply_allow,true);
 
-		$criteria->compare('sort_desc',$this->sort_desc,true);
+		$criteria->compare('sort_order',$this->sort_order,true);
 
 		$criteria->compare('status',$this->status,true);
 

@@ -24,14 +24,14 @@ class Post extends CActiveRecord
 		return array(
 			array('title, catalog_id', 'required'),
 			array('catalog_id, special_id', 'numerical', 'integerOnly'=>true),
-			array('user_id, view_count, favorite_count, update_time, reply_count, sort_desc, create_time', 'length', 'max'=>10),
+			array('user_id, view_count, favorite_count, update_time, reply_count, sort_order, create_time', 'length', 'max'=>10),
 			array('copy_from', 'length', 'max'=>100),
 			array('title, title_second, title_style, seo_title, seo_keywords, copy_url, redirect_url, tags', 'length', 'max'=>255),
 			array('commend, top_line, reply_allow, status', 'length', 'max'=>1),
 			array('content, introduce, seo_description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, user_id, title, title_second, title_style, catalog_id, special_id, introduce, seo_title, seo_description, seo_keywords, content, copy_from, copy_url, redirect_url, tags, view_count, commend, favorite_count, top_line, update_time, reply_count, reply_allow, sort_desc, status, create_time', 'safe', 'on'=>'search'),
+			array('id, user_id, title, title_second, title_style, catalog_id, special_id, introduce, seo_title, seo_description, seo_keywords, content, copy_from, copy_url, redirect_url, tags, view_count, commend, favorite_count, top_line, update_time, reply_count, reply_allow, sort_order, status, create_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -52,34 +52,34 @@ class Post extends CActiveRecord
 	 */
 	public function attributeLabels()
 	{
-		return array(
-			'id' => 'ID',
-			'user_id' => '用户',		
-			'title' => '标题',
-			'title_second' => '副标题',			
-			'title_style' => '标题样式',
-			'catalog_id' => '分类',
-			'special_id' => '专题编号',
-			'introduce' => '摘要',			
-			'seo_title' => 'SEO标题',
-			'seo_description' => 'SEO描述',
-			'seo_keywords' => 'SEO关键字',
-			'content' => '内容',
-			'copy_from' => '来源',
-			'copy_url' => '来源url',
-			'redirect_url' => '跳转URL',
-			'tags' => 'tags',
-			'view_count' => '查看次数',
-			'commend' => '推荐',			
-			'favorite_count' => '收藏次数',
-			'top_line' => '头条',
-			'update_time' => '最后更新时间',
-			'reply_count' => '回复次数',
-			'reply_allow' => '允许评论',
-			'sort_desc' => '排序',			
-			'status' => '显示状态',
-			'create_time' => '添加时间',
-		);
+        return array(
+			'id'                => Yii::t('model','PostId'),
+			'user_id'           => Yii::t('model','PostUserId'),		
+			'title'             => Yii::t('model','PostTitle'),
+			'title_second'      => Yii::t('model','PostTitleSecond'),			
+			'title_style'       => Yii::t('model','PostTitleStyle'),	
+			'catalog_id'        => Yii::t('model','PostCatalogId'),
+			'special_id'        => Yii::t('model','PostSpecialId'),
+			'introduce'         => Yii::t('model','PostIntroduce'),			
+			'seo_title'         => Yii::t('model','PostSeoTitle'),
+			'seo_description'   => Yii::t('model','PostSeoDescription'),
+			'seo_keywords'      => Yii::t('model','PostSeoKeywords'),
+			'content'           => Yii::t('model','PostContent'),
+			'copy_from'         => Yii::t('model','PostCopyFrom'),
+			'copy_url'          => Yii::t('model','PostCopyUrl'),
+			'redirect_url'      => Yii::t('model','PostRedirectUrl'),
+			'tags'              => Yii::t('model','PostTags'),
+			'view_count'        => Yii::t('model','PostViewCount'),
+			'commend'           => Yii::t('model','PostCommend'),
+			'favorite_count'    => Yii::t('model','PostFavoriteCount'),
+			'top_line'          => Yii::t('model','PostTopLine'),			
+			'reply_count'       => Yii::t('model','PostReplyCount'),
+			'reply_allow'       => Yii::t('model','PostReplyAllow'),
+			'sort_order'        => Yii::t('model','PostSortOrder'),			
+			'status'            => Yii::t('model','PostStatus'),
+			'create_time'       => Yii::t('model','PostCreateTime'),
+            'update_time'       => Yii::t('model','PostUpdateTime'),
+		);		
 	}
 
 

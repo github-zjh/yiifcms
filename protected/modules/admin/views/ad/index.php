@@ -18,8 +18,8 @@
         </div>
     </div>
 </div>
-<table class="content_list">
-    <?php $form = $this->beginWidget('CActiveForm', array('action' => $this->createUrl('batch'), 'htmlOptions' => array('name' => 'cpform'))); ?>
+<?php $form = $this->beginWidget('CActiveForm', array('action' => $this->createUrl('batch'), 'htmlOptions' => array('name' => 'cpform'))); ?>
+    <table class="content_list">    
         <tr class="tb_header">
             <th width="10%"><?php echo $form->label($model, 'id'); ?></th>
             <th width="20%"><?php echo $form->label($model, 'title'); ?></th>      
@@ -62,7 +62,7 @@
                     <input id="submit_maskall" class="button confirmSubmit" type="submit" value="<?php echo Yii::t('common', 'Submit'); ?>" name="maskall" />
                 </div>
             </td>
-        </tr>
-    <?php $this->endWidget();?>
-</table>
+        </tr>    
+    </table>
+<?php $this->endWidget();?>
 

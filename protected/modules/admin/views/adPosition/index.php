@@ -13,30 +13,30 @@
         </div>
     </div>
 </div>
-<table class="content_list">
-    <?php $form = $this->beginWidget('CActiveForm', array('action' => $this->createUrl('batch'), 'htmlOptions' => array('name' => 'cpform'))); ?>   
+<?php $form = $this->beginWidget('CActiveForm', array('action' => $this->createUrl('batch'), 'htmlOptions' => array('name' => 'cpform'))); ?>
+    <table class="content_list">       
         <tr class="tb_header">
             <th width="10%"><?php echo $form->label($model, 'id'); ?></th>
             <th width="20%"><?php echo $form->label($model, 'title'); ?></th>   
             <th><?php echo Yii::t('admin', 'Operate'); ?></th>
         </tr>
         <?php foreach ($datalist as $row): ?>
-            <tr class="tb_list">
-                <td>
-                    <input type="checkbox" name="id[]" value="<?php echo $row->id ?>" />
-                    <?php echo $row->id ?>
-                </td>
-                <td>
-                    <?php echo $row->title; ?>
-                    <?php if ($row->status == AdPosition::STATUS_HIDE): ?>
-                        <img src="<?php echo $this->module->assetsUrl; ?>/images/error.png" align="absmiddle" />[<?php echo Yii::t('admin', 'Hidden'); ?>]
-                    <?php endif; ?>
-                </td>   
-                <td>
-                    <a href="<?php echo $this->createUrl('update', array('id' => $row->id)) ?>"><img src="<?php echo $this->module->assetsUrl; ?>/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
-                    <a href="<?php echo $this->createUrl('batch', array('command' => 'adDelete', 'id' => $row->id)) ?>" class="confirmSubmit"><img src="<?php echo $this->module->assetsUrl; ?>/images/delete.png" align="absmiddle" /></a>
-                </td>
-            </tr>
+        <tr class="tb_list">
+            <td>
+                <input type="checkbox" name="id[]" value="<?php echo $row->id ?>" />
+                <?php echo $row->id ?>
+            </td>
+            <td>
+                <?php echo $row->title; ?>
+                <?php if ($row->status == AdPosition::STATUS_HIDE): ?>
+                    <img src="<?php echo $this->module->assetsUrl; ?>/images/error.png" align="absmiddle" />[<?php echo Yii::t('admin', 'Hidden'); ?>]
+                <?php endif; ?>
+            </td>   
+            <td>
+                <a href="<?php echo $this->createUrl('update', array('id' => $row->id)) ?>"><img src="<?php echo $this->module->assetsUrl; ?>/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
+                <a href="<?php echo $this->createUrl('batch', array('command' => 'adDelete', 'id' => $row->id)) ?>" class="confirmSubmit"><img src="<?php echo $this->module->assetsUrl; ?>/images/delete.png" align="absmiddle" /></a>
+            </td>
+        </tr>
         <?php endforeach; ?>
         <tr class="submit">
             <td colspan="6">
@@ -55,7 +55,7 @@
                     <input id="submit_maskall" class="button confirmSubmit" type="submit" value="<?php echo Yii::t('common', 'Submit'); ?>" name="maskall" />
                 </div>
             </td>
-        </tr>
-    <?php $this->endWidget();?>
-</table>
+        </tr>    
+    </table>
+<?php $this->endWidget();?>
 

@@ -8,12 +8,12 @@
 <script type="text/javascript" src="<?php echo $this->_static_public ?>/js/jquery/jquery.ui.widget.js"></script>
 <script type="text/javascript" src="<?php echo $this->_static_public ?>/js/jquery/jquery.fileupload.js"></script>
 <script type="text/javascript" src="<?php echo $this->_static_public ?>/js/jscolor/jscolor.js"></script>
-<?php $form = $this->beginWidget('CActiveForm', array('id' => 'xform', 'htmlOptions' => array('name' => 'xform', 'enctype' => 'multipart/form-data'))); ?>
+<?php $form = $this->beginWidget('CActiveForm', array('htmlOptions' => array('name' => 'xform', 'enctype' => 'multipart/form-data'))); ?>
 <table class="form_table">
     <tr>
-        <td class="tb_title" ><?php echo Yii::t('admin', 'Title'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model, 'title'); ?>：</td>
     </tr>
-    <tr >
+    <tr>
         <td ><?php echo $form->textField($model, 'title', array('size' => 60, 'maxlength' => 128, 'class' => 'validate[required]')); ?>
             <input name="style[bold]" type="checkbox" id="style[bold]" <?php if (isset($style['bold']) && $style['bold'] == 'Y'): ?> checked="checked"<?php endif; ?> value="Y" >
             <?php echo Yii::t('admin', 'Blod'); ?>
@@ -24,43 +24,45 @@
         </td>
     </tr>
     <tr>
-        <td class="tb_title"><?php echo Yii::t('admin', 'Title Second'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model, 'title_second'); ?>：</td>
     </tr>
-    <tr >
+    <tr>
         <td  ><?php echo $form->textField($model, 'title_second', array('size' => 60, 'maxlength' => 128)); ?></td>
     </tr> 
     <tr>
-        <td class="tb_title"><?php echo Yii::t('admin', 'Belong Category'); ?>/<?php echo Yii::t('admin', 'Belong Special'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model, 'catalog_id'); ?>/<?php echo $form->label($model, 'special_id'); ?>：</td>
     </tr>
-    <tr >
-        <td ><select name="Image[catalog_id]" id="Image_catalog_id">
+    <tr>
+        <td>
+            <select name="Image[catalog_id]" id="Image_catalog_id">
                 <?php foreach ((array) Catalog::get(0, $this->_catalog) as $catalog): ?>
                     <option value="<?php echo $catalog['id'] ?>" <?php Helper::selected($catalog['id'], $model->catalog_id); ?>><?php echo $catalog['str_repeat'] ?><?php echo $catalog['catalog_name'] ?></option>
                 <?php endforeach; ?>
             </select>
             <select name="Image[special_id]">
-                <option value="0">==<?php echo Yii::t('admin', 'Belong Special'); ?>==</option>
+                <option value="0">==<?php echo $form->label($model, 'special_id'); ?>==</option>
                 <?php foreach ((array) $this->_special as $speical): ?>
                     <option value="<?php echo $speical['id'] ?>" <?php Helper::selected($speical['id'], $model->special_id); ?>><?php echo $speical['title'] ?></option>
                 <?php endforeach; ?>
-            </select></td>
+            </select>
+        </td>
     </tr>
     <tr>
-        <td class="tb_title"><?php echo Yii::t('admin', 'Come From'); ?>：</td>
-    </tr>
-    <tr >
-        <td  ><?php echo $form->textField($model, 'copy_from', array('size' => 20, 'maxlength' => 128)); ?><?php echo Yii::t('admin', 'Web Address'); ?><?php echo $form->textField($model, 'copy_url', array('size' => 50, 'maxlength' => 128)); ?></td>
+        <td class="tb_title"><?php echo $form->label($model, 'copy_from'); ?>：</td>
     </tr>
     <tr>
-        <td class="tb_title"><?php echo Yii::t('admin', 'Redirect Url(If fill in here, do not display content)'); ?>：</td>
-    </tr>
-    <tr >
-        <td  ><?php echo $form->textField($model, 'redirect_url', array('size' => 60, 'maxlength' => 128)); ?></td>
+        <td><?php echo $form->textField($model, 'copy_from', array('size' => 20, 'maxlength' => 128)); ?><?php echo $form->label($model, 'copy_url'); ?><?php echo $form->textField($model, 'copy_url', array('size' => 50, 'maxlength' => 128)); ?></td>
     </tr>
     <tr>
-        <td class="tb_title"><?php echo Yii::t('admin', 'Cover Image'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model, 'redirect_url'); ?>：</td>
     </tr>
-    <tr >
+    <tr>
+        <td><?php echo $form->textField($model, 'redirect_url', array('size' => 60, 'maxlength' => 128)); ?></td>
+    </tr>
+    <tr>
+        <td class="tb_title"><?php echo $form->label($model, 'attach_file'); ?>：</td>
+    </tr>
+    <tr>
         <td colspan="2" >
             <input name="attach_file" type="hidden" id="attach_file" value="<?php echo $model->attach_file; ?>"/>
             <input name="attach_thumb" type="hidden" id="attach_thumb" value="<?php echo $model->attach_thumb; ?>"/>
@@ -82,23 +84,23 @@
         </td>
     </tr>
     <tr>
-        <td class="tb_title"><?php echo Yii::t('admin', 'Description'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model, 'content'); ?>：</td>
     </tr>
-    <tr >
-        <td ><?php echo $form->textArea($model, 'content'); ?>      
+    <tr>
+        <td><?php echo $form->textArea($model, 'content'); ?>      
             <?php $this->widget('application.widget.kindeditor.KindEditor', array('id' => 'Image_content')); ?>
         </td>
     </tr>
     <tr>
-        <td class="tb_title"><?php echo Yii::t('admin', 'Introduce'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model, 'introduce'); ?>：</td>
     </tr>
-    <tr >
+    <tr>
         <td><?php echo CHtml::activeTextArea($model, 'introduce', array('rows' => 5, 'cols' => 90)); ?></td>
     </tr>
     <tr>
-        <td class="tb_title"><?php echo Yii::t('admin', 'Group Image'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model, 'image_list'); ?>：</td>
     </tr>
-    <tr >
+    <tr>
         <td>
             <div>
                 <?php $this->widget('application.widget.resumable.Resumable', array('options' => array('upload_url' => $this->createUrl('image/uploadResumable'), 'upload_file_name' => 'imagelist[]'))); ?>  				        
@@ -122,42 +124,44 @@
     </tr>
 
     <tr>
-        <td  class="tb_title">Tags(逗号或空格隔开)：</td>
-    </tr>
-    <tr >
-        <td ><?php echo $form->textField($model, 'tags', array('size' => 50, 'maxlength' => 255)); ?>
-            <input type="button" value="自动提取" onclick="keywordGet('Image_title', 'Image_content', 'Image_tags')"/></td>
+        <td  class="tb_title"><?php echo $form->label($model, 'tags'); ?>(逗号或空格隔开)：</td>
     </tr>
     <tr>
-        <td >
-            <?php echo Yii::t('admin', 'Favorite Count'); ?>：<?php echo $form->textField($model, 'favorite_count', array('size' => 5, 'maxlength' => 10)); ?> 
-            <?php echo Yii::t('admin', 'View Count'); ?>：<?php echo $form->textField($model, 'view_count', array('size' => 5, 'maxlength' => 10)); ?> 
-            <?php echo Yii::t('admin', 'Sort Order'); ?> <?php echo $form->textField($model, 'sort_desc', array('size' => 5, 'maxlength' => 10)); ?>
+        <td>
+            <?php echo $form->textField($model, 'tags', array('size' => 50, 'maxlength' => 255)); ?>
+            <input type="button" value="自动提取" onclick="keywordGet('Image_title', 'Image_content', 'Image_tags')"/>
         </td>
     </tr>
-    <tr >
-        <td class="tb_title"><?php echo Yii::t('admin', 'Status'); ?>：</td>
+    <tr>
+        <td>
+            <?php echo Yii::t('admin', 'Favorite Count'); ?>：<?php echo $form->textField($model, 'favorite_count', array('size' => 5, 'maxlength' => 10)); ?> 
+            <?php echo Yii::t('admin', 'View Count'); ?>：<?php echo $form->textField($model, 'view_count', array('size' => 5, 'maxlength' => 10)); ?> 
+            <?php echo Yii::t('admin', 'Sort Order'); ?> <?php echo $form->textField($model, 'sort_order', array('size' => 5, 'maxlength' => 10)); ?>
+        </td>
     </tr>
-    <tr >
+    <tr>
+        <td class="tb_title"><?php echo $form->label($model, 'status'); ?>：</td>
+    </tr>
+    <tr>
         <td  ><?php echo $form->dropDownList($model, 'status', array('Y' => Yii::t('admin', 'Show'), 'N' => Yii::t('admin', 'Hidden'))); ?><?php echo $form->dropDownList($model, 'commend', array('Y' => '已推荐', 'N' => '未推荐')); ?><?php echo $form->dropDownList($model, 'top_line', array('Y' => '头条', 'N' => '非头条')); ?><?php echo $form->dropDownList($model, 'reply_allow', array('Y' => '允许回复', 'N' => '不允许回复')); ?></td>
     </tr>
     <tr>
-        <td class="tb_title"><?php echo Yii::t('admin', 'SEO Title'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model, 'seo_title'); ?>：</td>
     </tr>
-    <tr >
+    <tr>
         <td ><?php echo $form->textField($model, 'seo_title', array('size' => 50, 'maxlength' => 80)); ?></td>
     </tr>
     <tr>
-        <td  class="tb_title"><?php echo Yii::t('admin', 'SEO Keywords'); ?>：</td>
-    </tr>
-    <tr >
-        <td ><?php echo $form->textField($model, 'seo_keywords', array('size' => 50, 'maxlength' => 80)); ?></td>
+        <td  class="tb_title"><?php echo $form->label($model, 'seo_keywords'); ?>：</td>
     </tr>
     <tr>
-        <td class="tb_title"><?php echo Yii::t('admin', 'SEO Description'); ?>：</td>
+        <td><?php echo $form->textField($model, 'seo_keywords', array('size' => 50, 'maxlength' => 80)); ?></td>
     </tr>
-    <tr >
-        <td ><?php echo CHtml::activeTextArea($model, 'seo_description', array('rows' => 5, 'cols' => 80)); ?></td>
+    <tr>
+        <td class="tb_title"><?php echo $form->label($model, 'seo_description'); ?>：</td>
+    </tr>
+    <tr>
+        <td><?php echo CHtml::activeTextArea($model, 'seo_description', array('rows' => 5, 'cols' => 80)); ?></td>
     </tr>  
     <tr class="submit">
         <td colspan="2" >
