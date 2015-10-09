@@ -13,10 +13,10 @@ class AdController extends Backend
 	public function init(){
 		parent::init();
 		//广告位
-		$positions = AdPosition::model()->findAll();
+		$positions = AdPosition::model()->findAll(array('condition' => 'status = "'.AdPosition::STATUS_SHOW.'"'));
 		foreach((array)$positions as $pv){
 			$this->_adposition[''] = "==请选择广告位=="; 
-			$this->_adposition[$pv->id] = $pv->position;
+			$this->_adposition[$pv->id] = $pv->title;
 		}
 	}
     

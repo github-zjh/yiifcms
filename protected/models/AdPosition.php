@@ -5,10 +5,14 @@
  *
  * The followings are the available columns in table '{{ad_position}}':
  * @property string $id
- * @property string $position
+ * @property string $title
+ * @property string $status
  */
 class AdPosition extends CActiveRecord
 {
+    const STATUS_SHOW = 'Y';  //显示
+    const STATUS_HIDE = 'N';  //隐藏
+    
 	/**
 	 * @return string the associated database table name
 	 */
@@ -25,10 +29,12 @@ class AdPosition extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('position', 'length', 'max'=>100),
+            array('title', 'required'),
+			array('title', 'length', 'max'=>100),
+            array('status', 'in', 'range' => array(self::STATUS_SHOW, self::STATUS_HIDE)),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, position', 'safe', 'on'=>'search'),
+			array('id, title', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -49,8 +55,9 @@ class AdPosition extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => Yii::t('model','adposition_id'),
-			'position' => Yii::t('model','position_name'),
+			'id'     => Yii::t('model', 'AdPositionId'),
+			'title'  => Yii::t('model', 'AdPositionTitle'),
+            'status' => Yii::t('model', 'AdPositionStatus')
 		);
 	}
 
@@ -74,7 +81,9 @@ class AdPosition extends CActiveRecord
 
 		$criteria->compare('id',$this->id,true);
 
-		$criteria->compare('position',$this->position,true);
+		$criteria->compare('title',$this->title,true);
+        
+        $criteria->compare('status',$this->status,true);
 
 		return new CActiveDataProvider('AdPosition', array(
 			'criteria'=>$criteria,

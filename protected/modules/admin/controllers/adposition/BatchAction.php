@@ -2,8 +2,9 @@
 /**
  * 批量操作
  * 
- * @author        Sim Zhao <326196998@qq.com>
- * @copyright     Copyright (c) 2015. All rights reserved.
+ * @author  Sim Zhao <326196998@qq.com>
+ * @link    http://www.yiifcms.com/
+ * @copyright   Copyright (c) 2014-2015. All rights reserved.
  */
 
 class BatchAction extends CAction
@@ -17,15 +18,15 @@ class BatchAction extends CAction
         switch ( $command ) {
             case 'delete':      
                 //删除
-                Ad::model()->deleteAll($criteria);                
+                AdPosition::model()->deleteAll($criteria);                
                 break;
             case 'show':      
                 //显示
-                Ad::model()->updateAll(['status' => Ad::STATUS_SHOW], $criteria);                
+                AdPosition::model()->updateAll(['status' => AdPosition::STATUS_SHOW], $criteria);                
                 break;
             case 'hide':      
                 //隐藏
-                Ad::model()->updateAll(['status' => Ad::STATUS_HIDE], $criteria);                
+                AdPosition::model()->updateAll(['status' => AdPosition::STATUS_HIDE], $criteria);                
                 break;
             default:
                 throw new CHttpException(404, Yii::t('admin','Error Operation'));                

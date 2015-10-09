@@ -21,6 +21,9 @@
  */
 class Ad extends CActiveRecord
 {
+    const STATUS_SHOW = 'Y';  //显示
+    const STATUS_HIDE = 'N';  //隐藏
+    
 	/**
 	 * @return string the associated database table name
 	 */
@@ -79,20 +82,20 @@ class Ad extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
-			'position_id' => 'Position',
-			'title' => 'Title',
-			'title_alias' => 'Title Alias',
-			'link_url' => 'Link Url',
-			'image_url' => 'Image Url',
-			'width' => 'Width',
-			'height' => 'Height',
-			'introduce' => 'Introduce',
-			'attach_file' => 'Attach File',
-			'sort_order' => 'Sort Order',
-			'status' => 'Status',
-			'create_time' => 'Create Time',
-			'update_time' => 'Update Time',
+			'id'          => Yii::t('model','AdId'),
+			'position_id' => Yii::t('model','AdPosition'),
+			'title'       => Yii::t('model','AdTitle'),
+			'title_alias' => Yii::t('model','AdTitleAlias'),
+			'link_url'    => Yii::t('model','AdLinkUrl'),
+			'image_url'   => Yii::t('model','AdImageUrl'),
+			'width'       => Yii::t('model','AdWidth'),
+			'height'      => Yii::t('model','AdHeight'),
+			'introduce'   => Yii::t('model','AdIntroduce'),
+			'attach_file' => Yii::t('model','AdAttachFile'),
+			'sort_order'  => Yii::t('model','AdSortOrder'),
+			'status'      => Yii::t('model','AdStatus'),
+			'create_time' => Yii::t('model','AdCreateTime'),
+			'update_time' => Yii::t('model','AdUpdateTime'),
 		);
 	}
 
