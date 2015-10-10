@@ -2,7 +2,7 @@
 /**
  * KindEditor图片管理
  * 
- * @author        zhao jinhan <326196998@qq.com>
+ * @author        Sim Zhao <326196998@qq.com>
  * @copyright     Copyright (c) 2014-2015. All rights reserved.
  * 
  */
@@ -30,7 +30,7 @@ class KindEditorController extends Backend
             $error = $uploader->getError();
             if (!$error) {                
                 //返回kindeditor接收的json格式
-                exit(CJSON::encode(array('error'=>0, 'url'=>$uploader->file_path)));                
+                exit(CJSON::encode(array('error'=>0, 'url'=> Helper::getFullUrl($uploader->file_path))));                
             } else {          
                 exit(CJSON::encode(array('error'=>0, 'message'=>$error)));
             }

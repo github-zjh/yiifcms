@@ -260,14 +260,14 @@ class Uploader{
         $tmp_save_path = $save_dir . DS . $this->file_name;
         $this->save_path = $this->_convertChineseName($tmp_save_path);
         //存储到数据库的文件路径 并转化编码
-        $this->file_path = ltrim(Helper::safeEncoding(str_replace(array('\\', '\\\\'), '/', str_replace(ROOT_PATH, '', $tmp_save_path))), '/');        
+        $this->file_path = ltrim(Helper::safeEncoding(str_replace(array('\\', '\\\\'), '/', str_replace(ROOT_PATH, '', $tmp_save_path))), '\/');        
         
         //缩略图路径
         if(isset($this->config[$this->model]['make_thumb']) && $this->config[$this->model]['make_thumb']) {
             $this->thumb_name  = $this->thumb_prefix. $this->file_name;
             $tmp_thumb_save_path = $save_dir. DS . $this->thumb_name;
             $this->thumb_save_path =  $this->_convertChineseName($tmp_thumb_save_path);        
-            $this->thumb_path = ltrim(Helper::safeEncoding(str_replace(array('\\', '\\\\'), '/', str_replace(ROOT_PATH, '', $tmp_thumb_save_path))), '/');        
+            $this->thumb_path = ltrim(Helper::safeEncoding(str_replace(array('\\', '\\\\'), '/', str_replace(ROOT_PATH, '', $tmp_thumb_save_path))), '\/');        
         }
         return true;
     }
