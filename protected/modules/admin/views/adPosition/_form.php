@@ -10,8 +10,8 @@
     <tr>
         <td class="tb_title"><?php echo $form->label($model, 'title');?>：</td>
     </tr>
-    <tr >
-        <td ><?php echo $form->textField($model, 'title', array('size' => 40, 'maxlength' => 128)); ?></td>
+    <tr>
+        <td><?php echo $form->textField($model, 'title', array('size' => 40, 'maxlength' => 128)); ?></td>
     </tr>
     <tr class="submit">
         <td><input type="submit" name="editsubmit" value="<?php echo Yii::t('common', 'Submit'); ?>" class="button" tabindex="3" /></td>

@@ -52,12 +52,9 @@ class KindEditor extends CInputWidget{
 	     '.$Params.' ,afterBlur:function(){
             this.sync();
         },
-	     "emoticonsPath":"'.Yii::app()->baseUrl.'/public/emoticons/images/",
-          "cssPath":"'.$assets.'/plugins/code/prettify.css?'.time().'",         
-	            
-	});
-	'.$editObj.'.sync();	
-';		
+	    "emoticonsPath":"'.Yii::app()->baseUrl.'/public/emoticons/images/",
+        "cssPath":"'.$assets.'/plugins/code/prettify.css?'.time().'"
+        });'.$editObj.'.sync();';		
 		$script .=  '});';
 		return $script;
 	}
@@ -82,10 +79,11 @@ class KindEditor extends CInputWidget{
 			if ( is_array( $items )) {
 				$itemKeys = array_keys( $items );
 				if ( !in_array( $key, $itemKeys ) ) {
-					if ( count( $itemKeys )>0 )
+					if ( count( $itemKeys )>0 ) {
 						$string .= $key.":'{$row}',";
-					else
-						$string .= $dot.$key.":'{$row}'";
+                    } else {
+                        $string .= $dot.$key.":'{$row}'";                    
+                    }
 				}
 			}else {
 				$string .= $dot.$key.":'$row'";
@@ -140,7 +138,7 @@ class KindEditor extends CInputWidget{
 	protected function _obj( $key, $item) {
 		$script .=  "'$key':{";
 		$subDot = '';
-		foreach ( $item as $keys=>$value ) {			
+		foreach ( $item as $value ) {			
 			$arrkeys = array_keys($value);
 			foreach($arrkeys as $row){
 				$script .= $subDot. "'$row':'{$value[$row]}'";

@@ -52,7 +52,7 @@
                 var data =  r.responseData;
                 if(data.file_ext.match(/(jpg|jpeg|gif|png|bmp)/i)) {   //图片
                     var li = '<li>'                           
-                           + '<img src="'+data.file_path+'" width="100px" height="100px" />'
+                           + '<img src="'+data.file_path_full+'" width="100px" height="100px" />'
                            + '<input type="hidden" value="'+data.file_path+'" name="'+upload_file_name+'" />'
                            + '<div class="clear"><a href="'+data.file_path+'" class="left" target="_blank">[查看]</a><a href="javascript:;" class="right" onclick="deleteFile(this)">[删除]</a></span></div>'
                            + '</li>';

@@ -570,5 +570,17 @@ class Helper
     {
         return Helper::getOS() == 'Windows' ? self::safeEncoding($name, 'GB2312') : $name;
     }
+    
+    /**
+     * 取得文件/图片带域名的完整路径
+     * 
+     * @param string $file_path
+     * @return string
+     */
+    public static function getFullUrl($file_path = '')
+    {
+        $host = Yii::app()->request->hostInfo;
+        return "$host/".ltrim($file_path,'/');
+    }
 
 }

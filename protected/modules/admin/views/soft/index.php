@@ -81,4 +81,4 @@
             </tr>
         </tbody>
     </table>
-<?php $this->endWidget();?>
+<?php $this->endWidget();

@@ -16,8 +16,8 @@
     <tr>
         <td class="tb_title" ><?php echo $form->label($model, 'title'); ?>：</td>
     </tr>
-    <tr >
-        <td >
+    <tr>
+        <td>
             <?php echo $form->textField($model, 'title', array('size' => 60, 'maxlength' => 128, 'class' => 'validate[required]')); ?>
         </td>
     </tr>
@@ -25,8 +25,9 @@
     <tr>
         <td class="tb_title"><?php echo $form->label($model, 'catalog_id'); ?>：</td>
     </tr>
-    <tr >
-        <td ><select name="Soft[catalog_id]" id="Soft_catalog_id">
+    <tr>
+        <td>
+            <select name="Soft[catalog_id]" id="Soft_catalog_id">
                 <?php foreach ((array) Catalog::get(0, $this->_catalog) as $catalog): ?>
                     <option value="<?php echo $catalog['id'] ?>" <?php Helper::selected($catalog['id'], $model->catalog_id); ?>><?php echo $catalog['str_repeat'] ?><?php echo $catalog['catalog_name'] ?></option>
                 <?php endforeach; ?>
@@ -37,15 +38,15 @@
     <tr>
         <td class="tb_title"><?php echo $form->label($model, 'soft_icon'); ?>(120*120)：</td>
     </tr>
-    <tr >
+    <tr>
         <td colspan="2" >
             <input name="soft_icon" id="soft_icon" type="hidden" value="<?php echo $model->soft_icon; ?>"/>
             <input name="simple_file" id="fileupload_icon" onclick="fileUpload()" type="file" />
             <div id="icon_preview">
                 <?php if ($model->soft_icon): ?>
-                    <a href="<?php echo $model->soft_icon ?>" target="_blank">
-                        <img style="padding:5px; border:1px solid #cccccc;" src="<?php echo $model->soft_icon; ?>" width="50" align="absmiddle" />
-                    </a>
+                <a href="<?php echo Helper::getFullUrl($model->soft_icon); ?>" target="_blank">
+                    <img style="padding:5px; border:1px solid #cccccc;" src="<?php echo Helper::getFullUrl($model->soft_icon); ?>" width="50" align="absmiddle" />
+                </a>
                 <?php endif; ?>     
         </td>
     </tr>
@@ -53,15 +54,15 @@
     <tr>
         <td class="tb_title"><?php echo $form->label($model, 'cover_image'); ?>：</td>
     </tr>
-    <tr >
+    <tr>
         <td colspan="2" >
             <input name="cover_image" type="hidden" id="cover_image" value="<?php echo $model->cover_image; ?>"/>
             <input name="simple_file" id="fileupload_cover" onclick="fileUpload()" type="file" />
             <div id="cover_preview">
                 <?php if ($model->cover_image): ?>        
-                    <a href="<?php echo $model->cover_image ?>" target="_blank">
-                        <img style="max-width:300px; max-height:300px; padding:5px; border:1px solid #cccccc;" src="<?php echo $model->cover_image; ?>" align="absmiddle" />
-                    </a>
+                <a href="<?php echo Helper::getFullUrl($model->cover_image); ?>" target="_blank">
+                    <img style="max-width:300px; max-height:300px; padding:5px; border:1px solid #cccccc;" src="<?php echo Helper::getFullUrl($model->cover_image); ?>" align="absmiddle" />
+                </a>
                 <?php endif; ?>
             </div>
         </td>
@@ -70,7 +71,7 @@
     <tr>
         <td class="tb_title"><?php echo $form->label($model, 'soft_file'); ?>：</td>
     </tr>
-    <tr >
+    <tr>
         <td colspan="2" >    	
             <div>
                 <?php $this->widget('application.widget.resumable.Resumable', array('options' => array('upload_url' => $this->createUrl('soft/uploadResumable'), 'upload_file_name' => 'soft_file'))); ?>  				        
@@ -79,10 +80,10 @@
             <ul class="resumable-files clear">
                 <?php if ($model->soft_file): ?>           
                     <li>
-                        <img src="<?php echo $model->soft_file; ?>" width="100px" height="100px">
+                        <img src="<?php echo Helper::getFullUrl($model->soft_file); ?>" width="100px" height="100px">
                         <input type="hidden" value="<?php echo $model->soft_file; ?>" name="soft_file">
                         <div class="clear">
-                            <a href="<?php echo $model->soft_file; ?>" class="left" target="_blank">[查看]</a>
+                            <a href="<?php echo Helper::getFullUrl($model->soft_file); ?>" class="left" target="_blank">[查看]</a>
                             <a href="javascript:;" class="right" onclick="deleteFile(this)">[删除]</a>
                         </div>
                     </li>           
@@ -105,8 +106,8 @@
     <tr>
         <td class="tb_title"><?php echo $form->label($model, 'content'); ?>：</td>
     </tr>
-    <tr >
-        <td ><?php echo $form->textArea($model, 'content'); ?>      
+    <tr>
+        <td><?php echo $form->textArea($model, 'content'); ?>      
             <?php $this->widget('application.widget.kindeditor.KindEditor', array('id' => 'Soft_content')); ?>
         </td>
     </tr>
@@ -121,34 +122,34 @@
     <tr>
         <td class="tb_title"><?php echo $form->label($model, 'softlink'); ?>：</td>
     </tr>
-    <tr >
+    <tr>
         <td  ><?php echo $form->textField($model, 'softlink', array('size' => 60, 'maxlength' => 128)); ?></td>
     </tr>
     <tr>
         <td class="tb_title"><?php echo $form->label($model, 'seo_title'); ?>：</td>
     </tr>
-    <tr >
-        <td ><?php echo $form->textField($model, 'seo_title', array('size' => 50, 'maxlength' => 80)); ?></td>
+    <tr>
+        <td><?php echo $form->textField($model, 'seo_title', array('size' => 50, 'maxlength' => 80)); ?></td>
     </tr>
     <tr>
         <td  class="tb_title"><?php echo $form->label($model, 'seo_keywords'); ?>：</td>
     </tr>
-    <tr >
-        <td ><?php echo $form->textField($model, 'seo_keywords', array('size' => 50, 'maxlength' => 80)); ?>
+    <tr>
+        <td><?php echo $form->textField($model, 'seo_keywords', array('size' => 50, 'maxlength' => 80)); ?>
             <input type="button" value="自动提取"	onclick="keywordGet('Soft_title', 'Soft_content', 'Soft_seo_keywords')" />
         </td>
     </tr>
     <tr>
         <td class="tb_title"><?php echo $form->label($model, 'seo_description'); ?>：</td>
     </tr>
-    <tr >
-        <td ><?php echo CHtml::activeTextArea($model, 'seo_description', array('rows' => 5, 'cols' => 80)); ?></td>
+    <tr>
+        <td><?php echo CHtml::activeTextArea($model, 'seo_description', array('rows' => 5, 'cols' => 80)); ?></td>
     </tr>  
 
-    <tr >
+    <tr>
         <td class="tb_title"><?php echo $form->label($model, 'status'); ?>：</td>
     </tr>
-    <tr >
+    <tr>
         <td  ><?php echo $form->dropDownList($model, 'status', array('Y' => Yii::t('admin', 'Show'), 'N' => Yii::t('admin', 'Hidden'))); ?></td>
     </tr>
 
@@ -170,7 +171,7 @@
                     var atta_file = '';
                     if (data.data.file_path) {
                         $('#soft_icon').val(data.data.file_path);
-                        atta_file = '<a href="' + data.data.file_path + '" target="_blank"><img  style="max-width:300px; max-height:300px; padding: 5px; border: 1px solid #cccccc;"  src="' + data.data.file_path + '"  align="absmiddle" /></a>';
+                        atta_file = '<a href="' + data.data.file_path_full + '" target="_blank"><img  style="max-width:300px; max-height:300px; padding: 5px; border: 1px solid #cccccc;"  src="' + data.data.file_path_full + '"  align="absmiddle" /></a>';
                     }
                     $('#icon_preview').html(atta_file);
                 } else {
@@ -188,7 +189,7 @@
                     var atta_file = '';
                     if (data.data.file_path) {
                         $('#cover_image').val(data.data.file_path);
-                        atta_file = '<a href="' + data.data.file_path + '" target="_blank"><img  style="max-width:300px; max-height:300px; padding: 5px; border: 1px solid #cccccc;"  src="' + data.data.file_path + '"  align="absmiddle" /></a>';
+                        atta_file = '<a href="' + data.data.file_path_full + '" target="_blank"><img  style="max-width:300px; max-height:300px; padding: 5px; border: 1px solid #cccccc;"  src="' + data.data.file_path_full + '"  align="absmiddle" /></a>';
                     }
                     $('#cover_preview').html(atta_file);
                 } else {

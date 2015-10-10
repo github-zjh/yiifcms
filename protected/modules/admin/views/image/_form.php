@@ -70,14 +70,14 @@
             <div id="img_preview" style="padding:10px;">
                 <?php if ($model->attach_file): ?>
                     <span>大图：</span>
-                    <a href="<?php echo $model->attach_file ?>" target="_blank">
-                        <img style="max-width:600px; padding: 5px; border: 1px solid #cccccc;" src="<?php echo $model->attach_file ?>" align="absmiddle" />
+                    <a href="<?php echo Helper::getFullUrl($model->attach_file); ?>" target="_blank">
+                        <img style="max-width:600px; padding: 5px; border: 1px solid #cccccc;" src="<?php echo Helper::getFullUrl($model->attach_file); ?>" align="absmiddle" />
                     </a>
                 <?php endif ?>
                 <?php if ($model->attach_thumb): ?>
                     <span>小图：</span>
-                    <a href="<?php echo $model->attach_thumb ?>"  target="_blank">
-                        <img style="max-width:600px; padding: 5px; border: 1px solid #cccccc;" src="<?php echo $model->attach_thumb ?>" align="absmiddle" />
+                    <a href="<?php echo Helper::getFullUrl($model->attach_thumb); ?>"  target="_blank">
+                        <img style="max-width:600px; padding: 5px; border: 1px solid #cccccc;" src="<?php echo Helper::getFullUrl($model->attach_thumb); ?>" align="absmiddle" />
                     </a>
                 <?php endif ?>
             </div>
@@ -110,10 +110,10 @@
                 <?php if (isset($imageList) && $imageList): ?>
                     <?php foreach ($imageList as $img): ?>
                         <li>
-                            <img src="<?php echo $img; ?>" width="100px" height="100px">
+                            <img src="<?php echo Helper::getFullUrl($img); ?>" width="100px" height="100px">
                             <input type="hidden" value="<?php echo $img; ?>" name="imagelist[]">
                             <div class="clear">
-                                <a href="<?php echo $img; ?>" class="left" target="_blank">[查看]</a>
+                                <a href="<?php echo Helper::getFullUrl($img); ?>" class="left" target="_blank">[查看]</a>
                                 <a href="javascript:;" class="right" onclick="deleteFile(this)">[删除]</a>
                             </div>
                         </li>
@@ -182,11 +182,11 @@
                     var atta_file = '', atta_thumb = '';
                     if (data.data.file_path) {
                         $('#attach_file').val(data.data.file_path);
-                        atta_file = '<span>大图：</span><a href="' + data.data.file_path + '" target="_blank"><img  style="max-width:600px; padding: 5px; border: 1px solid #cccccc;"  src="' + data.data.file_path + '"  align="absmiddle" /></a>';
+                        atta_file = '<span>大图：</span><a href="' + data.data.file_path_full + '" target="_blank"><img  style="max-width:600px; padding: 5px; border: 1px solid #cccccc;"  src="' + data.data.file_path_full + '"  align="absmiddle" /></a>';
                     }
                     if (data.data.thumb_path) {
                         $('#attach_thumb').val(data.data.thumb_path);
-                        atta_thumb = '<span>小图：</span><a href="' + data.data.thumb_path + '" target="_blank"><img  style="max-width:600px; padding: 5px; border: 1px solid #cccccc;"  src="' + data.data.thumb_path + '"  align="absmiddle" /></a>';
+                        atta_thumb = '<span>小图：</span><a href="' + data.data.thumb_path_full + '" target="_blank"><img  style="max-width:600px; padding: 5px; border: 1px solid #cccccc;"  src="' + data.data.thumb_path_full + '"  align="absmiddle" /></a>';
                     }
                     $('#img_preview').html(atta_file + atta_thumb);
                 } else {

@@ -28,9 +28,9 @@
             <input name="simple_file" id="fileupload_cover" onclick="fileUpload()" type="file" />
             <div id="cover_preview">
             <?php if ($model->img_cover):?>
-            <a href="<?php echo $model->img_cover?>" target="_blank">
-                <img style="max-width: 300px; max-height: 300px;  padding:5px; border:1px solid #cccccc;" src="<?php echo $model->img_cover;?>" align="absmiddle" />
-            </a>
+                <a href="<?php echo Helper::getFullUrl($model->img_cover);?>" target="_blank">
+                    <img style="max-width: 300px; max-height: 300px;  padding:5px; border:1px solid #cccccc;" src="<?php echo Helper::getFullUrl($model->img_cover);?>" align="absmiddle" />
+                </a>
             <?php endif;?>     
         </td>
     </tr>
@@ -44,8 +44,8 @@
             <input name="simple_file" id="fileupload_banner" onclick="fileUpload()" type="file" />
             <div id="banner_preview">
             <?php if ($model->img_banner):?>
-            <a href="<?php echo $model->img_banner?>" target="_blank">
-                <img style="max-width: 900px; max-height: 300px; padding:5px; border:1px solid #cccccc;" src="<?php echo $model->img_banner;?>" align="absmiddle" />
+            <a href="<?php echo Helper::getFullUrl($model->img_banner);?>" target="_blank">
+                <img style="max-width: 900px; max-height: 300px; padding:5px; border:1px solid #cccccc;" src="<?php echo Helper::getFullUrl($model->img_banner);?>" align="absmiddle" />
             </a>
             <?php endif;?>     
       </td>
@@ -110,7 +110,7 @@
                     var atta_file = '';
                     if(data.data.file_path) {
                         $('#special_cover').val(data.data.file_path);
-                        atta_file = '<a href="'+data.data.file_path+'" target="_blank"><img  style="max-width:300px; max-height:300px; padding: 5px; border: 1px solid #cccccc;"  src="'+data.data.file_path+'"  align="absmiddle" /></a>';
+                        atta_file = '<a href="'+data.data.file_path_full+'" target="_blank"><img  style="max-width:300px; max-height:300px; padding: 5px; border: 1px solid #cccccc;"  src="'+data.data.file_path_full+'"  align="absmiddle" /></a>';
                     }                    
                     $('#cover_preview').html(atta_file);                    
                 }else{
@@ -128,7 +128,7 @@
                     var atta_file = '';
                     if(data.data.file_path) {
                         $('#special_banner').val(data.data.file_path);
-                        atta_file = '<a href="'+data.data.file_path+'" target="_blank"><img  style="max-width:900px; max-height:300px; padding: 5px; border: 1px solid #cccccc;"  src="'+data.data.file_path+'"  align="absmiddle" /></a>';
+                        atta_file = '<a href="'+data.data.file_path_full+'" target="_blank"><img  style="max-width:900px; max-height:300px; padding: 5px; border: 1px solid #cccccc;"  src="'+data.data.file_path_full+'"  align="absmiddle" /></a>';
                     }                    
                     $('#banner_preview').html(atta_file);                    
                 }else{

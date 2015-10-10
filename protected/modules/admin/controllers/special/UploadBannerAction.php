@@ -16,10 +16,12 @@ class UploadBannerAction extends CAction
             $error = $uploader->getError();
             if (!$error) {
                 $data = array(
-                    'file_name' => $uploader->file_name,
-                    'file_path' => $uploader->file_path,
-                    'thumb_path'=> $uploader->thumb_path,
-                    'file_ext'  => $uploader->file_ext
+                    'file_name'       => $uploader->file_name,
+                    'file_path'       => $uploader->file_path,
+                    'file_path_full'  => Helper::getFullUrl($uploader->file_path),
+                    'thumb_path'      => $uploader->thumb_path,
+                    'thumb_path_full' => Helper::getFullUrl($uploader->thumb_path),
+                    'file_ext'        => $uploader->file_ext
                 );                
                 App::response(200, 'success', $data);
             } else {                

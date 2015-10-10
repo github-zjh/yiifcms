@@ -149,10 +149,26 @@ return array(
 		'SoftSeoKeywords'      => 'seo关键字',
 		
 		//video[视频]
+        'VideoId'              => '视频ID',
+        'VideoTitle'           => '视频名称',
+        'VideoCatalog'         => '所属分类',
+        'VideoCoverImage'      => '视频封面',
+        'VideoFile'            => '视频文件',        
 		'VideoScore'           => '视频评分',
 		'VideoType'            => '视频类型',
+        'VideoSize'            => '视频大小',
+        'VideoDownload'        => '下载链接',
+        'VideoDownCount'       => '下载次数',
+        'VideoIntroduce'       => '视频简介',
+        'VideoCreateTime'      => '添加时间', 
+        'VideoUpdateTime'      => '更新时间', 
 		'VideoLanguage'        => '视频字幕',	
-		'DownCount'            => '下载次数',
+		'VideoViewCount'       => '观看次数',
+        'VideoVoted'           => '投票结果',
+        'VideoStatus'          => '显示状态',
+        'VideoSeoTitle'        => 'SEO标题',
+        'VideoSeoKeywords'     => 'SEO关键字',
+        'VideoSeoDescription'  => 'SEO描述',
     
         //User[用户]
 		'uid'            => '用户ID',

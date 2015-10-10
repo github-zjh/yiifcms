@@ -9,8 +9,6 @@
  * @property string $title
  * @property string $title_second
  * @property string $title_style
- * @property string $html_path
- * @property string $html_file
  * @property integer $catalog_id
  * @property integer $special_id
  * @property string $introduce
@@ -25,7 +23,6 @@
  * @property string $tags
  * @property string $view_count
  * @property string $commend
- * @property string $attach_status
  * @property string $attach_file
  * @property string $attach_thumb
  * @property string $favorite_count
@@ -59,12 +56,12 @@ class Image extends CActiveRecord
 			array('catalog_id, special_id', 'numerical', 'integerOnly'=>true),
 			array('user_id, view_count, favorite_count, update_time, reply_count, sort_order, create_time', 'length', 'max'=>10),
 			array('title, title_second, title_style, seo_title, seo_keywords, copy_url, redirect_url, tags, attach_file, attach_thumb', 'length', 'max'=>255),
-			array('html_path, html_file, copy_from', 'length', 'max'=>100),
-			array('commend, attach_status, top_line, reply_allow, status', 'length', 'max'=>1),
+			array('copy_from', 'length', 'max'=>100),
+			array('commend, top_line, reply_allow, status', 'length', 'max'=>1),
 			array('introduce, image_list, seo_description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, user_id, title, title_second, title_style, html_path, html_file, catalog_id, special_id, introduce, image_list, seo_title, seo_description, seo_keywords, content, copy_from, copy_url, redirect_url, tags, view_count, commend, attach_status, attach_file, attach_thumb, favorite_count, top_line, update_time, reply_count, reply_allow, sort_order, status, create_time', 'safe', 'on'=>'search'),
+			array('id, user_id, title, title_second, title_style, catalog_id, special_id, introduce, image_list, seo_title, seo_description, seo_keywords, content, copy_from, copy_url, redirect_url, tags, view_count, commend, attach_file, attach_thumb, favorite_count, top_line, update_time, reply_count, reply_allow, sort_order, status, create_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -146,10 +143,6 @@ class Image extends CActiveRecord
 
 		$criteria->compare('title_style',$this->title_style,true);
 
-		$criteria->compare('html_path',$this->html_path,true);
-
-		$criteria->compare('html_file',$this->html_file,true);
-
 		$criteria->compare('catalog_id',$this->catalog_id);
 
 		$criteria->compare('special_id',$this->special_id);
@@ -177,8 +170,6 @@ class Image extends CActiveRecord
 		$criteria->compare('view_count',$this->view_count,true);
 
 		$criteria->compare('commend',$this->commend,true);
-
-		$criteria->compare('attach_status',$this->attach_status,true);
 
 		$criteria->compare('attach_file',$this->attach_file,true);
 
