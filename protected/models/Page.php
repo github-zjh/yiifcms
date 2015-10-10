@@ -66,19 +66,19 @@ class Page extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
-			'title' => 'Title',
-			'introduce' => 'Introduce',
-			'content' => 'Content',
-			'seo_title' => 'Seo Title',
-			'seo_keywords' => 'Seo Keywords',
-			'seo_description' => 'Seo Description',
-			'link' => 'Link',
-			'sort_order' => 'Sort Order',
-			'view_count' => 'View Count',
-			'status' => 'Status',
-			'create_time' => 'Create Time',
-			'update_time' => 'Update Time',
+			'id'              => Yii::t('model','PageId'),
+			'title'           => Yii::t('model','PageTitle'),
+			'introduce'       => Yii::t('model','PageIntroduce'),
+			'content'         => Yii::t('model','PageContent'),			
+			'link'            => Yii::t('model','PageLink'),
+			'sort_order'      => Yii::t('model','PageSortOrder'),
+			'view_count'      => Yii::t('model','PageViewCount'),
+			'status'          => Yii::t('model','PageStatus'),
+			'create_time'     => Yii::t('model','PageCreateTime'),
+			'update_time'     => Yii::t('model','PageUpdateTime'),
+            'seo_title'       => Yii::t('model','PageSeoTitle'),
+			'seo_keywords'    => Yii::t('model','PageSeoKeywords'),
+			'seo_description' => Yii::t('model','PageSeoDescription'),
 		);
 	}
 

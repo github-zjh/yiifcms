@@ -18,12 +18,14 @@ class IndexAction extends CAction
         $titleAlias && $criteria->addSearchCondition('title_alias', $titleAlias);        
         $criteria->order = 't.id DESC';        
         $count = $model->count( $criteria );
+        
         //分页
         $pages = new CPagination( $count );
         $pages->pageSize = 10;        
         $pages->applyLimit($criteria);
+        
         //查询
         $result = $model->findAll( $criteria );
-        $this->controller->render( 'index', array ( 'datalist' => $result , 'pagebar' => $pages ) );
+        $this->controller->render( 'index', array ( 'model' => $model, 'datalist' => $result , 'pagebar' => $pages ) );
 	}
 }

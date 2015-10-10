@@ -170,6 +170,21 @@ return array(
         'VideoSeoKeywords'     => 'SEO关键字',
         'VideoSeoDescription'  => 'SEO描述',
     
+        //Page[单页]
+        'PageId'               => '单页ID',
+        'PageTitle'            => '标题',
+        'PageIntroduce'        => '单页摘要',
+        'PageContent'          => '详细内容',
+        'PageLink'             => '跳转链接',
+        'PageSortOrder'        => '排序',
+        'PageViewCount'        => '查看次数',
+        'PageStatus'           => '显示状态',
+        'PageCreateTime'       => '添加时间',
+        'PageUpdateTime'       => '更新时间',
+        'PageSeoTitle'         => 'SEO标题',
+        'PageSeoKeywords'      => 'SEO关键字',
+        'PageSeoDescription'   => 'SEO描述',
+    
         //User[用户]
 		'uid'            => '用户ID',
 		'username'       => '用户名',
