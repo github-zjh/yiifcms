@@ -58,14 +58,14 @@ class Attachment extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
-			'user_id' => 'User',
-			'real_name' => 'Real Name',
-			'file_name' => 'File Name',
-			'thumb_name' => 'Thumb Name',
-			'file_ext' => 'File Ext',			
-			'file_size' => 'File Size',			
-			'create_time' => 'Create Time',
+			'id'          => Yii::t('model','AttachmentId'),
+			'user_id'     => Yii::t('model','AttachmentUser'),
+			'real_name'   => Yii::t('model','AttachmentRealName'),
+			'file_name'   => Yii::t('model','AttachmentFileName'),
+			'thumb_name'  => Yii::t('model','AttachmentThumbName'),
+			'file_ext'    => Yii::t('model','AttachmentFileExt'),			
+			'file_size'   => Yii::t('model','AttachmentFileSize'),			
+			'create_time' => Yii::t('model','AttachmentCreateTime'),
 		);
 	}
 

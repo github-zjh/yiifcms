@@ -25,7 +25,7 @@
         $("#catalogId").val('<?php echo Yii::app()->request->getParam('catalogId') ?>');
     });
 </script>
-<?php $form = $this->beginWidget('CActiveForm', array('action' => $this->createUrl('batch'), 'htmlOptions' => array('name' => 'cpform'))); ?>
+<?php $form = $this->beginWidget('CActiveForm', array('action' => $this->createUrl('batch'))); ?>
     <table border="0" cellpadding="0" cellspacing="0" class="content_list"> 
         <thead>
             <tr class="tb_header">

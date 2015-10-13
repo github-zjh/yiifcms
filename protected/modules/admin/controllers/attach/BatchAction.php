@@ -2,8 +2,9 @@
 /**
  * 批量操作
  * 
- * @author        Sim Zhao <326196998@qq.com>
- * @copyright     Copyright (c) 2015. All rights reserved.
+ * @author  Sim Zhao <326196998@qq.com>
+ * @link    http://www.yiifcms.com/
+ * @copyright   Copyright (c) 2014-2015. All rights reserved.
  */
 
 class BatchAction extends CAction
@@ -21,21 +22,13 @@ class BatchAction extends CAction
             case 'delete':      
                 //删除                
                 foreach((array)$ids as $id){
-                    $videoModel = Video::model()->findByPk($id);
-                    if($videoModel){                        
-                        Uploader::deleteFile(ROOT_PATH.$videoModel->cover_image);                                                                 
-                    }
-                }
-                Video::model()->deleteAll($criteria);
-                break;       
-            case 'show':     
-                //显示
-                Video::model()->updateAll(['status' => 'Y'], $criteria);
+            		$res = Attachment::model()->findByPk($id);
+            		if($res){
+            			Uploader::deleteFile(ROOT_PATH.'/'.ltrim($res->file_name,'/'));
+            		}
+            	}
+                Attachment::model()->deleteAll($criteria);
                 break;
-            case 'hidden':     
-                //隐藏      
-                Video::model()->updateAll(['status' => 'N'], $criteria);
-                break;            
             default:
                 $this->controller->message('error', Yii::t('admin','Error Operation'));                
         }

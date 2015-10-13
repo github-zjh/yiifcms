@@ -13,6 +13,9 @@ class BatchAction extends CAction
         $sortOrder = Yii::app()->request->getParam('sortOrder');
         $command = Yii::app()->request->getParam('command');
         empty( $ids ) && $this->controller->message( 'error', Yii::t('admin','No Select') );
+        if(!is_array($ids)) {
+            $ids = array($ids);
+        }
         $criteria = new CDbCriteria();
         $criteria->addInCondition('id', $ids);        
         switch ( $command ) {

@@ -72,7 +72,7 @@
           <td><?php echo date('Y-m-d H:i',$row->addtime)?></td>
           <td>
             <a href="<?php echo  $this->createUrl('update',array('id'=>$row->uid))?>"><img src="<?php echo $this->module->assetsUrl;?>/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
-            <a href="<?php echo  $this->createUrl('batch',array('command'=>'userDelete', 'id'=>$row->uid))?>" class="confirmSubmit"><img src="<?php echo $this->module->assetsUrl;?>/images/delete.png" align="absmiddle" /></a>
+            <a href="<?php echo  $this->createUrl('batch',array('command'=>'delete', 'id'=>$row->uid))?>" class="confirmSubmit"><img src="<?php echo $this->module->assetsUrl;?>/images/delete.png" align="absmiddle" /></a>
           </td>
         </tr>
         <?php endforeach;?>
