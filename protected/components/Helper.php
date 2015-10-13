@@ -494,39 +494,41 @@ class Helper
 	
 	}
 	/**
-	 * 友好显示var_dump
-	 * @param unknown $var
-	 * @param string $echo
-	 * @param string $label
-	 * @param string $strict
-	 * @return NULL|string
-	 */
-	public static function vdump( $var, $echo = true, $label = null, $strict = true ) {
-		$label = ( $label === null ) ? '' : rtrim( $label ) . ' ';
-		if ( ! $strict ) {
-			if ( ini_get( 'html_errors' ) ) {
-				$output = print_r( $var, true );
-				$output = "<pre>" . $label . htmlspecialchars( $output, ENT_QUOTES ) . "</pre>";
-			} else {
-				$output = $label . print_r( $var, true );
-			}
-		} else {
-			ob_start();
-			var_dump( $var );
-			$output = ob_get_clean();
-			if ( ! extension_loaded( 'xdebug' ) ) {
-				$output = preg_replace( "/\]\=\>\n(\s+)/m", "] => ", $output );
-				$output = '<pre>' . $label . htmlspecialchars( $output, ENT_QUOTES ) . '</pre>';
-			}
-		}
-		if ( $echo ) {
-			header('content-type:text/html; charset=utf-8');
-			echo $output;
-			return null;
-		} else {
-            return $output;        
+     * 浏览器友好的变量输出
+     * @param mixed $var 变量
+     * @param boolean $echo 是否输出 默认为True 如果为false 则返回输出字符串
+     * @param string $label 标签 默认为空
+     * @param boolean $strict 是否严谨 默认为true
+     * @return void|string
+     */
+    public static function dump($var, $echo = true, $label = null, $strict = true)
+    {
+        if ($label === null) {
+            $label = '';
+        } else {
+            $label = rtrim($label) . ' ';
         }
-	}
+        if (!$strict) {
+            if (ini_get('html_errors')) {
+                $output = '<pre>' . $label . htmlspecialchars(print_r($var, true), ENT_QUOTES) . '</pre>';
+            } else {
+                $output = $label . print_r($var, true);
+            }
+        } else {
+            ob_start();
+            var_dump($var);
+            $output = ob_get_clean();
+            if (!extension_loaded('xdebug')) {
+                $output = '<pre>' . $label . htmlspecialchars(preg_replace('/\]\=\>\n(\s+)/m', '] => ', $output), ENT_QUOTES) . '</pre>';
+            }
+        }
+        if ($echo) {
+            echo $label, $output;
+            return null;
+        } else {
+            return $output;
+        }
+    }
     /**
      * 递归删除目录
      * 
@@ -579,6 +581,9 @@ class Helper
      */
     public static function getFullUrl($file_path = '')
     {
+        if(strpos($file_path, 'http://') !== false) {
+            return $file_path;
+        }
         $host = Yii::app()->request->hostInfo.Yii::app()->request->baseUrl;
         return "$host/".ltrim($file_path,'/');
     }
