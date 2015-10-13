@@ -47,9 +47,11 @@ class UserGroup extends CActiveRecord
 	}
     
     public function beforeSave() 
-    {        
-        $unique_acl = array_unique($this->acl);
-        $unique_acl && $this->acl = implode(',', $unique_acl);
+    { 
+        if(is_array($this->acl)) {
+            $unique_acl = array_unique($this->acl);
+            $unique_acl && $this->acl = implode(',', $unique_acl);        
+        }
         return true;
     }    
 
