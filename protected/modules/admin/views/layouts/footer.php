@@ -5,7 +5,16 @@ $(function(){
     	if(value.toLowerCase().indexOf('delete') >= 0)
         	return confirm('本操作不可恢复，确定继续？');
     });
-}); 
+});
+//全选
+function checkAll(form, name) {
+	for(var i = 0; i < form.elements.length; i++) {
+		var e = form.elements[i];
+		if(e.name.match(name)) {
+			e.checked = form.elements['chkall'].checked;
+		}
+	}
+}
 /*
 关键词整获取
 */
