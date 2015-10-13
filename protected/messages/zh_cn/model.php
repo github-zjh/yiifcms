@@ -54,6 +54,7 @@ return array(
         
         //推荐
         'RecommendId'          => '推荐ID',
+        'RecommendPositionId'  => '推荐位',
         'RecommendContent'     => '推荐内容ID',
         'RecommendType'        => '内容类型',
         'RecommendTitle'       => '内容标题',

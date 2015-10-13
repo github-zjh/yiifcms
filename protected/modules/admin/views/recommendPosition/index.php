@@ -41,7 +41,7 @@
                     <label for="chkall"><?php echo Yii::t('admin', 'Check All'); ?></label>
                     <select name="command">
                         <option><?php echo Yii::t('admin', 'Select Operate'); ?></option>
-                        <option value="Delete"><?php echo Yii::t('admin', 'Delete'); ?></option>            
+                        <option value="delete"><?php echo Yii::t('admin', 'Delete'); ?></option>            
                     </select>
                     <input id="submit_maskall" class="button confirmSubmit" type="submit" value="<?php echo Yii::t('common', 'Submit'); ?>" name="maskall" />
                 </div>

@@ -33,14 +33,9 @@ class BatchAction extends CAction
                 break;
             case 'commend':     
                 //图集推荐
-                foreach((array)$ids as $id){        		
-                    $recom_id = intval($_POST['recom_id']);
-                    if($recom_id){
-                        Image::model()->updateAll(['commend' => 'Y'], $criteria);                        
-                    }else{
-                        $this->controller->message('error', Yii::t('admin','RecommendPosition is Required'));
-                    }
-                }                 
+                $content_id = implode(',', $ids);
+                $type_key = 'image';
+                $this->controller->redirect($this->controller->createUrl('recommend/create', array('content_id' => $content_id, 'type_key' => $type_key)));                 
                 break;
 
             case 'stick':     
@@ -52,7 +47,7 @@ class BatchAction extends CAction
                 Image::model()->updateAll(['top_line' => 'N'], $criteria);
                 break;
             default:
-                throw new CHttpException(404, Yii::t('admin','Error Operation'));                
+                $this->controller->message('error', Yii::t('admin','Error Operation'));                 
         }
         $this->controller->message('success', Yii::t('admin','Batch Operate Success'));    	
 	}

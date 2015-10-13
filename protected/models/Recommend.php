@@ -5,6 +5,7 @@
  *
  * The followings are the available columns in table '{{recommend}}':
  * @property string $id
+ * @property string $position_id
  * @property string $content_id
  * @property integer $type
  * @property string $title
@@ -29,13 +30,13 @@ class Recommend extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, content_id, type', 'required'),
+			array('position_id, content_id, type', 'required'),
 			array('type', 'numerical', 'integerOnly'=>true),
-			array('id, content_id, sort_order, create_time', 'length', 'max'=>10),
+			array('id, position_id, content_id, sort_order, create_time', 'length', 'max'=>10),
             array('title', 'length', 'max' => 100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, content_id, type, title, sort_order, create_time', 'safe', 'on'=>'search'),
+			array('id, position_id, content_id, type, title, sort_order, create_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -57,6 +58,7 @@ class Recommend extends CActiveRecord
 	{
         return array(
 			'id'         => Yii::t('model','RecommendId'),
+            'position_id'=> Yii::t('model','RecommendPositionId'),
 			'content_id' => Yii::t('model','RecommendContent'),
             'type'       => Yii::t('model','RecommendType'),
             'title'      => Yii::t('model','RecommendTitle'),

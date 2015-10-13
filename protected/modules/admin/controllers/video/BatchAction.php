@@ -34,7 +34,7 @@ class BatchAction extends CAction
                 Video::model()->updateAll(['status' => 'N'], $criteria);
                 break;            
             default:
-                throw new CHttpException(404, Yii::t('admin','Error Operation'));                
+                $this->controller->message('error', Yii::t('admin','Error Operation'));                
         }
         $this->controller->message('success', Yii::t('admin','Batch Operate Success'));    	
 	}

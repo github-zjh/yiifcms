@@ -385,5 +385,9 @@ return array (
 	'qq_scope_add_t' => '发布一条微博',
 	'qq_scope_del_t' => '删除一条微博',
 	'qq_scope_get_info' => '获取微博资料',
-	
+    
+    //New[推荐]
+	'Please Select A Recommend Position' => '请选择一个推荐位',
+    'Invialid Content' => '无效的推荐内容',
+    'Recommend Success'=> '推荐成功',
 );

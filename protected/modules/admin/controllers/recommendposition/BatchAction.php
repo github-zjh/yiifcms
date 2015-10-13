@@ -19,10 +19,12 @@ class BatchAction extends CAction
                 //删除
                 RecommendPosition::model()->deleteAll($criteria);
                 //同时删除推荐的内容
-                Recommend::model()->deleteAll($criteria);
+                $criteria_r = new CDbCriteria();
+                $criteria_r->addInCondition('position_id', $ids);
+                Recommend::model()->deleteAll($criteria_r);
                 break;           
             default:
-                throw new CHttpException(404, Yii::t('admin','Error Operation'));                
+                $this->controller->message('error', Yii::t('admin','Error Operation'));                 
         }
         $this->controller->message('success', Yii::t('admin','Batch Operate Success'));    	
 	}
