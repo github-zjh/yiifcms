@@ -32,8 +32,7 @@
 		</tbody>
 	</table>
 	<div class="submit" style="padding-top: 10px">
-		<input type="submit" name="editsubmit" value="提交" class="button"
-			tabindex="3" />
+		<input type="submit" name="editsubmit" value="提交" class="button" tabindex="3" />
 	</div>
 </form>
 <?php endif;?>

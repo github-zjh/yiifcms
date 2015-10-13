@@ -20,16 +20,16 @@
     </tr>
     <?php foreach ((array) $datalist as $row): ?>
         <tr class="tb_list">
-            <td ><input type="checkbox" name="id[]" value="<?php echo $row['id'] ?>">
+            <td><input type="checkbox" name="id[]" value="<?php echo $row['id'] ?>">
                 <?php echo $row['id'] ?></td>
-            <td ><input name="sortOrder[<?php echo $row['id'] ?>]" type="text" id="sortOrder[]" value="<?php echo $row['sort_order'] ?>" size="5" /></td>
-            <td >
+            <td><input name="sortOrder[<?php echo $row['id'] ?>]" type="text" id="sortOrder[]" value="<?php echo $row['sort_order'] ?>" size="5" /></td>
+            <td>
                 <?php echo $row['str_repeat'] ?><a href="<?php echo $this->createUrl('create', array('id' => $row['id'])) ?>"><img src="<?php echo $this->module->assetsUrl; ?>/images/insert.png" align="absmiddle" /></a> <a href="<?php echo $this->createUrl('update', array('id' => $row['id'])) ?>"><?php echo $row['catalog_name'] ?></a>        
             </td>     
-            <td ><?php echo Yii::t('admin', 'Type ' . ucfirst(array_search($row['type'], $this->_type_ids))); ?></td> 
-            <td ><?php echo date('Y-m-d H:i', $row['create_time']) ?></td>
-            <td ><?php echo date('Y-m-d H:i', $row['update_time']) ?></td>
-            <td >
+            <td><?php echo Yii::t('admin', 'Type ' . ucfirst(array_search($row['type'], $this->_type_ids))); ?></td> 
+            <td><?php echo date('Y-m-d H:i', $row['create_time']) ?></td>
+            <td><?php echo date('Y-m-d H:i', $row['update_time']) ?></td>
+            <td>
                 <a href="<?php echo $this->createUrl('update', array('id' => $row['id'])) ?>"><img src="<?php echo $this->module->assetsUrl; ?>/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
                 <a href="<?php echo $this->createUrl('batch', array('command' => 'delete', 'id' => $row['id'])) ?>" class="confirmSubmit"><img src="<?php echo $this->module->assetsUrl; ?>/images/delete.png" align="absmiddle" /></a>&nbsp;&nbsp;
                 <a href="<?php echo $this->createUrl('/' . $row['type_key'] . '/index', array('catalog_id' => $row['id'])) ?>" target="_blank"><img src="<?php echo $this->module->assetsUrl; ?>/images/view.png" align="absmiddle" /></a>
@@ -52,6 +52,5 @@
             </div>
         </td>
     </tr>
-
 </table>
-<?php $form = $this->endWidget(); ?>
+<?php $this->endWidget();

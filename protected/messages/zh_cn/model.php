@@ -51,11 +51,18 @@ return array(
 		'AdPositionId'         => '广告位ID',
 		'AdPositionTitle'      => '广告位名称',
         'AdPositionStatus'     => '广告位状态',
+        
+        //推荐
+        'RecommendId'          => '推荐ID',
+        'RecommendContent'     => '推荐内容ID',
+        'RecommendType'        => '内容类型',
+        'RecommendTitle'       => '内容标题',
+        'RecommendSortOrder'   => '内容排序',
+        'RecommendCreateTime'  => '推荐时间',        
  		
 		//RecommendPositon[推荐位]
-		'recommend_id'         => '推荐位ID',
-		'recommend_name'       => '推荐位名称',
-		'recommend_type'       => '推荐位类型',
+		'RpId'                 => '推荐位ID',
+		'RpTitle'              => '推荐位名称',		
 		
 		//ModelType[内容模型]
 		'MTid'                 => '内容模型ID',
@@ -210,13 +217,14 @@ return array(
 		
 		//Question[留言]
 		'QuestionId'           => '留言ID',
+        'QuestionUserId'       => '留言人',
 		'QuestionRealname'     => '姓名',
 		'QuestionEmail'        => '邮箱',
 		'QuestionTelephone'    => '手机号码',
-		'QuestionQuestion'     => '留言内容',
+		'QuestionContent'      => '留言内容',
 		'QuestionQq'           => 'qq',	
-		'QuestionClient_ip'    => '客户端ip',
-		'QuestionCreate_time'  => '留言时间',
+		'QuestionClientIp'     => '客户端ip',
+		'QuestionCreateTime'   => '留言时间',
     
         //Comment[评论]
 		'CommentId'            => '评论ID',

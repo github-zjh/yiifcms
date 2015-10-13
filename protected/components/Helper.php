@@ -579,7 +579,7 @@ class Helper
      */
     public static function getFullUrl($file_path = '')
     {
-        $host = Yii::app()->request->hostInfo;
+        $host = Yii::app()->request->hostInfo.Yii::app()->request->baseUrl;
         return "$host/".ltrim($file_path,'/');
     }
 

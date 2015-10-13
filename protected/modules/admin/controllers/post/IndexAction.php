@@ -20,13 +20,13 @@ class IndexAction extends CAction
         $criteria->order = 't.id DESC';
         $criteria->with  = array ( 'catalog' );
         $count = $model->count( $criteria );
+        
         //分页
         $pages = new CPagination( $count );
         $pages->pageSize = 10;        
         $pages->applyLimit($criteria);
-        $result = $model->findAll( $criteria );    
-        //推荐位
-        $recom_list = RecommendPosition::model()->findAll('type=:type', array(':type'=>$this->controller->_type), array('order'=>'id'));
-        $this->controller->render( 'index', array ( 'model' => $model, 'datalist' => $result , 'pagebar' => $pages ,'recom_list'=>$recom_list) );
+        $result = $model->findAll( $criteria );
+        
+        $this->controller->render( 'index', array ( 'model' => $model, 'datalist' => $result , 'pagebar' => $pages) );
 	}
 }

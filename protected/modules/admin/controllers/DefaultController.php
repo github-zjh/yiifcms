@@ -2,7 +2,7 @@
 /**
  * 默认后端控制器类
  *
- * @author        zhao jinhan <326196998@qq.com>
+ * @author        Sim Zhao <326196998@qq.com>
  * @copyright     Copyright (c) 2014-2015. All rights reserved.
  */
 
@@ -20,20 +20,20 @@ class DefaultController extends BackendBase
 	public function actions()
 	{
 		return array(
-				// captcha action renders the CAPTCHA image displayed on the contact page
-				'captcha'=>array(
-						'class'=>'MyCaptchaAction',
-						'backColor'=>0xf4f4f4,  //背景色		
-						'foreColor'=> 0x3C5880,	//前景色			
-						'fontFile' => $this->_fonts.'/fonts/BRITANIC.TTF', //自定义字体
-						'padding'=>0,
-						'width' => 90,
-						'height'=>30,
-						'minLength'=>4,
-						'maxLength'=>4,
-						'testLimit'=>0,   //不限制输错次数
-						'offset' => 2,    //字符间距		
-				),
+            // captcha action renders the CAPTCHA image displayed on the contact page
+            'captcha'=>array(
+                'class'=>'MyCaptchaAction',
+                'backColor'=>0xf4f4f4,  //背景色		
+                'foreColor'=> 0x3C5880,	//前景色			
+                'fontFile' => $this->_fonts.'/fonts/BRITANIC.TTF', //自定义字体
+                'padding'=>0,
+                'width' => 90,
+                'height'=>30,
+                'minLength'=>4,
+                'maxLength'=>4,
+                'testLimit'=>0,   //不限制输错次数
+                'offset' => 2,    //字符间距		
+            ),
 		);
 	}
 	
@@ -59,8 +59,9 @@ class DefaultController extends BackendBase
 		{
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
-				$this->message('success', Yii::t('common', 'Login Success'), $returnUrl, 2);
+			if($model->validate() && $model->login()) {
+                $this->message('success', Yii::t('common', 'Login Success'), $returnUrl, 2);            
+            }
 		}				
 		$this->render('login', array('model'=>$model));
 	}
@@ -82,23 +83,24 @@ class DefaultController extends BackendBase
 		
 		//后台头部一级菜单
 		$FirstMenus = array(
-			'0' => array('url'=>'', 'name'=>Yii::t('admin','BM_Home')),
-			'1' => array('url'=>'', 'name'=>Yii::t('admin','BM_Setting')),
-			'2' => array('url'=>'', 'name'=>Yii::t('admin','BM_Catalog')),
-			'3' => array('url'=>'', 'name'=>Yii::t('admin','BM_Content')),
-			'4' => array('url'=>'', 'name'=>Yii::t('admin','BM_User')),
-			'5' => array('url'=>'', 'name'=>Yii::t('admin','BM_Ad')),		
-			'6' => array('url'=>'', 'name'=>Yii::t('admin','BM_Component')),
-			'7' => array('url'=>'', 'name'=>Yii::t('admin','BM_Model')),
-			'8' => array('url'=>'', 'name'=>Yii::t('admin','BM_Tools')),
-			'9' => array('url'=>'', 'name'=>Yii::t('admin','BM_Oauth')),
+			array('url'=>'', 'name'=>Yii::t('admin','BM_Home')),
+			array('url'=>'', 'name'=>Yii::t('admin','BM_Setting')),
+			array('url'=>'', 'name'=>Yii::t('admin','BM_Catalog')),
+			array('url'=>'', 'name'=>Yii::t('admin','BM_Content')),
+			array('url'=>'', 'name'=>Yii::t('admin','BM_User')),
+			array('url'=>'', 'name'=>Yii::t('admin','BM_Ad')),		
+			array('url'=>'', 'name'=>Yii::t('admin','BM_Component')),
+			array('url'=>'', 'name'=>Yii::t('admin','BM_Model')),
+			array('url'=>'', 'name'=>Yii::t('admin','BM_BackUp')),
+			array('url'=>'', 'name'=>Yii::t('admin','BM_Oauth')),
 		);
 		//后台左侧二级菜单
 		$SecMenus = array(
-			'0' => array(
-				array('url'=> $this->createUrl('default/home'), 'name'=>Yii::t('admin','System Home')),					
+			array(
+				array('url'=> $this->createUrl('default/home'), 'name'=>Yii::t('admin','System Home')),
+                array('url'=> $this->createUrl('cache/index'), 'name'=>Yii::t('admin','Cache Manage')),
 			),
-			'1' => array(
+			array(
 				array('url'=> $this->createUrl('setting/index'), 'name'=>Yii::t('admin','Web Set')),
 				array('url'=> $this->createUrl('setting/seo'), 'name'=>Yii::t('admin','SEO Set')),
 				array('url'=> $this->createUrl('setting/template'), 'name'=>Yii::t('admin','Template Set')),					
@@ -107,30 +109,31 @@ class DefaultController extends BackendBase
 				array('url'=> $this->createUrl('setting/access'), 'name'=>Yii::t('admin','Access Set')),
 				array('url'=> $this->createUrl('setting/custom'), 'name'=>Yii::t('admin','Custom Set')),
 			),	
-			'2' => array(
+			array(
 					array('url'=> $this->createUrl('catalog/index'), 'name'=>Yii::t('admin','Catalog Manage')),
 					array('url'=> $this->createUrl('menu/index'), 'name'=>Yii::t('admin','Menu Manage')),
 					array('url'=> $this->createUrl('special/index'), 'name'=>Yii::t('admin','Special Manage')),					
 			),
-			'3' => array(
+			array(
 					array('url'=> $this->createUrl('post/index'), 'name'=>Yii::t('admin','Article Manage')),
 					array('url'=> $this->createUrl('image/index'), 'name'=>Yii::t('admin','Image Manage')),
 					array('url'=> $this->createUrl('soft/index'), 'name'=>Yii::t('admin','Soft Manage')),
 					array('url'=> $this->createUrl('video/index'), 'name'=>Yii::t('admin','Video Manage')),				
-					array('url'=> $this->createUrl('page/index'), 'name'=>Yii::t('admin','Page Manage')),
+					array('url'=> $this->createUrl('page/index'), 'name'=>Yii::t('admin','Page Manage')),                    
+                    array('url'=> $this->createUrl('recommend/index'), 'name'=>Yii::t('admin','Recommend Manage')),
+                    array('url'=> $this->createUrl('recommendPosition/index'), 'name'=>Yii::t('admin','RecommendPosition Manage')),
 			),
-			'4' => array(
+			array(
 					array('url'=> $this->createUrl('user/index'), 'name'=>Yii::t('admin','User List')),
 					array('url'=> $this->createUrl('user/admin'), 'name'=>Yii::t('admin','Admin List')),
 					array('url'=> $this->createUrl('usergroup/index'), 'name'=>Yii::t('admin','Group Manage')),
 					array('url'=> $this->createUrl('question/index'), 'name'=>Yii::t('admin','Question List')),				
 			),
-			'5' => array(
+			array(
 					array('url'=> $this->createUrl('ad/index'), 'name'=>Yii::t('admin','Ads Manage')),
 					array('url'=> $this->createUrl('adPosition/index'), 'name'=>Yii::t('admin','Adposition Manage')),				
 			),
-			'6' => array(
-					array('url'=> $this->createUrl('recommendPosition/index'), 'name'=>Yii::t('admin','RecommendPosition Manage')),
+			array(					
 					array('url'=> $this->createUrl('attach/index'), 'name'=>Yii::t('admin','Attach Manage')),
 					array('url'=> $this->createUrl('link/index'), 'name'=>Yii::t('admin','Link Manage')),
 					array('url'=> $this->createUrl('comment/index'), 'name'=>Yii::t('admin','Comment Manage')),
@@ -138,15 +141,14 @@ class DefaultController extends BackendBase
 					array('url'=> $this->createUrl('tag/index'), 'name'=>Yii::t('admin','Tags Manage')),
 					array('url'=> $this->createUrl('maillog/index'), 'name'=>Yii::t('admin','Maillog Manage')),
 			),
-			'7' => array(
+			array(
 					array('url'=> $this->createUrl('modeltype/index'), 'name'=>Yii::t('admin','Modeltype Manage')),					
 			),
-			'8' => array(
-					array('url'=> $this->createUrl('database/index'), 'name'=>Yii::t('admin','Database Manage')),
-					array('url'=> $this->createUrl('cache/index'), 'name'=>Yii::t('admin','Cache Manage')),
+			array(
+					array('url'=> $this->createUrl('database/index'), 'name'=>Yii::t('admin','Database Manage')),					
 					array('url'=> $this->createUrl('zip/index'), 'name'=>Yii::t('admin','Zip Manage')),					
 			),
-			'9' => array(
+			array(
 					array('url'=> $this->createUrl('oAuth/index'), 'name'=>Yii::t('admin','OAuth Manage')),					
 			),
 		);
@@ -154,18 +156,19 @@ class DefaultController extends BackendBase
 		//只显示授权的菜单
 		$groupid = Yii::app()->user->groupid;
 		$group = UserGroup::model()->findByPk($groupid);
+        $OAuthSecMenus = array();
 		if($groupid != User::AdminGroupID){
 			//非超级管理员
 			$acls = explode(',', $group->acl);
 			$loginkey = array_search('default|login', $acls); //删除login授权
 			$acls[$loginkey] = 'default|home';
-			foreach($acls as $ak => $av){
+			foreach($acls as $av){
 				$av = str_replace('|', '/', $av);
 				$tmpacls[] = $this->createUrl($av);				
 			}
-			
+            
 			foreach($SecMenus as $sk => $sv){
-				foreach($sv as $sek => $sev){						
+				foreach($sv as $sek => $sev){                    
 					if(in_array($sev['url'], $tmpacls)){
 						$OAuthSecMenus[$sk][$sek] = $sev;
 					}
@@ -203,8 +206,9 @@ class DefaultController extends BackendBase
 		//$sql = 'SHOW TABLE STATUS LIKE \'' . $connection->tablePrefix . '%\'';
 		$sql = 'SHOW TABLE STATUS';
 		$command = $connection->createCommand($sql)->queryAll();
-		foreach ($command as $table)
-			$dbsize += $table['Data_length'] + $table['Index_length'];
+		foreach ($command as $table) {
+            $dbsize += $table['Data_length'] + $table['Index_length'];         
+        }
 		$mysqlVersion = $connection->createCommand("SELECT version() AS version")->queryAll();
 		$data['mysqlVersion'] = $mysqlVersion[0]['version'];
 		$data['dbsize'] = Helper::byteFormat($dbsize);
@@ -219,10 +223,12 @@ class DefaultController extends BackendBase
 	{
 		if($error=Yii::app()->errorHandler->error)
 		{
-			if(Yii::app()->request->isAjaxRequest)
+			if(Yii::app()->request->isAjaxRequest) {
 				echo $error['message'];
-			else
+            }
+			else {
 				$this->render('error', $error);
+            }
 		}
 	}
 	
@@ -234,7 +240,7 @@ class DefaultController extends BackendBase
 	public function actionKeyword()
 	{
 		parent::auth();
-		$mailer = Yii::createComponent ( 'application.extensions.autokeyword.AutoKeyword' );
+		Yii::createComponent ( 'application.extensions.autokeyword.AutoKeyword' );
 		$title = trim(Yii::app()->request->getParam('title'));
 		$content = trim(Yii::app()->request->getParam('content'));
 		//$return  = XAutoKeyword::discuz($string);		

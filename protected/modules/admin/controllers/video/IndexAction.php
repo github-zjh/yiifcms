@@ -27,8 +27,7 @@ class IndexAction extends CAction
         $pages->pageSize = 10;       
         $pages->applyLimit($criteria);
         $result = $model->findAll( $criteria );    
-        //推荐位
-        $recom_list = RecommendPosition::model()->findAll('type=:type', array(':type'=>$this->controller->_type), array('order'=>'id'));
-        $this->controller->render( 'index', array ( 'model' => $model, 'datalist' => $result , 'pagebar' => $pages ,'recom_list'=>$recom_list) );
+        
+        $this->controller->render( 'index', array ( 'model' => $model, 'datalist' => $result , 'pagebar' => $pages) );
 	}
 }

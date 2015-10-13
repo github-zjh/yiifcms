@@ -72,7 +72,7 @@ class KindEditor extends CInputWidget{
 				'uploadJson'=>Yii::app()->createUrl('/admin/kindeditor/upload'),
 				'fileManagerJson'=>Yii::app()->createUrl('/admin/kindeditor/index'),		
 				'allowFileManager'=>true,
-                'formatUploadUrl'=>false,
+                //'formatUploadUrl'=>false,
 		 );
         $string = '';
         $dot  = '';

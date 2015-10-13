@@ -90,16 +90,16 @@ class Question extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => Yii::t('model','QuestionId'),
-			'user_id' => Yii::t('model','QuestionUser_id'),
-			'realname' => Yii::t('model','QuestionRealname'),
-			'email' => Yii::t('model','QuestionEmail'),
-			'telephone' => Yii::t('model','QuestionTelephone'),
-			'qq' => Yii::t('model','QuestionQq'),
-			'question' => Yii::t('model','QuestionQuestion'),
-			'client_ip' => Yii::t('model','QuestionClient_ip'),
-			'create_time' => Yii::t('model','QuestionCreate_time'),
-			'verifyCode' => Yii::t('model','verifyCode'),
+			'id'           => Yii::t('model','QuestionId'),
+			'user_id'      => Yii::t('model','QuestionUserId'),
+			'realname'     => Yii::t('model','QuestionRealname'),
+			'email'        => Yii::t('model','QuestionEmail'),
+			'telephone'    => Yii::t('model','QuestionTelephone'),
+			'qq'           => Yii::t('model','QuestionQq'),
+			'question'     => Yii::t('model','QuestionContent'),
+			'client_ip'    => Yii::t('model','QuestionClientIp'),
+			'create_time'  => Yii::t('model','QuestionCreateTime'),
+			'verifyCode'   => Yii::t('model','verifyCode'),
 		);
 	}
 

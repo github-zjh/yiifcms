@@ -1,12 +1,12 @@
 <?php
 /**
- * 推荐位管理
+ * 推荐管理
  * 
  * @author        Sim Zhao <326196998@qq.com>
  * @copyright     Copyright (c) 2014-2015. All rights reserved.
  * 
  */
-class RecommendPositionController extends Backend
+class RecommendController extends Backend
 {	
     //所有动作
     public function actions()
@@ -15,10 +15,9 @@ class RecommendPositionController extends Backend
         $actions = $this->actionMapping(array(
             'index'  => 'Index',    //列表页
             'create' => 'Create',   //添加
-            'update' => 'Update',   //编辑
-            'view'   => 'View',     //查看已推荐内容
+            'update' => 'Update',   //编辑           
             'batch'  => 'Batch',    //批量操作            
-        ), 'application.modules.admin.controllers.recommendposition');
+        ), 'application.modules.admin.controllers.recommend');
         return array_merge($actions, $extra_actions);
     }
     
@@ -31,7 +30,7 @@ class RecommendPositionController extends Backend
     {
     	if ($this->model === null) {
             if (isset($_GET['id'])) {
-                $this->model = RecommendPosition::model()->findbyPk($_GET['id']);
+                $this->model = Recommend::model()->findbyPk($_GET['id']);
             }
             if ($this->model === null) {
                 throw new CHttpException(404, Yii::t('common', 'The requested page does not exist.'));

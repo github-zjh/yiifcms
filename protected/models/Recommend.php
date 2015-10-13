@@ -6,7 +6,10 @@
  * The followings are the available columns in table '{{recommend}}':
  * @property string $id
  * @property string $content_id
+ * @property integer $type
+ * @property string $title
  * @property string $sort_order
+ * @property string $create_time
  */
 class Recommend extends CActiveRecord
 {
@@ -26,11 +29,13 @@ class Recommend extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id', 'required'),
-			array('id, content_id, sort_order', 'length', 'max'=>10),
+			array('id, content_id, type', 'required'),
+			array('type', 'numerical', 'integerOnly'=>true),
+			array('id, content_id, sort_order, create_time', 'length', 'max'=>10),
+            array('title', 'length', 'max' => 100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, content_id, sort_order', 'safe', 'on'=>'search'),
+			array('id, content_id, type, title, sort_order, create_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -42,11 +47,6 @@ class Recommend extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'Post'=>array(self::HAS_ONE, 'Post', '','on' => 't.content_id=post.id','together'=>true),
-			'Image'=>array(self::HAS_ONE, 'Post', '','on' => 't.content_id=image.id','together'=>true),
-			'Soft'=>array(self::HAS_ONE, 'Soft', '','on' => 't.content_id=soft.id','together'=>true),
-			'Video'=>array(self::HAS_ONE, 'Video', '','on' => 't.content_id=video.id','together'=>true),
-			'Goods'=>array(self::HAS_ONE, 'Goods', '','on' => 't.content_id=goods.id','together'=>true),
 		);
 	}
 
@@ -55,11 +55,14 @@ class Recommend extends CActiveRecord
 	 */
 	public function attributeLabels()
 	{
-		return array(
-			'id' => 'Id',
-			'content_id' => 'Content',
-			'sort_order' => 'Sort Order',
-		);
+        return array(
+			'id'         => Yii::t('model','RecommendId'),
+			'content_id' => Yii::t('model','RecommendContent'),
+            'type'       => Yii::t('model','RecommendType'),
+            'title'      => Yii::t('model','RecommendTitle'),
+			'sort_order' => Yii::t('model','RecommendSortOrder'),
+            'create_time'=> Yii::t('model','RecommendCreateTime'),           
+		);		
 	}
 
 	/**
@@ -84,8 +87,14 @@ class Recommend extends CActiveRecord
 
 		$criteria->compare('content_id',$this->content_id,true);
 
+		$criteria->compare('type',$this->type);
+        
+        $criteria->compare('title',$this->title);
+
 		$criteria->compare('sort_order',$this->sort_order,true);
 
+		$criteria->compare('create_time',$this->create_time,true);
+		
 		return new CActiveDataProvider('Recommend', array(
 			'criteria'=>$criteria,
 		));

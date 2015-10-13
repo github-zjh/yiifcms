@@ -53,6 +53,7 @@ return array (
 	'BM_Model' => '模型',
 	'BM_Tools' => '工具',
 	'BM_Oauth' => '第三方授权',
+    'BM_BackUp' => '备份与恢复',
 	
 	/* 设置 */
 	'Web Set' => '站点设置',

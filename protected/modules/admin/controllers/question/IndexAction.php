@@ -27,6 +27,6 @@ class IndexAction extends CAction
         
         //查询
         $result = $model->findAll($criteria);
-        $this->controller->render('index', array ('datalist' => $result , 'pagebar' => $pages ));
+        $this->controller->render('index', array ( 'model' => $model, 'datalist' => $result , 'pagebar' => $pages ));
 	}
 }

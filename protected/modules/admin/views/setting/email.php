@@ -6,8 +6,8 @@
     <tr>
       <td class="tb_title"><?php echo Yii::t('admin','Email Active Status');?>：</td>
     </tr>
-    <tr >
-      <td >
+    <tr>
+      <td>
       	<select name="Setting[email_active]">
       		<option value="open" <?php if($setting['email_active'] == 'open'):?> selected="selected"<?php endif;?>><?php echo Yii::t('admin','Open');?></option>
       		<option value="close" <?php if($setting['email_active'] == 'close'):?> selected="selected"<?php endif;?>><?php echo Yii::t('admin','Close');?></option>
@@ -17,44 +17,44 @@
     <tr>
       <td class="tb_title"><?php echo Yii::t('admin','Email Host');?>：</td>
     </tr>
-    <tr >
-      <td ><input type="text" class="txt" name="Setting[email_host]" value="<?php echo $setting['email_host']?>" /></td>
+    <tr>
+      <td><input type="text" class="txt" name="Setting[email_host]" value="<?php echo $setting['email_host']?>" /></td>
     </tr>
     <tr>
       <td class="tb_title"><?php echo Yii::t('admin','Email Port');?>：</td>
     </tr>
-    <tr >
-      <td ><input type="text" name="Setting[email_port]" size="10" value="<?php echo $setting['email_port']?>"/></td>
+    <tr>
+      <td><input type="text" name="Setting[email_port]" size="10" value="<?php echo $setting['email_port']?>"/></td>
     </tr>
     <tr>
       <td class="tb_title"><?php echo Yii::t('admin','Email FromName');?>：</td>
     </tr>
-    <tr >
-      <td ><input type="text" class="txt" name="Setting[email_fromname]" value="<?php echo $setting['email_fromname']?>" /></td>
+    <tr>
+      <td><input type="text" class="txt" name="Setting[email_fromname]" value="<?php echo $setting['email_fromname']?>" /></td>
     </tr>
      <tr>
       <td class="tb_title"><?php echo Yii::t('admin','Email UserName');?>：</td>
     </tr>
-    <tr >
-      <td ><input type="text" class="txt" name="Setting[email_username]" value="<?php echo $setting['email_username']?>" /></td>
+    <tr>
+      <td><input type="text" class="txt" name="Setting[email_username]" value="<?php echo $setting['email_username']?>" /></td>
     </tr>
     <tr>
       <td class="tb_title"><?php echo Yii::t('admin','Email Password');?>：</td>
     </tr>
-    <tr >
-      <td ><input type="password" class="txt" name="Setting[email_password]" value="<?php echo $setting['email_password']?>"/></td>
+    <tr>
+      <td><input type="password" class="txt" name="Setting[email_password]" value="<?php echo $setting['email_password']?>"/></td>
     </tr>
     <tr>
       <td class="tb_title"><?php echo Yii::t('admin','Email TimeOut');?>：</td>
     </tr>
-    <tr >
-      <td ><input type="text" size="10" name="Setting[email_timeout]" value="<?php echo $setting['email_timeout']?>"/></td>
+    <tr>
+      <td><input type="text" size="10" name="Setting[email_timeout]" value="<?php echo $setting['email_timeout']?>"/></td>
     </tr>
     <tr>
       <td class="tb_title"><?php echo Yii::t('admin','Email ToTest');?>：</td>
     </tr>
-    <tr >
-      <td >
+    <tr>
+      <td>
       	<input type="text" class="txt" name="Setting[email_totest]" id="toEmail" value="<?php echo $setting['email_totest']?>"/>
       	&nbsp;&nbsp;<a href="javascript:;" class="actionLink" id="testSendEmail"><span><?php echo Yii::t('admin','Test Email');?></span></a>(<?php echo Yii::t('admin','Test Email Desc');?>)
       	<p style="color:red" id="test_status"></p>
@@ -62,7 +62,7 @@
     </tr>
    
     <tr class="submit">
-      <td ><input type="submit" name="editsubmit" value="<?php echo Yii::t('common','Submit');?>" class="button" tabindex="3" /></td>
+      <td><input type="submit" name="editsubmit" value="<?php echo Yii::t('common','Submit');?>" class="button" tabindex="3" /></td>
     </tr>
   </table>
 </form>

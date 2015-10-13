@@ -5,8 +5,7 @@
  *
  * The followings are the available columns in table '{{recommend_position}}':
  * @property string $id
- * @property string $recommend_name
- * @property string $type
+ * @property string $title
  */
 class RecommendPosition extends CActiveRecord
 {
@@ -26,12 +25,11 @@ class RecommendPosition extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('recommend_name, type','required'),
-			array('recommend_name', 'length', 'max'=>100),
-			array('type', 'length', 'max'=>50),
+			array('title','required'),
+			array('title', 'length', 'max'=>100),			
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, recommend_name, type', 'safe', 'on'=>'search'),
+			array('id, title', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -42,7 +40,7 @@ class RecommendPosition extends CActiveRecord
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
-		return array(
+		return array(            
 		);
 	}
 
@@ -52,9 +50,8 @@ class RecommendPosition extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
-			'recommend_name' => Yii::t('model','recommend_name'),
-			'type' => Yii::t('model','recommend_type'),
+			'id'    => Yii::t('model','RpId'),
+			'title' => Yii::t('model','RpTitle'),			
 		);
 	}
 
@@ -78,10 +75,8 @@ class RecommendPosition extends CActiveRecord
 
 		$criteria->compare('id',$this->id,true);
 
-		$criteria->compare('recommend_name',$this->recommend_name,true);
-
-		$criteria->compare('type',$this->type,true);
-
+		$criteria->compare('title',$this->title,true);
+		
 		return new CActiveDataProvider('RecommendPosition', array(
 			'criteria'=>$criteria,
 		));
