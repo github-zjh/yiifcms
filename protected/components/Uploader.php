@@ -107,7 +107,14 @@ class Uploader{
         
         //广告图片
         'ad' => array(            
-            'save_path'           => 'ad',             //保存路径
+            'save_path'           => 'ad',                  //保存路径
+            'allow_ext'           => 'jpg,jpeg,png,gif',    //允许类型  *代表所有
+            'rand_name'           => true,                  //是否随机生成文件名
+            'max_upload_filesize' => 2097152,               //允许最大上传大小2M            
+        ),
+        //友情链接logo
+        'link' => array(            
+            'save_path'           => 'link',                //保存路径
             'allow_ext'           => 'jpg,jpeg,png,gif',    //允许类型  *代表所有
             'rand_name'           => true,                  //是否随机生成文件名
             'max_upload_filesize' => 2097152,               //允许最大上传大小2M            

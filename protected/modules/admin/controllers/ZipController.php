@@ -18,7 +18,7 @@ class ZipController extends Backend
 	    		//提交打包
 	    		$zip = new ZipArchive();
 	    		$name = 'yiifcmsBAK_'.date('YmdHis',time()).'.zip';
-	    		$zipname = WWWPATH.'/'.$name;
+	    		$zipname = ROOT_PATH.'/'.$name;                
 	    		//创建一个空的zip文件
 	    		if($zip->open($zipname,ZipArchive::OVERWRITE)){	    			    			
 	    			foreach((array) $files as $file){	
@@ -26,10 +26,10 @@ class ZipController extends Backend
 	    					//递归检索文件
 	    					$allfiles = Helper::scanfDir($file,true);
 	    					foreach((array)$allfiles['files'] as $v){
-	    						$zip->addFile(WWWPATH.'/'.$v, $v);
+	    						$zip->addFile(ROOT_PATH.'/'.$v, $v);
 	    					} 
 	    				}else{
-	    					$zip->addFile(WWWPATH.'/'.$file, $file);
+	    					$zip->addFile(ROOT_PATH.'/'.$file, $file);
 	    				}	    			
 	    			}
 	    			$zip->close();

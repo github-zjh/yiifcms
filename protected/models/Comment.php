@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table '{{comment}}':
  * @property string $id
- * @property string $topic_id
+ * @property string $content_id
  * @property string $user_id
  * @property string $content
  * @property string $status
@@ -34,15 +34,16 @@ class Comment extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('content, user_id, topic_id, type', 'required'),
-			array('topic_id, user_id, create_time', 'length', 'max'=>10),
+			array('content, user_id, content_id, type', 'required'),
+			array('content_id, user_id, create_time', 'length', 'max'=>10),
 			array('status', 'length', 'max'=>1),
-			array('type', 'length', 'max'=>7),				
+			array('type', 'length', 'max'=>7),
+            array('content', 'length', 'max' => 500),
 			array('client_ip', 'length', 'max'=>15),
 			array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements(), 'on'=>'create'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, topic_id, user_id, content, status, type, client_ip, create_time', 'safe', 'on'=>'search'),
+			array('id, content_id, user_id, content, status, type, client_ip, create_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,11 +55,10 @@ class Comment extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-	        'post'=>array(self::BELONGS_TO, 'Post', 'topic_id',  'select'=>'id,title'),
-			'image'=>array(self::BELONGS_TO, 'Image', 'topic_id',  'select'=>'id,title'),
-			'soft'=>array(self::BELONGS_TO, 'Soft', 'topic_id',  'select'=>'id,title'),
-			'video'=>array(self::BELONGS_TO, 'Video', 'topic_id',  'select'=>'id,title'),
-			'goods'=>array(self::BELONGS_TO, 'Goods', 'topic_id',  'select'=>'id,goods_name, goods_name as title'),
+	        'post' =>array(self::BELONGS_TO, 'Post', 'content_id',  'select'=>'id,title'),
+			'image'=>array(self::BELONGS_TO, 'Image', 'content_id',  'select'=>'id,title'),
+			'soft' =>array(self::BELONGS_TO, 'Soft', 'content_id',  'select'=>'id,title'),
+			'video'=>array(self::BELONGS_TO, 'Video', 'content_id',  'select'=>'id,title'),			
 	    );
 	}
 
@@ -68,17 +68,16 @@ class Comment extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => Yii::t('model','CommentId'),
-			'topic_id' => Yii::t('model','CommentTopic_id'),
-			'title' => Yii::t('model','CommentTitle'),
-			'url' => Yii::t('model','CommentUrl'),
-			'user_id' => Yii::t('model','CommentUser_id'),
-			'content' => Yii::t('model','CommentContent'),
-			'status' => Yii::t('model','CommentStatus'),
-			'type' => Yii::t('model','CommentType'),
- 			'client_ip' => Yii::t('model','CommentClient_ip'),
-			'create_time' => Yii::t('model','CommentCreate_time'),
-			'verifyCode' => Yii::t('model','verifyCode')			
+			'id'          => Yii::t('model','CommentId'),
+			'content_id'  => Yii::t('model','CommentContentId'),
+			'title'       => Yii::t('model','CommentTitle'),			
+			'user_id'     => Yii::t('model','CommentUserId'),
+			'content'     => Yii::t('model','CommentContent'),
+			'status'      => Yii::t('model','CommentStatus'),
+			'type'        => Yii::t('model','CommentType'),
+ 			'client_ip'   => Yii::t('model','CommentClientIp'),
+			'create_time' => Yii::t('model','CommentCreateTime'),
+			'verifyCode'  => Yii::t('model','verifyCode')			
 		);
 	}	
 	
@@ -103,7 +102,7 @@ class Comment extends CActiveRecord
 
 		$criteria->compare('id',$this->id,true);
 
-		$criteria->compare('topic_id',$this->topic_id,true);
+		$criteria->compare('content_id',$this->content_id,true);
 
 		$criteria->compare('user_id',$this->user_id,true);
 

@@ -3,7 +3,7 @@
     <div class="searchArea">
         <ul class="action left"></ul>
         <div class="search right">
-            <?php $this->beginWidget('CActiveForm', array('id' => 'searchForm', 'method' => 'get', 'action' => array('attach'), 'htmlOptions' => array('name' => 'xform'))); ?>
+            <?php $this->beginWidget('CActiveForm', array('id' => 'searchForm', 'method' => 'get', 'action' => array('index'))); ?>
             <?php echo Yii::t('admin', 'Real Name'); ?>
             <input type="text" name="file_name" value="<?php echo Yii::app()->request->getParam('file_name') ?>" class="txt" size="15"/>
             <?php echo Yii::t('admin', 'File Name'); ?>

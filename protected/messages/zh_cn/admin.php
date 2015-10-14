@@ -121,7 +121,7 @@ return array (
 	/* 栏目 */
 	'Catalog Manage' => '栏目管理',
 	'Attach Manage' => '附件管理',
-	'Link Manage' => '链接管理',
+	'Link Manage' => '友情链接',
 	'Ads Manage' => '广告管理',
 	'User Manage' => '用户管理',
 	'Admin Manage' => '管理员管理',
@@ -390,4 +390,5 @@ return array (
 	'Please Select A Recommend Position' => '请选择一个推荐位',
     'Invialid Content' => '无效的推荐内容',
     'Recommend Success'=> '推荐成功',
+    'Content Type' => '内容类型',
 );

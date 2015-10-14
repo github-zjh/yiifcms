@@ -154,6 +154,7 @@ class KindEditor extends CInputWidget{
 	 * 数组
 	 */
 	protected function _arr( $key, $item ) {
+        $script = '';
 		$script .=  "'$key':[";
 		$subDot = '';
 		foreach ( $item as $value ) {

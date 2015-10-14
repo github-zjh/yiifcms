@@ -164,10 +164,9 @@
         <td><?php echo CHtml::activeTextArea($model, 'seo_description', array('rows' => 5, 'cols' => 80)); ?></td>
     </tr>  
     <tr class="submit">
-        <td colspan="2" >
-            <input name="old_file" type="hidden" value="<?php echo $model->attach_file ?>" />
-            <input name="old_thumb" type="hidden" value="<?php echo $model->attach_thumb ?>" />
-            <input type="submit" name="editsubmit" value="<?php echo Yii::t('common', 'Submit'); ?>" class="button" tabindex="3" /></td>
+        <td colspan="2" >            
+            <input type="submit" name="editsubmit" value="<?php echo Yii::t('common', 'Submit'); ?>" class="button" tabindex="3" />
+        </td>
     </tr>
 </table>
 <script type="text/javascript">

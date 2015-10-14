@@ -6,13 +6,15 @@
  * The followings are the available columns in table '{{Link}}':
  * @property string $id
  * @property string $title
- * @property string $link
+ * @property string $url
  * @property string $logo
- * @property integer $sortorder
+ * @property integer $sort_order
  * @property string $status
  */
 class Link extends CActiveRecord
 {
+    const STATUS_SHOW = 'Y';  //显示
+    const STATUS_HIDE = 'N';  //隐藏
 	/**
 	 * @return string the associated database table name
 	 */
@@ -29,13 +31,13 @@ class Link extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('sortorder', 'numerical', 'integerOnly'=>true),
-			array('title, link', 'length', 'max'=>100),
+			array('sort_order', 'numerical', 'integerOnly'=>true),
+			array('title, url', 'length', 'max'=>100),
 			array('logo', 'length', 'max'=>255),
 			array('status', 'length', 'max'=>1),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, link, logo, sortorder, status', 'safe', 'on'=>'search'),
+			array('id, title, url, logo, sort_order, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,12 +58,12 @@ class Link extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
-			'title' => 'Title',
-			'link' => 'Link',
-			'logo' => 'Logo',
-			'sortorder' => 'Sortorder',
-			'status' => 'Status Is',
+			'id'         => Yii::t('model','LinkId'),
+			'title'      => Yii::t('model','LinkTitle'),
+			'url'        => Yii::t('model','LinkUrl'),
+			'logo'       => Yii::t('model','LinkLogo'),
+			'sort_order' => Yii::t('model','LinkSortOrder'),
+			'status'     => Yii::t('model','LinkStatus'),
 		);
 	}
 
@@ -87,11 +89,11 @@ class Link extends CActiveRecord
 
 		$criteria->compare('title',$this->title,true);
 
-		$criteria->compare('link',$this->link,true);
+		$criteria->compare('url',$this->url,true);
 
 		$criteria->compare('logo',$this->logo,true);
 
-		$criteria->compare('sortorder',$this->sortorder);
+		$criteria->compare('sort_order',$this->sort_order);
 
 		$criteria->compare('status',$this->status,true);
 

@@ -7,7 +7,9 @@
  * @copyright (c) 2014-2015. All rights reserved.
  */
 return array(
-		
+        //公共
+		'verifyCode'           => '验证码',
+    
 		//Catalog[栏目]
 		'CatalogId'            => '栏目ID',
 		'CatalogParentId'	   => '上级栏目',
@@ -229,16 +231,14 @@ return array(
     
         //Comment[评论]
 		'CommentId'            => '评论ID',
-		'CommentTitle'         => '评论主题',
-		'CommentUrl'           => '评论内容地址',
-		'CommentTopic_id'      => '评论主题ID',
-		'CommentUser_id'       => '评论用户ID',
+		'CommentTitle'         => '评论主题',		
+		'CommentConentId'      => '评论内容',
+		'CommentUserId'        => '评论用户ID',
 		'CommentContent'       => '评论内容',
 		'CommentStatus'        => '评论状态',
 		'CommentType'          => '评论类型',
-		'CommentClient_ip'     => '评论ip',
-		'CommentCreate_time'   => '评论时间',
-		'verifyCode'           => '验证码',
+		'CommentClientIp'      => '评论IP',
+		'CommentCreateTime'    => '评论时间',		
 		
 		//Reply[回复]
 		'ReplyId'              => '回复ID',
@@ -310,4 +310,12 @@ return array(
         'AttachmentFileExt'    => '扩展名',
         'AttachmentFileSize'   => '文件大小',
         'AttachmentCreateTime' => '上传时间',
+    
+        //Link[友情链接]
+        'LinkId'               => '链接ID',
+        'LinkTitle'            => '链接标题',
+        'LinkUrl'              => '链接地址',
+        'LinkSortOrder'        => '排序',
+        'LinkStatus'           => '显示状态',
+        'LinkLogo'             => 'LOGO图片',
 );
