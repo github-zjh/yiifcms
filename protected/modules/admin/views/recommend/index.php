@@ -27,20 +27,22 @@
                 <th width="8%"><?php echo Yii::t('admin', 'Operate'); ?></th>
             </tr>
         </thead>
-        <?php foreach ($datalist as $dk => $row): ?>    
+        <?php foreach ($datalist as $dk => $row): ?>
+            <?php
+                $type = ModelType::model()->findByPk($row->type);
+                if($type) {
+                    $type_name = $type->type_name;
+                    $view_url = Helper::getFullUrl($this->createUrl('/'.$type->type_key . '/view', array('id' => $row->content_id)));                        
+                } else {
+                    $type_name = '未知';
+                    $view_url = 'javascript:alert("数据错误");';
+                }
+            ?>
             <tr class="tb_list">
                 <td><input type="checkbox" name="id[]" value="<?php echo $row->id; ?>" /><?php echo $row->id; ?></td>
                 <td><input name="sortOrder[<?php echo $row->id ?>]" type="text" id="sortOrder[]" value="<?php echo $row->sort_order; ?>" size="5" /></td>
                 <td>
-                    <a href="<?php 
-                    $type = ModelType::model()->findByPk($row->type);
-                    if($type) {
-                        $type_name = $type->type_name;
-                        $view_url = Helper::getFullUrl($this->createUrl('/'.$type->type_key . '/view', array('id' => $row->content_id)));                        
-                    } else {
-                        $type_name = '未知';
-                        $view_url = 'javascript:alert("数据错误");';
-                    } echo $view_url;?>" target="_blank" ><?php echo $row->title; ?></a><br />
+                    <a href="<?php echo $view_url;?>" target="_blank" ><?php echo $row->title; ?></a><br />
                 </td>
                 <td><?php echo $type_name; ?></td>                
                 <td><?php echo date('Y-m-d H:i', $row->create_time) ?></td>

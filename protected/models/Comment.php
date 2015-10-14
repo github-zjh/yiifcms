@@ -15,9 +15,11 @@
  */
 class Comment extends CActiveRecord
 {
+    const STATUS_SHOW = 'Y'; //显示
+    const STATUS_HIDE = 'N'; //隐藏
+    
 	public $verifyCode;
-	public $title;  // 相关内容title
-	public $url;    // 相关内容url
+	
 	/**
 	 * @return string the associated database table name
 	 */
@@ -69,8 +71,7 @@ class Comment extends CActiveRecord
 	{
 		return array(
 			'id'          => Yii::t('model','CommentId'),
-			'content_id'  => Yii::t('model','CommentContentId'),
-			'title'       => Yii::t('model','CommentTitle'),			
+			'content_id'  => Yii::t('model','CommentContentId'),						
 			'user_id'     => Yii::t('model','CommentUserId'),
 			'content'     => Yii::t('model','CommentContent'),
 			'status'      => Yii::t('model','CommentStatus'),

@@ -7,9 +7,7 @@
  * 
  */
 class CommentController extends Backend
-{
-    protected $_model_type;
-    
+{    
     //所有动作
     public function actions()
     {

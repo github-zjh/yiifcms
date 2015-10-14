@@ -14,8 +14,9 @@
  */
 class Reply extends CActiveRecord
 {
-	public $title;  // 相关内容title
-	public $url;    // 相关内容url
+	const STATUS_SHOW = 'Y'; //显示
+    const STATUS_HIDE = 'N'; //隐藏
+    
 	/**
 	 * @return string the associated database table name
 	 */
@@ -34,7 +35,7 @@ class Reply extends CActiveRecord
 		return array(
 			array('user_id, cid, reply_id, create_time', 'length', 'max'=>10),
 			array('status', 'length', 'max'=>1),
-			array('content', 'safe'),
+			array('content', 'length', 'max'=>500),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, user_id, cid, reply_id, content, status, create_time', 'safe', 'on'=>'search'),
@@ -58,12 +59,12 @@ class Reply extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => Yii::t('model', 'ReplyId'),
-			'user_id' => Yii::t('model', 'ReplyUserid'),
-			'cid' => Yii::t('model', 'ReplyCid'),
-			'reply_id' => Yii::t('model', 'ReplyRid'),
-			'content' => Yii::t('model', 'ReplyContent'),
-			'status' => Yii::t('model', 'ReplyStatus'),
+			'id'          => Yii::t('model', 'ReplyId'),
+			'user_id'     => Yii::t('model', 'ReplyUserId'),
+			'cid'         => Yii::t('model', 'ReplyCid'),
+			'reply_id'    => Yii::t('model', 'ReplyRid'),
+			'content'     => Yii::t('model', 'ReplyContent'),
+			'status'      => Yii::t('model', 'ReplyStatus'),
 			'create_time' => Yii::t('model', 'ReplyCreateTime'),
 		);
 	}
