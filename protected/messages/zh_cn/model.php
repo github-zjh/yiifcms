@@ -68,10 +68,14 @@ return array(
 		'RpTitle'              => '推荐位名称',		
 		
 		//ModelType[内容模型]
-		'MTid'                 => '内容模型ID',
-		'MTtype_key'           => '内容模型标示',
-		'MTtype_name'          => '内容模型名称',
-		'MTmodel'              => '内容模型',
+		'MTId'                 => '模型ID',
+		'MTTypeKey'            => '模型标示',
+		'MTTypeName'           => '模型名称',
+		'MTModel'              => '内容模型',
+        'MTStatus'             => '模型状态',
+        'MTSeoTitle'           => 'SEO标题',
+        'MTSeoKeywords'        => 'SEO关键字',
+        'MTSeoDescription'     => 'SEO描述',
         
         //Post[文章]
         'PostId'               => '文章ID',
@@ -281,7 +285,12 @@ return array(
         'SpecialSortOrder'     => '专题排序',
         'SpecialTimeCreate'    => '专题添加时间',
         'SpecialTimeUpdate'    => '专题更新时间',
-		
+    
+        //Tag[标签]
+		'TagId'                => '标签ID',
+        'TagName'              => '标签名称',
+        'TagDataCount'         => '标签数量',
+    
 		//MailLog[邮件日志]
 		'MailId'               => '邮件ID',
 		'MailAccept'           => '收件人',

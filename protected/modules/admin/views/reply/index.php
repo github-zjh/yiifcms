@@ -8,7 +8,7 @@
                 <option value="Y"><?php echo Yii::t('admin', 'Pass Checking'); ?></option>
                 <option value="N"><?php echo Yii::t('admin', 'Wait Checking'); ?></option>
             </select>
-            <input name="searchsubmit" type="submit" value="<?php echo Yii::t('admin', 'Query'); ?>" class="button"/>
+            <input type="submit" value="<?php echo Yii::t('admin', 'Query'); ?>" class="button"/>
             <?php $this->endWidget(); ?>
             <script type="text/javascript">                
                 $(document).ready(function () {
@@ -53,7 +53,7 @@
                         <option value="show"><?php echo Yii::t('admin', 'Verify Pass'); ?></option>
                         <option value="hide"><?php echo Yii::t('admin', 'Cancel Verify'); ?></option>
                     </select>
-                    <input id="submit_maskall" class="button confirmSubmit" type="submit" value="<?php echo Yii::t('common', 'Submit'); ?>" name="maskall" />
+                    <input id="submit_maskall" class="button confirmSubmit" type="submit" value="<?php echo Yii::t('common', 'Submit'); ?>" />
                 </div>
             </td>
         </tr>

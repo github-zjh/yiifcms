@@ -52,9 +52,9 @@ class Tag extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
-			'tag_name' => 'Tag Name',
-			'data_count' => 'Data Count',
+			'id'         => Yii::t('model','TagId'),
+			'tag_name'   => Yii::t('model','TagName'),
+			'data_count' => Yii::t('model','TagDataCount'),
 		);
 	}
 

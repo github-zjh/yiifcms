@@ -63,14 +63,14 @@ class ModelType extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => Yii::t('model','MTid'),
-			'type_key' => Yii::t('model','MTtype_key'),
-			'type_name' => Yii::t('model','MTtype_name'),
-			'model' => Yii::t('model','MTmodel'),
-			'status' => Yii::t('model','Status'),
-			'seo_title' => Yii::t('model','SEO Title'),
-			'seo_keywords' => Yii::t('model','SEO Keywords'),
-			'seo_description' => Yii::t('model','SEO Description'),
+			'id'              => Yii::t('model','MTId'),
+			'type_key'        => Yii::t('model','MTTypeKey'),
+			'type_name'       => Yii::t('model','MTTypeName'),
+			'model'           => Yii::t('model','MTModel'),
+			'status'          => Yii::t('model','MTStatus'),
+			'seo_title'       => Yii::t('model','MTSeoTitle'),
+			'seo_keywords'    => Yii::t('model','MTSeoKeywords'),
+			'seo_description' => Yii::t('model','MTSeoDescription'),
 		);
 	}
 

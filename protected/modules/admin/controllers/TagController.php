@@ -7,88 +7,34 @@
  */
 
 class TagController extends Backend
-{		
-    /**
-     * 标签管理
-     *
-     */
-    public function actionIndex() {
-        $model = new Tag();
-        $criteria = new CDbCriteria();
-        $condition = '1';
-        $tagName = Yii::app()->request->getParam( 'tagName' );
-        $tagName && $condition .= ' AND tag_name LIKE \'%' . $tagName . '%\'';
-        $criteria->condition = $condition;
-        $criteria->order = 't.id DESC';        
-        $count = $model->count( $criteria );
-        $pages = new CPagination( $count );
-        $pages->pageSize = 13;
-        $pageParams = $this->buildCondition( $_GET, array ( 'tagName') );
-        $pages->params = is_array( $pageParams ) ? $pageParams : array ();
-        $criteria->limit = $pages->pageSize;
-        $criteria->offset = $pages->currentPage * $pages->pageSize;
-        $result = $model->findAll( $criteria );
-        $this->render( 'index', array ( 'datalist' => $result , 'pagebar' => $pages ) );
-    }
-    
-    /**
-     * 
-     * 重新统计标签，删除不匹配的标签
-     * 
-     */
-    public function actionReset(){
-    	$tags = Tag::model()->findAll();
-    	foreach((array) $tags as $tag){    		
-    		$post = Post::model()->findAll("FIND_IN_SET(:tag, tags)", array(':tag'=>$tag->tag_name));   
-    		$image = Image::model()->findAll("FIND_IN_SET(:tag, tags)", array(':tag'=>$tag->tag_name));
-    		$soft = Soft::model()->findAll("FIND_IN_SET(:tag, seo_keywords)", array(':tag'=>$tag->tag_name));
-    		if(!$post && !$image && !$soft){
-    			$tag->delete();
-    		}else{
-    			$tag->data_count = count($post) + count($image) + count($soft);
-    			$tag->save();
-    		}
-    	}
-    	$this->message('success',Yii::t('admin','Reset Tags Success'),$this->createUrl('index'));
-    }
-    
-    /**
-     * 批量操作
-     *
-     */
-    public function actionBatch ()
+{
+    //所有动作
+    public function actions()
     {
-    
-    	if ($this->method() == 'GET') {
-    		$command = trim($_GET['command']);
-    		$ids = intval($_GET['id']);
-    	} else
-    	if ($this->method() == 'POST') {
-    		$command = trim($_POST['command']);
-    		$ids = $_POST['id'];
-    	} else {
-    		$this->message('errorBack', Yii::t('admin','Only POST Or GET'));
-    	}
-    	empty($ids) && $this->message('error', Yii::t('admin','No Select'));
-    
-    	switch ($command) {
-    		case 'tagsDelete':
-    			//删除评论
-    			foreach((array)$ids as $id){
-    				$tagModel = Tag::model()->findByPk($id);
-    				if($tagModel){
-    					$tagModel->delete();
-    				}
-    			}
-    			break;
-    		
-    		default:
-    			throw new CHttpException(404,  Yii::t('admin','Error Operation'));
-    			break;
-    	}
-    
-    	$this->message('success', Yii::t('admin','Batch Operate Success'),$this->createUrl('index'));
-    
+        $extra_actions = array();
+        $actions = $this->actionMapping(array(
+            'index'        => 'Index',         //列表页            
+            'reset'        => 'Reset',         //重新统计标签
+            'batch'        => 'Batch',         //批量操作            
+        ), 'application.modules.admin.controllers.tag');
+        return array_merge($actions, $extra_actions);
     }
-
+    
+    /**
+     * 判断数据是否存在
+     * 
+     * return \$this->model
+     */
+    public function loadModel()
+    {
+    	if ($this->model === null) {
+            if (isset($_GET['id'])) {
+                $this->model = Tag::model()->findbyPk($_GET['id']);
+            }
+            if ($this->model === null) {
+                throw new CHttpException(404, Yii::t('common', 'The requested page does not exist.'));
+            }
+        }
+        return $this->model;
+    }
 }

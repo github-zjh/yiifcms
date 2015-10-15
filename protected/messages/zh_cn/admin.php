@@ -272,6 +272,7 @@ return array (
 	'Default Empty' => '默认为空',
 	'Recommend' => '推荐',
 	'Tags Manage' => '标签管理',
+    'Tag Name' => '标签名称',
 	'Acl' => '权限',
 	'Group Name' => '用户组名称',
 	'Question Manage' => '留言管理',
