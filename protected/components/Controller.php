@@ -43,8 +43,8 @@ class Controller extends CController
     public     $_request = '';	
 	public     $_type_ids = array(); //内容模型id	
 	public     $_content_models = array(); //内容模型对象
-	protected  $_cmsVersion = 'yiifcms1.4.1';
-	protected  $_cmsRelease = '20141222';
+	public     $_cmsVersion = 'yiifcms1.4.2_UTF-8';
+	public     $_cmsRelease = '20141222';
 	
 	
 	public function init ()
