@@ -54,10 +54,10 @@ class OAuth extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
-			'apiname' => 'Apiname',
-			'apiconfig' => 'Apiconfig',
-			'status' => 'Status',
+			'id'        => Yii::t('model','OAuthId'),
+			'apiname'   => Yii::t('model','OAuthApiName'),
+			'apiconfig' => Yii::t('model','OAuthApiConfig'),
+			'status'    => Yii::t('model','OAuthStatus'),
 		);
 	}
 

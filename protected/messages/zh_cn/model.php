@@ -323,4 +323,10 @@ return array(
         'LinkSortOrder'        => '排序',
         'LinkStatus'           => '显示状态',
         'LinkLogo'             => 'LOGO图片',
+    
+        //OAuth[第三方登录]
+        'OAuthId'              => '应用ID',
+        'OAuthApiConfig'       => '应用配置',
+        'OAuthApiName'         => '应用名称',
+        'OAuthStatus'          => '应用状态',
 );

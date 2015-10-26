@@ -29,6 +29,7 @@ class UpdateAction extends CAction
                     $config = $this->configRenren();					
 					break;
             }
+            $model->apiconfig = $config;
     		if($model->save()) {
                 $this->controller->message('success',Yii::t('admin','Update Success'),$this->controller->createUrl('index'));
             }
@@ -82,7 +83,7 @@ class UpdateAction extends CAction
         );    
         $apiconfig = CJSON::encode($config);
         //写入配置文件
-        $setting = "<?php\nheader('Content-Type: text/html; charset=UTF-8'); \n"
+        $setting = "<?php\nheader('Content-Type: text/plain; charset=UTF-8'); \n"
                 . "define( \"WB_AKEY\" , '".$config['wb_akey']."' );\n"
                 . "define( \"WB_SKEY\" , '".$config['wb_skey']."' );\n"
                 . "define( \"WB_CALLBACK_URL\" , '".$config['callback']."' );\n";        
@@ -103,9 +104,22 @@ class UpdateAction extends CAction
     protected function configWeiXin()
     {
         $config = array(
-            
-        );
-        $apiconfig = CJSON::encode($config);
+            'app_id'     => trim($_POST['config']['app_id']),
+            'app_secret' => trim($_POST['config']['app_secret']),
+            'callback'   => trim($_POST['config']['callback']),
+        );        
+        $apiconfig = CJSON::encode($config);        
+        //写入配置文件
+        $setting = "<?php\nheader('Content-Type: text/plain; charset=UTF-8');\n"
+                . "define( \"APP_ID\" , '".$config['app_id']."' );\n"
+                . "define( \"APP_SECRET\" , '".$config['app_secret']."' );\n"
+                . "define( \"CALLBACK_URL\" , '".$config['callback']."' );\n";
+        $setting = str_replace("\/", "/",$setting);
+        $incFileName = $this->_ext_oauth.'/weixin/config.php';
+        $incFile = fopen($incFileName,"w+") or die("请开启{$incFileName}的读写权限");
+        if(fwrite($incFile, $setting)){            			
+            fclose($incFile);            			
+        }
         return $apiconfig;
     }
     
@@ -123,7 +137,7 @@ class UpdateAction extends CAction
         );
         $apiconfig = CJSON::encode($config);
         //写入配置文件
-        $setting = "<?php\nheader('Content-Type: text/html; charset=UTF-8');\n"
+        $setting = "<?php\nheader('Content-Type: text/plain; charset=UTF-8');\n"
                 . "define( \"APP_KEY\" , '".$config['app_key']."' );\n"
                 . "define( \"APP_SECRET\" , '".$config['app_secret']."' );\n"
                 . "define( \"CALLBACK_URL\" , '".$config['callback']."' );\n";
