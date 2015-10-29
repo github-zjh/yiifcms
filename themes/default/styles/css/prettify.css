@@ -4,14 +4,12 @@ li.L0,li.L1,li.L2,li.L3,li.L4,li.L5,li.L6,li.L7,li.L8,li.L9{list-style:decimal o
 li.L1,li.L3,li.L5,li.L7,li.L9{background:#eee}
 
 pre.prettyprint {
-	background-color:#DDDDDD;
+	background-color:#eeeeee;
 	border: 0;
-	border-left: 3px solid #6CE26C;
-	margin-left: 2em;	
-	font-size: 110%;
+	border-left: 3px solid #6CE26C;	
+	font-size: 1.1em;
 	display: block;
-	font-family: "Consolas", "Monaco", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
-	margin: 1em 0px;
+	font-family: "Consolas", "Monaco", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;	
 	white-space: pre;
 }
 
@@ -19,12 +17,10 @@ pre.prettyprint {
 .content_info {
     font-size: 10pt;
 }
-.content_info pre {
-    font-size:9pt;
-    font-family:Courier New,Arial;
-    border:1px solid #ddd;
-    border-left:40px solid #CCCCCC;
-    background:#f6f6f6;   
+.content_info pre {       
+    border:1px dashed #428bca;
+    padding-left:2em;
+    line-height:1.5em;
 }
  
 .content_info code {
@@ -47,13 +43,6 @@ pre.prettyprint {
 .content_info pre code {
     background-color: transparent;
     border: none;
-}
- 
-.content_info p {
-    margin: 0 0 15px 0;
-    margin-bottom:15pt;
-    line-height:1.5;
-    letter-spacing: 1px;
 }
  
 .content_info div.ref {border:1px solid #ddd;margin:0 0 10px 0;padding:2px;font-size:9pt;background:#ffe;}

@@ -1,9 +1,8 @@
 @CHARSET "UTF-8";
 
 #content { width:1170px; margin:0 auto; text-align:left; margin-bottom:70px; }
-#content .content_left { float:left; width:870px; overflow:hidden;}
+#content .content_left { float:left; width:828px; border:1px solid #DDDDDD; padding:10px 20px; overflow:hidden;}
 #content .content_right { float:right; width:270px; }
-.content_left .list_box { margin-bottom:25px; border-bottom:3px solid #e5e6e6;}
 .content_left .list_box h2 { font-size:28px; line-height:33px;}
 .content_left .list_head { float:left; width:70px; text-align:center; }
 .content_left .list_body { float:right; width:770px;}
@@ -28,6 +27,8 @@
 .content_left .share_box strong { font-size:14px;}
 .content_left .share_box ul { list-style:none;}
 .content_left .share_box ul li { float:left; margin:0 10px; }
+
+#comment_iframe { border-top:1px dashed #428BCA; }
 
 /* 图集幻灯片 */
 #show_pics { width:auto; overflow:hidden; position:relative;}
@@ -77,8 +78,8 @@ blockquote:before {
 	margin-right:.25em;
 	vertical-align:-.4em;
  }
-
-.content_info p { padding:3px 0; font-size:1.2em;}
+.content_info em, .content_info th { font-size:1.5em;}
+.content_info p { font-size:14px; line-height:1.8em;}
 .description { background-color:#ececec; border: 1px solid #dcdcdc; color: #333333;
     font-size: 14px; line-height: 20px; padding: 7px 15px; margin-bottom:10px;}
 
