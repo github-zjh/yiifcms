@@ -3,8 +3,7 @@
 	<h3><?php echo Yii::t('admin','Access Set');?></h3>
 </div>
 
-<?php if($setting):?>
-<form action="" method="post" enctype="multipart/form-data">
+<?php $form = $this->beginWidget('CActiveForm');?>
 	<table class="content_list">
 		<tbody>
 			<tr>
@@ -35,4 +34,4 @@
 		<input type="submit" name="editsubmit" value="提交" class="button" tabindex="3" />
 	</div>
 </form>
-<?php endif;?>
+<?php $this->endWidget();?>

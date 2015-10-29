@@ -3,7 +3,7 @@
     <h3><?php echo Yii::t('admin', 'Cache Set'); ?></h3>
 </div>
 
-<form action="<?php echo $this->createUrl('setting/cache') ?>"  method="post" name="cache-form">
+<?php $form = $this->beginWidget('CActiveForm');?>
     <table class="content_list">
         <tbody>
             <tr>
@@ -95,7 +95,7 @@
     <div class="submit" style="padding-top: 10px">
         <input type="submit" value="<?php echo Yii::t('common', 'Submit') ?>" class="button"	tabindex="3" />
     </div>
-</form>
+<?php $this->endWidget();?>
 <script type="text/javascript">
     $(function () {
         var cache_select_type = "<?php echo $data['cache_type'] ?>";

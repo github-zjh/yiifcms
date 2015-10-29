@@ -1,4 +1,6 @@
-	<div id="intro">		
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->_stylePath . '/css/index.css';?>" />
+    <script type="text/javascript" src="<?php echo $this->_stylePath . '/js/jquery.easytabs.min.js';?>"></script>
+    <div id="intro">		
 		<div class="intro_title">
 			<a href="<?php echo $this->createUrl('soft/index', array('catalog_id'=>11));?>" class="view_more" target="_blank"><?php echo Yii::t('common','DownLoad Now');?></a>
 			<h1>YIIFCMS</h1>
@@ -178,14 +180,6 @@
         <?php endif;?>
 	<!-- 推荐教程区结束 -->
 	
-	
-		
-	<script type="text/javascript">
-		$(function() {
-		    $('.tab_container').easytabs();
-		});
-  	</script>
-	
 	<!-- 首页底部banner开始 -->
 	<?php if($index_bottom_banner):?>	
 	<a class="banner index_mid_banner" title="<?php echo $index_bottom_banner->title;?>" href="<?php echo $index_bottom_banner->link_url;?>" target="_blank">
@@ -204,7 +198,7 @@
 		<?php if($link_logos):?>
 		<ul class="client_body clear">
 			<?php foreach($link_logos as $lg):?>
-			<li><a href="<?php echo $lg->link;?>" title="<?php echo $lg->title;?>" target="_blank"><img width="170" height="90" src="<?php echo $lg->logo;?>" /></a></li>
+			<li><a href="<?php echo $lg->url;?>" title="<?php echo $lg->title;?>" target="_blank"><img width="170" height="90" src="<?php echo $lg->logo;?>" /></a></li>
 			<?php endforeach;?>			
 		</ul>
 		<?php endif;?>
@@ -212,8 +206,14 @@
 		<?php if($link_texts):?>
 		<ul class="client_foot clear">
 			<?php foreach($link_texts as $lt):?>
-			<li><a href="<?php echo $lt->attributes['link'];?>" title="<?php echo $lt->attributes['title'];?>" target="_blank"><?php echo $lt->title;?> </a></li>
+			<li><a href="<?php echo $lt->url;?>" title="<?php echo $lt->title;?>" target="_blank"><?php echo $lt->title;?> </a></li>
 			<?php endforeach;?>			
 		</ul>
 		<?php endif;?>
 	</div>
+    
+    <script type="text/javascript">
+		$(function() {
+		    $('.tab_container').easytabs();
+		});
+  	</script>

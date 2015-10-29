@@ -1,4 +1,8 @@
-	<!-- 导航面包屑开始 -->
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->_stylePath . '/css/view.css';?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->_stylePath . '/css/prettify.css';?>" />    
+    <script type="text/javascript" src="<?php echo $this->_stylePath . '/js/prettify.js';?>"></script>
+    
+    <!-- 导航面包屑开始 -->
 	<?php $this->renderPartial('/layouts/nav',array('navs'=>$navs));?>
 	<!-- 导航面包屑结束 -->
 	
@@ -9,11 +13,15 @@
 				<h2><?php echo CHtml::encode($post->title);?></h2>
 				<p class="view_info">
 					<span><?php echo Yii::t('common','Copy From')?>： <em><?php echo $post->copy_from?"<a href='".$post->copy_url."' target='_blank'>".$post->copy_from."</a>":Yii::t('common','System Manager');?></em></span>
-					<?php $post_tags = $post->tags?explode(',',$post->tags):array(); $tags_len = count($post_tags);?>
+					<?php 
+                        $alltags = $post->tags?explode(',',$post->tags):array(); 
+                        $post_tags = array_slice($alltags, 0, 5);
+                        $tags_len = count($post_tags); 
+                    ?>
 					<?php if($tags_len > 0):?>
 					<span class="tags">
-						<?php $i = 1; foreach((array)$post_tags as $ptag):?>
-						<em><a href="<?php echo $this->createUrl('tag/index',array('tag'=>$ptag));?>"><?php echo $ptag;?></a><?php if($i<$tags_len):?>,&nbsp;&nbsp;<?php endif;?></em>
+						<?php $i = 1; foreach($post_tags as $ptag):?>
+						<em><a href="<?php echo $this->createUrl('tag/index',array('tag'=>$ptag));?>"><?php echo $ptag;?></a><?php if($i<$tags_len):?>&nbsp;&nbsp;<?php endif;?></em>
 						<?php $i++;?>
 						<?php endforeach;?>								
 					</span>
@@ -29,7 +37,7 @@
 					</span>
 					<!-- 关注 -->
 					<span class="attentions">
-						<a href="javascript:ajaxClick('attention');"" data-act="attention" data-id="<?php echo $post->id;?>">
+						<a href="javascript:ajaxClick('attention');" data-act="attention" data-id="<?php echo $post->id;?>">
 							<em><?php echo Yii::t('common','Attention');?>+<i><?php echo $post->attention_count;?></i></em>
 						</a>
 						<span class="ajax_msg">loading...</span>
@@ -45,7 +53,7 @@
 				
 			</div>	
 			<!-- 评论区 -->
-			<iframe id="comment_iframe" scrolling="no"  marginheight="0" marginwidth="0" frameborder="0" src="<?php echo $this->createUrl('comment/create', array('view_url'=>$this->_request->getUrl(),'topic_id'=>$post->id,'topic_type'=>'post'));?>"></iframe>		
+			<iframe id="comment_iframe" scrolling="no"  marginheight="0" marginwidth="0" frameborder="0" src="<?php echo $this->createUrl('comment/create', array('view_url'=>$this->_request->getUrl(),'content_id'=>$post->id,'topic_type'=>'post'));?>"></iframe>		
 		</div>
 		
 		<!-- 右侧内容开始 -->

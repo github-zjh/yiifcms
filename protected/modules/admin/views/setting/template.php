@@ -1,7 +1,7 @@
 <div id="contentHeader">
     <h3><?php echo Yii::t('admin', 'Template Set'); ?></h3>  
 </div>
-<?php $form = $this->beginWidget('CActiveForm', array('id' => 'xform', 'htmlOptions' => array('name' => 'xform', 'method' => 'post'))); ?>
+<?php $form = $this->beginWidget('CActiveForm'); ?>
 <table class="content_list">
     <tr>
         <td class="tb_title"><?php echo Yii::t('admin', 'Themes'); ?>：</td>
@@ -21,8 +21,3 @@
     </tr>
 </table>
 <?php $this->endWidget(); ?>
-<script type="text/javascript">
-    $(function () {
-        $("#xform").validationEngine();
-    });
-</script>

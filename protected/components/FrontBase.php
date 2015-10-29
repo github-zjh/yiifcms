@@ -1,8 +1,8 @@
 <?php
 /**
- * 
  * 前端控制基础类
- * @author Sim <326196998@qq.com>
+ * 
+ * @author Sim Zhao <326196998@qq.com>
  * @copyright Copyright (c) 2014-2015 Personal. All rights reserved.
  * @link http://www.yiifcms.com
  * @version v1.0.0
@@ -44,28 +44,29 @@ class FrontBase extends Controller
 			$encode_intro = CHtml::encode($this->_setting['site_status_intro']);
 			$site_name = CHtml::encode($this->_setting['site_name']);
 			echo <<<EOT
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>$site_name</title>
-</head>
-<body>
-	<p style="width:800px; line-height:40px;  margin:0 auto; margin-top:50px; color:#FFFFFF; text-align:center; background-color:#3C5880;">$encode_intro</p>
-</body>
-</html>	
+                <html>
+                <head>
+                    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+                    <title>$site_name</title>
+                </head>
+                <body>
+                    <p style="width:800px; line-height:40px;  margin:0 auto; margin-top:50px; color:#FFFFFF; text-align:center; background-color:#3C5880;">$encode_intro</p>
+                </body>
+                </html>	
 EOT;
 		    exit;
 		}
 		
 		//前端ip访问控制
-		$cur_ip = Yii::app()->request->userHostAddress;		
-		$access_ips = $this->_setting['deny_access_ip'];
-		$access_ips && $access_ips = explode("\r\n", trim($access_ips));
-		$access = Helper::ipAccess($cur_ip, $access_ips);
-		if(!$access) {			
-			throw new CHttpException(403, '403 Forbidden!');
-			exit;
-		}
+		$cur_ip = Yii::app()->request->userHostAddress;
+        if($this->_setting['deny_access_ip']) {
+            $access_ips = explode("\r\n", trim($this->_setting['deny_access_ip']));
+            $access = Helper::ipAccess($cur_ip, $access_ips);
+            if(!$access) {			
+                throw new CHttpException(403, '403 Forbidden!');                
+            }
+        }
 		
 		//主题设置		
 		Yii::app()->theme = $this->_setting['theme'];

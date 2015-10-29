@@ -38,10 +38,10 @@ class UpdateAction extends CAction
                 $model->image_list = implode(',', $imageList);
             }
     		
-    		//标签   (前10个标签有效) 		
+    		//标签   (前5个标签有效) 		
     		$tags = trim($_POST['Image']['tags']);    		
     		$unique_tags = array_unique(explode(',', str_replace(array (' ' , '，' ), array('',','), $tags)));    		
-    		$explodeTags = array_slice($unique_tags, 0, 10);  
+    		$explodeTags = array_slice($unique_tags, 0, 5);  
     		    		  	
     		//摘要
     		$model->introduce = trim($_POST['Image']['introduce'])?$_POST['Image']['introduce']:Helper::truncate_utf8_string(preg_replace('/\s+/',' ',$_POST['Image']['content']), 200);

@@ -39,10 +39,10 @@ class CreateAction extends CAction
                 $model->image_list = implode(',', $imageList);
             }
     		
-    		//标签   (前10个标签有效) 		
+    		//标签   (前5个标签有效) 		
     		$tags = trim($_POST['Image']['tags']);    		
     		$unique_tags = array_unique(explode(',', str_replace(array (' ' , '，' ), array('',','), $tags)));    		
-    		$explodeTags = array_slice($unique_tags, 0, 10);  
+    		$explodeTags = array_slice($unique_tags, 0, 5);  
     		$model->tags = implode(',',$explodeTags);
     		
     		//摘要

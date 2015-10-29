@@ -141,7 +141,7 @@ return array(
 		'SoftCatalogId'        => '所属分类',
 		'SoftTitle'            => '软件名称',
 		'SoftCoverImage'       => '封面图片',
-		'SoftFiledId'          => '软件附件',
+		'SoftFile'             => '软件附件',
 		'SoftFileType'         => '软件附件类型',
 		'SoftSize'             => '软件大小',
 		'SoftLink'             => '软件外部下载链接',

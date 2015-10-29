@@ -3,9 +3,14 @@
 	<title>添加评论</title>
 	<base href="<?php echo $this->_request->hostinfo.Yii::app()->homeUrl;?>" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta name="language" content="<?php echo $this->_yii->language;?>" />
 	<meta name="keywords" content="<?php echo $this->_seoKeywords;?>" />
-	<meta name="description" content="<?php echo $this->_seoDescription;?>" />		
+	<meta name="description" content="<?php echo $this->_seoDescription;?>" />    
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->_stylePath . '/css/comment.css';?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->_stylePath . '/css/prettify.css';?>" />
+    <script type="text/javascript" src="<?php echo $this->_stylePath . '/js/jquery.min.js';?>"></script>
+    <script type="text/javascript" src="<?php echo $this->_stylePath . '/js/prettify.js';?>"></script>
 </head>
 <body>			
 <?php if(!$this->_login_status):?>
@@ -90,7 +95,7 @@
 				</div>
 				
 				<!-- 回复列表 -->
-				<?php if($replies[$comment->id]):?>
+				<?php if($replies && $replies[$comment->id]):?>
 				<ul class="reply_list clear">					
 					<?php $position = 1;?>
 					<?php foreach((array)$replies[$comment->id] as $reply):?>								

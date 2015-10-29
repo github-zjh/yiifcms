@@ -1,7 +1,7 @@
 <div id="contentHeader">
     <h3><?php echo Yii::t('admin', 'SEO Set'); ?></h3> 
 </div>
-<form action="" method="post"  enctype="multipart/form-data" >
+<?php $form = $this->beginWidget('CActiveForm');?>
     <table class="content_list">
         <tr>
             <td class="tb_title"><?php echo Yii::t('admin', 'Web Title'); ?>：</td>
@@ -27,4 +27,4 @@
             <td><input type="submit" name="editsubmit" value="<?php echo Yii::t('common', 'Submit'); ?>" class="button" tabindex="3" /></td>
         </tr>
     </table>
-</form>
+<?php $this->endWidget();?>

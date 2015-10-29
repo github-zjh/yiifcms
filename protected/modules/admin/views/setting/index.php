@@ -1,7 +1,7 @@
 <div id="contentHeader">
     <h3><?php echo Yii::t('admin', 'Web Set'); ?></h3>  
 </div>
-<form action="" method="post" enctype="multipart/form-data" name="xform" id="xform">
+<?php $form = $this->beginWidget('CActiveForm');?>
     <table class="content_list">
         <tr>
             <td class="tb_title"><?php echo Yii::t('admin', 'Web Name'); ?>：</td>
@@ -88,9 +88,4 @@
             </td>
         </tr>
     </table>
-</form>
-<script type="text/javascript">
-    $(function () {
-        $("#xform").validationEngine();
-    });
-</script>
+<?php $this->endWidget();?>

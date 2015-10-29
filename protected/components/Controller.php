@@ -33,10 +33,7 @@ class Controller extends CController
 	protected  $_yii = '';	
 	protected  $_theme = '';
 	protected  $_baseUrl = '';
-	protected  $_basePath = ''; //应用程序目录
-	protected  $_webRoot = '';  //网站根目录
-	protected  $_extPath = '';  //网站扩展目录
-	protected  $_widgetPath = ''; //widget目录
+	protected  $_basePath = ''; //应用程序目录	
 	protected  $_fonts = '';    //字体目录	
 	public     $_static_public = ''; //公共资源目录	
 	public     $_data = '';
@@ -52,12 +49,9 @@ class Controller extends CController
 		$this->_yii           = Yii::app();					
 		$this->_baseUrl       = Yii::app()->baseUrl;
 		$this->_basePath      = Yii::app()->basePath;
-        $this->_request       = Yii::app()->request;
-		$this->_webRoot       = ROOT_PATH;
-		$this->_extPath       = $this->_webRoot.'/protected/extensions';
-		$this->_widgetPath    = $this->_webRoot.'/protected/widget';
-		$this->_fonts         = $this->_webRoot.'/public';
-		$this->_data          = $this->_webRoot.'/protected/data/';		
+        $this->_request       = Yii::app()->request;		
+		$this->_fonts         = ROOT_PATH.'/public';
+		$this->_data          = ROOT_PATH.'/protected/data/';		
 		$this->_static_public = $this->_baseUrl.'/public';        
 
 		//检测系统是否已经安装
@@ -117,11 +111,15 @@ class Controller extends CController
 	public function formatStyle($str = ''){
 		$arr_style =  unserialize($str);
 		$style = '';
-		if($arr_style){
-			$arr_style['bold'] == 'Y' && $style .= "font-weight:bold;";
-			$arr_style['underline'] == 'Y' && $style .= "text-decoration:underline;";
-			$arr_style['color'] && $style .= "color:#".$arr_style['color'];			
-		}
+        if(isset($arr_style['bold']) && $arr_style['bold'] == 'Y') {
+            $style .= 'font-weight:bold;';
+        }
+        if(isset($arr_style['underline']) && arr_style['underline'] == 'Y') {
+             $style .= "text-decoration:underline;";
+        }
+        if(isset($arr_style['color']) && $arr_style['color']) {
+            $style .= "color:#".$arr_style['color'];
+        }        
 		return $style;
 	}
 	

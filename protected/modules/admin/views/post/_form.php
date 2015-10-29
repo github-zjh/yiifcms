@@ -17,11 +17,11 @@
     </tr>
     <tr>
         <td><?php echo $form->textField($model, 'title', array('size' => 60, 'maxlength' => 128, 'class' => 'validate[required]')); ?>
-            <input name="style[bold]" type="checkbox" id="style[bold]" <?php if ($style && $style['bold'] == 'Y'): ?> checked="checked" <?php endif; ?> value="Y" />
+            <input name="style[bold]" type="checkbox" id="style[bold]" <?php if (isset($style['bold']) && $style['bold'] == 'Y'): ?> checked="checked" <?php endif; ?> value="Y" />
                    <?php echo Yii::t('admin', 'Blod'); ?>
-            <input name="style[underline]" type="checkbox" <?php if ($style && $style['underline'] == 'Y'): ?> checked="checked" <?php endif; ?> id="style[underline]" value="Y" />
+            <input name="style[underline]" type="checkbox" <?php if (isset($style['underline']) && $style['underline'] == 'Y'): ?> checked="checked" <?php endif; ?> id="style[underline]" value="Y" />
                    <?php echo Yii::t('admin', 'Underline'); ?>
-            <input name="style[color]" class="color" id="style[color]" value="<?php echo isset($style['color']) ? $style['color'] : ''; ?>" size="5" />      
+            <input name="style[color]" class="color {required:false}" id="style[color]" value="<?php echo isset($style['color']) ? $style['color'] : ''; ?>" size="5" />      
                    <?php echo Yii::t('admin', 'Color'); ?>
         </td>
     </tr>

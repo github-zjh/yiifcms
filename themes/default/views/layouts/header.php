@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->_yii->language;?>" lang="<?php echo $this->_yii->language;?>">
+<html xml:lang="<?php echo $this->_yii->language;?>" lang="<?php echo $this->_yii->language;?>">
 <head>	
 	<title><?php echo CHtml::encode($this->_seoTitle); ?></title>
 	<base href="<?php echo $this->_request->hostinfo.Yii::app()->homeUrl;?>" />
@@ -6,16 +6,16 @@
 	<meta name="language" content="<?php echo $this->_yii->language;?>" />
 	<meta name="keywords" content="<?php echo $this->_seoKeywords;?>" />
 	<meta name="description" content="<?php echo $this->_seoDescription;?>" />
-    <meta name="author" content="Sim <326196998@qq.com>" />
+    <meta name="author" content="Sim Zhao<326196998@qq.com>" />
     <meta name="cmsVersion" content="<?php echo $this->_cmsVersion;?>" />
     <meta name="cmsRelease" content="<?php echo $this->_cmsRelease;?>" />
-	<meta property="qc:admins" content="3621316677611163536375" />
-	<meta property="wb:webmaster" content="cca24d5480c4043c" />	
+	
 	<!-- 手持设备样式 -->
 	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="HandheldFriendly" content="true">
 	<link rel="stylesheet" type="text/css" media="only screen and (max-width:720px),only screen and (max-device-width:720px)" href="<?php echo $this->_stylePath;?>/css/media.css"/>
+    <script type="text/javascript" src="<?php echo $this->_stylePath . '/js/jquery.min.js';?>"></script>
 </head>
 <body>
 <!-- 头部header开始 -->
