@@ -31,15 +31,18 @@ class CreateAction extends CAction {
                 break;
         }
         if (!$post) {
-            throw new CHttpException(404, Yii::t('admin', 'Submit Error'));            
+            throw new CHttpException(404, Yii::t('admin', 'Loading Error'));            
         }
         //评论内容    
         $model = new Comment('create');
-        $criteria = new CDbCriteria();
-        $condition = "content_id={$content_id} AND status='Y' AND type={$this->controller->_type_ids[$topic_type]}";
-        $criteria->condition = $condition;
-        $criteria->order = 'id DESC';
-        $criteria->select = "id, user_id, content_id, content, create_time ";
+        $criteria = new CDbCriteria();        
+        $criteria->with = array('user');
+        $criteria->addColumnCondition(array('content_id' => $content_id));
+        $criteria->addColumnCondition(array('t.status' => Comment::STATUS_SHOW));
+        $criteria->addColumnCondition(array('type' => $this->controller->_type_ids[$topic_type]));
+        $criteria->addCondition('u.uid > 0');
+        $criteria->order = 't.id DESC';
+        $criteria->select = 't.id, user_id, content_id, content, t.create_time ';
 
         //分页
         $count = $model->count($criteria);
@@ -51,10 +54,11 @@ class CreateAction extends CAction {
 
         //回复
         if ($comments) {
-            foreach ((array) $comments as $c) {
-                $replies[$c->id] = Reply::model()->findAll('cid=:cid AND status=:status ORDER BY id', array(':cid' => $c->id, ':status' => 'Y'));
+            foreach ($comments as $c) {
+                $replies[$c->id] = Reply::model()->with('user')->findAll(array('condition' => 'cid = '.$c->id.' AND t.status = "'.Reply::STATUS_SHOW.'" AND u.uid > 0', 'order' => 'id'));
             }
         } else {
+            $comments = array();
             $replies = array();
         }
         
@@ -66,7 +70,7 @@ class CreateAction extends CAction {
 
             $model->attributes = $_POST['Comment'];
             $model->content_id = $content_id;
-            $model->type = $this->_type_ids[$topic_type];
+            $model->type = $this->controller->_type_ids[$topic_type];
             $model->user_id = $uid;
             $model->status = 'N';
             $model->client_ip = Yii::app()->request->userHostAddress;

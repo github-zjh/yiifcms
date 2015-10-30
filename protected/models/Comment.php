@@ -60,7 +60,8 @@ class Comment extends CActiveRecord
 	        'post' =>array(self::BELONGS_TO, 'Post', 'content_id',  'select'=>'id,title'),
 			'image'=>array(self::BELONGS_TO, 'Image', 'content_id',  'select'=>'id,title'),
 			'soft' =>array(self::BELONGS_TO, 'Soft', 'content_id',  'select'=>'id,title'),
-			'video'=>array(self::BELONGS_TO, 'Video', 'content_id',  'select'=>'id,title'),			
+			'video'=>array(self::BELONGS_TO, 'Video', 'content_id',  'select'=>'id,title'),
+            'user' => array(self::BELONGS_TO, 'User', 'user_id', 'alias' => 'u', 'select' => 'u.username, u.nickname, u.avatar'),
 	    );
 	}
 

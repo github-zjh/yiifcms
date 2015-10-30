@@ -414,4 +414,5 @@ return array (
     'Repair Table' => '修复表',
     'Delete File Success' => '删除文件成功',
     'Import File Success' => '导入数据成功',
+    'Loading Error' => '加载失败',
 );

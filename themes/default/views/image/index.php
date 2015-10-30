@@ -1,4 +1,5 @@
-	<!-- 导航面包屑开始 -->
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->_stylePath . '/css/list.css';?>" />
+    <!-- 导航面包屑开始 -->
 	<?php $this->renderPartial('/layouts/nav',array('navs'=>$navs));?>
 	<!-- 导航面包屑结束 -->
 	
@@ -46,7 +47,7 @@
 		</div>
 		
 		<!-- 右侧内容开始 -->
-		<?php $this->renderPartial('right',array('last_images'=>$last_images, 'tags' => $tags));?>	
+		<?php $this->renderPartial('right',array('last_images'=>$last_images));?>	
 		<!-- 右侧内容结束 -->
 		
 	</div>	

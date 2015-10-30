@@ -1,4 +1,9 @@
-	<!-- 导航面包屑开始 -->
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->_stylePath . '/css/view.css';?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->_static_public . '/js/discuz/zoom.css';?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->_stylePath . '/css/prettify.css';?>" />    
+    <script type="text/javascript" src="<?php echo $this->_static_public . '/js/discuz/common.js';?>"></script>
+    <script type="text/javascript" src="<?php echo $this->_static_public . '/js/discuz/zoom.js';?>"></script>
+    <!-- 导航面包屑开始 -->
 	<?php $this->renderPartial('/layouts/nav',array('navs'=>$navs));?>
 	<!-- 导航面包屑结束 -->
 	<div id="content" class="clear">
@@ -21,20 +26,20 @@
 					</p>
 					<div class="content_info">
 						<?php if($post->image_list):?>
-						<?php $pics = unserialize($post->image_list);?>												
+						<?php $pics = explode(',', $post->image_list);?>												
 						<div id="show_pics">
 							<a href="javascript:;" title="上一个" id="move_prev" class="prev_btn"></a>
 							<ul class="clear">								
-								<?php foreach((array)$pics as $pic):?>
-								<li><img  id="<?php echo "aimg_".$pic['fileId'];?>" aid="<?php echo $pic['fileId'];?>"  onclick="zoom(this, this.src, 0, 0, 0)" zoomfile="<?php echo $pic['file'];?>" alt="<?php echo $pic['desc'];?>" title="<?php echo $pic['desc'];?>" file="<?php echo $pic['file'];?>" src="<?php echo $pic['file'];?>" /></li>
+								<?php foreach($pics as $k => $pic):?>
+								<li><img  id="<?php echo "aimg_".($k+1);?>" onclick="zoom(this, this.src, 0, 0, 0)" title="<?php echo $post->title.'-'.($k+1);?>" src="<?php echo $pic;?>" /></li>
 								<?php endforeach;?>										
 							</ul>		
 							<a href="javascript:;" title="下一个" id="move_next"  class="prev_btn next_btn"></a>					
 						</div>
 						<div id="append_parent"></div><div id="ajaxwaitid"></div>
 						<ul class="small_pics clear">								
-							<?php foreach((array)$pics as $spic):?>
-							<li><img width="100" height="100" alt="<?php echo $spic['desc'];?>" title="<?php echo $spic['desc'];?>" src="<?php echo $spic['thumb'];?>" /></li>
+							<?php foreach($pics as $spic):?>
+							<li><img width="100" height="100" src="<?php echo $spic;?>" /></li>
 							<?php endforeach;?>										
 						</ul>	
 						<?php endif;?>
@@ -45,7 +50,7 @@
 			</div>	
 			
 			<!-- 评论区 -->
-			<iframe id="comment_iframe" scrolling="no" marginheight="0" marginwidth="0" frameborder="0" src="<?php echo $this->createUrl('comment/create', array('view_url'=>$this->_request->getUrl(),'topic_id'=>$post->id,'topic_type'=>'image'));?>"></iframe>			
+			<iframe id="comment_iframe" scrolling="no" marginheight="0" marginwidth="0" frameborder="0" src="<?php echo $this->createUrl('comment/create', array('view_url'=>$this->_request->getUrl(),'content_id'=>$post->id,'topic_type'=>'image'));?>"></iframe>			
 		</div>
 		
 		<!-- 右侧内容开始 -->
@@ -107,10 +112,10 @@
 		var imagemaxwidth = '500';//控制图片初始宽度
 		var aimgcount = new Array();
 		var pics = new Array();		
-		<?php $pics = unserialize($post->image_list);?>
+		<?php $pics = explode(',', $post->image_list);?>
 		var count = <?php echo count($pics);?>
-		<?php foreach((array) $pics as $pic):?>	
-		pics.push('<?php echo $pic['fileId'];?>');
+		<?php foreach((array) $pics as $k => $pic):?>	
+		pics.push('<?php echo $k+1;?>');
 		<?php endforeach;?>	
 		aimgcount[count] = pics;	
 		attachimggroup(count);

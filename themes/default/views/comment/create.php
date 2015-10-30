@@ -40,7 +40,7 @@
 							 'underline', 'removeformat', '|', 'justifyleft', 'justifycenter',
 							 'justifyright', 'insertorderedlist','insertunorderedlist', '|',
 							 'emoticons', 'link'
-						),			
+						),                        
 						'resizeType'=>0,
 						'dialogAlignType'=>'',//弹窗按编辑器居中
 						'uploadJson'=>'',						
@@ -76,14 +76,13 @@
 <div class="comments">
 	<h3>[ <?php echo Yii::t('common','All Num Comments', array('{num}'=>count($comments)));?> ]</h3>	
 	<ul id="comment_list">		
-		<?php $i = 0;?>
-		<?php foreach((array)$comments as $comment):?>		
-		<li class="clear">
-			<?php $cuser = User::model()->findByPk($comment->user_id);?>						
-			<img width="50" <?php if($cuser && $cuser->avatar):?> src="<?php echo $cuser->avatar;?>" <?php else:?>  src="<?php echo $this->_stylePath;?>/images/default_avatar.png"  <?php endif;?> class="avatar" />
+		<?php $i = 0;?>        
+		<?php foreach($comments as $comment):?>		
+		<li class="clear">									
+			<img width="50" <?php if($comment->user->avatar):?> src="<?php echo $comment->user->avatar;?>" <?php else:?>  src="<?php echo $this->_stylePath;?>/images/default_avatar.png"  <?php endif;?> class="avatar" />
 			<div class="comment_desc">
 				<p class="desc_head">
-					<strong class="user"><?php echo $cuser->nickname?$cuser->nickname:($cuser->username?$cuser->username:Yii::t('common','Anonymity'));?></strong>
+					<strong class="user"><?php echo $comment->user->nickname?$comment->user->nickname:($comment->user->username?$comment->user->username:Yii::t('common','Anonymity'));?></strong>
 					<span class="submit_time"><?php echo date('Y年m月d日 H:i:s',$comment->create_time)?></span>
 				</p>
 				<div class="desc_body"><?php echo $comment->content;?></div>
@@ -91,22 +90,19 @@
 					<a href="javascript:;" 
 					class="reply_btn clear" data-type="reply" 
 					data-attr-cid="<?php echo $comment->id;?>" 
-					data-attr-replyid = "0"	>@:回复<span class="login_notice"></span></a>
+					data-attr-replyid = "0"	>@回复<span class="login_notice"></span></a>
 				</div>
 				
-				<!-- 回复列表 -->
+				<!-- 回复列表 -->                
 				<?php if($replies && $replies[$comment->id]):?>
 				<ul class="reply_list clear">					
 					<?php $position = 1;?>
-					<?php foreach((array)$replies[$comment->id] as $reply):?>								
-					<li class="clear">
-						<?php $user = User::model()->findByPk($reply->user_id);?>	
-						<?php $rto = Reply::model()->findByPk($reply->reply_id);?>
-						<?php $ruser = User::model()->findByPk($rto->user_id);?>	
+					<?php foreach($replies[$comment->id] as $reply):?>                    
+					<li class="clear">						                        
 						<div class="comment_desc">							
 							<p class="desc_head">
-								<img width="20" <?php if($user && $user->avatar ):?> src="<?php echo $user->avatar;?>" <?php else:?>  src="<?php echo $this->_stylePath;?>/images/default_avatar.png"  <?php endif;?> class="avatar" />
-								<strong class="user"><?php echo $user->username?$user->username:Yii::t('common','Anonymity')?>&nbsp;&nbsp;@:&nbsp;&nbsp;<?php echo $ruser->username?$ruser->username:$cuser->username;?></strong>								
+								<img width="20" <?php if($reply->user->avatar ):?> src="<?php echo $reply->user->avatar;?>" <?php else:?>  src="<?php echo $this->_stylePath;?>/images/default_avatar.png"  <?php endif;?> class="avatar" />
+								<strong class="user"><?php echo $reply->user->nickname?$reply->user->nickname:$reply->user->username;?>:</strong>								
 								<span class="submit_time"><?php echo date('Y年m月d日 H:i:s',$reply->create_time)?></span>
 								<span class="position"><?php echo $position;?>#</span>
 							</p>
@@ -115,7 +111,7 @@
 								<a href="javascript:;" 
 								class="reply_btn clear" data-type="reply" 
 								data-attr-cid="<?php echo $reply->cid;?>" 
-								data-attr-replyid = "<?php echo $reply->id;?>">@:回复<span class="login_notice"></span></a>
+								data-attr-replyid = "<?php echo $reply->id;?>">@回复<span class="login_notice"></span></a>
 							</div>
 						</div>	
 						</li>
@@ -180,12 +176,12 @@
             	$("#reply_box").show();
             	KindEditor.ready(function(K) {    
               	 __reply_content = K.create("#reply_content", {
-              	     'themeType':'simple' ,'width':'100%' ,'height':'200' ,'items':['fontname' ,'fontsize' ,'|' ,'undo' ,'redo' ,'|' ,'code' ,'forecolor' ,'hilitecolor' ,'bold' ,'italic' ,'underline' ,'removeformat' ,'|' ,'justifyleft' ,'justifycenter' ,'justifyright' ,'insertorderedlist' ,'insertunorderedlist' ,'|' ,'emoticons' ,'image' ,'link' ],
-              	     'resizeType':'0'  ,
+              	     'themeType':'simple' ,'width':'100%' ,'height':'200' ,'items':['fontname' ,'fontsize' ,'|' ,'undo' ,'redo' ,'|' ,'code' ,'forecolor' ,'hilitecolor' ,'bold' ,'italic' ,'underline' ,'removeformat' ,'|' ,'justifyleft' ,'justifycenter' ,'justifyright' ,'insertorderedlist' ,'insertunorderedlist' ,'|' ,'emoticons' ,'link' ],
+              	     'resizeType':'0',
               	     afterBlur:function(){
                           this.sync();
                       },
-                     'dialogAlignType':'',   //弹窗按编辑器居中        
+                     'dialogAlignType':''   //弹窗按编辑器居中        
               	});
               	__reply_content.sync();
               });

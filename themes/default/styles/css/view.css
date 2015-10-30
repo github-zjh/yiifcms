@@ -31,12 +31,12 @@
 #comment_iframe { border-top:1px dashed #428BCA; }
 
 /* 图集幻灯片 */
-#show_pics { width:auto; overflow:hidden; position:relative;}
+#show_pics { width:auto; overflow:hidden; position:relative; border:1px solid #EEEEEE; padding:10px 0; maring-bottom:10px;}
 #show_pics li {  display:none; width:850px; float:left; overflow:hidden;  text-align:center; list-style:none;}
 #show_pics .prev_btn { width:32px; height:50px; background:url(../images/foc_btn.png) no-repeat left 0; position:absolute; left:0; top:45%; z-index:99;}
 #show_pics .next_btn { left:auto; right:0; background-position:right 0;}
-#show_pics li img { cursor:pointer;}
-.small_pics {  border:1px solid #CCCCCC; margin-bottom:20px; overflow-x:auto; overflow-y:hidden;}
+#show_pics li img { cursor:pointer; max-width:730px; max-height:730px;}
+.small_pics {  border:1px solid #EEEEEE; margin-bottom:20px; border-top:0; padding:5px; overflow-x:auto; overflow-y:hidden;}
 .small_pics li { float:left; width:100px; height:100px; margin-right:10px; list-style:none;}
 .small_pics li img { cursor:pointer;}
 
@@ -85,6 +85,8 @@ blockquote:before {
 
 /* 图集详情 */
 .image_info .list_body { float:none; width:auto;}
+#show_pics ul { width:730px; margin:0 auto; }
+#show_pics ul li { width:100%;}
 
 /* 软件详情 */
 .soft_info { margin-top:20px; border-top:1px dashed #CCCCCC; }

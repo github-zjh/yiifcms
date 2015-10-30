@@ -34,7 +34,7 @@ class CreateAction extends CAction
             $model->attach_thumb = isset($_POST['attach_thumb']) ? $_POST['attach_thumb'] : '';   
             
             //组图
-    		$imageList = isset($_POST['imagelist']) ? trim($_POST['imagelist']) : '';
+    		$imageList = isset($_POST['imagelist']) ? $_POST['imagelist'] : array();
             if($imageList) {
                 $model->image_list = implode(',', $imageList);
             }

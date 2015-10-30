@@ -4,13 +4,12 @@
 #notice_box { padding:30px 0; margin:0 auto; text-align:center;}
 #notice_box a { color:#e8645a; }
 .comments h3 { line-height:40px; font-size:16px; color:#F00;}
-.comments li { border-bottom:1px solid #e5e6e6; padding-bottom:19px; margin-bottom:19px; }
+.comments li { border-bottom:1px dashed #e5e6e6; padding-bottom:19px; margin-bottom:19px; }
 .comments .avatar { float:left; border-radius:25px;}
 .comment_desc { float:left; width:90%; margin-left:10px; }
 .comment_desc .desc_head { line-height:28px;}
 .comment_desc .desc_head .user { font-size:14px;}
 .comment_desc .desc_head .submit_time { padding-left:10px; font-size:14px;}
-.desc_foot { padding-top:20px;}
 .desc_foot .reply_btn { float:left; width:100%;}
 #comment_form { padding:20px 0;}
 #comment_form caption { line-height:33px;}
@@ -38,7 +37,7 @@
 .comments a { color:#428BCA;}
 .login_notice { display:none; margin-left:20px; padding-left:20px; background:url(../images/ico_notice.png) no-repeat; color:#666666;}
 .login_notice a { color:#e8645a; }
-#comment_form .error_message { width:200; height:auto; margin-left:10px; margin-top:-67px; padding:60px; background:#FFFFFF url(../images/bubble_bg.png) left 0 no-repeat; border:none;}
+#comment_form .error_message { width:200px; height:auto; margin-left:10px; margin-top:-67px; padding:60px; background:#FFFFFF url(../images/bubble_bg.png) left 0 no-repeat; border:none;}
 #comment_form .errorSummary { height:60px; }
 .error_message ul { list-style:decimal inside; }
 #comment_form .subBox{ padding:0 5px;  position:relative; bottom:33px;}
@@ -55,5 +54,5 @@
 .reply_list .desc_head .user { font-size:12px;}
 .reply_list .desc_body { padding-left:20px;}
 .reply_list .position { float:right; color:#F00; }
-.reply_list .desc_foot { padding-left:20px; padding-top:10px;}
+.reply_list .desc_foot { padding-left:20px; }
 .reply_list .desc_head .submit_time { padding-left:10px; font-size:12px;}
