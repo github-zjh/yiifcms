@@ -102,7 +102,16 @@
         <td><?php echo $form->textArea($model, 'introduce'); ?>     
             <?php $this->widget('application.widget.kindeditor.KindEditor', array('id' => 'Video_introduce')); ?>
         </td>
-    </tr> 
+    </tr>
+    
+    <tr>
+        <td class="tb_title"><?php echo $form->label($model, 'tags'); ?>(逗号或空格隔开)：</td>
+    </tr>
+    <tr>
+        <td><?php echo $form->textField($model, 'tags', array('size' => 50, 'maxlength' => 255)); ?>
+            <input type="button" value="自动提取"	onclick="keywordGet('Video_title', 'Video_content', 'Video_tags')" />
+        </td>
+    </tr>
 
     <tr>
         <td class="tb_title"><?php echo $form->label($model, 'download'); ?>：</td>
@@ -166,10 +175,7 @@
                 return false;
             }
         });
-    }
-    $(function () {
-        $("#xform").validationEngine();
-    });
+    }    
 </script>
 <?php
 $this->endWidget();

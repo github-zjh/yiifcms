@@ -1,4 +1,4 @@
-	
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->_stylePath . '/css/page.css';?>" />
 	<dl class="page_left">
 		<dt><?php echo Yii::t('common','Page Read')?></dt>
 		<?php foreach((array)$pagelists as $pl):?>

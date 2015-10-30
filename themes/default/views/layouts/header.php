@@ -97,7 +97,7 @@
 		</div>
 		<?php else:?>
 		<div id="logout">		
-			<a href="<?php echo $this->createUrl('user/index');?>" class="show_drop">
+			<a href="javascript:;" class="show_drop">
 				<?php $profile= User::model()->findByPk(Yii::app()->user->id);?>
 				<img src="<?php echo $profile->avatar?$profile->avatar:$this->_stylePath.'/images/avatar-max-img.png';?>" width="24" height="24" />
 				<label><?php echo Yii::t('common','My Account');?><i class="fa fa-sort-desc"></i></label>

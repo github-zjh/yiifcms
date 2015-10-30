@@ -20,11 +20,11 @@ class UserIdentity extends CUserIdentity
 	public function authenticate()
 	{		
 		$user=User::model()->find('username=:username OR email=:email',array(':username'=>$this->username,':email'=>$this->username));
-		if($user===null)
+		if($user===null) {
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
-		else if(!$user->validatePassword($this->password) || $user->status == 0)
+        } else if(!$user->validatePassword($this->password) || $user->status == 0) {
 			$this->errorCode=self::ERROR_PASSWORD_INVALID;
-		else{
+        } else{
 			$this->_id=$user->uid;
 			//把用户信息存入SESSION
 			$group = UserGroup::model()->findByPk($user->groupid);

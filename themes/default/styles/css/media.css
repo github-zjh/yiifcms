@@ -1,10 +1,10 @@
 @CHARSET "UTF-8";
-/***
+/**
  * 手持设备样式表
- * @author Sim
  *
+ * @author Sim Zhao
  */
-html { font-size:100%;}
+html { font-size:100%; }
 * { box-shadow:none!important; white-space:normal!important; }
 @media (min-width: 480px) { body {font-size:1rem;} }
 @media (min-width: 640px) { body {font-size:1rem;} }
@@ -33,7 +33,7 @@ background:#e8645a;
 .intro_box p { line-height:20px!important; margin:0!important;}
 .banner{ display:none!important;}
 #intro .ico_one { display:none!important;}
-#intro .view_more { line-height:33px; height:33px; width:80px; font-size:1rem!important;}
+#intro .view_more { display:none;}
 #intro ul li { width:100%!important; height:110px!important; }
 #intro ul li a { display:none!important;}
 #intro .intro_box li { margin-bottom:5px!important;}

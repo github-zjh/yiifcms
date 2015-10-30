@@ -80,7 +80,7 @@
             <ul class="resumable-files clear">
                 <?php if ($model->soft_file): ?>           
                     <li>
-                        <img src="<?php echo Helper::getFullUrl($model->soft_file); ?>" width="100px" height="100px">
+                        <span style="color:green"><?php echo pathinfo($model->soft_file, PATHINFO_BASENAME); ?></span>
                         <input type="hidden" value="<?php echo $model->soft_file; ?>" name="soft_file">
                         <div class="clear">
                             <a href="<?php echo Helper::getFullUrl($model->soft_file); ?>" class="left" target="_blank">[查看]</a>
@@ -117,6 +117,15 @@
     </tr>
     <tr>
         <td><?php echo CHtml::activeTextArea($model, 'introduce', array('rows' => 5, 'cols' => 90)); ?></td>
+    </tr>
+    
+    <tr>
+        <td class="tb_title"><?php echo $form->label($model, 'tags'); ?>(逗号或空格隔开)：</td>
+    </tr>
+    <tr>
+        <td><?php echo $form->textField($model, 'tags', array('size' => 50, 'maxlength' => 255)); ?>
+            <input type="button" value="自动提取" onclick="keywordGet('Soft_title', 'Soft_content', 'Soft_tags')" />
+        </td>
     </tr>
 
     <tr>

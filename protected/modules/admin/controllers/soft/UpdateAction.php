@@ -21,7 +21,13 @@ class UpdateAction extends CAction
     			  	
     		//摘要
     		$model->introduce = trim($_POST['Soft']['introduce'])?$_POST['Soft']['introduce']:Helper::truncate_utf8_string(preg_replace('/\s+/',' ',$_POST['Soft']['content']), 200);    		
-    		
+            
+    		//标签   (前5个标签有效) 		
+    		$tags = trim($_POST['Soft']['tags']);    		
+    		$unique_tags = array_unique(explode(',', str_replace(array (' ' , '，' ), array('',','), $tags)));    		
+    		$explodeTags = array_slice($unique_tags, 0, 5);  
+    		$model->tags = implode(',',$explodeTags);
+            
     		$model->update_time = time();    		
     		if($model->save()){    			
     			$this->controller->message('success',Yii::t('admin','Update Success'),$this->controller->createUrl('index'));

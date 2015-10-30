@@ -21,6 +21,7 @@
  * @property integer $down_count
  * @property string $voted
  * @property string $status
+ * @property string $tags 
  * @property string $seo_title
  * @property string $seo_description
  * @property string $seo_keywords
@@ -44,7 +45,7 @@ class Video extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('catalog_id, view_count, down_count', 'numerical', 'integerOnly'=>true),
-			array('title, cover_image, video_file, download, voted, seo_title, seo_keywords', 'length', 'max'=>100),
+			array('title, cover_image, video_file, download, voted, tags, seo_title, seo_keywords', 'length', 'max'=>100),
 			array('introduce, seo_description', 'length', 'max'=>200),
 			array('language, video_type, video_size, update_time, create_time', 'length', 'max'=>10),
 			array('video_score', 'length', 'max'=>3),
@@ -52,7 +53,7 @@ class Video extends CActiveRecord
 			array('introduce, seo_description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, catalog_id, cover_image, video_file, language, video_type, video_score, video_size, download, introduce, update_time, create_time, view_count, down_count, voted, status, seo_title, seo_description, seo_keywords', 'safe', 'on'=>'search'),
+			array('id, title, catalog_id, cover_image, video_file, language, video_type, video_score, video_size, download, introduce, update_time, create_time, view_count, down_count, voted, status, tags, seo_title, seo_description, seo_keywords', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -91,6 +92,7 @@ class Video extends CActiveRecord
 			'down_count'      => Yii::t('model','VideoDownCount'),
 			'voted'           => Yii::t('model','VideoVoted'),
 			'status'          => Yii::t('model','VideoStatus'),
+            'tags'            => Yii::t('model','VideoTags'),
 			'seo_title'       => Yii::t('model','VideoSeoTitle'),
 			'seo_description' => Yii::t('model','VideoSeoDescription'),
 			'seo_keywords'    => Yii::t('model','VideoSeoKeywords'),
@@ -148,6 +150,8 @@ class Video extends CActiveRecord
 		$criteria->compare('voted',$this->voted,true);
 
 		$criteria->compare('status',$this->status,true);
+        
+        $criteria->compare('tags',$this->tags,true);
 
 		$criteria->compare('seo_title',$this->seo_title,true);
 

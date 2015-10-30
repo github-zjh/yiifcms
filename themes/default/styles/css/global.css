@@ -45,7 +45,7 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
 .text_align_right { text-align:right; }
 
 /* 公共头部header */
-#header { position:fixed; top:0; z-index:999; width:100%; height:57px; line-height:57px; background-color:#428BCA; color:#FFFFFF; text-align:center; }
+#header { position:fixed; top:0; z-index:999; width:100%; height:58px; line-height:58px; background-color:#428BCA; color:#FFFFFF; text-align:center; }
 .header_main { width:1170px; height:57px; margin:0 auto; background-color:#428bca; }
 #header a { color:#FFFFFF; }
 /*#header .header_main { width:1170px; margin:0 auto; }*/

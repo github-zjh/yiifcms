@@ -1,4 +1,5 @@
-	<!-- 导航面包屑开始 -->
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->_stylePath . '/css/list.css';?>" />
+    <!-- 导航面包屑开始 -->
 	<?php $this->renderPartial('/layouts/nav',array('navs'=>$navs));?>
 	<!-- 导航面包屑结束 -->
 	

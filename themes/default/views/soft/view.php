@@ -1,4 +1,5 @@
-	<!-- 导航面包屑开始 -->
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->_stylePath . '/css/view.css';?>" />    
+    <!-- 导航面包屑开始 -->
 	<?php $this->renderPartial('/layouts/nav',array('navs'=>$navs));?>
 	<!-- 导航面包屑结束 -->
 	
@@ -59,7 +60,7 @@
 			</div>				
 			
 			<!-- 评论区 -->
-			<iframe id="comment_iframe" scrolling="no" marginheight="0" marginwidth="0" frameborder="0" src="<?php echo $this->createUrl('comment/create', array('view_url'=>$this->_request->getUrl(),'topic_id'=>$soft->id,'topic_type'=>'soft'));?>"></iframe>			
+			<iframe id="comment_iframe" scrolling="no" marginheight="0" marginwidth="0" frameborder="0" src="<?php echo $this->createUrl('comment/create', array('view_url'=>$this->_request->getUrl(),'content_id'=>$soft->id,'topic_type'=>'soft'));?>"></iframe>			
 		</div>
 		
 		<!-- 右侧内容开始 -->

@@ -25,6 +25,17 @@ class ResetAction extends CAction
                 }
             }
         }
+        $tagdatas = TagData::model()->findAll();
+        if($tagdatas) {
+            foreach($tagdatas as $value) {
+                $modelType = ModelType::model()->findByPk($value->type);
+                $model = $modelType->model;                
+                $data = $model::model()->findByPk($value->content_id);
+                if(!$data) {
+                    $value->delete();
+                }
+            }            
+        }
     	$this->controller->message('success',Yii::t('admin','Reset Tags Success'),$this->controller->createUrl('index'));
 	}
 }

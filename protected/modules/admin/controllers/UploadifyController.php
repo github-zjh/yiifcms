@@ -17,7 +17,7 @@ class UploadifyController extends Backend
     public function actionDelete(){
     	$filepath = Yii::app()->request->getParam('filepath');
         if(strstr($filepath, 'upload')) {
-            $filepath = Helper::convertChineseName(ROOT_PATH.$filepath);
+            $filepath = Helper::convertChineseName(ROOT_PATH.'/'.$filepath);
         } else {
             $var['message'] = '删除失败，此目录下的文件禁止删除';
         }

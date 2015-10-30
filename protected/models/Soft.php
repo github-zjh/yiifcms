@@ -23,6 +23,7 @@
  * @property integer $view_count
  * @property integer $down_count
  * @property string $status
+ * @property string $tags
  * @property string $seo_title
  * @property string $seo_description
  * @property string $seo_keywords
@@ -46,14 +47,14 @@ class Soft extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('catalog_id, view_count, down_count', 'numerical', 'integerOnly'=>true),
-			array('title, cover_image, soft_file, soft_icon, os, softlink, seo_title, seo_keywords', 'length', 'max'=>100),
+			array('title, cover_image, soft_file, soft_icon, os, softlink, tags, seo_title, seo_keywords', 'length', 'max'=>100),
 			array('seo_description', 'length', 'max'=>200),
 			array('language, softtype, softsize, update_time, create_time', 'length', 'max'=>10),
 			array('softrank, status', 'length', 'max'=>1),
 			array('content, seo_title, seo_keywords, seo_description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, catalog_id, cover_image, soft_file, language, softtype, soft_icon, os, softrank, softsize, softlink, content, update_time, create_time, view_count, down_count, status, seo_title, seo_description, seo_keywords', 'safe', 'on'=>'search'),
+			array('id, title, catalog_id, cover_image, soft_file, language, softtype, soft_icon, os, softrank, softsize, softlink, content, update_time, create_time, view_count, down_count, status, tags, seo_title, seo_description, seo_keywords', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -75,28 +76,29 @@ class Soft extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => Yii::t('model','SoftId'),
-			'title' => Yii::t('model','SoftTitle'),
-			'catalog_id' => Yii::t('model','SoftCatalogId'),
-			'soft_icon' => Yii::t('model','SoftIcon'),
-			'cover_image' => Yii::t('model','SoftCoverImage'),
-            'soft_file' => Yii::t('model','SoftFile'),	
-			'language' => Yii::t('model','SoftLanguage'),
-			'softtype' => Yii::t('model','SoftType'),
-			'os' => Yii::t('model','SoftOS'),
-			'softrank' => Yii::t('model','SoftRank'),
-			'softsize' => Yii::t('model','SoftSize'),
-			'softlink' => Yii::t('model','SoftLink'),
-            'content' => Yii::t('model','SoftContent'),
-			'introduce' => Yii::t('model','SoftIntroduce'),
-			'update_time' => Yii::t('model','SoftUpdateTime'),
-			'create_time' => Yii::t('model','SoftCreateTime'),
-			'view_count' => Yii::t('model','ViewCount'),
-			'down_count' => Yii::t('model','DownCount'),
-			'status' => Yii::t('model','SoftStatus'),
-			'seo_title' => Yii::t('model','SoftSeoTitle'),
+			'id'              => Yii::t('model','SoftId'),
+			'title'           => Yii::t('model','SoftTitle'),
+			'catalog_id'      => Yii::t('model','SoftCatalogId'),
+			'soft_icon'       => Yii::t('model','SoftIcon'),
+			'cover_image'     => Yii::t('model','SoftCoverImage'),
+            'soft_file'       => Yii::t('model','SoftFile'),	
+			'language'        => Yii::t('model','SoftLanguage'),
+			'softtype'        => Yii::t('model','SoftType'),
+			'os'              => Yii::t('model','SoftOS'),
+			'softrank'        => Yii::t('model','SoftRank'),
+			'softsize'        => Yii::t('model','SoftSize'),
+			'softlink'        => Yii::t('model','SoftLink'),
+            'content'         => Yii::t('model','SoftContent'),
+			'introduce'       => Yii::t('model','SoftIntroduce'),
+			'update_time'     => Yii::t('model','SoftUpdateTime'),
+			'create_time'     => Yii::t('model','SoftCreateTime'),
+			'view_count'      => Yii::t('model','ViewCount'),
+			'down_count'      => Yii::t('model','DownCount'),
+			'status'          => Yii::t('model','SoftStatus'),
+            'tags'            => Yii::t('model','SoftTags'),
+			'seo_title'       => Yii::t('model','SoftSeoTitle'),
 			'seo_description' => Yii::t('model','SoftSeoDescription'),
-			'seo_keywords' => Yii::t('model','SoftSeoKeywords'),
+			'seo_keywords'    => Yii::t('model','SoftSeoKeywords'),
 		);
 	}
 
@@ -155,6 +157,8 @@ class Soft extends CActiveRecord
 		$criteria->compare('down_count',$this->down_count);
 
 		$criteria->compare('status',$this->status,true);
+        
+        $criteria->compare('tags',$this->tags,true);
 
 		$criteria->compare('seo_title',$this->seo_title,true);
 

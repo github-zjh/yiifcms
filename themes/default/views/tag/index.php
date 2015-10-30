@@ -1,14 +1,15 @@
-	<!-- 导航面包屑开始 -->
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->_stylePath . '/css/list.css';?>" />
+    <!-- 导航面包屑开始 -->
 	<?php $this->renderPartial('/layouts/nav',array('navs'=>$navs));?>
 	<!-- 导航面包屑结束 -->
 	
 	<div id="content" class="clear">
 		<div class="content_left">
 			<ul class="content_list">
-			<?php foreach((array)$datas as $data):?>
+			<?php foreach($datas as $data):?>
 				<?php 
-					$post = $data->data;					
-					$post_tags = isset($post->tags)&& $post->tags?explode(',',$post->tags):explode(',', $post->seo_keywords); $tags_len = count($post_tags);
+					$post = $data->data;                    
+					$post_tags = isset($post->tags)&& $post->tags?explode(',',$post->tags):array(); $tags_len = count($post_tags);                    
 				?>	
 				<li class="list_box clear">
 					<div class="list_head">
@@ -20,7 +21,7 @@
 							<span><?php echo Yii::t('common','Copy From')?>：  <em><?php echo isset($post->copy_from)?"<a href='".$post->copy_url."' target='_blank'>".$post->copy_from."</a>":Yii::t('common','System Manager');?></em></span>
 							<?php if($tags_len > 0):?>
 							<span class="tags">
-								<?php $i = 1; foreach((array)$post_tags as $ptag):?>
+								<?php $i = 1; foreach($post_tags as $ptag):?>
 								<em><a href="<?php echo $this->createUrl('tag/index', array('tag'=>$ptag));?>"><?php echo $ptag;?></a></em>
 								<?php $i++;?>
 								<?php endforeach;?>								
