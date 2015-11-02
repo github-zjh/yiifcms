@@ -1,11 +1,12 @@
-	<!-- 导航面包屑开始 -->
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->_stylePath . '/css/list.css';?>" />
+    <!-- 导航面包屑开始 -->
 	<?php $this->renderPartial('/layouts/nav',array('navs'=>$navs));?>
 	<!-- 导航面包屑结束 -->
 	
 	<div id="content" class="clear">
 		<div class="content_left">
 			<ul class="content_list video_list clear">
-			<?php foreach((array)$videos as $video):?>					
+			<?php foreach($videos as $video):?>					
 				<li class="list_box clear">					
 					<div class="list_body">
 						<a class="video_a" href="<?php echo $this->createUrl('video/view', array('id'=>$video->id));?>">							

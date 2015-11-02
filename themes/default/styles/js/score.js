@@ -41,11 +41,11 @@ star.score = {
 		ret.push('</ul>');
 		$('#score_content').html(ret.join(''));
 	},
-	init:function(){
+	init:function(){        
 		this.get();
 		var star_width = 26;
-		$('#star_current_rating').css('width',0);
-		$('#starlist > li').click(function(){
+		$('#star_current_rating').css('width',0);        
+		$('#starlist > li').click(function(){            
 			if(!star.score.hasSend()){
 				var i = $(this).attr('i');
 				star.score.send(i);
@@ -59,8 +59,8 @@ star.score = {
 				alert('囧,-_-|||，您已经评过分了哦？明天再来吧……');
 			}
 		});
-		$('#starlist > li').hover(function(){
-		   var i = $(this).attr('i');
+		$('#starlist > li').hover(function(){           
+		   var i = $(this).attr('i');           
 		   $('#star_tip').show();
 		   $('#star_tip_arrow').css('left',star_width*i-20 + 'px');
 		   $('#star_desc').html(i + '星，' + star.score.texts[5-i]);

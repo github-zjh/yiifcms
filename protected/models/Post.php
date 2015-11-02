@@ -135,7 +135,7 @@ class Post extends CActiveRecord
 		}	
 		
 		$data = self::model()->findAll($criteria);					
-		return $data;
+		return $data ? $data : array();
 	}
 	
 }

@@ -20,7 +20,7 @@ a,img{border:0;}
 /* starBox */
 .starBox{position:relative;width:130px;}
 .starlist{height:26px;position:relative;width:130px;overflow:hidden;background:url(../images/stars.gif) 0 0 repeat-x;cursor:pointer}
-.starlist li{float:left;}
+.starlist li{float:left; width:26px; height:26px; }
 .starlist li a{display:block;width:26px;height:26px;overflow:hidden;text-indent:-9999px;position:absolute;z-index:5;}
 .starlist li a:hover{background:url(../images/stars.gif) 0 -100px;z-index:3;left:0;}
 .starlist a.star_one{left:0;}

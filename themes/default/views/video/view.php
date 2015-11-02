@@ -1,6 +1,170 @@
-	<script type="text/javascript">
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->_stylePath . '/css/view.css';?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->_stylePath . '/css/score.css';?>" />    
+    <script type="text/javascript">
 		var score_url = "<?php echo $this->createUrl('score');?>";
-	</script>
+        var star = {vid:'<?php echo $video->id;?>'};
+	</script>    
+    
+    <!-- 视频播放组件开始 -->
+    <script src="<?php echo $this->_stylePath .'/media_player/src/js/me-namespace.js';?>" type="text/javascript"></script>
+	<script src="<?php echo $this->_stylePath .'/media_player/src/js/me-utility.js';?>" type="text/javascript"></script>
+	<script src="<?php echo $this->_stylePath .'/media_player/src/js/me-i18n.js';?>" type="text/javascript"></script>
+	<script src="<?php echo $this->_stylePath .'/media_player/src/js/me-plugindetector.js';?>" type="text/javascript"></script>
+	<script src="<?php echo $this->_stylePath .'/media_player/src/js/me-featuredetection.js';?>" type="text/javascript"></script>
+	<script src="<?php echo $this->_stylePath .'/media_player/src/js/me-mediaelements.js';?>" type="text/javascript"></script>
+	<script src="<?php echo $this->_stylePath .'/media_player/src/js/me-shim.js';?>" type="text/javascript"></script>
+    <script src="<?php echo $this->_stylePath .'/media_player/src/js/mep-library.js';?>" type="text/javascript"></script>
+	<script src="<?php echo $this->_stylePath .'/media_player/src/js/mep-player.js';?>" type="text/javascript"></script>
+	<script src="<?php echo $this->_stylePath .'/media_player/src/js/mep-feature-playpause.js';?>" type="text/javascript"></script>
+	<script src="<?php echo $this->_stylePath .'/media_player/src/js/mep-feature-progress.js';?>" type="text/javascript"></script>
+	<script src="<?php echo $this->_stylePath .'/media_player/src/js/mep-feature-time.js';?>" type="text/javascript"></script>
+	<script src="<?php echo $this->_stylePath .'/media_player/src/js/mep-feature-speed.js';?>" type="text/javascript"></script>	
+	<script src="<?php echo $this->_stylePath .'/media_player/src/js/mep-feature-tracks.js';?>" type="text/javascript"></script>
+	<script src="<?php echo $this->_stylePath .'/media_player/src/js/mep-feature-volume.js';?>" type="text/javascript"></script>
+	<script src="<?php echo $this->_stylePath .'/media_player/src/js/mep-feature-stop.js';?>" type="text/javascript"></script>
+	<script src="<?php echo $this->_stylePath .'/media_player/src/js/mep-feature-fullscreen.js';?>" type="text/javascript"></script>
+    
+    <link rel="stylesheet" href="<?php echo $this->_stylePath . '/media_player/src/css/mediaelementplayer.css';?>" />
+    <link rel="stylesheet" href="<?php echo $this->_stylePath . '/media_player/src/css/mejs-skins.css"';?>" />	
+    <script>
+        function appendMediaEvents($node, media) {
+        var 
+            mediaEventNames = 'loadstart progress suspend abort error emptied stalled play pause loadedmetadata loadeddata waiting playing canplay canplaythrough seeking seeked timeupdate ended ratechange durationchange volumechange'.split(' ');
+            mediaEventTable = $('<table class="media-events"><caption>Media Events</caption><tbody></tbody></table>').appendTo($node).find('tbody'),
+            tr = null,
+            th = null,
+            td = null,
+            eventName = null,
+            il = 0,				
+            i=0;
+
+        for (il = mediaEventNames.length;i<il;i++) {
+            eventName = mediaEventNames[i];
+            th = $('<th>' + eventName + '</th>');
+            td = $('<td id="e_' + media.id + '_' + eventName + '" class="not-fired">0</td>');
+
+            if (tr == null) 
+                tr = $("<tr/>");
+
+            tr.append(th);
+            tr.append(td);
+
+            if ((i+1) % 5 == 0) {
+                mediaEventTable.append(tr);
+                tr = null;
+            }		
+
+            // listen for event
+            media.addEventListener(eventName, function(e) {
+
+                var notice = $('#e_' + media.id + '_' + e.type),
+                    number = parseInt(notice.html(), 10);
+
+                notice
+                    .html(number+1)
+                    .attr('class','fired');
+            }, true);
+        }	
+
+        mediaEventTable.append(tr);
+    }
+
+    function appendMediaProperties($node, media) {
+        var /* src currentSrc  */
+            mediaPropertyNames = 'error currentSrc networkState preload buffered bufferedBytes bufferedTime readyState seeking currentTime initialTime duration startOffsetTime paused defaultPlaybackRate playbackRate played seekable ended autoplay loop controls volume muted'.split(' '),
+            mediaPropertyTable = $('<table class="media-properties"><caption>Media Properties</caption><tbody></tbody></table>').appendTo($node).find('tbody'),
+            tr = null,
+            th = null,
+            td = null,
+            propName = null,	
+            il = 0,		
+            i=0;
+
+        for (il = mediaPropertyNames.length; i<il; i++) {
+            propName = mediaPropertyNames[i];
+            th = $('<th>' + propName + '</th>');
+            td = $('<td id="p_' + media.id + '_' + propName + '" class=""></td>');
+
+            if (tr == null) 
+                tr = $("<tr/>");
+
+            tr.append(th);
+            tr.append(td);
+
+            if ((i+1) % 3 == 0) {
+                mediaPropertyTable.append(tr);
+                tr = null;
+            }
+        }	
+
+        setInterval(function() {
+            var 
+                propName = '',
+                val = null,
+                td = null;
+
+            for (i = 0, il = mediaPropertyNames.length; i<il; i++) {
+                propName = mediaPropertyNames[i];
+                td = $('#p_' + media.id + '_' + propName);
+                val = media[propName];
+                val = 
+                    (typeof val == 'undefined') ? 
+                    'undefined' : (val == null) ? 'null' : val.toString();
+                td.html(val);
+            }
+        }, 500);	
+
+    }
+        jQuery(document).ready(function() {
+            $('audio, video').mediaelementplayer({
+                //mode: 'shim',
+
+                pluginPath:'<?php echo $this->_stylePath .'/media_player/build/';?>', 
+                enablePluginSmoothing:true,
+                //duration: 489,
+                //startVolume: 0.4,
+                enablePluginDebug: true,
+                //iPadUseNativeControls: true,
+                //mode: 'shim',
+                //forcePluginFullScreen: true,
+                //usePluginFullScreen: true,
+                //mode: 'native',
+                //plugins: ['silverlight'],
+                //features: ['playpause','progress','volume','speed','fullscreen'],
+                success: function(me,node) {
+                    // report type
+                    var tagName = node.tagName.toLowerCase();
+                    $('#' + tagName + '-mode').html( me.pluginType  + ': success' + ', touch: ' + mejs.MediaFeatures.hasTouch);
+
+
+                    if (tagName == 'audio') {
+
+                        me.addEventListener('progress',function(e) {
+                            //console.log(e);
+                        }, false);
+
+                    }
+
+                    me.addEventListener('progress',function(e) {
+                        //console.log(e);
+                    }, false);
+
+
+                    // add events
+                    if (tagName == 'video' && node.id == 'player1') {
+                        appendMediaProperties($('#' + tagName + '-props'), me);
+                        appendMediaEvents($('#' + tagName + '-events'), me);
+
+                    }
+                }		
+            });
+
+
+
+        });
+    </script>    
+    <!-- 视频播放组件结束 -->
+    
 	<!-- 导航面包屑开始 -->
 	<?php $this->renderPartial('/layouts/nav',array('navs'=>$navs));?>
 	<!-- 导航面包屑结束 -->
@@ -27,10 +191,7 @@
 										<div class="score_loading"></div>									
 									</div><!--score_content end-->
 								
-									<div class="score_post">			
-									<script type="text/javascript">
-										var star = {vid:'<?php echo $video->id;?>'};
-									</script>						
+									<div class="score_post">	
 										<div id="starBox">
 											<div class="star_title">给喜欢的影片评分</div>
 											<ul class="starlist" id="starlist">
@@ -73,10 +234,18 @@
 								
 							</div>												
 						</div>
-							
+                        <!-- 视频播放 -->
+                        <div id="video-container">
+                            <video width="720" height="480" id="player1" controls="controls" preload="none" poster="<?php echo $video->cover_image;?>">
+                                <source src="<?php echo $video->video_file;?>"  type="video/mp4" />
+                                <track kind="subtitles" src="../media/mediaelement.srt" srclang="en" ></track>
+                            </video>
+                        </div>
+                        
+                        <!-- 视频简介 -->
 						<div class="info_desc clear">
 							<h1>视频简介：</h1>
-							<?php echo $soft->introduce;?>
+							<?php echo $video->introduce;?>
 						</div>						
 					</div>
 					
@@ -84,7 +253,7 @@
 			</div>				
 			
 			<!-- 评论区 -->
-			<iframe id="comment_iframe" scrolling="no" marginheight="0" marginwidth="0" frameborder="0" src="<?php echo $this->createUrl('comment/create', array('view_url'=>$this->_request->getUrl(),'topic_id'=>$video->id,'topic_type'=>'video'));?>"></iframe>			
+			<iframe id="comment_iframe" scrolling="no" marginheight="0" marginwidth="0" frameborder="0" src="<?php echo $this->createUrl('comment/create', array('view_url'=>$this->_request->getUrl(),'content_id'=>$video->id,'topic_type'=>'video'));?>"></iframe>			
 		</div>
 		
 		<!-- 右侧内容开始 -->
@@ -93,24 +262,6 @@
 		
 	</div>
 	
+    <script type="text/javascript" src="<?php echo $this->_stylePath . '/js/score.js';?>"></script>
 	<!-- 返回顶部 -->
-	<a href="javascript:;" id="back_top"></a>
-	<script type="text/javascript">
-		$(function(){
-			$(window).scroll(function(){				
-				var scrollt = $(this).scrollTop(); //获取滚动后的高度 
-				if(scrollt > 200){
-					$("#back_top").fadeIn(200);					
-				}else{		
-					$("#back_top").fadeOut(200);					
-				}
-			});
-			
-			$("#back_top").click(function(){						
-				$("html,body").animate({scrollTop:"0px"},200);
-			});
-			
-		});
-	</script>
-	
-			
+	<a href="javascript:;" id="back_top"></a>	

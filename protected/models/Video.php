@@ -172,4 +172,47 @@ class Video extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+    
+    /**
+	 * 获取一定条件下的文章
+	 * @param array $params = ('condition'=> '额外条件', 'order'=>'排序', 'with'=>'关联表', 'limit'=>'条数', 'page'=>'是否分页')
+	 * @param $pages 分页widget
+	 * @return array
+	 */
+	public static function getList($params = array(), &$pages = null){
+		
+		$pages = array();
+        
+        $params['condition'] = isset($params['condition'])?$params['condition']:'';
+        $params['order']     = isset($params['order'])?$params['order']:'';
+        $params['with']      = isset($params['with'])?$params['with']:'';
+        $params['limit']     = isset($params['limit'])?$params['limit']:'';
+        $params['page']      = isset($params['page'])?$params['page']:'';
+		
+		//组合条件
+		$criteria = new CDbCriteria();
+		$criteria->condition = 't.status=:status';
+		$params['condition'] && $criteria->condition .= $params['condition'];		
+		$criteria->order = $params['order']?$params['order']:'t.id DESC';
+		$criteria->with = array ( 'catalog' );
+		$criteria->select = "t.title, t.id, t.update_time,t.introduce, t.tags, t.view_count";		
+		$criteria->params = array(':status'=> 'Y');
+		$params['with'] && $criteria->with = (array)$params['with'];
+		
+		$limit = $params['limit']>0?intval($params['limit']):15;
+		//是否分页
+		if($params['page']){
+			//分页
+			$count = self::model()->count( $criteria );
+			$pages = new CPagination( $count );
+			$pages->pageSize = $limit;	
+			$criteria->limit = $pages->pageSize;
+			$criteria->offset = $pages->currentPage * $pages->pageSize;
+		}else{
+			$criteria->limit = $limit;
+		}	
+		
+		$data = self::model()->findAll($criteria);					
+		return $data ? $data : array();
+	}
 }
