@@ -122,10 +122,14 @@ box-shadow: 0 5px 0 #e2534b;
 .user_menu .fa_setting:before { content: "\f013";}
 .user_menu .fa_poweroff:before { content: "\f011";}
 
-/* 错误信息 */
-.error_message { background-color:#F2DEDE;  border-radius:5px; border: 1px solid #EED3D7; text-align:center;}
+/* 表单验证提示信息 */
 .fa_error:before { content: "\f00d"; margin-right:10px;}
-.error_message em { display:block; color:#B94A48; }
+.help_inline em { display:block; color:#B94A48; }
+.help_inline{ float:left; vertical-align: middle; text-align:center; height:40px; padding-left:30px; margin-left:10px;}
+.error .help_inline{ border-radius:5px; border: 1px solid #EED3D7; background:#F2DEDE url(../images/help_inline.png) no-repeat 6px -30px; }
+.success .help_inline{ background:url(../images/help_inline.png) no-repeat 6px 11px;}
+.success input {  border:1px solid #468847;}
+.error input { color:#b94a48; border:1px solid #b94a48;}
 
 
 /* 公共内容main */

@@ -12,6 +12,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="HandheldFriendly" content="true">
 	<link rel="stylesheet" type="text/css" media="only screen and (max-width:720px),only screen and (max-device-width:720px)" href="<?php echo $this->_stylePath;?>/css/media_login.css"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->_stylePath . '/css/login.css';?>" />
 </head>
 <body>			
 	<div id="wrapper">

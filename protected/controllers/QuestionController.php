@@ -66,10 +66,6 @@ class QuestionController extends FrontBase
 		//导航
 		$navs[] = array('url'=>Yii::app()->request->getUrl(),'name'=>Yii::t('common','Question Title'));
 		
-		//加载样式表
-		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/question.css");
-		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
-		
 		$this->render('index',array('model'=>$model,'navs'=>$navs));
 	}
 	

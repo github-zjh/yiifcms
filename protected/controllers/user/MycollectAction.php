@@ -1,7 +1,8 @@
 <?php
 /**
  * 我的收藏
- * @author        zhao jinhan <326196998@qq.com>
+ * 
+ * @author        Sim Zhao <326196998@qq.com>
  * @copyright     Copyright (c) 2014-2015. All rights reserved.
  *
  */
@@ -39,8 +40,7 @@ class MycollectAction extends CAction
 		$count = $collect_mod->count( $criteria );
 		$pages = new CPagination( $count );
 		$pages->pageSize = 15;		
-		$criteria->limit = $pages->pageSize;
-		$criteria->offset = $pages->currentPage * $pages->pageSize;				
+		$pages->applyLimit($criteria);				
 		$datalist = $collect_mod->findAll($criteria);
 		$controller->render('my_collect', array('datalist'=>$datalist, 'pages'=>$pages));
 	}

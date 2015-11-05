@@ -298,10 +298,10 @@ class Helper
 	 * @return string
 	 */
 	static public function selected( $string, $param = 1, $type = 'select' ) {
-	
+        
 		if ( is_array( $param ) ) {
 			$true = in_array( $string, $param );
-		}else if ( $string == $param ) {
+		}else if ( strval($string) === strval($param) ) {
 			$true = true;
 		} else {
             $true = false;

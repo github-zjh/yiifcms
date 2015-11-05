@@ -30,8 +30,7 @@ class SpaceAction extends CAction
 		//当前登录用户
 		$uid = Yii::app()->user->id;
 		if(!$user){
-			throw new CHttpException(404, Yii::t('common','The requested page does not exist.'));
-			exit;
+			throw new CHttpException(404, Yii::t('common','The requested page does not exist.'));			
 		}else{
 			$data = array();
 			$group = UserGroup::model()->findByPk($user->groupid);

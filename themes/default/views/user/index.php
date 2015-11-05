@@ -1,4 +1,5 @@
-	<div class="user clear">
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->_stylePath . '/css/user.css';?>" />
+    <div class="user clear">
 		<div class="user_left">
 			<!-- 用户菜单导航开始 -->
 			<?php $this->renderPartial('user_left');?>
@@ -18,8 +19,8 @@
 					<li><label><?php echo Yii::t('model','mobile');?>：</label><span><?php echo $profile->mobile?$profile->mobile:'您没有填写手机号码哦~';?></span></li>
 					<li><label><?php echo Yii::t('model','logins');?>：</label><span><?php echo $profile->logins;?></span></li>
 					<li><label><?php echo Yii::t('model','last_login_ip');?>：</label><span><?php echo $profile->last_login_ip?$profile->last_login_ip:'您这是首次登录哦~';?></span></li>
-					<li><label><?php echo Yii::t('model','usergroup');?>：</label><span><?php echo Yii::app()->user->groupname;?></span></li>
-					<li><label><?php echo Yii::t('common','User Space');?>：</label><span><a href="<?php echo $this->createUrl('user/space', array('id'=>$profile->uid));?>" title="<?php echo $user['username'].' - '.Yii::t('common','User Space');?>"><?php echo $this->_request->hostinfo.$this->createUrl('user/space', array('id'=>$profile->uid));?></a></span></li>
+					<li><label><?php echo Yii::t('model','usergroup');?>：</label><span><?php echo $profile->group->group_name;?></span></li>
+					<li><label><?php echo Yii::t('common','User Space');?>：</label><span><a href="<?php echo $this->createUrl('user/space', array('id'=>$profile->uid));?>" title="<?php echo $profile->username.' - '.Yii::t('common','User Space');?>"><?php echo $this->_request->hostinfo.$this->createUrl('user/space', array('id'=>$profile->uid));?></a></span></li>
 				</ul>				
 				<a href="<?php echo $this->createUrl('setting');?>" class="edit_btn">
 					<i class="fa fa_edit"></i><?php echo Yii::t('common','Edit');?>

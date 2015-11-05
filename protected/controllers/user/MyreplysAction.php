@@ -29,9 +29,7 @@ class MyreplysAction extends CAction
 		//我的回复
 		$uid = Yii::app()->user->id;
 		$comment_mod = new Comment();
-		$reply_mod = new Reply();
-		$model_type = new ModelType();
-		$uid = Yii::app()->user->id;
+		$reply_mod = new Reply();		
 		$criteria = new CDbCriteria();
 		$criteria->condition = 't.user_id='.$uid;
 		$criteria->order = 't.id DESC';
@@ -40,8 +38,7 @@ class MyreplysAction extends CAction
 		$count = $reply_mod->count( $criteria );
 		$pages = new CPagination( $count );
 		$pages->pageSize = 15;
-		$criteria->limit = $pages->pageSize;
-		$criteria->offset = $pages->currentPage * $pages->pageSize;
+		$pages->applyLimit($criteria);
 		$datalist = $reply_mod->findAll($criteria);	
 		foreach((array)$datalist as $k => $v){
 			$reply = $comment_mod->findByPk($v->cid);			

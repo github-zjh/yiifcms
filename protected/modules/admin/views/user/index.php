@@ -10,7 +10,14 @@
             <li><a href="<?php echo $this->createUrl('create')?>" class="actionBtn"><span><?php echo Yii::t('admin','add');?></span></a></li>
         </ul>
         <div class="search right">
-            <?php $form = $this->beginWidget('CActiveForm',array('id'=>'searchForm','method'=>'get', 'htmlOptions'=>array('name'=>'xform'))); ?>
+            <?php $form = $this->beginWidget('CActiveForm',array('id'=>'searchForm', 'action' =>array('index'), 'method'=>'get', 'htmlOptions'=>array('name'=>'xform'))); ?>
+            <?php echo Yii::t('admin','Status');?>:            
+            <select name="status" id="status">                
+                <?php foreach($user_status as $key => $v):?>
+                <option value="<?php echo $key?>" <?php Helper::selected($key, $status);?>><?php echo $v?></option>
+                <?php endforeach;?>
+            </select>
+            <?php echo Yii::t('admin','User Group');?>:
             <?php if(!isset($adminPage)):?>
             <select name="groupid" id="groupid">
                 <option value="">=组=</option>

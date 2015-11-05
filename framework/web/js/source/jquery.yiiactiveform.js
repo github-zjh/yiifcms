@@ -230,7 +230,8 @@
 	 */
 	$.fn.yiiactiveform.getInputContainer = function (attribute, form) {
 		if (attribute.inputContainer === undefined) {
-			return form.find('#' + attribute.inputID).closest('div');
+			//return form.find('#' + attribute.inputID).closest('div');
+            return form.find('#' + attribute.inputID).parent();
 		} else {
 			return form.find(attribute.inputContainer).filter(':has("#' + attribute.inputID + '")');
 		}

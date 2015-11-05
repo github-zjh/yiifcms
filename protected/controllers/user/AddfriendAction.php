@@ -1,21 +1,15 @@
 <?php
 /**
  * 添加好友操作
- * @author        zhao jinhan <326196998@qq.com>
+ * @author        Sim Zhao <326196998@qq.com>
  * @copyright     Copyright (c) 2014-2015. All rights reserved.
  *
  */
 
 
 class AddfriendAction extends CAction
-{
-	public $_seoTitle;
-	public $_setting;
-	public $_static_public;
-	public $_stylePath;	
-		
-	public function run(){	
-		$controller  = $this->getController();
+{	
+	public function run(){
 		$uid = Yii::app()->user->id;
 		$ret = array();
 		if(!$uid){

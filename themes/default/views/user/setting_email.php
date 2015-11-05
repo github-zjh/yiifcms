@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="<?php echo $this->_stylePath . '/css/user.css';?>" />
 <div class="user clear">
 	<?php
 		//引用公共提示信息

@@ -12,6 +12,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="HandheldFriendly" content="true">
 	<link rel="stylesheet" type="text/css" media="only screen and (max-width:720px),only screen and (max-device-width:720px)" href="<?php echo $this->_stylePath;?>/css/media_register.css"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->_stylePath . '/css/register.css';?>" />
+    <script type="text/javascript" src="<?php echo $this->_static_public . '/js/jquery/jquery.mailAutoComplete-4.0.js';?>"></script>
 </head>
 <body>			
 	<div class="reg_head"><h1><?php echo CHtml::encode($this->_seoTitle);?></h1></div>
@@ -20,8 +22,7 @@
 		<?php $form=$this->beginWidget('CActiveForm', 
 			array(
 				'id'=>'register-form',
-				'enableAjaxValidation' => true,
-				'enableClientValidation'=>false,
+				'enableAjaxValidation' => true,				
 				'clientOptions'=>array(
 					'validateOnSubmit'=>true,
 				),
@@ -31,25 +32,25 @@
 			<ul class="form_box">
 				<li class="clear">
 					<label for="RegisterForm_username" class="label_icon_user"><i class="fa fa_user"></i></label>
-					<?php echo $form->textField($model, 'username', array('class'=>'form-control  validate[required]','value'=>'','placeholder'=>'用户名'));?>					
-					<?php echo $form->error($model,'username'); ?>       
+					<?php echo $form->textField($model, 'username', array('class'=>'form-control','value'=>'','placeholder'=>'用户名'));?>					
+					<?php echo $form->error($model,'username', array('class' => 'help_inline')); ?>       
 				</li>
 				<li class="clear">
 					<label for="RegisterForm_password" class="label_icon_user"><i class="fa fa_pw"></i></label>
-					<?php echo $form->passwordField($model, 'password', array('class'=>'form-control  validate[required]','value'=>'','placeholder'=>'密码'));?>					
-					<?php echo $form->error($model,'password'); ?>       
+					<?php echo $form->passwordField($model, 'password', array('class'=>'form-control','value'=>'','placeholder'=>'密码'));?>					
+					<?php echo $form->error($model,'password', array('class' => 'help_inline')); ?>       
 				</li>
 				<li class="clear">
 					<label for="RegisterForm_email" class="label_icon_user"><i class="fa fa_email"></i></label>
-					<?php echo $form->textField($model, 'email', array('class'=>'form-control  validate[required] inputMailList','value'=>'','placeholder'=>'邮箱', 'autocomplete' => 'off'));?>
-					<?php echo $form->error($model,'email'); ?>       
+					<?php echo $form->textField($model, 'email', array('class'=>'form-control inputMailList','value'=>'','placeholder'=>'邮箱', 'autocomplete' => 'off'));?>
+					<?php echo $form->error($model,'email', array('class' => 'help_inline')); ?>       
 				</li>
 				<li class="clear">					
 					<?php echo $form->textField($model, 'verifyCode', array('class'=>'form-control captcha','placeholder'=>'验证码'));?>
 					<div class="captcha_img">
 						<?php $this->widget ( 'CCaptcha', array ('showRefreshButton' => true, 'clickableImage' => true, 'buttonType' => 'link', 'buttonLabel' => '换一张', 'imageOptions' => array ('alt' => '点击换图', 'align'=>'absmiddle'  ) ) );?>
 					</div>
-					<?php echo $form->error($model,'verifyCode'); ?>               
+					<?php echo $form->error($model,'verifyCode', array('class' => 'help_inline')); ?>               
 				</li>
 				<li class="last clear">
 					<a href="<?php echo $this->createUrl('login');?>" class="login_link">已有账号？</a>

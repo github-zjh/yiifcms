@@ -127,9 +127,8 @@ class Post extends CActiveRecord
 			//分页
 			$count = self::model()->count( $criteria );
 			$pages = new CPagination( $count );
-			$pages->pageSize = $limit;	
-			$criteria->limit = $pages->pageSize;
-			$criteria->offset = $pages->currentPage * $pages->pageSize;
+			$pages->pageSize = $limit;
+            $pages->applyLimit($criteria);
 		}else{
 			$criteria->limit = $limit;
 		}	

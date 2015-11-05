@@ -74,6 +74,7 @@ class User extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            'group' => array(self::BELONGS_TO, 'UserGroup', 'groupid')
 		);
 	}
 	
@@ -105,22 +106,22 @@ class User extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(		
-			'uid' => Yii::t('model','uid'),
-			'username' => Yii::t('model','username'),
-			'password' => Yii::t('model','password'),
-			'email' => Yii::t('model','email'),
-			'groupid' => Yii::t('model','groupid'),
-			'status' => Yii::t('model','status'),
-			'addtime' => Yii::t('model','addtime'),
-			'avatar' => Yii::t('model','avatar'),
-			'nickname' => Yii::t('model','nickname'),
-			'sign' => Yii::t('model','sign'),
-			'web' => Yii::t('model','web'),
-			'mobile' => Yii::t('model','mobile'),
-			'qq' => Yii::t('model','qq'),
-			'register_ip' => Yii::t('model','register_ip'),
-			'last_login_ip' => Yii::t('model','last_login_ip'),
-			'logins' => Yii::t('model','logins'),
+			'uid'               => Yii::t('model','uid'),
+			'username'          => Yii::t('model','username'),
+			'password'          => Yii::t('model','password'),
+			'email'             => Yii::t('model','email'),
+			'groupid'           => Yii::t('model','groupid'),
+			'status'            => Yii::t('model','status'),
+			'addtime'           => Yii::t('model','addtime'),
+			'avatar'            => Yii::t('model','avatar'),
+			'nickname'          => Yii::t('model','nickname'),
+			'sign'              => Yii::t('model','sign'),
+			'web'               => Yii::t('model','web'),
+			'mobile'            => Yii::t('model','mobile'),
+			'qq'                => Yii::t('model','qq'),
+			'register_ip'       => Yii::t('model','register_ip'),
+			'last_login_ip'     => Yii::t('model','last_login_ip'),
+			'logins'            => Yii::t('model','logins'),
 			'username_editable' => Yii::t('model','username_editable'),
 		);
 	}

@@ -28,8 +28,7 @@ class MyfriendsAction extends CAction
 		
 		//我的好友
 		$uid = Yii::app()->user->id;	
-		$friend_mod = new Friend();		
-		$uid = Yii::app()->user->id;
+		$friend_mod = new Friend();
 		$criteria = new CDbCriteria();
 		$criteria->condition = 't.uid1='.$uid.' OR t.uid2='.$uid;
 		$criteria->order = 't.id DESC';
@@ -38,8 +37,7 @@ class MyfriendsAction extends CAction
 		$count = $friend_mod->count( $criteria );
 		$pages = new CPagination( $count );
 		$pages->pageSize = 15;
-		$criteria->limit = $pages->pageSize;
-		$criteria->offset = $pages->currentPage * $pages->pageSize;
+		$pages->applyLimit($criteria);
 		$datalist = $friend_mod->findAll($criteria);
 		foreach((array)$datalist as $k =>$v){
 			if($v->uid1 == $uid){
