@@ -50,7 +50,7 @@
 					</dd>
 					<dd class="submit_cut">
 						<div class="upload_btn">
-							<a href="javascript:;" class="btn_text"><?php echo Yii::t('common','Upload Image');?></a>
+							<a href="javascript:$('#uploadAvatar').click();" class="btn_text"><?php echo Yii::t('common','Upload Image');?></a>
 							<input type="file" id="uploadAvatar" name="avatar" onclick="fileUpload()"/>							
 							<input type="hidden" id="srcFile" />							
 						</div>				

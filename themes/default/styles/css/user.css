@@ -113,6 +113,7 @@ cursor: pointer }
 .upload_btn .uploadify { position:absolute; top:0; opacity:0; cursor:pointer; filter:alpha(opacity=0);}
 .upload_avatar_status { display:none; position:absolute; left:90px; margin-left:10px; padding-left:20px; }
 .upload_avatar_status_success { background:none;}
+#uploadAvatar { z-index:-1; position:relative; top:-22px; width:80px;}
 	
 #edit_form .submit {	
 	margin-top:20px;
