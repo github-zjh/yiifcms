@@ -13,3 +13,4 @@
 /upload
 /protected/tests
 /protected/data/backup/*.sql
+/*.tgitconfig

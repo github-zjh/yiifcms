@@ -58,7 +58,9 @@ class UserController extends FrontBase
             'myattention' => 'Myattention',    //我的关注
             'myreplys'    => 'Myreplys',       //我的回复
             'myfriends'   => 'Myfriends',      //我的好友
-            'cancel'      => 'Cancel'          //取消操作
+            'cancel'      => 'Cancel',         //取消操作
+            'uploadAvatar'=> 'UploadAvatar',   //上传头像
+            'avatarCut'   => 'AvatarCut',      //头像剪切
         ), 'application.controllers.user');
         return array_merge($actions, $extra_actions);
     }

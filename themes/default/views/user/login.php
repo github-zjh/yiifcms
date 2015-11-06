@@ -37,8 +37,7 @@
 						<?php if (CHtml::errorSummary($model)):?>
 						<li class="error_message">
 						<?php foreach($model->geterrors() as $error):?>
-						<em><i class="fa fa_error"></i><?php echo $error[0];?></em>
-						<?php break;?>
+						<em><i class="fa fa_error"></i><?php echo $error[0];?></em>						
 						<?php endforeach;?>	
 						</li>						
 						<?php endif?>
@@ -47,7 +46,7 @@
 							<input type="submit" id="login_submit" name="submit" value="登录" />
 							<input type="checkbox" name="FloginForm[rememberMe]" value="1" id="FloginForm[rememberMe]" class="login-radio">
 							<label for="login-radio">记住我</label>
-							<a href="<?php echo $this->createUrl('forgetpwd')?>" class="forgetpw">忘记密码？</a>
+							<a href="<?php echo $this->createUrl('forgetPwd')?>" class="forgetpw">忘记密码？</a>
 						</li>
 					</ul>					
 				</div>

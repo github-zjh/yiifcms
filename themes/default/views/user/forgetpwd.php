@@ -4,7 +4,8 @@
 			$form=$this->beginWidget('CActiveForm',
 			array('id'=>'edit_form',
 				'htmlOptions'=>array('name'=>'edit_form'),			
-				)); 
+				)
+            ); 
 		?>
 			<table class="base_table">			
 				<tr><th><?php echo $form->label($model,'username');?>：</th><td><?php echo $form->textField($model,'username');?></td></tr>
@@ -16,8 +17,7 @@
 						<?php if (CHtml::errorSummary($model)):?>
 						<div class="error_message">
 						<?php foreach($model->geterrors() as $error):?>
-						<em><i class="fa fa_error"></i><?php echo $error[0];?></em>
-						<?php break;?>
+						<em><i class="fa fa_error"></i><?php echo $error[0];?></em>						
 						<?php endforeach;?>	
 						</div>						
 						<?php endif?>						

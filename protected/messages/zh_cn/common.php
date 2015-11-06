@@ -127,7 +127,7 @@ return array (
 	'Reset Pwd' => '重置密码',
 	'ResetPwd Email' =>'
 			<p>尊敬的用户：{username} 您好，您已经申请找回密码服务，请点击下面链接进行密码重置：<br/><br/>
-			<a href="{authurl}">{authurl}</a><br/><br/>(如果上面链接不能点击，请复制到浏览器地址栏中进行访问。)<br/><br/>
+			<a href="{authurl}" target="_blank">{authurl}</a><br/><br/>(如果上面链接不能点击，请复制到浏览器地址栏中进行访问。)<br/><br/>
 			==================<br/><br/>请确保是本人操作，如果有其他疑问，
 			请联系本网站的管理员：<a href="mailto:{admin_email}">{admin_email}</a>。</p>
 	',

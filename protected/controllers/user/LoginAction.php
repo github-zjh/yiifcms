@@ -34,9 +34,18 @@ class LoginAction extends CAction
 				$ret_url = Yii::app()->user->returnUrl;
 			}
 		}
-		/* 防止登陆成功后跳转到登陆、退出的页面 */
+		/* 防止登陆成功后跳转到登陆、退出等页面 */
 		$ret_url = strtolower($ret_url);
-		if (str_replace(array('user/login', 'user/logout', 'user/register'), '', $ret_url) != $ret_url)
+        $deny_enter = array(
+            'user/login', 
+            'user/logout', 
+            'user/register',
+            'user/forgetPwd',
+            'user/resetPwd',
+            'user/authEmail',
+            'user/cancel',
+        );
+		if (str_replace($deny_enter, '', $ret_url) != $ret_url)
 		{
 			$ret_url = Yii::app()->user->returnUrl;
 		}	

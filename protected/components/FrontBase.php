@@ -143,4 +143,47 @@ EOT;
 		}		
 		return true;
 	}
+    
+    /**
+	 * 前端页面提示信息
+	 * @param string $action
+	 * @param string $content
+	 * @param string $redirect
+	 * @param number $timeout
+	 * @param string $stop
+	 */
+	public function message( $action = 'success', $content = '', $redirect = 'javascript:history.back(-1);', $timeout = 4 , $stop=false) {
+        switch ( $action ) {
+			case 'success':				
+				$class = 'message_success';
+				$images = 'message_success.png';
+				break;
+			case 'error':				
+				$class = 'message_error';
+				$images = 'message_error.png';
+				break;
+			case 'errorBack':				
+				$class = 'message_error';
+				$images = 'message_error.png';
+				break;
+			case 'redirect':
+				header( "Location:$redirect" );
+				break;
+			case 'script':
+				if ( empty( $redirect ) ) {
+					exit( '<script type="text/javascript">alert("' . $content . '");window.history.back(-1)</script>' );
+				} else {
+					exit( '<script type="text/javascript">alert("' . $content . '");window.location=" ' . $redirect . '   "</script>' );
+				}
+				break;
+		}	
+        $this->_seoTitle = '操作提示  -  '. $this->_setting["seo_title"];
+        $this->render('/layouts/message', array(
+            'class'    => $class,
+            'redirect' => $redirect,
+            'stop'     => $stop,
+            'images'   => $images,
+            'content'  => $content,
+        ));
+	}    
 }

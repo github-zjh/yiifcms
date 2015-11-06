@@ -10,11 +10,19 @@ class AjaxAction extends CAction {
 
     public function run() {
        
-        $tags = preg_replace('/(\s)+/', ',', trim(Yii::app()->request->getParam('tag')));
-        $arr_tag = explode(',', $tags);
-        foreach ((array) $arr_tag as $tag) {
-            $t = Tag::model()->find('tag_name = :tn', array(':tn' => $tag));
-            $t && $tag_ids[] = $t->id;
+        $tags = preg_replace('/(\s)+/', ',', trim(Yii::app()->request->getParam('tag')));        
+        $tag_ids = array();
+        if($tags) {
+            $arr_tag = explode(',', $tags);
+            foreach ($arr_tag as $tag) {
+                $t = Tag::model()->find('tag_name = :tn', array(':tn' => $tag));
+                $t && $tag_ids[] = $t->id;
+            }
+        } else {
+            $alltags = Tag::model()->findAll(array('order' => 'data_count'));
+            foreach ((array) $alltags as $tv) {
+                $tag_ids[] = $tv->id;
+            }
         }
 
         $ajax = Yii::app()->request->getParam('ajax');

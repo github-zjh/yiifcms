@@ -119,6 +119,16 @@ class Uploader{
             'rand_name'           => true,                  //是否随机生成文件名
             'max_upload_filesize' => 2097152,               //允许最大上传大小2M            
         ),
+        //头像
+        'avatar' => array(            
+            'save_path'           => 'avatar',              //保存路径
+            'allow_ext'           => 'jpg,jpeg,png,gif',    //允许类型  *代表所有
+            'rand_name'           => true,                  //是否随机生成文件名
+            'max_upload_filesize' => 2097152,               //允许最大上传大小2M
+            'make_thumb'          => true,                  //是否生成缩略图
+            'thumb_width'         => 300,                   //缩略图宽度
+            'thumb_height'        => 300                    //缩略图高度
+        ),
     );  
     
     /**
@@ -287,7 +297,7 @@ class Uploader{
 	 * @return mixed
 	 */	
 	public static function getImageInfo($img) {
-		$imageInfo = getimagesize($img);
+		$imageInfo = @getimagesize($img);
 		if ($imageInfo !== false) {
 			$imageType = strtolower(substr(image_type_to_extension($imageInfo[2]), 1));
 			$imageSize = filesize($img);
@@ -416,6 +426,55 @@ class Uploader{
 		}
 		return true;
 	}
+    
+    /**
+     * 裁剪图片
+     * 
+     * @param string $image   //原图
+     * @param array $params = [
+     *      'cut_w' => 100,    //剪切的宽度
+     *      'cut_h' => 100,    //剪切的高度
+     *      'pos_x' => 0,      //剪切的x坐标
+     *      'pos_y' => 0,      //剪切的y坐标
+     *      
+     * ]
+     * @return $cut_image    //剪切后的图片路径
+     */
+    public function imageCut($image = '', $params = array())
+    {                
+        $filename = ROOT_PATH . '/'. $image;         	
+        $image_info = self::getImageInfo($filename);
+        //带扩展名的文件名称
+        $basename = pathinfo($filename, PATHINFO_BASENAME);
+        $save_dirname = pathinfo($filename, PATHINFO_DIRNAME);
+        $ret_dirname = pathinfo($image, PATHINFO_DIRNAME);
+        $cut_image_name = 'cut_'.$basename;
+        $cut_image_save_path = $save_dirname . '/' . $cut_image_name;
+        $cut_image = $ret_dirname . '/' . $cut_image_name;
+        if(file_exists($filename)){
+            //上传成功后剪切
+            $mime = strtolower($image_info['mime']);		    	
+            if($mime == 'image/gif' ){
+                $im = imagecreatefromgif($filename); /* Attempt to open */
+                $outfun = 'imagegif';
+            } elseif($mime == 'image/png' ){
+                $im = imagecreatefrompng($filename); /* Attempt to open */
+                $outfun = 'imagepng';
+            } else{
+                $im = imagecreatefromjpeg($filename); /* Attempt to open */
+                $outfun = 'imagejpeg';
+            }
+            $bgimg = ImageCreateTrueColor( $params['cut_w'], $params['cut_h'] );
+            $white = imagecolorallocate($bgimg, 255, 255, 255);
+            //填充背景色为白色
+            imagefill($bgimg,0,0,$white);		    	
+            imagecopy($bgimg, $im, 0, 0, $params['pos_x'], $params['pos_y'], $params['cut_w'], $params['cut_h']);                        		    	
+            //输出图片
+            $outfun($bgimg, $cut_image_save_path);
+            imagedestroy($bgimg);            
+        }
+        return $cut_image;
+    }
 	
 	/**
 	 * 删除文件
