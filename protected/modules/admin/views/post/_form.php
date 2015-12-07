@@ -10,7 +10,7 @@
     </table>
 <?php endif ?>
 <script type="text/javascript" src="<?php echo $this->_static_public ?>/js/jscolor/jscolor.js"></script>
-<?php $form = $this->beginWidget('CActiveForm', array('id' => 'xform', 'htmlOptions' => array('name' => 'xform', 'enctype' => 'multipart/form-data'))); ?>
+<?php $form = $this->beginWidget('CActiveForm'); ?>
 <table class="form_table">
     <tr>
         <td class="tb_title"><?php echo $form->label($model, 'title'); ?>：</td>

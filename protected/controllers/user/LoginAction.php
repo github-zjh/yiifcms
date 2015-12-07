@@ -34,8 +34,7 @@ class LoginAction extends CAction
 				$ret_url = Yii::app()->user->returnUrl;
 			}
 		}
-		/* 防止登陆成功后跳转到登陆、退出等页面 */
-		$ret_url = strtolower($ret_url);
+		/* 防止登陆成功后跳转到登陆、退出等页面 */		
         $deny_enter = array(
             'user/login', 
             'user/logout', 

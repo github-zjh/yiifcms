@@ -8,19 +8,14 @@
  */
 class SettingPwdAction extends CAction {
 
-    public function run() {
-        $this->_seoTitle = Yii::t('common', 'User Setting') . ' - ' . Yii::t('common', 'Setting Pwd') . ' - ' . $this->_setting['site_name'];
-        //加载css,js
-        Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/user.css");
-        Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
-        $user = $this->loadModel();
-
+    public function run() {       
+        $user = $this->controller->loadModel();
         //判断账号是否已激活
-        if ($this->_active_need && $user->status == -1) {
-            $this->redirect($this->createUrl('activeEmail'));
+        if ($this->controller->_active_need && $user->status == User::STATUS_AUDIT) {
+            $this->controller->redirect($this->controller->createUrl('activeEmail'));
         }
         //判断账号的密码是否为空
-        if ($user->validatePassword(' ')) {
+        if ($user->validatePassword()) {
             $password_empty = true;
         } else {
             $password_empty = false;
@@ -39,12 +34,12 @@ class SettingPwdAction extends CAction {
                 if ($user->save()) {
                     Yii::app()->user->logout(false);
                     //提示信息
-                    Yii::app()->user->setFlash('success', Yii::t('common', 'Update Password Success'));
-                    $this->redirect($this->createUrl('user/login'));
+                    Yii::app()->user->setFlash('success', Yii::t('common', 'Update Password Success'));                    
                 }
             }
         }
-        $this->render('setting_pwd', array('model' => $model, 'user' => $user, 'password_empty' => $password_empty));
+        $this->controller->_seoTitle = Yii::t('common', 'User Setting') . ' - ' . Yii::t('common', 'Setting Pwd') . ' - ' . $this->controller->_setting['site_name'];       
+        $this->controller->render('setting_pwd', array('model' => $model, 'user' => $user, 'password_empty' => $password_empty));
     }
 
 }

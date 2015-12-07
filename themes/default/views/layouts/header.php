@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html xml:lang="<?php echo $this->_yii->language;?>" lang="<?php echo $this->_yii->language;?>">
 <head>	
 	<title><?php echo CHtml::encode($this->_seoTitle); ?></title>
@@ -6,7 +7,7 @@
 	<meta name="language" content="<?php echo $this->_yii->language;?>" />
 	<meta name="keywords" content="<?php echo $this->_seoKeywords;?>" />
 	<meta name="description" content="<?php echo $this->_seoDescription;?>" />
-    <meta name="author" content="Sim Zhao<326196998@qq.com>" />
+    <meta name="author" content="GoldHan.Zhao<326196998@qq.com>" />
     <meta name="cmsVersion" content="<?php echo $this->_cmsVersion;?>" />
     <meta name="cmsRelease" content="<?php echo $this->_cmsRelease;?>" />
 	
@@ -15,18 +16,30 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="HandheldFriendly" content="true">
 	<link rel="stylesheet" type="text/css" media="only screen and (max-width:720px),only screen and (max-device-width:720px)" href="<?php echo $this->_stylePath;?>/css/media.css"/>
-    <script type="text/javascript" src="<?php echo $this->_stylePath . '/js/jquery.min.js';?>"></script>
+    <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>    
+    <script type="text/javascript">
+        function loadingProgress(width) {            
+            $('#progress-bar .process-line').show().animate({'width':width});
+            if(width === '100%') {
+                $('#progress-bar .process-line').fadeOut();
+            }
+        }
+    </script>
 </head>
-<body>
+<body>    
+    
+<!-- 加载进度条 -->
+<div id="progress-bar"><span class="process-line"></span></div>
+
 <!-- 头部header开始 -->
-<div id="header">
+<div id="header">    
 	<div class="header_main clear">
 		<div id="logo">
 			<a class="logo_a" href="<?php echo Yii::app()->homeUrl;?>" title="<?php echo $this->_setting['site_name'];?>">
 				<img src="<?php echo $this->_static_public.'/logo.png';?>" alt="<?php echo $this->_setting['site_name'];?>"/>
 			</a>
 		</div>
-		<div id="msbox">			
+		<div id="msbox">		
 			<ul id="menu">			
 				<?php foreach((array)$this->_public_menu as $menu):?>				
 				<li <?php if(isset($this->_menu_unique) && $this->_menu_unique == $menu['value']['unique']):?> class="selected"<?php endif;?>>
@@ -121,3 +134,6 @@
 	</div>	
 </div>
 <!-- 头部header结束 -->
+
+<!-- 进度条变化 -->
+<script>loadingProgress('40%');</script>

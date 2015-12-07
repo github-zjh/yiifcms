@@ -587,5 +587,17 @@ class Helper
         $host = Yii::app()->request->hostInfo.Yii::app()->request->baseUrl;
         return "$host/".ltrim($file_path,'/');
     }
+    
+    /**
+     * 验证邮箱是否合法
+     * 
+     * @param string $email
+     * @return boolean
+     */
+    public static function validateEmail($email = '')
+    {
+        $reg = '/^[a-zA-Z0-9_]+@(qq|126|163|sina|hotmail|yahoo|gmail|sohu|live)(\.com|\.com\.cn)$/';
+        return preg_match($reg, trim($email));
+    }
 
 }

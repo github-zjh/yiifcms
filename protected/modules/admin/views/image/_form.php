@@ -8,7 +8,7 @@
 <script type="text/javascript" src="<?php echo $this->_static_public ?>/js/jquery/jquery.ui.widget.js"></script>
 <script type="text/javascript" src="<?php echo $this->_static_public ?>/js/jquery/jquery.fileupload.js"></script>
 <script type="text/javascript" src="<?php echo $this->_static_public ?>/js/jscolor/jscolor.js"></script>
-<?php $form = $this->beginWidget('CActiveForm', array('htmlOptions' => array('name' => 'xform', 'enctype' => 'multipart/form-data'))); ?>
+<?php $form = $this->beginWidget('CActiveForm'); ?>
 <table class="form_table">
     <tr>
         <td class="tb_title"><?php echo $form->label($model, 'title'); ?>：</td>

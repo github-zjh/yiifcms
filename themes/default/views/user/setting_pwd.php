@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="<?php echo $this->_stylePath . '/css/user.css';?>" />
 <div class="user clear">
 	<?php
 		//引用公共提示信息
@@ -13,9 +14,12 @@
 		<div class="user_edit">			
 			<h3><?php echo Yii::t('common','Setting Pwd');?></h3>
 			<?php 
-				$form=$this->beginWidget('CActiveForm',
-				array('id'=>'edit_form',
-					'htmlOptions'=>array('name'=>'edit_form'),			
+				$form=$this->beginWidget('CActiveForm',array(
+                        'id'=>'edit_form',                        
+                        'enableAjaxValidation' => true,				
+                        'clientOptions'=>array(
+                            'validateOnSubmit'=>true,
+                        )			
 					)); 
 			?>
 				<table class="base_table">			

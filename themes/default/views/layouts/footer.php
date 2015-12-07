@@ -85,5 +85,7 @@ function ajaxClick(act) {
 <!-- 弹窗内容区域开始 -->
 <div id="ajaxDialog"></div>
 <!-- 弹窗内容区域结束 -->
+<!-- 进度条变化 -->
+<script>loadingProgress('100%');</script>
 </body>
 </html>

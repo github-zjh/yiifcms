@@ -14,7 +14,7 @@ class RegisterAction extends CAction
 		
         //登录状态
 		if(!Yii::app()->user->getIsGuest()){
-			$this->redirect(Yii::app()->homeUrl);
+			$this->controller->redirect(Yii::app()->homeUrl);
 			exit;
 		}
 		

@@ -197,3 +197,7 @@ button.close { -webkit-appearance: none; padding: 0; cursor: pointer; background
 #copyright .outer li { float:left; width:auto; margin-left:20px; }
 
 a.org_url { color:#428bca; font-weight:bold;}
+
+/* 加载进度条样式 */
+#progress-bar { position:fixed; z-index:9999; top:0; width:100%; height:4px; background:#428BCA;}
+#progress-bar .process-line {  display:none; position:absolute; width:0px; height:4px; background:#ee3148; transition:opacity 500ms linear;}

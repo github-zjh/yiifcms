@@ -11,7 +11,7 @@
 <script type="text/javascript" src="<?php echo $this->_static_public ?>/js/jquery/jquery.fileupload.js"></script>
 <!-- ajax上传必须js结束 -->
 
-<?php $form = $this->beginWidget('CActiveForm', array('id' => 'xform', 'htmlOptions' => array('name' => 'xform', 'enctype' => 'multipart/form-data'))); ?>
+<?php $form = $this->beginWidget('CActiveForm'); ?>
 <table class="form_table">
     <tr>
         <td class="tb_title" ><?php echo $form->label($model, 'title'); ?>：</td>

@@ -168,8 +168,7 @@ class User extends CActiveRecord
 				$pwd = CPasswordHelper::hashPassword($password, 8);
 				break;
 			default:
-				throw new CHttpException(500, 'Unknown Encrypt Method!');
-				break;
+				throw new CHttpException(500, 'Unknown Encrypt Method!');				
 		}
 		return $pwd;
 	}
@@ -179,7 +178,7 @@ class User extends CActiveRecord
 	 * @param  [type] $password [description]
 	 * @return [type]           [description]
 	 */
-	public function validatePassword($password){		
+	public function validatePassword($password = ''){		
 		$return = false;
 		//判断加密方式
 		$settings = Setting::model()->find('scope = :scope AND variable = :variable', array(':scope'=>'base', ':variable'=>'encrypt'));
@@ -193,8 +192,7 @@ class User extends CActiveRecord
 				$return = CPasswordHelper::verifyPassword($password, $this->password);
 				break;
 			default:
-				throw new CHttpException(500, 'Unknown Encrypt Method!');
-				break;
+				throw new CHttpException(500, 'Unknown Encrypt Method!');				
 		}
 		return $return;
 	}
