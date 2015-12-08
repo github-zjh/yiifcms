@@ -15,99 +15,106 @@ class CancelAction extends CAction
 	public $_static_public;
 	public $_stylePath;	
 	public $_type_ids;
+    private $_uid = 0;
 	
 	public function run(){	
 		$controller  = $this->getController();		
 		$op = Yii::app()->request->getParam('op');	
-		$ids = Yii::app()->request->getParam('id');
-		$uid = Yii::app()->user->id;		
-		$res = false;    //操作状态
-		$count = true;   //是否需要统计
-		$count_field = ''; //统计数据的字段名
+		$id = Yii::app()->request->getParam('id');
+		$this->_uid = Yii::app()->user->id;	
 		$action = ''; //要返回的action名
-		if(!$uid){
+        $ids = array();
+        if($id) {
+            if(is_array($id)) {
+                $ids = $id;
+            } else {
+                $ids = array($id);
+            }
+        }        
+		if(!$this->_uid){
 			$message = Yii::t('common','You Need Login');			
 		}else{	
 			if(!$ids){
-				$message = Yii::t('common','Operation Failed');
+				$message = Yii::t('common','No Select Content');
 			}else{	
+                $flag = true;
 				switch($op){
 					case 'collect':
-						$collect_mod = new Collect();
-						//检测是否是自己收藏的
-						foreach((array)$ids as $k => $id){
-							$tmp = $collect_mod->findByPk($id);
-							if($tmp->user_id != $uid){
-								unset($ids[$k]);
-							}else{
-								$content[] = $collect_mod->findByPk($id);
-							}
-						}
-						$collect_mod->deleteByPk($ids);											
-						$res = true;	
-						$count_field = 'favorite_count';
+						$linkContent = $this->_deleteBaseData(new Collect(), $ids);
+                        $this->_updateLinkData($linkContent, 'favorite_count');						
 						$action = 'mycollect';
 						break;
 					case 'attention':
-						$attention_mod = new Attention();
-						//检测是否是自己关注的
-						foreach((array)$ids as $k => $id){
-							$tmp = $attention_mod->findByPk($id);
-							if($tmp->user_id != $uid){
-								unset($ids[$k]);
-							}else{
-								$content[] = $attention_mod->findByPk($id);
-							}
-						}
-											
-						$attention_mod->deleteByPk($ids);					
-						$res = true;					
-						$count_field = 'attention_count';
+                        $linkContent = $this->_deleteBaseData(new Attention(), $ids);
+                        $this->_updateLinkData($linkContent, 'attention_count');						
 						$action = 'myattention';
 						break;
 					case 'friend':
-						$friend_mod = new Friend();
-						//检测是否是自己的好友
-						foreach((array)$ids as $k => $id){
-							$tmp = $friend_mod->findByPk($id);
-							if($tmp->uid1 != $uid && $tmp->uid2 != $uid){
-								unset($ids[$k]);
-							}
-						}											
-						$friend_mod->deleteByPk($ids);
-						$res = true;			
-						$count = false;			
+                        $this->_deleteBaseData(new Friend(), $ids);
 						$action = 'myfriends';
 						break;
-					default:										
+					default:
+                        $flag = false;
 						break;
-				}			
-				if($res){				
-					$message = Yii::t('common', 'Cancel Success');			
-					if($count && $content)	{
-						//减少统计数据
-						$model_type = new ModelType();					
-						foreach($content as $c){						
-							$type = $model_type->findByPk($c->type);				
-							$type_name = ucfirst($type->type_key);
-							if($type_name && $c && $count_field){		
-								$content_mod = new $type_name();
-								$cur_post = $content_mod->findByPk($c->cid);
-								if($cur_post->$count_field > 0){
-									$content_mod->updateCounters(array ($count_field => -1 ), 'id=:id', array ('id' => $c->cid ));				
-								}
-							}  
-						}
-					}
-				}else{				
-					$message = Yii::t('common', 'Operation Failed');
 				}
 			}
 		}		
-		//用setFlash提示信息(类似alert)
-		$controller->layout = false;
-		Yii::app()->user->setFlash($res?'success':'error',$message);
-		$controller->redirect($controller->createUrl('user/'.$action));		
+        if($action) {
+            //用setFlash提示信息(类似alert)
+            $controller->layout = false;
+            $message = Yii::t('common', 'Cancel Success');
+            Yii::app()->user->setFlash('success',$message);            
+            $controller->redirect($controller->createUrl('user/'.$action));
+        } else {
+            Yii::app()->user->setFlash('error',$message);
+            $controller->redirect($_SERVER['HTTP_REFERER']);
+        }
 	}
+    
+    /**
+     * 删除基本数据 并返回需要删除的关联数据
+     * 
+     * @param object $model
+     * @param array $ids
+     * @return array
+     */
+    private function _deleteBaseData($model = '', $ids = array())
+    {        
+        $criteria = new CDbCriteria();
+        $criteria->addInCondition('id', $ids);
+        $criteria->addColumnCondition(array('user_id'=>$this->_uid));
+        $res = $model->findAll($criteria);
+        $content = array();
+        foreach($res as $v) {
+            if(in_array($v->id, $ids)) {
+                $content[] = $v;
+            }                            
+        }
+        $model->deleteByPk($ids);
+        return $content;
+    }
+    
+    /**
+     * 更新统计数据
+     * 
+     * @param array $contents
+     * @param string $count_field
+     */
+    private function _updateLinkData($contents = array(), $count_field = '')
+    {        
+        $model_type = new ModelType();
+        var_dump($contents);
+        foreach($contents as $c){                            
+            $type = $model_type->findByPk($c->type);
+            if($type && $count_field){
+                $type_name = ucfirst($type->type_key);
+                $content_mod = new $type_name();
+                $cur_post = $content_mod->findByPk($c->cid);
+                if($cur_post->$count_field > 0){
+                    $content_mod->updateCounters(array ($count_field => -1 ), 'id=:id', array ('id' => $c->cid ));				
+                }
+            }  
+        }
+    }
 
 }

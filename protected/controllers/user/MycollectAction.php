@@ -25,15 +25,11 @@ class MycollectAction extends CAction
 		//SEO
 		$controller->_seoTitle = Yii::t('common','User Center').' - '.Yii::t('common','Collect Manage').' - '.$this->_setting['site_name'];
 		
-		//加载css,js
-		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/user.css");
-		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");		
-		
 		//收藏列表
 		$collect_mod = new Collect();
 		$uid = Yii::app()->user->id;			
-		$criteria = new CDbCriteria();		
-		$criteria->condition = 't.user_id='.$uid;
+		$criteria = new CDbCriteria();
+        $criteria->addColumnCondition(array('t.user_id' => $uid));		
 		$criteria->order = 't.id DESC';		
 		
 		//分页

@@ -17,7 +17,7 @@ class AjaxAction extends CAction {
             $act = Yii::app()->request->getParam('act');
             $postid = Yii::app()->request->getParam('id');
             $post = Post::model()->findByPk($postid);
-            $type_id = $this->_type_ids['post'];
+            $type_id = $this->controller->_type_ids['post'];
             if (!$post) {
                 $ret = array('state' => 'error', 'message' => Yii::t('common', 'Collect Failed'));
             } else {
@@ -34,7 +34,7 @@ class AjaxAction extends CAction {
                             $attention_mod->cid = $postid;
                             $attention_mod->title = $post->title;
                             $attention_mod->user_id = $uid;
-                            $attention_mod->url = Yii::app()->request->hostinfo . $this->createUrl('post/view', array('id' => $postid));
+                            $attention_mod->url = Yii::app()->request->hostinfo . $this->controller->createUrl('post/view', array('id' => $postid));
                             $attention_mod->type = $type_id;
                             $attention_mod->create_time = time();
                             if ($attention_mod->save()) {
@@ -55,7 +55,7 @@ class AjaxAction extends CAction {
                             $collect_mod->cid = $postid;
                             $collect_mod->title = $post->title;
                             $collect_mod->user_id = $uid;
-                            $collect_mod->url = Yii::app()->request->hostinfo . $this->createUrl('post/view', array('id' => $postid));
+                            $collect_mod->url = Yii::app()->request->hostinfo . $this->controller->createUrl('post/view', array('id' => $postid));
                             $collect_mod->type = $type_id;
                             $collect_mod->create_time = time();
                             if ($collect_mod->save()) {
