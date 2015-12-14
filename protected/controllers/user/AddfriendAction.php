@@ -23,23 +23,19 @@ class AddfriendAction extends CAction
 			}else{
 				$friend_mod = new Friend();
 				if($act == 'friend'){
-					$exist_friend = $friend_mod->find('uid1=:uid AND uid2=:friendid', array(':uid'=>$uid, ':friendid'=>$friendid));
-					if(!$exist_friend){
-						$exist_friend = $friend_mod->find('uid1=:uid AND uid2=:friendid', array(':uid'=>$friendid, ':friendid'=>$uid));
-					}
+					$exist_friend = $friend_mod->find('user_id = :uid AND friend_user_id = :friendid', array(':uid'=>$uid, ':friendid'=>$friendid));					
 					if($exist_friend){
-						$ret = array('state'=>'error', 'message'=>Yii::t('common', 'You`are Friend'));
+						$ret = array('state'=>'error', 'message'=>Yii::t('common', 'You are Friend'));
 					}else{
 						//添加好友
-						$friend_mod->uid1 = $uid;
-						$friend_mod->uid2 = $friendid;						
+						$friend_mod->user_id = $uid;
+						$friend_mod->friend_user_id = $friendid;						
 						if($friend_mod->save()){							
 							$ret = array('state'=>'success', 'message'=>Yii::t('common', 'Add Friend Success'));
 						}else{
 							$ret = array('state'=>'error', 'message'=>Yii::t('common', 'Add Friend Failed'));
 						}
-					}
-					
+					}					
 				}else{
 					$ret = array('state'=>'error', 'message'=>Yii::t('common', 'Operation Failed'));				
 				}

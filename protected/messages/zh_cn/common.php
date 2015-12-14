@@ -201,7 +201,7 @@ return array (
 	'Cancel Friends' => '取消好友',
 	'Add Friend Failed' => '添加好友失败',
 	'Add Friend Success' => '添加好友成功',
-	'You`are Friend' => '你们已经是好友了',
+	'You are Friend' => '你们已经是好友了',
 	
 	//分页
 	'First Page' => '首页',

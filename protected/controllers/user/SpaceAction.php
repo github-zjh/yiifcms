@@ -8,22 +8,10 @@
 
 class SpaceAction extends CAction
 {
-	public $_seoTitle;
-	public $_setting;
-	public $_static_public;
-	public $_stylePath;
-	public $_request;
-	
+	public $_request;	
 	public function run($id){
-		$controller  = $this->getController();
-		$this->_setting = $controller->_setting;
-		$this->_stylePath = $controller->_stylePath;
-		$this->_static_public = $controller->_static_public;
+		$controller  = $this->getController();		
 		$myself = false;
-		
-		//加载css,js
-		Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/user.css");
-		Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
 		
 		//用户信息
 		$user = User::model()->findByPk($id);
@@ -48,7 +36,7 @@ class SpaceAction extends CAction
 			$data['sign'] = $user->sign;
 			
 			//SEO
-			$controller->_seoTitle = $user->username.' - '.Yii::t('common','User Space').' - '.$this->_setting['site_name'];
+			$controller->_seoTitle = $user->username.' - '.Yii::t('common','User Space').' - '.$controller->_setting['site_name'];
 			//判断是否是自己
 			if($uid == $user->uid)
 			{
@@ -56,11 +44,7 @@ class SpaceAction extends CAction
 			}			
 			//判断是否是好友
 			$friend_mod = new Friend();
-			$friend = $friend_mod->find('uid1=:uid AND uid2=:friendid', array(':uid'=>$uid, ':friendid'=>$user->uid));
-			if(!$friend){
-				$friend = $friend_mod->find('uid1=:uid AND uid2=:friendid', array(':uid'=>$user->uid, ':friendid'=>$uid));
-			}
-			
+			$friend = $friend_mod->find('user_id = :uid AND friend_user_id =:friendid', array(':uid'=>$uid, ':friendid'=>$user->uid));			
 		}
 		$controller->render('user_space', array('user'=>$data, 'myself'=>$myself, 'friend'=>$friend));
 	}

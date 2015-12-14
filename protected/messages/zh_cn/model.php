@@ -247,7 +247,8 @@ return array(
 		'CommentCreateTime'    => '评论时间',		
 		
 		//Reply[回复]
-		'ReplyId'              => '回复ID',			
+		'ReplyId'              => '回复ID',
+        'ReplyTitle'           => '回复主题',
 		'ReplyUserId'          => '回复用户',
 		'ReplyContent'         => '回复内容',
 		'ReplyStatus'          => '回复状态',			

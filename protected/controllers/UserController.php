@@ -56,6 +56,7 @@ class UserController extends FrontBase
             'addfriend'   => 'Addfriend',      //添加好友
             'mycollect'   => 'Mycollect',      //我的收藏
             'myattention' => 'Myattention',    //我的关注
+            'mycomments'  => 'Mycomments',     //我的评论
             'myreplys'    => 'Myreplys',       //我的回复
             'myfriends'   => 'Myfriends',      //我的好友
             'cancel'      => 'Cancel',         //取消操作

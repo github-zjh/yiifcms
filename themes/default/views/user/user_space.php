@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="<?php echo $this->_stylePath . '/css/user.css';?>" />
 <div class="user clear">
 	<div class="space_header">
 		<h1><a href="<?php echo $this->createUrl('user/space', array('id'=>$user['uid']));?>" title="<?php echo $user['username'].' - '.Yii::t('common','User Space');?>"><?php echo $user['username'].' - '.Yii::t('common','User Space');?></a></h1>
@@ -53,7 +54,7 @@
 	<div class="space_right">
 		<div class="space_user_info">
 			<div class="face">
-				<img src="<?php echo $user->avatar?$user->avatar:$this->_stylePath.'/images/avatar-max-img.png';?>"	data-type="big" width="180" height="180">
+				<img src="<?php echo $user['avatar']?$user['avatar']:$this->_stylePath.'/images/avatar-max-img.png';?>" data-type="big" width="180" height="180">
 			</div>
 			<h2 class="name"><?php echo $user['username'];?></h2>
 		    <ul  class="enum clear">

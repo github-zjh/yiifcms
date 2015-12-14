@@ -11,7 +11,7 @@
 class Friend extends CActiveRecord
 {
 	public $friend_name;
-	public $friend_id;
+    
 	/**
 	 * @return string the associated database table name
 	 */
@@ -28,10 +28,10 @@ class Friend extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('uid1, uid2', 'length', 'max'=>10),
+			array('user_id, friend_user_id', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, uid1, uid2', 'safe', 'on'=>'search'),
+			array('id, user_id, friend_user_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -53,8 +53,8 @@ class Friend extends CActiveRecord
 	{
 		return array(
 			'id' => 'Id',
-			'uid1' => 'Uid1',
-			'uid2' => 'Uid2',
+			'user_id' => 'user_id',
+			'friend_user_id' => 'friend_user_id',
 		);
 	}
 
@@ -78,9 +78,9 @@ class Friend extends CActiveRecord
 
 		$criteria->compare('id',$this->id,true);
 
-		$criteria->compare('uid1',$this->uid1,true);
+		$criteria->compare('user_id',$this->user_id,true);
 
-		$criteria->compare('uid2',$this->uid2,true);
+		$criteria->compare('friend_id',$this->friend_user_id,true);
 
 		return new CActiveDataProvider('Friend', array(
 			'criteria'=>$criteria,

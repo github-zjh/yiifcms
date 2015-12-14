@@ -19,6 +19,8 @@ class Comment extends CActiveRecord
     const STATUS_HIDE = 'N'; //隐藏
     
 	public $verifyCode;
+    public $title;
+    public $url;
 	
 	/**
 	 * @return string the associated database table name
