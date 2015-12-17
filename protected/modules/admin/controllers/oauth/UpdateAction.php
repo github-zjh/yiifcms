@@ -81,18 +81,7 @@ class UpdateAction extends CAction
             'wb_skey'     => trim($_POST['config']['wb_skey']),
             'callback'    => trim($_POST['config']['callback']),           
         );    
-        $apiconfig = CJSON::encode($config);
-        //写入配置文件
-        $setting = "<?php\nheader('Content-Type: text/plain; charset=UTF-8'); \n"
-                . "define( \"WB_AKEY\" , '".$config['wb_akey']."' );\n"
-                . "define( \"WB_SKEY\" , '".$config['wb_skey']."' );\n"
-                . "define( \"WB_CALLBACK_URL\" , '".$config['callback']."' );\n";        
-        $setting = str_replace("\/", "/",$setting);
-        $incFileName = $this->_ext_oauth.'/sinawb/config.php';
-        $incFile = fopen($incFileName,"w+") or die("请开启{$incFileName}的读写权限");        
-        if(fwrite($incFile, $setting)){            			
-            fclose($incFile);            			
-        }        
+        $apiconfig = CJSON::encode($config);        
         return $apiconfig;
     }
     
@@ -108,18 +97,7 @@ class UpdateAction extends CAction
             'app_secret' => trim($_POST['config']['app_secret']),
             'callback'   => trim($_POST['config']['callback']),
         );        
-        $apiconfig = CJSON::encode($config);        
-        //写入配置文件
-        $setting = "<?php\nheader('Content-Type: text/plain; charset=UTF-8');\n"
-                . "define( \"APP_ID\" , '".$config['app_id']."' );\n"
-                . "define( \"APP_SECRET\" , '".$config['app_secret']."' );\n"
-                . "define( \"CALLBACK_URL\" , '".$config['callback']."' );\n";
-        $setting = str_replace("\/", "/",$setting);
-        $incFileName = $this->_ext_oauth.'/weixin/config.php';
-        $incFile = fopen($incFileName,"w+") or die("请开启{$incFileName}的读写权限");
-        if(fwrite($incFile, $setting)){            			
-            fclose($incFile);            			
-        }
+        $apiconfig = CJSON::encode($config);
         return $apiconfig;
     }
     
@@ -136,17 +114,6 @@ class UpdateAction extends CAction
             'callback'   => trim($_POST['config']['callback']),
         );
         $apiconfig = CJSON::encode($config);
-        //写入配置文件
-        $setting = "<?php\nheader('Content-Type: text/plain; charset=UTF-8');\n"
-                . "define( \"APP_KEY\" , '".$config['app_key']."' );\n"
-                . "define( \"APP_SECRET\" , '".$config['app_secret']."' );\n"
-                . "define( \"CALLBACK_URL\" , '".$config['callback']."' );\n";
-        $setting = str_replace("\/", "/",$setting);
-        $incFileName = $this->_ext_oauth.'/renren/config.php';
-        $incFile = fopen($incFileName,"w+") or die("请开启{$incFileName}的读写权限");
-        if(fwrite($incFile, $setting)){            			
-            fclose($incFile);            			
-        }        
         return $apiconfig;
     }
     

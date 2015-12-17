@@ -100,4 +100,20 @@ class OAuth extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+    
+    /**
+     * 获取配置
+     * 
+     * @param string $id
+     * @return array
+     */
+    public static function getConf($id = '')
+    {
+        $res = self::model()->findByPk($id);        
+        if($res && $res->apiconfig) {
+            return json_decode($res->apiconfig, true);
+        } else {
+            return array();
+        }
+    }
 }

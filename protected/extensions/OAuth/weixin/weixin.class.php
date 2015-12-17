@@ -7,7 +7,7 @@
  * @link www.artart.cn
  * @version v 1.0
  */
-require 'config.php';
+
 class WeiXin
 {
 	public  $url        = 'https://api.weixin.qq.com';
@@ -17,11 +17,11 @@ class WeiXin
 	private $_appid     = '';
 	private $_appsecret = '';
 	
-	public function __construct()
+	public function __construct($app_id = '', $app_secret = '', $callback = '')
 	{
-        $this->_appid = APP_ID;
-        $this->_appsecret = APP_SECRET;
-        $this->redirect_url = CALLBACK_URL;
+        $this->_appid = $app_id;
+        $this->_appsecret = $app_secret;
+        $this->redirect_url = $callback;
 	}
 
 	/**
