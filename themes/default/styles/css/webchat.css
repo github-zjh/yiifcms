@@ -1,0 +1,28 @@
+@charset 'utf-8';
+body{background:url(../images/web_wechat_login_bg.jpg) no-repeat center;-webkit-background-size:cover;background-size:cover}
+pre{margin:0;font-family:inherit;font-size:inherit;white-space:pre-wrap;word-break:initial}
+.login{height:100%;min-width:860px;min-height:700px;overflow:auto;position:relative}
+.logo{position:absolute;top:60px;left:60px}
+.web_wechat_login_logo{background:url(../images/webchat_icon_logo.png) 0 0;width:80px;height:80px;vertical-align:middle;display:inline-block; opacity:0.6;}
+.login_box{position:absolute;top:50%;left:50%;margin-left:-190px;margin-top:-270px;border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;background-color:#fff;width:380px;height:540px;box-shadow:#999 0 2px 10px;-moz-box-shadow:#999 0 2px 10px;-webkit-box-shadow:#999 0 2px 10px}
+.login_box .qrcode{text-align:center}
+.login_box .qrcode.hide{display:none}
+.login_box .qrcode .img{display:block;width:276px;height:276px;margin:42px auto 5px}
+.login_box .qrcode .sub_title{text-align:center;font-size:18px;color:#353535}
+.login_box .qrcode .extension{margin-top:40px;display:inline-block;text-align:left}
+.login_box .qrcode .extension .icon{float:left;margin-right:20px;margin-top:4px}
+.login_box .qrcode .extension .item{margin-bottom:30px}
+.login_box .qrcode .extension .cont{overflow:hidden}
+.login_box .qrcode .extension .title{font-weight:400;font-size:14px;color:#353535}
+.login_box .qrcode .extension .desc{font-size:12px;color:#353535}
+.login_box .qrcode .extension .desc a{text-decoration:none;color:#459ae9}
+.login_box .avatar{display:none;text-align:center;margin-top:100px}
+.login_box .avatar.show{display:block}
+.login_box .avatar .img{width:100px;height:100px;border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;margin-bottom:80px;border:1px solid rgba(0,0,0,.1)}
+.login_box .avatar .sub_title{font-size:24px;color:#353535;margin-bottom:14px;font-weight:400}
+.login_box .avatar .action{position:absolute;bottom:40px;display:block;width:100%;text-align:center;text-decoration:none;color:#459ae9;font-size:14px}            
+.lang{position:absolute;bottom:60px;left:60px}
+.lang a{text-decoration:none;font-size:12px;color:#d3d3d3}
+.lang .sep{display:inline-block;height:12px;vertical-align:middle;margin:0 10px;border-right:1px solid #d3d3d3}
+.login .copyright{position:absolute;bottom:60px;right:60px;color:#d3d3d3;font-size:12px}
+

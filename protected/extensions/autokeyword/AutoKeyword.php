@@ -2,8 +2,8 @@
 
 /**
  * 分词
- * @author zhao jinhan <326196998@qq.com>
- *
+ * 
+ * @author GoldHan.zhao <326196998@qq.com>
  */
 class AutoKeyword
 {
