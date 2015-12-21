@@ -73,19 +73,19 @@
 			    				<img src="<?php echo $this->_stylePath?>/images/sina_weibo_login.png" width="60"  height="60"/>
 			    				<span>新浪微博登录</span>
 			    			</a>		    			
-			    		</li>
-			    	<?php elseif($oa->id == 'weixin'):?>
-			    		<li>
-			    			<a href="<?php echo $this->createUrl('oAuth/weixin');?>">
-			    				<img src="<?php echo $this->_stylePath?>/images/weixin_login.png" width="60" height="60" />
-			    				<span>微信平台登录</span>
-			    			</a>		    			
-			    		</li>
+			    		</li>			    	
 			    	<?php elseif($oa->id == 'renren'):?>
-			    		<li class="last">
+			    		<li>
 			    			<a href="<?php echo $this->createUrl('oAuth/renren');?>">
 			    				<img src="<?php echo $this->_stylePath?>/images/renren_login.png" width="60"  height="60"/>
 			    				<span>人人网登录</span>
+			    			</a>		    			
+			    		</li>
+                    <?php elseif($oa->id == 'weixin'):?>
+			    		<li class="last">
+			    			<a href="<?php echo $this->createUrl('oAuth/weixin');?>">
+			    				<img src="<?php echo $this->_stylePath?>/images/weixin_login.png" width="60" height="60" />
+			    				<span>微信平台登录</span>
 			    			</a>		    			
 			    		</li>
 			    	<?php endif;?>

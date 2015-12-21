@@ -14,36 +14,23 @@ class WeiXin
     public  $redirect_url  = '';
 	public  $token      = '';
 	public  $open_id    = '';
+    public  $base_url   = '';   //直接尝试获取用户信息url
+    public  $auth_url   = '';   //授权登录url
+    public  $state      = '';   //自定义参数
+    
 	private $_appid     = '';
 	private $_appsecret = '';
+    
 	
-	public function __construct($app_id = '', $app_secret = '', $callback = '')
+	public function __construct($app_id = '', $app_secret = '', $callback = '', $state = 0)
 	{
         $this->_appid = $app_id;
         $this->_appsecret = $app_secret;
         $this->redirect_url = $callback;
+        $this->state = $state;
+        $this->base_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$this->_appid.'&redirect_uri='.$callback.'&response_type=code&scope=snsapi_base&state='.$state.'#wechat_redirect';
+        $this->auth_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$this->_appid.'&redirect_uri='.$callback.'&response_type=code&scope=snsapi_userinfo&state='.$state.'#wechat_redirect';
 	}
-
-	/**
-	 * 第一次先尝试获取openid
-	 *
-	 */
-	public function tryGetBase()
-	{		
-		$base_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$this->_appid.'&redirect_uri='.$this->redirect_url.'&response_type=code&scope=snsapi_base&state=1#wechat_redirect';
-		$this->redirect($base_url);
-	}
-	
-	/**
-	 * 授权登录
-	 *
-	 */
-	public function auth()
-	{		
-		$auth_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$this->_appid.'&redirect_uri='.$this->redirect_url.'&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
-		$this->redirect($auth_url);
-	}
-	
 
 	/**
 	 * 获取token令牌
@@ -79,13 +66,4 @@ class WeiXin
 		return NULL;
 	}
 
-	/**
-	 * 立即跳转
-	 *
-	 */
-	public function redirect($url = '')
-	{
-		header('Location:'.$url);
-		exit;		
-	}
 }
