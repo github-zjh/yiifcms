@@ -34,35 +34,29 @@
                                 <td>PHP 版本</td>
                                 <td>PHP <?php echo phpversion();?></td>
                                 <td>PHP 5.3.0 及以上</td>
-                                <td><?php if(phpversion() >= '5.3.0'){ ?><span><img src="<?php echo $this->_theme->baseUrl?>/styles/install_styles/correct.gif" /></span><?php }else{ ?><font class="red"><img src="images/error.gif" />&nbsp;无法安装</font><?php }?></font></td>
+                                <td><?php if($php_version){ ?><span><img src="<?php echo $this->_theme->baseUrl?>/styles/install_styles/correct.gif" /></span><?php }else{ ?><font class="red"><img src="images/error.gif" />&nbsp;无法安装</font><?php }?></font></td>
                             </tr>
                             <tr>
                                 <td>PDO 扩展</td>
-                                <td><?php if(extension_loaded('pdo')){ ?>√<?php }else{ ?>×<?php }?></td>
+                                <td><?php if($pdo_ext){ ?>√<?php }else{ ?>×<?php }?></td>
                                 <td>必须开启</td>
-                                <td><?php if(extension_loaded('pdo')){ ?><span><img src="<?php echo $this->_theme->baseUrl?>/styles/install_styles/correct.gif" /></span><?php }else{ ?><font class="red"><img src="images/error.gif" />&nbsp;无法安装</font><?php }?></td>
+                                <td><?php if($pdo_ext){ ?><span><img src="<?php echo $this->_theme->baseUrl?>/styles/install_styles/correct.gif" /></span><?php }else{ ?><font class="red"><img src="images/error.gif" />&nbsp;无法安装</font><?php }?></td>
                             </tr>
 
                             <tr>
                                 <td>ICONV/MB_STRING 扩展</td>
-                                <td><?php if(extension_loaded('iconv') || extension_loaded('mbstring')){ ?>√<?php }else{ ?>×<?php }?></td>
+                                <td><?php if($iconv_mbs){ ?>√<?php }else{ ?>×<?php }?></td>
                                 <td>必须开启</td>
-                                <td><?php if(extension_loaded('iconv') || extension_loaded('mbstring')){ ?><span><img src="<?php echo $this->_theme->baseUrl?>/styles/install_styles/correct.gif" /></span><?php }else{ ?><font class="red"><img src="images/error.gif" />&nbsp;字符集转换效率低</font><?php }?></td>
+                                <td><?php if($iconv_mbs){ ?><span><img src="<?php echo $this->_theme->baseUrl?>/styles/install_styles/correct.gif" /></span><?php }else{ ?><font class="red"><img src="images/error.gif" />&nbsp;字符集转换效率低</font><?php }?></td>
                             </tr>
 
                             <tr>
                                 <td>Mcrypt 扩展</td>
-                                <td><?php if(extension_loaded("mcrypt")){ ?>√<?php }else{ ?>×<?php }?></td>
+                                <td><?php if($mcrypt){ ?>√<?php }else{ ?>×<?php }?></td>
                                 <td>必须开启</td>
-                                <td><?php if(extension_loaded("mcrypt")){ ?><span><img src="<?php echo $this->_theme->baseUrl?>/styles/install_styles/correct.gif" /></span><?php }else{ ?><font class="red"><img src="images/error.gif" />&nbsp;不支持Gzip功能</font><?php }?></td>
+                                <td><?php if($mcrypt){ ?><span><img src="<?php echo $this->_theme->baseUrl?>/styles/install_styles/correct.gif" /></span><?php }else{ ?><font class="red"><img src="images/error.gif" />&nbsp;不支持Gzip功能</font><?php }?></td>
                             </tr>
-                            <tr>
-                                <td>Reflection 扩展</td>
-                                <td><?php if(class_exists('Reflection', false)){ ?>√<?php }else{ ?>×<?php }?></td>
-                                <td>必须开启</td>
-                                <td><?php if(class_exists('Reflection', false)){ ?><span><img src="<?php echo $this->_theme->baseUrl?>/styles/install_styles/correct.gif" /></span><?php }elseif(ISUNIX){ ?><font class="red"><img src="images/error.gif" />&nbsp;不支持FTP形式文件传送</font><?php }?></td>
-                            </tr>
-
+                            
                         </table>
  					</div>
                     </div>
@@ -71,7 +65,11 @@
             </div>
             <div class="btn_box">
                 <a href="javascript:history.go(-1);" class="s_btn pre">上一步</a>
+                <?php if($pass):?>
                 <a href="<?php echo $this->createUrl('step3')?>" class="x_btn">下一步</a>
+                <?php else:?>
+                <a href="javascript:alert('当前配置不满足yiifcms安装需求，无法继续安装！');" class="x_btn pre">检测不通过</a>
+                <?php endif;?>
             </div>                	
         </div>
     </div>

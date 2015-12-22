@@ -56,7 +56,7 @@ class Controller extends CController
 
 		//检测系统是否已经安装
 		if(!file_exists($this->_data.'/install.lock')){
-			$this->redirect($this->createUrl('/install/index'));
+			$this->redirect($this->createUrl('/install/step1'));
 		}        
 		
 		//后台全局设置

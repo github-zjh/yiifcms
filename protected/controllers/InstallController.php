@@ -26,16 +26,15 @@ class InstallController extends Controller {
         $this->defaultAction = 'step1';
         $this->configPath = Yii::app()->basePath . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR;
     }
-
-    /**
-     * 检测是否已经安装
-     */
-    private function _checkInstall() {
-        if (file_exists($this->_data . $this->lockfile)) {
-            $this->redirect(array('stop'));
+    
+    public function beforeAction() 
+    {        
+        if(!in_array($this->action->id, array('stop'))) {
+            $this->_checkInstall();
         }
+        return true;
     }
-
+    
     /**
      * 已经安装
      */
@@ -47,8 +46,7 @@ class InstallController extends Controller {
     /**
      * 安装第一步(安装许可协议)
      */
-    public function actionStep1() {
-        self::_checkInstall();
+    public function actionStep1() {        
         $this->title = '安装许可协议';
         $this->render('step1');
     }
@@ -56,17 +54,34 @@ class InstallController extends Controller {
     /**
      * 安装第二步(环境检测)
      */
-    public function actionStep2() {
-        self::_checkInstall();        
-        $this->title = '检测运行环境';        
-        $this->render('step2');
+    public function actionStep2() {        
+        $this->title = '检测运行环境';
+        //PHP版本 >= 5.3.0
+        $php_version = phpversion() >= '5.3.0' ? true : false;        
+        //PDO扩展
+        $pdo_ext = extension_loaded('pdo') ? true : false;
+        //ICONV/MB_STRING 扩展
+        $iconv_mbs = extension_loaded('iconv') || extension_loaded('mbstring') ? true : false;
+        //Mcrypt 扩展
+        $mcrypt = extension_loaded("mcrypt") ? true : false;
+        //是否全部通过
+        $pass = false;
+        if($php_version && $pdo_ext && $iconv_mbs && $mcrypt) {
+            $pass = true;
+        }        
+        $this->render('step2', array(
+            'php_version' => $php_version,
+            'pdo_ext'     => $pdo_ext,
+            'iconv_mbs'   => $iconv_mbs,
+            'mcrypt'      => $mcrypt,
+            'pass'        => $pass
+        ));
     }
     
     /**
      * 安装第三步(选择模块)
      */
-    public function actionStep3() {
-        self::_checkInstall();        
+    public function actionStep3() {           
         $this->title = '选择模块';        
         $this->render('step3');
     }
@@ -74,35 +89,52 @@ class InstallController extends Controller {
     /**
      * 安装第四步(文件权限检测)
      */
-    public function actionStep4() {
-        self::_checkInstall();        
-        $this->title = '文件权限检测';        
-        $this->render('step4');
+    public function actionStep4() {           
+        $this->title = '文件权限检测';
+        
+        //是否安装测试数据
+        $test_data = Yii::app()->request->getParam('testdata');
+        if(isset($test_data) && $test_data == 1) { 
+            Yii::app()->session['test_data'] = 1;
+        } else {
+            unset(Yii::app()->session['test_data']);
+        }
+        
+        //临时文件可读写
+        $runtime = Helper::is_writeable(Yii::app()->runtimePath) ? true : false;
+        //上传目录可读写
+        $upload = Helper::is_writeable(ROOT_PATH . DS . 'upload') ? true : false;
+        //数据库备份目录
+        $data = Helper::is_writeable($this->_data) ? true : false;
+        //配置文件目录
+        $config = Helper::is_writeable(ROOT_PATH . DS . 'protected' . DS . 'config') ? true : false;
+        //公共资源目录
+        $assets = Helper::is_writeable(ROOT_PATH . DS . 'assets') ? true : false;
+        //是否全部通过
+        $pass = false;
+        if($runtime && $upload && $data && $config && $assets) {
+            $pass = true;
+        }        
+        $this->render('step4', array(
+            'runtime' => $runtime, 
+            'upload'  => $upload, 
+            'data'    => $data, 
+            'config'  => $config, 
+            'assets'  => $assets,
+            'pass'    => $pass
+        ));
     }
 
     /**
      * 安装第五步(数据库信息设置)
      */
-    public function actionStep5() {
-        self::_checkInstall();
+    public function actionStep5() {        
         $this->title = '填写数据库信息';
         $this->render('step5');
     }
-
+    
     /**
-     * 追加安装日志
-     */
-    private function _appendLog($message, $callBack = false) {
-        if ($callBack) {
-            $callBack = " <a href='" . $this->createUrl('db') . "' class='red'>返回检查</a>";
-        }
-        ob_flush();
-        flush();
-        echo '<script type="text/javascript">$("#progress").append("' . $message . $callBack . '<br />");showmessage();</script>';
-    }
-
-    /**
-     * 安装进程
+     * 安装第六步(安装进度)
      *  
      * 1.检测数据库配置信息
      * 2.写入数据库配置信息
@@ -110,20 +142,19 @@ class InstallController extends Controller {
      * 4.写入默认信息
      * 5.根据选择，是否安装测试数据
      */
-    public function actionProgress() {
-        self::_checkInstall();
-        $dbHost = Yii::app()->request->getParam('dbHost');
-        $dbPort = Yii::app()->request->getParam('dbPort');
-        $dbName = Yii::app()->request->getParam('dbName');
-        $dbUsername = Yii::app()->request->getParam('dbUsername');
-        $dbPassword = Yii::app()->request->getParam('dbPassword');
-        $tbPre = Yii::app()->request->getParam('tbPre');
+    public function actionStep6() {        
+        $dbHost = Yii::app()->request->getParam('dbhost');
+        $dbPort = Yii::app()->request->getParam('dbport');
+        $dbName = Yii::app()->request->getParam('dbname');
+        $dbUsername = Yii::app()->request->getParam('dbuser');
+        $dbPassword = Yii::app()->request->getParam('dbpwd');
+        $tbPre = Yii::app()->request->getParam('tablepre');
         $username = Yii::app()->request->getParam('username');
         $password = Yii::app()->request->getParam('password');
         $email = Yii::app()->request->getParam('email');
         $testData = Yii::app()->request->getParam('testData');
         $this->title = '安装数据表';
-        $this->render('progress', $data);
+        $this->render('step6');
         try {
             $dbObj = new CDbConnection('mysql:host=' . $dbHost . ';port=' . $dbPort . ';', $dbUsername, $dbPassword);
             self::_appendLog('数据库信息检测通过');
@@ -199,89 +230,74 @@ class InstallController extends Controller {
         $this->title = '安装完成';
         $this->render('complete');
     }
-
-    /**
-     * 数据库错误信息
-     */
-    private function _dbError($message, $params = array()) {
-        if (preg_match('/failed to open the DB/', $message))
-            return '连接失败，请检查数据库配置';
-        elseif (preg_match('/1044/', $message))
-            return '当前用户没有访问数据库的权限';
-        else
-            return false;
-    }
-
+    
     /**
      * 数据库信息检测
      */
-    public function actionDbCheck() {
-        self::_checkInstall();
-
+    public function actionDbCheck() {        
         $dbHost = Yii::app()->request->getParam('dbHost');
         $dbPort = Yii::app()->request->getParam('dbPort');
         $dbName = Yii::app()->request->getParam('dbName');
         $dbUsername = Yii::app()->request->getParam('dbUsername');
         $dbPassword = Yii::app()->request->getParam('dbPassword');
         try {
-            if (empty($dbHost) || empty($dbPort) || empty($dbName) || empty($dbUsername) || empty($dbPassword))
-                throw new Exception('数据库信息必须填写完整');
-            $dbObj = new CDbConnection('mysql:host=' . $dbHost . ';port=' . $dbPort . ';', $dbUsername, $dbPassword);
-            $dbObj->active = true;
-            $dbObj->createCommand("USE {$dbName}")->execute();
-            $var['state'] = 'success';
-            $var['message'] = '连接成功';
+            if (empty($dbHost) || empty($dbPort) || empty($dbName) || empty($dbUsername)) {
+                $var['state'] = 'error';
+                $var['message'] = '请填写完整';               
+            } else {
+                $dbObj = new CDbConnection('mysql:host=' . $dbHost . ';port=' . $dbPort . ';', $dbUsername, $dbPassword);
+                $dbObj->active = true;
+                $dbObj->createCommand("USE {$dbName}")->execute();
+                $var['state'] = 'success';
+                $var['message'] = '连接成功';
+            }
         } catch (Exception $e) {
             $var['state'] = 'error';
             $error = self::_dbError($e->getMessage(), array('dbHost' => $dbHost, 'dbName' => $dbName));
-            if ($error == false)
+            if ($error == false) {
                 $var['message'] = '无法连接，请检查数据库配置信息是否正确';
-            else
+            } else {
                 $var['message'] = $error;
+            }
         }
         exit(CJSON::encode($var));
     }
-
-}
-
-/**
- * 检测服务器变量
- */
-function checkServerVar() {
-    $vars = array('HTTP_HOST', 'SERVER_NAME', 'SERVER_PORT', 'SCRIPT_NAME', 'SCRIPT_FILENAME', 'PHP_SELF', 'HTTP_ACCEPT', 'HTTP_USER_AGENT');
-    $missing = array();
-    foreach ($vars as $var) {
-        if (!isset($_SERVER[$var]))
-            $missing[] = $var;
+    
+    /**
+     * 追加安装日志
+     */
+    private function _appendLog($message, $callBack = false) {
+        if ($callBack) {
+            $callBack = " <a href='" . $this->createUrl('db') . "' class='red'>返回检查</a>";
+        }
+        ob_flush();
+        flush();
+        echo '<script type="text/javascript">$("#progress").append("' . $message . $callBack . '<br />");showmessage();</script>';
     }
-    if (!empty($missing))
-        return '$_SERVER缺少' . implode(',', $missing);
-    /* if(realpath($_SERVER["SCRIPT_FILENAME"]) !== realpath(__FILE__))
-      return '$_SERVER["SCRIPT_FILENAME"]必须与入口文件路径一致。'; */
-
-    if (!isset($_SERVER["REQUEST_URI"]) && isset($_SERVER["QUERY_STRING"]))
-        return '$_SERVER["REQUEST_URI"]或$_SERVER["QUERY_STRING"]必须存在。';
-    if (!isset($_SERVER["PATH_INFO"]) && strpos($_SERVER["PHP_SELF"], $_SERVER["SCRIPT_NAME"]) !== 0)
-        return '无法确定URL path info。请检查$_SERVER["PATH_INFO"]（或$_SERVER["PHP_SELF"]和$_SERVER["SCRIPT_NAME"]）的值是否正确。';
-    return '';
-}
-
-/**
- * 检测图片处理类
- */
-function checkCaptchaSupport() {
-    if (extension_loaded('imagick')) {
-        $imagick = new Imagick();
-        $imagickFormats = $imagick->queryFormats('PNG');
+    
+    /**
+     * 检测是否已经安装
+     */
+    private function _checkInstall() {
+        if (file_exists($this->_data . $this->lockfile)) {
+            $this->redirect(array('stop'));
+        }
     }
-    if (extension_loaded('gd'))
-        $gdInfo = gd_info();
-    if (isset($imagickFormats) && in_array('PNG', $imagickFormats))
-        return '';
-    elseif (isset($gdInfo)) {
-        if ($gdInfo['FreeType Support'])
-            return '';
-        return 'GD 库已安装,<br />FreeType 未安装';
+    
+    /**
+     * 数据库错误信息
+     */
+    private function _dbError($message) {
+        if (preg_match('/failed to open the DB/', $message)) {
+            return '连接失败，请检查数据库配置';        
+        } elseif (preg_match('/1044/', $message)) {
+            return '当前用户没有访问数据库的权限';
+        } else {
+            return false;
+        }
     }
-    return 'GD or ImageMagick 均未安装';
+
+
+
+
 }
