@@ -10,7 +10,7 @@
                 <div class="l"></div>
                 <div class="ct_box nobrd i6v">
                     <div class="nr">
-                        <form id="install" name="myform" action="<?php echo $this->createUrl('step6')?>" method="post">
+                        <form id="install" action="<?php echo $this->createUrl('step6')?>" method="post">
                             <fieldset>
                                 <legend>填写数据库信息</legend>
                                 <div class="content">
@@ -60,12 +60,9 @@
                                         </tr>
                                         <tr>
                                             <th align="right">管理员密码：</th>
-                                            <td><input name="password" type="password" id="password" value="yiifcms" class="input-text" /></td>
-                                        </tr>                                        
-                                        <tr>
-                                            <th align="right">管理员E-mail：</th>
                                             <td>
-                                                <input name="email" type="text" id="email" class="input-text" />                                                
+                                                <input name="password" type="password" id="password" value="yiifcms" class="input-text" />
+                                                 <img src="<?php echo $this->_theme->baseUrl.'/styles/install_styles/help.png';?>" style="cursor:pointer;" title="默认密码是yiifcms" align="absmiddle" />
                                             </td>
                                         </tr>
                                     </table>

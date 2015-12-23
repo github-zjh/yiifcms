@@ -2,13 +2,12 @@
 /**
  * 前端控制基础类
  * 
- * @author Sim Zhao <326196998@qq.com>
+ * @author GoldHan.zhao <326196998@qq.com>
  * @copyright Copyright (c) 2014-2015 Personal. All rights reserved.
- * @link http://www.yiifcms.com
- * @version v1.0.0
+ * 
  * 
  */
-class FrontBase extends Controller
+class FrontBase extends AppController
 {
 	/**
 	 * 前端布局
@@ -38,7 +37,7 @@ class FrontBase extends Controller
 	 * @see CController::init()
 	 */
 	public function init(){		
-		parent::init();		
+		parent::init();	
 		if($this->_setting['site_status'] == 'close'){
 			//网站关闭			
 			$encode_intro = CHtml::encode($this->_setting['site_status_intro']);
@@ -73,17 +72,13 @@ EOT;
 		$this->_stylePath = Yii::app()->theme->baseUrl.'/styles';		
 		
 		//菜单导航
-		Yii::app()->cache && $this->_public_menu = Yii::app()->cache->get('global_menus');
-		if($this->_public_menu == false){			
-			$menus = Menu::model()->findAll('status =:status ORDER BY sort_order, id', array(':status'=>'Y'));	
-			$tree = new Xtree();	
-			foreach((array)$menus as $menu){
-				$data[] = $menu->attributes;
-			}
-			$tree->setTree($data, 'id', 'parent_id', array('menu_name','menu_link','unique','target'));
-			$this->_public_menu = $tree->getArrayList(0);			
-			Yii::app()->cache && Yii::app()->cache->set('global_menus', $this->_public_menu , 3600*24*7);
-		}		
+		$menus = Menu::model()->findAll('status =:status ORDER BY sort_order, id', array(':status'=>'Y'));	
+        $tree = new Xtree();	
+        foreach((array)$menus as $menu){
+            $data[] = $menu->attributes;
+        }
+        $tree->setTree($data, 'id', 'parent_id', array('menu_name','menu_link','unique','target'));
+        $this->_public_menu = $tree->getArrayList(0);		
 		$this->_cur_url = Yii::app()->request->getUrl();
 		//登录状态
 		if(!Yii::app()->user->getIsGuest()){

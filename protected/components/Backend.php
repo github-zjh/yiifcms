@@ -42,8 +42,7 @@ class Backend extends BackendBase
 			'question' => array('index','update','batch'), 					                        //留言管理
 			'link' => array('index','create','update','delete','batch'), 	                        //链接管理
 			'adPosition' => array('index','create','update','delete','batch'),                      //广告位管理
-			'ad' => array('index','create','update','delete','batch'), 		                        //广告管理
-			'attach' => array('index','batch'), 							                        //附件管理		
+			'ad' => array('index','create','update','delete','batch'), 		                        //广告管理				
 			'modeltype' => array('index','create','update','batch'),                                //内容模型管理
 			'database' => array('index','query','doQuery','execute','export', 'database','operate','installtestdata'), 		//数据库管理
 			'cache' => array('index','cacheUpdate'),                                                //缓存管理

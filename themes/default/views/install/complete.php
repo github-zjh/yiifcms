@@ -1,22 +1,33 @@
 <?php $this->renderPartial('_header')?>
-<script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/js/jquery/jquery-1.7.1.min.js"></script>
-<div class="header"></div>
-<div class="mainbody">
-  <div class="complete">
-    <div class="complete_txt">
-      <p class="title">恭喜您安装成功!</p>
-      <strong>现在您可以：</strong> <a href="<?php echo Yii::app()->homeUrl?>" class="action" target="_blank">访问网站首页</a><span>或</span><a href="<?php echo $this->createUrl(
-            '/admin')?>"  class="action" target="_blank">登陆后台</a>
-      <div class="complete_note"> 
-
-      <p >如需重新安装，请先删除 data/install.lock 文件</p>
-      <p class="red">为了安全起见，请删除文件 protected/controllers/InstallController.php </p>
-        <p class="help"> <strong>获取更多帮助</strong> <br />
-          帮助中心：<a href="<?php echo $this->org_url;?>" target="_blank"><?php echo $this->org_url;?></a><br />
-          QQ群&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：235981026</p>
-
-      </div>
+	<div class="body_box">
+        <div class="main_box">
+            <div class="hd">
+            	<div class="bz a7"><div class="jj_bg"></div></div>
+            </div>
+            <div class="ct">
+            	<div class="bg_t"></div>
+                <div class="clr">
+                    <div class="l"></div>
+                    <div class="ct_box nobrd set7s">
+                     <div class="nr">
+						<div class="gxwc"><h1>恭喜您，安装成功！</h1></div>
+						<div class="clj">
+							<ul>
+                                <li><a href="<?php echo Yii::app()->homeUrl;?>" title="访问网站" class="htgl">访问网站</a></li>
+								<li><a href="<?php echo $this->createUrl('admin/default');?>" title="后台管理" class="htgl">后台管理</a></li>
+							</ul>
+						</div>					
+						<div class="txt_c">
+                            <span style="margin-right:8px;">*</span>安装完毕请登录后台进行相关配置<br/>
+                            <span style="margin-right:8px;">*</span>默认管理员账号和密码是yiifcms<br/>
+                            <span style="margin-right:8px;">*</span>为了您站点的安全，请删除“protected/controller/InstallController.php”。
+                        </div>
+                     </div>
+                    </div>
+                </div>
+                <div class="bg_b"></div>
+            </div>
+            <div class="h65"></div>			
+        </div>
     </div>
-  </div>
-</div>
 <?php $this->renderPartial('_footer')?>

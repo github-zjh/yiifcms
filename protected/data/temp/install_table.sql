@@ -1,6 +1,6 @@
 /*
 Navicat MySQL Data Transfer
-
+安装必要数据
 Source Server         : localhost
 Source Server Version : 50624
 Source Host           : localhost:3306
@@ -571,3 +571,88 @@ CREATE TABLE `#@__video` (
   `seo_keywords` varchar(100) NOT NULL DEFAULT '' COMMENT 'SEO关键字',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='视频管理表';
+
+-- ----------------------------
+-- 菜单
+-- ----------------------------
+INSERT INTO `#@__menu` VALUES ('1', '首页', 'index.php', 'index', 'Y', '0', '1', 'N');
+INSERT INTO `#@__menu` VALUES ('2', '精品阅读', '/?r=post/index', 'post', 'Y', '0', '2', 'N');
+INSERT INTO `#@__menu` VALUES ('4', '下载', '/?r=soft/index', 'soft', 'Y', '0', '3', 'N');
+INSERT INTO `#@__menu` VALUES ('5', '图集', '/?r=image/index', 'image', 'Y', '0', '4', 'Y');
+INSERT INTO `#@__menu` VALUES ('6', '导读', '/?r=page/guide', 'guide', 'Y', '0', '6', 'N');
+INSERT INTO `#@__menu` VALUES ('7', '反馈', '/?r=question/index', 'question', 'N', '0', '0', 'N');
+
+
+-- ----------------------------
+-- 内容模型
+-- ----------------------------
+INSERT INTO `#@__model_type` VALUES ('1', 'post', '文章', 'Post', 'Y', '专业讲解web相关的文章和知识点', 'web, php,mysql, nginx,yii,数据库，运维,服务器', '聚合了优质的IT文章，无论你是前端工程师，还是后端程序员，都可以找到你想了解的知识和资讯，更多内容尽在yiifcms。');
+INSERT INTO `#@__model_type` VALUES ('2', 'image', '图集', 'Image', 'Y', '最新最全的热门图集、精品爆图、美图', '图片，图集，最新，热门，精品，最全，美女，爆料，搞笑', '展示了用户最喜爱的美女图片、爆料图片、搞笑图片，惊爆眼球，更多内容尽在yiifcms。');
+INSERT INTO `#@__model_type` VALUES ('3', 'soft', '软件', 'Soft', 'Y', '最新发布的yiifcms、热门手册、免费下载、建站工具', 'yii，cms，免费，下载，最新，热门，最全，精品，建站，工具，安全，稳定', '提供了web开发人员的建站工具和yiifcms发布版本，供感兴趣的用户下载和使用，详情了解尽在yiifcms。');
+INSERT INTO `#@__model_type` VALUES ('4', 'video', '视频', 'Video', 'Y', '最新上映的电影、热门视频、热播电视剧、下载视频', '视频，电影，微电影，电视剧，MV，MTV，最新，热门，热播，高清，下载', '聚合了用户最喜爱的视频，尽在yiifcms。');
+
+-- ----------------------------
+-- 授权登录
+-- ----------------------------
+INSERT INTO `#@__oauth` VALUES ('qq', 'QQ', '{\"appid\":101145243,\"appkey\":\"1016c728351ccd6756becae709b295f3\",\"callback\":\"http:\\/\\/www.yiifcms.com\\/oAuth\\/qq_callback\",\"scope\":\"get_user_info,add_t,del_t,get_info\",\"errorReport\":true,\"storageType\":\"file\"}', 'Y');
+INSERT INTO `#@__oauth` VALUES ('renren', '人人网', '{\"app_key\":\"93f2b098f2244b6689e712406e20287f\",\"app_secret\":\"ab7910a1a77d4d60ac1db0a841c256d1\",\"callback\":\"http:\\/\\/www.yiifcms.com\\/oAuth\\/renren_callback\"}', 'Y');
+INSERT INTO `#@__oauth` VALUES ('sinawb', '新浪微博', '{\"wb_akey\":\"818474510\",\"wb_skey\":\"2ae7d6bd43c759081c707ddfa029b409\",\"callback\":\"http:\\/\\/www.yiifcms.com\\/oAuth\\/sinawb_callback\"}', 'Y');
+INSERT INTO `#@__oauth` VALUES ('weixin', '微信', '{\"app_id\":\"wx473d4dd4a7080847\",\"app_secret\":\"2e16bd090d16842a4b3e72616fda5086\",\"callback\":\"http:\\/\\/www.yiifcms.com\\/oAuth\\/weixin_callback\"}', 'Y');
+
+-- ----------------------------
+-- 网站配置
+-- ----------------------------
+INSERT INTO `#@__setting` VALUES ('base', 'admin_email', '');
+INSERT INTO `#@__setting` VALUES ('base', 'admin_logger', 'open');
+INSERT INTO `#@__setting` VALUES ('base', 'site_stats', '');
+INSERT INTO `#@__setting` VALUES ('base', 'admin_telephone', '180000000');
+INSERT INTO `#@__setting` VALUES ('cache', 'cache_status', 'open');
+INSERT INTO `#@__setting` VALUES ('cache', 'cache_type', 'filecache');
+INSERT INTO `#@__setting` VALUES ('access', 'deny_access_ip', '');
+INSERT INTO `#@__setting` VALUES ('base', 'deny_access_ip', '');
+INSERT INTO `#@__setting` VALUES ('access', 'deny_register_ip', '193.201.224.*\r\n42.121.43.*');
+INSERT INTO `#@__setting` VALUES ('base', 'deny_register_ip', '193.201.224.*\r\n42.121.43.*');
+INSERT INTO `#@__setting` VALUES ('email', 'email_active', 'open');
+INSERT INTO `#@__setting` VALUES ('email', 'email_fromname', 'yiifcms官网');
+INSERT INTO `#@__setting` VALUES ('email', 'email_host', 'smtp.mxhichina.com');
+INSERT INTO `#@__setting` VALUES ('email', 'email_password', '');
+INSERT INTO `#@__setting` VALUES ('email', 'email_port', '25');
+INSERT INTO `#@__setting` VALUES ('email', 'email_timeout', '2');
+INSERT INTO `#@__setting` VALUES ('email', 'email_totest', '326196998@qq.com');
+INSERT INTO `#@__setting` VALUES ('email', 'email_username', 'postmaster@yiifcms.com');
+INSERT INTO `#@__setting` VALUES ('base', 'encrypt', 'md5');
+INSERT INTO `#@__setting` VALUES ('base', 'safe_str', '!(*&%$$&%%');
+INSERT INTO `#@__setting` VALUES ('seo', 'seo_description', 'yiifcms是基于yii框架开发的内容管理系统(CMS)，功能强大，运行高效，稳定安全，是学习php和建站的良好选择。');
+INSERT INTO `#@__setting` VALUES ('seo', 'seo_keywords', 'yii,cms,php,mysql,nginx,web,开源,下载,手册,系统');
+INSERT INTO `#@__setting` VALUES ('seo', 'seo_title', 'yiifcms打造顶级内容管理系统');
+INSERT INTO `#@__setting` VALUES ('cache', 'setting_filecache', 'a:2:{s:5:\"class\";s:10:\"CFileCache\";s:14:\"directoryLevel\";s:1:\"2\";}');
+INSERT INTO `#@__setting` VALUES ('cache', 'setting_memcache', 'a:3:{s:5:\"class\";s:9:\"CMemCache\";s:4:\"host\";s:9:\"127.0.0.1\";s:4:\"port\";s:5:\"11211\";}');
+INSERT INTO `#@__setting` VALUES ('cache', 'setting_rediscache', 'a:4:{s:5:\"class\";s:21:\"ext.redis.CRedisCache\";s:4:\"host\";s:9:\"localhost\";s:4:\"port\";s:4:\"6379\";s:8:\"database\";i:0;}');
+INSERT INTO `#@__setting` VALUES ('base', 'site_closed_summary', '系统维护中，请稍候......');
+INSERT INTO `#@__setting` VALUES ('base', 'site_copyright', 'Copyright @ 2014-2015');
+INSERT INTO `#@__setting` VALUES ('base', 'site_domain', '/');
+INSERT INTO `#@__setting` VALUES ('base', 'site_icp', '京ICP备14037201号-1');
+INSERT INTO `#@__setting` VALUES ('base', 'site_name', 'yiifcms打造顶级内容管理系统');
+INSERT INTO `#@__setting` VALUES ('base', 'site_status', 'open');
+INSERT INTO `#@__setting` VALUES ('base', 'site_status_intro', '网站目前正在维护，请稍后访问，谢谢....');
+INSERT INTO `#@__setting` VALUES ('template', 'theme', 'default');
+INSERT INTO `#@__setting` VALUES ('base', 'user_mail_verify', 'open');
+INSERT INTO `#@__setting` VALUES ('base', 'user_status', 'open');
+INSERT INTO `#@__setting` VALUES ('custom', '_address', '北京市朝阳区1');
+INSERT INTO `#@__setting` VALUES ('custom', '_fax', '传真:XXXXXX');
+INSERT INTO `#@__setting` VALUES ('custom', '_mobile', '180000000');
+INSERT INTO `#@__setting` VALUES ('custom', '_telephone', 'XXXXXXXXXXX');
+
+-- ----------------------------
+-- 用户组
+-- ----------------------------
+INSERT INTO `#@__user_group` VALUES ('1', '普通用户', '');
+INSERT INTO `#@__user_group` VALUES ('2', 'VIP①用户', '');
+INSERT INTO `#@__user_group` VALUES ('3', 'VIP②用户', '');
+INSERT INTO `#@__user_group` VALUES ('4', 'VIP④用户', '');
+INSERT INTO `#@__user_group` VALUES ('5', 'VIP⑤用户', '');
+INSERT INTO `#@__user_group` VALUES ('6', 'VIP⑥用户', '');
+INSERT INTO `#@__user_group` VALUES ('7', 'VIP⑦用户', '');
+INSERT INTO `#@__user_group` VALUES ('8', 'VIP⑧用户', '');
+INSERT INTO `#@__user_group` VALUES ('9', '网站编辑', 'default|login,catalog|index,menu|index,special|index,post|index,image|index,soft|index,video|index,goods|index,page|index,comment|index,reply|index,tag|index,recommendPosition|index,user|index,question|index,link|index,adPosition|index,ad|index,attach|index,modeltype|index,database|index,cache|index,maillog|index,oAuth|index');
+INSERT INTO `#@__user_group` VALUES ('10', '系统管理员', 'Administrator');

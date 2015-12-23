@@ -7,13 +7,14 @@
  * @copyright     Copyright (c) 2014-2016 . All rights reserved. 
  * 
  */
-class InstallController extends Controller {
+class InstallController extends AppController {
 
     public $tplPath;
     public $configPath;
     public $_data = '';
     public $lockfile = 'install.lock';
     public $title;
+    public $mysql_cut_line = '-----------------------------------mysql_cut_line---------------------------------';
     public $org_url = 'http://www.yiifcms.com/';  //官方网址
     public $org_help_url = 'http://www.yiifcms.com/help'; //官方帮助中心网址    
     public $layout = false;
@@ -29,7 +30,7 @@ class InstallController extends Controller {
     
     public function beforeAction() 
     {        
-        if(!in_array($this->action->id, array('stop'))) {
+        if(!in_array($this->action->id, array('complete', 'stop'))) {
             $this->_checkInstall();
         }
         return true;
@@ -94,7 +95,7 @@ class InstallController extends Controller {
         
         //是否安装测试数据
         $test_data = Yii::app()->request->getParam('testdata');
-        if(isset($test_data) && $test_data == 1) { 
+        if(isset($test_data) && $test_data == 1) {             
             Yii::app()->session['test_data'] = 1;
         } else {
             unset(Yii::app()->session['test_data']);
@@ -147,12 +148,11 @@ class InstallController extends Controller {
         $dbPort = Yii::app()->request->getParam('dbport');
         $dbName = Yii::app()->request->getParam('dbname');
         $dbUsername = Yii::app()->request->getParam('dbuser');
-        $dbPassword = Yii::app()->request->getParam('dbpwd');
+        $dbPassword = Yii::app()->request->getParam('dbpw');
         $tbPre = Yii::app()->request->getParam('tablepre');
         $username = Yii::app()->request->getParam('username');
         $password = Yii::app()->request->getParam('password');
-        $email = Yii::app()->request->getParam('email');
-        $testData = Yii::app()->request->getParam('testData');
+        $email = Yii::app()->request->getParam('email');        
         $this->title = '安装数据表';
         $this->render('step6');
         try {
@@ -179,54 +179,71 @@ class InstallController extends Controller {
             self::_appendLog("数据库{$dbName}创建完成");
 
             //创建数据表
-            $tableSql = file_get_contents($this->tplPath . 'install_db.sql');
+            $tableSql = file_get_contents($this->tplPath . 'install_table.sql');
             $dbObj->createCommand("USE `{$dbName}`")->execute();
             $dbObj->createCommand("SET NAMES 'utf8',character_set_client=binary,sql_mode=''")->execute();
 
             //替换表前缀
             $realSqls = str_replace('#@__', $tbPre, $tableSql);
 
-            //分割sql
-            preg_match_all('/DROP TABLE IF EXISTS.*?CREATE TABLE `([a-zA-Z_-]*?)`.*?;/ius', $realSqls, $matches);
-            foreach ((array) $matches[0] as $sk => $sql) {
+            //创建数据表
+            $matches = array();
+            preg_match_all('/DROP TABLE IF EXISTS.*?CREATE TABLE `([a-zA-Z_-]*?)`.*?;/ius', $realSqls, $matches);            
+            foreach ($matches[0] as $sk => $sql) {
                 $dbObj->createCommand($sql)->execute();
-                self::_appendLog('创建数据表: ' . $matches[1][$sk] . ' 完成!');
+                isset($matches[1][$sk]) && self::_appendLog('创建数据表: ' . $matches[1][$sk] . ' 完成!');
             }
-
             //安装必要数据
-            $dataSql = str_replace('#@__', $tbPre, file_get_contents($this->tplPath . 'install_data.sql'));
-            $dbObj->createCommand($dataSql)->execute();
+            self::_appendLog('导入必要数据开始... ');
+            $matches_n = array();
+            preg_match_all('/INSERT INTO `([a-zA-Z_-]*?)`(.*?\));/ius', $realSqls, $matches_n);            
+            foreach ($matches_n[0] as $sql) {                
+                $dbObj->createCommand($sql)->execute();                
+            }            
             self::_appendLog('安装必要数据完成!');
-
+            
             //写入管理员信息
-            $password = md5($password);
+            $adpassword = md5($password);
             $register_ip = Yii::app()->request->userHostAddress;
-            $admin_sql = "INSERT INTO `" . $tbPre . "user`(`uid`, `username`, `password`,`groupid`,`register_ip`,`email`,`addtime`) VALUES('1','" . $username . "','" . $password . "', '10', '" . $register_ip . "', '" . $email . "', " . time() . ")";
+            $admin_sql = "INSERT INTO `" . $tbPre . "user`(`uid`, `username`, `password`,`groupid`,`register_ip`,`addtime`) VALUES('1','" . $username . "','" . $adpassword . "', '10', '" . $register_ip . "', " . time() . ")";
             $dbObj->createCommand($admin_sql)->execute();
 
             //安装测试数据
-            if ($testData == 'Y') {
-                $testData = file_get_contents($this->tplPath . 'test_data.sql');
-                $command = $dbObj->createCommand(str_replace('#@__', $tbPre, $testData))->execute();
+            $testData = isset(Yii::app()->session['test_data']) ? Yii::app()->session['test_data'] : 0;
+            if ($testData == 1) {
+                $testData = file_get_contents($this->tplPath . 'install_data.sql');
+                //替换表前缀
+                $realSqls = str_replace('#@__', $tbPre, $testData);
+                self::_appendLog('导入测试数据开始... ');
+                $matches_t = explode($this->mysql_cut_line, $realSqls);                
+                foreach ($matches_t as $sql) {
+                    usleep(10000);
+                    if(trim($sql)) {
+                        $dbObj->createCommand($sql)->execute();                    
+                    }
+                }                 
                 self::_appendLog('测试数据导入完成');
             }
+            echo '<script>$("#finish").html("安装完成");</script>';
+            self::_appendLog('安装完成');            
             //写入锁定文件
-            @touch($this->_data . $this->lockfile);
-
-            echo '<script>setTimeout(function(){window.location="' . $this->createUrl('complete') . '"}, 2000);</script>';
+            touch($this->_data . $this->lockfile);
+            echo '<script>setTimeout(function(){window.location="' . $this->createUrl('complete') . '"}, 3000);</script>';
         } catch (Exception $e) {
             $error = self::_dbError($e->getMessage(), array('dbHost' => $dbHost, 'dbName' => $dbName));
-            if ($error == false)
-                self::_appendLog($e->getMessage(), true);
-            else
-                self::_appendLog($error, true);
+            if ($error == false) {
+                self::_appendLog($e->getMessage());
+            } else {
+                self::_appendLog($error);
+            }
         }
     }
 
     /**
      * 安装完成
      */
-    public function actionComplete() {
+    public function actionComplete() {        
+        unset(Yii::app()->session['test_data']);
         $this->title = '安装完成';
         $this->render('complete');
     }
@@ -272,7 +289,7 @@ class InstallController extends Controller {
         }
         ob_flush();
         flush();
-        echo '<script type="text/javascript">$("#progress").append("' . $message . $callBack . '<br />");showmessage();</script>';
+        echo '<script type="text/javascript">$("#installmessage").append("' . $message . $callBack . '<br />");showmessage();</script>';
     }
     
     /**
@@ -296,8 +313,4 @@ class InstallController extends Controller {
             return false;
         }
     }
-
-
-
-
 }

@@ -308,16 +308,6 @@ return array(
         //Api[第三方应用]
 		'ApiName'              => '接口名称',
 		'ApiConfig'            => '接口配置',
-		
-        //Attachment[附件]
-        'AttachmentId'         => '附件ID',
-        'AttachmentUser'       => '上传人',
-        'AttachmentRealName'   => '原始文件名',
-        'AttachmentFileName'   => '生成文件',
-        'AttachmentThumbName'  => '缩略图',
-        'AttachmentFileExt'    => '扩展名',
-        'AttachmentFileSize'   => '文件大小',
-        'AttachmentCreateTime' => '上传时间',
     
         //Link[友情链接]
         'LinkId'               => '链接ID',

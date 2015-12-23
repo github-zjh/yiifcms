@@ -7,7 +7,7 @@
  * @version v1.0.0
  * 
  */
-class BackendBase extends Controller
+class BackendBase extends AppController
 {
 	/**
 	 * 后端布局
