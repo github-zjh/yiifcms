@@ -31,12 +31,17 @@
     </tr>
     <tr>
         <td>
-            <select name="Catalog[parent_id]" id="Catalog_parent_id">
+            <?php if(!$model->isNewRecord && isset($parents) && $parents) :?>
+            <div><?php echo $parents;?></div>
+            <?php endif;?>
+            <select class="cat_select" data-layer="1">
                 <option value="0">==<?php echo Yii::t('admin', 'Top Category'); ?>==</option>
-                <?php foreach ((array) Catalog::get(0, $this->_catalog) as $catalog): ?>
+                <?php foreach ($this->_catalog as $catalog): ?>
                     <option value="<?php echo $catalog['id'] ?>" <?php Helper::selected($catalog['id'], $model->parent_id); ?>><?php echo $catalog['str_repeat'] ?><?php echo $catalog['catalog_name'] ?></option>
                 <?php endforeach; ?>
-            </select>
+            </select>            
+            <?php echo $form->hiddenField($model, 'parent_id');?>
+            <span class="loading" style="display:none;">loading...</span>
         </td>
     </tr>
     <tr>
@@ -69,4 +74,31 @@
         </td>
     </tr>
 </table>
-<?php $this->endWidget();
+<?php $this->endWidget();?>
+<script type="text/javascript">
+    $(function(){
+        $('.form_table').delegate('.cat_select','change',function(){
+            var id = $(this).val();
+            var url =  "<?php echo $this->createUrl('catalog/children');?>";
+            var sel = $(this);
+            var val = $(this).val();
+            $(this).nextAll('.cat_select').remove();
+            if(id <= 0) {
+                return false;
+            }
+            $('.loading').show();
+            $.getJSON(url, {'id':id}, function(data){                
+                if(data && data.length > 0) {
+                    var html = '<select class="cat_select">'
+                        + '<option value="0">==<?php echo Yii::t('admin', 'Select Category'); ?>==</option>';                
+                        $.each(data, function(i, item){                    
+                            html += '<option value="'+item.id+'">'+item.name+'</option>';
+                        });
+                    $(sel).after(html);
+                }                
+            });
+            $('#Catalog_parent_id').val(val);
+            $('.loading').hide();
+        });
+    });
+</script>

@@ -18,9 +18,12 @@ class UpdateAction extends CAction
     		if($model->save()) {                
                 $this->controller->message('success',Yii::t('admin','Update Success'),$this->controller->createUrl('index'));                
             }
-    	}        
+    	}
+        //所有父级分类
+        $parents = Catalog::getParantsCatalog($model->id);
         $this->controller->render('update',array(
-                'model'=>$model                   
+                'model'=>$model,
+                'parents' => $parents?implode('>', $parents):'', 
         ));        
 	}   
 }

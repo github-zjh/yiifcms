@@ -16,5 +16,6 @@ $this->renderPartial('_form', array(
     'imageList' => isset($imageList) ? $imageList : array(),
     'attrModel' => isset($attrModel) ? $attrModel : array(),
     'attrData' => isset($attrData) ? $attrData : array(),
-    'groupList' => isset($groupList) ? $groupList : array()
+    'groupList' => isset($groupList) ? $groupList : array(),
+    'parents' => isset($parents) ? $parents : ''
 ));

@@ -1,9 +1,9 @@
 <?php
 
 /**
- *  ajax操作[收藏、关注]
+ *  ajax操作
  * 
- * @author        Sim Zhao <326196998@qq.com>
+ * @author        GoldHan.zhao <326196998@qq.com>
  * @copyright     Copyright (c) 2015. All rights reserved.
  */
 class AjaxAction extends CAction {
@@ -47,15 +47,19 @@ class AjaxAction extends CAction {
             foreach ((array) $tddata as $value) {
                 $modelType = ModelType::model()->findByPk($value->type);
                 $model = $modelType->model;
-                $value['type'] = $modelType->type_key;
-                $value['data'] = $model::model()->findByPk($value->content_id, '', array('select' => 'id,title'));
-                $data[] = $value;
-            }
+                $c = $model::model()->findByPk($value->content_id, array('select' => 'id,title'));
+                if($c) {
+                    $data[] = array(
+                        'type' => $modelType->type_key,
+                        'data' => $c
+                    );                    
+                }
+            } 
             foreach ($data as $key => $new) {
-                $searchData[$key]['url'] = $this->controller->createUrl("{$new->type}/view", array('id' => $new->data->id));
-                $searchData[$key]['title'] = $new->data->title;
+                $searchData[$key]['url'] = $this->controller->createUrl("{$new['type']}/view", array('id' => $new['data']['id']));
+                $searchData[$key]['title'] = $new['data']['title'];
             }
-        }
+        }        
         exit(CJSON::encode($searchData));
     }
 

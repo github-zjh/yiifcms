@@ -73,6 +73,7 @@ CREATE TABLE `#@__catalog` (
   `type` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '栏目类型',
   `parent_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '上级分类',
   `catalog_name` varchar(100) NOT NULL COMMENT '名称',
+  `layer` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '层级',
   `seo_title` varchar(100) NOT NULL DEFAULT '' COMMENT 'seo标题',
   `seo_keywords` varchar(255) NOT NULL DEFAULT '' COMMENT 'seo关键字',
   `seo_description` text NOT NULL COMMENT 'seo描述',
@@ -579,7 +580,7 @@ INSERT INTO `#@__menu` VALUES ('1', '首页', 'index.php', 'index', 'Y', '0', '1
 INSERT INTO `#@__menu` VALUES ('2', '精品阅读', '/?r=post/index', 'post', 'Y', '0', '2', 'N');
 INSERT INTO `#@__menu` VALUES ('4', '下载', '/?r=soft/index', 'soft', 'Y', '0', '3', 'N');
 INSERT INTO `#@__menu` VALUES ('5', '图集', '/?r=image/index', 'image', 'Y', '0', '4', 'Y');
-INSERT INTO `#@__menu` VALUES ('6', '导读', '/?r=page/guide', 'guide', 'Y', '0', '6', 'N');
+INSERT INTO `#@__menu` VALUES ('6', '导读', '/?r=page/index&id=guide', 'guide', 'Y', '0', '6', 'N');
 INSERT INTO `#@__menu` VALUES ('7', '反馈', '/?r=question/index', 'question', 'N', '0', '0', 'N');
 
 

@@ -32,17 +32,28 @@
         <td><?php echo $form->textField($model, 'title_second', array('size' => 60, 'maxlength' => 128)); ?></td>
     </tr>
     <tr>
-        <td class="tb_title"><?php echo $form->label($model, 'catalog_id'); ?>/<?php echo $form->label($model, 'special_id'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model, 'catalog_id'); ?>：</td>
     </tr>
     <tr>
         <td>
-            <select name="Post[catalog_id]" id="Post_catalog_id">
-                <?php foreach ((array) Catalog::get(0, $this->_catalog) as $catalog): ?>
-                    <option value="<?php echo $catalog['id'] ?>"
-                            <?php Helper::selected($catalog['id'], $model->catalog_id); ?>><?php echo $catalog['str_repeat'] ?><?php echo $catalog['catalog_name'] ?>
-                    </option>
+            <?php if(!$model->isNewRecord && isset($parents) && $parents) :?>
+            <div><?php echo $parents;?></div>
+            <?php endif;?>
+            <select class="cat_select">
+                <option value="0">==<?php echo Yii::t('admin', 'Top Category'); ?>==</option>
+                <?php foreach ($this->_catalog as $catalog): ?>
+                    <option value="<?php echo $catalog['id'] ?>"><?php echo $catalog['catalog_name'] ?></option>
                 <?php endforeach; ?>
             </select>
+            <?php echo $form->hiddenfield($model, 'catalog_id');?>
+            <span class="loading" style="display:none;">loading...</span>            
+        </td>
+    </tr>
+    <tr>
+        <td class="tb_title"><?php echo $form->label($model, 'special_id'); ?>：</td>
+    </tr>
+    <tr>
+        <td>            
             <select name="Post[special_id]">
                 <option value="0">==<?php echo $form->label($model, 'special_id'); ?>==</option>
                 <?php foreach ((array) $this->_special as $speical): ?>
@@ -129,5 +140,31 @@
         </td>
     </tr>
 </table>
-<?php
-$this->endWidget();
+<?php $this->endWidget();?>
+<script type="text/javascript">
+    $(function(){
+        $('.form_table').delegate('.cat_select','change',function(){
+            var id = $(this).val();
+            var url =  "<?php echo $this->createUrl('catalog/children');?>";
+            var sel = $(this);
+            var val = $(this).val();
+            $(this).nextAll('.cat_select').remove();
+            if(id <= 0) {
+                return false;
+            }
+            $('.loading').show();
+            $.getJSON(url, {'id':id}, function(data){                
+                if(data && data.length > 0) {
+                    var html = '<select class="cat_select">'
+                        + '<option value="0">==<?php echo Yii::t('admin', 'Select Category'); ?>==</option>';                
+                        $.each(data, function(i, item){                    
+                            html += '<option value="'+item.id+'">'+item.name+'</option>';
+                        });
+                    $(sel).after(html);
+                }                
+            });
+            $('#Post_catalog_id').val(val);
+            $('.loading').hide();
+        });
+    });
+</script>

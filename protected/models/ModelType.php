@@ -144,4 +144,17 @@ class ModelType extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+    
+    /**
+     * 获取模型名称
+     * 
+     * @param int $id
+     * @return string
+     */
+    public static function getTypeName($id)
+    {
+        $type = self::model()->findByPK($id);
+        $name = $type ? $type->type_name : '未知';
+        return $name;        
+    }
 }

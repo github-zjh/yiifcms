@@ -10,6 +10,7 @@
 class Backend extends BackendBase
 {	
     public $model;
+    public $_catalog;
 	public function init(){		
 		parent::init();			
 		parent::auth();

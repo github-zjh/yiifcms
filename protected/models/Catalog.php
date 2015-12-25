@@ -7,6 +7,7 @@
  * @property string $id
  * @property string $parent_id
  * @property string $catalog_name
+ * @property string $layer
  * @property string $seo_title
  * @property string $seo_keywords
  * @property string $seo_description
@@ -21,6 +22,9 @@ class Catalog extends CActiveRecord
 	public $level;
 	public $str_repeat;
 	public $type_key;
+    
+    const STATUS_SHOW = 'Y';  //显示
+    const STATUS_HIDE = 'N';  //隐藏 
 	
 	/**
 	 * @return string the associated database table name
@@ -41,11 +45,11 @@ class Catalog extends CActiveRecord
 			array('catalog_name, type', 'required'),			
 			array('parent_id, sort_order, create_time, update_time', 'length', 'max'=>10),
 			array('catalog_name, seo_title, seo_keywords, seo_description', 'length', 'max'=>100),
-			array('status', 'length', 'max'=>1),			
+			array('status', 'length', 'max'=>1),            
 			array('seo_title, seo_keywords, seo_description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, parent_id, type, catalog_name, seo_title, seo_keywords, seo_description, sort_order,status, type, create_time, update_time', 'safe', 'on'=>'search'),
+			array('id, parent_id, type, catalog_name, layer, seo_title, seo_keywords, seo_description, sort_order,status, type, create_time, update_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,6 +73,7 @@ class Catalog extends CActiveRecord
 			'id'              => Yii::t('model','CatalogId'),
 			'parent_id'       => Yii::t('model','CatalogParentId'),
 			'catalog_name'    => Yii::t('model','CatalogName'),
+            'layer'           => Yii::t('model','CatalogLayer'),
 			'seo_title'       => Yii::t('model','CatalogSeoTitle'),
 			'seo_keywords'    => Yii::t('model','CatalogSeoKeywords'),
 			'seo_description' => Yii::t('model','CatalogSeoDescription'),		
@@ -103,6 +108,8 @@ class Catalog extends CActiveRecord
 		$criteria->compare('parent_id',$this->parent_id,true);
 
 		$criteria->compare('catalog_name',$this->catalog_name,true);
+        
+        $criteria->compare('layer',$this->layer,true);
 		
 		$criteria->compare('seo_title',$this->seo_title,true);
 
@@ -151,21 +158,38 @@ class Catalog extends CActiveRecord
 				return false;
             }
 		}
+        if($this->parent_id == 0 ) {
+            $this->layer = 1;
+        } else {
+            $data = self::model()->findByPk($this->parent_id);
+            $this->layer = $data->layer + 1;
+        }
 		return true;
 	}
+    
+    /**
+     * 获取顶级分类
+     * 
+     * @return array
+     */
+    public static function getTopCatalog() 
+    {
+        $res = self::model()->findAllByAttributes(array('parent_id' => 0));
+        return $res ? $res : array();
+    }
 	/**
-	 * 获取某个栏目下的子孙分类
-	 * @param number $id
+	 * 获取某个分类下的子分类
+     * 
+	 * @param number $parent_id
+     * @param boolean $checkShow 是否检查状态
 	 */
-	public static function getChildren($id = 0){		
-		$data = array();
-		$data['catalog'] = $catalog = self::model()->findByPk($id);
-		$allcatalog = self::getCatalog($id);
-		$catalog_ids = self::get($catalog?$id:0, $allcatalog);
-		$children_ids = Helper::array_key_values($catalog_ids, 'id');
-		$id?$all_ids = array_merge($children_ids, (array)$id):$all_ids = $children_ids;
-		$data['db_in_ids'] = implode(',',$all_ids);
-		return $data;		
+	public static function getChildren($parent_id = 0, $checkShow = false){
+        $condition = array(
+            'parent_id' => $parent_id
+        );
+        $checkShow && $condition['status'] = self::STATUS_SHOW;
+        $data = self::model()->findAllByAttributes($condition);		
+		return $data ? $data : array();		
 	}
 	
 	/**
@@ -181,52 +205,25 @@ class Catalog extends CActiveRecord
 			$data = self::model()->findAll('status=:status',array(':status'=>'Y'));
 		}
 		return $data;
-	}
-	
-	/**
-	 * 所有栏目分类
-     * 
-	 * @param number $parentid
-     * @param array  $array
-	 * @param number $level 
-	 * @param number $add
-	 * @param string $repeat
-	 * @return Ambigous <multitype:, multitype:multitype:number unknown string  >
-	 */
-	public static  function get($parentid = 0, $array = array(), $level = 0, $add = 2, $repeat = '&nbsp;&nbsp;') {
-	
-		$modelType = new ModelType();
-		$str_repeat = '';
-		if ($level) {
-			for($j = 0; $j < $level; $j ++) {
-				$str_repeat .= $repeat;
-			}
-		}
-		$newarray = array ();
-		$temparray = array ();
-		
-		foreach ( ( array ) $array as $v ) {
-			if ($v['parent_id'] == $parentid) {
-				$v['level'] = $level;
-				$v['str_repeat'] = $str_repeat;
-				
-				//模型标示
-				$typeinfo = $modelType->findByPk($v['type']);
-                if(!$typeinfo) {
-                    continue;
-                }                
-				$v['type_key'] = $typeinfo->type_key;
-				
-				$newarray[] = $v;
-				
-				$temparray = self::get ( $v ['id'], $array, ($level + $add) );
-				if ($temparray) {
-					$newarray = array_merge ( $newarray, $temparray );
-				}
-			}
-		}
-		return $newarray;
 	}	
-	
-	
+    
+    /**
+     * 获取所有父级分类名称
+     * 
+     * @param int $id
+     * @param array $catalogs
+     * @return array
+     */
+    public static function getParantsCatalog($id = 0, &$catalogs = array())
+    {
+        $cur = self::model()->findByPk($id);
+        if($cur) {
+            if($cur->parent_id > 0) {
+                $parent = self::model()->findByPk($cur->parent_id);
+                $catalogs[]=$parent->catalog_name;
+                self::getParantsCatalog($parent->id, $catalogs);
+            }
+        }
+        return array_reverse($catalogs);
+    }
 }

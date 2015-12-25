@@ -6,14 +6,13 @@
  */
 
 class CatalogController extends Backend
-{
-	public $_catalog;
+{	
 	protected $_model_type;	
 	
 	public function init(){		
 		//栏目
 		parent::init();
-		$this->_catalog = Catalog::model()->findAll();
+        $this->_catalog = Catalog::getTopCatalog();
 		$this->_model_type = ModelType::model()->findAll();
 	}
 
@@ -26,7 +25,7 @@ class CatalogController extends Backend
             'create'   => 'Create',       //添加
             'update'   => 'Update',       //编辑
             'batch'    => 'Batch',        //批量操作
-         
+            'children' => 'Children',     //获取子分类
         ), 'application.modules.admin.controllers.catalog');
         return array_merge($actions, $extra_actions);
     }

@@ -178,6 +178,7 @@ return array (
 	'Update Success' => '更新成功',
 	'Only POST Or GET' => '只支持POST或者GET数据',
 	'Only POST' => '只支持POST数据',
+    'Select Category' => '选择一个分类',
 	'Selected Category is Current Category or Children Category' => '所选择的上级分类不能是当前分类或者当前分类的下级分类',
 	'Error Operation' => '错误的操作',
 	'Batch Operate Success' => '批量操作成功',
