@@ -21,7 +21,7 @@ text-align: center; margin: 1px 200px; padding: 12px; width: 540px; border-radiu
 #login .verify-code { width: 70px; }
 #login .input-login { background: transparent url("../images/login_button.gif") no-repeat; cursor: pointer; width: 80px; height: 32px; }
 #login .input-reset { background: transparent url("../images/reset_button.gif") no-repeat; cursor: pointer; width: 80px; height: 32px; }
-.form { width: 400px; margin:0 auto; padding-left:200px; padding-top:70px; background:url(../images/logo.gif) no-repeat left center; }
+.form { width: 430px; margin:0 auto; padding-left:260px; padding-top:70px; background:url(../images/login_logo.png) no-repeat left center; }
 .form dl dt { float: left; padding: 10px 10px 0px 0 }
 .form dl dd { padding-bottom: 5px; }
 .form dl dd input { _vertical-align: middle }
