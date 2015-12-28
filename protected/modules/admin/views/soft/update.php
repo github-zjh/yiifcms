@@ -9,4 +9,4 @@
     </div>
 </div>
 <?php
-$this->renderPartial('_form', array('model' => $model));
+$this->renderPartial('_form', array('model' => $model,'parents' => $parents));

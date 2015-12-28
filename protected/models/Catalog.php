@@ -168,26 +168,37 @@ class Catalog extends CActiveRecord
 	}
     
     /**
-     * 获取顶级分类
+     * 获取所有顶级栏目
      * 
-     * @return array
+     * @param boolean $show 是否只取显示的数据
+     * @param mixed $type  栏目类型
+     * @return array 
      */
-    public static function getTopCatalog() 
+    public static function getTopCatalog($show = false, $type = false) 
     {
-        $res = self::model()->findAllByAttributes(array('parent_id' => 0));
+        $condition = array('parent_id' => 0);
+        if($show) {
+            $condition['status'] = self::STATUS_SHOW;
+        }
+        if($type) {
+            $condition['type'] = $type;
+        }
+        $res = self::model()->findAllByAttributes($condition);
         return $res ? $res : array();
     }
 	/**
 	 * 获取某个分类下的子分类
      * 
 	 * @param number $parent_id
-     * @param boolean $checkShow 是否检查状态
+     * @param mixed  $show 是否只获取显示的数据
+     * @param mixed $type 模型id
 	 */
-	public static function getChildren($parent_id = 0, $checkShow = false){
+	public static function getChildren($parent_id = 0, $show = false, $type = false){
         $condition = array(
             'parent_id' => $parent_id
         );
-        $checkShow && $condition['status'] = self::STATUS_SHOW;
+        $show && $condition['status'] = self::STATUS_SHOW;
+        $type && $condition['type'] = $type;
         $data = self::model()->findAllByAttributes($condition);		
 		return $data ? $data : array();		
 	}

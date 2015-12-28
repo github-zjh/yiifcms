@@ -161,10 +161,10 @@
                             html += '<option value="'+item.id+'">'+item.name+'</option>';
                         });
                     $(sel).after(html);
-                }                
+                } 
+                $('.loading').hide();
             });
-            $('#Post_catalog_id').val(val);
-            $('.loading').hide();
+            $('#Post_catalog_id').val(val);            
         });
     });
 </script>

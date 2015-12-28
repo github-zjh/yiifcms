@@ -26,11 +26,18 @@
         <td class="tb_title"><?php echo $form->label($model, 'catalog_id'); ?>：</td>
     </tr>
     <tr>
-        <td><select name="Video[catalog_id]" id="Video_catalog_id">
-                <?php foreach ((array) Catalog::get(0, $this->_catalog) as $catalog): ?>
-                    <option value="<?php echo $catalog['id'] ?>" <?php Helper::selected($catalog['id'], $model->catalog_id); ?>><?php echo $catalog['str_repeat'] ?><?php echo $catalog['catalog_name'] ?></option>
+        <td>
+            <?php if(!$model->isNewRecord && isset($parents) && $parents) :?>
+            <div><?php echo $parents;?></div>
+            <?php endif;?>
+            <select class="cat_select">
+                <option value="0">==<?php echo Yii::t('admin', 'Top Category'); ?>==</option>
+                <?php foreach ($this->_catalog as $catalog): ?>
+                    <option value="<?php echo $catalog['id'] ?>"><?php echo $catalog['catalog_name'] ?></option>
                 <?php endforeach; ?>
             </select>
+            <?php echo $form->hiddenfield($model, 'catalog_id');?>
+            <span class="loading" style="display:none;">loading...</span>
         </td>
     </tr>  
     <tr>
@@ -51,7 +58,7 @@
     </tr>
 
     <tr>
-        <td class="tb_title"><?php echo $form->label($model, 'video_file'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model, 'video_file'); ?>(目前仅支持mp4格式的视频在线播放)：</td>
     </tr>
     <tr>
         <td colspan="2" >    	
@@ -117,7 +124,7 @@
         <td class="tb_title"><?php echo $form->label($model, 'download'); ?>：</td>
     </tr>
     <tr>
-        <td  ><?php echo $form->textField($model, 'download', array('size' => 50, 'maxlength' => 80)); ?></td>
+        <td><?php echo $form->textField($model, 'download', array('size' => 50, 'maxlength' => 80)); ?></td>
     </tr>
     <tr>
         <td class="tb_title"><?php echo $form->label($model, 'seo_title'); ?>：</td>
@@ -153,6 +160,7 @@
         </td>
     </tr>
 </table>
+<?php $this->endWidget();?>
 <script type="text/javascript">
     //ajax上传图片
     function fileUpload() {
@@ -175,7 +183,30 @@
                 return false;
             }
         });
-    }    
+    }
+    $(function(){
+        $('.form_table').delegate('.cat_select','change',function(){
+            var id = $(this).val();
+            var url =  "<?php echo $this->createUrl('catalog/children');?>";
+            var sel = $(this);
+            var val = $(this).val();
+            $(this).nextAll('.cat_select').remove();
+            if(id <= 0) {
+                return false;
+            }
+            $('.loading').show();
+            $.getJSON(url, {'id':id}, function(data){                
+                if(data && data.length > 0) {
+                    var html = '<select class="cat_select">'
+                        + '<option value="0">==<?php echo Yii::t('admin', 'Select Category'); ?>==</option>';                
+                        $.each(data, function(i, item){                    
+                            html += '<option value="'+item.id+'">'+item.name+'</option>';
+                        });
+                    $(sel).after(html);
+                } 
+                $('.loading').hide();
+            });
+            $('#Video_catalog_id').val(val);            
+        });
+    });
 </script>
-<?php
-$this->endWidget();

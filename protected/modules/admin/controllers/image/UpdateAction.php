@@ -57,11 +57,15 @@ class UpdateAction extends CAction
     	}else{
             $imageList = $model->image_list?explode(',', $model->image_list):array();            
     		$style = unserialize($model->title_style);
-    	}   	        
+    	}
+        $parents = Catalog::getParantsCatalog($model->catalog_id);
+        $catalog = Catalog::model()->findByPk($model->catalog_id);
+        $belong = $catalog ? implode('>', $parents) .'>'. $catalog->catalog_name : '';        
     	$this->controller->render('update',array(
-    			'model'=>$model,
+    			'model'     => $model,
     			'imageList' => $imageList,
-    			'style' => $style,
+    			'style'     => $style,
+                'parents'   => $belong,
     	));    	
 	}
 }

@@ -2,13 +2,12 @@
 /**
  * 视频管理控制器类
  * 
- * @author        zhao jinhan <326196998@qq.com>
+ * @author        GoldHan.zhao <326196998@qq.com>
  * @copyright     Copyright (c) 2014-2015. All rights reserved.
  */
 
 class VideoController extends Backend
-{
-	protected $_catalog;
+{	
 	public $_video_type;	
 	public $_type;
 	
@@ -16,7 +15,7 @@ class VideoController extends Backend
 		parent::init();
 		$this->_type = $this->_type_ids['video'];
 		//视频栏目
-		$this->_catalog = Catalog::model()->findAll('status=:status AND type=:type',array(':status'=>'Y',':type'=>$this->_type));
+		$this->_catalog = Catalog::getTopCatalog(true, $this->_type);
 		$this->_video_type = array(
 					'comedy'=>'喜剧',
 					'active'=>'动作',

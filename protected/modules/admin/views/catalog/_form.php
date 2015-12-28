@@ -94,11 +94,11 @@
                         $.each(data, function(i, item){                    
                             html += '<option value="'+item.id+'">'+item.name+'</option>';
                         });
-                    $(sel).after(html);
-                }                
+                    $(sel).after(html);                    
+                }
+                $('.loading').hide();
             });
-            $('#Catalog_parent_id').val(val);
-            $('.loading').hide();
+            $('#Catalog_parent_id').val(val);            
         });
     });
 </script>

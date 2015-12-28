@@ -27,11 +27,17 @@
     </tr>
     <tr>
         <td>
-            <select name="Soft[catalog_id]" id="Soft_catalog_id">
-                <?php foreach ((array) Catalog::get(0, $this->_catalog) as $catalog): ?>
-                    <option value="<?php echo $catalog['id'] ?>" <?php Helper::selected($catalog['id'], $model->catalog_id); ?>><?php echo $catalog['str_repeat'] ?><?php echo $catalog['catalog_name'] ?></option>
+            <?php if(!$model->isNewRecord && isset($parents) && $parents) :?>
+            <div><?php echo $parents;?></div>
+            <?php endif;?>
+            <select class="cat_select">
+                <option value="0">==<?php echo Yii::t('admin', 'Top Category'); ?>==</option>
+                <?php foreach ($this->_catalog as $catalog): ?>
+                    <option value="<?php echo $catalog['id'] ?>"><?php echo $catalog['catalog_name'] ?></option>
                 <?php endforeach; ?>
             </select>
+            <?php echo $form->hiddenfield($model, 'catalog_id');?>
+            <span class="loading" style="display:none;">loading...</span>
         </td>
     </tr>  
 
@@ -47,7 +53,8 @@
                 <a href="<?php echo Helper::getFullUrl($model->soft_icon); ?>" target="_blank">
                     <img style="padding:5px; border:1px solid #cccccc;" src="<?php echo Helper::getFullUrl($model->soft_icon); ?>" width="50" align="absmiddle" />
                 </a>
-                <?php endif; ?>     
+                <?php endif; ?>    
+            </div>
         </td>
     </tr>
 
@@ -168,8 +175,9 @@
         </td>
     </tr>
 </table>
+<?php $this->endWidget();?>
 <script type="text/javascript">
-    //ajax上传图片
+     //ajax上传图片
     function fileUpload() {
         $('#fileupload_icon').fileupload({
             url: "<?php echo $this->createUrl('soft/uploadSimple'); ?>",
@@ -208,6 +216,30 @@
             }
         });
     }
+    
+    $(function(){
+        $('.form_table').delegate('.cat_select','change',function(){
+            var id = $(this).val();
+            var url =  "<?php echo $this->createUrl('catalog/children');?>";
+            var sel = $(this);
+            var val = $(this).val();
+            $(this).nextAll('.cat_select').remove();
+            if(id <= 0) {
+                return false;
+            }
+            $('.loading').show();
+            $.getJSON(url, {'id':id}, function(data){                
+                if(data && data.length > 0) {
+                    var html = '<select class="cat_select">'
+                        + '<option value="0">==<?php echo Yii::t('admin', 'Select Category'); ?>==</option>';                
+                        $.each(data, function(i, item){                    
+                            html += '<option value="'+item.id+'">'+item.name+'</option>';
+                        });
+                    $(sel).after(html);
+                } 
+                $('.loading').hide();
+            });
+            $('#Soft_catalog_id').val(val);            
+        });
+    });
 </script>
-<?php
-$this->endWidget();

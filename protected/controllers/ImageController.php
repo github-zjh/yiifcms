@@ -2,8 +2,8 @@
 /**
  * 前端图集控制器
  *
- * @author        zhao jinhan <326196998@qq.com>
- * @copyright     Copyright (c) 2014-2015 . All rights reserved. 
+ * @author        GoldHan.zhao <326196998@qq.com>
+ * @copyright     Copyright (c) 2014-2016 . All rights reserved. 
  */
 class ImageController extends FrontBase
 {
@@ -14,7 +14,7 @@ class ImageController extends FrontBase
 	public function init(){
 		parent::init();
 		//栏目
-		$this->_catalog = Catalog::model()->getCatalog($this->_type_ids['image']);
+		$this->_catalog = Catalog::getTopCatalog(true, $this->_type_ids['image']);
 		//导航标示
 		$this->_menu_unique = 'image';
 		//标签
@@ -28,7 +28,8 @@ class ImageController extends FrontBase
         );
         $actions = $this->actionMapping(array(
             'index'    => 'Index',        //列表
-            'view'     => 'View',         //详情                  
+            'view'     => 'View',         //详情         
+            'ajax'     => 'Ajax',         //ajax操作
         ), 'application.controllers.image');
         return array_merge($actions, $extra_actions);
     } 

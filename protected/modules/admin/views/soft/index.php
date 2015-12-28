@@ -6,12 +6,15 @@
         </ul>
         <div class="search right">
             <?php $this->beginWidget('CActiveForm', array('id' => 'searchForm', 'method' => 'get', 'action' => array('index'), 'htmlOptions' => array('name' => 'xform', 'class' => 'right '))); ?>
-            <select name="catalogId" id="catalogId">
+            <select class="cat_select">
                 <option value="">=<?php echo Yii::t('admin', 'All Content'); ?>=</option>
-                <?php foreach ((array) Catalog::get(0, $this->_catalog) as $catalog): ?>
+                <?php foreach ($this->_catalog as $catalog): ?>
                     <option value="<?php echo $catalog['id'] ?>"><?php echo $catalog['str_repeat'] ?><?php echo $catalog['catalog_name'] ?></option>
                 <?php endforeach; ?>
             </select>
+            <input type="hidden" id="catalogId" name="catalogId" value="<?php echo Yii::app()->request->getParam('catalogId') ?>"/>
+            <span class="loading" style="display:none;">loading...</span>
+            
             <?php echo Yii::t('admin', 'Title'); ?>
             <input type="text" name="title" value="<?php echo Yii::app()->request->getParam('title') ?>" class="txt" size="15"/>
             <input name="searchsubmit" type="submit"  value="<?php echo Yii::t('admin', 'Query'); ?>" class="button "/>
@@ -20,11 +23,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#catalogId").val('<?php echo Yii::app()->request->getParam('catalogId') ?>');
-    });
-</script>
 <?php $form = $this->beginWidget('CActiveForm', array('action' => $this->createUrl('batch'), 'htmlOptions' => array('name' => 'cpform'))); ?>
     <table border="0" cellpadding="0" cellspacing="0" class="content_list"> 
         <thead>
@@ -81,4 +79,31 @@
             </tr>
         </tbody>
     </table>
-<?php $this->endWidget();
+<?php $this->endWidget();?>
+<script type="text/javascript">
+    $(function(){
+        $('#searchForm').delegate('.cat_select','change',function(){
+            var id = $(this).val();
+            var url =  "<?php echo $this->createUrl('catalog/children');?>";
+            var sel = $(this);
+            var val = $(this).val();
+            $(this).nextAll('.cat_select').remove();
+            if(id <= 0) {
+                return false;
+            }
+            $('.loading').show();
+            $.getJSON(url, {'id':id}, function(data){                
+                if(data && data.length > 0) {
+                    var html = '<select class="cat_select">'
+                        + '<option value="0">==<?php echo Yii::t('admin', 'Select Category'); ?>==</option>';                
+                        $.each(data, function(i, item){                    
+                            html += '<option value="'+item.id+'">'+item.name+'</option>';
+                        });
+                    $(sel).after(html);
+                }
+                $('.loading').hide();
+            });
+            $('#catalogId').val(val);            
+        });
+    });
+</script>

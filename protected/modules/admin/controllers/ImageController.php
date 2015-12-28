@@ -2,13 +2,12 @@
 /**
  * 图集管理控制器类
  * 
- * @author        zhao jinhan <326196998@qq.com>
+ * @author        GoldHan.zhao <326196998@qq.com>
  * @copyright     Copyright (c) 2014-2015. All rights reserved.
  */
 
 class ImageController extends Backend
-{
-	protected $_catalog;
+{	
 	protected $_special;
 	public $_type;
 	
@@ -17,7 +16,7 @@ class ImageController extends Backend
 		//内容模型id
 		$this->_type = $this->_type_ids['image'];
 		//图集栏目
-		$this->_catalog = Catalog::model()->findAll('status=:status AND type=:type',array(':status'=>'Y',':type'=>$this->_type));
+		$this->_catalog = Catalog::getTopCatalog(true, $this->_type);
 		//专题
 		$this->_special = Special::model()->findAll('status=:status',array('status'=>'Y'));
 	}	

@@ -13,8 +13,8 @@ class VideoController extends FrontBase
 	
 	public function init(){
 		parent::init();
-		//栏目
-		$this->_catalog = Catalog::model()->findAll('status=:status AND type = :type',array(':status'=>'Y',':type'=>$this->_type_ids['video']));
+		//一级栏目
+		$this->_catalog = Catalog::getTopCatalog(true, $this->_type_ids['video']);
 		$this->_video_type = array(
 				'comedy'=>'喜剧',
 				'active'=>'动作',
@@ -37,6 +37,7 @@ class VideoController extends FrontBase
             'view'     => 'View',           //详情
             'score'    => 'Score',          //评分
             'download' => 'Download',       //下载
+            'ajax'     => 'Ajax',           //ajax操作
         ), 'application.controllers.video');
         return array_merge($actions, $extra_actions);    
     }  

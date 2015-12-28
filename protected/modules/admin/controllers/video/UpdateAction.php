@@ -29,8 +29,12 @@ class UpdateAction extends CAction
     			$this->controller->message('success',Yii::t('admin','Update Success'),$this->controller->createUrl('index'));
     		}
     	}        
+        $parents = Catalog::getParantsCatalog($model->catalog_id);
+        $catalog = Catalog::model()->findByPk($model->catalog_id);
+        $belong = $catalog ? implode('>', $parents) .'>'. $catalog->catalog_name : '';
     	$this->controller->render('update',array(
-    			'model'=>$model   			
+    			'model'=>$model,
+                'parents' => $belong
     	));    	
 	}
 }

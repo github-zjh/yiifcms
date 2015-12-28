@@ -112,10 +112,10 @@
                             html += '<option value="'+item.id+'">'+item.name+'</option>';
                         });
                     $(sel).after(html);
-                }                
+                }
+                $('.loading').hide();
             });
-            $('#catalogId').val(val);
-            $('.loading').hide();
+            $('#catalogId').val(val);            
         });
     });
 </script>

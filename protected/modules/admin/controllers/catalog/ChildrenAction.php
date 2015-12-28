@@ -10,7 +10,7 @@ class ChildrenAction extends CAction
 {	
 	public function run(){
         $parent_id = Yii::app()->request->getParam('id');
-        $children = Catalog::getChildren($parent_id);        
+        $children = Catalog::getChildren($parent_id);
         if($children) {
             foreach($children as $k => $v) {
                 $result[$k] = array(

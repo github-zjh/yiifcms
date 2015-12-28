@@ -26,19 +26,21 @@ class IndexAction extends CAction
                 $order_by = 't.id DESC';
                 break;
         }
-        //获取子孙分类(包括本身)
-        $data = Catalog::model()->getChildren($catalog_id);
-        $catalog = $data['catalog'];
-        $db_in_ids = $data['db_in_ids'];
-
+      
         //SEO
         $navs = array();
-        if($catalog){
-            $this->controller->_seoTitle = $catalog->seo_title?$catalog->seo_title:$catalog->catalog_name.' - '.$this->controller->_setting['site_name'];
-            $this->controller->_seoKeywords = $catalog->seo_keywords;
-            $this->controller->_seoDescription = $catalog->seo_description; 
-            $navs[] = array('url'=>$this->controller->createUrl('video/index', array('catalog_id'=>$catalog->id)),'name'=>$catalog->catalog_name);   	
+        if($catalog_id){
+            $condition = ' AND catalog_id = '.$catalog_id;
+            $catalog = Catalog::model()->findByPk($catalog_id);
+            if($catalog) {
+                $this->controller->_seoTitle = $catalog->seo_title?$catalog->seo_title:$catalog->catalog_name.' - '.$this->controller->_setting['site_name'];
+                $this->controller->_seoKeywords = $catalog->seo_keywords;
+                $this->controller->_seoDescription = $catalog->seo_description; 
+                $navs[] = array('url'=>$this->controller->createUrl('video/index', array('catalog_id'=>$catalog->id)),'name'=>$catalog->catalog_name);   	
+            }
         }else{ 
+            $condition = '';
+            $catalog = array();
             $seo = ModelType::getSEO('post');    	
             $this->controller->_seoTitle = $seo['seo_title'].' - '.$this->controller->_setting['site_name'];
             $this->controller->_seoKeywords = $seo['seo_keywords'];
@@ -46,10 +48,8 @@ class IndexAction extends CAction
             $navs[] = array('url'=>Yii::app()->request->getUrl(),'name'=>$this->controller->_seoTitle);  
         }
 
-        //获取所有符合条件的视频  
-        $condition = '';   
-        $pages = array();
-        $catalog && $condition .= ' AND catalog_id IN ('.$db_in_ids.')';    
+        //获取所有符合条件的视频         
+        $pages = array();       
         $datalist = Video::model()->getList(array('condition'=>$condition, 'limit'=>15, 'order'=>$order_by, 'page'=>true), $pages);   
 
         //该栏目下最新的视频

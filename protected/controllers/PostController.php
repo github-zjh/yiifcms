@@ -2,8 +2,8 @@
 /**
  * 文章内容控制器
  *
- * @author        Sim Zhao <326196998@qq.com>
- * @copyright     Copyright (c) 2014-2015 . All rights reserved. 
+ * @author        GoldHan.zhao <326196998@qq.com>
+ * @copyright     Copyright (c) 2014-2016 . All rights reserved. 
  */
 class PostController extends FrontBase
 {
@@ -13,8 +13,8 @@ class PostController extends FrontBase
 	
 	public function init(){
 		parent::init();
-		//栏目
-		$this->_catalog = Catalog::model()->getCatalog($this->_type_ids['post']);		
+		//一级栏目
+		$this->_catalog = Catalog::getTopCatalog(true, $this->_type_ids['post']);		
 		//导航标示
 		$this->_menu_unique = 'post';
 		//标签

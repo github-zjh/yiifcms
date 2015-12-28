@@ -1,11 +1,5 @@
 		<!-- 内容右侧 -->
 		<div class="content_right">
-			<dl class="category">
-				<dt><?php echo Yii::t('common','Catagorys');?></dt>
-				<?php foreach((array)$this->_catalog as $cate):?>
-				<dd><a href="<?php echo $this->createUrl('post/index',array('catalog_id'=>$cate->id));?>"><?php echo $cate->catalog_name;?></a></dd>		
-				<?php endforeach;?>					
-			</dl>	
 			
 			<dl class="category tag clear">
 				<dt><?php echo Yii::t('common','Tags');?></dt>

@@ -16,7 +16,7 @@ class PostController extends Backend
 		//内容模型id
 		$this->_type = $this->_type_ids['post'];		
 		//文章栏目
-		$this->_catalog = Catalog::model()->findAll('parent_id=0 AND type=:type',array(':type'=>$this->_type));        
+		$this->_catalog = Catalog::getTopCatalog(true,$this->_type);        
 		//专题
 		$this->_special = Special::model()->findAll('status=:status',array('status'=>'Y'));
 	}	
