@@ -7,14 +7,11 @@
  */
 
 class SpecialController extends Backend
-{
-	protected $_catalog;
+{	
 	protected $_special;
 	
 	public function init(){
-		parent::init();
-		//栏目
-		$this->_catalog = Catalog::model()->findAll('status=:status',array('status'=>'Y'));
+		parent::init();		
 		//专题
 		$this->_special = Special::model()->findAll('status=:status',array('status'=>'Y'));
 	}
