@@ -25,7 +25,7 @@ class Sitemap extends CController{
      * @param string $link
      * @param string $description
      */
-    public function __construct() {
+    public function __construct() {        
        	$this->webSiteTitle = Yii::app()->request->hostinfo;       	
        	$this->changefreq = 'weekly'; //always hourly daily weekly monthly yearly never
        	$this->priority = 0.5;
@@ -68,9 +68,8 @@ class Sitemap extends CController{
         $criteria->condition = "status = 'Y'";
         $criteria->select = 'id, update_time';
         $criteria->order = 'id DESC';
-        $model = Post::model()->findAll($criteria);
-        $tagItems = array();
-        foreach($model as $k=>$v){
+        $model = Post::model()->findAll($criteria);        
+        foreach($model as $v){
             $this->postItems[] = array(
                 'url'=>$this->createUrl('post/view', array('id'=>$v->id)),
                 'date'=>date(DATE_W3C, $v->update_time)
@@ -90,7 +89,7 @@ class Sitemap extends CController{
 		$criteria->group = 'tag_id';
         $criteria->order = 'count_tag DESC';
 		$model = TagData::model()->findAll($criteria);
-		foreach($model as $k=>$v){
+		foreach($model as $v){
 			$tag_id = $v->tag_id;
 			$tag = Tag::model()->findByPk($tag_id);
             if(!$tag) {
@@ -112,9 +111,8 @@ class Sitemap extends CController{
     	$criteria->condition = "status = 'Y'";
     	$criteria->select = 'id, update_time';
     	$criteria->order = 'id DESC';
-    	$model = Image::model()->findAll($criteria);
-    	$tagItems = array();
-    	foreach($model as $k=>$v){
+    	$model = Image::model()->findAll($criteria);    	
+    	foreach($model as $v){
     		$this->imageItems[] = array(
     				'url'=>$this->createUrl('image/view', array('id'=>$v->id)),
     				'date'=>date(DATE_W3C, $v->update_time)
@@ -133,7 +131,7 @@ class Sitemap extends CController{
     	$criteria->select = 'id, update_time';
     	$criteria->order = 'id DESC';
     	$model = Soft::model()->findAll($criteria);
-    	foreach($model as $k=>$v){
+    	foreach($model as $v){
     		$this->downloadItems[] = array(
     				'url'=>$this->createUrl('soft/view', array('id'=>$v->id)),
     				'date'=>date(DATE_W3C, $v->update_time)
@@ -147,100 +145,38 @@ class Sitemap extends CController{
     /**
      * 构建xml元素
      */
-     public function buildSitemap() {
-        $postitem = '';
-        foreach($this->postItems as $k=>$v){
-            $postitem .= <<<POST
-            <url>\r\n
-                <loc>{$this->webSiteTitle}{$v['url']}</loc>\r\n
-                <lastmod>{$v['date']}</lastmod>\r\n
-                <changefreq>{$this->changefreq}</changefreq>\r\n
-                <priority>{$this->priority}</priority>\r\n
-            </url>\r\n
-POST;
-
-        }
-        
-        $downloaditem = '';
-        foreach($this->downloadItems as $k=>$v){
-        	$downloaditem .= <<<POST
-            <url>\r\n
-                <loc>{$this->webSiteTitle}{$v['url']}</loc>\r\n
-                <lastmod>{$v['date']}</lastmod>\r\n
-                <changefreq>{$this->changefreq}</changefreq>\r\n
-                <priority>{$this->priority}</priority>\r\n
-            </url>\r\n
-POST;
-        
-        }
-        
-		$imageitem = '';
-        foreach($this->imageItems as $k=>$v){
-        	$imageitem .= <<<POST
-            <url>\r\n
-                <loc>{$this->webSiteTitle}{$v['url']}</loc>\r\n
-                <lastmod>{$v['date']}</lastmod>\r\n
-                <changefreq>{$this->changefreq}</changefreq>\r\n
-                <priority>{$this->priority}</priority>\r\n
-            </url>\r\n
-POST;
-        
-        }
-                
-
-        $tagitem = '';
-        foreach($this->tagItems as $k=>$v){
-        	$tagitem .= <<<POST
-            <url>\r\n
-                <loc>{$this->webSiteTitle}{$v['url']}</loc>\r\n
-                <lastmod>{$v['date']}</lastmod>\r\n
-                <changefreq>{$this->changefreq}</changefreq>\r\n
-                <priority>{$this->priority}</priority>\r\n
-            </url>\r\n
-POST;
-        
-        }
-        $categoryitem = '';
-        foreach($this->categoryItems as $k=>$v){
-            $categoryitem .= <<<POST
-            <url>\r\n
-                <loc>{$this->webSiteTitle}{$v['url']}</loc>\r\n
-                <lastmod>{$v['date']}</lastmod>\r\n
-                <changefreq>{$this->changefreq}</changefreq>\r\n
-                <priority>{$this->priority}</priority>\r\n
-            </url>\r\n
-POST;
-
-        }
-        $tagitem = '';
-        foreach($this->tagItems as $k=>$v){
-            $tagitem .= <<<POST
-            <url>\r\n
-                <loc>{$this->webSiteTitle}{$v['url']}</loc>\r\n
-                <lastmod>{$v['date']}</lastmod>\r\n
-                <changefreq>{$this->changefreq}</changefreq>\r\n
-                <priority>{$this->priority}</priority>\r\n
-            </url>\r\n
-POST;
-
-        }
-
-
+    public function buildSitemap() {
+        $formatXml = function($array) {
+            $item = '';
+            foreach($array as $v) {
+                $url = htmlspecialchars($this->webSiteTitle.$v['url']);
+                $item .= "<url>\r\n"
+                    . "<loc>{$url}</loc>\r\n"
+                    . "<lastmod>{$v['date']}</lastmod>\r\n"
+                    . "<changefreq>{$this->changefreq}</changefreq>\r\n"
+                    . "<priority>{$this->priority}</priority>\r\n"
+                    . "</url>\r\n";                        
+            }
+          return $item;
+        };
+        $allitem = $formatXml($this->postItems)
+              . $formatXml($this->downloadItems)
+              . $formatXml($this->categoryItems)
+              . $formatXml($this->imageItems)
+              . $formatXml($this->tagItems);
+             
         $this->content = <<<SITEMAP
 <?xml version='1.0' encoding='UTF-8'?>\r\n
-<?xml-stylesheet type="text/xsl" href="{$this->webSiteTitle}/site/sitemapxsl"?>
+<?xml-stylesheet type="text/xsl" href="{$this->webSiteTitle}{$this->createUrl('site/sitemapxsl')}"?>
 <!-- generator="GoWhich/1.0" -->
 <!-- sitemap-generator-url="{$this->webSiteTitle}" sitemap-generator-version="1.0.0" -->
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"\r\n
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"\r\n
         xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\r\n
-            {$postitem}
-            {$downloaditem}
-            {$tagitem}
-            {$categoryitem}
-            {$imageitem}
+            {$allitem}
 </urlset>\r\n
 SITEMAP;
+            return;
    	}
 
   /**
@@ -251,9 +187,9 @@ SITEMAP;
         $this->downloadSitemap();
         $this->tagSitemap();
         $this->categorySitemap();
-        $this->imageSitemap();
+        $this->imageSitemap();        
     	if (empty($this->content)) {
-    		$this->buildSitemap();
+    		$this->buildSitemap();           
     	}
        	return $this->content;
   }

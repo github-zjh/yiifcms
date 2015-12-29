@@ -20,10 +20,11 @@ class SiteController extends FrontBase
     {
         $extra_actions = array();
         $actions = $this->actionMapping(array(
-            'index'    => 'Index',          
-            'error'    => 'Error',          
-            'sitemap'  => 'Sitemap',        
-            'version'  => 'Version',                 
+            'index'       => 'Index',          
+            'error'       => 'Error',          
+            'sitemap'     => 'Sitemap',
+            'sitemapxsl'  => 'SitemapXsl',
+            'version'     => 'Version',                 
         ), 'application.controllers.site');
         return array_merge($actions, $extra_actions);
     }

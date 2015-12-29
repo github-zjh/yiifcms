@@ -11,7 +11,8 @@ class SitemapAction extends CAction
 	public function run(){
 		$this->controller->layout = false;
 		//rss创建
-		$obj = new Sitemap();	
-		$this->controller->render('sitemap',array('rss'=>$obj->show()));      
+		$obj = new Sitemap();
+        $rss = $obj->show();        
+		$this->controller->render('sitemap',array('rss'=>$rss));      
 	}
 }

@@ -1,5 +1,4 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $this->_stylePath . '/css/index.css';?>" />
-    <script type="text/javascript" src="<?php echo $this->_stylePath . '/js/jquery.easytabs.min.js';?>"></script>
     <div id="intro">		
 		<div class="intro_title">
 			<a href="<?php echo $this->createUrl('soft/index', array('catalog_id'=>11));?>" class="view_more" target="_blank"><?php echo Yii::t('common','DownLoad Now');?></a>
@@ -52,8 +51,8 @@
 	<!-- 推荐阅读区开始 -->
 	<div class="tab_container">
 		<ul class="etabs text_align_left">
-			<li class="tab"><a href="#tab_post1">最新阅读</a></li>
-			<li class="tab"><a href="#tab_post2">热门阅读</a></li>			
+            <li class="tab active"><a class="active" href="javascript:;" data-id="tab_post1">最新阅读</a></li>
+			<li class="tab"><a href="javascript:;" data-id="tab_post2">热门阅读</a></li>			
 		</ul>	
 		
 		<div class="panel_container">
@@ -65,7 +64,7 @@
                 <?php endif;?>
 			</ul>
 			
-			<ul id="tab_post2" class="tab_post clear">
+			<ul id="tab_post2" class="tab_post clear hidden">
 				<?php foreach((array)$news_hot as $nh):?>
 				<li><a href="<?php echo $this->createUrl('post/view', array('id'=>$nh->id));?>" title="<?php echo $nh->title;?>"><?php echo Helper::truncate_utf8_string($nh->title, 20);?></a></li>
 				<?php endforeach;?>
@@ -77,8 +76,8 @@
 	<!-- 推荐图集区开始 -->
 	<div class="tab_container">
 		<ul class="etabs text_align_right">			
-			<li class="tab"><a href="#tab_image1">最新图集</a></li>
-			<li class="tab"><a href="#tab_image2">热门图集</a></li>	
+            <li class="tab active"><a class="active" href="javascript:;" data-id="tab_image1">最新图集</a></li>
+			<li class="tab"><a href="javascript:;" data-id="tab_image2">热门图集</a></li>	
 		</ul>	
 		
 		<div class="panel_container">			
@@ -92,7 +91,7 @@
 				</li>
 				<?php endforeach;?>				
 			</ul>
-			<ul id="tab_image2" class="tab_image clear">
+			<ul id="tab_image2" class="tab_image clear hidden">
 				<?php foreach((array)$image_hot as $ih):?>				
 				<li>
 					<a href="<?php echo $this->createUrl('image/view', array('id'=>$ih->id));?>">	
@@ -109,8 +108,8 @@
 	<!-- 推荐下载区开始 -->
 	<div class="tab_container">
 		<ul class="etabs text_align_left">
-			<li class="tab"><a href="#tab_soft1">最新下载</a></li>
-			<li class="tab"><a href="#tab_soft2">热门下载</a></li>		
+			<li class="tab active"><a class="active" href="javascript:;" data-id="tab_soft1">最新下载</a></li>
+			<li class="tab"><a href="javascript:;">热门下载</a></li>		
 		</ul>	
 		
 		<div class="panel_container">
@@ -126,7 +125,7 @@
 				<?php endforeach;?>				
 			</ul>	
 			
-			<ul id="tab_soft2" class="tab_soft clear">
+			<ul id="tab_soft2" class="tab_soft clear hidden">
 				<?php foreach((array)$soft_hot as $sh):?>
 				<li>
 					<a href="<?php echo $this->createUrl('soft/view', array('id'=>$sh->id));?>" title="<?php echo $sh->title;?>">
@@ -145,8 +144,8 @@
 	<?php if($video_new):?>
 	<div class="tab_container">
 		<ul class="etabs text_align_right">
-			<li class="tab"><a href="#tab_video1">最新教程</a></li>
-			<li class="tab"><a href="#tab_video2">热门教程</a></li>		
+            <li class="tab active"><a class="active" href="javascript:;" data-id="tab_video1">最新教程</a></li>
+			<li class="tab"><a href="javascript:;">热门教程</a></li>		
 		</ul>	
 		
 		<div class="panel_container">
@@ -163,7 +162,7 @@
 				<?php endforeach;?>			
 			</ul>	
 			
-			<ul id="tab_video2" class="tab_video clear">
+			<ul id="tab_video2" class="tab_video clear hidden">
 				<?php foreach((array)$video_hot as $vh):?>
 				<li>
 					<a href="<?php echo $this->createUrl('video/view', array('id'=>$vh->id));?>" class="video_a">
@@ -211,9 +210,16 @@
 		</ul>
 		<?php endif;?>
 	</div>
-    
+    <!-- 标签切换 -->
     <script type="text/javascript">
 		$(function() {
-		    $('.tab_container').easytabs();
+		    $('.etabs li a').click(function(){
+                var id = $(this).attr('data-id');
+                var next_id = $(this).parent('li').siblings('li').find('a').attr('data-id');
+                $('#'+next_id).hide();
+                $(this).parent('li').siblings('li').removeClass('active').find('a').removeClass('active');                
+                $(this).addClass('active').parent('li').addClass('active');                
+                $('#'+id).fadeIn();
+            });
 		});
   	</script>

@@ -39,7 +39,7 @@ class IndexAction extends CAction
                 $navs[] = array('url'=>$this->controller->createUrl('post/index', array('catalog_id'=>$catalog->id)),'name'=>$catalog->catalog_name);   	
             }
         }
-        if($navs){ 
+        if(!$navs){ 
             $condition = '';
             $catalog = array();
             $seo = ModelType::getSEO('post');    	
