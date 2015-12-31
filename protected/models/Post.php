@@ -1,13 +1,15 @@
 <?php
 /**
  * 
- * @author zhao jinhan <326196998@qq.com>
+ * @author GoldHan.zhao <326196998@qq.com>
  * @link 
  *
  */
 class Post extends CActiveRecord
 {
-	
+	const STATUS_SHOW = 'Y'; //显示
+    const STATUS_HIDE = 'N'; //隐藏
+    
 	/**
 	 * @return string 相关的数据库表的名称
 	 */

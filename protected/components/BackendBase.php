@@ -2,8 +2,8 @@
 /**
  * 
  * 后端控制基础类  
- * @author zhaojinhan <326196998@qq.com>
- * @copyright Copyright (c) 2014-2015 Personal. All rights reserved.
+ * @author GoldHan.zhao <326196998@qq.com>
+ * @copyright Copyright (c) 2014-2016 Personal. All rights reserved.
  * @version v1.0.0
  * 
  */
@@ -14,15 +14,9 @@ class BackendBase extends AppController
 	 * @var $layout
 	 */
 	public $layout=''; //default 'main'
-	/**
-	 * @var array context menu items. This property will be assigned to {@link CMenu::items}.
-	 */
+	
 	public $menu=array();
-	/**
-	 * @var array the breadcrumbs of the current page. The value of this property will
-	 * be assigned to {@link CBreadcrumbs::links}. Please refer to {@link CBreadcrumbs::links}
-	 * for more details on how to specify this property.
-	*/
+	
 	public $breadcrumbs=array();	
 		
 	protected  $_static_admin = ''; //后端样式目录

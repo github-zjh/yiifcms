@@ -1,0 +1,15 @@
+@CHARSET "UTF-8";
+body { width:980px; margin:0 auto;}
+#special_top { background-color:#F5F5F5; line-height:40px; height:40px; border:1px solid #EEEEEE; padding:0 20px;}
+#special_top .sl { padding-left:20px;}
+#special_top a { color:#555555; }
+#special_top .line { margin:0 4px; color:#E0E0E0;}
+
+#special_mid .special_box{ margin-bottom: 20px; border:1px solid #EEEEEE; border-radius: 3px;}
+#special_mid .special_box h2 { background:#F5F5F5 url('../images/t_hand.png') no-repeat 5px center; line-height:33px; height:33px; padding-left:65px;font-size:16px; border-bottom:1px dashed #DDDDDD; }
+#special_mid .special_box ul { padding:0 20px;}
+#special_mid .special_box ul li{ width:30%; overflow: hidden; float:left; margin-right:30px; list-style: inside disc none; line-height:26px; }
+#special_mid .special_box ul li a { color:#888888; font-size:14px;}
+#special_mid .special_box ul li a:hover { color:#555555;}
+
+#special_bot { margin-top: 20px; text-align: center;}

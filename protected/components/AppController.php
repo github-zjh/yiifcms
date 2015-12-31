@@ -33,15 +33,15 @@ class AppController extends CController
 	protected  $_yii = '';	
 	protected  $_theme = '';
 	protected  $_baseUrl = '';
-	protected  $_basePath = ''; //应用程序目录	
-	protected  $_fonts = '';    //字体目录	
-	public     $_static_public = ''; //公共资源目录	
+	protected  $_basePath = '';            //应用程序目录	
+	protected  $_fonts = '';               //字体目录	
+	public     $_static_public = '';       //公共资源目录	
 	public     $_data = '';
     public     $_request = '';	
-	public     $_type_ids = array(); //内容模型id	
+	public     $_type_ids = array();       //内容模型id	
 	public     $_content_models = array(); //内容模型对象
-	public     $_cmsVersion = 'yiifcms1.4.2_UTF-8';
-	public     $_cmsRelease = '20141222';
+	public     $_cmsVersion = 'yiifcms1.5';
+	public     $_cmsRelease = '20160101';
 	
 	
 	public function init ()
@@ -114,7 +114,7 @@ class AppController extends CController
         if(isset($arr_style['bold']) && $arr_style['bold'] == 'Y') {
             $style .= 'font-weight:bold;';
         }
-        if(isset($arr_style['underline']) && arr_style['underline'] == 'Y') {
+        if(isset($arr_style['underline']) && $arr_style['underline'] == 'Y') {
              $style .= "text-decoration:underline;";
         }
         if(isset($arr_style['color']) && $arr_style['color']) {

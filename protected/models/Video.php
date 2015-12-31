@@ -28,6 +28,9 @@
  */
 class Video extends CActiveRecord
 {
+    const STATUS_SHOW = 'Y'; //显示
+    const STATUS_HIDE = 'N'; //隐藏
+    
 	/**
 	 * @return string the associated database table name
 	 */
