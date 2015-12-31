@@ -1,4 +1,3 @@
-/protected/config/main.php
 /protected/config/cache.php
 /protected/runtime
 /protected/data/dbbak
@@ -14,3 +13,4 @@
 /protected/tests
 /protected/data/backup/*.sql
 /*.tgitconfig
+/protected/data/install.lock
