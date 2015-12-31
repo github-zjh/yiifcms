@@ -1,16 +1,8 @@
-/protected/config/cache.php
-/protected/runtime
-/protected/data/dbbak
 /.settings
-
-/assets
 /*.buildpath
 /*.project
 /nbproject/private/
 /nbproject/project.xml
 /nbproject/*.properties
-/upload
-/protected/tests
-/protected/data/backup/*.sql
 /*.tgitconfig
 /protected/data/install.lock
