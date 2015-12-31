@@ -264,7 +264,7 @@ class InstallController extends AppController {
             } else {
                 $dbObj = new CDbConnection('mysql:host=' . $dbHost . ';port=' . $dbPort . ';', $dbUsername, $dbPassword);
                 $dbObj->active = true;
-                $dbObj->createCommand("USE {$dbName}")->execute();
+                $dbObj->createCommand("USE `{$dbName}`")->execute();
                 $var['state'] = 'success';
                 $var['message'] = '连接成功';
             }
