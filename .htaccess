@@ -12,11 +12,10 @@
 	
 	  # 设置不能执行php权限的目录
 	  RewriteRule assets/(.*).(php)$ – [F]  
-	  RewriteRule framework/(.*).(php)$ – [F]
-	  RewriteRule requirements/(.*).(php)$ – [F]
+	  RewriteRule framework/(.*).(php)$ – [F]	 
 	  RewriteRule public/(.*).(php)$ – [F] 
 	  RewriteRule themes/(.*).(php)$ – [F]
-	  RewriteRule uploads/(.*).(php)$ – [F] 
+	  RewriteRule upload/(.*).(php)$ – [F] 
 	  
 	  # 设置环境限制
 	  #php_value upload_max_filesize 50M
