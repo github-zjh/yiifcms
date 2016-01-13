@@ -79,7 +79,9 @@
 		<?php $i = 0;?>        
 		<?php foreach($comments as $comment):?>		
 		<li class="clear">									
-			<img width="50" <?php if($comment->user->avatar):?> src="<?php echo $comment->user->avatar;?>" <?php else:?>  src="<?php echo $this->_stylePath;?>/images/default_avatar.png"  <?php endif;?> class="avatar" />
+			<a href="<?php echo $this->createUrl('user/space', array('id' => $comment->user->uid)); ?>" target="_blank" title="个人空间">
+                <img width="50" <?php if($comment->user->avatar):?> src="<?php echo $comment->user->avatar;?>" <?php else:?>  src="<?php echo $this->_stylePath;?>/images/default_avatar.png"  <?php endif;?> class="avatar" />
+            </a>
 			<div class="comment_desc">
 				<p class="desc_head">
 					<strong class="user"><?php echo $comment->user->nickname?$comment->user->nickname:($comment->user->username?$comment->user->username:Yii::t('common','Anonymity'));?></strong>

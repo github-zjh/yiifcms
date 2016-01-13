@@ -107,13 +107,13 @@ cursor: pointer }
 .upload_desc p { line-height:33px;}
 .upload_cut_box { width:300px; float:left;}	
 .submit_cut .upload_btn { float:left; width:80px; height:28px;}
-.btn_text { display:block; height:28px; line-height:28px; border-radius: 4px; font-size: 14px;	background-color: #5CB85C;border-color: #4CAE4C;	color:#FFFFFF;	text-align:center;}
+.btn_text { display:block; height:28px; line-height:28px; border-radius: 4px; font-size: 14px;	background-color: #5CB85C;border-color: #4CAE4C; color:#FFFFFF;	text-align:center;}
 .submit_cut { width:190px; height:90px; margin-top:40px; padding-left:20px; float:left; position:relative; }
 .btn_cut { width:80px; position:absolute; top:50px;}
 .upload_btn .uploadify { position:absolute; top:0; opacity:0; cursor:pointer; filter:alpha(opacity=0);}
 .upload_avatar_status { display:none; position:absolute; left:90px; margin-left:10px; padding-left:20px; }
 .upload_avatar_status_success { background:none;}
-#uploadAvatar { z-index:-1; position:relative; top:-22px; width:80px;}
+#uploadAvatar { z-index:-1; position:relative; top:-25px; width:80px;}
 	
 #edit_form .submit {	
 	margin-top:20px;

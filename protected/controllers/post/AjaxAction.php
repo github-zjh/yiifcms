@@ -48,6 +48,7 @@ class AjaxAction extends CAction {
         }
         $attention_mod = new Attention();
         //判断是否已经关注了
+        $type_id = $this->controller->_type_ids['post'];
         $exist_attention = $attention_mod->find('user_id=:uid AND cid=:cid AND type=:type_id', array(':uid' => $uid, ':cid' => $postid, ':type_id' => $type_id));
         if ($exist_attention) {
             $ret = array('state' => 'error', 'message' => Yii::t('common', 'You Have Attented it'));
@@ -88,6 +89,7 @@ class AjaxAction extends CAction {
         }
         $collect_mod = new Collect();
         //判断是否已经收藏
+        $type_id = $this->controller->_type_ids['post'];
         $exist_collect = $collect_mod->find('user_id=:uid AND cid=:cid AND type=:type_id', array(':uid' => $uid, ':cid' => $postid, ':type_id' => $type_id));
         if ($exist_collect) {
             $ret = array('state' => 'error', 'message' => Yii::t('common', 'You Have Collected it'));
