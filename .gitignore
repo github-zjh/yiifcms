@@ -6,3 +6,4 @@
 /nbproject/*.properties
 /*.tgitconfig
 /protected/data/install.lock
+/protected/runtime/*.log
