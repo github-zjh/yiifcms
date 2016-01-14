@@ -179,6 +179,8 @@ EOT;
             'stop'     => $stop,
             'images'   => $images,
             'content'  => $content,
+            'timeout'  => $timeout,
         ));
+        exit;
 	}    
 }

@@ -40,7 +40,10 @@
 					</div>
 				</li>			
 				<?php endforeach;?>
-				
+            </ul>
+            <?php if(!$datas):?>
+            <div style="font-size:24px; text-align:center; border:1px solid #CCCCCC; background-color:#EEEEEE; padding:20px 0;">没有搜到任何结果啊~亲</div>
+            <?php endif;?>
 			
 			<!-- 分页开始 -->			
 			<?php $this->renderPartial('/layouts/pager',array('pagebar'=>$pagebar));?>	

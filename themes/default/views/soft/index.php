@@ -5,28 +5,9 @@
 	
 	<div id="content" class="clear">
 		<div class="content_left">
-            <!-- 搜索 -->
-            <?php $form = $this->beginWidget('CActiveForm', array( 'method'=>'get','action'=>$this->createUrl('soft/index'), 'htmlOptions' => array('class' => 'search_form clear')));?>
-            <dl class="category">
-                <dt><?php echo Yii::t('common','Catagorys');?></dt>
-                <dd>
-                    <select class="cat_select">
-                        <option value='0'>==所有==</option>
-                        <?php foreach((array)$this->_catalog as $cate):?>
-                        <option value="<?php echo $cate->id;?>"><?php echo $cate->catalog_name;?></option>		
-                        <?php endforeach;?>
-                    </select>                    
-                    <input type="hidden" id="catalogId" name="catalog_id" value="<?php echo Yii::app()->request->getParam('catalogId') ?>"/>
-                    <input type="hidden" name="order" value="<?php echo $order; ?>"/>
-                    <span class="loading" style="display:none;">loading...</span>
-                    <input type="submit" name="submit" class="search_btn" value="搜索"/>
-                </dd>                
-            </dl>            
-		    <div class="order_box">
-				<a <?php if($order == 'view_count'): ?>class="current" <?php endif;?> href="<?php echo $this->createUrl('soft/index',array('order'=>'view_count', 'catalog_id'=>$catalog ? $catalog->id : 0));?>">热度排行</a> 
-				<a <?php if($order == 'id'): ?>class="current" <?php endif;?> href="<?php echo $this->createUrl('soft/index',array('order'=>'id', 'catalog_id' => $catalog ? $catalog->id : 0));?>">最新发表</a>                 
-			</div>
-            <?php $this->endWidget();?>
+            <!-- 搜索开始 -->
+            <?php $this->renderPartial('/layouts/search',array('order'=>$order, 'catalog' => $catalog, 'search_cats' => $search_cats, 'controller' => $this->id));?>
+            <!-- 搜索结束 -->
             
 			<ul class="content_list">
 			<?php foreach((array)$softs as $soft):?>					

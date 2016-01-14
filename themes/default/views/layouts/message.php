@@ -1,5 +1,5 @@
     <style type="text/css">
-        .tips_wrap{ width:780px;padding:50px;margin:100px auto 50px;}
+        .tips_wrap{ width:780px;padding:50px;margin:100px auto;}
         .tips_inner{zoom:1;}
         .tips_inner:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
         .tips_inner .tips_img{width:80px;float:left;}
