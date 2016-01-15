@@ -87,12 +87,7 @@ $config = array(
 					'levels'=>'error, warning',
 				),				
 			),
-		),
-        //开启csrf令牌
-        'request'=>array(
-            // Enable Yii Validate CSRF Token
-            'enableCsrfValidation' => true,
-        ),
+		),       
 	),
 );
 //配置缓存
