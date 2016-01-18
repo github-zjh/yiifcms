@@ -12,7 +12,7 @@
                     <div class="nr">
                         <h3>中文版授权协议 适用于中文用户</h3>
                         <p>版权所有 (c) 2014-2016，yiifcms开发团队保留所有权利。<br />
-                          感谢您选择yiifcms。希望我们的努力能为您提供一个高效快速和强大的建站解决方案。yiifcms中文全称为yiifcms打造顶级网站内容管理系统，以下简称yiifcms。yiifcms开发团队为yiifcms的开发商，依法独立拥有yiifcms版权。</p>
+                          感谢您选择yiifcms。希望我们的努力能为您提供一个高效快速和强大的建站解决方案。yiifcms中文全称为yiifcms打造顶级网站内容管理系统，以下简称yiifcms。yiifcms开发者为GoldHan.zhao <326196998@qq.com>，依法独立拥有yiifcms版权。</p>
                         <p>yiifcms官方网站为 <a href="<?php echo $this->org_url;?>" target="_blank"><?php echo $this->org_url;?></a>。</p>
                         <p>使用者：无论个人或组织、盈利与否、用途如何（包括以学习和研究为目的），均需仔细阅读本协议，在理解、同意、并遵守本协议的全部条款后，方可开始使用 yiifcms 软件。<br />
                           本授权协议适用且仅适用于本产品，yiifcms开发团队拥有对本授权协议的最终解释权。</p>

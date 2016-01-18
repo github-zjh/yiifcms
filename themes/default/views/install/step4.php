@@ -23,14 +23,14 @@
                                 <td>私有临时文件(protected/runtime)</td>
                                 <td><?php if($runtime){ ?>√<?php }else{ ?>×<?php }?></td>
                                 <td>必须可读写</td>
-                                <td><?php if($runtime){ ?><span><img src="<?php echo $this->_theme->baseUrl?>/styles/install_styles/correct.gif" /></span><?php }else{ ?><font class="red"><img src="images/error.gif" />&nbsp;不支持保存远程图片</font><?php }?></td>
+                                <td><?php if($runtime){ ?><span><img src="<?php echo $this->_theme->baseUrl?>/styles/install_styles/correct.gif" /></span><?php }else{ ?><font class="red"><img src="<?php echo $this->_theme->baseUrl?>/styles/install_styles/error.gif" />&nbsp;不支持保存远程图片</font><?php }?></td>
                             </tr>
 
                             <tr>
                                 <td>附件上传目录(upload)</td>
                                 <td><?php if($upload){ ?>√<?php }else{ ?>×<?php }?></td>
                                 <td>必须可读写</td>
-                                <td><?php if($upload){ ?><span><img src="<?php echo $this->_theme->baseUrl?>/styles/install_styles/correct.gif" /></span><?php }else{ ?><font class="red"><img src="images/error.gif" />&nbsp;不支持保存远程图片</font><?php }?></td>
+                                <td><?php if($upload){ ?><span><img src="<?php echo $this->_theme->baseUrl?>/styles/install_styles/correct.gif" /></span><?php }else{ ?><font class="red"><img src="<?php echo $this->_theme->baseUrl?>/styles/install_styles/error.gif" />&nbsp;不支持修改配置文件</font><?php }?></td>
                             </tr>
 
                             <tr>

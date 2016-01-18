@@ -23,10 +23,7 @@ class IndexAction extends CAction {
                 $tag_ids[] = $tv->id;
             }
         }     
-        if (!$tag_ids) {
-            throw new CHttpException(404, Yii::t('common', 'The requested page does not exist.'));
-        }
-
+        
         $datas = array();
         $td = new TagData();        
         $criteria = new CDbCriteria();        

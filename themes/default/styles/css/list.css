@@ -2,15 +2,16 @@
 #content { width:1170px; margin:0 auto; text-align:left; margin-bottom:70px; }
 #content .content_left { float:left; width:870px; }
 #content .content_right { float:right; width:270px; }
-.content_left .order_box { float:right;  border:1px solid #DDDDDD; background-color:#CCCCCC; border-radius:5px; font-size:16px; }
+.content_left .order_box { border:1px solid #DDDDDD; background-color:#CCCCCC; border-radius:5px; font-size:16px; position:absolute; top:0; right:0;}
 .content_left .order_box a {  float:left; height:33px; line-height:33px; padding:0 5px; color:#EEEEEE; text-decoration: none; font-weight:bold; }
 .content_left .order_box a.current { border-radius:3px; background-color:#FFFFFF; color:#5cb85c; }
-.content_left .search_form { width:870px; border-bottom:1px dashed #CCCCCC;}
-.content_left .category { float:left;}
-.content_left .category dt { height:34px; width:150px; line-height:34px; margin-bottom:30px; border-left:4px solid #996600; font-size:16px; font-weight:bold; text-align:center; background-color:#EEEEEE;}
+.content_left .search_form { width:870px; position: relative;}
+.content_left .category { padding-left:20px; border:1px dashed #CCCCCC;}
+.content_left .category legend { text-align:left; font-size:16px;}
+.content_left .category dt { font-size:14px; color:#BBBBBB;}
 .content_left .category dd { padding-left:16px; margin-bottom:10px; background:url(../images/ico_list_blue.png) no-repeat left center;}
-.content_left .category .cat_select { font-size:14px; line-height:40px; height:40px; margin-right:1px; border-radius: 3px; }
-.content_left .category .search_btn {font-size: 14px; height: 40px; line-height: 40px; font-weight: bold; width: 60px; border-radius: 3px; cursor: pointer;}
+.content_left .category .cat_select { font-size:14px; line-height:30px; height:30px; margin-right:1px; border-radius: 3px; }
+.content_left .category .search_btn {font-size: 14px; height: 30px; line-height: 30px; font-weight: bold; width: 60px; border-radius: 3px; cursor: pointer;}
 
 .content_list .list_box { padding:10px 0; border-bottom:1px solid #e5e6e6;}
 .content_list .list_head { float:left; width:70px; padding:5px 0; border-radius:5px; background-color:#996600; text-align:center; }

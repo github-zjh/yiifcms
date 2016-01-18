@@ -10,7 +10,7 @@
                 <div class="l"></div>
                 <div class="ct_box nobrd i6v">
                     <div class="nr">
-                        <form id="install" action="<?php echo $this->createUrl('step6')?>" method="post">
+                        <?php $this->beginWidget('CActiveForm', array('id' => 'install', 'action' => $this->createUrl('step6')));?>
                             <fieldset>
                                 <legend>填写数据库信息</legend>
                                 <div class="content">
@@ -68,7 +68,7 @@
                                     </table>
                                 </div>
                             </fieldset>
-                        </form>
+                        <?php $this->endWidget();?>
                     </div>
                 </div>
             </div>

@@ -54,6 +54,9 @@ class QuestionController extends FrontBase
 			$model->client_ip = Yii::app()->request->userHostAddress;
 			$model->create_time = time();
 			if($model->save()){
+                //销毁上次csrf令牌 防止重复提交
+                $cookie = Yii::app()->request->getCookies();
+                unset($cookie[Yii::app()->request->csrfTokenName]);
 				$this->message('success',Yii::t('common','Question Submit Success'), Yii::app()->request->getUrl());
 			}
 		}

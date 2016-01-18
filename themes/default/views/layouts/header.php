@@ -58,7 +58,8 @@
 				</li>
 				<?php endforeach;?>			
 			</ul>
-			<form id="search"  tabindex="0" action="<?php echo $this->createUrl('tag/index');?>" method="get">				
+			<form id="search">
+                <input type="hidden" name="r" value="tag/index" />
 				<input type="submit" class="search_btn" value="<?php echo Yii::t('common','Search');?>" />	
 				<input type="hidden" id="oldkeyword" value="" />
 				<input type="text" name="tag" id="keyword" value="" autocomplete="off" placeholder="<?php echo Yii::t('common','Search Desc');?>"/>

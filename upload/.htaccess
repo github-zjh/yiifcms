@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>  
+  # 开启rewrite模块
+  RewriteEngine on  
+  # 防止盗链 
+  RewriteCond %{HTTP_REFERER} !^$ [NC]
+  RewriteCond %{HTTP_REFERER} !google.com [NC]
+  RewriteCond %{HTTP_REFERER} !baidu.com [NC]
+  RewriteCond %{HTTP_REFERER} !yii.localhost [NC]
+  RewriteCond %{HTTP_REFERER} !yii.local [NC]
+  # RewriteRule .*\.(gif|jpg|png|jpeg|swf|exe|rar|pdf|doc|docx|xls|ppt)$ - [F]
+</IfModule>  

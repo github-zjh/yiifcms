@@ -10,7 +10,7 @@
                     <div class="l"></div>
                     <div class="ct_box nobrd i6v">
                         <div class="nr">
-                            <form id="install" action="<?php echo $this->createUrl('step4')?>" method="post">
+                            <?php $this->beginWidget('CActiveForm', array('id' => 'install', 'action' => $this->createUrl('step4')));?>
                                 <fieldset>
                                     <legend>安装设置</legend>
                                     <div class="content">
@@ -24,7 +24,7 @@
                                         <label style="width:auto"><input type="checkbox" name="testdata" value="1" checked>默认测试数据 （用于新手和调试用户）</label>
                                     </div>
                                 </fieldset>
-                            </form>
+                            <?php $this->endWidget();?>
                         </div>
                     </div>
                 </div>

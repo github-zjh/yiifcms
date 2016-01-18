@@ -52,7 +52,13 @@ class AppController extends CController
         $this->_request       = Yii::app()->request;		
 		$this->_fonts         = ROOT_PATH.'/public';
 		$this->_data          = ROOT_PATH.'/protected/data/';		
-		$this->_static_public = $this->_baseUrl.'/public';        
+		$this->_static_public = $this->_baseUrl.'/public';
+        
+        //临时文件可读写
+        $runtime = Helper::is_writeable(Yii::app()->runtimePath) ? true : false;
+        if(!$runtime) {
+            throw new Exception('请给'.Yii::app()->runtimePath.'分配读写权限');
+        }
 
 		//检测系统是否已经安装
 		if(!file_exists($this->_data.'/install.lock')){

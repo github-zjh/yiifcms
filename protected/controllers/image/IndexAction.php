@@ -29,6 +29,7 @@ class IndexAction extends CAction
        
         //SEO
         $navs = array();
+        $search_cats = '所有';
         if($catalog_id){
             $condition = ' AND catalog_id = '.$catalog_id;
             $catalog = Catalog::model()->findByPk($catalog_id);
@@ -37,6 +38,9 @@ class IndexAction extends CAction
                 $this->controller->_seoKeywords = $catalog->seo_keywords;
                 $this->controller->_seoDescription = $catalog->seo_description; 
                 $navs[] = array('url'=>$this->controller->createUrl('image/index', array('catalog_id'=>$catalog->id)),'name'=>$catalog->catalog_name);   	            
+                //已搜索的分类
+                $cat_parents = Catalog::getParantsCatalog($catalog_id);                
+                $search_cats = $cat_parents ? implode('>', $cat_parents) .'>'. $catalog->catalog_name : $catalog->catalog_name;
             }
         }
         if(!$navs) { 
@@ -55,6 +59,6 @@ class IndexAction extends CAction
 
         //该栏目下最新的图集
         $last_images = Image::model()->getList(array('condition'=>$condition, 'limit'=>10));
-        $this->controller->render( 'index', array('navs'=>$navs, 'catalog'=>$catalog, 'datalist'=>$datalist, 'pagebar' => $pages,  'last_images'=>$last_images,'order'=>$order));    
+        $this->controller->render( 'index', array('navs'=>$navs, 'catalog'=>$catalog, 'datalist'=>$datalist, 'pagebar' => $pages,  'last_images'=>$last_images,'order'=>$order, 'search_cats' => $search_cats));    
 	}
 }

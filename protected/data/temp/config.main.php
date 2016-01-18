@@ -87,7 +87,7 @@ $config = array(
 					'levels'=>'error, warning',
 				),				
 			),
-		),
+		),       
 	),
 );
 //配置缓存

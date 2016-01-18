@@ -28,7 +28,7 @@ class InstallController extends AppController {
         $this->configPath = Yii::app()->basePath . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR;
     }
     
-    public function beforeAction() 
+    public function beforeAction($action)
     {        
         if(!in_array($this->action->id, array('complete', 'stop'))) {
             $this->_checkInstall();
