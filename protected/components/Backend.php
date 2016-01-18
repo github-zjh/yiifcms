@@ -2,9 +2,9 @@
 /**
  * 
  * 后端控制类  所有控制器需要验证
- * @author zhaojinhan <326196998@qq.com>
- * @copyright Copyright (c) 2014-2015 Personal. All rights reserved.
- * @version v1.0.0
+ * @author GoldHan.zhao <326196998@qq.com>
+ * @copyright Copyright (c) 2014-2016 Personal. All rights reserved.
+ * @version v1.5
  * 
  */
 class Backend extends BackendBase

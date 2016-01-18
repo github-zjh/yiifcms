@@ -41,33 +41,4 @@ class BackendBase extends AppController
 			$this->rediretParentUrl($loginUrl);
 		}
 	}	
-	
-	
-	/**
-	 * 引用字符串
-	 * @param  $string
-	 * @param  $force
-	 * @return string
-	 */
-	static function addslashes($string, $force = 1) {
-		if(is_array($string)) {
-			foreach($string as $key => $val) {
-				$string[$key] = self::addslashes($val, $force);
-			}
-		} else {
-			$string = addslashes($string);
-		}
-		return $string;
-	}
-	
-	/**
-	 * 获得来源类型 post get
-	 *
-	 * @return unknown
-	 */
-	static public function method() {
-		return strtoupper( isset( $_SERVER['REQUEST_METHOD'] ) ? $_SERVER['REQUEST_METHOD'] : 'GET' );
-	}
-	
-	
 }

@@ -54,6 +54,7 @@ return array (
 	'BM_Tools' => '工具',
 	'BM_Oauth' => '第三方授权',
     'BM_BackUp' => '备份与恢复',
+    'BM_Spider' => '数据采集',
 	
 	/* 设置 */
 	'Web Set' => '站点设置',
@@ -416,4 +417,10 @@ return array (
     'Delete File Success' => '删除文件成功',
     'Import File Success' => '导入数据成功',
     'Loading Error' => '加载失败',
+    
+    //数据采集
+    'Spider Setting' => '采集设置',
+    'Spider Post'    => '文章采集',
+    'Spider Image'   => '图片采集',
+    'CurPage Must Be Less Than TotalPage' => '当前页数必须小于等于总共页数'
 );

@@ -322,4 +322,19 @@ return array(
         'OAuthApiConfig'       => '应用配置',
         'OAuthApiName'         => '应用名称',
         'OAuthStatus'          => '应用状态',
+    
+    //SpiderSetting[采集设置]
+    'SpiderSettingId'             => '采集设置id',
+    'SpiderSettingSite'           => '站点名称',
+    'SpiderSettingUrl'            => '列表页地址',
+    'SpiderSettingListCharset'    => '列表页编码',
+    'SpiderSettingContentCharset' => '详情页编码',
+    'SpiderSettingItemRuleLi'     => '列表项Li选择器',
+    'SpiderSettingItemRuleA'      => '列表项A标签选择器',
+    'SpiderSettingContentRule'    => '详情页内容选择器',
+    'SpiderSettingPageRule'       => '分页链接规则',
+    'SpiderSettingCurPage'        => '当前已采集页数',
+    'SpiderSettingTotalPage'      => '总共需要采集页数',
+    'SpiderSettingType'           => '采集内容类型',
+        
 );
