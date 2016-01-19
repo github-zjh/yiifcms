@@ -422,5 +422,6 @@ return array (
     'Spider Setting' => '采集设置',
     'Spider Post'    => '文章采集',
     'Spider Image'   => '图片采集',
-    'CurPage Must Be Less Than TotalPage' => '当前页数必须小于等于总共页数'
+    'CurPage Must Be Less Than TotalPage' => '当前页数必须小于等于总共页数',
+    'No Enable Site Data' => '当前没有可用的站点',
 );

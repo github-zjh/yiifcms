@@ -36,7 +36,7 @@ class SpiderSetting extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('cur_page, total_page, type', 'numerical', 'integerOnly'=>true),
-			array('site, url, item_rule_li, item_rule_a, content_rule', 'length', 'max'=>50),
+			array('site, url, item_rule_li, item_rule_a, content_rule', 'length', 'max'=>100),
 			array('list_charset, content_charset', 'length', 'max'=>6),
 			array('page_rule', 'length', 'max'=>100),
 			// The following rule is used by search().

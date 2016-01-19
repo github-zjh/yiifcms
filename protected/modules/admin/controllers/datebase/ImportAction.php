@@ -65,7 +65,7 @@ class ImportAction extends CAction
      */
     protected  function startImport($file = '')
     {        
-        ini_set('max_execution_time', '3600');
+        set_time_limit(3600);
         $file_content = file_get_contents($file);
         $content = preg_replace('/\-\-comment_start(.*?)\-\-comment_end/is', '', $file_content);
         //分隔sql

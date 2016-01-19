@@ -329,12 +329,23 @@ return array(
     'SpiderSettingUrl'            => '列表页地址',
     'SpiderSettingListCharset'    => '列表页编码',
     'SpiderSettingContentCharset' => '详情页编码',
-    'SpiderSettingItemRuleLi'     => '列表项Li选择器',
+    'SpiderSettingItemRuleLi'     => '列表项Li标签选择器',
     'SpiderSettingItemRuleA'      => '列表项A标签选择器',
     'SpiderSettingContentRule'    => '详情页内容选择器',
     'SpiderSettingPageRule'       => '分页链接规则',
     'SpiderSettingCurPage'        => '当前已采集页数',
     'SpiderSettingTotalPage'      => '总共需要采集页数',
     'SpiderSettingType'           => '采集内容类型',
+    
+    //SpiderPostList[文章采集列表]
+    'SpiderPostListId'            => '文章id',
+    'SpiderPostListSite'          => '采集站点',
+    'SpiderPostListUrl'           => '原文url',
+    'SpiderPostListTitle'         => '文章标题',
+    'SpiderPostListStatus'        => '采集状态',
+    
+    //SpiderPostContent[文章采集内容]
+    'SpiderPostContentListId'     => '文章列表id',
+    'SpiderPostContentContent'    => '文章内容',
         
 );

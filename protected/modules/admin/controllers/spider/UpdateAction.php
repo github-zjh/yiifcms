@@ -1,9 +1,9 @@
 <?php
 /**
- *  编辑
+ *  采集设置编辑
  * 
- * @author        Sim Zhao <326196998@qq.com>
- * @copyright     Copyright (c) 2015. All rights reserved.
+ * @author        GoldHan.zhao <326196998@qq.com>
+ * @copyright     Copyright (c) 2014-2016. All rights reserved.
  */
 
 class UpdateAction extends CAction

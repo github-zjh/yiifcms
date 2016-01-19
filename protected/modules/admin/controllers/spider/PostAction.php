@@ -1,29 +1,30 @@
 <?php
 /**
- *  采集设置列表
+ *  文章采集列表
  * 
  * @author        GoldHan.zhao <326196998@qq.com>
  * @copyright     Copyright (c) 2014-2016. All rights reserved.
  */
 
-class IndexAction extends CAction
+class PostAction extends CAction
 {	
 	public function run(){
-        $model = new SpiderSetting();
+        $model = new SpiderPostList();
         //查询条件
         $criteria = new CDbCriteria();
         $condition = '1';
-        $title = Yii::app()->request->getParam( 'site' );       
-        $title && $condition .= ' AND site LIKE \'%' . $title . '%\'';        
+        $title = Yii::app()->request->getParam( 'title' );       
+        $title && $condition .= ' AND title LIKE \'%' . $title . '%\'';        
         $criteria->condition = $condition;
         $criteria->order = 't.id DESC';
+        $criteria->with = array('spiderset');
         $count = $model->count( $criteria );
         //分页
         $pages = new CPagination( $count );
-        $pages->pageSize = 10;       
+        $pages->pageSize = 20;       
         $pages->applyLimit($criteria);
         //结果
         $result = $model->findAll( $criteria );
-        $this->controller->render( 'index', array ( 'model' => $model, 'datalist' => $result , 'pagebar' => $pages ) );
+        $this->controller->render( 'post', array ( 'model' => $model, 'datalist' => $result , 'pagebar' => $pages ) );
 	}
 }

@@ -40,7 +40,7 @@ class ExportAction extends CAction
      */
     private function exportDatabase ($tables, $sizelimit, $backup_prefix = '')
     {
-        ini_set('max_execution_time', '3600');
+        set_time_limit(3600);
         Yii::app()->db->createCommand('SET NAMES utf8')->execute();
         $ext = '.sql'; 
         $part = 1;
