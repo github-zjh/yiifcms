@@ -424,4 +424,7 @@ return array (
     'Spider Image'   => '图片采集',
     'CurPage Must Be Less Than TotalPage' => '当前页数必须小于等于总共页数',
     'No Enable Site Data' => '当前没有可用的站点',
+    'Truncate Spider Data' => '清空已采集数据',
+    'Truncate Import Data' => '清空已导入数据',
+    'Truncate Finish' => '清空完成',
 );

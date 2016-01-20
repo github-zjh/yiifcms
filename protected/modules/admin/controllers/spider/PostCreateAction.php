@@ -53,9 +53,9 @@ class PostCreateAction extends CAction
         if(!$site) {
             $this->_stopError('无效的采集站点');
         }
-        echo "<br/>--------采集第{$site->cur_page}页[start]--------";
+        
         //默认是第一页
-        if ($site->cur_page <= 0) {
+        if ($site->cur_page <= 1) {
             $url = $site->url;
             $page = 1;
         } else {
@@ -65,16 +65,18 @@ class PostCreateAction extends CAction
             if (!$matches || !$matches[0]) {
                 $this->_stopError('页码规则无法解析');
             }
-            $page = '0' . intval($site->cur_page + 1);
+            $page = '0' . intval($site->cur_page);
             $url = preg_replace($reg, $page, $page_rule);
         }
+        $old_cur_page = intval($page);
+        echo "<br/>--------采集第{$old_cur_page}页[start]--------";
         try {
             $html = file_get_html($url);
         } catch (Exception $e) {
-            $this->_stopError('站点地址有误！无法采集数据！'.$e->getMessage());
+            $this->_stopError('站点地址['.$url.']有误！无法采集数据！'.$e->getMessage());
         }
         if(!$html) {
-            $this->_stopError('站点地址有误！无法采集数据！');            
+            $this->_stopError('站点地址['.$url.']有误！无法采集数据！');            
         }
         $lists = $html->find($site->item_rule_li);
         if(!$lists) {
@@ -82,7 +84,7 @@ class PostCreateAction extends CAction
         }        
         foreach ($lists as $item) {
             $postListModel = new SpiderPostList();
-            $postContentModel = new SpiderPostContent();        
+            $postContentModel = new SpiderPostContent();
             ob_flush();
             flush();
             //匹配标题
@@ -90,20 +92,25 @@ class PostCreateAction extends CAction
             if(!$a) {
                 $this->_stopError('列表项A标签选择器规则有误！匹配不到列表项数据！');
             }
-            $exist = $postListModel->find('url = "' .$a->href. '"');
-            if ($exist) {                
-                continue;
-            }
-            $postListModel->attributes = array(
-                'site_id' => $site->id,
-                'url' => $a->href,
-                'title' => $site->list_charset != 'UTF-8' ? mb_convert_encoding($a->innertext, 'UTF-8', $site->list_charset) : $a->innertext,
-                'status'=> SpiderPostList::STATUS_NONE_C
-            );
-            if(!$postListModel->save()) {
-                $this->_stopError('数据保存失败:'.var_export($postListModel->getErrors(),true));
-            }
-            $list_id = $postListModel->id;
+            $exist = $postListModel->find('url = "' .$a->href. '"');            
+            if ($exist) {
+                $list_id = $exist->id;
+                if ($exist->status != SpiderPostList::STATUS_NONE_C) {
+                    continue;
+                }
+                $postListModel = $exist;
+            } else {
+                $postListModel->attributes = array(
+                    'site_id' => $site->id,
+                    'url' => $a->href,
+                    'title' => $site->list_charset != 'UTF-8' ? mb_convert_encoding($a->innertext, 'UTF-8', $site->list_charset) : $a->innertext,
+                    'status'=> SpiderPostList::STATUS_NONE_C
+                );
+                if(!$postListModel->save()) {
+                    $this->_stopError('数据保存失败:'.var_export($postListModel->getErrors(),true));
+                }
+                $list_id = $postListModel->id;
+            }            
             //匹配内容
             $html = file_get_html($a->href);
             if(!$html) {
@@ -112,8 +119,14 @@ class PostCreateAction extends CAction
             $getContent = $html->find($site->content_rule, 0);
             if(!$getContent) {
                 $this->_stopError('详情页标签选择器规则有误！匹配不到内容数据！');
-            }
-            $content = addslashes($getContent->innertext);
+            }            
+            //内容正则过滤
+            if($site->filter_rule) {
+                $reg_arr = explode("\r\n", trim($site->filter_rule));                
+                $content = preg_replace($reg_arr, '', $getContent->innertext);
+            } else {                
+                $content = $getContent->innertext;
+            }            
             $cdata = array(
                 'list_id'   => $list_id,
                 'content'   => $site->content_charset != 'UTF-8' ? mb_convert_encoding($content, 'UTF-8', $site->content_charset) : $content
@@ -136,12 +149,11 @@ class PostCreateAction extends CAction
             }            
             echo "<br/>采集 <span style='color:grey'>\"{$postListModel->title}\"</span> 完成.";
         }
-        //更新页数
-        $old_cur_page = $site->cur_page;
-        $site->cur_page = $page;
+        //更新页数        
+        $site->cur_page = $old_cur_page+1;
         $site->save();
-        echo "<br/>--------采集第{$old_cur_page}页完成[end]--------<br/>";
-        if($site->cur_page < $site->total_page) {
+        echo "<br/>--------采集第{$old_cur_page}页完成[end]--------<br/>";        
+        if($site->cur_page <= $site->total_page) {
             $this->_startSpider($data);
         } else {
             exit ("<br/>--------<span style='color:green'>全部采集完成</span>--------<br/>");        
@@ -153,10 +165,12 @@ class PostCreateAction extends CAction
      * 
      * @param string $error
      */
-    private function _stopError($error = '')
+    private function _stopError($error = '', $finish = false)
     {
         echo "<br/><span style='color:red'>[Error]</span>{$error}";
-        echo "<br/>--------部分采集完成--------";
+        if(!$finish) {
+            echo "<br/>--------部分采集完成--------";
+        }
         exit;
     }
 }

@@ -10,8 +10,8 @@ class UpdateAction extends CAction
 {	
 	public function run(){        
         $model = $this->controller->loadModel();
-        if ( isset( $_POST['SpiderSetting'] ) ) {
-            $model->attributes = $_POST['SpiderSetting'];        	      
+        if ( isset( $_POST['SpiderSetting'] ) ) {            
+            $model->attributes = $_POST['SpiderSetting'];            
             if ( $model->save() ) {                
                 $this->controller->message('success',Yii::t('admin','Update Success'),$this->controller->createUrl('index'));
             }

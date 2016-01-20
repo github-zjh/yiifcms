@@ -12,6 +12,7 @@
  * @property string $item_rule_li
  * @property string $item_rule_a
  * @property string $content_rule
+ * @property string $filter_rule
  * @property string $page_rule
  * @property integer $cur_page
  * @property integer $total_page
@@ -39,6 +40,7 @@ class SpiderSetting extends CActiveRecord
 			array('site, url, item_rule_li, item_rule_a, content_rule', 'length', 'max'=>100),
 			array('list_charset, content_charset', 'length', 'max'=>6),
 			array('page_rule', 'length', 'max'=>100),
+            array('filter_rule', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, site, url, list_charset, content_charset, item_rule_li, item_rule_a, content_rule, page_rule, cur_page, total_page, type', 'safe', 'on'=>'search'),
@@ -83,6 +85,7 @@ class SpiderSetting extends CActiveRecord
 			'cur_page'        => Yii::t('model', 'SpiderSettingCurPage'),
 			'total_page'      => Yii::t('model', 'SpiderSettingTotalPage'),
 			'type'            => Yii::t('model', 'SpiderSettingType'),
+            'filter_rule'     => Yii::t('model', 'SpiderSettingFilterRule'),
 		);
 	}
 
@@ -127,6 +130,8 @@ class SpiderSetting extends CActiveRecord
 		$criteria->compare('total_page',$this->total_page);
 
 		$criteria->compare('type',$this->type);
+        
+        $criteria->compare('filter_rule',$this->filter_rule,true);
 
 		return new CActiveDataProvider('SpiderSetting', array(
 			'criteria'=>$criteria,

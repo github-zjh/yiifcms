@@ -336,6 +336,7 @@ return array(
     'SpiderSettingCurPage'        => '当前已采集页数',
     'SpiderSettingTotalPage'      => '总共需要采集页数',
     'SpiderSettingType'           => '采集内容类型',
+    'SpiderSettingFilterRule'     => '内容过滤规则',
     
     //SpiderPostList[文章采集列表]
     'SpiderPostListId'            => '文章id',

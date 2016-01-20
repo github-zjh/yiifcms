@@ -13,6 +13,7 @@
                         <?php $this->beginWidget('CActiveForm', array('id' => 'install', 'action' => $this->createUrl('step6')));?>
                             <fieldset>
                                 <legend>填写数据库信息</legend>
+                                <h4 style="color:burlywood;">注意：为了兼容不能自动创建数据库的空间，安装时需手动创建好数据库。</h4>
                                 <div class="content">
                                     <table width="100%" cellspacing="1" cellpadding="0" >
                                         <tr>
@@ -37,7 +38,10 @@
                                         </tr>
                                         <tr>
                                             <th align="right">数据库名称：</th>
-                                            <td><input name="dbname" type="text" id="dbname" value="yiifcms" class="input-text" /></td>
+                                            <td>
+                                                <input name="dbname" type="text" id="dbname" value="yiifcms" class="input-text" />
+                                                <img src="<?php echo $this->_theme->baseUrl.'/styles/install_styles/help.png';?>" style="cursor:pointer;" title="请手动创建好数据库" align="absmiddle" />
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th align="right">数据表前缀：</th>

@@ -61,6 +61,7 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus { border-
 .action li{float:left; margin-right:5px}
 .action li a{ background: #4D90FE; border-radius: 3px; color: #FFF; font: bold 14px arial, sans-serif; padding: 0.15em 1em; text-transform: uppercase;   margin: 0; overflow: visible; width: auto; *width: 1;
 cursor: pointer; padding:7px 20px; display:block }
+.actionBtn:hover { text-decoration: none;}
 .action li a:hover{ background: #996600;}
 .action li a.current{background: #996600;}
 .actionLink{ background: #009966; color: #FFF; font: bold 14px arial, sans-serif; padding: 0.15em 1em; text-transform: uppercase;   margin: 0; overflow: visible; width: auto; *width: 1;

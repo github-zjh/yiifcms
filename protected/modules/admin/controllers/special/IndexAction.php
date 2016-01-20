@@ -20,7 +20,7 @@ class IndexAction extends CAction
         $count = $model->count( $criteria );
         //分页
         $pages = new CPagination( $count );
-        $pages->pageSize = 10;       
+        $pages->pageSize = 20;       
         $pages->applyLimit($criteria);
         //结果
         $result = $model->findAll( $criteria );
