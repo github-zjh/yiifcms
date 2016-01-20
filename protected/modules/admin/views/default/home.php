@@ -52,7 +52,7 @@
   </tr>
   <tr>
     <td>QQ</td>
-    <td><a href="tencent://message/?uin=326196988">326196988</a></td>
+    <td><a href="tencent://message/?uin=326196998">326196998</a></td>
   </tr>
   
   <tr>

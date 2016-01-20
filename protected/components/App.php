@@ -2,13 +2,14 @@
 /**
  * App Component
  * 
- * @author Sim Zhao <326196998@qq.com>
- * @copyright (c) 2015, Sim Zhao
+ * @author GoldHan.zhao <326196998@qq.com>
+ * @copyright (c) 2014-2016
  * @license http://www.yiifcms.com
  */
 
 class App {
     
+    const CODE_SUCCESS = 200;
     /**
      * ajax响应
      * 
@@ -17,7 +18,7 @@ class App {
      * @param type $data
      * @param type $header
      */
-    public static function response($code = 200, $msg = '', $data = NULL, $header = 'json')
+    public static function response($code = self::CODE_SUCCESS, $msg = '', $data = NULL, $header = 'json')
     {
         if($header == 'json') {
             exit(CJSON::encode(array('code' => $code, 'message' => $msg, 'data' => $data)));

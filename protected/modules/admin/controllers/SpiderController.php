@@ -48,7 +48,8 @@ class SpiderController extends Backend
             'postCreate'   => 'PostCreate',        //添加文章数据
             'postUpdate'   => 'PostUpdate',        //更新文章数据
             'postImport'   => 'PostImport',        //文章导入
-            'image'        => 'Image',             //图集采集            
+            'image'        => 'Image',             //图集采集
+            'ajax'         => 'Ajax',              //Ajax请求 
         ), 'application.modules.admin.controllers.spider');
         return array_merge($actions, $extra_actions);
     }
