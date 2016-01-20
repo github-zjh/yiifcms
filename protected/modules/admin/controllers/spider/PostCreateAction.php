@@ -134,7 +134,7 @@ class PostCreateAction extends CAction
             if(!$postListModel->save()) {
                 $this->_stopError('数据保存失败:'.var_export($postListModel->getErrors(),true));
             }            
-            exit("<br/>采集 <span style='color:grey'>\"{$postListModel->title}\"</span> 完成.");
+            echo "<br/>采集 <span style='color:grey'>\"{$postListModel->title}\"</span> 完成.";
         }
         //更新页数
         $old_cur_page = $site->cur_page;
@@ -144,7 +144,7 @@ class PostCreateAction extends CAction
         if($site->cur_page < $site->total_page) {
             $this->_startSpider($data);
         } else {
-            echo "<br/>--------<span style='color:green'>全部采集完成</span>--------<br/>";        
+            exit ("<br/>--------<span style='color:green'>全部采集完成</span>--------<br/>");        
         }
     }
     
