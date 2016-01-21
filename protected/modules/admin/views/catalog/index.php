@@ -75,6 +75,7 @@
                 $(this).addClass('cat_down').html('--');
                 var url = $(this).attr('data-url');
                 $('#'+tr_id).after('<tr class="tb_list loading"><td>loading...</td></tr>');
+                var active_id = tr_id;
                 $.getJSON(url,function(data){
                     $('.loading').remove();
                     $.each(data, function(i, item){
@@ -83,7 +84,7 @@
                             space += '&nbsp;&nbsp;&nbsp;&nbsp;';
                         }
                         var html = '<tr id="cat_'+item.id+'" class="tb_list cat_'+item.parent_id+'_children">'
-                            + '<td>'+space+'├──<input type="checkbox" name="id[]" value="'+item.id+'"></td>'
+                            + '<td>'+space+'├──<input type="checkbox" name="id[]" value="'+item.id+'">'+item.id+'</td>'
                             + '<td>'+space+'<input type="text" name="sortOrder['+item.id+']" value="'+item.sort_order+'" id="sortOrder[]" size="5" ></td>'
                             + '<td>'+space+'<a href="javascript:;" class="cat_btn"  data-url="'+item.children_url+'">+</a><a href="javascript:;">'+item.name+'</a></td>'
                             + '<td>'+space+''+item.type+'</td>'
@@ -93,8 +94,9 @@
                             + '    <a href="'+item.update_url+'"><img src="<?php echo $this->module->assetsUrl; ?>/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;'
                             + '    <a href="'+item.delete_url+'" class="confirmSubmit"><img src="<?php echo $this->module->assetsUrl; ?>/images/delete.png" align="absmiddle" /></a>'                          
                             + '</td>'
-                            + '</tr>'; 
-                            $('#'+tr_id).after(html);
+                            + '</tr>';                            
+                            $('#'+active_id).after(html);
+                            active_id = 'cat_'+item.id;
                     });                    
                 });                
             }

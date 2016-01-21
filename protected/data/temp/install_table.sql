@@ -675,19 +675,19 @@ CREATE TABLE `#@__spider_setting` (
   `cur_page` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '当前已采集页数',
   `total_page` smallint(5) unsigned NOT NULL DEFAULT '1' COMMENT '需要采集总页数',
   `type` tinyint(2) unsigned NOT NULL DEFAULT '1' COMMENT '采集内容类型 与内容模型保持一致',
-  `filter_rule` tinytext NOT NULL COMMENT '内容过滤规则',
+  `filter_rule` text NOT NULL COMMENT '内容过滤规则',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='采集站点配置表';
 
 -- ----------------------------
 -- 采集站点设置默认项
 -- ----------------------------
-INSERT INTO `#@__spider_setting` VALUES ('1', '网易互联网科技阅读', 'http://tech.163.com/internet/', 'GBK', 'GB2312', '#news-flow-content li', '.titleBar h3 a', '#endText', 'http://tech.163.com/special/0009rt/tech_hlw_[PAGE_NUM].html', '6', '6', '1', '/(<iframe(.*?)>(.*?)<\\/iframe>)/is\r\n/(<div class=\"ep-source cDGray\">(.*?)<\\/div>)/is\r\n');
-INSERT INTO `#@__spider_setting` VALUES ('2', 'csdn互联网新闻', 'http://blog.csdn.net/web/newest.html', 'UTF-8', 'UTF-8', 'div.main_center .blog_list', 'h1 a', '#article_content', 'http://blog.csdn.net/web/newest.html?&page=[PAGE_NUM]', '2', '2', '1', '');
-INSERT INTO `#@__spider_setting` VALUES ('3', '开源中国-php', 'http://www.oschina.net/code/list?lang=php&catalog=&show=time', 'UTF-8', 'UTF-8', 'div.code_list ul li', 'h3.code_title a', 'div.Body', 'http://www.oschina.net/code/list?lang=php&catalog=&show=time&sort=&p=[PAGE_NUM]', '10', '10', '1', '');
+INSERT INTO `#@__spider_setting` VALUES ('1', '网易互联网科技阅读', 'http://tech.163.com/internet/', 'GBK', 'GB2312', '#news-flow-content li', '.titleBar h3 a', '#endText', 'http://tech.163.com/special/0009rt/tech_hlw_[PAGE_NUM].html', '0', '6', '1', '/(<iframe(.*?)>(.*?)<\\/iframe>)/is\r\n/(<div class=\"ep-source cDGray\">(.*?)<\\/div>)/is\r\n');
+INSERT INTO `#@__spider_setting` VALUES ('2', 'csdn互联网新闻', 'http://blog.csdn.net/web/newest.html', 'UTF-8', 'UTF-8', 'div.main_center .blog_list', 'h1 a', '#article_content', 'http://blog.csdn.net/web/newest.html?&page=[PAGE_NUM]', '0', '2', '1', '');
+INSERT INTO `#@__spider_setting` VALUES ('3', '开源中国-php', 'http://www.oschina.net/code/list?lang=php&catalog=&show=time', 'UTF-8', 'UTF-8', 'div.code_list ul li', 'h3.code_title a', 'div.Body', 'http://www.oschina.net/code/list?lang=php&catalog=&show=time&sort=&p=[PAGE_NUM]', '0', '2', '1', '');
 
 -- ----------------------------
--- Table structure for `y_spider_post_list`
+-- Table structure for `#@__spider_post_list`
 -- ----------------------------
 DROP TABLE IF EXISTS `#@__spider_post_list`;
 CREATE TABLE `#@__spider_post_list` (
@@ -695,13 +695,13 @@ CREATE TABLE `#@__spider_post_list` (
   `site_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '站点id',
   `url` varchar(100) NOT NULL DEFAULT '' COMMENT '详情页地址',
   `title` varchar(100) NOT NULL DEFAULT '' COMMENT '标题',
-  `status` tinyint(2) NOT NULL DEFAULT '0' COMMENT '状态  -1-数据已删除 0 - 内容未采集  1-内容已采集 2-数据已导入',
+  `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '状态 0 - 内容未采集  1-内容已采集 2-数据已导入',
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_index` (`url`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采集文章列表数据表';
 
 -- ----------------------------
--- Table structure for `y_spider_post_content`
+-- Table structure for `#@__spider_post_content`
 -- ----------------------------
 DROP TABLE IF EXISTS `#@__spider_post_content`;
 CREATE TABLE `#@__spider_post_content` (

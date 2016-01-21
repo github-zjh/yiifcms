@@ -11,17 +11,19 @@ class IndexAction extends CAction
 	public function run(){
         $model = new SpiderSetting();
         //查询条件
-        $criteria = new CDbCriteria();
-        $condition = '1';
+        $criteria = new CDbCriteria();        
+        $type = Yii::app()->request->getParam( 'type' );
         $title = Yii::app()->request->getParam( 'site' );       
-        $title && $condition .= ' AND site LIKE \'%' . $title . '%\'';        
-        $criteria->condition = $condition;
+        $type && $criteria->addColumnCondition(array('type' => $type));       
+        $title && $criteria->addSearchCondition('site', $title);
         $criteria->order = 't.id DESC';
         $count = $model->count( $criteria );
+        
         //分页
         $pages = new CPagination( $count );
-        $pages->pageSize = 10;       
+        $pages->pageSize = 20;       
         $pages->applyLimit($criteria);
+        
         //结果
         $result = $model->findAll( $criteria );
         $this->controller->render( 'index', array ( 'model' => $model, 'datalist' => $result , 'pagebar' => $pages ) );

@@ -73,7 +73,7 @@
         <td><?php echo $form->label($model, 'filter_rule');?><strong class='red'>(每一行一个正则表达式,形如"/(&lt;iframe(.*?)&gt;(.*?)&lt;\/iframe&gt;)/is")</strong>：</td>
     </tr>
     <tr>
-        <td><?php echo $form->textArea($model, 'filter_rule', array('rows'=>10, 'cols' => 60)); ?></td>
+        <td><?php echo $form->textArea($model, 'filter_rule', array('rows'=>10, 'cols' => 100)); ?></td>
     </tr>
     
     <tr>

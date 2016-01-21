@@ -8,6 +8,13 @@
         </ul>
         <div class="search right">
             <?php $this->beginWidget('CActiveForm', array('method' => 'get', 'action' => array('spider/post'))); ?>
+            <?php echo Yii::t('model', 'SpiderPostListStatus'); ?>
+            <select class="cat_select" name="status">                
+                <?php foreach ($this->status as $key => $value): ?>
+                <option value="<?php echo $key?>" <?php if($status == $key):?> selected<?php endif;?>><?php echo $value ?></option>
+                <?php endforeach; ?>
+            </select>
+            
             <?php echo Yii::t('model', 'SpiderPostListTitle'); ?>
             <input type="text" name="title" value="<?php echo Yii::app()->request->getParam('title') ?>" />        
             <input name="searchsubmit" type="submit" value="<?php echo Yii::t('admin', 'Query'); ?>" class="button"/>            
@@ -49,6 +56,7 @@
                     <select name="command">
                         <option value=""><?php echo Yii::t('admin', 'Select Operate'); ?></option>                        
                         <option value="deleteData"><?php echo Yii::t('admin', 'Delete'); ?></option>
+                        <option value="import"><?php echo Yii::t('admin', 'Import'); ?></option>
                     </select>
                     <input type="hidden" name="type" value="post" />
                     <input id="submit_maskall" class="button confirmSubmit" type="submit" value="<?php echo Yii::t('common', 'Submit'); ?>" name="maskall" />

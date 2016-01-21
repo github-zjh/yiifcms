@@ -5,7 +5,7 @@
             <li><a href="<?php echo $this->createUrl('create') ?>" class="actionBtn"><span><?php echo Yii::t('admin', 'Add'); ?></span></a></li>
         </ul>
         <div class="search right">
-            <?php $this->beginWidget('CActiveForm', array('id' => 'searchForm', 'method' => 'get', 'action' => array('special'), 'htmlOptions' => array('name' => 'xform'))); ?>
+            <?php $this->beginWidget('CActiveForm', array('id' => 'searchForm', 'method' => 'get', 'action' => array('index'), 'htmlOptions' => array('name' => 'xform'))); ?>
             <?php echo Yii::t('admin', 'Special Name'); ?>
             <input id="title" type="text" name="title" value="<?php echo Yii::app()->request->getParam('title') ?>" />        
             <input name="searchsubmit" type="submit" value="<?php echo Yii::t('admin', 'Query'); ?>" class="button"/>            

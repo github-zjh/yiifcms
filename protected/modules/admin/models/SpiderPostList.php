@@ -11,8 +11,7 @@
  * @property integer $status
  */
 class SpiderPostList extends CActiveRecord
-{
-    const STATUS_DEL    = -1; //已删除
+{    
     const STATUS_NONE_C = 0;  //标题已采集
     const STATUS_C      = 1;  //内容已采集
     const STATUS_SUCCESS= 2;  //数据已导入

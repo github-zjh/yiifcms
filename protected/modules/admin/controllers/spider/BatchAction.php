@@ -36,6 +36,10 @@ class BatchAction extends CAction
                 //清空数据
                 $this->_truncateTableData($status, $type);
                 break;
+            case 'import':
+                //导入数据
+                $this->_importSpiderData($ids, $type);
+                break;
             default:
                 $this->controller->message('error', Yii::t('admin','Error Operation'));                
         }
@@ -100,6 +104,28 @@ class BatchAction extends CAction
         }        
         $sql = "DELETE FROM `{$ctable}` WHERE NOT EXISTS ( SELECT id FROM `{$ltable}` WHERE `{$ltable}`.id = `{$ctable}`.list_id )";
         Yii::app()->db->createCommand($sql)->execute();
+        return true;
+    }
+    
+    /**
+     * 导入数据
+     * 
+     * @param type $ids
+     * @param type $type
+     * @return boolean
+     */
+    private function _importSpiderData($ids, $type)
+    {        
+        switch($type) {
+            case 'post':
+                $this->controller->redirect($this->controller->createUrl('postImport', array('ids' => $ids)));
+                break;
+            case 'image':
+                $this->controller->redirect($this->controller->createUrl('imageImport', array('ids' => $ids)));
+                break;
+            default:
+                break;
+        }
         return true;
     }
 }

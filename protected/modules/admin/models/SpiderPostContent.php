@@ -25,7 +25,8 @@ class SpiderPostContent extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('list_id, content', 'required'),
+			array('list_id', 'required'),
+            array('content', 'safe'),
 			array('list_id', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

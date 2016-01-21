@@ -122,8 +122,18 @@ class PostCreateAction extends CAction
             }            
             //内容正则过滤
             if($site->filter_rule) {
-                $reg_arr = explode("\r\n", trim($site->filter_rule));                
-                $content = preg_replace($reg_arr, '', $getContent->innertext);
+                $reg_arr = explode("\r\n", trim($site->filter_rule));
+                try {
+                    function displayErrorHandler() {
+                        throw new Exception('内容过滤正则表达式有误！');
+                    }
+                    set_error_handler('displayErrorHandler');                
+                    $content = preg_replace($reg_arr, '', $getContent->innertext);
+                    restore_error_handler();
+                } catch (Exception $e) {
+                    restore_error_handler();
+                    $this->_stopError($e->getMessage());
+                }                
             } else {                
                 $content = $getContent->innertext;
             }            

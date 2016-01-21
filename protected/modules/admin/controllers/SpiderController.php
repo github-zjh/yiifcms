@@ -12,6 +12,7 @@ class SpiderController extends Backend
     public $imageModel = null;
     public $softModel = null;
     public $videoModel = null;
+    public $_catalog = array();
     
     /*var $charset 数据采集编码*/
     public $charset = array(
@@ -26,8 +27,7 @@ class SpiderController extends Backend
     public function init()
     {
         parent::init();
-        $this->status = array(
-            SpiderPostList::STATUS_DEL     => '已删除',
+        $this->status = array(            
             SpiderPostList::STATUS_NONE_C  => '未采集',
             SpiderPostList::STATUS_C       => '已采集',
             SpiderPostList::STATUS_SUCCESS => '已导入',

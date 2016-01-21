@@ -6,6 +6,14 @@
         </ul>
         <div class="search right">
             <?php $this->beginWidget('CActiveForm', array('method' => 'get', 'action' => array('spider/index'))); ?>
+            <?php echo Yii::t('model', 'SpiderSettingType'); ?>
+            <select class="cat_select" name="type">
+                <option value="">=<?php echo Yii::t('admin', 'All Content'); ?>=</option>
+                <?php foreach ($this->_type_names as $type_id => $type_name): ?>
+                <option value="<?php echo $type_id?>" <?php if(Yii::app()->request->getParam('type') == $type_id):?> selected<?php endif;?>><?php echo $type_name ?></option>
+                <?php endforeach; ?>
+            </select>
+            
             <?php echo Yii::t('model', 'SpiderSettingSite'); ?>
             <input type="text" name="site" value="<?php echo Yii::app()->request->getParam('site') ?>" />        
             <input name="searchsubmit" type="submit" value="<?php echo Yii::t('admin', 'Query'); ?>" class="button"/>            
@@ -17,8 +25,9 @@
     <table class="content_list">    
         <tr class="tb_header">
             <th width="8%"><?php echo $form->label($model, 'id'); ?></th>
+            <th width="8%"><?php echo $form->label($model, 'type'); ?></th>
             <th width="10%"><?php echo $form->label($model, 'site'); ?></th>            
-            <th width="20%"><?php echo $form->label($model, 'url'); ?></th>
+            <th width="40%"><?php echo $form->label($model, 'url'); ?></th>
             <th width="10%"><?php echo $form->label($model, 'cur_page'); ?></th>
             <th width="10%"><?php echo $form->label($model, 'total_page'); ?></th>
             <th><?php echo Yii::t('admin', 'Operate'); ?></th>
@@ -26,6 +35,7 @@
         <?php foreach ($datalist as $row): ?>
             <tr class="tb_list">
                 <td><input type="checkbox" name="id[]" value="<?php echo $row->id ?>" /><?php echo $row->id ?></td>
+                <td><?php echo $this->_type_names[$row->type]; ?></td>
                 <td><?php echo $row->site ?></td>
                 <td><?php echo $row->url ?></td>
                 <td><?php echo $row->cur_page ?></td>

@@ -180,6 +180,7 @@ return array (
 	'Only POST Or GET' => '只支持POST或者GET数据',
 	'Only POST' => '只支持POST数据',
     'Select Category' => '选择一个分类',
+    'Please Select Category' => '请选择一个分类',
 	'Selected Category is Current Category or Children Category' => '所选择的上级分类不能是当前分类或者当前分类的下级分类',
 	'Error Operation' => '错误的操作',
 	'Batch Operate Success' => '批量操作成功',
@@ -427,4 +428,9 @@ return array (
     'Truncate Spider Data' => '清空已采集数据',
     'Truncate Import Data' => '清空已导入数据',
     'Truncate Finish' => '清空完成',
+    'Import' => '导入',
+    'Post Import'  => '文章导入',
+    'Image Import' => '图集导入',
+    'Soft Import'  => '软件导入',
+    'Video Import' => '视频导入',
 );
