@@ -76,6 +76,8 @@ class PostImportAction extends CAction
             } else {
                 $this->_stopError('导入原数据ID['.$id.']失败!');
             }
+            ob_flush();
+            flush();
         }
         exit ("<br/>--------<span style='color:green'>全部导入完成</span>--------<br/>");
     }
