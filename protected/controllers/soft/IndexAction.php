@@ -58,7 +58,7 @@ class IndexAction extends CAction
         $datalist = Soft::model()->getList(array('condition'=>$condition, 'limit'=>15, 'order'=>$order_by, 'page'=>true), $pages);   
 
         //该栏目下最新的软件 
-        $last_softs = Soft::model()->getList(array('condition'=>$condition, 'limit'=>10));
+        $last_softs = Soft::model()->getList(array('condition'=>$condition, 'limit'=>20));
         $this->controller->render( 'index', array('navs'=>$navs, 'catalog'=>$catalog, 'softs'=>$datalist, 'pagebar' => $pages,  'last_softs'=>$last_softs,'order'=>$order, 'search_cats' => $search_cats));    
 	}
 }

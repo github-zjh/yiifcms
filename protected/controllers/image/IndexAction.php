@@ -58,7 +58,7 @@ class IndexAction extends CAction
         $datalist = Image::model()->getList(array('condition'=>$condition, 'limit'=>15, 'order'=>$order_by, 'page'=>true), $pages);   
 
         //该栏目下最新的图集
-        $last_images = Image::model()->getList(array('condition'=>$condition, 'limit'=>10));
+        $last_images = Image::model()->getList(array('condition'=>$condition, 'limit'=>20));
         $this->controller->render( 'index', array('navs'=>$navs, 'catalog'=>$catalog, 'datalist'=>$datalist, 'pagebar' => $pages,  'last_images'=>$last_images,'order'=>$order, 'search_cats' => $search_cats));    
 	}
 }

@@ -22,6 +22,8 @@
 							<?php endforeach;?>								
 						</span>
 						<?php endif;?>
+                        <!-- 分类 -->
+                        <span><?php echo Yii::t('common','Catagorys')?>： <a href='<?php echo $this->createUrl('image/index', array('catalog_id' => $post->catalog_id));?>'><?php echo $post->catalog->catalog_name;?></a></span>
 						<span class="views"><em><?php echo $post->view_count;?></em></span>
 					</p>
 					<div class="content_info">

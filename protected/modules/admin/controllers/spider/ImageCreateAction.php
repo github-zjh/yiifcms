@@ -137,9 +137,29 @@ class ImageCreateAction extends CAction
                 }                
             } else {                
                 $content = $getContent->innertext;
-            }            
+            } 
+            //下载内容中第一张图片为封面图片
+            $imgs = array();
+            preg_match('/<img[\s]+src="(.*?)"/is', $content, $imgs);
+            $cover_img = '';
+            $cover_img_thumb = '';
+            if ($imgs && $imgs[1]) {
+                $first_img_url = $imgs[1];  
+                $spiderU = (new Uploader())->initSimple('spider');
+                $spiderU->file_ext = Helper::getExtensionName($first_img_url);
+                $spiderU->getSavePathFromRemote();
+                $download = Helper::downloadImage($first_img_url, dirname($spiderU->save_path), pathinfo($spiderU->file_name, PATHINFO_FILENAME));
+                if($download) {
+                    //生成缩略图
+                    $spiderU->makeThumb();
+                    $cover_img = $spiderU->file_path;
+                    $cover_img_thumb = $spiderU->thumb_path;
+                }
+            }        
             $cdata = array(
                 'list_id'   => $list_id,
+                'cover_img' => $cover_img,
+                'cover_img_thumb' => $cover_img_thumb,
                 'content'   => $site->content_charset != 'UTF-8' ? mb_convert_encoding($content, 'UTF-8', $site->content_charset) : $content
             );            
             $exist_c = $postContentModel->find('list_id='.$list_id);

@@ -58,7 +58,7 @@ class IndexAction extends CAction
         $datalist = Post::model()->getList(array('condition'=>$condition, 'limit'=>15, 'order'=>$order_by, 'page'=>true), $pages);   
 
         //该栏目下最新的文章
-        $last_posts = Post::model()->getList(array('condition'=>$condition, 'limit'=>10));
+        $last_posts = Post::model()->getList(array('condition'=>$condition, 'limit'=>20));
         $this->controller->render( 'index', array('navs'=>$navs, 'catalog'=>$catalog, 'posts'=>$datalist, 'pagebar' => $pages,  'last_posts'=>$last_posts,'order'=>$order, 'search_cats' => $search_cats));    
 	}
 }
