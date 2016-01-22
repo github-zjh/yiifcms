@@ -83,6 +83,8 @@ class IndexAction extends CAction
                 array('url'=> $this->controller->createUrl('spider/index'), 'name'=>Yii::t('admin','Spider Setting')),
                 array('url'=> $this->controller->createUrl('spider/post'), 'name'=>Yii::t('admin','Spider Post')),
                 array('url'=> $this->controller->createUrl('spider/image'), 'name'=>Yii::t('admin','Spider Image')),
+                array('url'=> $this->controller->createUrl('spider/soft'), 'name'=>Yii::t('admin','Spider Soft')),
+                array('url'=> $this->controller->createUrl('spider/video'), 'name'=>Yii::t('admin','Spider Video')),
 			),
             array(
                 array('url'=> $this->controller->createUrl('database/index'), 'name'=>Yii::t('admin','Database Manage')),					

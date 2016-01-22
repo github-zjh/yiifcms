@@ -1,12 +1,12 @@
 <?php
 /**
- *  添加文章采集
+ *  添加图集采集
  * 
  * @author        GoldHan.zhao <326196998@qq.com>
  * @copyright     Copyright (c) 2014-2016. All rights reserved.
  */
 
-class PostCreateAction extends CAction
+class ImageCreateAction extends CAction
 {	
 	public function run(){        
         $model = new SpiderSetting();        
@@ -15,7 +15,7 @@ class PostCreateAction extends CAction
             exit;
         }
         $criteria = new CDbCriteria();
-        $criteria->addColumnCondition(array('type' => $this->controller->_type_ids['post']));
+        $criteria->addColumnCondition(array('type' => $this->controller->_type_ids['image']));
         $criteria->addCondition('total_page > cur_page');
         //可以采集的站点
         $settings = $model->findAll($criteria);
@@ -27,7 +27,7 @@ class PostCreateAction extends CAction
         } else {
             $this->controller->message('error', Yii::t('admin', 'No Enable Site Data'));
         }                 
-        $this->controller->render( 'postcreate', array ( 'model' => $model , 'sites' => $sites) );
+        $this->controller->render( 'imagecreate', array ( 'model' => $model , 'sites' => $sites) );
 	}
     
     /**
@@ -83,8 +83,8 @@ class PostCreateAction extends CAction
             $this->_stopError('列表项Li标签选择器规则有误！匹配不到列表数据！');
         }        
         foreach ($lists as $item) {
-            $postListModel = new SpiderPostList();
-            $postContentModel = new SpiderPostContent();
+            $postListModel = new SpiderImageList();
+            $postContentModel = new SpiderImageContent();
             ob_flush();
             flush();
             //匹配标题
@@ -105,7 +105,7 @@ class PostCreateAction extends CAction
                     'site_id' => $site->id,
                     'url' => $a->href,
                     'title' => trim($title),
-                    'status'=> SpiderPostList::STATUS_NONE_C
+                    'status'=> SpiderImageList::STATUS_NONE_C
                 );
                 if(!$postListModel->save()) {
                     $this->_stopError('数据保存失败:'.var_export($postListModel->getErrors(),true));

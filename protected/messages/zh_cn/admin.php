@@ -423,6 +423,8 @@ return array (
     'Spider Setting' => '采集设置',
     'Spider Post'    => '文章采集',
     'Spider Image'   => '图片采集',
+    'Spider Soft'    => '软件采集',
+    'Spider Video'   => '视频采集',
     'CurPage Must Be Less Than TotalPage' => '当前页数必须小于等于总共页数',
     'No Enable Site Data' => '当前没有可用的站点',
     'Truncate Spider Data' => '清空已采集数据',

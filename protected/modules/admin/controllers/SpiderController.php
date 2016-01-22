@@ -49,6 +49,17 @@ class SpiderController extends Backend
             'postUpdate'   => 'PostUpdate',        //更新文章数据
             'postImport'   => 'PostImport',        //文章导入
             'image'        => 'Image',             //图集采集
+            'imageCreate'  => 'ImageCreate',       //添加图集数据
+            'imageUpdate'  => 'ImageUpdate',       //更新图集数据
+            'imageImport'  => 'ImageImport',       //图集导入
+            'soft'         => 'Soft',              //软件采集
+            'softCreate'   => 'SoftCreate',        //添加软件数据
+            'softUpdate'   => 'SoftUpdate',        //更新软件数据
+            'softImport'   => 'SoftImport',        //软件导入
+            'video'        => 'Video',             //视频采集
+            'videoCreate'  => 'VideoCreate',       //添加视频采集数据
+            'videoUpdate'  => 'VideoUpdate',       //更新视频数据
+            'videoImport'  => 'VideoImport',       //视频导入
             'ajax'         => 'Ajax',              //Ajax请求 
         ), 'application.modules.admin.controllers.spider');
         return array_merge($actions, $extra_actions);
@@ -99,7 +110,7 @@ class SpiderController extends Backend
     {
     	if ($this->imageModel === null) {
             if (isset($_GET['id'])) {
-                $this->imageModel = SpiderImageList::model()->findbyPk($_GET['id']);
+                $this->imageModel = SpiderImageList::model()->with('content')->findbyPk($_GET['id']);
             }
             if ($this->imageModel === null) {
                 throw new CHttpException(404, Yii::t('common', 'The requested page does not exist.'));

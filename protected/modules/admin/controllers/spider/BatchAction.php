@@ -61,6 +61,18 @@ class BatchAction extends CAction
                 SpiderPostList::model()->deleteAll($list_condition);
                 SpiderPostContent::model()->deleteAll($content_condtion);
                 break;
+            case 'image':
+                SpiderImageList::model()->deleteAll($list_condition);
+                SpiderImageContent::model()->deleteAll($content_condtion);
+                break;
+            case 'soft':
+                SpiderSoftList::model()->deleteAll($list_condition);
+                SpiderSoftContent::model()->deleteAll($content_condtion);
+                break;
+            case 'video':
+                SpiderVideoList::model()->deleteAll($list_condition);
+                SpiderVideoContent::model()->deleteAll($content_condtion);
+                break;
             default:
                 break;
         }
@@ -78,6 +90,15 @@ class BatchAction extends CAction
         switch($type) {
             case 'post':
                 SpiderPostList::model()->deleteAllByAttributes(array('status' => $status));
+                break;
+            case 'image':
+                SpiderImageList::model()->deleteAllByAttributes(array('status' => $status));
+                break;
+            case 'soft':
+                SpiderSoftList::model()->deleteAllByAttributes(array('status' => $status));
+                break;
+            case 'video':
+                SpiderVideoList::model()->deleteAllByAttributes(array('status' => $status));
                 break;
             default:
                 break;
@@ -98,6 +119,18 @@ class BatchAction extends CAction
             case 'post':
                 $ltable = (new SpiderPostList)->tableName();
                 $ctable = (new SpiderPostContent)->tableName();                
+                break;
+            case 'image':
+                $ltable = (new SpiderImageList)->tableName();
+                $ctable = (new SpiderImageContent)->tableName();                
+                break;
+            case 'soft':
+                $ltable = (new SpiderSoftList)->tableName();
+                $ctable = (new SpiderSoftContent)->tableName();                
+                break;
+            case 'video':
+                $ltable = (new SpiderVideoList)->tableName();
+                $ctable = (new SpiderVideoContent)->tableName();                
                 break;
             default:
                 break;
