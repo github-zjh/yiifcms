@@ -710,4 +710,31 @@ CREATE TABLE `#@__spider_post_content` (
   PRIMARY KEY (`list_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采集文章内容数据表';
 
+-- ----------------------------
+-- Table structure for `#@__spider_image_list`
+-- ----------------------------
+DROP TABLE IF EXISTS `#@__spider_image_list`;
+CREATE TABLE `#@__spider_post_list` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `site_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '站点id',
+  `url` varchar(100) NOT NULL DEFAULT '' COMMENT '详情页地址',
+  `title` varchar(100) NOT NULL DEFAULT '' COMMENT '标题',
+  `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '状态 0 - 内容未采集  1-内容已采集 2-数据已导入',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_index` (`url`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采集图集列表数据表';
+
+-- ----------------------------
+-- Table structure for `#@__spider_image_content`
+-- ----------------------------
+DROP TABLE IF EXISTS `#@__spider_image_content`;
+CREATE TABLE `#@__spider_image_content` (
+  `list_id` int(10) unsigned NOT NULL COMMENT '列表id',
+  `cover_img` varchar(100) NOT NULL DEFAULT '' COMMENT '封面图片',
+  `cover_img_thumb` varchar(100) NOT NULL DEFAULT '' COMMENT '封面图片缩略图',
+  `image_list` text NOT NULL COMMENT '图集列表',
+  `content` text NOT NULL COMMENT '详细内容',
+  PRIMARY KEY (`list_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采集图集内容数据表';
+
 
