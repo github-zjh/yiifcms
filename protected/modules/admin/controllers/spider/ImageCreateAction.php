@@ -65,7 +65,7 @@ class ImageCreateAction extends CAction
             if (!$matches || !$matches[0]) {
                 $this->_stopError('页码规则无法解析');
             }
-            $page = '0' . intval($site->cur_page);
+            $page = $site->cur_page;
             $url = preg_replace($reg, $page, $page_rule);
         }
         $old_cur_page = intval($page);
@@ -81,7 +81,7 @@ class ImageCreateAction extends CAction
         $lists = $html->find($site->item_rule_li);
         if(!$lists) {
             $this->_stopError('列表项Li标签选择器规则有误！匹配不到列表数据！');
-        }        
+        }
         foreach ($lists as $item) {
             $postListModel = new SpiderImageList();
             $postContentModel = new SpiderImageContent();
@@ -92,7 +92,8 @@ class ImageCreateAction extends CAction
             if(!$a) {
                 $this->_stopError('列表项A标签选择器规则有误！匹配不到列表项数据！');
             }
-            $exist = $postListModel->find('url = "' .$a->href. '"');            
+            $view_url = $this->controller->formatViewUrl($url, $a->href);
+            $exist = $postListModel->find('url = "' .$view_url. '"');            
             if ($exist) {
                 $list_id = $exist->id;
                 if ($exist->status != SpiderPostList::STATUS_NONE_C) {
@@ -103,7 +104,7 @@ class ImageCreateAction extends CAction
                 $title = $site->list_charset != 'UTF-8' ? mb_convert_encoding($a->innertext, 'UTF-8', $site->list_charset) : $a->innertext;
                 $postListModel->attributes = array(
                     'site_id' => $site->id,
-                    'url' => $a->href,
+                    'url' => $view_url,
                     'title' => trim($title),
                     'status'=> SpiderImageList::STATUS_NONE_C
                 );
@@ -112,8 +113,8 @@ class ImageCreateAction extends CAction
                 }
                 $list_id = $postListModel->id;
             }            
-            //匹配内容
-            $html = file_get_html($a->href);
+            //匹配内容            
+            $html = file_get_html($view_url);
             if(!$html) {
                 continue;
             }
@@ -124,11 +125,8 @@ class ImageCreateAction extends CAction
             //内容正则过滤
             if($site->filter_rule) {
                 $reg_arr = explode("\r\n", trim($site->filter_rule));
-                try {
-                    function displayErrorHandler() {
-                        throw new Exception('内容过滤正则表达式有误！');
-                    }
-                    set_error_handler('displayErrorHandler');                
+                try {                    
+                    set_error_handler(array('APP', 'displayRegErrorHandler'));                
                     $content = preg_replace($reg_arr, '', $getContent->innertext);
                     restore_error_handler();
                 } catch (Exception $e) {

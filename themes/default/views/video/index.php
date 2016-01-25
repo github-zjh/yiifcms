@@ -14,7 +14,7 @@
 				<li class="list_box clear">					
 					<div class="list_body">
 						<a class="video_a" href="<?php echo $this->createUrl('video/view', array('id'=>$video->id));?>">							
-							<img src="<?php echo $video->cover_image;?>" width="150" height="200" />
+							<img src="<?php echo $video->cover_image;?>" width="150" height="180" />
 							<span class="v_play_score"><?php echo $video->video_score;?></span>
 							<span class="v_play_mask"></span>
 							<span class="v_play_icon"></span>

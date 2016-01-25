@@ -676,6 +676,8 @@ CREATE TABLE `#@__spider_setting` (
   `total_page` smallint(5) unsigned NOT NULL DEFAULT '1' COMMENT '需要采集总页数',
   `type` tinyint(2) unsigned NOT NULL DEFAULT '1' COMMENT '采集内容类型 与内容模型保持一致',
   `filter_rule` text NOT NULL COMMENT '内容过滤规则',
+  `soft_icon_rule` varchar(50) NOT NULL DEFAULT '' COMMENT '软件图标标签规则',
+  `video_cover_rule` varchar(50) NOT NULL DEFAULT '' COMMENT '视频封面图片标签规则',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='采集站点配置表';
 
@@ -737,4 +739,53 @@ CREATE TABLE `#@__spider_image_content` (
   PRIMARY KEY (`list_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采集图集内容数据表';
 
+-- ----------------------------
+-- Table structure for `#@__spider_soft_list`
+-- ----------------------------
+DROP TABLE IF EXISTS `#@__spider_soft_list`;
+CREATE TABLE `#@__spider_soft_list` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `site_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '站点id',
+  `url` varchar(100) NOT NULL DEFAULT '' COMMENT '详情页地址',
+  `title` varchar(100) NOT NULL DEFAULT '' COMMENT '标题',
+  `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '状态 0 - 内容未采集  1-内容已采集 2-数据已导入',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_index` (`url`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='采集软件列表数据表';
 
+-- ----------------------------
+-- Table structure for `#@__spider_soft_content`
+-- ----------------------------
+DROP TABLE IF EXISTS `#@__spider_soft_content`;
+CREATE TABLE `#@__spider_soft_content` (
+  `list_id` int(10) unsigned NOT NULL COMMENT '列表id',
+  `soft_img` varchar(100) NOT NULL DEFAULT '' COMMENT '软件图片',
+  `soft_icon` varchar(100) NOT NULL DEFAULT '' COMMENT '软件图标',
+  `content` text NOT NULL COMMENT '详细内容',
+  PRIMARY KEY (`list_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采集软件内容数据表';
+
+
+-- ----------------------------
+-- Table structure for `#@__spider_video_list`
+-- ----------------------------
+CREATE TABLE `#@__spider_video_list` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `site_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '站点id',
+  `url` varchar(100) NOT NULL DEFAULT '' COMMENT '详情页地址',
+  `title` varchar(100) NOT NULL DEFAULT '' COMMENT '标题',
+  `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '状态 0 - 内容未采集  1-内容已采集 2-数据已导入',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_index` (`url`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='采集视频列表数据表';
+
+-- ----------------------------
+-- Table structure for `#@__spider_video_content`
+-- ----------------------------
+DROP TABLE IF EXISTS `#@__spider_video_content`;
+CREATE TABLE `#@__spider_video_content` (
+  `list_id` int(10) unsigned NOT NULL COMMENT '列表id',
+  `cover_img` varchar(100) NOT NULL DEFAULT '' COMMENT '视频封面',
+  `content` text NOT NULL COMMENT '详细内容',
+  PRIMARY KEY (`list_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采集视频内容数据表';

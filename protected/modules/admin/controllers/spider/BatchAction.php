@@ -156,6 +156,12 @@ class BatchAction extends CAction
             case 'image':
                 $this->controller->redirect($this->controller->createUrl('imageImport', array('ids' => $ids)));
                 break;
+            case 'soft':
+                $this->controller->redirect($this->controller->createUrl('softImport', array('ids' => $ids)));
+                break;
+            case 'video':
+                $this->controller->redirect($this->controller->createUrl('videoImport', array('ids' => $ids)));
+                break;
             default:
                 break;
         }

@@ -60,7 +60,8 @@ class SpiderController extends Backend
             'videoCreate'  => 'VideoCreate',       //添加视频采集数据
             'videoUpdate'  => 'VideoUpdate',       //更新视频数据
             'videoImport'  => 'VideoImport',       //视频导入
-            'ajax'         => 'Ajax',              //Ajax请求 
+            'ajax'         => 'Ajax',              //Ajax请求
+            'uploadSimple' => 'UploadSimple',      //上传单个图片
         ), 'application.modules.admin.controllers.spider');
         return array_merge($actions, $extra_actions);
     }
@@ -102,9 +103,9 @@ class SpiderController extends Backend
     }
     
     /**
-     * 判断文章列表数据是否存在
+     * 判断图片列表数据是否存在
      * 
-     * return \$this->postModel
+     * return \$this->imageModel
      */
     public function loadImageModel()
     {
@@ -117,5 +118,59 @@ class SpiderController extends Backend
             }
         }
         return $this->imageModel;
+    }
+    
+    /**
+     * 判断软件列表数据是否存在
+     * 
+     * return \$this->postModel
+     */
+    public function loadSoftModel()
+    {
+    	if ($this->softModel === null) {
+            if (isset($_GET['id'])) {
+                $this->softModel = SpiderSoftList::model()->with('content')->findbyPk($_GET['id']);
+            }
+            if ($this->softModel === null) {
+                throw new CHttpException(404, Yii::t('common', 'The requested page does not exist.'));
+            }
+        }
+        return $this->softModel;
+    }
+    
+    /**
+     * 判断视频列表数据是否存在
+     * 
+     * return \$this->videoModel
+     */
+    public function loadVideoModel()
+    {
+    	if ($this->videoModel === null) {
+            if (isset($_GET['id'])) {
+                $this->videoModel = SpiderVideoList::model()->with('content')->findbyPk($_GET['id']);
+            }
+            if ($this->videoModel === null) {
+                throw new CHttpException(404, Yii::t('common', 'The requested page does not exist.'));
+            }
+        }
+        return $this->videoModel;
+    }
+    
+    /**
+     * 格式化 无http或者无https的详情页链接
+     * 
+     * @param string $url  站点url
+     * @param string $view_url  详情链接url
+     * @return string
+     */
+    public function formatViewUrl($url = '', $view_url = '')
+    {
+        if(stripos($view_url, 'http') === false) {
+            $parse_url = parse_url($url);
+            $scheme = $parse_url['scheme'];
+            $host = $parse_url['host'];
+            $view_url = $scheme. '://'.$host.'/'.ltrim($view_url, '\/');
+        }
+        return $view_url;
     }
 }

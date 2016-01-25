@@ -16,6 +16,7 @@ class VideoController extends FrontBase
 		//一级栏目
 		$this->_catalog = Catalog::getTopCatalog(true, $this->_type_ids['video']);
 		$this->_video_type = array(
+                '' => '未知',
 				'comedy'=>'喜剧',
 				'active'=>'动作',
 				'story' => '剧情',

@@ -1,17 +1,17 @@
 <?php
 /**
- *  文章采集导入
+ *  视频采集导入
  * 
  * @author        GoldHan.zhao <326196998@qq.com>
  * @copyright     Copyright (c) 2014-2016. All rights reserved.
  */
 
-class PostImportAction extends CAction
+class VideoImportAction extends CAction
 {	
 	public function run(){        
-        $model = new Post();        
+        $model = new Video();        
         //回跳地址
-        $return_url = $this->controller->createUrl('spider/post');        
+        $return_url = $this->controller->createUrl('spider/video');        
         $ids = Yii::app()->request->getParam('ids');        
         //参数判断
         empty( $ids ) && $this->controller->message( 'error', Yii::t('admin','No Select'), $return_url );
@@ -21,12 +21,12 @@ class PostImportAction extends CAction
         $criteria = new CDbCriteria();
         $criteria->addInCondition('id', $ids);
         if(Yii::app()->request->isPostRequest) {
-            $catalog_id = $_POST['Post']['catalog_id'];
+            $catalog_id = $_POST['Video']['catalog_id'];
             $this->_startImport($ids, $catalog_id);            
         }
-        //文章栏目
-		$this->controller->_catalog = Catalog::getTopCatalog(true,$this->controller->_type_ids['post']);
-        $this->controller->render( 'postimport', array ( 'model' => $model) );
+        //图集栏目
+		$this->controller->_catalog = Catalog::getTopCatalog(true,$this->controller->_type_ids['video']);
+        $this->controller->render( 'videoimport', array ( 'model' => $model) );
 	}
     
     /**
@@ -50,20 +50,21 @@ class PostImportAction extends CAction
                 . "padding:20px;"
                 . "color:#FFFFFF;}"
                 . "</style>";
-        $spiderPostList = new SpiderPostList();
+        $spiderList = new SpiderVideoList();
         foreach($ids as $id) {
-            $spider = $spiderPostList->with(array('spiderset', 'content'))->findByPk($id);
-            if($spider && $spider->status == SpiderPostList::STATUS_C && $spider->content) {
-                $post = new Post();
+            $spider = $spiderList->with(array('spiderset', 'content'))->findByPk($id);
+            if($spider && $spider->status == SpiderVideoList::STATUS_C && $spider->content) {
+                $post = new Video();
                 $now = time();
+                $introduce = Helper::truncate_utf8_string(preg_replace('/\s+/',' ',strip_tags($spider->content->content)), 180);                
                 $post->attributes = array(
                     'title'   => $spider->title,
                     'content' => $spider->content->content,
+                    'cover_image' => $spider->content->cover_img,                    
                     'user_id' => 1,
                     'catalog_id' => $catalog_id,
-                    'introduce'  => Helper::truncate_utf8_string(preg_replace('/\s+/',' ',strip_tags($spider->content->content)), 180),
-                    'copy_url'   => $spider->url,
-                    'copy_from'  => $spider->spiderset->site,
+                    'introduce'  => $introduce,
+                    'download'   => $spider->url,                    
                     'create_time'=> $now,
                     'update_time'=> $now,
                 );

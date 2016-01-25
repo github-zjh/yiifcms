@@ -63,7 +63,7 @@ class ImageImportAction extends CAction
                     'attach_thumb' => $spider->content->cover_img_thumb,
                     'user_id' => 1,
                     'catalog_id' => $catalog_id,
-                    'introduce'  => Helper::truncate_utf8_string(preg_replace('/\s+/',' ',strip_tags($spider->content->content)), 200),
+                    'introduce'  => Helper::truncate_utf8_string(preg_replace('/\s+/',' ',strip_tags($spider->content->content)), 180),
                     'copy_url'   => $spider->url,
                     'copy_from'  => $spider->spiderset->site,
                     'create_time'=> $now,

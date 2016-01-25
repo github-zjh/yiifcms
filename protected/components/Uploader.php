@@ -137,6 +137,7 @@ class Uploader{
             'make_thumb'         => true,
             'thumb_width'        => 300,
             'thumb_height'       => 300,
+            'max_upload_filesize' => 2097152,               //允许最大上传大小2M
         ),
     );  
     

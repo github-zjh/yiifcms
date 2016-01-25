@@ -53,7 +53,7 @@ a { color:#555555}
 a:hover { text-decoration:underline; }
 
 /* 视频列表 */
-.video_list li.list_box { float:left; width:150px; padding:0; border:none; margin-right:24px; margin-bottom:10px;}
+.video_list li.list_box { float:left; width:150px; height:240px; padding:0; border:none; margin-right:24px; margin-bottom:10px;}
 .video_list .list_body { width:auto; }
 .video_list .video_a { display:block; position:relative; text-decoration:none;}
 .video_list h2 a.video_title { width:100%; display:block; text-align:center; font-weight:normal;}

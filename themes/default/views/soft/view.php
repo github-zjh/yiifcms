@@ -49,11 +49,17 @@
 								
 							</div>												
 						</div>
-							
+						<?php if($soft->introduce):?>	
 						<div class="info_desc clear">
 							<h1>简介：</h1>
 							<?php echo $soft->introduce;?>
-						</div>						
+						</div>
+                        <?php endif;?>
+                        
+                        <div class="info_desc clear">
+							<h1>内容：</h1>
+							<?php echo $soft->content;?>
+						</div>
 					</div>
 					
 				</div>

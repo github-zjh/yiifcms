@@ -198,7 +198,7 @@ class Video extends CActiveRecord
 		$params['condition'] && $criteria->condition .= $params['condition'];		
 		$criteria->order = $params['order']?$params['order']:'t.id DESC';
 		$criteria->with = array ( 'catalog' );
-		$criteria->select = "t.title, t.id, t.update_time,t.introduce, t.tags, t.view_count";		
+		$criteria->select = "t.title, t.id, t.update_time,t.introduce, t.tags, t.view_count, t.cover_image, t.video_score";		
 		$criteria->params = array(':status'=> 'Y');
 		$params['with'] && $criteria->with = (array)$params['with'];
 		

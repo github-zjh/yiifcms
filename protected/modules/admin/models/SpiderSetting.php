@@ -17,6 +17,8 @@
  * @property integer $cur_page
  * @property integer $total_page
  * @property integer $type
+ * @property string $soft_icon_rule
+ * @property string $video_cover_rule
  */
 class SpiderSetting extends CActiveRecord
 {
@@ -40,7 +42,7 @@ class SpiderSetting extends CActiveRecord
 			array('site, url, item_rule_li, item_rule_a, content_rule', 'length', 'max'=>100),
 			array('list_charset, content_charset', 'length', 'max'=>6),
 			array('page_rule', 'length', 'max'=>100),
-            array('filter_rule', 'safe'),
+            array('filter_rule, soft_icon_rule, video_cover_rule', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, site, url, list_charset, content_charset, item_rule_li, item_rule_a, content_rule, page_rule, cur_page, total_page, type', 'safe', 'on'=>'search'),
@@ -86,6 +88,8 @@ class SpiderSetting extends CActiveRecord
 			'total_page'      => Yii::t('model', 'SpiderSettingTotalPage'),
 			'type'            => Yii::t('model', 'SpiderSettingType'),
             'filter_rule'     => Yii::t('model', 'SpiderSettingFilterRule'),
+            'soft_icon_rule'  => Yii::t('model', 'SpiderSettingSoftIconRule'),
+            'video_cover_rule'=> Yii::t('model', 'SpiderSettingVideoCoverRule'),
 		);
 	}
 

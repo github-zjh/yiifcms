@@ -53,7 +53,21 @@
     </tr>
     <tr>
         <td><?php echo $form->textField($model, 'item_rule_a', array('size'=>30)); ?></td>
+    </tr>    
+    
+    <tr>
+        <td><?php echo $form->label($model, 'soft_icon_rule');?><strong class='red'>(遵循css选择器规则)</strong>：</td>
     </tr>
+    <tr>
+        <td><?php echo $form->textField($model, 'soft_icon_rule', array('size'=>30)); ?></td>
+    </tr>
+    
+    <tr>
+        <td><?php echo $form->label($model, 'video_cover_rule');?><strong class='red'>(遵循css选择器规则)</strong>：</td>
+    </tr>
+    <tr>
+        <td><?php echo $form->textField($model, 'video_cover_rule', array('size'=>30)); ?></td>
+    </tr> 
     
     <tr>
         <td><?php echo $form->label($model, 'page_rule');?><strong class='red'>(页码必须用[PAGE_NUM]替换)</strong>：</td>
@@ -74,7 +88,7 @@
     </tr>
     <tr>
         <td><?php echo $form->textArea($model, 'filter_rule', array('rows'=>10, 'cols' => 100)); ?></td>
-    </tr>
+    </tr>    
     
     <tr>
         <td><?php echo $form->label($model, 'cur_page');?>：</td>

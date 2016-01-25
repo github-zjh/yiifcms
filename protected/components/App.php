@@ -24,4 +24,14 @@ class App {
             exit(CJSON::encode(array('code' => $code, 'message' => $msg, 'data' => $data)));
         }
     }
+    
+    /**
+     * 自定义正则出错的情况下抛出异常
+     * 
+     * @throws Exception
+     */
+    public function displayRegErrorHandler()
+    {
+        throw new Exception('内容过滤正则表达式有误！');
+    }
 }

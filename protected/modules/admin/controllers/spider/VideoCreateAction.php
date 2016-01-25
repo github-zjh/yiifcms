@@ -1,12 +1,12 @@
 <?php
 /**
- *  添加文章采集
+ *  添加视频采集
  * 
  * @author        GoldHan.zhao <326196998@qq.com>
  * @copyright     Copyright (c) 2014-2016. All rights reserved.
  */
 
-class PostCreateAction extends CAction
+class VideoCreateAction extends CAction
 {	
 	public function run(){        
         $model = new SpiderSetting();        
@@ -15,7 +15,7 @@ class PostCreateAction extends CAction
             exit;
         }
         $criteria = new CDbCriteria();
-        $criteria->addColumnCondition(array('type' => $this->controller->_type_ids['post']));
+        $criteria->addColumnCondition(array('type' => $this->controller->_type_ids['video']));
         $criteria->addCondition('total_page > cur_page');
         //可以采集的站点
         $settings = $model->findAll($criteria);
@@ -27,7 +27,7 @@ class PostCreateAction extends CAction
         } else {
             $this->controller->message('error', Yii::t('admin', 'No Enable Site Data'));
         }                 
-        $this->controller->render( 'postcreate', array ( 'model' => $model , 'sites' => $sites) );
+        $this->controller->render( 'videocreate', array ( 'model' => $model , 'sites' => $sites) );
 	}
     
     /**
@@ -81,10 +81,10 @@ class PostCreateAction extends CAction
         $lists = $html->find($site->item_rule_li);
         if(!$lists) {
             $this->_stopError('列表项Li标签选择器规则有误！匹配不到列表数据！');
-        }       
+        }        
         foreach ($lists as $item) {
-            $postListModel = new SpiderPostList();
-            $postContentModel = new SpiderPostContent();
+            $postListModel = new SpiderVideoList();
+            $postContentModel = new SpiderVideoContent();
             ob_flush();
             flush();
             //匹配标题
@@ -106,13 +106,30 @@ class PostCreateAction extends CAction
                     'site_id' => $site->id,
                     'url' => $view_url,
                     'title' => trim($title),
-                    'status'=> SpiderPostList::STATUS_NONE_C
+                    'status'=> SpiderVideoList::STATUS_NONE_C
                 );
                 if(!$postListModel->save()) {
                     $this->_stopError('数据保存失败:'.var_export($postListModel->getErrors(),true));
                 }
                 $list_id = $postListModel->id;
-            }            
+            }
+            
+            //下载列表中视频封面
+            $title_img = $item->find($site->video_cover_rule, 0);                
+            $video_cover = '';
+            if($title_img) {
+                $img_url = $title_img->src;                                                
+                if ($img_url) {                         
+                    $spiderU = (new Uploader())->initSimple('spider');
+                    $spiderU->file_ext = Helper::getExtensionName($img_url);
+                    $spiderU->getSavePathFromRemote();
+                    $download = Helper::downloadImage($img_url, dirname($spiderU->save_path), pathinfo($spiderU->file_name, PATHINFO_FILENAME));
+                    if($download) {                            
+                        $video_cover = $spiderU->file_path;                            
+                    }
+                }
+            }
+            
             //匹配内容            
             $html = file_get_html($view_url);
             if(!$html) {
@@ -135,9 +152,28 @@ class PostCreateAction extends CAction
                 }                
             } else {                
                 $content = $getContent->innertext;
-            }            
+            } 
+            //下载内容中第一张图片为封面图片
+            $imgs = array();
+            preg_match('/<img[\s]+src="(.*?)"/is', $content, $imgs);
+            $cover_img = '';
+            $cover_img_thumb = '';
+            if ($imgs && $imgs[1]) {
+                $first_img_url = $imgs[1];  
+                $spiderU = (new Uploader())->initSimple('spider');
+                $spiderU->file_ext = Helper::getExtensionName($first_img_url);
+                $spiderU->getSavePathFromRemote();
+                $download = Helper::downloadImage($first_img_url, dirname($spiderU->save_path), pathinfo($spiderU->file_name, PATHINFO_FILENAME));
+                if($download) {
+                    //生成缩略图
+                    $spiderU->makeThumb();
+                    $cover_img = $spiderU->file_path;
+                    $cover_img_thumb = $spiderU->thumb_path;
+                }
+            }        
             $cdata = array(
                 'list_id'   => $list_id,
+                'cover_img' => $video_cover,
                 'content'   => $site->content_charset != 'UTF-8' ? mb_convert_encoding($content, 'UTF-8', $site->content_charset) : $content
             );            
             $exist_c = $postContentModel->find('list_id='.$list_id);

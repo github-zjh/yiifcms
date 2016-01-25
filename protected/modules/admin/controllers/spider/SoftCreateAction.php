@@ -1,12 +1,12 @@
 <?php
 /**
- *  添加文章采集
+ *  添加软件采集
  * 
  * @author        GoldHan.zhao <326196998@qq.com>
  * @copyright     Copyright (c) 2014-2016. All rights reserved.
  */
 
-class PostCreateAction extends CAction
+class SoftCreateAction extends CAction
 {	
 	public function run(){        
         $model = new SpiderSetting();        
@@ -15,7 +15,7 @@ class PostCreateAction extends CAction
             exit;
         }
         $criteria = new CDbCriteria();
-        $criteria->addColumnCondition(array('type' => $this->controller->_type_ids['post']));
+        $criteria->addColumnCondition(array('type' => $this->controller->_type_ids['soft']));
         $criteria->addCondition('total_page > cur_page');
         //可以采集的站点
         $settings = $model->findAll($criteria);
@@ -27,7 +27,7 @@ class PostCreateAction extends CAction
         } else {
             $this->controller->message('error', Yii::t('admin', 'No Enable Site Data'));
         }                 
-        $this->controller->render( 'postcreate', array ( 'model' => $model , 'sites' => $sites) );
+        $this->controller->render( 'softcreate', array ( 'model' => $model , 'sites' => $sites) );
 	}
     
     /**
@@ -78,13 +78,15 @@ class PostCreateAction extends CAction
         if(!$html) {
             $this->_stopError('站点地址['.$url.']有误！无法采集数据！');            
         }
+        
         $lists = $html->find($site->item_rule_li);
         if(!$lists) {
             $this->_stopError('列表项Li标签选择器规则有误！匹配不到列表数据！');
-        }       
+        }        
+        
         foreach ($lists as $item) {
-            $postListModel = new SpiderPostList();
-            $postContentModel = new SpiderPostContent();
+            $postListModel = new SpiderSoftList();
+            $postContentModel = new SpiderSoftContent();
             ob_flush();
             flush();
             //匹配标题
@@ -104,10 +106,25 @@ class PostCreateAction extends CAction
                 $title = $site->list_charset != 'UTF-8' ? mb_convert_encoding($a->innertext, 'UTF-8', $site->list_charset) : $a->innertext;                
                 $postListModel->attributes = array(
                     'site_id' => $site->id,
-                    'url' => $view_url,
+                    'url'   => $view_url,
                     'title' => trim($title),
-                    'status'=> SpiderPostList::STATUS_NONE_C
+                    'status'=> SpiderSoftList::STATUS_NONE_C
                 );
+                //下载列表中软件图标 如果失败 则从内容中读取
+                $title_img = $item->find($site->soft_icon_rule, 0);                
+                $soft_icon = '';
+                if($title_img) {
+                    $img_url = $title_img->src;                                                
+                    if ($img_url) {                         
+                        $spiderU = (new Uploader())->initSimple('spider');
+                        $spiderU->file_ext = Helper::getExtensionName($img_url);
+                        $spiderU->getSavePathFromRemote();
+                        $download = Helper::downloadImage($img_url, dirname($spiderU->save_path), pathinfo($spiderU->file_name, PATHINFO_FILENAME));
+                        if($download) {                            
+                            $soft_icon = $spiderU->file_path;                            
+                        }
+                    }
+                }
                 if(!$postListModel->save()) {
                     $this->_stopError('数据保存失败:'.var_export($postListModel->getErrors(),true));
                 }
@@ -135,9 +152,29 @@ class PostCreateAction extends CAction
                 }                
             } else {                
                 $content = $getContent->innertext;
-            }            
+            } 
+            //下载内容中第一张图片为封面图片
+            $imgs = array();
+            preg_match('/<img[\s]+src="(.*?)"/is', $content, $imgs);
+            $cover_img = '';
+            $cover_img_thumb = '';
+            if ($imgs && $imgs[1]) {
+                $first_img_url = $imgs[1];  
+                $spiderU = (new Uploader())->initSimple('spider');
+                $spiderU->file_ext = Helper::getExtensionName($first_img_url);
+                $spiderU->getSavePathFromRemote();
+                $download = Helper::downloadImage($first_img_url, dirname($spiderU->save_path), pathinfo($spiderU->file_name, PATHINFO_FILENAME));
+                if($download && !$soft_icon) {
+                    //生成缩略图
+                    $spiderU->makeThumb();
+                    $cover_img = $spiderU->file_path;
+                    $soft_icon = $spiderU->thumb_path;
+                }
+            }        
             $cdata = array(
                 'list_id'   => $list_id,
+                'soft_img'  => $cover_img,
+                'soft_icon' => $soft_icon,
                 'content'   => $site->content_charset != 'UTF-8' ? mb_convert_encoding($content, 'UTF-8', $site->content_charset) : $content
             );            
             $exist_c = $postContentModel->find('list_id='.$list_id);

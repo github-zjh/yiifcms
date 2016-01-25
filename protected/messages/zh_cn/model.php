@@ -140,7 +140,7 @@ return array(
     'SoftId'               => '软件ID',
     'SoftCatalogId'        => '所属分类',
     'SoftTitle'            => '软件名称',
-    'SoftCoverImage'       => '封面图片',
+    'SoftCoverImage'       => '软件图片',
     'SoftFile'             => '软件附件',
     'SoftFileType'         => '软件附件类型',
     'SoftSize'             => '软件大小',
@@ -329,14 +329,16 @@ return array(
     'SpiderSettingUrl'            => '列表页地址',
     'SpiderSettingListCharset'    => '列表页编码',
     'SpiderSettingContentCharset' => '详情页编码',
-    'SpiderSettingItemRuleLi'     => '列表项Li标签选择器',
-    'SpiderSettingItemRuleA'      => '列表项A标签选择器',
-    'SpiderSettingContentRule'    => '详情页内容选择器',
+    'SpiderSettingItemRuleLi'     => '列表项Li标签选择规则',
+    'SpiderSettingItemRuleA'      => '标题A标签选择规则',
+    'SpiderSettingContentRule'    => '详情页内容选择规则',
     'SpiderSettingPageRule'       => '分页链接规则',
     'SpiderSettingCurPage'        => '当前已采集页数',
     'SpiderSettingTotalPage'      => '总共需要采集页数',
     'SpiderSettingType'           => '采集内容类型',
     'SpiderSettingFilterRule'     => '内容过滤规则',
+    'SpiderSettingSoftIconRule'   => '软件图标Img选择规则',
+    'SpiderSettingVideoCoverRule' => '视频封面Img选择规则',
     
     //SpiderPostList[文章采集列表]
     'SpiderPostListId'            => '文章id',
@@ -362,5 +364,30 @@ return array(
     'SpiderImageContentCoverImgThumb' => '封面图片缩略图',
     'SpiderImageContentImageList'     => '图集组图',
     'SpiderImageContentContent'       => '图集内容',
-        
+    
+    //SpiderSoftList[软件采集列表]
+    'SpiderSoftListId'                => '软件id',
+    'SpiderSoftListSite'              => '采集站点',
+    'SpiderSoftListUrl'               => '原文url',
+    'SpiderSoftListTitle'             => '软件标题',
+    'SpiderSoftListStatus'            => '采集状态',
+    
+    //SpiderSoftContent[软件采集内容]
+    'SpiderSoftContentListId'         => '软件列表id',
+    'SpiderSoftContentSoftImg'        => '软件图片',
+    'SpiderSoftContentSoftIcon'       => '软件图标',
+    'SpiderSoftContentContent'        => '软件内容',
+    
+    //SpiderVideoList[视频采集列表]
+    'SpiderVideoListId'               => '视频id',
+    'SpiderVideoListSite'             => '采集站点',
+    'SpiderVideoListUrl'              => '原文url',
+    'SpiderVideoListTitle'            => '视频标题',
+    'SpiderVideoListStatus'           => '采集状态',
+    
+    //SpiderVideoContent[视频采集内容]
+    'SpiderVideoContentListId'        => '视频列表id',
+    'SpiderVideoContentCoverImg'      => '视频图片',
+    'SpiderVideoContentContent'       => '视频内容',
+    
 );

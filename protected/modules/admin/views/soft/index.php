@@ -28,7 +28,7 @@
         <thead>
             <tr class="tb_header">
                 <th width="10%"><?php echo $form->label($model, 'id'); ?></th>
-                <th><?php echo $form->label($model, 'title'); ?></th>
+                <th width="15%"><?php echo $form->label($model, 'title'); ?></th>
                 <th width="12%"><?php echo $form->label($model, 'catalog_id'); ?></th>
                 <th width="8%"><?php echo $form->label($model, 'status'); ?></th>    
                 <th width="8%"><?php echo $form->label($model, 'down_count'); ?></th>     

@@ -1,17 +1,17 @@
 <?php
 /**
- *  文章采集导入
+ *  软件采集导入
  * 
  * @author        GoldHan.zhao <326196998@qq.com>
  * @copyright     Copyright (c) 2014-2016. All rights reserved.
  */
 
-class PostImportAction extends CAction
+class SoftImportAction extends CAction
 {	
 	public function run(){        
-        $model = new Post();        
+        $model = new Soft();        
         //回跳地址
-        $return_url = $this->controller->createUrl('spider/post');        
+        $return_url = $this->controller->createUrl('spider/soft');        
         $ids = Yii::app()->request->getParam('ids');        
         //参数判断
         empty( $ids ) && $this->controller->message( 'error', Yii::t('admin','No Select'), $return_url );
@@ -21,12 +21,12 @@ class PostImportAction extends CAction
         $criteria = new CDbCriteria();
         $criteria->addInCondition('id', $ids);
         if(Yii::app()->request->isPostRequest) {
-            $catalog_id = $_POST['Post']['catalog_id'];
+            $catalog_id = $_POST['Soft']['catalog_id'];
             $this->_startImport($ids, $catalog_id);            
         }
-        //文章栏目
-		$this->controller->_catalog = Catalog::getTopCatalog(true,$this->controller->_type_ids['post']);
-        $this->controller->render( 'postimport', array ( 'model' => $model) );
+        //软件栏目
+		$this->controller->_catalog = Catalog::getTopCatalog(true,$this->controller->_type_ids['soft']);
+        $this->controller->render( 'softimport', array ( 'model' => $model) );
 	}
     
     /**
@@ -50,20 +50,21 @@ class PostImportAction extends CAction
                 . "padding:20px;"
                 . "color:#FFFFFF;}"
                 . "</style>";
-        $spiderPostList = new SpiderPostList();
+        $spiderList = new SpiderSoftList();
         foreach($ids as $id) {
-            $spider = $spiderPostList->with(array('spiderset', 'content'))->findByPk($id);
-            if($spider && $spider->status == SpiderPostList::STATUS_C && $spider->content) {
-                $post = new Post();
+            $spider = $spiderList->with(array('spiderset', 'content'))->findByPk($id);
+            if($spider && $spider->status == SpiderSoftList::STATUS_C && $spider->content) {
+                $post = new Soft();
                 $now = time();
                 $post->attributes = array(
                     'title'   => $spider->title,
                     'content' => $spider->content->content,
+                    'cover_image' => $spider->content->soft_img,
+                    'soft_icon' => $spider->content->soft_icon,
                     'user_id' => 1,
                     'catalog_id' => $catalog_id,
                     'introduce'  => Helper::truncate_utf8_string(preg_replace('/\s+/',' ',strip_tags($spider->content->content)), 180),
-                    'copy_url'   => $spider->url,
-                    'copy_from'  => $spider->spiderset->site,
+                    'softlink'   => $spider->url,                    
                     'create_time'=> $now,
                     'update_time'=> $now,
                 );
