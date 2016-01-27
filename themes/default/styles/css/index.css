@@ -78,15 +78,15 @@
 .tab_post li a { display:block; color:#555555;}
 .tab_post li a:hover {  text-decoration:underline; color:#111111;}
 
-.tab_image { padding:20px 9px 10px 9px;}
-.tab_image li { float:left; border:1px solid #DDDDDD; text-align:center; padding:5px; margin-right:8px; margin-bottom:8px; overflow:hidden;}
+.tab_image { padding:20px 0 20px 20px;}
+.tab_image li { float:left; border:1px solid #DDDDDD; text-align:center; padding:5px; margin-right:16px; margin-bottom:8px; overflow:hidden;}
 .tab_image li a { display:block; position:relative;}
 .tab_image li .black_bg { display:block; width:100%; position:absolute; bottom:0; visibility:hidden; height:30px; line-height:30px; background-color:#000000; opacity:0.5; filter:alpha(opacity=50); text-align:center;}
-.tab_image li .black_bg span { color:#FFFFFF; position:absoute; z-index:2;}
+.tab_image li .black_bg span { color:#FFFFFF; width:100%; position:absolute; left:0; z-index:2;}
 .tab_image li a:hover .black_bg { visibility:visible; }
 
 .tab_soft { padding:20px 0 20px 20px;}
-.tab_soft li { float:left; width:100px; padding:5px 0 10px 0; border:1px solid #FFFFFF; text-align:center;}
+.tab_soft li { float:left; width:110px; padding:5px 0 10px 0; border:1px solid #FFFFFF; text-align:center;}
 .tab_soft li:hover { border:1px solid #CCCCCC; }
 .tab_soft li a { display:block; color:#555555; }
 .tab_soft li a.dl_btn { visibility:hidden; width:70px; height:25px; line-height:25px; background-color:#428bca; border-radius:3px; color:#FFFFFF; margin:0 auto;}
@@ -133,7 +133,7 @@
 .client_body li { margin-bottom:20px;}
 .client_body li a { display:block; border:1px solid #DDDDDD;}
 .client_body li a:hover { border-color:#428bca; }
-.client_foot li a { display:block; padding:6px 0; color:#555555; font-size:16px;}
+.client_foot li a { display:block; padding:6px 4px; color:#555555; font-size:16px;}
 .client_foot li a:hover { background-color:#666666; color:#FFFFFF; }
 
 

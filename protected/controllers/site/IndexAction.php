@@ -35,7 +35,7 @@ class IndexAction extends CAction
 		//最新软件
 		$soft_new = Soft::model()->getList(array('limit'=>20));		
 		//热门软件		
-		$soft_hot = Soft::model()->getList(array('limit'=>10, 'order'=>'down_count DESC, t.id DESC'));
+		$soft_hot = Soft::model()->getList(array('limit'=>20, 'order'=>'down_count DESC, t.id DESC'));
 	
 		//最新视频        		
 		$video_new = Video::model()->findAll("status=:status ORDER BY id DESC Limit 18", array(':status'=>'Y'));
