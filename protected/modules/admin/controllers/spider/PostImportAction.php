@@ -51,6 +51,8 @@ class PostImportAction extends CAction
                 . "color:#FFFFFF;}"
                 . "</style>";
         $spiderPostList = new SpiderPostList();
+        //打开缓冲区
+        ob_start();
         foreach($ids as $id) {
             $spider = $spiderPostList->with(array('spiderset', 'content'))->findByPk($id);
             if($spider && $spider->status == SpiderPostList::STATUS_C && $spider->content) {

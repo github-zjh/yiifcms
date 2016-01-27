@@ -88,6 +88,8 @@ class ImportAction extends CAction
             $finish = false;
             //执行成功一次 输出符号
             $char = '=';
+            //打开缓冲区
+            ob_start();
             foreach($sqls as $sql) {
                 if(!trim($sql)) {                    
                     if($i == $count) {

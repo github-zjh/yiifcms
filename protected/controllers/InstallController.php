@@ -156,6 +156,8 @@ class InstallController extends AppController {
         $this->title = '安装数据表';
         $this->render('step6');
         try {
+            //打开缓冲区
+            ob_start();
             $dbObj = new CDbConnection('mysql:host=' . $dbHost . ';port=' . $dbPort . ';', $dbUsername, $dbPassword);
             self::_appendLog('数据库信息检测通过');
             $configTpl = file_get_contents($this->tplPath . '/config.main.php');
@@ -229,6 +231,8 @@ class InstallController extends AppController {
             //写入锁定文件
             touch($this->_data . $this->lockfile);
             echo '<script>setTimeout(function(){window.location="' . $this->createUrl('complete') . '"}, 3000);</script>';
+            //关闭缓冲区
+            ob_end_clean();
         } catch (Exception $e) {
             $error = self::_dbError($e->getMessage(), array('dbHost' => $dbHost, 'dbName' => $dbName));
             if ($error == false) {

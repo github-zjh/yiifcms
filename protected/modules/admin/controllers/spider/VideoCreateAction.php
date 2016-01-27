@@ -82,6 +82,8 @@ class VideoCreateAction extends CAction
         if(!$lists) {
             $this->_stopError('列表项Li标签选择器规则有误！匹配不到列表数据！');
         }        
+        //打开缓冲区
+        ob_start();
         foreach ($lists as $item) {
             $postListModel = new SpiderVideoList();
             $postContentModel = new SpiderVideoContent();

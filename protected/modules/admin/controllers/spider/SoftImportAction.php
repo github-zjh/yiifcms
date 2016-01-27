@@ -51,6 +51,8 @@ class SoftImportAction extends CAction
                 . "color:#FFFFFF;}"
                 . "</style>";
         $spiderList = new SpiderSoftList();
+        //打开缓冲区
+        ob_start();
         foreach($ids as $id) {
             $spider = $spiderList->with(array('spiderset', 'content'))->findByPk($id);
             if($spider && $spider->status == SpiderSoftList::STATUS_C && $spider->content) {
