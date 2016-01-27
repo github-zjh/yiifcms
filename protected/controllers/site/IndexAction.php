@@ -38,9 +38,9 @@ class IndexAction extends CAction
 		$soft_hot = Soft::model()->getList(array('limit'=>10, 'order'=>'down_count DESC, t.id DESC'));
 	
 		//最新视频        		
-		$video_new = Video::model()->findAll("status=:status AND catalog_id = 13 ORDER BY id DESC Limit 20", array(':status'=>'Y'));
+		$video_new = Video::model()->findAll("status=:status ORDER BY id DESC Limit 18", array(':status'=>'Y'));
 		//热门视频        
-		$video_hot = Video::model()->findAll("status=:status AND catalog_id = 13 ORDER BY view_count DESC, video_score DESC, id DESC Limit 20", array(':status'=>'Y'));
+		$video_hot = Video::model()->findAll("status=:status ORDER BY view_count DESC, video_score DESC, id DESC Limit 18", array(':status'=>'Y'));
 		
 		//友情链接
 		$link_logos = Link::model()->findAll("logo !='' AND status='Y'", array('order'=>'sortorder ASC, id DESC'));

@@ -45,7 +45,7 @@ class IndexAction extends CAction
         }else{ 
             $condition = '';
             $catalog = array();
-            $seo = ModelType::getSEO('post');    	
+            $seo = ModelType::getSEO('video');    	
             $this->controller->_seoTitle = $seo['seo_title'].' - '.$this->controller->_setting['site_name'];
             $this->controller->_seoKeywords = $seo['seo_keywords'];
             $this->controller->_seoDescription = $seo['seo_description'];

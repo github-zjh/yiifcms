@@ -22,7 +22,7 @@ class ViewAction extends CAction {
         $this->controller->_seoDescription = empty($post->seo_description) ? $this->controller->_seoDescription : $post->seo_description;
         
         //最近的图集
-        $last_images = Image::model()->findAll(array('condition' => 'catalog_id = ' . $post->catalog_id, 'order' => 'id DESC', 'limit' => 10,));
+        $last_images = Image::model()->findAll(array('condition' => 'catalog_id = ' . $post->catalog_id, 'order' => 'id DESC', 'limit' => 20,));
 
         //nav
         $navs = array();

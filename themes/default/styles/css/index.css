@@ -65,7 +65,7 @@
 .index_mid_banner { margin-top:50px;}
 
 /* 标签切换 */
-.tab_container {width:1170px; margin:0 auto; margin-top:30px; }
+.tab_container {width:1170px; margin:0 auto; margin-top:20px; }
 .etabs { border-bottom:1px solid #428bca; }
 .tab { display: inline-block; zoom:1; *display:inline; width:100px; background-color:#428bca; border: solid 1px #428bca; border-bottom: none; border-radius:4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; }
 .tab a { font-size: 14px; line-height: 2.5em; display: block; padding: 0 10px; text-align:center; color:#FFFFFF;} 
