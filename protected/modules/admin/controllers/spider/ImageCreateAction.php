@@ -126,7 +126,7 @@ class ImageCreateAction extends CAction
             if($site->filter_rule) {
                 $reg_arr = explode("\r\n", trim($site->filter_rule));
                 try {                    
-                    set_error_handler(array('APP', 'displayRegErrorHandler'));                
+                    set_error_handler(array('App', 'displayRegErrorHandler'));                
                     $content = preg_replace($reg_arr, '', $getContent->innertext);
                     restore_error_handler();
                 } catch (Exception $e) {
