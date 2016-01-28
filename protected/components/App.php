@@ -30,7 +30,7 @@ class App {
      * 
      * @throws Exception
      */
-    public function displayRegErrorHandler()
+    public static function displayRegErrorHandler()
     {
         throw new Exception('内容过滤正则表达式有误！');
     }

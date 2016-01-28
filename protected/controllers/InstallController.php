@@ -226,11 +226,12 @@ class InstallController extends AppController {
                 }                 
                 self::_appendLog('测试数据导入完成');
             }
-            echo '<script>$("#finish").html("安装完成");</script>';
+            $complete_url = $this->createUrl('complete');
+            echo '<script>$("#finish").attr("href", "'.$complete_url.'").html("安装完成");</script>';
             self::_appendLog('安装完成');            
             //写入锁定文件
             touch($this->_data . $this->lockfile);
-            echo '<script>setTimeout(function(){window.location="' . $this->createUrl('complete') . '"}, 3000);</script>';
+            echo '<script>setTimeout(function(){window.location="' . $complete_url . '"}, 3000);</script>';
             //关闭缓冲区
             ob_end_clean();
         } catch (Exception $e) {
