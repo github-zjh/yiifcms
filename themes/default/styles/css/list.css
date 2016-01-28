@@ -14,8 +14,9 @@
 .content_left .category .search_btn {font-size: 14px; height: 30px; line-height: 30px; font-weight: bold; width: 60px; border-radius: 3px; cursor: pointer;}
 
 .content_list .list_box { padding:10px 0; border-bottom:1px solid #e5e6e6;}
-.content_list .list_head { float:left; width:70px; padding:5px 0; border-radius:5px; background-color:#996600; text-align:center; }
-.content_list .list_head a { color:#FFFFFF; white-space: normal; }
+.content_list .list_head { float:left; width:70px; border-radius:5px; border:1px solid #888888; text-align:center; }
+.content_list .list_head a { display: inline-block; width: 100%; padding:5px 0; white-space: normal; }
+.content_list .list_head a:hover {text-decoration: none; background-color:#666; color:#FFFFFF; }
 .content_list .date_time p { color:#FFFFFF;}
 .content_list .list_body { float:right; width:770px;}
 .content_list .content_type { width:70px; height:70px; margin-top:20px; background:url(../images/type_text.png) no-repeat left center;}
@@ -39,7 +40,7 @@
 .content_list .soft_list_head { background:none;}
 
 .content_right .category { margin-bottom:30px; }
-.content_right .category dt { height:34px; width:150px; line-height:34px; margin-bottom:30px; border-left:4px solid #996600; font-size:16px; font-weight:bold; text-align:center; background-color:#EEEEEE;}
+.content_right .category dt { height:34px; width:150px; line-height:34px; margin-bottom:30px; border-radius:4px; font-size:16px; font-weight:bold; text-align:center; border:1px solid #666666;}
 .content_right .category dd { padding-left:16px; margin-bottom:10px; background:url(../images/ico_list_blue.png) no-repeat left center;}
 .content_right .recent_post dd { background-image:url(../images/ico_list_grey.png);}
 

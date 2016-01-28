@@ -133,7 +133,7 @@
 .client_body li { margin-bottom:20px;}
 .client_body li a { display:block; border:1px solid #DDDDDD;}
 .client_body li a:hover { border-color:#428bca; }
-.client_foot li a { display:block; padding:6px 4px; color:#555555; font-size:16px;}
+.client_foot li a { display:block; padding:6px 4px; color:#555555; font-size:16px; border-radius: 3px;}
 .client_foot li a:hover { background-color:#666666; color:#FFFFFF; }
 
 
