@@ -65,9 +65,7 @@ class ExportAction extends CAction
                 . "padding:20px;"
                 . "color:#FFFFFF;}"
                 . "</style>";
-        echo "---------------备份开始[start]------------";
-        //打开缓冲区
-        ob_start();
+        echo "---------------备份开始[start]------------";        
         for ($i = 0; $i < count($tables); $i++) {
             $table_name = $tables[$i];
             echo "<br/>正在备份数据表：".$table_name."...";            

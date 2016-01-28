@@ -143,7 +143,8 @@ class InstallController extends AppController {
      * 4.写入默认信息
      * 5.根据选择，是否安装测试数据
      */
-    public function actionStep6() {        
+    public function actionStep6() {
+        set_time_limit(600);        
         $dbHost = Yii::app()->request->getParam('dbhost');
         $dbPort = Yii::app()->request->getParam('dbport');
         $dbName = Yii::app()->request->getParam('dbname');
@@ -155,9 +156,7 @@ class InstallController extends AppController {
         //$email = Yii::app()->request->getParam('email');        
         $this->title = '安装数据表';
         $this->render('step6');
-        try {
-            //打开缓冲区
-            ob_start();
+        try {            
             $dbObj = new CDbConnection('mysql:host=' . $dbHost . ';port=' . $dbPort . ';', $dbUsername, $dbPassword);
             self::_appendLog('数据库信息检测通过');
             $configTpl = file_get_contents($this->tplPath . '/config.main.php');
@@ -231,9 +230,7 @@ class InstallController extends AppController {
             self::_appendLog('安装完成');            
             //写入锁定文件
             touch($this->_data . $this->lockfile);
-            echo '<script>setTimeout(function(){window.location="' . $complete_url . '"}, 3000);</script>';
-            //关闭缓冲区
-            ob_end_clean();
+            echo '<script>setTimeout(function(){window.location="' . $complete_url . '"}, 3000);</script>';            
         } catch (Exception $e) {
             $error = self::_dbError($e->getMessage(), array('dbHost' => $dbHost, 'dbName' => $dbName));
             if ($error == false) {
