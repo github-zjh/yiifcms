@@ -18,12 +18,13 @@
         <th><?php echo $form->label($model, 'sort_order'); ?></th>
         <th><?php echo $form->label($model, 'catalog_name'); ?></th>  
         <th><?php echo $form->label($model, 'type'); ?></th>     
+        <th><?php echo $form->label($model, 'status'); ?></th>
         <th><?php echo $form->label($model, 'create_time'); ?></th>
         <th><?php echo $form->label($model, 'update_time'); ?></th>
         <th><?php echo Yii::t('admin', 'Operate'); ?></th>
     </tr>
     <?php foreach ((array) $datalist as $row): ?>
-        <tr class="tb_list" id="<?php echo 'cat_'.$row['id'];?>">
+        <tr class="tb_list catalog" id="<?php echo 'cat_'.$row['id'];?>">
             <td><input type="checkbox" name="id[]" value="<?php echo $row['id'] ?>"><?php echo $row['id'] ?></td>
             <td><input name="sortOrder[<?php echo $row['id'] ?>]" type="text" id="sortOrder[]" value="<?php echo $row['sort_order'] ?>" size="5" /></td>
             <td>
@@ -32,7 +33,14 @@
                     <?php echo $row['catalog_name'] ?>
                 </a>        
             </td>     
-            <td><?php echo ModelType::getTypeName($row['type']); ?></td> 
+            <td><?php echo ModelType::getTypeName($row['type']); ?></td>
+            <td>
+                <?php if ($row['status'] == Catalog::STATUS_SHOW):?>
+                <span class="color_show">√</span>
+                <?php else:?>
+                <span class="color_hide">×</span>
+                <?php endif;?>
+            </td>
             <td><?php echo date('Y-m-d H:i', $row['create_time']) ?></td>
             <td><?php echo date('Y-m-d H:i', $row['update_time']) ?></td>
             <td>
@@ -83,11 +91,16 @@
                         for(i=1;i<item.layer;i++) {
                             space += '&nbsp;&nbsp;&nbsp;&nbsp;';
                         }
-                        var html = '<tr id="cat_'+item.id+'" class="tb_list cat_'+item.parent_id+'_children">'
+                        var status = '<span class="color_hide">×</span>';
+                        if(item.status == 'Y') {
+                            status = '<span class="color_show">√</span>';
+                        }
+                        var html = '<tr id="cat_'+item.id+'" class="cat_children tb_list cat_'+item.parent_id+'_children">'
                             + '<td>'+space+'├──<input type="checkbox" name="id[]" value="'+item.id+'">'+item.id+'</td>'
                             + '<td>'+space+'<input type="text" name="sortOrder['+item.id+']" value="'+item.sort_order+'" id="sortOrder[]" size="5" ></td>'
                             + '<td>'+space+'<a href="javascript:;" class="cat_btn"  data-url="'+item.children_url+'">+</a><a href="javascript:;">'+item.name+'</a></td>'
                             + '<td>'+space+''+item.type+'</td>'
+                            + '<td>'+space+''+status+'</td>'
                             + '<td>'+space+''+item.create_time+'</td>'
                             + '<td>'+space+''+item.update_time+'</td>'
                             + '<td>'

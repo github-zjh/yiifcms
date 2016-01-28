@@ -50,11 +50,13 @@
                     <a href="<?php echo $this->createUrl('/video/view', array('id' => $row['id'])); ?>" title="<?php echo $row->title; ?>" target="_blank"><?php echo Helper::truncate_utf8_string($row->title, 20); ?></a><br />
                 </td>
                 <td><?php echo $row->catalog->catalog_name ?></td>
-                <td><?php if ($row->status == 'Y') {
-                    echo Yii::t('admin', 'Show');
-                } else {
-                    echo "<span class='red'>" . Yii::t('admin', 'Hidden') . "</span>";
-                } ?></td>
+                <td>
+                    <?php if($row->status == 'Y'): ?>
+                    <span class="color_show">√</span>
+                    <?php else:?>
+                    <span class="color_hide">×</span>
+                    <?php endif;?>
+                </td>
                 <td><span ><?php echo $row->down_count ?></span></td>
                 <td><?php echo date('Y-m-d H:i', $row->create_time) ?></td>
                 <td><?php echo date('Y-m-d H:i', $row->update_time) ?></td>

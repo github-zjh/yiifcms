@@ -23,7 +23,7 @@
                     <tr>
                         <td ><input name="sqlfile[]" type="checkbox" value="<?php echo $info['filename'] ?>"></td>
                         <td><?php echo $info['filename'] ?></td>
-                        <td><?php echo $info['filesize'] ?> M</td>
+                        <td><?php echo $info['filesize'] ?></td>
                         <td><?php echo $info['maketime'] ?></td>
                         <td><?php echo $info['number'] ?></td>
                         <td>

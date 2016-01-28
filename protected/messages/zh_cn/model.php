@@ -32,6 +32,7 @@ return array(
     'parent_id'            => '上级导航',
     'menu_sort_order'      => '排序',
     'new_open'             => '新窗口打开',
+    'menu_status'          => '显示状态',
 
     //Ad[广告]
     'AdId'                 => '广告ID',

@@ -30,11 +30,13 @@
             </td>   
             <td><?php echo $row->type_key ?></td>  
             <td><?php echo $row->model ?> 
-            <td><?php if ($row->status == 'Y') {
-                echo Yii::t('admin', 'Show');
-            } else {
-                echo "<span class='red'>" . Yii::t('admin', 'Hidden') . "</span>";
-            } ?></td>    
+            <td>
+                <?php if ($row->status == 'Y'):?>
+                <span class="color_show">√</span>
+                <?php else:?>
+                <span class="color_hide">×</span>
+                <?php endif;?>
+            </td>    
             <td>
                 <a href="<?php echo $this->createUrl('update', array('id' => $row->id)) ?>"><img src="<?php echo $this->module->assetsUrl; ?>/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;      
             </td>

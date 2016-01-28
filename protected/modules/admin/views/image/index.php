@@ -45,11 +45,11 @@
             </td>
             <td ><?php echo $row->catalog->catalog_name ?></td>
             <td>
-                <?php if ($row->status == 'Y') {
-                    echo Yii::t('admin', 'Show');
-                } else {
-                    echo "<span class='red'>" . Yii::t('admin', 'Hidden') . "</span>";
-                } ?>
+                <?php if($row->status == 'Y'): ?>
+                <span class="color_show">√</span>
+                <?php else:?>
+                <span class="color_hide">×</span>
+                <?php endif;?>
             </td>
             <td>
                 <?php if ($row->commend == 'Y') {

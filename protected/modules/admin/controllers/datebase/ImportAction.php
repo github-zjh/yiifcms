@@ -41,8 +41,8 @@ class ImportAction extends CAction
                 asort($sqlfiles);
                 $prepre = '';                
                 foreach ($sqlfiles as $sqlfile) {
-                    $info = array();
-                    $filesize = round(filesize($sqlfile) / (1024 * 1024), 2);
+                    $info = array();                    
+                    $filesize = Helper::byteFormat(filesize($sqlfile));
                     $maketime = date('Y-m-d H:i:s', filemtime($sqlfile));
                     if (preg_match("/^(db_[\d]{14})_([\d]+)\.sql$/i", basename($sqlfile), $matches)) {
                         $info['filename'] = basename($sqlfile);

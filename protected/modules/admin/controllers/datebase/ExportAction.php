@@ -47,7 +47,7 @@ class ExportAction extends CAction
         //写入注释说明
         $tabledump = "--comment_start"
             . "\n-- 数据库备份文件"
-            . "\n-- 作者:      Sim Zhao <326196998@qq.com>"
+            . "\n-- 作者:      GoldHan.zhao <326196998@qq.com>"
             . "\n-- 时间：     ".date('Y-m-d H:i:s')
             . "\n-- Mysql版本：".mysql_get_server_info ()
             . "\n-- PHP版本：  ".  phpversion()
@@ -81,9 +81,9 @@ class ExportAction extends CAction
             $count = $all ? $all['count'] : 0;            
             $offset = 100;
             $page_count = ceil($count/$offset);
-            $page = 0;
+            $page = 1;
             while($page <= $page_count) {
-                $start = $page * $offset;
+                $start = ($page-1) * $offset;
                 $tabledump .= self::_getDataFromTable($table_name, $start, $offset);                
                 $backfile = $this->controller->backup. '/' . $backup_prefix.$part.$ext;
                 file_put_contents($backfile, $tabledump, FILE_APPEND );

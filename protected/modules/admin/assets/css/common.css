@@ -47,6 +47,8 @@ table { display: table; border-spacing: 2px; border-color: gray; width: 100% }
 .content_list .tb_header th { font-weight: bold; padding-left: 4px; }
 .content_list td { border-bottom: #eee 1px solid; height: 30px; line-height: 25px; padding-left: 5px; }
 .content_list tr.tb_list:hover { background: #FBFFE4; color: #333; }
+.content_list tr.catalog td { font-size:14px;}
+.content_list .cat_children td { font-size:12px; background-color:#DDDDDD;}
 .tb_title { font-weight: bold }
 .custom_title { width: 100px; font-weight: bold; float: left }
 .custom_content { float: left }
@@ -133,3 +135,6 @@ body[dir='rtl'] .formError .formErrorArrow, body.rtl .formError .formErrorArrow 
 /* 缓存设置样式 */
 .cache_param { display:none;}
 .cache_show { display:block;}
+
+.color_hide { color:orange;}
+.color_show { color:green;}
