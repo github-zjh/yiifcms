@@ -4,9 +4,9 @@
 ##简介
 yiifcms是基于yii framework 1.1.14 个人开发的cms  目前已开发到 1.5版本
 
-官方网址：http://www.yiifcms.com/
-官方论坛：http://bbs.yiifcms.com/
-演示案例：http://www.yiifcms.com/
+官方网址[1.4.1_release]：http://www.yiifcms.com/
+官方论坛[Discuz X3.1]：http://bbs.yiifcms.com/
+演示案例[1.5_beta]：http://demo.yiifcms.com/
 
 ##功能
 目前cms功能有：
