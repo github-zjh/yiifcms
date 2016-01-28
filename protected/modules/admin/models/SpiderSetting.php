@@ -38,6 +38,7 @@ class SpiderSetting extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+            array('site, url, item_rule_li, item_rule_a, cur_page, total_page', 'required'),
 			array('cur_page, total_page, type', 'numerical', 'integerOnly'=>true),
 			array('site, url, item_rule_li, item_rule_a, content_rule', 'length', 'max'=>100),
 			array('list_charset, content_charset', 'length', 'max'=>6),
