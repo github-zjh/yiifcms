@@ -435,4 +435,11 @@ return array (
     'Image Import' => '图集导入',
     'Soft Import'  => '软件导入',
     'Video Import' => '视频导入',
+    
+    //用户
+    'You Can Not Delete Yourself'   => '您不能删除自己',
+    'You Can Not Change Yourself'   => '您不能禁用自己',
+    'You Can Not Delete Admin'      => '您不能删除超级管理员',
+    'You Can Not Change Your Group' => '您不能修改自己的权限',
+    'You Can Not Change The User Group' => '您不能修改该用户的权限',
 );

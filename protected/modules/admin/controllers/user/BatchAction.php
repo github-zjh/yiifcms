@@ -15,11 +15,17 @@ class BatchAction extends CAction
         if(!is_array($ids)) {
             $ids = array($ids);
         }
+        //自己不能删除、禁用自己
+        $uid = Yii::app()->user->id;
+        if(($key = array_search($uid, $ids)) !== false ) {            
+            unset($ids[$key]);
+            $this->controller->message('error', Yii::t('admin','You Can Not Delete Yourself'));
+        }
         $criteria = new CDbCriteria();
         $criteria->addInCondition('uid', $ids);
         switch ( $command ) {
             case 'delete':      
-                //删除
+                //删除                
                 User::model()->deleteAll($criteria);                
                 break;
             case 'lock':

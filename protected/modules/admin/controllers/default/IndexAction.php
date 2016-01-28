@@ -113,18 +113,20 @@ class IndexAction extends CAction
 						$OAuthSecMenus[$sk][$sek] = $sev;
 					}
 				}
-				if(!$OAuthSecMenus[$sk]){
+				if(!isset($OAuthSecMenus[$sk]) || !$OAuthSecMenus[$sk]){
 					unset($FirstMenus[$sk]);
 				}
 			}			
 		}else{
 			$OAuthSecMenus = $SecMenus;
 		}
-
+        
 		//取左侧菜单第一个菜单作为头部菜单的链接
 		foreach($FirstMenus as $key=>$val){
-			$OAuthSecMenus[$key] && $firstUrl = reset($OAuthSecMenus[$key]);
-			$FirstMenus[$key]['url'] = $firstUrl['url'];
+            if(isset($OAuthSecMenus[$key]) && $OAuthSecMenus[$key]) {
+               $firstUrl = reset($OAuthSecMenus[$key]);
+               $FirstMenus[$key]['url'] = $firstUrl['url'];
+            }
 		}
 		
 		$this->controller->render('index', array('FirstMenus' => $FirstMenus, 'SecMenus' => $OAuthSecMenus));
