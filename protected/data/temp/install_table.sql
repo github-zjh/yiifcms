@@ -685,7 +685,7 @@ CREATE TABLE `#@__spider_setting` (
 -- ----------------------------
 -- 采集站点设置默认项
 -- ----------------------------
-INSERT INTO `#@__spider_setting` VALUES ('1', '网易互联网科技阅读', 'http://tech.163.com/internet/', 'GBK', 'GB2312', '#news-flow-content li', '.titleBar h3 a', '#endText', 'http://tech.163.com/special/0009rt/tech_hlw_0[PAGE_NUM].html', '0', '2', '1', '/(<iframe(.*?)>(.*?)<\\/iframe>)/is\r\n/(<div class=\"ep-source cDGray\">(.*?)<\/div>)/is\r\n', '', '');
+INSERT INTO `#@__spider_setting` VALUES ('1', '网易互联网科技阅读', 'http://tech.163.com/internet/', 'GBK', 'GB2312', '#news-flow-content li', '.titleBar h3 a', '#endText', 'http://tech.163.com/special/0009rt/tech_hlw_0[PAGE_NUM].html', '0', '2', '1', '/(<iframe(.*?)>(.*?)<\\/iframe>)/is\r\n/(<div class=\"ep-source cDGray\">(.*?)<\\/div>)/is\r\n', '', '');
 INSERT INTO `#@__spider_setting` VALUES ('2', 'csdn互联网新闻', 'http://blog.csdn.net/web/newest.html', 'UTF-8', 'UTF-8', 'div.main_center .blog_list', 'h1 a', '#article_content', 'http://blog.csdn.net/web/newest.html?&page=[PAGE_NUM]', '0', '2', '1', '', '', '');
 INSERT INTO `#@__spider_setting` VALUES ('3', '开源中国-php', 'http://www.oschina.net/code/list?lang=php&catalog=&show=time', 'UTF-8', 'UTF-8', 'div.code_list ul li', 'h3.code_title a', 'div.Body', 'http://www.oschina.net/code/list?lang=php&catalog=&show=time&sort=&p=[PAGE_NUM]', '0', '2', '1', '', '', '');
 INSERT INTO `#@__spider_setting` VALUES ('4', '唯美图片-意境', 'http://www.wmpic.me/tupian/yijing/', 'UTF-8', 'UTF-8', '#mainbox .item_list .item_box', 'div.inner_item_box h2 a', '#content .content-c', 'http://www.wmpic.me/tupian/yijing/page/[PAGE_NUM]', '0', '3', '2', '', '', '');
