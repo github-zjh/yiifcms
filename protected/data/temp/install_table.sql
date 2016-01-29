@@ -162,6 +162,7 @@ CREATE TABLE `#@__album` (
 -- ----------------------------
 -- Table structure for `#@__album_content`
 -- ----------------------------
+DROP TABLE IF EXISTS `#@__album_content`;
 CREATE TABLE `#@__album_content` (
   `album_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '图集id',
   `album_list` text NOT NULL COMMENT '组图',
@@ -356,6 +357,7 @@ CREATE TABLE `#@__post` (
 -- ----------------------------
 -- Table structure for `#@__post_content`
 -- ----------------------------
+DROP TABLE IF EXISTS `#@__post_content`;
 CREATE TABLE `#@__post_content` (
   `post_id` int(10) unsigned NOT NULL DEFAULT '0',
   `introduce` varchar(200) NOT NULL COMMENT '摘要',
@@ -468,6 +470,7 @@ CREATE TABLE `#@__soft` (
 -- ----------------------------
 -- Table structure for `#@__soft_content`
 -- ----------------------------
+DROP TABLE IF EXISTS `#@__soft_content`;
 CREATE TABLE `#@__soft_content` (
   `soft_id` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '软件id',
   `soft_file` varchar(100) NOT NULL DEFAULT '' COMMENT '文件路径',
@@ -592,6 +595,7 @@ CREATE TABLE `#@__video` (
 -- ----------------------------
 -- Table structure for `#@__video_content`
 -- ----------------------------
+DROP TABLE IF EXISTS `#@__video_content`;
 CREATE TABLE `#@__video_content` (
   `video_id` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '视频id',
   `video_file` varchar(255) NOT NULL DEFAULT '' COMMENT '视频文件路径',
