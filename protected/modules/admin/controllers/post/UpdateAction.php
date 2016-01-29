@@ -28,22 +28,11 @@ class UpdateAction extends CAction
     			$model->title_style = serialize($title_style);
     		}else{
     			$model->title_style = '';
-    		}    		
+    		}
+            //内容相关
+            $model->content->attributes = $_POST['PostContent'];
     		
-    		//标签   (前5个标签有效) 		
-    		$tags = trim($_POST['Post']['tags']);    		
-    		$unique_tags = array_unique(explode(',', str_replace(array (' ' , '，' ), array('',','), $tags)));    		
-    		$explodeTags = array_slice($unique_tags, 0, 5);  
-    		    		  	
-    		//摘要
-    		$model->introduce = trim($_POST['Post']['introduce'])?$_POST['Post']['introduce']:Helper::truncate_utf8_string(preg_replace('/\s+/',' ',$_POST['Post']['content']), 200);
-    		
-    		$model->tags = implode(',',$explodeTags);
-    		$model->update_time = time();
-    		
-    		if($model->save()){
-    			//更新标签数据
-				Tag::model()->updateTagData($explodeTags, array('content_id'=>$model->id, 'status'=>$model->status, 'type_id'=>$this->controller->_type_ids['post']));
+    		if($model->save() && $model->content->save()){    			
     			$this->controller->message('success',Yii::t('admin','Update Success'),$this->controller->createUrl('index'));
     		}
     	}else{    		

@@ -2,16 +2,16 @@
 /**
  *  安装测试数据
  * 
- * @author  Sim Zhao <326196998@qq.com>
+ * @author  GoldHan.zhao <326196998@qq.com>
  * @link    http://www.yiifcms.com/
- * @copyright   Copyright (c) 2014-2015. All rights reserved.
+ * @copyright   Copyright (c) 2014-2016. All rights reserved.
  */
 
 class InstallAction extends CAction
 {	
 	public function run(){
         if(Yii::app()->request->isPostRequest){
-    		$testDataFile = ROOT_PATH.'/protected/data/temp/test_data.sql';
+    		$testDataFile = ROOT_PATH.'/protected/data/temp/install_data.sql';
             $this->startInstall($testDataFile);    		
     	}else{
     		$this->controller->render('install');

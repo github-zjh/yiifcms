@@ -55,20 +55,21 @@ class PostImportAction extends CAction
             $spider = $spiderPostList->with(array('spiderset', 'content'))->findByPk($id);
             if($spider && $spider->status == SpiderPostList::STATUS_C && $spider->content) {
                 $post = new Post();
-                $now = time();
+                $postContent = new PostContent();                
                 $post->attributes = array(
-                    'title'   => $spider->title,
-                    'content' => $spider->content->content,
-                    'user_id' => 1,
-                    'catalog_id' => $catalog_id,
-                    'introduce'  => Helper::truncate_utf8_string(preg_replace('/\s+/',' ',strip_tags($spider->content->content)), 180),
+                    'title'      => $spider->title,                    
+                    'user_id'    => 1,
+                    'catalog_id' => $catalog_id,                    
                     'copy_url'   => $spider->url,
-                    'copy_from'  => $spider->spiderset->site,
-                    'create_time'=> $now,
-                    'update_time'=> $now,
+                    'copy_from'  => $spider->spiderset->site,                    
+                );
+                $postContent->attributes = array(
+                    'content' => $spider->content->content,
                 );
                 $spider->status = SpiderPostList::STATUS_SUCCESS;
                 if($post->save() && $spider->save()) {
+                    $postContent->post_id = $post->id;
+                    $postContent->save();
                     echo "<br/>--------导入<span style='color:grey'>\"{$spider->title}\"</span>完成.--------<br/>";                    
                 } else {
                     $this->_stopError('导入<span style="color:grey">'.$spider->title.'</span>失败:'.  var_export($post->getErrors(), true). var_export($spider->getErrors(), true));

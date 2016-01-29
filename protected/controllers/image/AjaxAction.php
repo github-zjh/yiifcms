@@ -29,6 +29,6 @@ class AjaxAction extends CAction {
     private function _getCatalogChildren()
     {
         $parent_id = intval(Yii::app()->request->getParam('catalog_id'));
-        return Catalog::getChildren($parent_id, true, $this->controller->_type_ids['image']);
+        return Catalog::getChildren($parent_id, true, $this->controller->_type_ids['album']);
     }
 }

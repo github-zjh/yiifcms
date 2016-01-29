@@ -83,7 +83,7 @@
                 } 
                 $('.loading').hide();
             });
-            $('#Image_catalog_id').val(val);            
+            $('#Album_catalog_id').val(val);            
         });
     });    
 </script>

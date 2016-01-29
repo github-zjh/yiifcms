@@ -14,9 +14,9 @@ class ImageController extends FrontBase
 	public function init(){
 		parent::init();
 		//栏目
-		$this->_catalog = Catalog::getTopCatalog(true, $this->_type_ids['image']);
+		$this->_catalog = Catalog::getTopCatalog(true, $this->_type_ids['album']);
 		//导航标示
-		$this->_menu_unique = 'image';
+		$this->_menu_unique = 'album';
 		//标签
 		$this->_tags = Tag::model()->findAll(array('order'=>'data_count DESC','limit'=>20));
 	}	

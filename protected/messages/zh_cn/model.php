@@ -176,6 +176,7 @@ return array(
     'VideoDownload'        => '下载链接',
     'VideoDownCount'       => '下载次数',
     'VideoIntroduce'       => '视频简介',
+    'VideoContent'         => '视频内容',
     'VideoCreateTime'      => '添加时间', 
     'VideoUpdateTime'      => '更新时间', 
     'VideoLanguage'        => '视频字幕',	

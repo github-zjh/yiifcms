@@ -55,21 +55,21 @@ class VideoImportAction extends CAction
             $spider = $spiderList->with(array('spiderset', 'content'))->findByPk($id);
             if($spider && $spider->status == SpiderVideoList::STATUS_C && $spider->content) {
                 $post = new Video();
-                $now = time();
-                $introduce = Helper::truncate_utf8_string(preg_replace('/\s+/',' ',strip_tags($spider->content->content)), 180);                
+                $postContent = new VideoContent();
                 $post->attributes = array(
-                    'title'   => $spider->title,
-                    'content' => $spider->content->content,
+                    'title'   => $spider->title,                    
                     'cover_image' => $spider->content->cover_img,                    
                     'user_id' => 1,
-                    'catalog_id' => $catalog_id,
-                    'introduce'  => $introduce,
-                    'download'   => $spider->url,                    
-                    'create_time'=> $now,
-                    'update_time'=> $now,
+                    'catalog_id' => $catalog_id,                    
+                    'download'   => $spider->url,
+                );
+                $postContent->attributes = array(
+                    'content' => $spider->content->content,
                 );
                 $spider->status = SpiderPostList::STATUS_SUCCESS;
                 if($post->save() && $spider->save()) {
+                    $postContent->video_id = $post->id;
+                    $postContent->save();
                     echo "<br/>--------导入<span style='color:grey'>\"{$spider->title}\"</span>完成.--------<br/>";                    
                 } else {
                     $this->_stopError('导入<span style="color:grey">'.$spider->title.'</span>失败:'.  var_export($post->getErrors(), true). var_export($spider->getErrors(), true));

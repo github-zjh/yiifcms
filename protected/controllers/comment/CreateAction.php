@@ -20,8 +20,8 @@ class CreateAction extends CAction {
             case 'post':
                 $post = Post::model()->findByPk($content_id);
                 break;
-            case 'image':
-                $post = Image::model()->findByPk($content_id);
+            case 'album':
+                $post = Album::model()->findByPk($content_id);
                 break;
             case 'soft':
                 $post = Soft::model()->findByPk($content_id);

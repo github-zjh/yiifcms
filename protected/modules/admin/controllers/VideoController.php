@@ -17,14 +17,14 @@ class VideoController extends Backend
 		//视频栏目
 		$this->_catalog = Catalog::getTopCatalog(true, $this->_type);
 		$this->_video_type = array(
-					'comedy'=>'喜剧',
-					'active'=>'动作',
-					'story' => '剧情',
-					'science'=>'科幻',
-					'terrified'=>'惊悚',
-					'war'=>'战争', 
-	    			'sexy'=>'伦理'
-				);    	
+            'comedy'=>'喜剧',
+            'active'=>'动作',
+            'story' => '剧情',
+            'science'=>'科幻',
+            'terrified'=>'惊悚',
+            'war'=>'战争', 
+            'sexy'=>'伦理'
+        );    	
 	}	
     
     //所有动作
@@ -51,7 +51,7 @@ class VideoController extends Backend
     {
     	if ($this->model === null) {
             if (isset($_GET['id'])) {
-                $this->model = Video::model()->findbyPk($_GET['id']);
+                $this->model = Video::model()->with('content')->findbyPk($_GET['id']);
             }
             if ($this->model === null) {
                 throw new CHttpException(404, Yii::t('common', 'The requested page does not exist.'));

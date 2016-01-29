@@ -9,7 +9,7 @@
 class IndexAction extends CAction
 {	
 	public function run(){
-		$model = new Image();
+		$model = new Album();
         //条件
         $criteria = new CDbCriteria();
         $title     = trim( Yii::app()->request->getParam( 'title' ) );        

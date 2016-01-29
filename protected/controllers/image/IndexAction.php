@@ -46,7 +46,7 @@ class IndexAction extends CAction
         if(!$navs) { 
             $condition = '';
             $catalog = array();
-            $seo = ModelType::getSEO('image');    	
+            $seo = ModelType::getSEO('album');    	
             $this->controller->_seoTitle = $seo['seo_title'].' - '.$this->controller->_setting['site_name'];
             $this->controller->_seoKeywords = $seo['seo_keywords'];
             $this->controller->_seoDescription = $seo['seo_description'];
@@ -55,10 +55,10 @@ class IndexAction extends CAction
 
         //获取所有符合条件的图集         
         $pages = array();           
-        $datalist = Image::model()->getList(array('condition'=>$condition, 'limit'=>15, 'order'=>$order_by, 'page'=>true), $pages);   
+        $datalist = Album::model()->getList(array('condition'=>$condition,'with'=>'content', 'limit'=>15, 'order'=>$order_by, 'page'=>true), $pages);   
 
         //该栏目下最新的图集
-        $last_images = Image::model()->getList(array('condition'=>$condition, 'limit'=>20));
+        $last_images = Album::model()->getList(array('condition'=>$condition, 'limit'=>20));
         $this->controller->render( 'index', array('navs'=>$navs, 'catalog'=>$catalog, 'datalist'=>$datalist, 'pagebar' => $pages,  'last_images'=>$last_images,'order'=>$order, 'search_cats' => $search_cats));    
 	}
 }

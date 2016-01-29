@@ -77,26 +77,26 @@
         <td><?php echo $form->textField($model, 'redirect_url', array('size' => 60, 'maxlength' => 128)); ?></td>
     </tr>	
     <tr>
-        <td class="tb_title"><?php echo $form->label($model, 'content'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model->content, 'content'); ?>：</td>
     </tr>
     <tr>
         <td>
-            <?php echo $form->textArea($model, 'content'); ?>
-            <?php $this->widget('application.widget.kindeditor.KindEditor', array('id' => 'Post_content')); ?>
+            <?php echo $form->textArea($model->content, 'content'); ?>
+            <?php $this->widget('application.widget.kindeditor.KindEditor', array('id' => 'PostContent_content')); ?>
         </td>
     </tr>
     <tr>
-        <td class="tb_title"><?php echo $form->label($model, 'introduce'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model->content, 'introduce'); ?>：</td>
     </tr>
     <tr>
-        <td><?php echo CHtml::activeTextArea($model, 'introduce', array('rows' => 5, 'cols' => 90)); ?></td>
+        <td><?php echo CHtml::activeTextArea($model->content, 'introduce', array('rows' => 5, 'cols' => 90)); ?></td>
     </tr>
     <tr>
         <td class="tb_title"><?php echo $form->label($model, 'tags'); ?>(逗号或空格隔开)：</td>
     </tr>
     <tr>
         <td><?php echo $form->textField($model, 'tags', array('size' => 50, 'maxlength' => 255)); ?>
-            <input type="button" value="自动提取"	onclick="keywordGet('Post_title', 'Post_content', 'Post_tags')" />
+            <input type="button" value="自动提取"	onclick="keywordGet('Post_title', 'PostContent_content', 'Post_tags')" />
         </td>
     </tr>
     <tr>
@@ -117,22 +117,22 @@
         </td>
     </tr>
     <tr>
-        <td class="tb_title"><?php echo $form->label($model, 'seo_title'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model->content, 'seo_title'); ?>：</td>
     </tr>
     <tr>
-        <td><?php echo $form->textField($model, 'seo_title', array('size' => 50, 'maxlength' => 80)); ?></td>
+        <td><?php echo $form->textField($model->content, 'seo_title', array('size' => 50, 'maxlength' => 80)); ?></td>
     </tr>
     <tr>
-        <td class="tb_title"><?php echo $form->label($model, 'seo_keywords'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model->content, 'seo_keywords'); ?>：</td>
     </tr>
     <tr>
-        <td><?php echo $form->textField($model, 'seo_keywords', array('size' => 50, 'maxlength' => 80)); ?></td>
+        <td><?php echo $form->textField($model->content, 'seo_keywords', array('size' => 50, 'maxlength' => 80)); ?></td>
     </tr>
     <tr>
-        <td class="tb_title"><?php echo $form->label($model, 'seo_description'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model->content, 'seo_description'); ?>：</td>
     </tr>
     <tr>
-        <td><?php echo CHtml::activeTextArea($model, 'seo_description', array('rows' => 5, 'cols' => 80)); ?></td>
+        <td><?php echo CHtml::activeTextArea($model->content, 'seo_description', array('rows' => 5, 'cols' => 80)); ?></td>
     </tr>
     <tr class="submit">
         <td colspan="2">			

@@ -10,9 +10,9 @@ class UpdateAction extends CAction
 {	
 	public function run(){
 		$model = $this->controller->loadModel();    	
-    	if(isset($_POST['Image']))
+    	if(isset($_POST['Album']))
     	{
-    		$model->attributes=$_POST['Image'];    		
+    		$model->attributes=$_POST['Album'];    		
     		//标题样式
     		$title_style = Yii::app()->request->getPost('style');   
     		if(isset($title_style['bold']) && $title_style['bold'] != 'Y'){
@@ -30,32 +30,21 @@ class UpdateAction extends CAction
     			$model->title_style = '';
     		}
     		$model->attach_file = isset($_POST['attach_file']) ? $_POST['attach_file'] : '';
-            $model->attach_thumb = isset($_POST['attach_thumb']) ? $_POST['attach_thumb'] : '';
+            $model->attach_thumb = isset($_POST['attach_thumb']) ? $_POST['attach_thumb'] : '';           
             
+            //内容相关
+            $model->content->attributes = $_POST['AlbumContent'];
             //组图
     		$imageList = isset($_POST['imagelist']) ? $_POST['imagelist'] : array();
             if($imageList) {
-                $model->image_list = implode(',', $imageList);
+                $model->content->album_list = implode(',', $imageList);
             }
     		
-    		//标签   (前5个标签有效) 		
-    		$tags = trim($_POST['Image']['tags']);    		
-    		$unique_tags = array_unique(explode(',', str_replace(array (' ' , '，' ), array('',','), $tags)));    		
-    		$explodeTags = array_slice($unique_tags, 0, 5);  
-    		    		  	
-    		//摘要
-    		$model->introduce = trim($_POST['Image']['introduce'])?$_POST['Image']['introduce']:Helper::truncate_utf8_string(preg_replace('/\s+/',' ',$_POST['Image']['content']), 200);
-    		
-    		$model->tags = implode(',',$explodeTags);
-    		$model->update_time = time();
-    		
-    		if($model->save()){
-    			//更新标签数据
-				Tag::model()->updateTagData($explodeTags, array('content_id'=>$model->id, 'status'=>$model->status, 'type_id'=>$this->controller->_type_ids['image']));
+    		if($model->save() && $model->content->save()){
     			$this->controller->message('success',Yii::t('admin','Update Success'),$this->controller->createUrl('index'));
     		}
     	}else{
-            $imageList = $model->image_list?explode(',', $model->image_list):array();            
+            $imageList = $model->content->album_list?explode(',', $model->content->album_list):array();            
     		$style = unserialize($model->title_style);
     	}
         $parents = Catalog::getParantsCatalog($model->catalog_id);

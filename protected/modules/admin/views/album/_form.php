@@ -53,7 +53,7 @@
     </tr>
     <tr>
         <td>
-            <select name="Image[special_id]">
+            <select name="Album[special_id]">
                 <option value="0">==<?php echo $form->label($model, 'special_id'); ?>==</option>
                 <?php foreach ((array) $this->_special as $speical): ?>
                     <option value="<?php echo $speical['id'] ?>" <?php Helper::selected($speical['id'], $model->special_id); ?>><?php echo $speical['title'] ?></option>
@@ -98,26 +98,26 @@
         </td>
     </tr>
     <tr>
-        <td class="tb_title"><?php echo $form->label($model, 'content'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model->content, 'content'); ?>：</td>
     </tr>
     <tr>
-        <td><?php echo $form->textArea($model, 'content'); ?>      
-            <?php $this->widget('application.widget.kindeditor.KindEditor', array('id' => 'Image_content')); ?>
+        <td><?php echo $form->textArea($model->content, 'content'); ?>      
+            <?php $this->widget('application.widget.kindeditor.KindEditor', array('id' => 'AlbumContent_content')); ?>
         </td>
     </tr>
     <tr>
-        <td class="tb_title"><?php echo $form->label($model, 'introduce'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model->content, 'introduce'); ?>：</td>
     </tr>
     <tr>
-        <td><?php echo CHtml::activeTextArea($model, 'introduce', array('rows' => 5, 'cols' => 90)); ?></td>
+        <td><?php echo CHtml::activeTextArea($model->content, 'introduce', array('rows' => 5, 'cols' => 90)); ?></td>
     </tr>
     <tr>
-        <td class="tb_title"><?php echo $form->label($model, 'image_list'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model->content, 'album_list'); ?>：</td>
     </tr>
     <tr>
         <td>
             <div>
-                <?php $this->widget('application.widget.resumable.Resumable', array('options' => array('upload_url' => $this->createUrl('image/uploadResumable'), 'upload_file_name' => 'imagelist[]'))); ?>  				        
+                <?php $this->widget('application.widget.resumable.Resumable', array('options' => array('upload_url' => $this->createUrl('album/uploadResumable'), 'upload_file_name' => 'imagelist[]'))); ?>  				        
             </div>
             <!-- 显示已上传的文件-->            
             <ul class="resumable-files clear">
@@ -143,7 +143,7 @@
     <tr>
         <td>
             <?php echo $form->textField($model, 'tags', array('size' => 50, 'maxlength' => 255)); ?>
-            <input type="button" value="自动提取" onclick="keywordGet('Image_title', 'Image_content', 'Image_tags')"/>
+            <input type="button" value="自动提取" onclick="keywordGet('Album_title', 'AlbumContent_content', 'Album_tags')"/>
         </td>
     </tr>
     <tr>
@@ -160,22 +160,22 @@
         <td  ><?php echo $form->dropDownList($model, 'status', array('Y' => Yii::t('admin', 'Show'), 'N' => Yii::t('admin', 'Hidden'))); ?><?php echo $form->dropDownList($model, 'commend', array('Y' => '已推荐', 'N' => '未推荐')); ?><?php echo $form->dropDownList($model, 'top_line', array('Y' => '头条', 'N' => '非头条')); ?><?php echo $form->dropDownList($model, 'reply_allow', array('Y' => '允许回复', 'N' => '不允许回复')); ?></td>
     </tr>
     <tr>
-        <td class="tb_title"><?php echo $form->label($model, 'seo_title'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model->content, 'seo_title'); ?>：</td>
     </tr>
     <tr>
-        <td><?php echo $form->textField($model, 'seo_title', array('size' => 50, 'maxlength' => 80)); ?></td>
+        <td><?php echo $form->textField($model->content, 'seo_title', array('size' => 50, 'maxlength' => 80)); ?></td>
     </tr>
     <tr>
-        <td  class="tb_title"><?php echo $form->label($model, 'seo_keywords'); ?>：</td>
+        <td  class="tb_title"><?php echo $form->label($model->content, 'seo_keywords'); ?>：</td>
     </tr>
     <tr>
-        <td><?php echo $form->textField($model, 'seo_keywords', array('size' => 50, 'maxlength' => 80)); ?></td>
+        <td><?php echo $form->textField($model->content, 'seo_keywords', array('size' => 50, 'maxlength' => 80)); ?></td>
     </tr>
     <tr>
-        <td class="tb_title"><?php echo $form->label($model, 'seo_description'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model->content, 'seo_description'); ?>：</td>
     </tr>
     <tr>
-        <td><?php echo CHtml::activeTextArea($model, 'seo_description', array('rows' => 5, 'cols' => 80)); ?></td>
+        <td><?php echo CHtml::activeTextArea($model->content, 'seo_description', array('rows' => 5, 'cols' => 80)); ?></td>
     </tr>  
     <tr class="submit">
         <td colspan="2" >            
@@ -187,7 +187,7 @@
     //ajax上传图片
     function fileUpload() {
         $('#fileupload').fileupload({
-            url: "<?php echo $this->createUrl('image/uploadSimple'); ?>",
+            url: "<?php echo $this->createUrl('album/uploadSimple'); ?>",
             dataType: 'json',
             done: function (e, JsonData) {
                 var data = JsonData.result;
@@ -234,7 +234,7 @@
                 } 
                 $('.loading').hide();
             });
-            $('#Image_catalog_id').val(val);            
+            $('#Album_catalog_id').val(val);            
         });
     });
 </script>

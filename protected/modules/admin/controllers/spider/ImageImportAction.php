@@ -9,7 +9,7 @@
 class ImageImportAction extends CAction
 {	
 	public function run(){        
-        $model = new Image();        
+        $model = new Album();        
         //回跳地址
         $return_url = $this->controller->createUrl('spider/image');        
         $ids = Yii::app()->request->getParam('ids');        
@@ -21,11 +21,11 @@ class ImageImportAction extends CAction
         $criteria = new CDbCriteria();
         $criteria->addInCondition('id', $ids);
         if(Yii::app()->request->isPostRequest) {
-            $catalog_id = $_POST['Image']['catalog_id'];
+            $catalog_id = $_POST['Album']['catalog_id'];
             $this->_startImport($ids, $catalog_id);            
         }
         //图集栏目
-		$this->controller->_catalog = Catalog::getTopCatalog(true,$this->controller->_type_ids['image']);
+		$this->controller->_catalog = Catalog::getTopCatalog(true,$this->controller->_type_ids['album']);
         $this->controller->render( 'imageimport', array ( 'model' => $model) );
 	}
     
@@ -54,23 +54,24 @@ class ImageImportAction extends CAction
         foreach($ids as $id) {
             $spider = $spiderList->with(array('spiderset', 'content'))->findByPk($id);
             if($spider && $spider->status == SpiderImageList::STATUS_C && $spider->content) {
-                $post = new Image();
-                $now = time();
+                $post = new Album();
+                $postContent = new AlbumContent();               
                 $post->attributes = array(
-                    'title'   => $spider->title,
-                    'content' => $spider->content->content,
+                    'title'   => $spider->title,                    
                     'attach_file' => $spider->content->cover_img,
                     'attach_thumb' => $spider->content->cover_img_thumb,
                     'user_id' => 1,
-                    'catalog_id' => $catalog_id,
-                    'introduce'  => Helper::truncate_utf8_string(preg_replace('/\s+/',' ',strip_tags($spider->content->content)), 180),
+                    'catalog_id' => $catalog_id,                    
                     'copy_url'   => $spider->url,
-                    'copy_from'  => $spider->spiderset->site,
-                    'create_time'=> $now,
-                    'update_time'=> $now,
+                    'copy_from'  => $spider->spiderset->site,                    
+                );
+                $postContent->attributes = array(
+                    'content' => $spider->content->content,
                 );
                 $spider->status = SpiderPostList::STATUS_SUCCESS;
                 if($post->save() && $spider->save()) {
+                    $postContent->album_id = $post->id;
+                    $postContent->save();
                     echo "<br/>--------导入<span style='color:grey'>\"{$spider->title}\"</span>完成.--------<br/>";                    
                 } else {
                     $this->_stopError('导入<span style="color:grey">'.$spider->title.'</span>失败:'.  var_export($post->getErrors(), true). var_export($spider->getErrors(), true));

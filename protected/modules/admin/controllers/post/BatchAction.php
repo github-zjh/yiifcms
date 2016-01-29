@@ -22,6 +22,8 @@ class BatchAction extends CAction
                 //删除
                 Post::model()->deleteAll($criteria);
                 foreach((array)$ids as $id){
+                    //删除关联的内容
+                    PostContent::model()->deleteByPk($id);
                     //删除关联的标签
                     TagData::model()->deleteAll('content_id =:id AND type =:type', array(':id'=>$id, ':type'=>$this->controller->_type_ids['post']));
                 }

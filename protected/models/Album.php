@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This is the model class for table "{{image}}".
+ * This is the model class for table "{{album}}".
  *
- * The followings are the available columns in table '{{image}}':
+ * The followings are the available columns in table '{{album}}':
  * @property string $id
  * @property string $user_id
  * @property string $title
@@ -11,12 +11,6 @@
  * @property string $title_style
  * @property integer $catalog_id
  * @property integer $special_id
- * @property string $introduce
- * @property string $image_list
- * @property string $seo_title
- * @property string $seo_description
- * @property string $seo_keywords
- * @property string $content
  * @property string $copy_from
  * @property string $copy_url
  * @property string $redirect_url
@@ -27,24 +21,21 @@
  * @property string $attach_thumb
  * @property string $favorite_count
  * @property string $top_line
- * @property string $update_time
  * @property string $reply_count
  * @property string $reply_allow
  * @property string $sort_order
  * @property string $status
  * @property string $create_time
+ * @property string $update_time
  */
-class Image extends CActiveRecord
+class Album extends CActiveRecord
 {
-    const STATUS_SHOW = 'Y'; //显示
-    const STATUS_HIDE = 'N'; //隐藏
-    
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return '{{image}}';
+		return '{{album}}';
 	}
 
 	/**
@@ -55,16 +46,15 @@ class Image extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, catalog_id, content', 'required'),
+			array('title', 'required'),
 			array('catalog_id, special_id', 'numerical', 'integerOnly'=>true),
-			array('user_id, view_count, favorite_count, update_time, reply_count, sort_order, create_time', 'length', 'max'=>10),
-			array('title, title_second, title_style, seo_title, seo_keywords, copy_url, redirect_url, tags, attach_file, attach_thumb', 'length', 'max'=>255),
+			array('user_id, view_count, favorite_count, reply_count, sort_order, create_time, update_time', 'length', 'max'=>10),
+			array('title, title_second, title_style, copy_url, redirect_url, tags, attach_file, attach_thumb', 'length', 'max'=>255),
 			array('copy_from', 'length', 'max'=>100),
 			array('commend, top_line, reply_allow, status', 'length', 'max'=>1),
-			array('introduce, image_list, seo_description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, user_id, title, title_second, title_style, catalog_id, special_id, introduce, image_list, seo_title, seo_description, seo_keywords, content, copy_from, copy_url, redirect_url, tags, view_count, commend, attach_file, attach_thumb, favorite_count, top_line, update_time, reply_count, reply_allow, sort_order, status, create_time', 'safe', 'on'=>'search'),
+			array('id, user_id, title, title_second, title_style, catalog_id, special_id, copy_from, copy_url, redirect_url, tags, view_count, commend, attach_file, attach_thumb, favorite_count, top_line, reply_count, reply_allow, sort_order, status, create_time, update_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -76,29 +66,64 @@ class Image extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-	        'catalog'=>array(self::BELONGS_TO, 'Catalog', 'catalog_id', 'alias'=>'catalog', 'select'=>'id,catalog_name,type'),
-	    );
+            'catalog' => array(self::BELONGS_TO, 'Catalog', 'catalog_id', 'alias'=>'catalog', 'select'=>'id,catalog_name,type'),
+            'content' => array(self::HAS_ONE, 'AlbumContent', 'album_id'),
+		);
 	}
+    
+    /**
+     * 保存前校验或者整理数据
+     * 
+     * @return boolean
+     */
+    public function beforeSave()
+    {
+        if($this->catalog_id <= 0) {
+            $this->addError('catalog_id', Yii::t('admin', 'Catalog Is Required'));
+            return false;
+        }
+        if($this->tags) {            		
+    		$unique_tags = array_unique(explode(',', str_replace(array (' ' , '，' ), array('',','), $this->tags)));    		
+    		$explodeTags = array_slice($unique_tags, 0, 5);  
+    		$this->tags = implode(',',$explodeTags);
+        }
+        if($this->isNewRecord) {            
+    		$this->create_time = time();
+    		$this->update_time = $this->create_time;
+        } else {
+            $this->update_time = time();
+        }
+        return true;
+    }
+    
+    /**
+     * 保存之后处理
+     * 
+     * @return boolean
+     */
+    public function afterSave()
+    {
+        $explodeTags = explode(',', $this->tags);
+        $type = ModelType::model()->findByAttributes(array('type_key' => 'album'));
+        $type_id = $type ? $type->id : 1;
+        //更新标签数据
+        Tag::model()->updateTagData($explodeTags, array('content_id'=>$this->id, 'status'=>$this->status, 'type_id'=> $type_id));
+        return true;
+    }
 
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */
 	public function attributeLabels()
 	{
-		return array(
-			'id'                => Yii::t('model','ImageId'),
+		return array(			
+            'id'                => Yii::t('model','ImageId'),
 			'user_id'           => Yii::t('model','ImageUserId'),		
 			'title'             => Yii::t('model','ImageTitle'),
 			'title_second'      => Yii::t('model','ImageTitleSecond'),			
 			'title_style'       => Yii::t('model','ImageTitleStyle'),	
 			'catalog_id'        => Yii::t('model','ImageCatalogId'),
-			'special_id'        => Yii::t('model','ImageSpecialId'),
-			'introduce'         => Yii::t('model','ImageIntroduce'),
-			'image_list'        => Yii::t('model','ImageList'),
-			'seo_title'         => Yii::t('model','ImageSeoTitle'),
-            'seo_keywords'      => Yii::t('model','ImageSeoKeywords'),
-			'seo_description'   => Yii::t('model','ImageSeoDescription'),			
-			'content'           => Yii::t('model','ImageContent'),
+			'special_id'        => Yii::t('model','ImageSpecialId'),			
 			'copy_from'         => Yii::t('model','ImageCopyFrom'),
 			'copy_url'          => Yii::t('model','ImageCopyUrl'),
 			'redirect_url'      => Yii::t('model','ImageRedirectUrl'),
@@ -150,18 +175,6 @@ class Image extends CActiveRecord
 
 		$criteria->compare('special_id',$this->special_id);
 
-		$criteria->compare('introduce',$this->introduce,true);
-
-		$criteria->compare('image_list',$this->image_list,true);
-
-		$criteria->compare('seo_title',$this->seo_title,true);
-
-		$criteria->compare('seo_description',$this->seo_description,true);
-
-		$criteria->compare('seo_keywords',$this->seo_keywords,true);
-
-		$criteria->compare('content',$this->content,true);
-
 		$criteria->compare('copy_from',$this->copy_from,true);
 
 		$criteria->compare('copy_url',$this->copy_url,true);
@@ -182,8 +195,6 @@ class Image extends CActiveRecord
 
 		$criteria->compare('top_line',$this->top_line,true);
 
-		$criteria->compare('update_time',$this->update_time,true);
-
 		$criteria->compare('reply_count',$this->reply_count,true);
 
 		$criteria->compare('reply_allow',$this->reply_allow,true);
@@ -194,21 +205,23 @@ class Image extends CActiveRecord
 
 		$criteria->compare('create_time',$this->create_time,true);
 
-		return new CActiveDataProvider('Image', array(
+		$criteria->compare('update_time',$this->update_time,true);
+
+		return new CActiveDataProvider('Album', array(
 			'criteria'=>$criteria,
 		));
 	}
 
 	/**
 	 * Returns the static model of the specified AR class.
-	 * @return Image the static model class
+	 * @return Album the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
-	
-	/**
+    
+    /**
 	 * 获取一定条件下的图集
 	 * @param array $params = ('condition'=> '额外条件', 'order'=>'排序', 'with'=>'关联表', 'limit'=>'条数', 'page'=>'是否分页')
 	 * @param $pages 分页widget
@@ -230,10 +243,12 @@ class Image extends CActiveRecord
 		$params['condition'] && $criteria->condition .= $params['condition'];
 		$criteria->order = $params['order']?$params['order']:'t.id DESC';
 		$criteria->with = array ( 'catalog' );
-		$criteria->select = "t.title, t.id, t.tags, t.attach_thumb, t.image_list,";
-		$criteria->select .= " t.copy_from, t.copy_url, t.update_time,t.introduce, t.view_count";
+		$criteria->select = "t.title, t.id, t.tags, t.attach_thumb, ";
+		$criteria->select .= " t.copy_from, t.copy_url, t.update_time, t.view_count";
 		$criteria->params = array(':status'=> 'Y');
-		$params['with'] && $criteria->with = (array)$params['with'];
+		if($params['with'] == 'content') {
+            $criteria->with = array('catalog', 'content');            
+        }
 	
 		$limit = $params['limit']>0?intval($params['limit']):15;
 		//是否分页

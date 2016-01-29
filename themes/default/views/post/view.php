@@ -47,9 +47,9 @@
 				</p>
 				<div class="content_info">
 					<div class="description">
-						[<?php echo Yii::t('common','Guide Read')?>]：<?php echo $post->introduce?$post->introduce:'...';?>
+						[<?php echo Yii::t('common','Guide Read')?>]：<?php echo $post->content->introduce?$post->content->introduce:'...';?>
 					</div>
-					<?php echo $post->content;?>
+					<?php echo $post->content->content;?>
 				</div>
 					
 				

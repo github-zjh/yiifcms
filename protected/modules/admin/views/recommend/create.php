@@ -26,7 +26,7 @@
                 <?php $this->widget('CLinkPager', array('pages' => $pagebar)); ?>
                 </div>
                 <div class="fixsel">                                        
-                    <input id="submit_maskall" class="button confirmSubmit" type="submit" value="<?php echo Yii::t('common', 'Submit'); ?>" name="maskall" />
+                    <input id="submit_maskall" class="button" type="submit" value="<?php echo Yii::t('common', 'Submit'); ?>" name="maskall" />
                 </div>
             </td>
         </tr>

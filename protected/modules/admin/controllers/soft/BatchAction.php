@@ -21,13 +21,16 @@ class BatchAction extends CAction
             case 'delete':      
                 //删除                
                 foreach((array)$ids as $id){
-                    $softModel = Soft::model()->findByPk($id);
+                    $softModel = Soft::model()->with('content')->findByPk($id);                    
                     if($softModel){ 
                         Uploader::deleteFile(ROOT_PATH.$softModel->soft_icon);
-                        Uploader::deleteFile(ROOT_PATH.$softModel->soft_file);                                              
-                    }
-                }
-                Soft::model()->deleteAll($criteria);
+                        Uploader::deleteFile(ROOT_PATH.$softModel->content->soft_file);
+                        $softModel->delete();
+                        $softModel->content->delete();
+                    }          
+                    //删除关联的标签
+                    TagData::model()->deleteAll('content_id =:id AND type =:type', array(':id'=>$id, ':type'=>$this->controller->_type_ids['soft']));
+                }                
                 break;       
             case 'show':     
                 //显示

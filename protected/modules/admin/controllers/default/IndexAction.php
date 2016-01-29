@@ -49,7 +49,7 @@ class IndexAction extends CAction
 			),
 			array(
                 array('url'=> $this->controller->createUrl('post/index'), 'name'=>Yii::t('admin','Article Manage')),
-                array('url'=> $this->controller->createUrl('image/index'), 'name'=>Yii::t('admin','Image Manage')),
+                array('url'=> $this->controller->createUrl('album/index'), 'name'=>Yii::t('admin','Image Manage')),
                 array('url'=> $this->controller->createUrl('soft/index'), 'name'=>Yii::t('admin','Soft Manage')),
                 array('url'=> $this->controller->createUrl('video/index'), 'name'=>Yii::t('admin','Video Manage')),				
                 array('url'=> $this->controller->createUrl('page/index'), 'name'=>Yii::t('admin','Page Manage')),                    

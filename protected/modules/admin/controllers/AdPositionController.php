@@ -2,9 +2,9 @@
 /**
  * 广告位管理
  * 
- * @author  Sim Zhao <326196998@qq.com>
+ * @author  GoldHan.zhao <326196998@qq.com>
  * @link    http://www.yiifcms.com/
- * @copyright   Copyright (c) 2014-2015. All rights reserved.
+ * @copyright   Copyright (c) 2014-2016. All rights reserved.
  * 
  */
 class AdPositionController extends Backend

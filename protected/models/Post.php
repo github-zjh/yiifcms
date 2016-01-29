@@ -28,12 +28,11 @@ class Post extends CActiveRecord
 			array('catalog_id, special_id', 'numerical', 'integerOnly'=>true),
 			array('user_id, view_count, favorite_count, update_time, reply_count, sort_order, create_time', 'length', 'max'=>10),
 			array('copy_from', 'length', 'max'=>100),
-			array('title, title_second, title_style, seo_title, seo_keywords, copy_url, redirect_url, tags', 'length', 'max'=>255),
-			array('commend, top_line, reply_allow, status', 'length', 'max'=>1),
-			array('content, introduce, seo_description', 'safe'),
+			array('title, title_second, title_style, copy_url, redirect_url, tags', 'length', 'max'=>255),
+			array('commend, top_line, reply_allow, status', 'length', 'max'=>1),			
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, user_id, title, title_second, title_style, catalog_id, special_id, introduce, seo_title, seo_description, seo_keywords, content, copy_from, copy_url, redirect_url, tags, view_count, commend, favorite_count, top_line, update_time, reply_count, reply_allow, sort_order, status, create_time', 'safe', 'on'=>'search'),
+			array('id, user_id, title, title_second, title_style, catalog_id, special_id, copy_from, copy_url, redirect_url, tags, view_count, commend, favorite_count, top_line, update_time, reply_count, reply_allow, sort_order, status, create_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -45,9 +44,50 @@ class Post extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-	        'catalog'=>array(self::BELONGS_TO, 'Catalog', 'catalog_id', 'alias'=>'catalog', 'select'=>'id,catalog_name,type'),
+	        'catalog' => array(self::BELONGS_TO, 'Catalog', 'catalog_id', 'alias'=>'catalog', 'select'=>'id,catalog_name,type'),
+            'content' => array(self::HAS_ONE, 'PostContent', 'post_id', 'alias'=>'pc'),
 	    );
 	}
+    
+    /**
+     * 保存前校验或者整理数据
+     * 
+     * @return boolean
+     */
+    public function beforeSave()
+    {
+        if($this->catalog_id <= 0) {
+            $this->addError('catalog_id', Yii::t('admin', 'Catalog Is Required'));
+            return false;
+        }
+        if($this->tags) {            		
+    		$unique_tags = array_unique(explode(',', str_replace(array (' ' , '，' ), array('',','), $this->tags)));    		
+    		$explodeTags = array_slice($unique_tags, 0, 5);  
+    		$this->tags = implode(',',$explodeTags);
+        }
+        if($this->isNewRecord) {            
+    		$this->create_time = time();
+    		$this->update_time = $this->create_time;
+        } else {
+            $this->update_time = time();
+        }
+        return true;
+    }
+    
+    /**
+     * 保存之后处理
+     * 
+     * @return boolean
+     */
+    public function afterSave()
+    {
+        $explodeTags = explode(',', $this->tags);
+        $type = ModelType::model()->findByAttributes(array('type_key' => 'post'));
+        $type_id = $type ? $type->id : 1;
+        //更新标签数据
+        Tag::model()->updateTagData($explodeTags, array('content_id'=>$this->id, 'status'=>$this->status, 'type_id'=> $type_id));
+        return true;
+    }
 
 	/**
 	 * @return array 自定义属性标签 (name=>label)
@@ -61,12 +101,7 @@ class Post extends CActiveRecord
 			'title_second'      => Yii::t('model','PostTitleSecond'),			
 			'title_style'       => Yii::t('model','PostTitleStyle'),	
 			'catalog_id'        => Yii::t('model','PostCatalogId'),
-			'special_id'        => Yii::t('model','PostSpecialId'),
-			'introduce'         => Yii::t('model','PostIntroduce'),			
-			'seo_title'         => Yii::t('model','PostSeoTitle'),
-			'seo_description'   => Yii::t('model','PostSeoDescription'),
-			'seo_keywords'      => Yii::t('model','PostSeoKeywords'),
-			'content'           => Yii::t('model','PostContent'),
+			'special_id'        => Yii::t('model','PostSpecialId'),			
 			'copy_from'         => Yii::t('model','PostCopyFrom'),
 			'copy_url'          => Yii::t('model','PostCopyUrl'),
 			'redirect_url'      => Yii::t('model','PostRedirectUrl'),
@@ -119,10 +154,11 @@ class Post extends CActiveRecord
 		$criteria->order = $params['order']?$params['order']:'t.id DESC';
 		$criteria->with = array ( 'catalog' );
 		$criteria->select = "t.title, t.id,t.title_style, ";
-		$criteria->select .= " t.copy_from, t.copy_url, t.update_time,t.introduce, t.tags, t.view_count";
+		$criteria->select .= " t.copy_from, t.copy_url, t.update_time, t.tags, t.view_count";
 		$criteria->params = array(':status'=> 'Y');
-		$params['with'] && $criteria->with = (array)$params['with'];
-		
+        if($params['with'] == 'content') {
+            $criteria->with = array('catalog', 'content');            
+        }		
 		$limit = $params['limit']>0?intval($params['limit']):15;
 		//是否分页
 		if($params['page']){

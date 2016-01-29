@@ -91,6 +91,7 @@
             var val = $(this).val();
             $(this).nextAll('.cat_select').remove();
             if(id <= 0) {
+                $('#catalogId').val(val);
                 return false;
             }
             $('.loading').show();

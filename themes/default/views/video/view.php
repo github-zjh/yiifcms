@@ -237,7 +237,7 @@
                         <!-- 视频播放 -->
                         <div id="video-container">
                             <video width="720" height="480" id="player1" controls="controls" preload="none" poster="<?php echo $video->cover_image;?>">
-                                <source src="<?php echo $video->video_file;?>"  type="video/mp4" />
+                                <source src="<?php echo $video->content->video_file;?>"  type="video/mp4" />
                                 <track kind="subtitles" src="../media/mediaelement.srt" srclang="en" ></track>
                             </video>
                         </div>
@@ -245,8 +245,14 @@
                         <!-- 视频简介 -->
 						<div class="info_desc clear">
 							<h1>视频简介：</h1>
-							<?php echo $video->introduce;?>
-						</div>						
+							<?php echo $video->content->introduce;?>
+						</div>
+                        
+                        <!-- 视频简介 -->
+						<div class="info_desc clear">
+							<h1>视频内容：</h1>
+							<?php echo $video->content->content;?>
+						</div>
 					</div>
 					
 				</div>

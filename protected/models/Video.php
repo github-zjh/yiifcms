@@ -8,23 +8,18 @@
  * @property string $title
  * @property integer $catalog_id
  * @property string $cover_image
- * @property string $video_file
  * @property string $language
  * @property string $video_type
  * @property string $video_score
  * @property string $video_size
  * @property string $download
- * @property string $introduce
  * @property string $update_time
  * @property string $create_time
  * @property integer $view_count
  * @property integer $down_count
  * @property string $voted
  * @property string $status
- * @property string $tags 
- * @property string $seo_title
- * @property string $seo_description
- * @property string $seo_keywords
+ * @property string $tags
  */
 class Video extends CActiveRecord
 {
@@ -47,16 +42,15 @@ class Video extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+            array('title', 'required'),
 			array('catalog_id, view_count, down_count', 'numerical', 'integerOnly'=>true),
-			array('title, cover_image, video_file, download, voted, tags, seo_title, seo_keywords', 'length', 'max'=>100),
-			array('introduce, seo_description', 'length', 'max'=>200),
+			array('title, cover_image, download, voted, tags', 'length', 'max'=>100),			
 			array('language, video_type, video_size, update_time, create_time', 'length', 'max'=>10),
 			array('video_score', 'length', 'max'=>3),
-			array('status', 'length', 'max'=>1),
-			array('introduce, seo_description', 'safe'),
+			array('status', 'length', 'max'=>1),			
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, catalog_id, cover_image, video_file, language, video_type, video_score, video_size, download, introduce, update_time, create_time, view_count, down_count, voted, status, tags, seo_title, seo_description, seo_keywords', 'safe', 'on'=>'search'),
+			array('id, title, catalog_id, cover_image, language, video_type, video_score, video_size, download, update_time, create_time, view_count, down_count, voted, status, tags', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,9 +62,50 @@ class Video extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-	        'catalog'=>array(self::BELONGS_TO, 'Catalog', 'catalog_id', 'alias'=>'catalog', 'select'=>'id,catalog_name'),
+	        'catalog' => array(self::BELONGS_TO, 'Catalog', 'catalog_id', 'alias'=>'catalog', 'select'=>'id,catalog_name'),
+            'content' => array(self::HAS_ONE, 'VideoContent', 'video_id'),
 	    );
 	}
+    
+    /**
+    * 保存前校验或者整理数据
+    * 
+    * @return boolean
+    */
+    public function beforeSave()
+    {
+        if($this->catalog_id <= 0) {
+            $this->addError('catalog_id', Yii::t('admin', 'Catalog Is Required'));
+            return false;
+        }
+        if($this->tags) {            		
+    		$unique_tags = array_unique(explode(',', str_replace(array (' ' , '，' ), array('',','), $this->tags)));    		
+    		$explodeTags = array_slice($unique_tags, 0, 5);  
+    		$this->tags = implode(',',$explodeTags);
+        }
+        if($this->isNewRecord) {            
+    		$this->create_time = time();
+    		$this->update_time = $this->create_time;
+        } else {
+            $this->update_time = time();
+        }
+        return true;
+    }
+    
+    /**
+     * 保存之后处理
+     * 
+     * @return boolean
+     */
+    public function afterSave()
+    {
+        $explodeTags = explode(',', $this->tags);
+        $type = ModelType::model()->findByAttributes(array('type_key' => 'video'));
+        $type_id = $type ? $type->id : 1;
+        //更新标签数据
+        Tag::model()->updateTagData($explodeTags, array('content_id'=>$this->id, 'status'=>$this->status, 'type_id'=> $type_id));
+        return true;
+    }
 
 	/**
 	 * @return array customized attribute labels (name=>label)
@@ -81,24 +116,19 @@ class Video extends CActiveRecord
 			'id'              => Yii::t('model','VideoId'),
 			'title'           => Yii::t('model','VideoTitle'),
 			'catalog_id'      => Yii::t('model','VideoCatalog'),
-			'cover_image'     => Yii::t('model','VideoCoverImage'),
-			'video_file'      => Yii::t('model','VideoFile'),
+			'cover_image'     => Yii::t('model','VideoCoverImage'),			
 			'language'        => Yii::t('model','VideoLanguage'),
 			'video_type'      => Yii::t('model','VideoType'),
 			'video_score'     => Yii::t('model','VideoScore'),
 			'video_size'      => Yii::t('model','VideoSize'),
-			'download'        => Yii::t('model','VideoDownload'),
-			'introduce'       => Yii::t('model','VideoIntroduce'),			
+			'download'        => Yii::t('model','VideoDownload'),				
 			'update_time'     => Yii::t('model','VideoUpdateTime'),
 			'create_time'     => Yii::t('model','VideoCreateTime'),
 			'view_count'      => Yii::t('model','VideoViewCount'),
 			'down_count'      => Yii::t('model','VideoDownCount'),
 			'voted'           => Yii::t('model','VideoVoted'),
 			'status'          => Yii::t('model','VideoStatus'),
-            'tags'            => Yii::t('model','VideoTags'),
-			'seo_title'       => Yii::t('model','VideoSeoTitle'),
-			'seo_description' => Yii::t('model','VideoSeoDescription'),
-			'seo_keywords'    => Yii::t('model','VideoSeoKeywords'),
+            'tags'            => Yii::t('model','VideoTags'),			
 		);
 	}
 
@@ -128,8 +158,6 @@ class Video extends CActiveRecord
 
 		$criteria->compare('cover_image',$this->cover_image,true);
 
-		$criteria->compare('video_file',$this->video_file,true);
-
 		$criteria->compare('language',$this->language,true);
 
 		$criteria->compare('video_type',$this->video_type,true);
@@ -139,8 +167,6 @@ class Video extends CActiveRecord
 		$criteria->compare('video_size',$this->video_size,true);
 
 		$criteria->compare('download',$this->download,true);
-
-		$criteria->compare('introduce',$this->introduce,true);
 
 		$criteria->compare('update_time',$this->update_time,true);
 
@@ -155,12 +181,6 @@ class Video extends CActiveRecord
 		$criteria->compare('status',$this->status,true);
         
         $criteria->compare('tags',$this->tags,true);
-
-		$criteria->compare('seo_title',$this->seo_title,true);
-
-		$criteria->compare('seo_description',$this->seo_description,true);
-
-		$criteria->compare('seo_keywords',$this->seo_keywords,true);
 
 		return new CActiveDataProvider('Video', array(
 			'criteria'=>$criteria,
@@ -198,9 +218,11 @@ class Video extends CActiveRecord
 		$params['condition'] && $criteria->condition .= $params['condition'];		
 		$criteria->order = $params['order']?$params['order']:'t.id DESC';
 		$criteria->with = array ( 'catalog' );
-		$criteria->select = "t.title, t.id, t.update_time,t.introduce, t.tags, t.view_count, t.cover_image, t.video_score";		
+		$criteria->select = "t.title, t.id, t.update_time, t.tags, t.view_count, t.cover_image, t.video_score";		
 		$criteria->params = array(':status'=> 'Y');
-		$params['with'] && $criteria->with = (array)$params['with'];
+		if($params['with'] == 'content') {
+            $criteria->with = array('catalog', 'content');            
+        }
 		
 		$limit = $params['limit']>0?intval($params['limit']):15;
 		//是否分页
