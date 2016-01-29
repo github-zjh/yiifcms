@@ -15,7 +15,7 @@ class ImageCreateAction extends CAction
             exit;
         }
         $criteria = new CDbCriteria();
-        $criteria->addColumnCondition(array('type' => $this->controller->_type_ids['image']));
+        $criteria->addColumnCondition(array('type' => $this->controller->_type_ids['album']));
         $criteria->addCondition('total_page > cur_page');
         //可以采集的站点
         $settings = $model->findAll($criteria);
