@@ -19,8 +19,8 @@ class AjaxAction extends CAction {
                 $t && $tag_ids[] = $t->id;
             }
         } else {
-            $alltags = Tag::model()->findAll(array('order' => 'data_count'));
-            foreach ((array) $alltags as $tv) {
+            $all_tags = Tag::model()->findAll(array('order' => 'data_count'));
+            foreach ((array) $all_tags as $tv) {
                 $tag_ids[] = $tv->id;
             }
         }
