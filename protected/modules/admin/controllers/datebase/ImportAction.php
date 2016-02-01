@@ -41,8 +41,8 @@ class ImportAction extends CAction
                 asort($sqlfiles);
                 $prepre = '';                
                 foreach ($sqlfiles as $sqlfile) {
-                    $info = array();
-                    $filesize = round(filesize($sqlfile) / (1024 * 1024), 2);
+                    $info = array();                    
+                    $filesize = Helper::byteFormat(filesize($sqlfile));
                     $maketime = date('Y-m-d H:i:s', filemtime($sqlfile));
                     if (preg_match("/^(db_[\d]{14})_([\d]+)\.sql$/i", basename($sqlfile), $matches)) {
                         $info['filename'] = basename($sqlfile);
@@ -65,7 +65,7 @@ class ImportAction extends CAction
      */
     protected  function startImport($file = '')
     {        
-        ini_set('max_execution_time', '3600');
+        set_time_limit(3600);
         $file_content = file_get_contents($file);
         $content = preg_replace('/\-\-comment_start(.*?)\-\-comment_end/is', '', $file_content);
         //分隔sql
@@ -87,7 +87,7 @@ class ImportAction extends CAction
             $pre_row_progress = 100;
             $finish = false;
             //执行成功一次 输出符号
-            $char = '=';
+            $char = '=';            
             foreach($sqls as $sql) {
                 if(!trim($sql)) {                    
                     if($i == $count) {

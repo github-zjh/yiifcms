@@ -16,10 +16,10 @@ class DownloadAction extends CAction {
 		if(isset($cookie[$cookie_key]) && $cookie[$cookie_key]->value){
 			throw new CHttpException(404, Yii::t('common','Access frequency too fast'));
 		}
-		$soft = Soft::model()->findByPk($id);		
+		$soft = Soft::model()->with('content')->findByPk($id);		
 		if($soft){
-			$file = Helper::convertChineseName(ROOT_PATH.'/'.$soft->soft_file);            
-			if($soft->soft_file && file_exists($file)){
+			$file = Helper::convertChineseName(ROOT_PATH.'/'.$soft->content->soft_file);            
+			if($soft->content->soft_file && file_exists($file)){
                 $filename = pathinfo($file, PATHINFO_BASENAME);
 				//更新下载次数
 				$soft->updateCounters(array ('down_count' => 1 ), 'id=:id', array ('id' => $id ));

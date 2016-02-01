@@ -5,7 +5,7 @@
             <li><a href="<?php echo $this->createUrl('create') ?>" class="actionBtn"><span><?php echo Yii::t('admin', 'Add'); ?></span></a></li>
         </ul>
         <div class="search right">
-            <?php $this->beginWidget('CActiveForm', array('id' => 'searchForm', 'method' => 'get', 'action' => array('special'), 'htmlOptions' => array('name' => 'xform'))); ?>
+            <?php $this->beginWidget('CActiveForm', array('id' => 'searchForm', 'method' => 'get', 'action' => array('index'), 'htmlOptions' => array('name' => 'xform'))); ?>
             <?php echo Yii::t('admin', 'Special Name'); ?>
             <input id="title" type="text" name="title" value="<?php echo Yii::app()->request->getParam('title') ?>" />        
             <input name="searchsubmit" type="submit" value="<?php echo Yii::t('admin', 'Query'); ?>" class="button"/>            
@@ -28,7 +28,7 @@
                 <td><?php echo date('Y-m-d H:i', $row->create_time) ?></td>
                 <td>
                     <a href="<?php echo $this->createUrl('update', array('id' => $row->id)) ?>"><img src="<?php echo $this->module->assetsUrl; ?>/images/update.png" align="absmiddle" /></a>&nbsp;&nbsp;
-                    <a href="<?php echo $this->createUrl('batch', array('command' => 'specialDelete', 'id' => $row->id)) ?>" class="confirmSubmit"><img src="<?php echo $this->module->assetsUrl; ?>/images/delete.png" align="absmiddle" /></a>&nbsp;&nbsp;                    
+                    <a href="<?php echo $this->createUrl('batch', array('command' => 'delete', 'id' => $row->id)) ?>" class="confirmSubmit"><img src="<?php echo $this->module->assetsUrl; ?>/images/delete.png" align="absmiddle" /></a>&nbsp;&nbsp;                    
                     <a href="<?php echo $this->createUrl('/special/index', array('id' => $row->id)) ?>" target="_blank"><img src="<?php echo $this->module->assetsUrl; ?>/images/view.png" align="absmiddle" /></a>
                 </td>
             </tr>

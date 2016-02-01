@@ -76,7 +76,7 @@
     </tr>
 
     <tr>
-        <td class="tb_title"><?php echo $form->label($model, 'soft_file'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model->content, 'soft_file'); ?>：</td>
     </tr>
     <tr>
         <td colspan="2" >    	
@@ -85,12 +85,12 @@
             </div>
             <!-- 显示已上传的文件-->            
             <ul class="resumable-files clear">
-                <?php if ($model->soft_file): ?>           
+                <?php if ($model->content->soft_file): ?>           
                     <li>
-                        <span style="color:green"><?php echo pathinfo($model->soft_file, PATHINFO_BASENAME); ?></span>
-                        <input type="hidden" value="<?php echo $model->soft_file; ?>" name="soft_file">
+                        <span style="color:green"><?php echo pathinfo($model->content->soft_file, PATHINFO_BASENAME); ?></span>
+                        <input type="hidden" value="<?php echo $model->content->soft_file; ?>" name="soft_file">
                         <div class="clear">
-                            <a href="<?php echo Helper::getFullUrl($model->soft_file); ?>" class="left" target="_blank">[查看]</a>
+                            <a href="<?php echo Helper::getFullUrl($model->content->soft_file); ?>" class="left" target="_blank">[查看]</a>
                             <a href="javascript:;" class="right" onclick="deleteFile(this)">[删除]</a>
                         </div>
                     </li>           
@@ -111,19 +111,19 @@
         </td>
     </tr>    
     <tr>
-        <td class="tb_title"><?php echo $form->label($model, 'content'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model->content, 'content'); ?>：</td>
     </tr>
     <tr>
-        <td><?php echo $form->textArea($model, 'content'); ?>      
-            <?php $this->widget('application.widget.kindeditor.KindEditor', array('id' => 'Soft_content')); ?>
+        <td><?php echo $form->textArea($model->content, 'content'); ?>      
+            <?php $this->widget('application.widget.kindeditor.KindEditor', array('id' => 'SoftContent_content')); ?>
         </td>
     </tr>
 
     <tr>
-        <td class="tb_title"><?php echo $form->label($model, 'introduce'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model->content, 'introduce'); ?>：</td>
     </tr>
     <tr>
-        <td><?php echo CHtml::activeTextArea($model, 'introduce', array('rows' => 5, 'cols' => 90)); ?></td>
+        <td><?php echo $form->textArea($model->content, 'introduce', array('rows' => 5, 'cols' => 90)); ?></td>
     </tr>
     
     <tr>
@@ -131,7 +131,7 @@
     </tr>
     <tr>
         <td><?php echo $form->textField($model, 'tags', array('size' => 50, 'maxlength' => 255)); ?>
-            <input type="button" value="自动提取" onclick="keywordGet('Soft_title', 'Soft_content', 'Soft_tags')" />
+            <input type="button" value="自动提取" onclick="keywordGet('Soft_title', 'SoftContent_content', 'Soft_tags')" />
         </td>
     </tr>
 
@@ -142,24 +142,24 @@
         <td  ><?php echo $form->textField($model, 'softlink', array('size' => 60, 'maxlength' => 128)); ?></td>
     </tr>
     <tr>
-        <td class="tb_title"><?php echo $form->label($model, 'seo_title'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model->content, 'seo_title'); ?>：</td>
     </tr>
     <tr>
-        <td><?php echo $form->textField($model, 'seo_title', array('size' => 50, 'maxlength' => 80)); ?></td>
+        <td><?php echo $form->textField($model->content, 'seo_title', array('size' => 50, 'maxlength' => 80)); ?></td>
     </tr>
     <tr>
-        <td  class="tb_title"><?php echo $form->label($model, 'seo_keywords'); ?>：</td>
+        <td  class="tb_title"><?php echo $form->label($model->content, 'seo_keywords'); ?>：</td>
     </tr>
     <tr>
-        <td><?php echo $form->textField($model, 'seo_keywords', array('size' => 50, 'maxlength' => 80)); ?>
-            <input type="button" value="自动提取"	onclick="keywordGet('Soft_title', 'Soft_content', 'Soft_seo_keywords')" />
+        <td><?php echo $form->textField($model->content, 'seo_keywords', array('size' => 50, 'maxlength' => 80)); ?>
+            <input type="button" value="自动提取"	onclick="keywordGet('Soft_title', 'SoftContent_content', 'SoftContent_seo_keywords')" />
         </td>
     </tr>
     <tr>
-        <td class="tb_title"><?php echo $form->label($model, 'seo_description'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model->content, 'seo_description'); ?>：</td>
     </tr>
     <tr>
-        <td><?php echo CHtml::activeTextArea($model, 'seo_description', array('rows' => 5, 'cols' => 80)); ?></td>
+        <td><?php echo CHtml::activeTextArea($model->content, 'seo_description', array('rows' => 5, 'cols' => 80)); ?></td>
     </tr>  
 
     <tr>

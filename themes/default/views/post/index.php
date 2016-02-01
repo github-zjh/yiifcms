@@ -31,7 +31,7 @@
 							<span class="views fa">&nbsp;&nbsp;<em><?php echo $post->view_count;?></em></span>
 						</p>									
 						<div class="content_info clear">			
-							<div><?php echo $post->introduce?CHtml::encode($post->introduce):'...';?></div>
+							<div><?php echo $post->content->introduce?CHtml::encode($post->content->introduce):'...';?></div>
 						</div>
 						
 						<a href="<?php echo $this->createUrl('post/view', array('id'=>$post->id));?>" class="continue_read"><?php echo Yii::t('common','Read More');?></a>

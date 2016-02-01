@@ -63,7 +63,7 @@ class Menu extends CActiveRecord
 			'menu_name' => Yii::t('model','menu_name'),
 			'menu_link' => Yii::t('model','menu_link'),
 			'unique' => Yii::t('model','menu_unique'),
-			'status' => Yii::t('model','status'),
+			'status' => Yii::t('model','menu_status'),
 			'parent_id' => Yii::t('model','parent_id'),
 			'sort_order' => Yii::t('model','menu_sort_order'),
 			'target' => Yii::t('model','new_open')

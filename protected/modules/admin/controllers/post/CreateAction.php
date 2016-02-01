@@ -9,7 +9,8 @@
 class CreateAction extends CAction
 {	
 	public function run(){
-		$model = new Post();       
+		$model = new Post();
+        $model->content = new PostContent();
     	if(isset($_POST['Post']))
     	{
     		$model->attributes=$_POST['Post'];
@@ -28,22 +29,13 @@ class CreateAction extends CAction
                 $model->title_style = serialize($title_style);
             } else {    		
     			$model->title_style = '';
-    		}
+    		}    		
     		
-    		//标签   (前5个标签有效) 		
-    		$tags = trim($_POST['Post']['tags']);    		
-    		$unique_tags = array_unique(explode(',', str_replace(array (' ' , '，' ), array('',','), $tags)));    		
-    		$explodeTags = array_slice($unique_tags, 0, 5);  
-    		$model->tags = implode(',',$explodeTags);
-    		
-    		//摘要
-    		$model->introduce = trim($_POST['Post']['introduce'])?$_POST['Post']['introduce']:Helper::truncate_utf8_string(preg_replace('/\s+/',' ',$_POST['Post']['content']), 200);
-    		
-    		$model->create_time = time();
-    		$model->update_time = $model->create_time;
     		if($model->save()){
-    			//更新标签数据
-				Tag::model()->updateTagData($explodeTags, array('content_id'=>$model->id, 'status'=>$model->status, 'type_id'=>$this->controller->_type_ids['post']));
+                //更新内容
+                $model->content->attributes = $_POST['PostContent'];
+                $model->content->post_id = $model->id;
+                $model->content->save();    			
 				$this->controller->message('success',Yii::t('admin','Add Success'),$this->controller->createUrl('index'));
     		}
     	}

@@ -9,7 +9,7 @@
 class IndexAction extends CAction
 {	
 	public function run(){
-		$model = new Image();
+		$model = new Album();
         //条件
         $criteria = new CDbCriteria();
         $title     = trim( Yii::app()->request->getParam( 'title' ) );        
@@ -23,7 +23,7 @@ class IndexAction extends CAction
         
         //分页
         $pages = new CPagination( $count );
-        $pages->pageSize = 10;        
+        $pages->pageSize = 20;        
         $pages->applyLimit($criteria);
         $result = $model->findAll( $criteria );        
         

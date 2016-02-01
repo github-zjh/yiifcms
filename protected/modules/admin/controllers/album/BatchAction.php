@@ -2,8 +2,8 @@
 /**
  * 图集批量操作
  * 
- * @author        Sim Zhao <326196998@qq.com>
- * @copyright     Copyright (c) 2015. All rights reserved.
+ * @author        GoldHan.zhao <326196998@qq.com>
+ * @copyright     Copyright (c) 2014-2016. All rights reserved.
  */
 
 class BatchAction extends CAction
@@ -19,35 +19,45 @@ class BatchAction extends CAction
         $criteria->addInCondition('id', $ids);
         switch ( $command ) {
             case 'delete':      
-                //删除     
-                foreach((array)$ids as $id){                    
+                //删除
+                foreach((array)$ids as $id){
+                    $model = Album::model()->with('content')->findByPk($id);                    
+                    if($model){                        
+                        Uploader::deleteFile(ROOT_PATH.$model->attach_file);
+                        Uploader::deleteFile(ROOT_PATH.$model->attach_thumb);
+                        $album_list = $model->content ? $model->content->album_list : array();
+                        foreach((array)$album_list as $v) {
+                            Uploader::deleteFile($v);
+                        }                        
+                        $model->delete();
+                        $model->content->delete();
+                    }                                        
                     //删除关联的标签
-                    TagData::model()->deleteAll('content_id =:id AND type =:type', array(':id'=>$id, ':type'=>$this->controller->_type_ids['post']));
-                }
-                Image::model()->deleteAll($criteria);
+                    TagData::model()->deleteAll('content_id =:id AND type =:type', array(':id'=>$id, ':type'=>$this->controller->_type_ids['album']));
+                }                
                 break;       
             case 'show':     
                 //显示      
-                Image::model()->updateAll(['status' => 'Y'], $criteria);               
+                Album::model()->updateAll(['status' => 'Y'], $criteria);               
                 break;
             case 'hidden':     
                 //隐藏
-                Image::model()->updateAll(['status' => 'N'], $criteria);
+                Album::model()->updateAll(['status' => 'N'], $criteria);
                 break;
             case 'commend':     
                 //图集推荐
                 $content_id = implode(',', $ids);
-                $type_key = 'image';
+                $type_key = 'album';
                 $this->controller->redirect($this->controller->createUrl('recommend/create', array('content_id' => $content_id, 'type_key' => $type_key)));                 
                 break;
 
             case 'stick':     
                 //图集置顶
-                Image::model()->updateAll(['top_line' => 'Y'], $criteria);
+                Album::model()->updateAll(['top_line' => 'Y'], $criteria);
                 break;
             case 'cancelStick':     
                 //图集取消置顶
-                Image::model()->updateAll(['top_line' => 'N'], $criteria);
+                Album::model()->updateAll(['top_line' => 'N'], $criteria);
                 break;
             default:
                 $this->controller->message('error', Yii::t('admin','Error Operation'));                 

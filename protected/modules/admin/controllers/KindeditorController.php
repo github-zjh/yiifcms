@@ -2,8 +2,8 @@
 /**
  * KindEditor图片管理
  * 
- * @author        Sim Zhao <326196998@qq.com>
- * @copyright     Copyright (c) 2014-2015. All rights reserved.
+ * @author        GoldHan.zhao <326196998@qq.com>
+ * @copyright     Copyright (c) 2014-2016. All rights reserved.
  * 
  */
 class KindEditorController extends Backend

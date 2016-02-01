@@ -6,7 +6,7 @@
  * @copyright     Copyright (c) 2014-2015. All rights reserved.
  */
 
-class ImageController extends Backend
+class AlbumController extends Backend
 {	
 	protected $_special;
 	public $_type;
@@ -14,7 +14,7 @@ class ImageController extends Backend
 	public function init(){
 		parent::init();
 		//内容模型id
-		$this->_type = $this->_type_ids['image'];
+		$this->_type = $this->_type_ids['album'];
 		//图集栏目
 		$this->_catalog = Catalog::getTopCatalog(true, $this->_type);
 		//专题
@@ -35,7 +35,7 @@ class ImageController extends Backend
             'batch'  => 'Batch',    //批量操作
             'uploadSimple' => 'UploadSimple',   //图片ajax上传
             'uploadResumable' => 'UploadResumable',   //图片断点上传
-        ), 'application.modules.admin.controllers.image');
+        ), 'application.modules.admin.controllers.album');
         return array_merge($actions, $extra_actions);
     }
     
@@ -49,7 +49,7 @@ class ImageController extends Backend
     	if($this->model===null)
     	{
     		if(isset($_GET['id'])) {
-                $this->model = Image::model()->findbyPk($_GET['id']);            
+                $this->model = Album::model()->with('content')->findbyPk($_GET['id']);            
             }
     		if($this->model === null) {
                 throw new CHttpException(404,Yii::t('common', 'The requested page does not exist.'));            

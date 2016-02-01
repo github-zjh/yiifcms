@@ -599,5 +599,21 @@ class Helper
         $reg = '/^[a-zA-Z0-9_]+@(qq|126|163|sina|hotmail|yahoo|gmail|sohu|live)(\.com|\.com\.cn)$/';
         return preg_match($reg, trim($email));
     }
+    
+    /**
+	 * 引用字符串
+	 * @param  $string
+	 * @return string or array
+	 */
+	public static function mixaddslashes($string) {
+		if(is_array($string)) {
+			foreach($string as $key => $val) {
+				$string[$key] = self::addslashes($val);
+			}
+		} else {
+			$string = addslashes($string);
+		}
+		return $string;
+	}
 
 }

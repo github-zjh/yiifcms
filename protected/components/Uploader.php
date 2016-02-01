@@ -129,6 +129,16 @@ class Uploader{
             'thumb_width'         => 300,                   //缩略图宽度
             'thumb_height'        => 300                    //缩略图高度
         ),
+        //采集的图片
+        'spider' => array(
+            'save_path'          => 'spider',
+            'allow_ext'          => 'jpg,jpeg,png,gif',
+            'rand_name'          => true,
+            'make_thumb'         => true,
+            'thumb_width'        => 300,
+            'thumb_height'       => 300,
+            'max_upload_filesize' => 2097152,               //允许最大上传大小2M
+        ),
     );  
     
     /**
@@ -325,7 +335,10 @@ class Uploader{
 			$height = isset($this->config[$this->model]['thumb_height']) ? $this->config[$this->model]['thumb_height'] : 0;
 			
             //上传图片的尺寸
-			$imageinfo = $this->getImageInfo($this->save_path);			
+			$imageinfo = $this->getImageInfo($this->save_path);
+            if(!$imageinfo) {
+                throw new Exception('文件路径不存在:'.$this->save_path);
+            }
 			$imagewidth = $imageinfo['width'];
 			$imageheight = $imageinfo['height'];
 			$mime = $imageinfo['mime'];
@@ -615,5 +628,14 @@ class Uploader{
             mkdir($temp_dir, 0777, true);
         }
         return $temp_dir;        
+    }
+    
+    /**
+     * 供外部获取保存路径
+     * 
+     */
+    public function getSavePathFromRemote()
+    {
+        $this->_getSavePath();
     }
 }

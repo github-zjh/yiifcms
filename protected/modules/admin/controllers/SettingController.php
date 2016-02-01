@@ -30,9 +30,9 @@ class SettingController extends Backend
 	 */
 	public function updateData ($data, $scope = 'base')
 	{		
-		if ($this->method() == 'POST') {			
+		if (Yii::app()->request->isPostRequest) {			
 			foreach ((array) $data as $key => $row) {
-				$row = $this->addslashes($row);
+				$row = Helper::mixaddslashes($row);
 				Yii::app()->db->createCommand("REPLACE INTO {{setting}}(`scope`, `variable`, `value`) VALUES('$scope','$key', '$row') ")->execute();
 			}			
 			$this->message('success', '更新完成', $this->createUrl($this->action->id));

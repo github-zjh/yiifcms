@@ -150,6 +150,23 @@ class User extends CActiveRecord
 			$this->password = $this->createPassword($this->password);
 			$this->addtime = time();
 		}
+        //自己不能禁用自己  和 修改自己的权限
+        if($this->uid == Yii::app()->user->id) {
+            if(in_array($this->status, array(self::STATUS_AUDIT, self::STATUS_DISABLE))) {
+                $this->addError('status',Yii::t('admin','You Can Not Change Yourself'));
+                return false;
+            }
+            if($this->groupid != Yii::app()->user->groupid) {
+                $this->addError('status',Yii::t('admin','You Can Not Change Your Group'));
+                return false;
+            }            
+        }
+        
+        //低权限用户不能修改高权限用户
+        if($this->groupid > Yii::app()->user->groupid) {
+            $this->addError('status',Yii::t('admin','You Can Not Change The User Group'));
+            return false;
+        } 
 		return true;
 	}
 	/**

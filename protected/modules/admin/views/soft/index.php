@@ -28,7 +28,7 @@
         <thead>
             <tr class="tb_header">
                 <th width="10%"><?php echo $form->label($model, 'id'); ?></th>
-                <th><?php echo $form->label($model, 'title'); ?></th>
+                <th width="15%"><?php echo $form->label($model, 'title'); ?></th>
                 <th width="12%"><?php echo $form->label($model, 'catalog_id'); ?></th>
                 <th width="8%"><?php echo $form->label($model, 'status'); ?></th>    
                 <th width="8%"><?php echo $form->label($model, 'down_count'); ?></th>     
@@ -45,11 +45,13 @@
                     <a href="<?php echo $this->createUrl('/soft/view', array('id' => $row['id'])); ?>" title="<?php echo $row->title; ?>" target="_blank"><?php echo Helper::truncate_utf8_string($row->title, 20); ?></a><br />
                 </td>
                 <td ><?php echo $row->catalog->catalog_name ?></td>
-                <td><?php if ($row->status == 'Y') {
-                    echo Yii::t('admin', 'Show');
-                } else {
-                    echo "<span class='red'>" . Yii::t('admin', 'Hidden') . "</span>";
-                } ?></td>
+                <td>
+                    <?php if($row->status == 'Y'): ?>
+                    <span class="color_show">√</span>
+                    <?php else:?>
+                    <span class="color_hide">×</span>
+                    <?php endif;?>
+                </td>
                 <td><span ><?php echo $row->down_count ?></span></td>
                 <td ><?php echo date('Y-m-d H:i', $row->create_time) ?></td>
                 <td ><?php echo date('Y-m-d H:i', $row->update_time) ?></td>
@@ -89,6 +91,7 @@
             var val = $(this).val();
             $(this).nextAll('.cat_select').remove();
             if(id <= 0) {
+                $('#catalogId').val(val);
                 return false;
             }
             $('.loading').show();

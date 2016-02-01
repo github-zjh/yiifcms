@@ -109,7 +109,7 @@
 	<div class="tab_container">
 		<ul class="etabs text_align_left">
 			<li class="tab active"><a class="active" href="javascript:;" data-id="tab_soft1">最新下载</a></li>
-			<li class="tab"><a href="javascript:;">热门下载</a></li>		
+			<li class="tab"><a href="javascript:;" data-id="tab_soft2">热门下载</a></li>		
 		</ul>	
 		
 		<div class="panel_container">
@@ -140,12 +140,12 @@
 	</div>
 	<!-- 推荐下载区开始 -->
 	
-	<!-- 推荐教程区开始 -->
+	<!-- 推荐视频区开始 -->
 	<?php if($video_new):?>
 	<div class="tab_container">
 		<ul class="etabs text_align_right">
-            <li class="tab active"><a class="active" href="javascript:;" data-id="tab_video1">最新教程</a></li>
-			<li class="tab"><a href="javascript:;">热门教程</a></li>		
+            <li class="tab active"><a class="active" href="javascript:;" data-id="tab_video1">最新视频</a></li>
+			<li class="tab"><a href="javascript:;" data-id="tab_video2">热门视频</a></li>		
 		</ul>	
 		
 		<div class="panel_container">
@@ -153,7 +153,7 @@
 				<?php foreach((array)$video_new as $vn):?>
 				<li>
 					<a href="<?php echo $this->createUrl('video/view', array('id'=>$vn->id));?>" class="video_a">
-						<img width="150" height="200" src="<?php echo $vn->cover_image;?>" />						
+						<img width="150" height="180" src="<?php echo $vn->cover_image;?>" />						
 						<span class="v_play_mask"></span>
 						<span class="v_play_icon"></span>
 					</a>
@@ -177,7 +177,7 @@
 		</div>		
 	</div>
         <?php endif;?>
-	<!-- 推荐教程区结束 -->
+	<!-- 推荐视频区结束 -->
 	
 	<!-- 首页底部banner开始 -->
 	<?php if($index_bottom_banner):?>	

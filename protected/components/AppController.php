@@ -38,8 +38,9 @@ class AppController extends CController
 	public     $_static_public = '';       //公共资源目录	
 	public     $_data = '';
     public     $_request = '';	
-	public     $_type_ids = array();       //内容模型id	
-	public     $_content_models = array(); //内容模型对象
+	public     $_type_ids = array();         //内容模型id
+    public     $_type_names = array();       //内容模型名称
+	public     $_content_models = array();   //内容模型对象
 	public     $_cmsVersion = 'yiifcms1.5';
 	public     $_cmsRelease = '20160101';
 	
@@ -75,6 +76,7 @@ class AppController extends CController
 		if($model_types && is_array($model_types)){
 			foreach($model_types as $tp){
 				$this->_type_ids[$tp->type_key] = $tp->id;
+                $this->_type_names[$tp->id] = $tp->type_name;
 			}
 		}	
 		//内容模型对象	

@@ -47,7 +47,7 @@ class SoftController extends Backend
     {
     	if ($this->model === null) {
             if (isset($_GET['id'])) {
-                $this->model = Soft::model()->findbyPk($_GET['id']);
+                $this->model = Soft::model()->with('content')->findbyPk($_GET['id']);
             }
             if ($this->model === null) {
                 throw new CHttpException(404, Yii::t('common', 'The requested page does not exist.'));

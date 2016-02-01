@@ -21,12 +21,14 @@ class BatchAction extends CAction
             case 'delete':      
                 //删除                
                 foreach((array)$ids as $id){
-                    $videoModel = Video::model()->findByPk($id);
-                    if($videoModel){                        
-                        Uploader::deleteFile(ROOT_PATH.$videoModel->cover_image);                                                                 
+                    $model = Soft::model()->with('content')->findByPk($id);                    
+                    if($model){ 
+                        Uploader::deleteFile(ROOT_PATH.$model->cover_image);
+                        Uploader::deleteFile(ROOT_PATH.$model->content->video_file);
+                        $model->delete();
+                        $model->content->delete();
                     }
-                }
-                Video::model()->deleteAll($criteria);
+                }                
                 break;       
             case 'show':     
                 //显示

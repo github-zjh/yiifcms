@@ -45,7 +45,7 @@ class IndexAction extends CAction
         }else{ 
             $condition = '';
             $catalog = array();
-            $seo = ModelType::getSEO('post');    	
+            $seo = ModelType::getSEO('video');    	
             $this->controller->_seoTitle = $seo['seo_title'].' - '.$this->controller->_setting['site_name'];
             $this->controller->_seoKeywords = $seo['seo_keywords'];
             $this->controller->_seoDescription = $seo['seo_description'];
@@ -57,7 +57,7 @@ class IndexAction extends CAction
         $datalist = Video::model()->getList(array('condition'=>$condition, 'limit'=>15, 'order'=>$order_by, 'page'=>true), $pages);   
 
         //该栏目下最新的视频
-        $last_videos = Video::model()->getList(array('condition'=>$condition, 'limit'=>10));
+        $last_videos = Video::model()->getList(array('condition'=>$condition, 'limit'=>20));
         $this->controller->render( 'index', array('navs'=>$navs, 'catalog'=>$catalog, 'videos'=>$datalist, 'pagebar' => $pages,  'last_videos'=>$last_videos,'order'=>$order, 'search_cats' => $search_cats));    
 	}
 }

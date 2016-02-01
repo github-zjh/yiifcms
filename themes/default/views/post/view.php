@@ -26,6 +26,8 @@
 						<?php endforeach;?>								
 					</span>
 					<?php endif;?>
+                    <!-- 分类 -->
+                    <span><?php echo Yii::t('common','Catagorys')?>： <a href='<?php echo $this->createUrl('post/index', array('catalog_id' => $post->catalog_id));?>'><?php echo $post->catalog->catalog_name;?></a></span>
 					<span class="views"><em><?php echo $post->view_count;?></em></span>
 					
 					<!-- 收藏 -->
@@ -45,9 +47,9 @@
 				</p>
 				<div class="content_info">
 					<div class="description">
-						[<?php echo Yii::t('common','Guide Read')?>]：<?php echo $post->introduce?$post->introduce:'...';?>
+						[<?php echo Yii::t('common','Guide Read')?>]：<?php echo $post->content->introduce?$post->content->introduce:'...';?>
 					</div>
-					<?php echo $post->content;?>
+					<?php echo $post->content->content;?>
 				</div>
 					
 				

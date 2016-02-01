@@ -2,9 +2,9 @@
 /**
  * 
  * 后端控制类  所有控制器需要验证
- * @author zhaojinhan <326196998@qq.com>
- * @copyright Copyright (c) 2014-2015 Personal. All rights reserved.
- * @version v1.0.0
+ * @author GoldHan.zhao <326196998@qq.com>
+ * @copyright Copyright (c) 2014-2016 Personal. All rights reserved.
+ * @version v1.5
  * 
  */
 class Backend extends BackendBase
@@ -25,31 +25,31 @@ class Backend extends BackendBase
 	 */
 	public function acl(){
 		$acl = array(			
-			'setting' => array('seo','upload','cache', 'template','email', 'access','custom'), 		//网站设置
+			'setting' => array('seo', 'cache', 'template','email', 'access','custom'), 		        //网站设置
 			'catalog' => array('index','create','update','delete','batch'),                         //栏目管理
-			'menu' => array('index','create','update','delete','batch'),                            //导航管理
+			'menu' => array('index','create','update', 'batch'),                                    //导航管理
 			'special' => array('index','create','update','delete','batch'),                         //专题管理
-			'post' => array('index','create','update','delete','batch'),                            //文章管理	
-			'image' => array('index','create','update','delete','batch'),                           //图集管理
-			'soft' => array('index','create','update','delete','batch'),                            //软件管理
-			'video' => array('index','create','update','delete','batch'),                           //视频管理			
-			'page' => array('index','create','update','delete','batch'),                            //单页管理
+			'post' => array('index','create','update','batch'),                                     //文章管理	
+			'album' => array('index','create','update','uploadSimple','uploadResumable','batch'),   //图集管理
+			'soft' => array('index','create','update','uploadSimple','uploadResumable','batch'),    //软件管理
+			'video' => array('index','create','update','uploadSimple','uploadResumable','batch'),   //视频管理			
+			'page' => array('index','create','update', 'batch'),                                    //单页管理
 			'comment' => array('index','update','batch'),   				                        //评论管理
 			'reply' => array('index','update','batch'),   					                        //回复管理
-			'tag' => array('index','reset'),   					                                    //标签管理
-			'recommendPosition' => array('index','create','update','delete', 'view','batch'),       //推荐位管理
-			'user' => array('index','create','update','delete','batch'), 	                        //用户管理
+			'tag' => array('index','reset','batch'),   					                            //标签管理
+			'recommendPosition' => array('index','create','update', 'view','batch'),                //推荐位管理
+			'user' => array('index', 'admin', 'create','update', 'batch'), 	                        //用户管理
             'usergroup' => array('index','create','update'), 	                                    //用户组管理
 			'question' => array('index','update','batch'), 					                        //留言管理
-			'link' => array('index','create','update','delete','batch'), 	                        //链接管理
-			'adPosition' => array('index','create','update','delete','batch'),                      //广告位管理
-			'ad' => array('index','create','update','delete','batch'), 		                        //广告管理				
+			'link' => array('index','create','update', 'uploadSimple', 'batch'), 	                //链接管理
+			'adPosition' => array('index','create','update', 'uploadSimple', 'batch'),              //广告位管理
+			'ad' => array('index','create','update', 'uploadSimple','batch'), 		                //广告管理				
 			'modeltype' => array('index','create','update','batch'),                                //内容模型管理
-			'database' => array('index','query','doQuery','execute','export', 'database','operate','installtestdata'), 		//数据库管理
-			'cache' => array('index','cacheUpdate'),                                                //缓存管理
+			'database' => array('index','query','import','export','batch','install'), 		        //数据库管理
+			'cache' => array('index','update'),                                                     //缓存管理
 			'maillog' => array('index','batch'),                                                    //邮件日志管理
 			'oAuth' => array('index','update','batch'),                                             //第三方登录管理
-		
+            'kindeditor' => array('index','upload'),                                                //编辑器
 		);
 		return $acl;
 	}

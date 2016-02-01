@@ -22,11 +22,13 @@
 							<?php endforeach;?>								
 						</span>
 						<?php endif;?>
+                        <!-- 分类 -->
+                        <span><?php echo Yii::t('common','Catagorys')?>： <a href='<?php echo $this->createUrl('image/index', array('catalog_id' => $post->catalog_id));?>'><?php echo $post->catalog->catalog_name;?></a></span>
 						<span class="views"><em><?php echo $post->view_count;?></em></span>
 					</p>
 					<div class="content_info">
-						<?php if($post->image_list):?>
-						<?php $pics = explode(',', $post->image_list);?>												
+						<?php if($post->content->album_list):?>
+						<?php $pics = explode(',', $post->content->album_list);?>												
 						<div id="show_pics">
 							<a href="javascript:;" title="上一个" id="move_prev" class="prev_btn"></a>
 							<ul class="clear">								
@@ -43,14 +45,14 @@
 							<?php endforeach;?>										
 						</ul>	
 						<?php endif;?>
-						<?php echo $post->content;?>
+						<?php echo $post->content->content;?>
 					</div>
 					
 				</div>
 			</div>	
 			
 			<!-- 评论区 -->
-			<iframe id="comment_iframe" scrolling="no" marginheight="0" marginwidth="0" frameborder="0" src="<?php echo $this->createUrl('comment/create', array('view_url'=>$this->_request->getUrl(),'content_id'=>$post->id,'topic_type'=>'image'));?>"></iframe>			
+			<iframe id="comment_iframe" scrolling="no" marginheight="0" marginwidth="0" frameborder="0" src="<?php echo $this->createUrl('comment/create', array('view_url'=>$this->_request->getUrl(),'content_id'=>$post->id,'topic_type'=>'album'));?>"></iframe>			
 		</div>
 		
 		<!-- 右侧内容开始 -->
@@ -104,7 +106,7 @@
 			
 		});
 	</script>
-	<?php if($post->image_list):?>
+	<?php if($post->content->album_list):?>
 	<script type="text/javascript" reload="1">
 		var IMGDIR = '<?php echo $this->_static_public . "/js/discuz/";?>', VERHASH = 'yii', JSPATH = '<?php echo $this->_static_public . "/js/discuz/";?>';
 	    //仿discuz图片滚动放大效果
@@ -112,7 +114,7 @@
 		var imagemaxwidth = '500';//控制图片初始宽度
 		var aimgcount = new Array();
 		var pics = new Array();		
-		<?php $pics = explode(',', $post->image_list);?>
+		<?php $pics = explode(',', $post->content->album_list);?>
 		var count = <?php echo count($pics);?>
 		<?php foreach((array) $pics as $k => $pic):?>	
 		pics.push('<?php echo $k+1;?>');

@@ -13,7 +13,12 @@ class UpdateAction extends CAction
         $has_acls = $model->acl ? explode(',', $model->acl) : array();
         if (isset($_POST['UserGroup'])) {             
             $model->attributes = $_POST['UserGroup'];            
-            $model->acl = isset($_POST['acls']) ? $_POST['acls'] : '';   
+            if($model->id != User::AdminGroupID) {
+                $acls = isset($_POST['acls']) ? $_POST['acls'] : array();
+                $model->acl = array_merge($acls, array('default|login'));
+            } else {
+                $model->acl = 'Administrator';
+            }               
             if ($model->save()) {               
                 $this->controller->message('success',Yii::t('admin','Update Success'), $this->controller->createUrl('index'));
             }

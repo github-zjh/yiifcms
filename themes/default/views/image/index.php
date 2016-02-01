@@ -34,7 +34,7 @@
 							<?php if(file_exists($post->attach_thumb)):?>
 							<a class="content_cover" alt="<?php echo CHtml::encode($post->title);?>" title="<?php echo CHtml::encode($post->title);?>" href="<?php echo $this->createUrl('image/view', array('id'=>$post->id));?>"><img alt="<?php echo $post->tags;?>" src="<?php echo $post->attach_thumb;?>" /></a>
 							<?php endif;?>								
-							<?php echo $post->introduce?$post->introduce:'...';?>
+							<?php echo $post->content->introduce?$post->content->introduce:'...';?>
 						</p>
 						<a href="<?php echo $this->createUrl('image/view', array('id'=>$post->id));?>" class="continue_read"><?php echo Yii::t('common','Read More');?></a>
 					</div>

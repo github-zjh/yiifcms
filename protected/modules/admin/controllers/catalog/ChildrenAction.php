@@ -18,6 +18,7 @@ class ChildrenAction extends CAction
                     'parent_id'   => $v['parent_id'],
                     'name'        => $v['catalog_name'],
                     'type'        => ModelType::getTypeName($v['type']),
+                    'status'      => $v['status'],
                     'layer'       => $v['layer'],
                     'sort_order'  => $v['sort_order'],
                     'create_time' => date('Y-m-d H:i', $v['create_time']),

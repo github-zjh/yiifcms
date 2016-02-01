@@ -32,7 +32,7 @@ class IndexAction extends CAction
         
         //分页
         $pages = new CPagination($count);
-        $pages->pageSize = 10;
+        $pages->pageSize = 20;
         $pages->applyLimit($criteria);
         
         //查询

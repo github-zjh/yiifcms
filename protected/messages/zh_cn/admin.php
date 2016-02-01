@@ -31,6 +31,7 @@ return array (
 	'System Home' => '系统首页',
 	'Success' => '成功',
 	'Failed' =>'失败',	
+    'Catalog Is Required' => '请选择一个分类',
 	'Parent ID can not eque itself ID' =>'上级分类不能和本分类相同',
     'First Parent Category Can Not Under His Child' => '父级分类不允许移动到子分类下',
 	'Enable' => '启用',
@@ -54,6 +55,7 @@ return array (
 	'BM_Tools' => '工具',
 	'BM_Oauth' => '第三方授权',
     'BM_BackUp' => '备份与恢复',
+    'BM_Spider' => '数据采集',
 	
 	/* 设置 */
 	'Web Set' => '站点设置',
@@ -179,6 +181,7 @@ return array (
 	'Only POST Or GET' => '只支持POST或者GET数据',
 	'Only POST' => '只支持POST数据',
     'Select Category' => '选择一个分类',
+    'Please Select Category' => '请选择一个分类',
 	'Selected Category is Current Category or Children Category' => '所选择的上级分类不能是当前分类或者当前分类的下级分类',
 	'Error Operation' => '错误的操作',
 	'Batch Operate Success' => '批量操作成功',
@@ -416,4 +419,28 @@ return array (
     'Delete File Success' => '删除文件成功',
     'Import File Success' => '导入数据成功',
     'Loading Error' => '加载失败',
+    
+    //数据采集
+    'Spider Setting' => '采集设置',
+    'Spider Post'    => '文章采集',
+    'Spider Image'   => '图片采集',
+    'Spider Soft'    => '软件采集',
+    'Spider Video'   => '视频采集',
+    'CurPage Must Be Less Than TotalPage' => '当前页数必须小于等于总共页数',
+    'No Enable Site Data' => '当前没有可用的站点',
+    'Truncate Spider Data' => '清空已采集数据',
+    'Truncate Import Data' => '清空已导入数据',
+    'Truncate Finish' => '清空完成',
+    'Import' => '导入',
+    'Post Import'  => '文章导入',
+    'Image Import' => '图集导入',
+    'Soft Import'  => '软件导入',
+    'Video Import' => '视频导入',
+    
+    //用户
+    'You Can Not Delete Yourself'   => '您不能删除自己',
+    'You Can Not Change Yourself'   => '您不能禁用自己',
+    'You Can Not Delete Admin'      => '您不能删除超级管理员',
+    'You Can Not Change Your Group' => '您不能修改自己的权限',
+    'You Can Not Change The User Group' => '您不能修改该用户的权限',
 );

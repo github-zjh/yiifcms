@@ -7,3 +7,4 @@
 /*.tgitconfig
 /protected/data/install.lock
 /protected/runtime/*.log
+/.idea

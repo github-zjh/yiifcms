@@ -28,11 +28,11 @@
             <td><input type="checkbox" name="id[]" value="<?php echo $row->id ?>" /><?php echo $row->id ?></td>
             <td><?php echo $row->title ?></td>                
             <td>
-                <?php if ($row->status == 'Y') {
-                    echo Yii::t('admin', 'Show');
-                } else {
-                    echo "<span class='red'>" . Yii::t('admin', 'Hidden') . "</span>";
-                } ?>
+                <?php if($row->status == 'Y'): ?>
+                <span class="color_show">√</span>
+                <?php else:?>
+                <span class="color_hide">×</span>
+                <?php endif;?>
             </td>
             <td><?php echo date('Y-m-d H:i', $row->create_time) ?></td>
             <td><?php echo date('Y-m-d H:i', $row->update_time) ?></td>

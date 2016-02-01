@@ -143,7 +143,8 @@ class InstallController extends AppController {
      * 4.写入默认信息
      * 5.根据选择，是否安装测试数据
      */
-    public function actionStep6() {        
+    public function actionStep6() {
+        set_time_limit(600);        
         $dbHost = Yii::app()->request->getParam('dbhost');
         $dbPort = Yii::app()->request->getParam('dbport');
         $dbName = Yii::app()->request->getParam('dbname');
@@ -152,10 +153,10 @@ class InstallController extends AppController {
         $tbPre = Yii::app()->request->getParam('tablepre');
         $username = Yii::app()->request->getParam('username');
         $password = Yii::app()->request->getParam('password');
-        $email = Yii::app()->request->getParam('email');        
+        //$email = Yii::app()->request->getParam('email');        
         $this->title = '安装数据表';
         $this->render('step6');
-        try {
+        try {            
             $dbObj = new CDbConnection('mysql:host=' . $dbHost . ';port=' . $dbPort . ';', $dbUsername, $dbPassword);
             self::_appendLog('数据库信息检测通过');
             $configTpl = file_get_contents($this->tplPath . '/config.main.php');
@@ -165,18 +166,18 @@ class InstallController extends AppController {
             self::_appendLog('配置文件写入成功');
 
             //创建数据库.
-            $result = $dbObj->createCommand("SHOW DATABASES")->queryAll();
-            foreach ((array) $result as $v) {
-                if ($v['Database'] == $dbName) {
-                    $dbnameExist = true;
-                    break;
-                }
-            }
-            if (!$dbnameExist) {
-                //如果不存在数据库，则重新创建
-                $dbObj->createCommand("CREATE DATABASE IF NOT EXISTS `{$dbName}` DEFAULT CHARACTER SET UTF8")->execute();
-            }
-            self::_appendLog("数据库{$dbName}创建完成");
+//            $result = $dbObj->createCommand("SHOW DATABASES")->queryAll();
+//            foreach ((array) $result as $v) {
+//                if ($v['Database'] == $dbName) {
+//                    $dbnameExist = true;
+//                    break;
+//                }
+//            }
+//            if (!$dbnameExist) {
+//                //如果不存在数据库，则重新创建
+//                $dbObj->createCommand("CREATE DATABASE IF NOT EXISTS `{$dbName}` DEFAULT CHARACTER SET UTF8")->execute();
+//            }
+//            self::_appendLog("数据库{$dbName}创建完成");
 
             //创建数据表
             $tableSql = file_get_contents($this->tplPath . 'install_table.sql');
@@ -224,11 +225,12 @@ class InstallController extends AppController {
                 }                 
                 self::_appendLog('测试数据导入完成');
             }
-            echo '<script>$("#finish").html("安装完成");</script>';
+            $complete_url = $this->createUrl('complete');
+            echo '<script>$("#finish").attr("href", "'.$complete_url.'").html("安装完成");</script>';
             self::_appendLog('安装完成');            
             //写入锁定文件
             touch($this->_data . $this->lockfile);
-            echo '<script>setTimeout(function(){window.location="' . $this->createUrl('complete') . '"}, 3000);</script>';
+            echo '<script>setTimeout(function(){window.location="' . $complete_url . '"}, 3000);</script>';            
         } catch (Exception $e) {
             $error = self::_dbError($e->getMessage(), array('dbHost' => $dbHost, 'dbName' => $dbName));
             if ($error == false) {

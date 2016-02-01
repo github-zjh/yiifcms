@@ -47,6 +47,8 @@ table { display: table; border-spacing: 2px; border-color: gray; width: 100% }
 .content_list .tb_header th { font-weight: bold; padding-left: 4px; }
 .content_list td { border-bottom: #eee 1px solid; height: 30px; line-height: 25px; padding-left: 5px; }
 .content_list tr.tb_list:hover { background: #FBFFE4; color: #333; }
+.content_list tr.catalog td { font-size:14px;}
+.content_list .cat_children td { font-size:12px; background-color:#DDDDDD;}
 .tb_title { font-weight: bold }
 .custom_title { width: 100px; font-weight: bold; float: left }
 .custom_content { float: left }
@@ -61,6 +63,7 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus { border-
 .action li{float:left; margin-right:5px}
 .action li a{ background: #4D90FE; border-radius: 3px; color: #FFF; font: bold 14px arial, sans-serif; padding: 0.15em 1em; text-transform: uppercase;   margin: 0; overflow: visible; width: auto; *width: 1;
 cursor: pointer; padding:7px 20px; display:block }
+.actionBtn:hover { text-decoration: none;}
 .action li a:hover{ background: #996600;}
 .action li a.current{background: #996600;}
 .actionLink{ background: #009966; color: #FFF; font: bold 14px arial, sans-serif; padding: 0.15em 1em; text-transform: uppercase;   margin: 0; overflow: visible; width: auto; *width: 1;
@@ -132,3 +135,6 @@ body[dir='rtl'] .formError .formErrorArrow, body.rtl .formError .formErrorArrow 
 /* 缓存设置样式 */
 .cache_param { display:none;}
 .cache_show { display:block;}
+
+.color_hide { color:orange;}
+.color_show { color:green;}

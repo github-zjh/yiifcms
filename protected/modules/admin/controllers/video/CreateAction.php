@@ -9,24 +9,19 @@
 class CreateAction extends CAction
 {	
 	public function run(){
-		$model = new Video();       
+		$model = new Video();
+        $model->content = new VideoContent();
     	if(isset($_POST['Video']))
     	{
-    		$model->attributes=$_POST['Video'];
-    		
+    		$model->attributes=$_POST['Video'];    		
     		//封面、文件
     		$model->cover_image = isset($_POST['cover_image']) ? $_POST['cover_image'] : '';           
-            $model->video_file = isset($_POST['video_file']) ? $_POST['video_file'] : ''; 
             
-            //标签   (前5个标签有效) 		
-    		$tags = trim($_POST['Video']['tags']);    		
-    		$unique_tags = array_unique(explode(',', str_replace(array (' ' , '，' ), array('',','), $tags)));    		
-    		$explodeTags = array_slice($unique_tags, 0, 5);  
-    		$model->tags = implode(',',$explodeTags);
-            
-    		$model->create_time = time();
-    		$model->update_time = $model->create_time;
-    		if($model->save()){    			
+    		if($model->save()){    		
+                $model->content->attributes = $_POST['VideoContent'];
+                $model->content->video_file = isset($_POST['video_file']) ? $_POST['video_file'] : '';
+                $model->content->video_id = $model->id;
+                $model->content->save();
 				$this->controller->message('success',Yii::t('admin','Add Success'),$this->controller->createUrl('index'));
     		}
     	}

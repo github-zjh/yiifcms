@@ -129,10 +129,10 @@ CREATE TABLE `#@__friend` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='好友表';
 
 -- ----------------------------
--- Table structure for `#@__image`
+-- Table structure for `#@__album`
 -- ----------------------------
-DROP TABLE IF EXISTS `#@__image`;
-CREATE TABLE `#@__image` (
+DROP TABLE IF EXISTS `#@__album`;
+CREATE TABLE `#@__album` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned NOT NULL DEFAULT '1' COMMENT '作者',
   `title` varchar(255) NOT NULL COMMENT '标题',
@@ -140,12 +140,6 @@ CREATE TABLE `#@__image` (
   `title_style` varchar(255) NOT NULL DEFAULT '' COMMENT '标题样式',
   `catalog_id` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '分类',
   `special_id` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '专题编号',
-  `introduce` text COMMENT '摘要',
-  `image_list` text COMMENT '组图',
-  `seo_title` varchar(255) NOT NULL DEFAULT '' COMMENT 'SEO标题',
-  `seo_description` text COMMENT 'SEO描述',
-  `seo_keywords` varchar(255) NOT NULL DEFAULT '' COMMENT 'SEO关键字',
-  `content` mediumtext NOT NULL COMMENT '内容',
   `copy_from` varchar(100) NOT NULL DEFAULT '' COMMENT '来源',
   `copy_url` varchar(255) NOT NULL DEFAULT '' COMMENT '来源url',
   `redirect_url` varchar(255) NOT NULL DEFAULT '' COMMENT '跳转URL',
@@ -165,6 +159,20 @@ CREATE TABLE `#@__image` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='内容管理';
 
+-- ----------------------------
+-- Table structure for `#@__album_content`
+-- ----------------------------
+DROP TABLE IF EXISTS `#@__album_content`;
+CREATE TABLE `#@__album_content` (
+  `album_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '图集id',
+  `album_list` text NOT NULL COMMENT '组图',
+  `introduce` text NOT NULL COMMENT '摘要',
+  `content` mediumtext NOT NULL COMMENT '内容',
+  `seo_title` varchar(255) NOT NULL DEFAULT '' COMMENT 'SEO标题',
+  `seo_keywords` varchar(255) NOT NULL DEFAULT '' COMMENT 'SEO关键字',
+  `seo_description` text NOT NULL COMMENT 'SEO描述',
+  PRIMARY KEY (`album_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for `#@__link`
@@ -325,12 +333,7 @@ CREATE TABLE `#@__post` (
   `title_second` varchar(255) NOT NULL DEFAULT '' COMMENT '副标题',
   `title_style` varchar(255) NOT NULL DEFAULT '' COMMENT '标题样式',
   `catalog_id` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '分类',
-  `special_id` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '专题编号',
-  `introduce` varchar(200) NOT NULL COMMENT '摘要',
-  `seo_title` varchar(100) NOT NULL DEFAULT '' COMMENT 'SEO标题',
-  `seo_description` varchar(200) NOT NULL DEFAULT '' COMMENT 'SEO描述',
-  `seo_keywords` varchar(100) NOT NULL DEFAULT '' COMMENT 'SEO关键字',
-  `content` mediumtext NOT NULL COMMENT '内容',
+  `special_id` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '专题编号',  
   `copy_from` varchar(100) NOT NULL DEFAULT '' COMMENT '来源',
   `copy_url` varchar(255) NOT NULL DEFAULT '' COMMENT '来源url',
   `redirect_url` varchar(255) NOT NULL DEFAULT '' COMMENT '跳转URL',
@@ -351,6 +354,19 @@ CREATE TABLE `#@__post` (
   KEY `view_count` (`view_count`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='内容管理';
 
+-- ----------------------------
+-- Table structure for `#@__post_content`
+-- ----------------------------
+DROP TABLE IF EXISTS `#@__post_content`;
+CREATE TABLE `#@__post_content` (
+  `post_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `introduce` varchar(200) NOT NULL COMMENT '摘要',
+  `content` mediumtext NOT NULL COMMENT '内容',
+  `seo_title` varchar(100) NOT NULL DEFAULT '' COMMENT 'SEO标题',
+  `seo_keywords` varchar(100) NOT NULL DEFAULT '' COMMENT 'SEO关键字',
+  `seo_description` varchar(200) NOT NULL DEFAULT '' COMMENT 'SEO描述',
+  PRIMARY KEY (`post_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for `#@__question`
@@ -435,28 +451,36 @@ CREATE TABLE `#@__soft` (
   `title` varchar(100) NOT NULL DEFAULT '' COMMENT '软件标题',
   `catalog_id` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '分类id ',
   `soft_icon` varchar(100) NOT NULL DEFAULT '' COMMENT '软件图标',
-  `cover_image` varchar(100) NOT NULL DEFAULT '' COMMENT '封面图片',
-  `soft_file` varchar(100) NOT NULL DEFAULT '' COMMENT '文件路径',
+  `cover_image` varchar(100) NOT NULL DEFAULT '' COMMENT '封面图片',  
   `language` varchar(10) NOT NULL DEFAULT '' COMMENT '软件语言',
   `softtype` varchar(10) NOT NULL DEFAULT '' COMMENT '软件类型',
   `os` varchar(100) NOT NULL DEFAULT '' COMMENT '操作系统',
   `softrank` enum('5','4','3','2','1') NOT NULL DEFAULT '5' COMMENT '软件等级',
   `softsize` varchar(10) NOT NULL DEFAULT '' COMMENT '软件大小',
-  `softlink` varchar(100) NOT NULL DEFAULT '' COMMENT '软件外部下载链接',
-  `introduce` varchar(200) NOT NULL DEFAULT '' COMMENT '摘要',
-  `content` text NOT NULL COMMENT '内容',
+  `softlink` varchar(100) NOT NULL DEFAULT '' COMMENT '软件外部下载链接',  
   `update_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '最近更新时间',
   `create_time` int(10) unsigned NOT NULL COMMENT '发布时间',
   `view_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '浏览次数',
   `down_count` smallint(8) unsigned NOT NULL DEFAULT '0' COMMENT '下载次数',
   `status` enum('Y','N') NOT NULL DEFAULT 'Y' COMMENT '是否显示',
   `tags` varchar(100) NOT NULL DEFAULT '' COMMENT '标签',
-  `seo_title` varchar(100) NOT NULL DEFAULT '' COMMENT 'SEO标题',
-  `seo_description` varchar(200) NOT NULL DEFAULT '' COMMENT 'SEO描述',
-  `seo_keywords` varchar(100) NOT NULL DEFAULT '' COMMENT 'SEO关键字',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='软件管理表';
 
+-- ----------------------------
+-- Table structure for `#@__soft_content`
+-- ----------------------------
+DROP TABLE IF EXISTS `#@__soft_content`;
+CREATE TABLE `#@__soft_content` (
+  `soft_id` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '软件id',
+  `soft_file` varchar(100) NOT NULL DEFAULT '' COMMENT '文件路径',
+  `introduce` varchar(200) NOT NULL DEFAULT '' COMMENT '摘要',
+  `content` text NOT NULL COMMENT '内容',
+  `seo_title` varchar(100) NOT NULL DEFAULT '' COMMENT 'SEO标题',
+  `seo_keywords` varchar(100) NOT NULL DEFAULT '' COMMENT 'SEO关键字',
+  `seo_description` varchar(200) NOT NULL DEFAULT '' COMMENT 'SEO描述',
+  PRIMARY KEY (`soft_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for `#@__special`
@@ -552,32 +576,44 @@ CREATE TABLE `#@__video` (
   `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL DEFAULT '' COMMENT '视频名称',
   `catalog_id` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '分类id ',
-  `cover_image` varchar(100) NOT NULL DEFAULT '' COMMENT '封面图片',
-  `video_file` varchar(255) NOT NULL DEFAULT '' COMMENT '视频文件路径',
+  `cover_image` varchar(100) NOT NULL DEFAULT '' COMMENT '封面图片',  
   `language` varchar(10) NOT NULL DEFAULT '' COMMENT '视频语言',
   `video_type` varchar(10) NOT NULL DEFAULT '' COMMENT '视频类型',
   `video_score` decimal(3,1) unsigned NOT NULL DEFAULT '0.0' COMMENT '视频评分',
   `video_size` varchar(10) NOT NULL DEFAULT '' COMMENT '视频大小',
-  `download` varchar(100) NOT NULL DEFAULT '' COMMENT '下载链接',
-  `introduce` varchar(200) NOT NULL DEFAULT '' COMMENT '视频简介',
+  `download` varchar(100) NOT NULL DEFAULT '' COMMENT '下载链接', 
   `update_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '最近更新时间',
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '发布时间',
   `view_count` smallint(8) unsigned NOT NULL DEFAULT '0' COMMENT '观看次数',
   `down_count` smallint(8) unsigned NOT NULL DEFAULT '0' COMMENT '下载次数',
   `voted` varchar(100) NOT NULL DEFAULT '' COMMENT '投票结果',
   `status` enum('Y','N') NOT NULL DEFAULT 'Y' COMMENT '是否显示',
-  `tags` varchar(100) NOT NULL DEFAULT '' COMMENT '标签',
-  `seo_title` varchar(100) NOT NULL DEFAULT '' COMMENT 'SEO标题',
-  `seo_description` varchar(200) NOT NULL DEFAULT '' COMMENT 'SEO描述',
-  `seo_keywords` varchar(100) NOT NULL DEFAULT '' COMMENT 'SEO关键字',
+  `tags` varchar(100) NOT NULL DEFAULT '' COMMENT '标签',  
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='视频管理表';
+
+-- ----------------------------
+-- Table structure for `#@__video_content`
+-- ----------------------------
+DROP TABLE IF EXISTS `#@__video_content`;
+CREATE TABLE `#@__video_content` (
+  `video_id` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '视频id',
+  `video_file` varchar(255) NOT NULL DEFAULT '' COMMENT '视频文件路径',
+  `introduce` varchar(200) NOT NULL DEFAULT '' COMMENT '视频简介',
+  `content` text NOT NULL COMMENT '内容',
+  `seo_title` varchar(100) NOT NULL DEFAULT '' COMMENT 'SEO标题',
+  `seo_keywords` varchar(100) NOT NULL DEFAULT '' COMMENT 'SEO关键字',
+  `seo_description` varchar(200) NOT NULL DEFAULT '' COMMENT 'SEO描述',
+  PRIMARY KEY (`video_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 -- ----------------------------
 -- 菜单
 -- ----------------------------
 INSERT INTO `#@__menu` VALUES ('1', '首页', 'index.php', 'index', 'Y', '0', '1', 'N');
 INSERT INTO `#@__menu` VALUES ('2', '精品阅读', '/?r=post/index', 'post', 'Y', '0', '2', 'N');
+INSERT INTO `#@__menu` VALUES ('3', '视频', '/?r=video/index', 'video', 'Y', '0', '5', 'N');
 INSERT INTO `#@__menu` VALUES ('4', '下载', '/?r=soft/index', 'soft', 'Y', '0', '3', 'N');
 INSERT INTO `#@__menu` VALUES ('5', '图集', '/?r=image/index', 'image', 'Y', '0', '4', 'N');
 INSERT INTO `#@__menu` VALUES ('6', '导读', '/?r=page/index&id=guide', 'guide', 'Y', '0', '6', 'N');
@@ -588,7 +624,7 @@ INSERT INTO `#@__menu` VALUES ('7', '反馈', '/?r=question/index', 'question', 
 -- 内容模型
 -- ----------------------------
 INSERT INTO `#@__model_type` VALUES ('1', 'post', '文章', 'Post', 'Y', '专业讲解web相关的文章和知识点', 'web, php,mysql, nginx,yii,数据库，运维,服务器', '聚合了优质的IT文章，无论你是前端工程师，还是后端程序员，都可以找到你想了解的知识和资讯，更多内容尽在yiifcms。');
-INSERT INTO `#@__model_type` VALUES ('2', 'image', '图集', 'Image', 'Y', '最新最全的热门图集、精品爆图、美图', '图片，图集，最新，热门，精品，最全，美女，爆料，搞笑', '展示了用户最喜爱的美女图片、爆料图片、搞笑图片，惊爆眼球，更多内容尽在yiifcms。');
+INSERT INTO `#@__model_type` VALUES ('2', 'album', '图集', 'Album', 'Y', '最新最全的热门图集、精品爆图、美图', '图片，图集，最新，热门，精品，最全，美女，爆料，搞笑', '展示了用户最喜爱的美女图片、爆料图片、搞笑图片，惊爆眼球，更多内容尽在yiifcms。');
 INSERT INTO `#@__model_type` VALUES ('3', 'soft', '软件', 'Soft', 'Y', '最新发布的yiifcms、热门手册、免费下载、建站工具', 'yii，cms，免费，下载，最新，热门，最全，精品，建站，工具，安全，稳定', '提供了web开发人员的建站工具和yiifcms发布版本，供感兴趣的用户下载和使用，详情了解尽在yiifcms。');
 INSERT INTO `#@__model_type` VALUES ('4', 'video', '视频', 'Video', 'Y', '最新上映的电影、热门视频、热播电视剧、下载视频', '视频，电影，微电影，电视剧，MV，MTV，最新，热门，热播，高清，下载', '聚合了用户最喜爱的视频，尽在yiifcms。');
 
@@ -655,5 +691,141 @@ INSERT INTO `#@__user_group` VALUES ('5', 'VIP⑤用户', '');
 INSERT INTO `#@__user_group` VALUES ('6', 'VIP⑥用户', '');
 INSERT INTO `#@__user_group` VALUES ('7', 'VIP⑦用户', '');
 INSERT INTO `#@__user_group` VALUES ('8', 'VIP⑧用户', '');
-INSERT INTO `#@__user_group` VALUES ('9', '网站编辑', 'default|login,catalog|index,menu|index,special|index,post|index,image|index,soft|index,video|index,goods|index,page|index,comment|index,reply|index,tag|index,recommendPosition|index,user|index,question|index,link|index,adPosition|index,ad|index,attach|index,modeltype|index,database|index,cache|index,maillog|index,oAuth|index');
+INSERT INTO `#@__user_group` VALUES ('9', '网站编辑', 'default|login,catalog|index,menu|index,special|index,post|index,album|index,soft|index,video|index,goods|index,page|index,comment|index,reply|index,tag|index,recommendPosition|index,user|index,question|index,link|index,adPosition|index,ad|index,attach|index,modeltype|index,database|index,cache|index,maillog|index,oAuth|index');
 INSERT INTO `#@__user_group` VALUES ('10', '系统管理员', 'Administrator');
+
+-- ----------------------------
+-- Table structure for `#@__spider_setting`
+-- ----------------------------
+DROP TABLE IF EXISTS `#@__spider_setting`;
+CREATE TABLE `#@__spider_setting` (
+  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT COMMENT '站点id',
+  `site` varchar(50) NOT NULL DEFAULT '' COMMENT '站点名称',
+  `url` varchar(100) NOT NULL DEFAULT '' COMMENT '站点列表页地址',
+  `list_charset` enum('UTF-8','GB2312','GBK') NOT NULL DEFAULT 'UTF-8' COMMENT '列表页编码',
+  `content_charset` enum('UTF-8','GB2312','GBK') NOT NULL DEFAULT 'UTF-8' COMMENT '内容页编码',
+  `item_rule_li` varchar(50) NOT NULL DEFAULT '' COMMENT '列表项Li选择规则',
+  `item_rule_a` varchar(50) NOT NULL DEFAULT '' COMMENT '列表项A标签选择规则',
+  `content_rule` varchar(50) NOT NULL DEFAULT '' COMMENT '详细页内容选择规则',
+  `page_rule` varchar(100) NOT NULL DEFAULT '' COMMENT '分页正则',
+  `cur_page` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '当前已采集页数',
+  `total_page` smallint(5) unsigned NOT NULL DEFAULT '1' COMMENT '需要采集总页数',
+  `type` tinyint(2) unsigned NOT NULL DEFAULT '1' COMMENT '采集内容类型 与内容模型保持一致',
+  `filter_rule` text NOT NULL COMMENT '内容过滤规则',
+  `soft_icon_rule` varchar(50) NOT NULL DEFAULT '' COMMENT '软件图标标签规则',
+  `video_cover_rule` varchar(50) NOT NULL DEFAULT '' COMMENT '视频封面图片标签规则',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='采集站点配置表';
+
+-- ----------------------------
+-- 采集站点设置默认项
+-- ----------------------------
+INSERT INTO `#@__spider_setting` VALUES ('1', '网易互联网科技阅读', 'http://tech.163.com/internet/', 'GBK', 'GB2312', '#news-flow-content li', '.titleBar h3 a', '#endText', 'http://tech.163.com/special/0009rt/tech_hlw_0[PAGE_NUM].html', '0', '2', '1', '/(<iframe(.*?)>(.*?)<\\/iframe>)/is\r\n/(<div class=\"ep-source cDGray\">(.*?)<\\/div>)/is\r\n', '', '');
+INSERT INTO `#@__spider_setting` VALUES ('2', 'csdn互联网新闻', 'http://blog.csdn.net/web/newest.html', 'UTF-8', 'UTF-8', 'div.main_center .blog_list', 'h1 a', '#article_content', 'http://blog.csdn.net/web/newest.html?&page=[PAGE_NUM]', '0', '2', '1', '', '', '');
+INSERT INTO `#@__spider_setting` VALUES ('3', '开源中国-php', 'http://www.oschina.net/code/list?lang=php&catalog=&show=time', 'UTF-8', 'UTF-8', 'div.code_list ul li', 'h3.code_title a', 'div.Body', 'http://www.oschina.net/code/list?lang=php&catalog=&show=time&sort=&p=[PAGE_NUM]', '0', '2', '1', '', '', '');
+INSERT INTO `#@__spider_setting` VALUES ('4', '唯美图片-意境', 'http://www.wmpic.me/tupian/yijing/', 'UTF-8', 'UTF-8', '#mainbox .item_list .item_box', 'div.inner_item_box h2 a', '#content .content-c', 'http://www.wmpic.me/tupian/yijing/page/[PAGE_NUM]', '0', '3', '2', '', '', '');
+INSERT INTO `#@__spider_setting` VALUES ('5', '非凡软件-应用软件', 'http://www.crsky.com/list/r_2_1.html', 'GB2312', 'GB2312', 'div.entry', 'h3 a', '#rom_des', 'http://www.crsky.com/list/r_2_[PAGE_NUM].html', '0', '1', '3', '', '.left p a img', '');
+INSERT INTO `#@__spider_setting` VALUES ('6', '爱奇艺 - 电影', 'http://list.iqiyi.com/www/1/----------------iqiyi--.html', 'UTF-8', 'UTF-8', '.wrapper-piclist ul li', 'p.site-piclist_info_title a', '#datainfo-desc-text', 'http://list.iqiyi.com/www/1/-------------11-[PAGE_NUM]-1-iqiyi--.html', '0', '1', '4', '', '', '.site-piclist_pic a img');
+
+-- ----------------------------
+-- Table structure for `#@__spider_post_list`
+-- ----------------------------
+DROP TABLE IF EXISTS `#@__spider_post_list`;
+CREATE TABLE `#@__spider_post_list` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `site_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '站点id',
+  `url` varchar(100) NOT NULL DEFAULT '' COMMENT '详情页地址',
+  `title` varchar(100) NOT NULL DEFAULT '' COMMENT '标题',
+  `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '状态 0 - 内容未采集  1-内容已采集 2-数据已导入',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_index` (`url`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采集文章列表数据表';
+
+-- ----------------------------
+-- Table structure for `#@__spider_post_content`
+-- ----------------------------
+DROP TABLE IF EXISTS `#@__spider_post_content`;
+CREATE TABLE `#@__spider_post_content` (
+  `list_id` int(10) unsigned NOT NULL COMMENT '列表id',
+  `content` text NOT NULL COMMENT '详细内容',
+  PRIMARY KEY (`list_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采集文章内容数据表';
+
+-- ----------------------------
+-- Table structure for `#@__spider_image_list`
+-- ----------------------------
+DROP TABLE IF EXISTS `#@__spider_image_list`;
+CREATE TABLE `#@__spider_image_list` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `site_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '站点id',
+  `url` varchar(100) NOT NULL DEFAULT '' COMMENT '详情页地址',
+  `title` varchar(100) NOT NULL DEFAULT '' COMMENT '标题',
+  `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '状态 0 - 内容未采集  1-内容已采集 2-数据已导入',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_index` (`url`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采集图集列表数据表';
+
+-- ----------------------------
+-- Table structure for `#@__spider_image_content`
+-- ----------------------------
+DROP TABLE IF EXISTS `#@__spider_image_content`;
+CREATE TABLE `#@__spider_image_content` (
+  `list_id` int(10) unsigned NOT NULL COMMENT '列表id',
+  `cover_img` varchar(100) NOT NULL DEFAULT '' COMMENT '封面图片',
+  `cover_img_thumb` varchar(100) NOT NULL DEFAULT '' COMMENT '封面图片缩略图',
+  `image_list` text NOT NULL COMMENT '图集列表',
+  `content` text NOT NULL COMMENT '详细内容',
+  PRIMARY KEY (`list_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采集图集内容数据表';
+
+-- ----------------------------
+-- Table structure for `#@__spider_soft_list`
+-- ----------------------------
+DROP TABLE IF EXISTS `#@__spider_soft_list`;
+CREATE TABLE `#@__spider_soft_list` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `site_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '站点id',
+  `url` varchar(100) NOT NULL DEFAULT '' COMMENT '详情页地址',
+  `title` varchar(100) NOT NULL DEFAULT '' COMMENT '标题',
+  `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '状态 0 - 内容未采集  1-内容已采集 2-数据已导入',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_index` (`url`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='采集软件列表数据表';
+
+-- ----------------------------
+-- Table structure for `#@__spider_soft_content`
+-- ----------------------------
+DROP TABLE IF EXISTS `#@__spider_soft_content`;
+CREATE TABLE `#@__spider_soft_content` (
+  `list_id` int(10) unsigned NOT NULL COMMENT '列表id',
+  `soft_img` varchar(100) NOT NULL DEFAULT '' COMMENT '软件图片',
+  `soft_icon` varchar(100) NOT NULL DEFAULT '' COMMENT '软件图标',
+  `content` text NOT NULL COMMENT '详细内容',
+  PRIMARY KEY (`list_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采集软件内容数据表';
+
+
+-- ----------------------------
+-- Table structure for `#@__spider_video_list`
+-- ----------------------------
+DROP TABLE IF EXISTS `#@__spider_video_list`;
+CREATE TABLE `#@__spider_video_list` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `site_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '站点id',
+  `url` varchar(100) NOT NULL DEFAULT '' COMMENT '详情页地址',
+  `title` varchar(100) NOT NULL DEFAULT '' COMMENT '标题',
+  `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '状态 0 - 内容未采集  1-内容已采集 2-数据已导入',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_index` (`url`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='采集视频列表数据表';
+
+-- ----------------------------
+-- Table structure for `#@__spider_video_content`
+-- ----------------------------
+DROP TABLE IF EXISTS `#@__spider_video_content`;
+CREATE TABLE `#@__spider_video_content` (
+  `list_id` int(10) unsigned NOT NULL COMMENT '列表id',
+  `cover_img` varchar(100) NOT NULL DEFAULT '' COMMENT '视频封面',
+  `content` text NOT NULL COMMENT '详细内容',
+  PRIMARY KEY (`list_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采集视频内容数据表';

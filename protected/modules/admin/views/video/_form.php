@@ -58,7 +58,7 @@
     </tr>
 
     <tr>
-        <td class="tb_title"><?php echo $form->label($model, 'video_file'); ?>(目前仅支持mp4格式的视频在线播放)：</td>
+        <td class="tb_title"><?php echo $form->label($model->content, 'video_file'); ?>(目前仅支持mp4格式的视频在线播放)：</td>
     </tr>
     <tr>
         <td colspan="2" >    	
@@ -67,12 +67,12 @@
             </div>
             <!-- 显示已上传的文件-->            
             <ul class="resumable-files clear">
-                <?php if ($model->video_file): ?>           
+                <?php if ($model->content->video_file): ?>           
                     <li>
-                        <span style="color:green"><?php echo end(explode('/', $model->video_file)); ?></span>
-                        <input type="hidden" value="<?php echo $model->video_file; ?>" name="video_file">
+                        <span style="color:green"><?php echo end(explode('/', $model->content->video_file)); ?></span>
+                        <input type="hidden" value="<?php echo $model->content->video_file; ?>" name="video_file">
                         <div class="clear">
-                            <a href="<?php echo Helper::getFullUrl($model->video_file); ?>" class="left" target="_blank">[查看]</a>
+                            <a href="<?php echo Helper::getFullUrl($model->content->video_file); ?>" class="left" target="_blank">[查看]</a>
                             <a href="javascript:;" class="right" onclick="deleteFile(this)">[删除]</a>
                         </div>
                     </li>           
@@ -103,12 +103,19 @@
         </td>
     </tr>    
     <tr>
-        <td class="tb_title"><?php echo $form->label($model, 'introduce'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model->content, 'content'); ?>：</td>
     </tr>
     <tr>
-        <td><?php echo $form->textArea($model, 'introduce'); ?>     
-            <?php $this->widget('application.widget.kindeditor.KindEditor', array('id' => 'Video_introduce')); ?>
+        <td><?php echo $form->textArea($model->content, 'content'); ?>     
+            <?php $this->widget('application.widget.kindeditor.KindEditor', array('id' => 'VideoContent_content')); ?>
         </td>
+    </tr>
+    
+    <tr>
+        <td class="tb_title"><?php echo $form->label($model->content, 'introduce'); ?>：</td>
+    </tr>
+    <tr>
+        <td><?php echo $form->textArea($model->content, 'introduce', array('rows' => 5, 'cols' => 90)); ?></td>
     </tr>
     
     <tr>
@@ -116,7 +123,7 @@
     </tr>
     <tr>
         <td><?php echo $form->textField($model, 'tags', array('size' => 50, 'maxlength' => 255)); ?>
-            <input type="button" value="自动提取"	onclick="keywordGet('Video_title', 'Video_content', 'Video_tags')" />
+            <input type="button" value="自动提取"	onclick="keywordGet('Video_title', 'VideoContent_content', 'Video_tags')" />
         </td>
     </tr>
 
@@ -127,24 +134,24 @@
         <td><?php echo $form->textField($model, 'download', array('size' => 50, 'maxlength' => 80)); ?></td>
     </tr>
     <tr>
-        <td class="tb_title"><?php echo $form->label($model, 'seo_title'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model->content, 'seo_title'); ?>：</td>
     </tr>
     <tr>
-        <td><?php echo $form->textField($model, 'seo_title', array('size' => 50, 'maxlength' => 80)); ?></td>
+        <td><?php echo $form->textField($model->content, 'seo_title', array('size' => 50, 'maxlength' => 80)); ?></td>
     </tr>
     <tr>
-        <td  class="tb_title"><?php echo $form->label($model, 'seo_keywords'); ?>：</td>
+        <td  class="tb_title"><?php echo $form->label($model->content, 'seo_keywords'); ?>：</td>
     </tr>
     <tr>
-        <td><?php echo $form->textField($model, 'seo_keywords', array('size' => 50, 'maxlength' => 80)); ?>
-            <input type="button" value="自动提取"	onclick="keywordGet('Video_title', 'Video_introduce', 'Video_seo_keywords')" />
+        <td><?php echo $form->textField($model->content, 'seo_keywords', array('size' => 50, 'maxlength' => 80)); ?>
+            <input type="button" value="自动提取"	onclick="keywordGet('Video_title', 'VideoContent_content', 'VideoContent_seo_keywords')" />
         </td>
     </tr>
     <tr>
-        <td class="tb_title"><?php echo $form->label($model, 'seo_description'); ?>：</td>
+        <td class="tb_title"><?php echo $form->label($model->content, 'seo_description'); ?>：</td>
     </tr>
     <tr>
-        <td><?php echo CHtml::activeTextArea($model, 'seo_description', array('rows' => 5, 'cols' => 80)); ?></td>
+        <td><?php echo CHtml::activeTextArea($model->content, 'seo_description', array('rows' => 5, 'cols' => 80)); ?></td>
     </tr>  
 
     <tr>
