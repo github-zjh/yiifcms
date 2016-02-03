@@ -36,7 +36,7 @@ class Backend extends BackendBase
 			'page' => array('index','create','update', 'batch'),                                    //单页管理
 			'comment' => array('index','update','batch'),   				                        //评论管理
 			'reply' => array('index','update','batch'),   					                        //回复管理
-			'tag' => array('index','reset','batch'),   					                            //标签管理
+			'tag' => array('index','reset','batch','words'),   					                    //标签管理
 			'recommendPosition' => array('index','create','update', 'view','batch'),                //推荐位管理
 			'user' => array('index', 'admin', 'create','update', 'batch'), 	                        //用户管理
             'usergroup' => array('index','create','update'), 	                                    //用户组管理

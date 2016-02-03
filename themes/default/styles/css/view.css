@@ -5,7 +5,7 @@
 #content .content_right { float:right; width:270px; }
 .content_left .list_box h2 { font-size:28px; line-height:33px;}
 .content_left .list_head { float:left; width:70px; text-align:center; }
-.content_left .list_body { float:right; width:770px;}
+.content_left .list_body { float:left; width:770px;}
 .content_left .content_type { width:70px; height:70px; margin-top:20px; background:url(../images/type_text.png) no-repeat left center;}
 .content_left .type_image { background-image:url(../images/type_image.png);}
 .content_left .type_video { background-image:url(../images/type_video.png);}
@@ -106,4 +106,8 @@ blockquote:before {
 /* 视频详情 */
 .video_info .info_left { width:240px; overflow:hidden; margin-right:86px;}
 .video_info .info_score { float:left; }
+
+/* 上一篇下一篇样式 */
+.relation li { line-height:30px; list-style:none; }
+.relation li a { color:#0000FF;}
 

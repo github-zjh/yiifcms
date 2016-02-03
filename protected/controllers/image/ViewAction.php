@@ -27,10 +27,18 @@ class ViewAction extends CAction {
         //nav
         $navs = array();
         $navs[] = array('url' => $this->controller->createUrl('image/view', array('id' => $id)), 'name' => $post->title);
+
+        //上一篇
+        $pre_relation = Album::model()->find('id > ' . $id . ' AND `status` = "' . Album::STATUS_SHOW . '"');
+        //下一篇
+        $next_relation = Album::model()->find('id < ' . $id . ' AND `status` = "' . Album::STATUS_SHOW . '"');
+
         $tplVar = array(
-            'post' => $post,
-            'navs' => $navs,
-            'last_images' => $last_images
+            'post'          => $post,
+            'navs'          => $navs,
+            'last_images'   => $last_images,
+            'pre_relation'  => $pre_relation,
+            'next_relation' => $next_relation,
         );
         $this->controller->render('view', $tplVar);
     }

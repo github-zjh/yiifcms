@@ -52,7 +52,19 @@
 					<?php echo $post->content->content;?>
 				</div>
 					
-				
+				<!-- 上一篇、下一篇 -->
+				<ul class="relation">
+					<?php if($pre_relation):?>
+					<li>上一篇：<a href="<?php echo $this->createUrl('post/view', array('id' => $pre_relation->id))?>"><?php echo $pre_relation->title;?></a></li>
+					<?php else:?>
+					<li>上一篇：<a href="javascript:;">没有了</a></li>
+					<?php endif;?>
+					<?php if($next_relation):?>
+					<li>下一篇：<a href="<?php echo $this->createUrl('post/view', array('id' => $next_relation->id))?>"><?php echo $next_relation->title;?></a></li>
+					<?php else:?>
+					<li>下一篇：<a href="javascript:;">没有了</a></li>
+					<?php endif;?>
+				</ul>
 			</div>	
 			<!-- 评论区 -->
 			<iframe id="comment_iframe" scrolling="no"  marginheight="0" marginwidth="0" frameborder="0" src="<?php echo $this->createUrl('comment/create', array('view_url'=>$this->_request->getUrl(),'content_id'=>$post->id,'topic_type'=>'post'));?>"></iframe>		

@@ -27,10 +27,18 @@ class ViewAction extends CAction {
         //nav
         $navs = array();
         $navs[] = array('url' => $this->controller->createUrl('soft/view', array('id' => $id)), 'name' => $post->title);
+
+        //上一篇
+        $pre_relation = Soft::model()->find('id > ' . $id . ' AND `status` = "' . Soft::STATUS_SHOW . '"');
+        //下一篇
+        $next_relation = Soft::model()->find('id < ' . $id . ' AND `status` = "' . Soft::STATUS_SHOW . '"');
+
         $tplVar = array(
-            'soft' => $post,
-            'navs' => $navs,
-            'last_softs' => $last_softs
+            'soft'          => $post,
+            'navs'          => $navs,
+            'last_softs'    => $last_softs,
+            'pre_relation'  => $pre_relation,
+            'next_relation' => $next_relation,
         );
         $this->controller->render('view', $tplVar);
     }

@@ -167,6 +167,7 @@ return array(
     'tag|index'                => '标签列表',
     'tag|reset'                => '重新统计标签',
     'tag|batch'                => '批量操作',
+    'tag|words'                => '词库管理',
 
     //Cache
     'cache'                    => '缓存管理',
