@@ -157,7 +157,7 @@ CREATE TABLE `#@__album` (
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   `update_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '最后更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='内容管理';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='图集表';
 
 -- ----------------------------
 -- Table structure for `#@__album_content`
@@ -172,7 +172,7 @@ CREATE TABLE `#@__album_content` (
   `seo_keywords` varchar(255) NOT NULL DEFAULT '' COMMENT 'SEO关键字',
   `seo_description` text NOT NULL COMMENT 'SEO描述',
   PRIMARY KEY (`album_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='图集内容表';
 
 -- ----------------------------
 -- Table structure for `#@__link`
@@ -352,7 +352,7 @@ CREATE TABLE `#@__post` (
   PRIMARY KEY (`id`),
   KEY `tags_index` (`tags`) USING BTREE,
   KEY `view_count` (`view_count`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='内容管理';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='文章表';
 
 -- ----------------------------
 -- Table structure for `#@__post_content`
@@ -366,7 +366,7 @@ CREATE TABLE `#@__post_content` (
   `seo_keywords` varchar(100) NOT NULL DEFAULT '' COMMENT 'SEO关键字',
   `seo_description` varchar(200) NOT NULL DEFAULT '' COMMENT 'SEO描述',
   PRIMARY KEY (`post_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文章内容表';
 
 -- ----------------------------
 -- Table structure for `#@__question`
@@ -480,7 +480,7 @@ CREATE TABLE `#@__soft_content` (
   `seo_keywords` varchar(100) NOT NULL DEFAULT '' COMMENT 'SEO关键字',
   `seo_description` varchar(200) NOT NULL DEFAULT '' COMMENT 'SEO描述',
   PRIMARY KEY (`soft_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='软件内容表';
 
 -- ----------------------------
 -- Table structure for `#@__special`
@@ -605,7 +605,7 @@ CREATE TABLE `#@__video_content` (
   `seo_keywords` varchar(100) NOT NULL DEFAULT '' COMMENT 'SEO关键字',
   `seo_description` varchar(200) NOT NULL DEFAULT '' COMMENT 'SEO描述',
   PRIMARY KEY (`video_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='视频内容表';
 
 
 -- ----------------------------

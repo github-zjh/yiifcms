@@ -59,7 +59,7 @@ class IndexAction extends CAction
 			array(
                 array('url'=> $this->controller->createUrl('user/index'), 'name'=>Yii::t('admin','User List')),
                 array('url'=> $this->controller->createUrl('user/admin'), 'name'=>Yii::t('admin','Admin List')),
-                array('url'=> $this->controller->createUrl('usergroup/index'), 'name'=>Yii::t('admin','Group Manage')),
+                array('url'=> $this->controller->createUrl('userGroup/index'), 'name'=>Yii::t('admin','Group Manage')),
                 array('url'=> $this->controller->createUrl('question/index'), 'name'=>Yii::t('admin','Question List')),				
 			),
 			array(
