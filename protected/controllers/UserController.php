@@ -48,6 +48,7 @@ class UserController extends FrontBase
             'settingPwd'  => 'SettingPwd',     //修改密码
             'forgetPwd'   => 'ForgetPwd',      //找回密码
             'resetPwd'    => 'ResetPwd',       //重置密码
+	        'activeEmail' => 'ActiveEmail',    //重新激活邮箱
             'authEmail'   => 'AuthEmail',      //验证邮箱
             'login'       => 'Login',          //登录
             'logout'      => 'Logout',         //退出
@@ -69,7 +70,7 @@ class UserController extends FrontBase
 			
 	/**
 	 * 发送账号激活邮件
-	 * @param unknown $params
+	 * @param array $params
 	 */
 	public function sendActiveAccount($params = array())
 	{
@@ -83,10 +84,13 @@ class UserController extends FrontBase
 		$authurl = Yii::app()->request->hostInfo.$this->createUrl('authEmail', array('authcode'=>$authcode));
 		$subject = Yii::t('common','Account Active');
 		$message = Yii::t('common','Register Email',
-				array('{username}'=>$params['username'],
-						'{sitename}'=>$this->_setting['site_name'],
-						'{authurl}'=>$authurl,
-						'{admin_email}'=>$this->_setting['admin_email']));
+            array(
+                '{username}'    => $params['username'],
+                '{sitename}'    => $this->_setting['site_name'],
+                '{authurl}'     => $authurl,
+                '{admin_email}' => $this->_setting['admin_email']
+            )
+        );
 		Helper::sendMail(0, $params['email'], $subject, $message);
 	
 	}

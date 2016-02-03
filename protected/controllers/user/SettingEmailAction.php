@@ -17,7 +17,7 @@ class SettingEmailAction extends CAction
         $model->uid = $user_model->uid;
 		//判断账号是否已激活	
 		if($this->controller->_active_need && $user_model->status == User::STATUS_AUDIT){
-			$this->controller->redirect($this->createUrl('activeEmail'));
+			$this->controller->redirect($this->controller->createUrl('activeEmail'));
 		}        
 		if(Yii::app()->request->isPostRequest){
             $model->attributes = $_POST['SetEmailForm'];

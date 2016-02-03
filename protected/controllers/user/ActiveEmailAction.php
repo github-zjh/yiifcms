@@ -9,24 +9,20 @@
 class ActiveEmailAction extends CAction {
 
     public function run() {
-        $this->_seoTitle = Yii::t('common', 'Account Active') . ' - ' . $this->_setting['site_name'];
-        //加载css,js
-        Yii::app()->clientScript->registerCssFile($this->_stylePath . "/css/user.css");
-        Yii::app()->clientScript->registerScriptFile($this->_static_public . "/js/jquery/jquery.js");
-        $model = $this->loadModel();
-
+        $this->controller->_seoTitle = Yii::t('common', 'Account Active') . ' - ' . $this->controller->_setting['site_name'];
+        $model = $this->controller->loadModel();
         if ($model->status == 1) {
-            $this->redirect($this->createUrl('index'));
+            $this->controller->redirect($this->createUrl('index'));
         } else {
             if (Yii::app()->request->isPostRequest) {
                 if ($_POST['ajax'] == 'ajax_active_form') {
-                    $this->sendActiveAccount(array('id' => $model->uid, 'username' => $model->username, 'email' => $model->email));
+                    $this->controller->sendActiveAccount(array('id' => $model->uid, 'username' => $model->username, 'email' => $model->email));
                     exit(CJSON::encode(array('message' => Yii::t('common', 'Send Success'))));
                 } else {
                     exit(CJSON::encode(array('message' => Yii::t('common', 'Send Failed'))));
                 }
             }
-            $this->render('active_email', array('model' => $model));
+            $this->controller->render('active_email', array('model' => $model));
         }
     }
 
