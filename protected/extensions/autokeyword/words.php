@@ -1,45 +1,9 @@
 <?php
-/**
- * 词库(权重越高越靠前)
- */
-return array(
-	'php',
-	'mysql',
-	'web',
-	'html',
-	'js',
-	'jquery',
-	'sql',
-	'myisam',
-	'innodb',
-	'apache',
-	'nginx',
-	'yii',
-	'linux',
-	'cms',
-	'yiifcms',
-	'redis',
-	'memcache',
-	'explain',
-	'ueditor',
-	'kindeditor',
-	'api',
-	'w3c',
-	'高性能',
-	'大数据',
-	'存储过程',
-	'事物',
-	'触发器',
-	'索引',
-    '并发',
-	'编程',
-	'算法',
-	'排序',
-	'安装包',
-	'下载',
-	'服务器',
-	'手册',
-	'指南',
-	'文章',
-	'图集',
+
+return array (
+  0 => 'php',
+  1 => 'mysql',
+  2 => 'web',
 );
+
+?>

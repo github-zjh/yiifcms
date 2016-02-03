@@ -14,9 +14,9 @@ class ResetAction extends CAction
         if($tags) {
             foreach( $tags as $tag){    		
                 $post  = Post::model()->findAll("FIND_IN_SET(:tag, tags)", array(':tag'=>$tag->tag_name));   
-                $image = Image::model()->findAll("FIND_IN_SET(:tag, tags)", array(':tag'=>$tag->tag_name));
-                $soft  = Soft::model()->findAll("FIND_IN_SET(:tag, seo_keywords)", array(':tag'=>$tag->tag_name));
-                $video = Video::model()->findAll("FIND_IN_SET(:tag, seo_keywords)", array(':tag'=>$tag->tag_name));
+                $image = Album::model()->findAll("FIND_IN_SET(:tag, tags)", array(':tag'=>$tag->tag_name));
+                $soft  = Soft::model()->findAll("FIND_IN_SET(:tag, tags)", array(':tag'=>$tag->tag_name));
+                $video = Video::model()->findAll("FIND_IN_SET(:tag, tags)", array(':tag'=>$tag->tag_name));
                 if(!$post && !$image && !$soft && !$video){
                     $tag->delete();
                 } else {

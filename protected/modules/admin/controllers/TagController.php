@@ -15,7 +15,8 @@ class TagController extends Backend
         $actions = $this->actionMapping(array(
             'index'        => 'Index',         //列表页            
             'reset'        => 'Reset',         //重新统计标签
-            'batch'        => 'Batch',         //批量操作            
+            'batch'        => 'Batch',         //批量操作
+            'words'        => 'Words',         //搜索词库
         ), 'application.modules.admin.controllers.tag');
         return array_merge($actions, $extra_actions);
     }

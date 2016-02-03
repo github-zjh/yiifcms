@@ -26,11 +26,8 @@ class IndexAction extends CAction
         $pages->applyLimit($criteria);
         
         //查询
-        $result = $model->findAll($criteria);        
-        
-        Yii::app()->clientScript->registerCssFile($this->controller->_static_public . "/js/kindeditor/code/prettify.css");
-        Yii::app()->clientScript->registerScriptFile($this->controller->_static_public . "/js/kindeditor/code/prettify.js",CClientScript::POS_END);
-        
+        $result = $model->findAll($criteria);
+
         $this->controller->render('index', array ('model' => $model, 'datalist' => $result , 'pagebar' => $pages ));
 	}
 }

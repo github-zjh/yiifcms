@@ -32,10 +32,7 @@ class IndexAction extends CAction
         
         //全部类型
         $model_types = ModelType::model()->findAll();
-        
-        Yii::app()->clientScript->registerCssFile($this->controller->_static_public . "/js/kindeditor/code/prettify.css");
-        Yii::app()->clientScript->registerScriptFile($this->controller->_static_public . "/js/kindeditor/code/prettify.js",CClientScript::POS_END);
-        
+
         $this->controller->render('index', array ('model' => $model, 'model_types' => $model_types, 'datalist' => $result , 'pagebar' => $pages ));
 	}
 }

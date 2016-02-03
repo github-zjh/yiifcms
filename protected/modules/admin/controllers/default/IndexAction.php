@@ -71,6 +71,7 @@ class IndexAction extends CAction
                 array('url'=> $this->controller->createUrl('comment/index'), 'name'=>Yii::t('admin','Comment Manage')),
                 array('url'=> $this->controller->createUrl('reply/index'), 'name'=>Yii::t('admin','Reply Manage')),
                 array('url'=> $this->controller->createUrl('tag/index'), 'name'=>Yii::t('admin','Tags Manage')),
+                array('url'=> $this->controller->createUrl('tag/words'), 'name'=>Yii::t('admin','Words Manage')),
                 array('url'=> $this->controller->createUrl('maillog/index'), 'name'=>Yii::t('admin','Maillog Manage')),
 			),
 			array(

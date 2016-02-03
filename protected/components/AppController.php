@@ -186,6 +186,9 @@ class AppController extends CController
 					exit( '<script type="text/javascript">alert("' . $content . '");window.location=" ' . $redirect . '   "</script>' );
 				}
 				break;
+			default:
+				throw new Exception('错误的参数[success|error|errorBack|redirect|script]');
+				break;
 		}
 	
 		// 信息头部
