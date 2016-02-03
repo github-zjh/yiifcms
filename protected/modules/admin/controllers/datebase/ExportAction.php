@@ -44,13 +44,15 @@ class ExportAction extends CAction
         Yii::app()->db->createCommand('SET NAMES utf8')->execute();
         $ext = '.sql'; 
         $part = 1;
+        $version = Yii::app()->db->createCommand("SELECT version() AS version")->queryAll();
+        $mysqlVersion = $version[0]['version'];
         //写入注释说明
         $tabledump = "--comment_start"
             . "\n-- 数据库备份文件"
             . "\n-- 作者:      GoldHan.zhao <326196998@qq.com>"
             . "\n-- 时间：     ".date('Y-m-d H:i:s')
-            . "\n-- Mysql版本：".mysql_get_server_info ()
-            . "\n-- PHP版本：  ".  phpversion()
+            . "\n-- Mysql版本：".$mysqlVersion
+            . "\n-- PHP版本：  ".phpversion()
             . "\n-- 程序版本： ".$this->controller->_cmsVersion   
             . "\n--comment_end ";
         $tabledump .= "\n".$this->controller->cutline;
