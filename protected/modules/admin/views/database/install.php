@@ -9,7 +9,7 @@
     <table class="content_list">
         <tr class="noborder">
             <td class="vtop rowform">        	
-                <label>安装测试数据前，请先做好备份，默认安装/protected/data/temp/test_data.sql文件.</label>
+                <label>安装测试数据前，请先做好备份，默认安装/protected/data/temp/install_data.sql文件.</label>
             </td>
         </tr>    
         <tr class="submit">

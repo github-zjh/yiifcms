@@ -48,14 +48,14 @@ class ExportAction extends CAction
         $mysqlVersion = $version[0]['version'];
         //写入注释说明
         $tabledump = "--comment_start"
-            . "\n-- 数据库备份文件"
-            . "\n-- 作者:      GoldHan.zhao <326196998@qq.com>"
-            . "\n-- 时间：     ".date('Y-m-d H:i:s')
-            . "\n-- Mysql版本：".$mysqlVersion
-            . "\n-- PHP版本：  ".phpversion()
-            . "\n-- 程序版本： ".$this->controller->_cmsVersion   
-            . "\n--comment_end ";
-        $tabledump .= "\n".$this->controller->cutline;
+            . "\r\n-- 数据库备份文件"
+            . "\r\n-- 作者:      GoldHan.zhao <326196998@qq.com>"
+            . "\r\n-- 时间：     ".date('Y-m-d H:i:s')
+            . "\r\n-- Mysql版本：".$mysqlVersion
+            . "\r\n-- PHP版本：  ".phpversion()
+            . "\r\n-- 程序版本： ".$this->controller->_cmsVersion
+            . "\r\n--comment_end ";
+        $tabledump .= "\r\n".$this->controller->cutline;
         $backfile = $this->controller->backup. '/' . $backup_prefix.$part.$ext;
         file_put_contents($backfile, $tabledump, FILE_APPEND );
         echo "<style>"
@@ -72,9 +72,9 @@ class ExportAction extends CAction
             $table_name = $tables[$i];
             echo "<br/>正在备份数据表：".$table_name."...";            
             //先导出表结构
-            $tabledump = "\n\nDROP TABLE IF EXISTS `$table_name`;\n".$this->controller->cutline."\n";
+            $tabledump = "\r\nDROP TABLE IF EXISTS `$table_name`;\r\n".$this->controller->cutline."\r\n";
             $res = Yii::app()->db->createCommand("SHOW CREATE TABLE `{$table_name}` ")->queryRow();            
-            $tabledump .= $res['Create Table'] . ";\n\n".$this->controller->cutline."\n";
+            $tabledump .= $res['Create Table'] . ";\r\n".$this->controller->cutline."\r\n";
             
             //取出数据
             $all = Yii::app()->db->createCommand("SELECT count(*) as count FROM `{$table_name}`")->queryRow();
@@ -123,7 +123,7 @@ class ExportAction extends CAction
                     $value = mysql_escape_string($value);
                     $fileds .= "`{$field}` = '{$value}' ,";
                 }
-                $fileds = rtrim($fileds,',').";\n".$this->controller->cutline."\n";
+                $fileds = rtrim($fileds,',').";\r\n".$this->controller->cutline."\r\n";
                 $str .= $fileds;
             }
         }
