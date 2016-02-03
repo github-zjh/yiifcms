@@ -84,7 +84,7 @@
 			<ul id="tab_image1" class="tab_image clear">
 				<?php foreach((array)$image_new as $in):?>				
 				<li>
-					<a href="<?php echo $this->createUrl('image/view', array('id'=>$in->id));?>">	
+					<a href="<?php echo $this->createUrl('album/view', array('id'=>$in->id));?>">
 						<img width="200" src="<?php echo $in->attach_thumb;?>" alt="<?php echo $in->title;?>" />
 						<em class="black_bg"><span><?php echo Helper::truncate_utf8_string($in->title, 20);?></span></em>
 					</a>					
@@ -94,7 +94,7 @@
 			<ul id="tab_image2" class="tab_image clear hidden">
 				<?php foreach((array)$image_hot as $ih):?>				
 				<li>
-					<a href="<?php echo $this->createUrl('image/view', array('id'=>$ih->id));?>">	
+					<a href="<?php echo $this->createUrl('album/view', array('id'=>$ih->id));?>">
 						<img width="200" src="<?php echo $ih->attach_thumb;?>" alt="<?php echo $ih->title;?>" />
 						<em class="black_bg"><span><?php echo Helper::truncate_utf8_string($ih->title, 20);?></span></em>
 					</a>					

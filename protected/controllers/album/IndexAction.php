@@ -37,7 +37,7 @@ class IndexAction extends CAction
                 $this->controller->_seoTitle = $catalog->seo_title?$catalog->seo_title:$catalog->catalog_name.' - '.$this->controller->_setting['site_name'];
                 $this->controller->_seoKeywords = $catalog->seo_keywords;
                 $this->controller->_seoDescription = $catalog->seo_description; 
-                $navs[] = array('url'=>$this->controller->createUrl('image/index', array('catalog_id'=>$catalog->id)),'name'=>$catalog->catalog_name);   	            
+                $navs[] = array('url'=>$this->controller->createUrl('album/index', array('catalog_id'=>$catalog->id)),'name'=>$catalog->catalog_name);
                 //已搜索的分类
                 $cat_parents = Catalog::getParantsCatalog($catalog_id);                
                 $search_cats = $cat_parents ? implode('>', $cat_parents) .'>'. $catalog->catalog_name : $catalog->catalog_name;

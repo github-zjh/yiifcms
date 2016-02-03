@@ -46,7 +46,7 @@
             <?php if($special_images):?>
             <ul class="clear">
                 <?php foreach($special_images as $i):?>
-                <li><a href="<?php echo $this->createUrl('image/view', array('id' => $i->id));?>"><?php echo $i->title;?></a></li>
+                <li><a href="<?php echo $this->createUrl('album/view', array('id' => $i->id));?>"><?php echo $i->title;?></a></li>
                 <?php endforeach;?>
             </ul>
             <?php endif;?>

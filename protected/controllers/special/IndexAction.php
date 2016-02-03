@@ -23,7 +23,7 @@ class IndexAction extends CAction
         $special_news = Post::model()->findAll(array('select' => 'id, title', 'condition' => 'special_id ='.$id. ' AND status ="'.Post::STATUS_SHOW.'"', 'limit' => 30));
         
         //专题图集
-        $special_images = Image::model()->findAll(array('select' => 'id, title', 'condition' => 'special_id ='.$id. ' AND status ="'.Image::STATUS_SHOW.'"', 'limit' => 30));
+        $special_images = Album::model()->findAll(array('select' => 'id, title', 'condition' => 'special_id ='.$id. ' AND status ="'.Album::STATUS_SHOW.'"', 'limit' => 30));
         
         $this->controller->render( 'index', array(            
                 'special'        => $special,

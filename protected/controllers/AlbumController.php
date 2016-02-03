@@ -5,7 +5,7 @@
  * @author        GoldHan.zhao <326196998@qq.com>
  * @copyright     Copyright (c) 2014-2016 . All rights reserved. 
  */
-class ImageController extends FrontBase
+class AlbumController extends FrontBase
 {
 	public $_catalog;
 	public $_menu_unique;
@@ -30,7 +30,7 @@ class ImageController extends FrontBase
             'index'    => 'Index',        //列表
             'view'     => 'View',         //详情         
             'ajax'     => 'Ajax',         //ajax操作
-        ), 'application.controllers.image');
+        ), 'application.controllers.album');
         return array_merge($actions, $extra_actions);
     } 
 }

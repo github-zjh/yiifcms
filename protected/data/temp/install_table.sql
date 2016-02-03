@@ -615,7 +615,7 @@ INSERT INTO `#@__menu` VALUES ('1', '首页', 'index.php', 'index', 'Y', '0', '1
 INSERT INTO `#@__menu` VALUES ('2', '精品阅读', '/?r=post/index', 'post', 'Y', '0', '2', 'N');
 INSERT INTO `#@__menu` VALUES ('3', '视频', '/?r=video/index', 'video', 'Y', '0', '5', 'N');
 INSERT INTO `#@__menu` VALUES ('4', '下载', '/?r=soft/index', 'soft', 'Y', '0', '3', 'N');
-INSERT INTO `#@__menu` VALUES ('5', '图集', '/?r=image/index', 'image', 'Y', '0', '4', 'N');
+INSERT INTO `#@__menu` VALUES ('5', '图集', '/?r=album/index', 'album', 'Y', '0', '4', 'N');
 INSERT INTO `#@__menu` VALUES ('6', '导读', '/?r=page/index&id=guide', 'guide', 'Y', '0', '6', 'N');
 INSERT INTO `#@__menu` VALUES ('7', '反馈', '/?r=question/index', 'question', 'Y', '0', '7', 'N');
 

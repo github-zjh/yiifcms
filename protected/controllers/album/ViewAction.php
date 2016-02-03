@@ -26,7 +26,7 @@ class ViewAction extends CAction {
 
         //nav
         $navs = array();
-        $navs[] = array('url' => $this->controller->createUrl('image/view', array('id' => $id)), 'name' => $post->title);
+        $navs[] = array('url' => $this->controller->createUrl('album/view', array('id' => $id)), 'name' => $post->title);
 
         //上一篇
         $pre_relation = Album::model()->find('id > ' . $id . ' AND `status` = "' . Album::STATUS_SHOW . '"');

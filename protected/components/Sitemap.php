@@ -111,10 +111,10 @@ class Sitemap extends CController{
     	$criteria->condition = "status = 'Y'";
     	$criteria->select = 'id, update_time';
     	$criteria->order = 'id DESC';
-    	$model = Image::model()->findAll($criteria);    	
+    	$model = Album::model()->findAll($criteria);
     	foreach($model as $v){
     		$this->imageItems[] = array(
-    				'url'=>$this->createUrl('image/view', array('id'=>$v->id)),
+    				'url'=>$this->createUrl('album/view', array('id'=>$v->id)),
     				'date'=>date(DATE_W3C, $v->update_time)
     		);
     	}   

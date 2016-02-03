@@ -23,7 +23,7 @@
 						</span>
 						<?php endif;?>
                         <!-- 分类 -->
-                        <span><?php echo Yii::t('common','Catagorys')?>： <a href='<?php echo $this->createUrl('image/index', array('catalog_id' => $post->catalog_id));?>'><?php echo $post->catalog->catalog_name;?></a></span>
+                        <span><?php echo Yii::t('common','Catagorys')?>： <a href='<?php echo $this->createUrl('album/index', array('catalog_id' => $post->catalog_id));?>'><?php echo $post->catalog->catalog_name;?></a></span>
 						<span class="views"><em><?php echo $post->view_count;?></em></span>
 					</p>
 					<div class="content_info">
@@ -51,12 +51,12 @@
 					<!-- 上一篇、下一篇 -->
 					<ul class="relation">
 						<?php if($pre_relation):?>
-							<li>上一篇：<a href="<?php echo $this->createUrl('image/view', array('id' => $pre_relation->id))?>"><?php echo $pre_relation->title;?></a></li>
+							<li>上一篇：<a href="<?php echo $this->createUrl('album/view', array('id' => $pre_relation->id))?>"><?php echo $pre_relation->title;?></a></li>
 						<?php else:?>
 							<li>上一篇：<a href="javascript:;">没有了</a></li>
 						<?php endif;?>
 						<?php if($next_relation):?>
-							<li>下一篇：<a href="<?php echo $this->createUrl('image/view', array('id' => $next_relation->id))?>"><?php echo $next_relation->title;?></a></li>
+							<li>下一篇：<a href="<?php echo $this->createUrl('album/view', array('id' => $next_relation->id))?>"><?php echo $next_relation->title;?></a></li>
 						<?php else:?>
 							<li>下一篇：<a href="javascript:;">没有了</a></li>
 						<?php endif;?>
