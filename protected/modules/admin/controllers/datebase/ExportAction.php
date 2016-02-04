@@ -106,9 +106,9 @@ class ExportAction extends CAction
     /**
      * 从表中查询数据 并返回插入语句
      * 
-     * @param type $table_name
-     * @param type $start
-     * @param type $offset
+     * @param string $table_name
+     * @param int $start
+     * @param int $offset
      * @return string
      */
     private function _getDataFromTable($table_name= '', $start = 0, $offset = 100)
@@ -120,7 +120,7 @@ class ExportAction extends CAction
                 $str .= "INSERT INTO `{$table_name}` SET ";
                 $fileds = '';
                 foreach($row as $field => $value) {
-                    $value = mysql_escape_string($value);
+                    $value = mysql_real_escape_string($value);
                     $fileds .= "`{$field}` = '{$value}' ,";
                 }
                 $fileds = rtrim($fileds,',').";\r\n".$this->controller->cutline."\r\n";
