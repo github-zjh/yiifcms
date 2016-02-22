@@ -37,8 +37,10 @@ class MyreplysAction extends CAction
 				$c_mod_name = strtolower($c_mod_class);
 				$content_mod = new $c_mod_class();
 				$content = $content_mod->findByPk($reply->content_id);
-				$datalist[$k]['title'] = $content->title;
-				$datalist[$k]['url'] = $controller->createUrl($c_mod_name.'/view', array('id'=>$reply->content_id));
+				if($content) {
+					$datalist[$k]['title'] = $content->title;
+					$datalist[$k]['url'] = $controller->createUrl($c_mod_name.'/view', array('id'=>$reply->content_id));
+				}
 			}			
 		}			
 		$controller->render('my_replys', array('datalist'=>$datalist, 'pages' => $pages));

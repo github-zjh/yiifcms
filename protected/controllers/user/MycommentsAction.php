@@ -33,9 +33,11 @@ class MycommentsAction extends CAction
 			$c_mod_class = $controller->_content_models[$v->type];
 			$c_mod_name = strtolower($c_mod_class);
 			$content_mod = new $c_mod_class();
-			$content = $content_mod->findByPk($v->content_id);            
-			$datalist[$k]['title'] = $content->title;
-			$datalist[$k]['url'] = $controller->createUrl($c_mod_name.'/view', array('id'=>$content->id));
+			$content = $content_mod->findByPk($v->content_id);
+			if($content) {
+				$datalist[$k]['title'] = $content->title;
+				$datalist[$k]['url'] = $controller->createUrl($c_mod_name.'/view', array('id'=>$content->id));
+			}
 		}        
 		$controller->render('my_comments', array('datalist'=>$datalist, 'pages' => $pages));
 	}
