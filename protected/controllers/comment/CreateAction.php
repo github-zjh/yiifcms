@@ -79,6 +79,8 @@ class CreateAction extends CAction {
             $ret_url = $_POST['ret_url'];
 
             if ($model->save()) {
+                //更新内容评论数
+                $post->updateCounters(array ('reply_count' => 1 ), 'id=:id', array ('id' => $content_id ));
                 $this->controller->message('script', Yii::t('common', 'Submit Success, Waiting Pass'), $ret_url);                
             }
         }

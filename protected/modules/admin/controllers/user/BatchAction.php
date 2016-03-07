@@ -30,15 +30,15 @@ class BatchAction extends CAction
                 break;
             case 'lock':
                 //禁用
-                User::model()->updateAll(['status' => User::STATUS_DISABLE], $criteria); 
+                User::model()->updateAll(array('status' => User::STATUS_DISABLE), $criteria);
                 break; 
             case 'unlock':     
                 //显示
-                User::model()->updateAll(['status' => User::STATUS_NORMAL], $criteria);                
+                User::model()->updateAll(array('status' => User::STATUS_NORMAL), $criteria);
                 break;
             case 'unpass':     
                 //待审核      
-                User::model()->updateAll(['status' => User::STATUS_AUDIT], $criteria);                
+                User::model()->updateAll(array('status' => User::STATUS_AUDIT), $criteria);
                 break;            
             default:
                 $this->controller->message('error', Yii::t('admin','Error Operation'));                

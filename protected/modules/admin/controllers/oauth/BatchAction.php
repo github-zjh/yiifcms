@@ -20,11 +20,11 @@ class BatchAction extends CAction
         switch ( $command ) {            
             case 'Enable':     
                 //显示
-                OAuth::model()->updateAll(['status' => 'Y'], $criteria);                
+                OAuth::model()->updateAll(array('status' => 'Y'), $criteria);
                 break;
             case 'Disable':     
                 //隐藏      
-                OAuth::model()->updateAll(['status' => 'N'], $criteria);                
+                OAuth::model()->updateAll(array('status' => 'N'), $criteria);
                 break;            
             default:
                 $this->controller->message('error', Yii::t('admin','Error Operation'));                

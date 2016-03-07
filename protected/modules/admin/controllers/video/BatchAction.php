@@ -32,11 +32,11 @@ class BatchAction extends CAction
                 break;       
             case 'show':     
                 //显示
-                Video::model()->updateAll(['status' => 'Y'], $criteria);
+                Video::model()->updateAll(array('status' => 'Y'), $criteria);
                 break;
             case 'hidden':     
                 //隐藏      
-                Video::model()->updateAll(['status' => 'N'], $criteria);
+                Video::model()->updateAll(array('status' => 'N'), $criteria);
                 break;            
             default:
                 $this->controller->message('error', Yii::t('admin','Error Operation'));                

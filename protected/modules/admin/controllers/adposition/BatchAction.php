@@ -25,11 +25,11 @@ class BatchAction extends CAction
                 break;
             case 'show':      
                 //显示
-                AdPosition::model()->updateAll(['status' => AdPosition::STATUS_SHOW], $criteria);                
+                AdPosition::model()->updateAll(array('status' => AdPosition::STATUS_SHOW), $criteria);
                 break;
             case 'hide':      
                 //隐藏
-                AdPosition::model()->updateAll(['status' => AdPosition::STATUS_HIDE], $criteria);                
+                AdPosition::model()->updateAll(array('status' => AdPosition::STATUS_HIDE), $criteria);
                 break;
             default:
                 $this->controller->message('error', Yii::t('admin','Error Operation'));                

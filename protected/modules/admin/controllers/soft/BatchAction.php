@@ -34,11 +34,11 @@ class BatchAction extends CAction
                 break;       
             case 'show':     
                 //显示
-                Soft::model()->updateAll(['status' => 'Y'], $criteria);
+                Soft::model()->updateAll(array('status' => 'Y'), $criteria);
                 break;
             case 'hidden':     
                 //隐藏      
-                Soft::model()->updateAll(['status' => 'N'], $criteria);
+                Soft::model()->updateAll(array('status' => 'N'), $criteria);
                 break;            
             default:
                 throw new CHttpException(404, Yii::t('admin','Error Operation'));                

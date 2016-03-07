@@ -38,11 +38,11 @@ class BatchAction extends CAction
                 break;       
             case 'show':     
                 //显示      
-                Album::model()->updateAll(['status' => 'Y'], $criteria);               
+                Album::model()->updateAll(array('status' => 'Y'), $criteria);
                 break;
             case 'hidden':     
                 //隐藏
-                Album::model()->updateAll(['status' => 'N'], $criteria);
+                Album::model()->updateAll(array('status' => 'N'), $criteria);
                 break;
             case 'commend':     
                 //图集推荐

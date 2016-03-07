@@ -30,7 +30,7 @@ class BatchAction extends CAction
                 break;       
             case 'show':     
                 //显示
-                Post::model()->updateAll(['status' => 'Y'], $criteria);
+                Post::model()->updateAll(array('status' => 'Y'), $criteria);
                 foreach((array)$ids as $id){
                     //更新关联的标签
                     $tagData = TagData::model()->updateAll(array('status'=>'Y'),'content_id =:id AND type =:type', array(':id'=>$id, ':type'=>$this->controller->_type_ids['post']));                   
@@ -38,7 +38,7 @@ class BatchAction extends CAction
                 break;
             case 'hidden':     
                 //文章隐藏      
-                Post::model()->updateAll(['status' => 'N'], $criteria);
+                Post::model()->updateAll(array('status' => 'N'), $criteria);
                 foreach((array)$ids as $id){                    
                     //更新关联的标签
                     $tagData = TagData::model()->updateAll(array('status'=>'N'),'content_id =:id AND type =:type', array(':id'=>$id, ':type'=>$this->controller->_type_ids['post']));                    

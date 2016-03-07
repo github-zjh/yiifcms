@@ -29,9 +29,9 @@ class ViewAction extends CAction {
         $navs[] = array('url' => $this->controller->createUrl('video/view', array('id' => $id)), 'name' => $post->title);
 
         //上一篇
-        $pre_relation = Video::model()->find('id > ' . $id . ' AND `status` = "' . Video::STATUS_SHOW . '"');
+        $pre_relation = Video::model()->find('id > ' . $id . ' AND `status` = "' . Video::STATUS_SHOW . '" ORDER BY id DESC');
         //下一篇
-        $next_relation = Video::model()->find('id < ' . $id . ' AND `status` = "' . Video::STATUS_SHOW . '"');
+        $next_relation = Video::model()->find('id < ' . $id . ' AND `status` = "' . Video::STATUS_SHOW . '" ORDER BY id DESC');
 
         $tplVar = array(
             'video'         => $post,

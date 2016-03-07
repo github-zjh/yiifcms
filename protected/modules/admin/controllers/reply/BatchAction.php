@@ -25,11 +25,11 @@ class BatchAction extends CAction
                 break;
             case 'show':      
                 //显示
-                Reply::model()->updateAll(['status' => Reply::STATUS_SHOW], $criteria);                
+                Reply::model()->updateAll(array('status' => Reply::STATUS_SHOW), $criteria);
                 break;
             case 'hide':      
                 //隐藏
-                Reply::model()->updateAll(['status' => Reply::STATUS_HIDE], $criteria);                
+                Reply::model()->updateAll(array('status' => Reply::STATUS_HIDE), $criteria);
                 break;
             default:
                 $this->controller->message('error', Yii::t('admin','Error Operation'));                

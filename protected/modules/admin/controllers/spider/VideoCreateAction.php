@@ -119,8 +119,9 @@ class VideoCreateAction extends CAction
             $video_cover = '';
             if($title_img) {
                 $img_url = $title_img->src;                                                
-                if ($img_url) {                         
-                    $spiderU = (new Uploader())->initSimple('spider');
+                if ($img_url) {
+                    $uploader = new Uploader();
+                    $spiderU = $uploader->initSimple('spider');
                     $spiderU->file_ext = Helper::getExtensionName($img_url);
                     $spiderU->getSavePathFromRemote();
                     $download = Helper::downloadImage($img_url, dirname($spiderU->save_path), pathinfo($spiderU->file_name, PATHINFO_FILENAME));

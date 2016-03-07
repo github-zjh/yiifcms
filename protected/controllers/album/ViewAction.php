@@ -29,9 +29,9 @@ class ViewAction extends CAction {
         $navs[] = array('url' => $this->controller->createUrl('album/view', array('id' => $id)), 'name' => $post->title);
 
         //上一篇
-        $pre_relation = Album::model()->find('id > ' . $id . ' AND `status` = "' . Album::STATUS_SHOW . '"');
+        $pre_relation = Album::model()->find('id > ' . $id . ' AND `status` = "' . Album::STATUS_SHOW . '" ORDER BY id DESC');
         //下一篇
-        $next_relation = Album::model()->find('id < ' . $id . ' AND `status` = "' . Album::STATUS_SHOW . '"');
+        $next_relation = Album::model()->find('id < ' . $id . ' AND `status` = "' . Album::STATUS_SHOW . '" ORDER BY id DESC');
 
         $tplVar = array(
             'post'          => $post,
