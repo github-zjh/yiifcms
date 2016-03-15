@@ -117,20 +117,28 @@ class BatchAction extends CAction
     {        
         switch($type) {
             case 'post':
-                $ltable = (new SpiderPostList)->tableName();
-                $ctable = (new SpiderPostContent)->tableName();                
+                $postListModel = new SpiderPostList();
+                $postContModel = new SpiderPostContent();
+                $ltable = $postListModel->tableName();
+                $ctable = $postContModel->tableName();
                 break;
             case 'image':
-                $ltable = (new SpiderImageList)->tableName();
-                $ctable = (new SpiderImageContent)->tableName();                
+                $imgListModel = new SpiderImageList();
+                $imgContModel = new SpiderImageContent();
+                $ltable = $imgListModel->tableName();
+                $ctable = $imgContModel->tableName();
                 break;
             case 'soft':
-                $ltable = (new SpiderSoftList)->tableName();
-                $ctable = (new SpiderSoftContent)->tableName();                
+                $softListModel = new SpiderSoftList();
+                $softContModel = new SpiderSoftContent();
+                $ltable = $softListModel->tableName();
+                $ctable = $softContModel->tableName();
                 break;
             case 'video':
-                $ltable = (new SpiderVideoList)->tableName();
-                $ctable = (new SpiderVideoContent)->tableName();                
+                $videoListModel = new SpiderVideoList();
+                $videoContModel = new SpiderVideoContent();
+                $ltable = $videoListModel->tableName();
+                $ctable = $videoContModel->tableName();
                 break;
             default:
                 break;

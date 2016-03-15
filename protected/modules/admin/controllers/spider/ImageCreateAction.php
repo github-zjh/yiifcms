@@ -142,8 +142,9 @@ class ImageCreateAction extends CAction
             $cover_img = '';
             $cover_img_thumb = '';
             if ($imgs && $imgs[1]) {
-                $first_img_url = $imgs[1];  
-                $spiderU = (new Uploader())->initSimple('spider');
+                $first_img_url = $imgs[1];
+                $uploader = new Uploader();
+                $spiderU = $uploader->initSimple('spider');
                 $spiderU->file_ext = Helper::getExtensionName($first_img_url);
                 $spiderU->getSavePathFromRemote();
                 $download = Helper::downloadImage($first_img_url, dirname($spiderU->save_path), pathinfo($spiderU->file_name, PATHINFO_FILENAME));

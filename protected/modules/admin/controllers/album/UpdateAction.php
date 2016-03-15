@@ -53,7 +53,6 @@ class UpdateAction extends CAction
     	$this->controller->render('update',array(
     			'model'     => $model,
     			'imageList' => $imageList,
-    			'style'     => $style,
                 'parents'   => $belong,
     	));    	
 	}
