@@ -494,6 +494,7 @@ class Uploader{
 	 * @param string $filename
 	 */
 	public static function deleteFile($filename = ''){
+        $filename = ROOT_PATH . '/' . ltrim($filename, '\/');
 		if(Helper::getOS()=='Windows'){
 			//解决windows下中文文件名乱码的问题
 			$filename = iconv("UTF-8", "GB2312", $filename);			

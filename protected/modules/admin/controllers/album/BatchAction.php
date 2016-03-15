@@ -21,10 +21,10 @@ class BatchAction extends CAction
             case 'delete':      
                 //删除
                 foreach((array)$ids as $id){
-                    $model = Album::model()->with('content')->findByPk($id);                    
+                    $model = Album::model()->with('content')->findByPk($id);
                     if($model){                        
-                        Uploader::deleteFile(ROOT_PATH.$model->attach_file);
-                        Uploader::deleteFile(ROOT_PATH.$model->attach_thumb);
+                        Uploader::deleteFile($model->attach_file);
+                        Uploader::deleteFile($model->attach_thumb);
                         $album_list = $model->content ? $model->content->album_list : array();
                         foreach((array)$album_list as $v) {
                             Uploader::deleteFile($v);

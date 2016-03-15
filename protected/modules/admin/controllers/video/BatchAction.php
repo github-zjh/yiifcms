@@ -23,8 +23,8 @@ class BatchAction extends CAction
                 foreach((array)$ids as $id){
                     $model = Soft::model()->with('content')->findByPk($id);                    
                     if($model){ 
-                        Uploader::deleteFile(ROOT_PATH.$model->cover_image);
-                        Uploader::deleteFile(ROOT_PATH.$model->content->video_file);
+                        Uploader::deleteFile($model->cover_image);
+                        Uploader::deleteFile($model->content->video_file);
                         $model->delete();
                         $model->content->delete();
                     }
