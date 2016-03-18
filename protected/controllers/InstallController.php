@@ -144,9 +144,6 @@ class InstallController extends AppController {
      * 5.根据选择，是否安装测试数据
      */
     public function actionStep6() {
-        @apache_setenv('no-gzip', 1);
-        @ini_set('zlib.output_compression', 0);
-        @ini_set('implicit_flush', 1);
         set_time_limit(600);        
         $dbHost = Yii::app()->request->getParam('dbhost');
         $dbPort = Yii::app()->request->getParam('dbport');
