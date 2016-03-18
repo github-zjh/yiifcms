@@ -37,21 +37,21 @@
                                 <td>数据目录(data)</td>
                                 <td><?php if($data){ ?>√<?php }else{ ?>×<?php }?></td>
                                 <td>必须可读写</td>
-                                <td><?php if($data){ ?><span><img src="<?php echo $this->_theme->baseUrl?>/styles/install_styles/correct.gif" /></span><?php }else{ ?><font class="red"><img src="images/error.gif" />&nbsp;不支持保存远程图片</font><?php }?></td>
+                                <td><?php if($data){ ?><span><img src="<?php echo $this->_theme->baseUrl?>/styles/install_styles/correct.gif" /></span><?php }else{ ?><font class="red"><img src="<?php echo $this->_theme->baseUrl?>/styles/install_styles/error.gif" />&nbsp;不支持保存远程图片</font><?php }?></td>
                             </tr>
 
                             <tr>
                               <td>配置文件目录(protected/config)</td>
                               <td><?php if($config){ ?>√<?php }else{ ?>×<?php }?></td>
                               <td>必须可读写</td>
-                              <td><?php if($config){ ?><span><img src="<?php echo $this->_theme->baseUrl?>/styles/install_styles/correct.gif" /></span><?php }else{ ?><font class="red"><img src="images/error.gif" />&nbsp;不支持保存远程图片</font><?php }?></td>
+                              <td><?php if($config){ ?><span><img src="<?php echo $this->_theme->baseUrl?>/styles/install_styles/correct.gif" /></span><?php }else{ ?><font class="red"><img src="<?php echo $this->_theme->baseUrl?>/styles/install_styles/error.gif" />&nbsp;不支持保存远程图片</font><?php }?></td>
                             </tr>
 
                             <tr>
                               <td>公共资源文件(assets)</td>
                               <td><?php if($assets){ ?>√<?php }else{ ?>×<?php }?></td>
                               <td>必须可读写</td>
-                              <td><?php if($assets){ ?><span><img src="<?php echo $this->_theme->baseUrl?>/styles/install_styles/correct.gif" /></span><?php }else{ ?><font class="red"><img src="images/error.gif" />&nbsp;不支持保存远程图片</font><?php }?></td>
+                              <td><?php if($assets){ ?><span><img src="<?php echo $this->_theme->baseUrl?>/styles/install_styles/correct.gif" /></span><?php }else{ ?><font class="red"><img src="<?php echo $this->_theme->baseUrl?>/styles/install_styles/error.gif" />&nbsp;不支持保存远程图片</font><?php }?></td>
                             </tr>
                         </table>
  					</div>
