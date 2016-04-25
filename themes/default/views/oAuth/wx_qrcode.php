@@ -22,6 +22,7 @@
             <div class="qrcode">
                 <img class="img" src="<?php echo $qrcode_url;?>">
                 <p class="sub_title">扫描二维码登录微信</p>
+                <p style="color:red; font-size: 14px; font-weight: bold;">Sorry! 该页面功能暂不对外开放</p>
                 <div class="extension">
                     <div class="item">
                         <i class="icon web_wechat_login_phone_icon"></i>
