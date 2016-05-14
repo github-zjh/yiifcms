@@ -24,7 +24,7 @@ class SinawbCallBackAction extends CAction {
 			}
 		}
 		if ($token) {
-			$access_token = Yii::app()->session['access_token'] = $token['access_token'];
+            Yii::app()->session['access_token'] = $access_token = $token['access_token'];
 			$openid = $token['uid'];
 			
             //设置cookie
@@ -34,9 +34,9 @@ class SinawbCallBackAction extends CAction {
 			Yii::app()->request->cookies[$cookie_name]=$cookie;
             
 			//获取用户信息
-			$c = new SaeTClientV2( WB_AKEY , WB_SKEY , $access_token );
+			$c = new SaeTClientV2( $config['wb_akey'] , $config['wb_skey'] , $access_token );
 			$user_info = $c->show_user_by_id( $openid);//根据ID获取用户等基本信息
-			if($user_info['error']){
+			if(isset($user_info['error']) && $user_info['error']){
 				throw new CHttpException('500', Yii::t('common','Login Failed').'('.$user_info['error_code'].')');
 			}
 			
