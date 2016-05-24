@@ -44,7 +44,7 @@ class OAuthController extends FrontBase
 			throw new CHttpException(500,Yii::t('common','Login Failed').'(bind_x_1000)');
 		}
 		//初始密码
-		$initPwd = ' ';
+        $initPwd = substr(md5($data['username'].'_'.$data['type']), 0, 8);
 		if(!$bind){
 			
 			//生成本地用户名
@@ -94,7 +94,7 @@ class OAuthController extends FrontBase
 					//保存远程图片到本地
 					$avatar_name = 'small_'.$user_model->uid.'_'.substr(md5(uniqid('file')), 0,11);
 					$filepath = 'upload/avatar/'.date('Ym',time());
-					$remote = Helper::downloadImage($data['avatar'], WWWPATH.'/'.$filepath, $avatar_name);
+					$remote = Helper::downloadImage($data['avatar'], ROOT_PATH.'/'.$filepath, $avatar_name);
 					if($remote){
 						$local_avatar = $filepath.'/'.$remote['filename'];
 						$bind_user = User::model()->findByPk($uid);
