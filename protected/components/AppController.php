@@ -159,20 +159,17 @@ class AppController extends CController
 	 * @param string $stop
 	 */
 	public function message( $action = 'success', $content = '', $redirect = 'javascript:history.back(-1);', $timeout = 4 , $stop=false) {
-	
+
 		switch ( $action ) {
 			case 'success':
-				$titler = '操作完成';
 				$class = 'message_success';
 				$images = 'message_success.png';
 				break;
 			case 'error':
-				$titler = '操作未完成';
 				$class = 'message_error';
 				$images = 'message_error.png';
 				break;
 			case 'errorBack':
-				$titler = '操作未完成';
 				$class = 'message_error';
 				$images = 'message_error.png';
 				break;

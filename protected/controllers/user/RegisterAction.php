@@ -61,7 +61,7 @@ class RegisterAction extends CAction
 					$this->controller->message('success', Yii::t('common','Register Success'), $this->controller->createUrl('login'), 5);
 				}
 			} else {
-				$model->errors = $userModel->getErrors();
+				$model->addErrors($userModel->getErrors());
 			}
 		}
 		//set seo
