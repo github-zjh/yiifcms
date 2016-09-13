@@ -52,7 +52,7 @@ class RegisterAction extends CAction
 			$userModel->logins = 0;
 			$userModel->register_ip = Yii::app()->request->userHostAddress;  //注册ip
 			// validate user input and redirect to the previous page if valid
-			if($userModel->save()){
+			if($model->validate() && $userModel->save()){
 				if($this->controller->_active_need){	
 					//发送激活邮件				
 					$this->controller->sendActiveAccount(array('id'=>$userModel->uid, 'email'=>$userModel->email, 'username'=>$userModel->username));
