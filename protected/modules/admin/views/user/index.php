@@ -89,7 +89,7 @@
         <tr>
             <td colspan="7">
                 <div class="cuspages right">
-                <?php $this->widget('CLinkPager',array('pages'=>$pagebar));?>
+                    <?php $this->widget('CLinkPager', array('pages' => $pagebar, 'header'=>'<label class="itemCount">共'.$pagebar->getItemCount().'条</label>')); ?>
                 </div>
                 <div class="fixsel">
                     <input type="checkbox" name="chkall" id="chkall" onclick="checkAll(this.form, 'id')" />

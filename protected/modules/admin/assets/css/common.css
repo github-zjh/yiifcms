@@ -138,3 +138,8 @@ body[dir='rtl'] .formError .formErrorArrow, body.rtl .formError .formErrorArrow 
 
 .color_hide { color:orange;}
 .color_show { color:green;}
+
+/* 分页样式 */
+ul.yiiPager li.first, ul.yiiPager li.last { display:inline;}
+ul.yiiPager li.previous, ul.yiiPager li.next { display:none;}
+label.itemCount { margin:0 5px;}

@@ -6,6 +6,14 @@
         </ul>
         <div class="search right">
             <?php $this->beginWidget('CActiveForm', array('id' => 'searchForm', 'method' => 'get', 'action' => array('index'), 'htmlOptions' => array('name' => 'xform', 'class' => 'right '))); ?>
+
+            <?php echo Yii::t('admin','Status');?>:
+            <select name="status">
+                <?php foreach($statusList as $key => $v):?>
+                    <option value="<?php echo $key?>" <?php Helper::selected($key, $status);?>><?php echo $v?></option>
+                <?php endforeach;?>
+            </select>
+
             <select class="cat_select">
                 <option value="">=<?php echo Yii::t('admin', 'All Content'); ?>=</option>
                 <?php foreach ($this->_catalog as $catalog): ?>
@@ -70,7 +78,7 @@
             <tr class="operate">
                 <td colspan="6">
                     <div class="cuspages right">
-                    <?php $this->widget('CLinkPager', array('pages' => $pagebar)); ?>
+                        <?php $this->widget('CLinkPager', array('pages' => $pagebar, 'header'=>'<label class="itemCount">共'.$pagebar->getItemCount().'条</label>')); ?>
                     </div>
                     <div class="fixsel">
                         <input type="checkbox" name="chkall" id="chkall" onClick="checkAll(this.form, 'id')" />

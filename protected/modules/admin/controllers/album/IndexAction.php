@@ -12,9 +12,14 @@ class IndexAction extends CAction
 		$model = new Album();
         //条件
         $criteria = new CDbCriteria();
+        $status    = trim(Yii::app()->request->getParam('status'));
         $title     = trim( Yii::app()->request->getParam( 'title' ) );        
         $catalogId = intval( Yii::app()->request->getParam( 'catalogId' ) );
-        $criteria->addColumnCondition(array('type' => $this->controller->_type ));      
+        $criteria->addColumnCondition(array('type' => $this->controller->_type ));
+        if(!$status) {
+            $status = $model::STATUS_SHOW;
+        }
+        $status != 'all' && $criteria->addColumnCondition(array('t.status' => $status));
         $title && $criteria->addSearchCondition('title', $title);        
         $catalogId && $criteria->addColumnCondition(array('catalog_id' => $catalogId));
         $criteria->order = 't.id DESC';
@@ -25,8 +30,21 @@ class IndexAction extends CAction
         $pages = new CPagination( $count );
         $pages->pageSize = 20;        
         $pages->applyLimit($criteria);
-        $result = $model->findAll( $criteria );        
-        
-        $this->controller->render( 'index', array ( 'model' => $model, 'datalist' => $result , 'pagebar' => $pages) );
+        $result = $model->findAll( $criteria );
+
+        //审核状态
+        $statusList = array(
+            'all'               => '所有',
+            $model::STATUS_SHOW => '显示',
+            $model::STATUS_HIDE => '隐藏'
+        );
+
+        $this->controller->render('index', array(
+            'model'      => $model,
+            'status'     => $status,
+            'statusList' => $statusList,
+            'datalist'   => $result,
+            'pagebar'    => $pages
+        ));
 	}
 }
