@@ -135,7 +135,11 @@ class PostCreateAction extends CAction
                 }                
             } else {                
                 $content = $getContent->innertext;
-            }            
+            }
+
+            //过滤字符 防止xss攻击
+            $content = Helper::removeXss($content);
+
             $cdata = array(
                 'list_id'   => $list_id,
                 'content'   => $site->content_charset != 'UTF-8' ? mb_convert_encoding($content, 'UTF-8', $site->content_charset) : $content

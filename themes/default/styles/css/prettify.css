@@ -21,6 +21,10 @@ pre.prettyprint {
     border:1px dashed #428bca;
     padding-left:2em;
     line-height:1.5em;
+    white-space:pre-wrap;
+    white-space:-moz-pre-wrap;
+    white-space:-o-pre-wrap;
+    word-wrap:break-word;
 }
  
 .content_info code {

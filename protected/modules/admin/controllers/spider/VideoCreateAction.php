@@ -153,13 +153,15 @@ class VideoCreateAction extends CAction
                 }                
             } else {                
                 $content = $getContent->innertext;
-            } 
+            }
+
+            //过滤字符 防止xss攻击
+            $content = Helper::removeXss($content);
+
             //下载内容中第一张图片为封面图片
             $imgs = array();
             preg_match('/<img[\s]+src="(.*?)"/is', $content, $imgs);
-            $cover_img = '';
-            $cover_img_thumb = '';
-            if ($imgs && $imgs[1]) {
+            if (!$video_cover && $imgs && $imgs[1]) {
                 $first_img_url = $imgs[1];
                 $uploader = new Uploader();
                 $spiderU = $uploader->initSimple('spider');
@@ -169,8 +171,7 @@ class VideoCreateAction extends CAction
                 if($download) {
                     //生成缩略图
                     $spiderU->makeThumb();
-                    $cover_img = $spiderU->file_path;
-                    $cover_img_thumb = $spiderU->thumb_path;
+                    $video_cover = $spiderU->thumb_path;
                 }
             }        
             $cdata = array(

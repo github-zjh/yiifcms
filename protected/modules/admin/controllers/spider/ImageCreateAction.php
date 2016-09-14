@@ -135,7 +135,10 @@ class ImageCreateAction extends CAction
                 }                
             } else {                
                 $content = $getContent->innertext;
-            } 
+            }
+            //过滤字符 防止xss攻击
+            $content = Helper::removeXss($content);
+
             //下载内容中第一张图片为封面图片
             $imgs = array();
             preg_match('/<img[\s]+src="(.*?)"/is', $content, $imgs);
