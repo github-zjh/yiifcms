@@ -42,7 +42,7 @@ class AppController extends CController
     public     $_type_names = array();       //内容模型名称
 	public     $_content_models = array();   //内容模型对象
 	public     $_cmsVersion = 'yiifcms1.5';
-	public     $_cmsRelease = '20160101';
+	public     $_cmsRelease = '20160914';
 	
 	
 	public function init ()

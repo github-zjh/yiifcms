@@ -69,11 +69,11 @@ $config = array(
 		),
 		
 		//配置session
-		'session'=>array(
+		/*'session'=>array(
 				'class'=>'CHttpSession',
 				'autoStart'=>true,								
 				'sessionName'=>'YFCMSSN',	
-		),
+		),*/
 		//配置错误页面
 		'errorHandler'=>array(			
 			'errorAction'=>'site/error',
